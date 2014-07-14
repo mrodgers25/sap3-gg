@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+/* override bootstrap header */
+.navbar-custom {
+  background-color:#000000;
+  color:#ffffff;
+}
+
+/* style the header */
+.container-fluid {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 1600px; /* or 950px */
+}
+//body {
+//  margin-left: 40px;
+//}
