@@ -17,6 +17,7 @@ gem 'thin'
 gem 'simple_form'
 gem 'pundit'
 gem 'high_voltage'
+gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
