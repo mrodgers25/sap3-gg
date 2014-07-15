@@ -13,7 +13,6 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pg'
-gem 'pundit'
 gem 'thin'
 gem 'simple_form'
 gem 'pundit'
