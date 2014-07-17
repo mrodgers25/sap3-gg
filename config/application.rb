@@ -22,6 +22,11 @@ module Sap3Gg
 
     # added by gg to use iframe
     config.action_dispatch.default_headers.merge!({'X-Frame-Options' => 'ALLOWALL'})
+
+    # added by gg to avoid overriding the scaffolds.css.scss file
+    config.generators do |g|
+      g.stylesheets false
+    end
   end
 end
 

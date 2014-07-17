@@ -11,10 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710125933) do
+ActiveRecord::Schema.define(version: 20140717182018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "media", force: true do |t|
+    t.string   "media_type"
+    t.string   "url_id"
+    t.string   "media_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "media_infos", force: true do |t|
+    t.string   "media_type"
+    t.string   "url_id"
+    t.string   "media_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories", force: true do |t|
+    t.string   "url_id"
+    t.string   "media_id"
+    t.string   "story_type"
+    t.string   "author"
+    t.date     "publication_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "urls", force: true do |t|
+    t.string   "url"
+    t.datetime "url_entered"
+    t.string   "url_type"
+    t.string   "url_title"
+    t.string   "url_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

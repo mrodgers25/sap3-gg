@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Media type:</strong>
+  <%= @media_info.media_type %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @media_info.url_id %>
+</p>
+
+<p>
+  <strong>Media desc:</strong>
+  <%= @media_info.media_desc %>
+</p>
+
+<%= link_to 'Edit', edit_media_info_path(@media_info) %> |
+<%= link_to 'Back', media_infos_path %>

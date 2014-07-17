@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @url.url %>
+</p>
+
+<p>
+  <strong>Url entered:</strong>
+  <%= @url.url_entered %>
+</p>
+
+<p>
+  <strong>Url type:</strong>
+  <%= @url.url_type %>
+</p>
+
+<p>
+  <strong>Url title:</strong>
+  <%= @url.url_title %>
+</p>
+
+<p>
+  <strong>Url desc:</strong>
+  <%= @url.url_desc %>
+</p>
+
+<%= link_to 'Edit', edit_url_path(@url) %> |
+<%= link_to 'Back', urls_path %>

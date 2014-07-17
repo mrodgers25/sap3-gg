@@ -1,0 +1,2 @@
+module MediaInfosHelper
+end
