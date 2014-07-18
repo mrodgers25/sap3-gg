@@ -11,25 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :source_url, "Source URL" %><br>
-    <%= f.text_field :source_url %>
+    <!--<div style="padding-top: 5px">-->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-lg-push-1">
+        <iframe src="http://getbootstrap.com/customize/#navbar" frameborder="1" width="100%" height="400px">error!</iframe>
+      </div>
+      <div class="col-lg-3 col-lg-pull-12" style="margin-left: -40px">
+        <div class="field">
+          <%= f.label :source_url, "Source URL" %><br>
+          <%= f.text_field :source_url, :size=>"50" %><br><br>
+          <%= link_to 'Check URL', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="field">
     <%= f.label :url_id, "URL" %><br>
-    <%= f.text_field :url_id %>
+    <%= f.text_field :url_id, :size=>"50" %>
   </div>
   <div class="field">
     <%= f.label :media_id %><br>
-    <%= f.text_field :media_id %>
+    <%= f.text_field :media_id, :size=>"50" %>
   </div>
   <div class="field">
     <%= f.label :story_type %><br>
-    <%= f.text_field :story_type %>
+    <%= f.text_field :story_type, :size=>"50" %>
   </div>
   <div class="field">
     <%= f.label :author %><br>
-    <%= f.text_field :author %>
+    <%= f.text_field :author, :size=>"50" %>
   </div>
   <div class="field">
     <%= f.label :publication_date %><br>
