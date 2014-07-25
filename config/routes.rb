@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :media_infos
 
-  resources :stories
+  match 'stories/new/url_show' => 'stories#url_show', via: [:get, :post]  #added by gg
+
+  resources :stories #original from generate
 
   resources :urls
 
@@ -9,4 +11,5 @@ Rails.application.routes.draw do
   get 'products/:id', to: 'products#show', :as => :products
   devise_for :users
   resources :users
+
 end

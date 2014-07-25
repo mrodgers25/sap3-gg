@@ -1,0 +1,16 @@
+<%= form_tag( "url_show" ) do %>
+    <div>
+      <br><br><br> <%= label_tag 'Source URL' %>
+      <%= text_field_tag(:source_url, @source_url, size:50) %>
+      <br>
+    </div>
+    <div>
+      <%= button_to "Process URL", { :class => 'btn btn-primary btn-sm'} %>
+      <br>
+    </div>
+    <div>
+      source url is <%= "http://" + @source_url %>
+      <br>
+    </div>
+    <iframe src="<%= "http://" + @source_url %>" frameborder="1" width="100%" height="400px">error!</iframe>
+<% end %>

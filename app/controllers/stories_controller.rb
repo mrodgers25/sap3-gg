@@ -1,6 +1,17 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
+  #added by gg
+  def url_in
+  end
+
+  def url_show
+    @source_url = params[:source_url]
+    # :target_url = $source_url
+    # @view_switch = true
+    # params[:target_url] = params[:source_url]
+  end
+
   # GET /stories
   # GET /stories.json
   def index
@@ -69,6 +80,6 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:url_id, :media_id, :story_type, :author, :publication_date)
+      params.require(:story).permit(:url_id, :media_id, :story_type, :author, :publication_date, :source_url)
     end
 end

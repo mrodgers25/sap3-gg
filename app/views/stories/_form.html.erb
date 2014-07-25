@@ -1,3 +1,34 @@
+<%= form_tag( :action => "url_in" ) do %>
+  <div>
+    <%= text_field_tag(:source_url, nil, :placeholder => "Enter source URL ...", size:50) %>
+    <br>
+  </div>
+  <div>
+    <%= button_to "Process URL", { :controller => "stories", :action => "url_in", :method => "get", :class => 'btn btn-primary btn-sm'} %>
+    <br>
+  </div>
+  <div>
+    <%= text_field_tag(:target_url, nil, size:50) %>
+    <br>
+  </div>
+<% end %>
+
+<%= form_tag( :action => "url_show" ) do %>
+    <div>
+      <%= text_field_tag(:source_url, nil, :placeholder => "Enter source URL ...", size:50) %>
+      <br>
+    </div>
+    <div>
+      <%= button_to "Process URL", { :controller => "stories", :action => "url_in", :method => "get", :class => 'btn btn-primary btn-sm'} %>
+      <br>
+    </div>
+    <div>
+      <%= text_field_tag(:target_url, nil, size:50) %>
+      <br>
+    </div>
+<% end %>
+
+
 <%= form_for(@story) do |f| %>
   <% if @story.errors.any? %>
     <div id="error_explanation">
@@ -11,10 +42,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.text_field :source_url, :placeholder => 'Enter source URL', :size=>"50" %><br><br>
-    <%= link_to 'Check URL', new_user_registration_path, :class => 'btn btn-primary btn-sm' %>
- </div>
   <div class="field">
     <%= f.label :url_id, "URL" %><br>
     <%= f.text_field :url_id, :size=>"50" %>
@@ -39,5 +66,4 @@
     <%= f.submit %>
   </div>
   <iframe src="http://www.hotelsantabarbara.com/" frameborder="1" width="100%" height="400px">error!</iframe>
-  <iframe id='preview-url' style='width: 600px; height: 400px;'></iframe>
 <% end %>
