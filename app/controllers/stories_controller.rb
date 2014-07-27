@@ -14,7 +14,10 @@ class StoriesController < ApplicationController
     @source_url = @domain + d_url.path
     @web_url = "http://" + @source_url
 
-    doc = Nokogiri::HTML(open("www.yelp.com/north-county-san-diego"))  #nokogiri get html; user-agent fix for 403 error is suspect
+    @source_url = "http://www.zagat.com/r/marnee-thai-restaurant-san-francisco"
+    doc = Nokogiri::HTML(open(@source_url))
+
+    # doc = Nokogiri::HTML(open("www.yelp.com/north-county-san-diego"))  #nokogiri get html; user-agent fix for 403 error is suspect
     # doc = Nokogiri::HTML(open(@web_url))  #nokogiri get html; user-agent fix for 403 error is suspect
     # meta_desc_scrape_pre = doc.css("meta[name='description']").first
     # @meta_desc_scrape = meta_desc_scrape_pre['content']
