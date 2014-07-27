@@ -1,8 +1,8 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
   # require 'rubygems'
-  # require 'open-uri'
-  # require 'uri'
+  require 'open-uri'
+  require 'uri'
   require 'domainatrix'
   require 'nokogiri'
 
