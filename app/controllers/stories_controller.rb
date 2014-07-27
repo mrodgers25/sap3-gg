@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
     @source_url = @domain + d_url.path
     @web_url = "http://" + @source_url
 
-    @source_url = "http://www.zagat.com/r/marnee-thai-restaurant-san-francisco"
+    @source_url = "www.hotelsantabarbara.com"
     doc = Nokogiri::HTML(open(@source_url))
 
     # doc = Nokogiri::HTML(open("www.yelp.com/north-county-san-diego"))  #nokogiri get html; user-agent fix for 403 error is suspect
