@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']
     meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
-    @meta_keyword_scrape = meta_keyword_scrape_pre['content']
+    @meta_keyword_scrape = meta_keyword_scrape_pre['content'] 
   end
 
   # GET /stories
