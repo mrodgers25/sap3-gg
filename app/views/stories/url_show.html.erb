@@ -5,11 +5,15 @@
       <br>
     </div>
     <div>
-      <%= button_to "Process URL", { :class => 'btn btn-primary btn-sm'} %>
+      <%= button_to "Process URL", { :class => 'btn btn-primary btn-sm' } %>
       <br>
     </div>
     <div>
-      source url is <%= "http://" + @source_url %>
+      source url is: <%= @source_url %><br>
+      domain is: <%= @domain %><br>
+      web url is: <%= @web_url %><br>
+      meta desc is: <%= @meta_desc_scrape %><br>
+      meta keyword is: <%= @meta_keyword_scrape %><br>
       <br>
     </div>
     <iframe src="<%= "http://" + @source_url %>" frameborder="1" width="100%" height="400px">error!</iframe>

@@ -1,15 +1,23 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
-
-  #added by gg
-  def url_in
-  end
+  require 'rubygems'
+  require 'open-uri'
+  require 'uri'
+  require 'domainatrix'
 
   def url_show
-    @source_url = params[:source_url]
-    # :target_url = $source_url
-    # @view_switch = true
-    # params[:target_url] = params[:source_url]
+    @source_url_pre = params[:source_url]  #grab user input
+    d_url = Domainatrix.parse(@source_url_pre)
+    @dot = "." unless d_url.subdomain.empty?
+    @domain = d_url.subdomain + @dot.to_s + d_url.domain + "." + d_url.public_suffix
+    @source_url = @domain + d_url.path
+    @web_url = "http://" + @source_url
+
+    doc = Nokogiri::HTML(open(@web_url, 'User-Agent' => 'chrome'))  #nokogiri get html; user-agent fix for 403 error is suspect
+    meta_desc_scrape_pre = doc.css("meta[name='description']").first
+    @meta_desc_scrape = meta_desc_scrape_pre['content']
+    meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
+    @meta_keyword_scrape = meta_keyword_scrape_pre['content']
   end
 
   # GET /stories

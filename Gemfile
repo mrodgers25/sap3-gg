@@ -17,6 +17,8 @@ gem 'thin'
 gem 'simple_form'
 gem 'pundit'
 gem 'high_voltage'
+gem 'nokogiri'
+gem 'domainatrix'
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
   gem 'better_errors'
