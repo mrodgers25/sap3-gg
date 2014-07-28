@@ -12,17 +12,13 @@ class StoriesController < ApplicationController
     @dot = "." unless d_url.subdomain.empty?
     @domain = d_url.subdomain + @dot.to_s + d_url.domain + "." + d_url.public_suffix
     @source_url = @domain + d_url.path
-    @web_url = "http://" + @source_url
+    @full_web_url = "http://" + @source_url
 
-    @source_url = "www.hotelsantabarbara.com"
-    doc = Nokogiri::HTML(open(@source_url))
-
-    # doc = Nokogiri::HTML(open("www.yelp.com/north-county-san-diego"))  #nokogiri get html; user-agent fix for 403 error is suspect
-    # doc = Nokogiri::HTML(open(@web_url))  #nokogiri get html; user-agent fix for 403 error is suspect
-    # meta_desc_scrape_pre = doc.css("meta[name='description']").first
-    # @meta_desc_scrape = meta_desc_scrape_pre['content']
-    # meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
-    # @meta_keyword_scrape = meta_keyword_scrape_pre['content']
+    doc = Nokogiri::HTML(open(@full_web_url))  #nokogiri get html; user-agent fix for 403 error is suspect
+    meta_desc_scrape_pre = doc.css("meta[name='description']").first
+    @meta_desc_scrape = meta_desc_scrape_pre['content']
+    meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
+    @meta_keyword_scrape = meta_keyword_scrape_pre['content']
   end
 
   # GET /stories
