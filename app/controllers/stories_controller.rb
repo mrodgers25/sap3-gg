@@ -14,8 +14,7 @@ class StoriesController < ApplicationController
     @source_url = @domain + d_url.path
     @full_web_url = "http://" + @source_url
 
-    # doc = Nokogiri::HTML(open(@full_web_url))  #nokogiri get html; user-agent fix for 403 error is suspect
-    # testing = open(@full_web_url)
+    doc = Nokogiri::HTML(open(@full_web_url))  #nokogiri get html;
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']
     meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
