@@ -16,15 +16,8 @@ class StoriesController < ApplicationController
     @domain = d_url.subdomain + @dot.to_s + d_url.domain + "." + d_url.public_suffix
     @source_url = @domain + d_url.path
     @full_web_url = "http://" + @source_url
-    
-    doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
 
-    # rescue SocketError => error
-    #   if retry_attempts > 0
-    #     retry_attempts -= 1
-    #     sleep 5
-    #     retry
-    #   end
+    doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']
