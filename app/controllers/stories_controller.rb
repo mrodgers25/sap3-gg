@@ -24,7 +24,7 @@ class StoriesController < ApplicationController
     #     retry_attempts -= 1
     #     sleep 5
     #     retry
-      end
+    #   end
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']
