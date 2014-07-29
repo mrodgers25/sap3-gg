@@ -5,6 +5,9 @@ class StoriesController < ApplicationController
   require 'uri'
   require 'domainatrix'
   require 'nokogiri'
+  require 'socket'
+  require 'net/http'
+  require 'net/protocol'
 
   def url_show
     @source_url_pre = params[:source_url]  #grab user input
@@ -16,11 +19,11 @@ class StoriesController < ApplicationController
 
     doc = Nokogiri::HTML(open(@full_web_url))  #nokogiri get html;
 
-    rescue SocketError => error
-      if retry_attempts > 0
-        retry_attempts -= 1
-        sleep 5
-        retry
+    # rescue SocketError => error
+    #   if retry_attempts > 0
+    #     retry_attempts -= 1
+    #     sleep 5
+    #     retry
       end
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
