@@ -17,8 +17,7 @@ class StoriesController < ApplicationController
     @source_url = @domain + d_url.path
     @full_web_url = "http://" + @source_url
 
-    # doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
-    doc = Nokogiri::HTML(open(@full_web_ur).read, nil, 'UTF-8')
+    doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']
