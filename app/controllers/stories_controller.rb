@@ -12,12 +12,13 @@ class StoriesController < ApplicationController
   def url_show
     @source_url_pre = params[:source_url]  #grab user input
     d_url = Domainatrix.parse(@source_url_pre)
-    @dot = "." unless d_url.subdomain.empty?
-    @domain = d_url.subdomain + @dot.to_s + d_url.domain + "." + d_url.public_suffix
+    dot = "." unless d_url.subdomain.empty?
+    @domain = d_url.subdomain + dot.to_s + d_url.domain + "." + d_url.public_suffix
     @source_url = @domain + d_url.path
     @full_web_url = "http://" + @source_url
 
-    doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
+    # doc = Nokogiri::HTML(open(@full_web_url, :read_timeout => 10))  #nokogiri get html;
+    doc = Nokogiri::HTML(open(@full_web_ur).read, nil, 'UTF-8')
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content']

@@ -1,7 +1,11 @@
 <%= form_tag( "url_show" ) do %>
     <div>
-      <br><br><br> <%= label_tag 'Source URL' %>
-      <%= text_field_tag(:source_url, @source_url, size:50) %>
+      <br><br><br> <%= label_tag 'Enter Source URL -->' %>
+      <%= text_field_tag(:source_url, @source_url, size:50) %><br>
+      <%= text_field_tag(:domain, @domain, size:50) %>
+      <%= text_field_tag(:full_web_url, @full_web_url, size:50) %><br>
+      <%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:100) %><br>
+      <%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100) %>
       <br>
     </div>
     <div>
