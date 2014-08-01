@@ -1,1 +1,1 @@
-require "resolv-replace.rb"
+require "em-resolv-replace"

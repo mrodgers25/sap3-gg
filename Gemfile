@@ -19,6 +19,7 @@ gem 'pundit'
 gem 'high_voltage'
 gem 'nokogiri'
 gem 'domainatrix'
+gem 'em-resolv-replace'
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
   gem 'better_errors'

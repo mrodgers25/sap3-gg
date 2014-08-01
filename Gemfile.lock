@@ -56,6 +56,7 @@ GEM
       warden (~> 1.2.3)
     domainatrix (0.0.11)
       addressable
+    em-resolv-replace (1.1.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
@@ -165,6 +166,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   domainatrix
+  em-resolv-replace
   high_voltage
   hub
   jbuilder (~> 2.0)
