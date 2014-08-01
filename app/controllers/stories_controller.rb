@@ -6,8 +6,7 @@ class StoriesController < ApplicationController
   require 'domainatrix'
   require 'nokogiri'
   require 'socket'
-  require 'net/http'
-  require 'net/protocol'
+  require "resolv-replace.rb"
 
   def url_show
     @source_url_pre = params[:source_url]  #grab user input
@@ -26,13 +25,17 @@ class StoriesController < ApplicationController
     meta_author_scrape_pre = doc.css("meta[name='author']").first
     @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
 
-    # para = Array.new
-    # doc.css("p").each do |item|
-    #   para << item.at_css("p").text
-    # end
-    # @para = para
-    content = doc.at_css("p").text
-    @content = content
+    para = Array.new
+    doc.css("p").each do |item|
+      if item.at_css("p").to_s != ''
+        para << item.text
+      end
+      @item = item.text
+    end
+    @para = para
+
+    # content = doc.css("p").text
+    # @content = content
     # @content = doc.at_css("p").text
   end
 

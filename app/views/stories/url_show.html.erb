@@ -7,7 +7,10 @@
       Description <%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:100) %><br>
       Keywords    <%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100) %><br>
       Author      <%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %><br>
-      Content     <%= text_area_tag @content, nil, rows: 5, cols:100 %>
+      Content     <%= text_field_tag(:content, @content, size:100) %><br>
+      Content     <%= text_area_tag :para, @para, rows: 5, cols:100 %>
+      Content 2   <%= text_area_tag @content2, nil, rows: 5, cols:100 %>
+      Item cnt = <%= @item %>
       <br>
     </div>
     <div>
