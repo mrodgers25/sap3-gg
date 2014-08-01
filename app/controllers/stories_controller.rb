@@ -6,7 +6,9 @@ class StoriesController < ApplicationController
   require 'domainatrix'
   require 'nokogiri'
   require 'socket'
-  require "resolv-replace.rb"
+  require 'resolv-replace'
+  require 'net/http'
+  require 'net/protocol'
 
   def url_show
     @source_url_pre = params[:source_url]  #grab user input
