@@ -1,16 +1,14 @@
 <%= form_tag( "url_show" ) do %>
     <div>
       <br><br><br> <%= label_tag 'Enter Source URL -->' %>
-      <%= text_field_tag(:source_url, @source_url, size:50) %><br>
-      <%= text_field_tag(:domain, @domain, size:50) %>
+      <%= text_field_tag(:source_url, @source_url, size:50) %>
+      <%= text_field_tag(:domain, @domain, size:25) %>
       <%= text_field_tag(:full_web_url, @full_web_url, size:50) %><br>
-      Description <%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:100) %><br>
-      Keywords    <%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100) %><br>
+      Description <%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150) %><br>
+      Title       <%= text_field_tag(:title_scrape, @title_scrape, size:150) %><br>
+      Keywords    <%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:150) %><br>
       Author      <%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %><br>
-      Content     <%= text_field_tag(:content, @content, size:100) %><br>
-      Content     <%= text_area_tag :para, @para, rows: 5, cols:100 %>
-      Content 2   <%= text_area_tag @content2, nil, rows: 5, cols:100 %>
-      Item cnt = <%= @item %>
+      Content     <%= text_area_tag :para, @para, rows: 5, cols:200 %><br>
       <br>
     </div>
     <div>
