@@ -1,1 +1,1 @@
-require "em-resolv-replace"
+require "resolv-replace"
