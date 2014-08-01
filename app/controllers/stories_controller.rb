@@ -6,7 +6,6 @@ class StoriesController < ApplicationController
   require 'domainatrix'
   require 'nokogiri'
   require 'socket'
-  require 'resolv-replace'
   require 'net/http'
   require 'net/protocol'
 
