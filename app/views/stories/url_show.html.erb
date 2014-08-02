@@ -2,11 +2,10 @@
     <br><br>
     <table>
       <tr>
-        <td>Source URL</td>
+        <td><div style="float: left; margin-left: 1px "<%= button_to("Process URL", nil, class: 'btn btn-sm btn-success') %></div></td>
         <td>&nbsp</td>
         <td><%= text_field_tag(:source_url, @source_url_pre, size:50) %>
-            <%= text_field_tag(:domain, @domain, size:25) %>
-            <%= text_field_tag(:full_web_url, @full_web_url, size:50) %></td>
+            <%= text_field_tag(:domain, @domain, size:25) %></td>
       </tr>
       <tr>
         <td>Description </td>
@@ -34,7 +33,7 @@
         <td><%= text_area_tag :para, @para, rows: 5, cols:200 %></td>
       </tr>
     </table>
-          <%= button_to "Process URL", { :class => 'btn btn-primary btn-sm' } %>
+
           <br>
-    <iframe src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
+    <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
 <% end %>
