@@ -3,28 +3,34 @@
     <table>
       <tr>
         <td>Source URL</td>
-        <td><%= text_field_tag(:source_url, @source_url, size:50) %>
+        <td>&nbsp</td>
+        <td><%= text_field_tag(:source_url, @source_url_pre, size:50) %>
             <%= text_field_tag(:domain, @domain, size:25) %>
             <%= text_field_tag(:full_web_url, @full_web_url, size:50) %></td>
       </tr>
       <tr>
         <td>Description </td>
+        <td>&nbsp</td>
         <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150) %></td>
       </tr>
       <tr>
         <td>Title</td>
+        <td>&nbsp</td>
         <td><%= text_field_tag(:title_scrape, @title_scrape, size:150) %></td>
       </tr>
       <tr>
         <td>Keywords</td>
+        <td>&nbsp</td>
         <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:150) %></td>
       </tr>
       <tr>
         <td>Author</td>
+        <td>&nbsp</td>
         <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %></td>
       </tr>
       <tr>
         <td>Content</td>
+        <td>&nbsp</td>
         <td><%= text_area_tag :para, @para, rows: 5, cols:200 %></td>
       </tr>
     </table>

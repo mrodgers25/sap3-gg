@@ -12,12 +12,22 @@ class StoriesController < ApplicationController
   def url_show
     @source_url_pre = params[:source_url]  #grab user input
     d_url = Domainatrix.parse(@source_url_pre)
-    dot = "." unless d_url.subdomain.empty?
-    @domain = d_url.subdomain + dot.to_s + d_url.domain + "." + d_url.public_suffix
-    @source_url = @domain + d_url.path
-    @full_web_url = "http://" + @source_url
+    # dot = "." unless @source_url_pre.nil?
+    @domain = d_url.host
+    @source_url = @domain
+    @full_web_url = d_url.url
 
-    doc = Nokogiri::HTML(open(@full_web_url))  #nokogiri get html;
+    if @source_url_pre.length > 0
+      display_url
+    end
+  end
+
+  def display_url
+    begin
+      doc = Nokogiri::HTML(open(@full_web_url))
+    rescue
+      return nil
+    else
 
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     @meta_desc_scrape = meta_desc_scrape_pre['content'] if defined?(meta_desc_scrape_pre['content'])
@@ -29,11 +39,11 @@ class StoriesController < ApplicationController
 
     para = ""
     doc.css("p").each do |item|
-        para << item.text
-        para << "\n"
+      para << item.text
+      para << "\n"
     end
     @para = para
-
+    end
   end
 
   # GET /stories
