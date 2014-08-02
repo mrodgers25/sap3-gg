@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
     @source_url = @domain
     @full_web_url = d_url.url
 
-    if @source_url_pre.length > 0
+    unless @source_url_pre == ""
       display_url
     end
   end
