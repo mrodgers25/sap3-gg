@@ -1,1 +1,1 @@
-require "resolv-replace"
+# require "resolv-replace"
