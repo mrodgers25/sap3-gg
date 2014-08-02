@@ -29,20 +29,20 @@ class StoriesController < ApplicationController
       return nil
     else
 
-    meta_desc_scrape_pre = doc.css("meta[name='description']").first
-    @meta_desc_scrape = meta_desc_scrape_pre['content'] if defined?(meta_desc_scrape_pre['content'])
-    @title_scrape = doc.at_css('title').content
-    meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
-    @meta_keyword_scrape = meta_keyword_scrape_pre['content'] if defined?(meta_keyword_scrape_pre['content'])
-    meta_author_scrape_pre = doc.css("meta[name='author']").first
-    @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
+      meta_desc_scrape_pre = doc.css("meta[name='description']").first
+      @meta_desc_scrape = meta_desc_scrape_pre['content'] if defined?(meta_desc_scrape_pre['content'])
+      @title_scrape = doc.at_css('title').content
+      meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
+      @meta_keyword_scrape = meta_keyword_scrape_pre['content'] if defined?(meta_keyword_scrape_pre['content'])
+      meta_author_scrape_pre = doc.css("meta[name='author']").first
+      @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
 
-    para = ""
-    doc.css("p").each do |item|
-      para << item.text
-      para << "\n"
-    end
-    @para = para
+      para = ""
+      doc.css("p").each do |item|
+        para << item.text
+        para << "\n"
+      end
+      @para = para
     end
   end
 
