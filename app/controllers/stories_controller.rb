@@ -39,8 +39,10 @@ class StoriesController < ApplicationController
 
       para = ""
       doc.css("p").each do |item|
-        para << item.text
-        para << "\n"
+        if item.text.strip.length > 100
+          para << item.text.strip
+          para << "\n"
+        end
       end
       @para = para
     end
