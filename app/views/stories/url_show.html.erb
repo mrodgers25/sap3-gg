@@ -25,7 +25,8 @@
       <tr>
         <td>Author</td>
         <td>&nbsp</td>
-        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %></td>
+        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> Phone
+            <%= text_field_tag(:phone_match, @phone_match, size:20) %></td>
       </tr>
       <tr>
         <td>Content</td>
@@ -33,7 +34,5 @@
         <td><%= text_area_tag :para, @para, rows: 5, cols:200 %></td>
       </tr>
     </table>
-
-          <br>
     <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
 <% end %>
