@@ -47,13 +47,13 @@ class StoriesController < ApplicationController
       end
       @para = para
 
-      # extract phone number
-      phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
-      unless phone_regex.match(para).nil?
-        phone_match = phone_regex.match(para)
-        # @phone_match = phone_match.string #return full string
-        @phone_match = phone_match[0].strip
-      end
+      # extract phone number; will be used for places
+      # phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
+      # unless phone_regex.match(para).nil?
+      #   phone_match = phone_regex.match(para)
+      #   # @phone_match = phone_match.string #return full string
+      #   @phone_match = phone_match[0].strip
+      # end
 
     end
   end
