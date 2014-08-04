@@ -25,7 +25,9 @@
       <tr>
         <td>Author</td>
         <td>&nbsp</td>
-        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> 
+        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> Dates
+            <%= text_field_tag(:alpha_date_match, @alpha_date_match, size:20) %>
+            <%= text_field_tag(:num_date_match, @num_date_match, size:10) %></td>
       </tr>
       <tr>
         <td>Content</td>

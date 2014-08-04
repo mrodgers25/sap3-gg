@@ -47,6 +47,19 @@ class StoriesController < ApplicationController
       end
       @para = para
 
+      #extract date
+      alpha_date_regex = /(?:(?:(?<!\d)(?<a_d1>(?>(?:(?:[23]?1)st|(?:2?2)nd|(?:2?3)rd|(?:[12]?[4-9]|[123]0)th)\b|0[1-9]|[12][0-9]|3[01]|[1-9]|[12][0-9]|3[01]))(?: ?+(?:of )?+))(?>(?<a_m1>jan(?>uary|\.)?|feb(?>ruary|r?\.?)?|mar(?>ch|\.)?|apr(?>il|\.)?|may|jun(?>e|\.)?|jul(?>y|\.)?|aug(?>ust|\.)?|sep(?>tember|t?\.?)?|oct(?>ober|\.)?|nov(?>ember|\.)?|dec(?>ember|\.)?))|(?:\b(?>(?<a_m2>jan(?>uary|\.)?|feb(?>ruary|r?\.?)?|mar(?>ch|\.)?|apr(?>il|\.)?|may|jun(?>e|\.)?|jul(?>y|\.)?|aug(?>ust|\.)?|sep(?>tember|t?\.?)?|oct(?>ober|\.)?|nov(?>ember|\.)?|dec(?>ember|\.)?)))(?:(?:(?: ?+)(?<a_d2>(?>(?:(?:[23]?1)st|(?:2?2)nd|(?:2?3)rd|(?:[12]?[4-9]|[123]0)th)\b|0[1-9]|[12][0-9]|3[01]|[1-9]|[12][0-9]|3[01]))(?!\d))?))(?:(?:,?+)(?:(?:(?: ?)(?<a_y>(?:1[7-9]|20)\d\d|'?+\d\d))(?!\d))|(?<=\b|\.))/
+      unless alpha_date_regex.match(doc).nil?
+        alpha_date_match = alpha_date_regex.match(doc)
+        # @phone_match = alpha_date_match.string #return full string
+        @alpha_date_match = alpha_date_match[0].strip
+      end
+      num_date_regex = /\d{1,2}\/\d{1,2}\/\d{2,4}/
+      unless num_date_regex.match(para).nil?
+        num_date_match = num_date_regex.match(para)
+        @num_date_match = num_date_match[0].strip
+      end
+
       # extract phone number; will be used for places
       # phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
       # unless phone_regex.match(para).nil?
