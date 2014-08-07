@@ -5,6 +5,7 @@ class StoriesController < ApplicationController
   require 'uri'
   require 'domainatrix'
   require 'nokogiri'
+  require 'sanitize'
   require 'socket'
   require 'net/http'
   require 'net/protocol'
@@ -24,7 +25,8 @@ class StoriesController < ApplicationController
 
   def display_url
     begin
-      doc = Nokogiri::HTML(open(@full_web_url))
+      browser = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
+      doc = Nokogiri::HTML(open(@full_web_url, 'User-Agent' => browser))
     rescue
       return nil
     else
@@ -38,25 +40,31 @@ class StoriesController < ApplicationController
       @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
 
       # paragraph search
-      para = ""
-      doc.css("p").each do |item|
-        if item.text.strip.length > 100
-          para << item.text.strip
-          para << "\n"
-        end
-      end
-      @para = para
+      # para = ""
+      # doc.css("p").each do |item|
+      #   if item.text.strip.length > 100
+      #     para << item.text.strip
+      #     para << "\n"
+      #   end
+      # end
+      # @para = para
+
+      doc2 = open(@full_web_url).read
+      clean_text = Sanitize.fragment(doc2, :remove_contents => ['script', 'style'])
+      @clean_text = clean_text.split.join(" ")
 
       #extract date
-      alpha_date_regex = /(?:(?:(?<!\d)(?<a_d1>(?>(?:(?:[23]?1)st|(?:2?2)nd|(?:2?3)rd|(?:[12]?[4-9]|[123]0)th)\b|0[1-9]|[12][0-9]|3[01]|[1-9]|[12][0-9]|3[01]))(?: ?+(?:of )?+))(?>(?<a_m1>jan(?>uary|\.)?|feb(?>ruary|r?\.?)?|mar(?>ch|\.)?|apr(?>il|\.)?|may|jun(?>e|\.)?|jul(?>y|\.)?|aug(?>ust|\.)?|sep(?>tember|t?\.?)?|oct(?>ober|\.)?|nov(?>ember|\.)?|dec(?>ember|\.)?))|(?:\b(?>(?<a_m2>jan(?>uary|\.)?|feb(?>ruary|r?\.?)?|mar(?>ch|\.)?|apr(?>il|\.)?|may|jun(?>e|\.)?|jul(?>y|\.)?|aug(?>ust|\.)?|sep(?>tember|t?\.?)?|oct(?>ober|\.)?|nov(?>ember|\.)?|dec(?>ember|\.)?)))(?:(?:(?: ?+)(?<a_d2>(?>(?:(?:[23]?1)st|(?:2?2)nd|(?:2?3)rd|(?:[12]?[4-9]|[123]0)th)\b|0[1-9]|[12][0-9]|3[01]|[1-9]|[12][0-9]|3[01]))(?!\d))?))(?:(?:,?+)(?:(?:(?: ?)(?<a_y>(?:1[7-9]|20)\d\d|'?+\d\d))(?!\d))|(?<=\b|\.))/
-      unless alpha_date_regex.match(doc).nil?
-        alpha_date_match = alpha_date_regex.match(doc)
-        # @phone_match = alpha_date_match.string #return full string
+      alpha_date_regex = /(?i)(?<month>jan(?>uary|\.)?\s|feb(?>ruary|\.)?\s|mar(?>ch|\.)?\s|apr(?>il|\.)?\s|may\s|jun(?>e|\.)?\s|jul(?>y|\.)?\s|aug(?>ust|\.)?\s|sep(?>tember|\.)?\s|oct(?>ober|\.)?\s|nov(?>ember|\.)?\s|dec(?>ember|\.)?\s)(?<day>\d{1,2})(,|,\s|\s)(?<year>\d{2,4})/
+      unless alpha_date_regex.match(@clean_text).nil?
+        alpha_date_match = alpha_date_regex.match(@clean_text)
         @alpha_date_match = alpha_date_match[0].strip
+        @alpha_month = alpha_date_match[:month]
+        @alpha_day = alpha_date_match[:day]
+        @alpha_year = alpha_date_match[:year]
       end
       num_date_regex = /\d{1,2}\/\d{1,2}\/\d{2,4}/
-      unless num_date_regex.match(para).nil?
-        num_date_match = num_date_regex.match(para)
+      unless num_date_regex.match(@clean_text).nil?
+        num_date_match = num_date_regex.match(@clean_text)
         @num_date_match = num_date_match[0].strip
       end
 
