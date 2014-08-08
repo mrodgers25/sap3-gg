@@ -27,10 +27,12 @@
         <td>&nbsp</td>
         <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> Dates
             <%= text_field_tag(:alpha_date_match, @alpha_date_match, size:20) %>
-            <%= text_field_tag(:num_date_match, @num_date_match, size:10) %>
-            <%= text_field_tag(:alpha_month, @alpha_month, size:10) %>
-            <%= text_field_tag(:alpha_month, @alpha_day, size:10) %>
-            <%= text_field_tag(:alpha_month, @alpha_year, size:10) %></td>
+            <%= text_field_tag(:num_date_match, @num_date_match, size:10) %>A
+            <%= text_field_tag(:alpha_date_match_pos, @alpha_date_match_pos, size:5) %>N
+            <%= text_field_tag(:num_date_match_pos, @num_date_match_pos, size:5) %>
+            <%= text_field_tag(:month, @month, size:2) %>/
+            <%= text_field_tag(:day, @day, size:2) %>/
+            <%= text_field_tag(:year, @year, size:4) %></td>
       </tr>
      <tr>
         <td>Full Content</td>

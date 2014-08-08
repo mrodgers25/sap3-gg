@@ -49,24 +49,93 @@ class StoriesController < ApplicationController
       # end
       # @para = para
 
-      doc2 = open(@full_web_url).read
+      doc2 = open(@full_web_url, 'User-Agent' => browser).read
       clean_text = Sanitize.fragment(doc2, :remove_contents => ['script', 'style'])
       @clean_text = clean_text.split.join(" ")
 
       #extract date
-      alpha_date_regex = /(?i)(?<month>jan(?>uary|\.)?\s|feb(?>ruary|\.)?\s|mar(?>ch|\.)?\s|apr(?>il|\.)?\s|may\s|jun(?>e|\.)?\s|jul(?>y|\.)?\s|aug(?>ust|\.)?\s|sep(?>tember|\.)?\s|oct(?>ober|\.)?\s|nov(?>ember|\.)?\s|dec(?>ember|\.)?\s)(?<day>\d{1,2})(,|,\s|\s)(?<year>\d{2,4})/
+      @alpha_date_match_pos = 0  # initialize
+      alpha_date_regex = /(?x)(?i)  # turn on free spacing to allow comments and turn off case sensitive
+                          (?<month>jan(?>uary|\.)?\s|feb(?>ruary|\.)?\s|mar(?>ch|\.)?\s|apr(?>il|\.)?\s|may\s|jun(?>e|\.)?\s|  # first six months
+                          jul(?>y|\.)?\s|aug(?>ust|\.)?\s|sep(?>tember|\.)?\s|oct(?>ober|\.)?\s|nov(?>ember|\.)?\s|dec(?>ember|\.)?\s)  # second six months
+                          (?<day>\d{1,2})?(,|,\s|\s)?  # optional day and separators
+                          (?<year>\d{4})/  # four digit year
       unless alpha_date_regex.match(@clean_text).nil?
-        alpha_date_match = alpha_date_regex.match(@clean_text)
-        @alpha_date_match = alpha_date_match[0].strip
-        @alpha_month = alpha_date_match[:month]
-        @alpha_day = alpha_date_match[:day]
-        @alpha_year = alpha_date_match[:year]
+        @alpha_date_match = alpha_date_regex.match(@clean_text)
+        @alpha_date_match_pos = alpha_date_regex =~ @clean_text
+        # @alpha_date_match_pos ||= 0
+        alpha_month = @alpha_date_match[:month].strip.downcase
+        case alpha_month
+          when 'jan','january'
+            alpha_month_num = '1'
+          when 'feb','february'
+            alpha_month_num = '2'
+          when 'mar','march'
+            alpha_month_num = '3'
+          when 'apr','april'
+            alpha_month_num = '4'
+          when 'may'
+            alpha_month_num = '5'
+          when 'jun','june'
+            alpha_month_num = '6'
+          when 'jul','july'
+            alpha_month_num = '7'
+          when 'aug','august'
+            alpha_month_num = '8'
+          when 'sep','september'
+            alpha_month_num = '9'
+          when 'oct','october'
+            alpha_month_num = '10'
+          when 'nov','november'
+            alpha_month_num = '11'
+          when 'dec','december'
+            alpha_month_num = '12'
+          else
+            alpha_month_num = '99'
+        end
       end
-      num_date_regex = /\d{1,2}\/\d{1,2}\/\d{2,4}/
+
+      @num_date_match_pos = 0
+      num_date_regex = /(?<dmonth>\d{1,2})\/(?<dday>\d{1,2})\/(?<dyear>\d{2,4})/
       unless num_date_regex.match(@clean_text).nil?
         num_date_match = num_date_regex.match(@clean_text)
+        @num_date_match_pos = num_date_regex =~ @clean_text
+        # @num_date_match_pos ||= 1
         @num_date_match = num_date_match[0].strip
       end
+
+      unless @num_date_match_pos == 0 && @alpha_date_match_pos == 0
+        if @num_date_match_pos != 0 && @num_date_match_pos < @alpha_date_match_pos
+          # flash[:error] = "N1 alpha_month_num is \n #{alpha_month_num}"
+          @month = num_date_match[:dmonth]
+          @day = num_date_match[:dday]
+          @year = num_date_match[:dyear]
+        end
+        if @alpha_date_match_pos != 0 && @num_date_match_pos >= @alpha_date_match_pos
+          # flash[:error] = "A1 alpha_month_num is \n #{alpha_month_num}"
+          @month = alpha_month_num
+          @day = @alpha_date_match[:day]
+          @year = @alpha_date_match[:year]
+        end
+        if @num_date_match_pos != 0 && @alpha_date_match_pos == 0
+          # flash[:error] = "N1 alpha_month_num is \n #{alpha_month_num}"
+          @month = num_date_match[:dmonth]
+          @day = num_date_match[:dday]
+          @year = num_date_match[:dyear]
+        end
+        if @num_date_match_pos == 0 && @alpha_date_match_pos != 0
+          # flash[:error] = "A1 alpha_month_num is \n #{alpha_month_num}"
+          @month = alpha_month_num
+          @day = @alpha_date_match[:day]
+          @year = @alpha_date_match[:year]
+        end
+      end
+
+      # if @num_date_match_pos <= @alpha_date_match_pos && @alpha_date_match_pos != 0
+      #   @month = num_date_match[:dmonth]
+      #   @day = num_date_match[:dday]
+      #   @year = num_date_match[:dyear]
+      # end
 
       # extract phone number; will be used for places
       # phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
