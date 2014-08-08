@@ -25,13 +25,15 @@
       <tr>
         <td>Author</td>
         <td>&nbsp</td>
-        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> Dates
+        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> mm
+          <% if false %>
             <%= text_field_tag(:alpha_date_match, @alpha_date_match, size:20) %>
             <%= text_field_tag(:num_date_match, @num_date_match, size:10) %>A
             <%= text_field_tag(:alpha_date_match_pos, @alpha_date_match_pos, size:5) %>N
             <%= text_field_tag(:num_date_match_pos, @num_date_match_pos, size:5) %>
-            <%= text_field_tag(:month, @month, size:2) %>/
-            <%= text_field_tag(:day, @day, size:2) %>/
+          <% end %>
+            <%= text_field_tag(:month, @month, size:2) %> dd
+            <%= text_field_tag(:day, @day, size:2) %> yy
             <%= text_field_tag(:year, @year, size:4) %></td>
       </tr>
      <tr>
