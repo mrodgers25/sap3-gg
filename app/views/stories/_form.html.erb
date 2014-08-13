@@ -1,34 +1,3 @@
-<%= form_tag( :action => "url_in" ) do %>
-  <div>
-    <%= text_field_tag(:source_url, nil, :placeholder => "Enter source URL ...", size:50) %>
-    <br>
-  </div>
-  <div>
-    <%= button_to "Process URL", { :controller => "stories", :action => "url_in", :method => "get", :class => 'btn btn-primary btn-sm'} %>
-    <br>
-  </div>
-  <div>
-    <%= text_field_tag(:target_url, nil, size:50) %>
-    <br>
-  </div>
-<% end %>
-
-<%= form_tag( :action => "url_show" ) do %>
-    <div>
-      <%= text_field_tag(:source_url, nil, :placeholder => "Enter source URL ...", size:50) %>
-      <br>
-    </div>
-    <div>
-      <%= button_to "Process URL", { :controller => "stories", :action => "url_in", :method => "get", :class => 'btn btn-primary btn-sm'} %>
-      <br>
-    </div>
-    <div>
-      <%= text_field_tag(:target_url, nil, size:50) %>
-      <br>
-    </div>
-<% end %>
-
-
 <%= form_for(@story) do |f| %>
   <% if @story.errors.any? %>
     <div id="error_explanation">
