@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717182018) do
+ActiveRecord::Schema.define(version: 20140815180431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,20 +37,24 @@ ActiveRecord::Schema.define(version: 20140717182018) do
     t.string   "media_id"
     t.string   "story_type"
     t.string   "author"
-    t.date     "publication_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "story_month"
+    t.integer  "story_date"
+    t.integer  "story_year"
   end
 
   create_table "urls", force: true do |t|
     t.string   "url"
-    t.datetime "url_entered"
     t.string   "url_type"
     t.string   "url_title"
     t.string   "url_desc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url_keywords"
   end
+
+  add_index "urls", ["url"], name: "index_urls_on_url", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

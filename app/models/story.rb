@@ -1,4 +1,5 @@
 class Story < ActiveRecord::Base
-  has_many :media_infos
-  has_one :url
+  belongs_to :url
+  validates :story_type, presence: true
+  validates :author, presence: true
 end

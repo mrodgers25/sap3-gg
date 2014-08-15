@@ -8,12 +8,11 @@
             <%= text_field_tag(:domain, @domain, size:45) %></td>
       </tr>
       <tr>
-      <tr>
-        <td>Title</td>
+        <td style="background-color: #F5F5DC;">Title</td>
         <td>&nbsp</td>
         <td><%= text_field_tag(:title_scrape, @title_scrape, size:150) %></td>
       </tr>
-        <td>Description </td>
+        <td style="background-color: #F5F5DC;">Description </td>
         <td>&nbsp</td>
         <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150) %></td>
       </tr>
@@ -33,9 +32,9 @@
             <%= text_field_tag(:num_date_match_pos, @num_date_match_pos, size:5) %>
           <% end %>
             <span class="text-center !important">
-            <%= number_field_tag(:month, @month, min: 1, max: 12) %> dd
-            <%= number_field_tag(:day, @day, min: 1, max: 31) %> yy
-            <%= number_field_tag(:year, @year, min:1, max:2025) %></td>
+            <%= number_field_tag(:month, @month, min: 1, max: 12, :style => "text-align: center") %> dd
+            <%= number_field_tag(:day, @day, min: 1, max: 31, :style => "text-align: center") %> yy
+            <%= number_field_tag(:year, @year, min:1, max:2025, :style => "text-align: center") %></td>
             </span>
       </tr>
      <tr>
