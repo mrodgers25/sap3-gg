@@ -1,5 +1,47 @@
-<h1>New story</h1>
-
-<%= render 'stories/form_top' %>
-
-<%= link_to 'Back', stories_path %>
+<%= form_tag( "new" ) do %>
+    <br><br>
+    <table>
+      <tr>
+        <td><div style="float: left; margin-left: 1px "<%= button_to("Save", nil, class: 'btn btn-sm btn-success', :disabled => true) %></div></td>
+        <td>&nbsp</td>
+        <td><%= text_field_tag(:source_url_pre, @source_url_pre, size:100) %>
+          <%= text_field_tag(:domain, @domain, size:45) %></td>
+      </tr>
+      <tr>
+        <td style="background-color: #F5F5DC;">Title</td>
+        <td>&nbsp</td>
+        <td><%= text_field_tag(:title_scrape, @title_scrape, size:150) %></td>
+      </tr>
+      <td style="background-color: #F5F5DC;">Description </td>
+      <td>&nbsp</td>
+      <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150) %></td>
+      </tr>
+      <tr>
+        <td>Keywords</td>
+        <td>&nbsp</td>
+        <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:150) %></td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>&nbsp</td>
+        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> mm
+          <% if false %> debugging fields
+              <%= text_field_tag(:alpha_date_match, @alpha_date_match, size:20) %>
+              <%= text_field_tag(:num_date_match, @num_date_match, size:10) %>A
+              <%= text_field_tag(:alpha_date_match_pos, @alpha_date_match_pos, size:5) %>N
+              <%= text_field_tag(:num_date_match_pos, @num_date_match_pos, size:5) %>
+          <% end %>
+          <span class="text-center !important">
+            <%= number_field_tag(:month, @month, min: 1, max: 12, :style => "text-align: center") %> dd
+            <%= number_field_tag(:day, @day, min: 1, max: 31, :style => "text-align: center") %> yy
+          <%= number_field_tag(:year, @year, min:1, max:2025, :style => "text-align: center") %></td>
+        </span>
+      </tr>
+      <tr>
+        <td>Full Content</td>
+        <td>&nbsp</td>
+        <td><%= text_area_tag :clean_text, @clean_text, rows: 5, cols:200 %></td>
+      </tr>
+    </table>
+    <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
+<% end %>

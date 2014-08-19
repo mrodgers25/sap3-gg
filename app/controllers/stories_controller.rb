@@ -23,6 +23,10 @@ class StoriesController < ApplicationController
     end
   end
 
+  def scrape
+
+  end
+
   # GET /stories
   # GET /stories.json
   def index
@@ -36,6 +40,15 @@ class StoriesController < ApplicationController
 
   # GET /stories/new
   def new
+    @source_url_pre = params[:source_url_pre]  #grab user input
+    d_url = Domainatrix.parse(@source_url_pre)
+    @domain = d_url.host
+    @source_url = @domain
+    @full_web_url = d_url.url
+
+    unless @source_url_pre == ""
+      display_url
+    end
     @story = Story.new
   end
 
