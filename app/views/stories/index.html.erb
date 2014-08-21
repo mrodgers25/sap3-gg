@@ -3,23 +3,23 @@
 <table>
   <thead>
     <tr>
-      <th>Url</th>
-      <th>Media</th>
       <th>Story type</th>
       <th>Author</th>
-      <th>Publication date</th>
-      <th colspan="3"></th>
+      <th>mm</th>
+      <th>dd</th>
+      <th>yy</th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @stories.each do |story| %>
       <tr>
-        <td><%= story.url_id %></td>
-        <td><%= story.media_id %></td>
         <td><%= story.story_type %></td>
         <td><%= story.author %></td>
-        <td><%= story.publication_date %></td>
+        <td><%= story.story_month %>&nbsp</td>
+        <td><%= story.story_date %>&nbsp</td>
+        <td><%= story.story_year %></td>
         <td><%= link_to 'Show', story %></td>
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
         <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>

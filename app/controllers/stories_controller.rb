@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.alls
+    @stories = Story.all
   end
 
   # GET /stories/1
@@ -104,6 +104,6 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:url_id, :media_id, :story_type, :author, :publication_date, :source_url)
+      params.require(:story).permit(:media_id, :story_type, :author, :story_month, :story_date, :story_year)
     end
 end

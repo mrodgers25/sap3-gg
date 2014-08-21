@@ -6,4 +6,6 @@ class Story < ActiveRecord::Base
   validates :author, presence: true
 
   attr_accessor :scraped_domain
+  attr_accessor :source_url_pre
+  attr_accessor :meta_author_scrape
 end

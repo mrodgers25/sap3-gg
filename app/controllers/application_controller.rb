@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       @meta_keyword_scrape = meta_keyword_scrape_pre['content'] if defined?(meta_keyword_scrape_pre['content'])
       meta_author_scrape_pre = doc.css("meta[name='author']").first
       @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
+      # flash[:notice] = #{@meta_author_scrape}
 
       # paragraph search
       # para = ""
