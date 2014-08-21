@@ -1,7 +1,7 @@
 <%= form_for @story do |f| %>
     <br><br>
     <%= f.text_field :source_url_pre, :value => params[:source_url_pre], :size => 100 %>
-    <table class="table">
+    <table class="table table-condensed">
     <tr>
       <td>Story Type</td>
       <td><%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
