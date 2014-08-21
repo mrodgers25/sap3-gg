@@ -1,4 +1,24 @@
-<%= form_tag( "new" ) do %>
+<%= form_for @story do |f| %>
+    <br><br><p>
+      <%= f.label :story_type %><br />
+      <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
+                                 "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
+                                 "Guide", "Hotel Guide", "Book", "Industry Awards"] %>
+    </p>
+    <p>
+      <%= f.label :author %><br />
+      <%= f.text_field :author, :size => 50 %>
+    </p>
+    <p>
+      <%= f.label :scraped_domain %><br />
+      <%= f.text_field :scraped_domain, :size => 50  %>
+    </p>
+
+    <p><%= f.submit "Submit" %></p>
+<% end %>
+
+<% if false %>
+  <%= form_tag( "new" ) do %>
     <br><br>
     <table>
       <tr>
@@ -44,4 +64,5 @@
       </tr>
     </table>
     <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
+  <% end %>
 <% end %>
