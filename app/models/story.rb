@@ -5,7 +5,7 @@ class Story < ActiveRecord::Base
   validates :story_type, presence: true
   validates :author, presence: true
 
-  attr_accessor :scraped_domain
   attr_accessor :source_url_pre
-  attr_accessor :meta_author_scrape
+  # attr_accessor :scraped_domain
+  # attr_accessor :meta_author_scrape
 end

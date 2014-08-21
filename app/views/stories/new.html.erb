@@ -1,7 +1,7 @@
 <%= form_for @story do |f| %>
     <br><br>
     <%= f.text_field :source_url_pre, :value => params[:source_url_pre], :size => 100 %>
-    <table>
+    <table class="table">
     <tr>
       <td>Story Type</td>
       <td><%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
@@ -9,10 +9,10 @@
                                  "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
     </tr>
     <tr>
-      <td style="background-color: #ECF7A3;">Scraped Author</td>
+      <td style="background-color: #ECF7A3;">Scraped Author&nbsp&nbsp</td>
       <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, style:"background-color:#ECF7A3;", size:50) %></td>
     </tr>
-    <tr>
+    <tr style="padding-top: 8px">
       <td>Story Author</td>
       <td><%= f.text_field :author, :size => 50 %></td>
     </tr>
