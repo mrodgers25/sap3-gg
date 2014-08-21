@@ -1,7 +1,16 @@
 <%= form_for @story do |f| %>
-    <br><br>
-    <%= f.text_field :source_url_pre, :value => params[:source_url_pre], :size => 100 %>
-    <table class="table table-condensed">
+  <br><br>
+
+  <table class="table-responsive table-condensed">
+    <tr>
+      <td><%= f.submit "Save Record", class: 'btn btn-sm btn-success' %></td>
+      <td><%= f.text_field :source_url_pre, :value => params[:source_url_pre], :size => 100 %></td>
+    </tr>
+  </table>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+  <table class="table-responsive table-condensed">
     <tr>
       <td>Story Type</td>
       <td><%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
@@ -18,21 +27,19 @@
     </tr>
     <tr>
       <td style="background-color: #ECF7A3;">Scraped Date</td>
-      <td>mm<%= text_field_tag(:month, @month, :size => 2, :style => "text-align: center;background-color:#ECF7A3") %>dd
-      <%= text_field_tag(:day, @day, :size => 2, :style => "text-align: center;background-color:#ECF7A3") %>yyyy
-      <%= text_field_tag(:year, @year, :size => 4, :style => "text-align: center;background-color:#ECF7A3") %></td>
+      <td>yyyy<%= text_field_tag(:year, @year, :size => 4, :style => "text-align: center;background-color:#ECF7A3") %>mm
+      <%= text_field_tag(:month, @month, :size => 2, :style => "text-align: center;background-color:#ECF7A3") %>dd
+      <%= text_field_tag(:date, @date, :size => 2, :style => "text-align: center;background-color:#ECF7A3") %></td>
     </tr>
     <tr>
       <td>Story Date</td>
-      <td>mm<%= f.text_field :story_month, :size => 2  %>dd
-      <%= f.text_field :story_date, :size => 2  %>yyyy
-      <%= f.text_field :story_year, :size => 4  %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit "Submit" %></td>
-      <td></td>
+      <td>yyyy<%= f.text_field :story_year, :size => 4  %>mm
+      <%= f.text_field :story_date, :size => 2  %>dd
+      <%= f.text_field :story_month, :size => 2  %></td>
     </tr>
     </table>
+    </div></div>
+    <iframe class="embed-responsive-item" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
 <% end %>
 
 <% if false %>
@@ -81,6 +88,6 @@
         <td><%= text_area_tag :clean_text, @clean_text, rows: 5, cols:200 %></td>
       </tr>
     </table>
+    <% end %>
     <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
-  <% end %>
 <% end %>
