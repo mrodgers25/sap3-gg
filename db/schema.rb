@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820234152) do
+ActiveRecord::Schema.define(version: 20140822053946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20140820234152) do
   end
 
   create_table "urls", force: true do |t|
-    t.string   "url"
     t.string   "url_type"
     t.string   "url_title"
     t.string   "url_desc"
@@ -53,9 +52,8 @@ ActiveRecord::Schema.define(version: 20140820234152) do
     t.string   "url_keywords"
     t.string   "story_id"
     t.string   "url_domain"
+    t.string   "url_full"
   end
-
-  add_index "urls", ["url"], name: "index_urls_on_url", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

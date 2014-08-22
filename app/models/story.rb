@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  has_many :urls, :dependent => :delete_all
+  has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
 
   validates :story_type, presence: true

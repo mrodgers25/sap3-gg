@@ -1,10 +1,16 @@
 <%= form_tag( :action => "new" ) do %>
+  <br><br><br><br>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <br>
     <table>
-      <tr><br><br><br>
+      <tr>
         <td><div style="float: left; margin-left: 1px "<%= button_to("Process URL", nil, class: 'btn btn-sm btn-success') %></div></td>
         <td>&nbsp</td>
-        <td><%= text_field_tag(:source_url_pre, nil, autofocus: true, size:100) %></td>
+        <td><%= text_field_tag(:source_url_pre, nil, autofocus: true, size:150) %></td>
       </tr>
     </table>
+    <br>
+  </div></div>
 
 <% end %>

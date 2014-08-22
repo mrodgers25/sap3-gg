@@ -1,5 +1,5 @@
 class Url < ActiveRecord::Base
-  belongs_to :story
+  belongs_to :story, inverse_of: :urls
   validates :url_type, presence: true
   validates :url_title, presence: true
   validates :url_desc, presence: true
