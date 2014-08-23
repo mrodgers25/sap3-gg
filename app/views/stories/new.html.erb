@@ -8,17 +8,12 @@
               <tr>
                 <td style="background-color:#ECF7A3">Page URL</td>
                 <td><%= f.text_field :source_url_pre, :value => params[:source_url_pre], :disabled => true, :size => 150, style:"background-color:#ECF7A3" %></td>
-                <td></td>
+                <td>URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %></td>
               </tr>
               <tr>
                 <td>URL</td>
                 <td><%= u.text_field :url_full, :size => 150 %></td>
                 <td><%= u.text_field :url_domain, :value => @domain, :size => 45 %></td>
-              </tr>
-              <tr>
-                <td>URL Type</td>
-                <td><%= u.select :url_type, ["Media"] %></td>
-                <td></td>
               </tr>
               </tr>
                 <td style="background-color: #ECF7A3">Scraped Desc</td>
@@ -46,13 +41,14 @@
     <div class="panel-body">
   <table class="table-responsive table-condensed">
     <tr>
-      <td>Story Type</td>
-      <td><%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
+      <td style="background-color: #ECF7A3;">Scraped Type</td>
+      <td><%= text_field_tag(:meta_type_scrape_og, @meta_type_scrape_og, size:20, :disabled => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
+      <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
                                  "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
                                  "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
     </tr>
     <tr>
-      <td style="background-color: #ECF7A3;">Scraped Author&nbsp&nbsp</td>
+      <td style="background-color: #ECF7A3;">Scraped Author&nbsp;</td>
       <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :disabled => true, style:"background-color:#ECF7A3;", size:50) %></td>
     </tr>
     <tr style="padding-top: 8px">

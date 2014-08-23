@@ -11,12 +11,26 @@ class ApplicationController < ActionController::Base
       return nil
     else
 
+      # meta description
       meta_desc_scrape_pre = doc.css("meta[name='description']").first
       @meta_desc_scrape = meta_desc_scrape_pre['content'] if defined?(meta_desc_scrape_pre['content'])
+      meta_desc_scrape_og = doc.at('meta[property="og:description"]')
+      @meta_desc_scrape_og = meta_desc_scrape_og['content'] if defined?(meta_desc_scrape_og['content'])
+      @meta_desc_scrape ||= @meta_desc_scrape_og
+
+      # meta type
+      meta_type_scrape_og = doc.at('meta[property="og:type"]')
+      @meta_type_scrape_og = meta_type_scrape_og['content'] if defined?(meta_type_scrape_og['content'])
+
+      # meta title
       @title_scrape = doc.at_css('title').content
       meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
+
+      # meta keyword
       @meta_keyword_scrape = meta_keyword_scrape_pre['content'] if defined?(meta_keyword_scrape_pre['content'])
       meta_author_scrape_pre = doc.css("meta[name='author']").first
+
+      # meta author
       @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
       # flash[:notice] = #{@meta_author_scrape}
 
