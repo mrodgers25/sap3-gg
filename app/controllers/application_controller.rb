@@ -36,9 +36,6 @@ class ApplicationController < ActionController::Base
       @meta_author_scrape2 = meta_author_scrape_pre2 if defined?(meta_author_scrape_pre2)
       @meta_author_scrape ||= @meta_author_scrape2
 
-
-      doc.css('a[rel=author]').text
-
       # flash[:notice] = #{@meta_author_scrape}
 
       # paragraph search

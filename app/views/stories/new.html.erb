@@ -27,7 +27,7 @@
               <tr>
               <tr>
                 <td style="background-color: #ECF7A3">Scraped Keyw</td>
-                <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:150, :disabled => true, style:"background-color:#ECF7A3") %></td>
+                <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :disabled => true, style:"background-color:#ECF7A3") %></td>
               </tr>
                 <td>URL Keywords</td>
                 <td><%= u.text_field :url_keywords, :size => 100 %></td>
@@ -63,9 +63,9 @@
     </tr>
     <tr>
       <td>Story Date</td>
-      <td><%= f.text_field :story_year, :placeholder => "yyyy", :size => 4  %>
-      <%= f.text_field :story_month, :placeholder => "mm", :size => 2  %>
-      <%= f.text_field :story_date, :placeholder => "dd", :size => 2  %>&nbsp;&nbsp
+      <td><%= f.text_field :story_year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
+      <%= f.text_field :story_month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
+      <%= f.text_field :story_date, :placeholder => "dd", :size => 2, :style => "text-align: center" %>&nbsp;&nbsp
       <%= f.submit "Save Record", class: 'btn btn-sm btn-success', :disabled => true %></td>
     </tr>
     </table>
