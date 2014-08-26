@@ -14,8 +14,11 @@ class StoriesController < ApplicationController
     @source_url_pre = params[:source_url]  #grab user input
     d_url = Domainatrix.parse(@source_url_pre)
     # dot = "." unless @source_url_pre.nil?
-    @domain = d_url.host
-    @source_url = @domain
+    full_domain = d_url.domain
+    split_full_domain = full_domain.split(".")
+    split_full_domain.length == 2 ? @source_url = split_full_domain[0] + "." + split_full_domain[1] :
+        @source_url = split_full_domain[1] + "." + split_full_domain[2]
+    # @source_url = @domain
     @full_web_url = d_url.url
 
     unless @source_url_pre == ""
@@ -42,8 +45,18 @@ class StoriesController < ApplicationController
   def new
     @source_url_pre = params[:source_url_pre]  #grab user input
     d_url = Domainatrix.parse(@source_url_pre)
-    @domain = d_url.host
-    @source_url = @domain
+    # @domain = d_url.host
+
+    @full_domain = d_url.host
+    split_full_domain = @full_domain.split(".")
+    if split_full_domain.length == 2
+      @base_domain = split_full_domain[0] + "." + split_full_domain[1]
+    else
+      @base_domain = split_full_domain[1] + "." + split_full_domain[2]
+    end
+
+
+    # @source_url = @domain
     @full_web_url = d_url.url
 
     unless @source_url_pre == ""
