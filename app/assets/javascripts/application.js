@@ -15,3 +15,62 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+
+//copy title
+var ready;
+ready = function() {
+    $('#copy-title').click(function (event) {
+        story_url_url_title.value = meta_title_scrape.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+//copy description
+var ready;
+ready = function() {
+    $('#copy-desc').click(function (event) {
+        story_url_url_desc.value = meta_desc_scrape.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+//copy keywords
+var ready;
+ready = function() {
+    $('#copy-keyw').click(function (event) {
+        story_url_url_keywords.value = meta_keyword_scrape.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+//copy author
+var ready;
+ready = function() {
+    $('#copy-author').click(function (event) {
+        story_author.value = meta_author_scrape.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+//copy author
+var ready;
+ready = function() {
+    $('#copy-dates').click(function (event) {
+        story_story_year.value = year.value;
+        story_story_month.value = month.value;
+        story_story_date.value = date.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready)

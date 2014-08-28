@@ -10,21 +10,21 @@ class StoriesController < ApplicationController
   require 'net/http'
   require 'net/protocol'
 
-  def url_show
-    @source_url_pre = params[:source_url]  #grab user input
-    d_url = Domainatrix.parse(@source_url_pre)
-    # dot = "." unless @source_url_pre.nil?
-    full_domain = d_url.domain
-    split_full_domain = full_domain.split(".")
-    split_full_domain.length == 2 ? @source_url = split_full_domain[0] + "." + split_full_domain[1] :
-        @source_url = split_full_domain[1] + "." + split_full_domain[2]
-    # @source_url = @domain
-    @full_web_url = d_url.url
-
-    unless @source_url_pre == ""
-      display_url
-    end
-  end
+  # def url_show
+  #   @source_url_pre = params[:source_url]  #grab user input
+  #   d_url = Domainatrix.parse(@source_url_pre)
+  #   # dot = "." unless @source_url_pre.nil?
+  #   full_domain = d_url.domain
+  #   split_full_domain = full_domain.split(".")
+  #   split_full_domain.length == 2 ? @source_url = split_full_domain[0] + "." + split_full_domain[1] :
+  #       @source_url = split_full_domain[1] + "." + split_full_domain[2]
+  #   # @source_url = @domain
+  #   @full_web_url = d_url.url
+  #
+  #   unless @source_url_pre == ""
+  #     display_url
+  #   end
+  # end
 
   def scrape
 
@@ -50,9 +50,9 @@ class StoriesController < ApplicationController
     @full_domain = d_url.host
     split_full_domain = @full_domain.split(".")
     if split_full_domain.length == 2
-      @base_domain = split_full_domain[0] + "." + split_full_domain[1]
+      @base_domain = split_full_domain[0].to_s + "." + split_full_domain[1].to_s
     else
-      @base_domain = split_full_domain[1] + "." + split_full_domain[2]
+      @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
     end
 
 

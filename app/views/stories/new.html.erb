@@ -1,5 +1,5 @@
 <%= form_for @story do |f| %>
-  <br><br>
+  <br>
 
     <%= f.fields_for :url do |u| %>
         <div class="panel panel-default">
@@ -12,10 +12,10 @@
               </tr>
               <tr>
                 <td style="background-color: #ECF7A3;">Scraped Title&nbsp;</td>
-                <td><%= text_field_tag(:meta_title_scrape, @title_scrape, :disabled => true, style:"background-color:#ECF7A3;", size:146) %>
-                  <button type="button" class="btn btn-default btn-xs">
+                <td><%= text_field_tag(:meta_title_scrape, @title_scrape, style:"background-color:#ECF7A3;", size:146) %>
+                  <%= link_to '#', :class => "btn btn-sm", :id => "copy-title" do %>
                     <span class="glyphicon glyphicon-save"></span>
-                  </button></td>
+                  <% end %></td>
               </tr>
               <tr>
                 <td>URL Title</td>
@@ -25,9 +25,9 @@
               </tr>
                 <td style="background-color: #ECF7A3">Scraped Desc</td>
                 <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:146, :disabled => true, style:"background-color:#ECF7A3") %>
-                  <button type="button" class="btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-save"></span>
-                  </button></td>
+                  <%= link_to '#', :class => "btn btn-sm", :id => "copy-desc" do %>
+                      <span class="glyphicon glyphicon-save"></span>
+                  <% end %></td>
               </tr>
               <tr>
                 <td>URL Desc</td>
@@ -38,9 +38,9 @@
               <tr>
                 <td style="background-color: #ECF7A3">Scraped Keyw</td>
                 <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:96, :disabled => true, style:"background-color:#ECF7A3") %>
-                  <button type="button" class="btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-save"></span>
-                  </button>&nbsp;&nbsp;&nbsp<%= u.text_field :url_domain, :value => @base_domain, :disabled => true, :size => 45, style:"background-color:#ECF7A3" %></td>
+                    <%= link_to '#', :class => "btn btn-sm", :id => "copy-keyw" do %>
+                        <span class="glyphicon glyphicon-save"></span>
+                    <% end %></td>
               </tr>
                 <td>URL Keywords</td>
                 <td><%= u.text_field :url_keywords, :size => 100 %></td>
@@ -62,10 +62,10 @@
     </tr>
     <tr>
       <td style="background-color: #ECF7A3;">Scraped Author&nbsp;</td>
-      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :disabled => true, style:"background-color:#ECF7A3;", size:46) %>
-        <button type="button" class="btn btn-default btn-xs">
-          <span class="glyphicon glyphicon-save"></span>
-        </button></td>
+      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape.strip, :disabled => true, style:"background-color:#ECF7A3;", size:46) %>
+        <%= link_to '#', :class => "btn btn-sm", :id => "copy-author" do %>
+            <span class="glyphicon glyphicon-save"></span>
+        <% end %></td>
     </tr>
     <tr style="padding-top: 8px">
       <td>Story Author</td>
@@ -75,7 +75,10 @@
       <td style="background-color: #ECF7A3;">Scraped Date</td>
       <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
       <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
-      <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %></td>
+      <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
+        <%= link_to '#', :class => "btn btn-sm", :id => "copy-dates" do %>
+            <span class="glyphicon glyphicon-save"></span>
+        <% end %></td>
     </tr>
     <tr>
       <td>Story Date</td>
