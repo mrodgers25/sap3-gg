@@ -6,14 +6,14 @@
           <div class="panel-body">
             <table class="table-responsive table-condensed">
               <tr>
-                <td style="background-color:#ECF7A3">Page URL</td>
+                <td>Page URL</td>
                 <td><%= u.text_field :url_full, :value => params[:source_url_pre], :disabled => true, :size => 150, style:"background-color:#ECF7A3" %></td>
                 <td>URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %></td>
               </tr>
               <tr>
                 <td style="background-color: #ECF7A3;">Scraped Title&nbsp;</td>
-                <td><%= text_field_tag(:meta_title_scrape, @title_scrape, style:"background-color:#ECF7A3;", size:146) %>
-                  <%= link_to '#', :class => "btn btn-sm", :id => "copy-title" do %>
+                <td><%= text_field_tag(:meta_title_scrape, @title_scrape, style:"background-color:#ECF7A3;", size:144) %>
+                  <%= link_to '#', :class => "btn", :id => "copy-title" do %>
                     <span class="glyphicon glyphicon-save"></span>
                   <% end %></td>
               </tr>
@@ -24,8 +24,8 @@
               </tr>
               </tr>
                 <td style="background-color: #ECF7A3">Scraped Desc</td>
-                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:146, :disabled => true, style:"background-color:#ECF7A3") %>
-                  <%= link_to '#', :class => "btn btn-sm", :id => "copy-desc" do %>
+                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:144, :disabled => true, style:"background-color:#ECF7A3") %>
+                  <%= link_to '#', :class => "btn", :id => "copy-desc" do %>
                       <span class="glyphicon glyphicon-save"></span>
                   <% end %></td>
               </tr>
@@ -37,8 +37,8 @@
               <tr>
               <tr>
                 <td style="background-color: #ECF7A3">Scraped Keyw</td>
-                <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:96, :disabled => true, style:"background-color:#ECF7A3") %>
-                    <%= link_to '#', :class => "btn btn-sm", :id => "copy-keyw" do %>
+                <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:95, :disabled => true, style:"background-color:#ECF7A3") %>
+                    <%= link_to '#', :class => "btn", :id => "copy-keyw" do %>
                         <span class="glyphicon glyphicon-save"></span>
                     <% end %></td>
               </tr>
@@ -62,8 +62,8 @@
     </tr>
     <tr>
       <td style="background-color: #ECF7A3;">Scraped Author&nbsp;</td>
-      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape.strip, :disabled => true, style:"background-color:#ECF7A3;", size:46) %>
-        <%= link_to '#', :class => "btn btn-sm", :id => "copy-author" do %>
+      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape.strip, :disabled => true, style:"background-color:#ECF7A3;", size:45) %>
+        <%= link_to '#', :class => "btn", :id => "copy-author" do %>
             <span class="glyphicon glyphicon-save"></span>
         <% end %></td>
     </tr>
@@ -76,7 +76,7 @@
       <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
       <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
       <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
-        <%= link_to '#', :class => "btn btn-sm", :id => "copy-dates" do %>
+        <%= link_to '#', :class => "btn", :id => "copy-dates" do %>
             <span class="glyphicon glyphicon-save"></span>
         <% end %></td>
     </tr>
@@ -85,75 +85,10 @@
       <td><%= f.text_field :story_year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
       <%= f.text_field :story_month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
       <%= f.text_field :story_date, :placeholder => "dd", :size => 2, :style => "text-align: center" %>&nbsp;&nbsp
-      <%= f.submit "Save Record", class: 'btn btn-sm btn-success', :disabled => true %></td>
+      <%= f.submit "Save Record", class: 'btn btn-sm btn-success' %></td>
     </tr>
     </table>
     </div></div>
 
     <iframe class="embed-responsive-item" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
-<% end %>
-
-
-
-
-<% if false %>
-  <%= form_tag( "new" ) do %>
-    <br><br>
-    <table>
-      <tr>
-        <td><div style="float: left; margin-left: 1px "<%= button_to("Save", nil, class: 'btn btn-sm btn-success', :disabled => true) %></div></td>
-        <td>&nbsp</td>
-        <td><%= text_field_tag(:source_url_pre, @source_url_pre, size:100) %>
-          <%= text_field_tag(:domain, @domain, size:45) %></td>
-      </tr>
-      <tr>
-        <td style="background-color: #F5F5DC;">Title</td>
-        <td>&nbsp</td>
-        <td><%= text_field_tag(:title_scrape, @title_scrape, size:150) %></td>
-      </tr>
-      <td style="background-color: #F5F5DC;">Description </td>
-      <td>&nbsp</td>
-      <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150) %></td>
-      </tr>
-      <tr>
-        <td>Keywords</td>
-        <td>&nbsp</td>
-        <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:150) %></td>
-      </tr>
-      <tr>
-        <td>Author</td>
-        <td>&nbsp</td>
-        <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, size:100) %> mm
-          <% if false %> debugging fields
-              <%= text_field_tag(:alpha_date_match, @alpha_date_match, size:20) %>
-              <%= text_field_tag(:num_date_match, @num_date_match, size:10) %>A
-              <%= text_field_tag(:alpha_date_match_pos, @alpha_date_match_pos, size:5) %>N
-              <%= text_field_tag(:num_date_match_pos, @num_date_match_pos, size:5) %>
-          <% end %>
-          <span class="text-center !important">
-            <%= number_field_tag(:month, @month, min: 1, max: 12, :style => "text-align: center") %> dd
-            <%= number_field_tag(:day, @day, min: 1, max: 31, :style => "text-align: center") %> yy
-          <%= number_field_tag(:year, @year, min:1, max:2025, :style => "text-align: center") %></td>
-          </span>
-      </tr>
-      <tr>
-        <td>Full Content</td>
-        <td>&nbsp</td>
-        <td><%= text_area_tag :clean_text, @clean_text, rows: 5, cols:200 %></td>
-      </tr>
-    </table>
-    <% end %>
-    <iframe src="<%= @full_web_url %>" frameborder="3" width="90%" height="600px">error!</iframe>
-
-
-    <%= f.fields_for :url do |u| %>
-        <%= u.text_field :url_full %>
-        <%= u.text_field :url_type %>
-        <%= u.text_field :url_title %>
-        <%= u.text_field :url_desc %>
-        <%= u.text_field :url_keywords %>
-        <%= u.text_field :url_domain %>
-    <% end %>
-
-
 <% end %>
