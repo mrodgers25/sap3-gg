@@ -1,94 +1,100 @@
 <%= form_for @story do |f| %>
   <br>
 
-    <%= f.fields_for :url do |u| %>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <table class="table-responsive table-condensed">
-              <tr>
-                <td>Page URL</td>
-                <td><%= u.text_field :url_full, :value => params[:source_url_pre], :disabled => true, :size => 150, style:"background-color:#ECF7A3" %></td>
-                <td>URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %></td>
-              </tr>
-              <tr>
-                <td style="background-color: #ECF7A3;">Scraped Title&nbsp;</td>
-                <td><%= text_field_tag(:meta_title_scrape, @title_scrape, style:"background-color:#ECF7A3;", size:144) %>
-                  <%= link_to '#', :class => "btn", :id => "copy-title" do %>
-                    <span class="glyphicon glyphicon-save"></span>
-                  <% end %></td>
-              </tr>
-              <tr>
-                <td>URL Title</td>
-                <td><%= u.text_field :url_title, :size => 150 %></td>
-                <td></td>
-              </tr>
-              </tr>
-                <td style="background-color: #ECF7A3">Scraped Desc</td>
-                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:144, :disabled => true, style:"background-color:#ECF7A3") %>
-                  <%= link_to '#', :class => "btn", :id => "copy-desc" do %>
-                      <span class="glyphicon glyphicon-save"></span>
-                  <% end %></td>
-              </tr>
-              <tr>
-                <td>URL Desc</td>
-                <td><%= u.text_field :url_desc, :size => 150 %></td>
-                <td></td>
-              </tr>
-              <tr>
-              <tr>
-                <td style="background-color: #ECF7A3">Scraped Keyw</td>
-                <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:95, :disabled => true, style:"background-color:#ECF7A3") %>
-                    <%= link_to '#', :class => "btn", :id => "copy-keyw" do %>
-                        <span class="glyphicon glyphicon-save"></span>
-                    <% end %></td>
-              </tr>
-                <td>URL Keywords</td>
-                <td><%= u.text_field :url_keywords, :size => 100 %></td>
-                <td></td>
-              </tr>
-            </table>
-          </div></div>
-    <% end %>
-
   <div class="panel panel-default">
     <div class="panel-body">
   <table class="table-responsive table-condensed">
     <tr>
-      <td style="background-color: #ECF7A3;">Scraped Type</td>
+      <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>
+            Scraped Type&nbsp;
+        <% end %></td>
       <td><%= text_field_tag(:meta_type_scrape_og, @meta_type_scrape_og, size:20, :disabled => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
       <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
                                  "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
                                  "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
     </tr>
     <tr>
-      <td style="background-color: #ECF7A3;">Scraped Author&nbsp;</td>
-      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape.strip, :disabled => true, style:"background-color:#ECF7A3;", size:45) %>
-        <%= link_to '#', :class => "btn", :id => "copy-author" do %>
-            <span class="glyphicon glyphicon-save"></span>
+      <td><%= button_to '', :class => "btn btn-xs", :id => "copy-author", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
+            Scraped Author&nbsp;<span class="glyphicon glyphicon-save"></span>
         <% end %></td>
+      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :disabled => true, style:"background-color:#ECF7A3;", size:45) %>
     </tr>
     <tr style="padding-top: 8px">
-      <td>Story Author</td>
+      <td>&nbsp;Story Author</td>
       <td><%= f.text_field :author, :size => 50 %></td>
     </tr>
     <tr>
-      <td style="background-color: #ECF7A3;">Scraped Date</td>
+      <td><%= button_to '', :class => "btn btn-xs", :id => "copy-dates", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
+            Scraped Date&nbsp;<span class="glyphicon glyphicon-save"></span>
+        <% end %></td>
       <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
       <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
       <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
-        <%= link_to '#', :class => "btn", :id => "copy-dates" do %>
-            <span class="glyphicon glyphicon-save"></span>
-        <% end %></td>
     </tr>
     <tr>
-      <td>Story Date</td>
+      <td>&nbsp;Story Date</td>
       <td><%= f.text_field :story_year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
       <%= f.text_field :story_month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
       <%= f.text_field :story_date, :placeholder => "dd", :size => 2, :style => "text-align: center" %>&nbsp;&nbsp
-      <%= f.submit "Save Record", class: 'btn btn-sm btn-success' %></td>
+      <%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
     </tr>
     </table>
     </div></div>
+
+    <%= f.fields_for :urls do |u| %>
+        <div class="form-group">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <table class="table-responsive table-condensed">
+                <tr>
+                  <td>&nbsp;Page URL</td>
+                  <td><%= u.text_field :url_full, :value => params[:source_url_pre], :disabled => true, :size => 100 %>
+                    &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
+                    &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary %></td>
+                </tr>
+                <tr>
+                  <td><%= button_to '', :class => "btn btn-xs", :id => "copy-title", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
+                        Scraped Title&nbsp;<span class="glyphicon glyphicon-save"></span>
+                    <% end %>
+                  </td>
+                  <td><%= text_field_tag(:meta_title_scrape, @title_scrape, style:"background-color:#ECF7A3;", size:150) %></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;URL Title</td>
+                  <td><%= u.text_field :url_title, :size => 150 %></td>
+                  <td></td
+                </tr>
+                </tr>
+                <td><%= button_to '', :class => "btn btn-xs", :id => "copy-desc", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
+                      Scraped Desc&nbsp;<span class="glyphicon glyphicon-save"></span>
+                  <% end %>
+                </td>
+                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150, :disabled => true, style:"background-color:#ECF7A3") %>
+                <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;URL Desc</td>
+                  <td><%= u.text_field :url_desc, :size => 150 %></td>
+                  <td></td>
+                </tr>
+                <tr>
+                <tr>
+                  <td><%= button_to '', :class => "btn btn-xs", :id => "copy-keyw", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
+                        Scraped Keyw&nbsp;<span class="glyphicon glyphicon-save"></span>
+                    <% end %>
+                  </td>
+                  <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :disabled => true, style:"background-color:#ECF7A3") %>
+                  <td></td>
+                </tr>
+                <td>&nbsp;URL Keywords</td>
+                <td><%= u.text_field :url_keywords, :size => 100 %></td>
+                <td></td>
+                </tr>
+              </table>
+            </div></div>
+        </div>
+    <% end %>
 
     <iframe class="embed-responsive-item" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
 <% end %>

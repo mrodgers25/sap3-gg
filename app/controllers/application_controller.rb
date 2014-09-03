@@ -12,28 +12,28 @@ class ApplicationController < ActionController::Base
     else
 
       # meta title
-      @title_scrape = doc.at_css('title').content
+      @title_scrape = doc.at_css('title').content.strip
 
       # meta description
       meta_desc_scrape_pre = doc.css("meta[name='description']").first
-      @meta_desc_scrape = meta_desc_scrape_pre['content'] if defined?(meta_desc_scrape_pre['content'])
+      @meta_desc_scrape = meta_desc_scrape_pre['content'].strip if defined?(meta_desc_scrape_pre['content'])
       meta_desc_scrape_og = doc.at('meta[property="og:description"]')
-      @meta_desc_scrape_og = meta_desc_scrape_og['content'] if defined?(meta_desc_scrape_og['content'])
+      @meta_desc_scrape_og = meta_desc_scrape_og['content'].strip if defined?(meta_desc_scrape_og['content'])
       @meta_desc_scrape ||= @meta_desc_scrape_og
 
       # meta type
       meta_type_scrape_og = doc.at('meta[property="og:type"]')
-      @meta_type_scrape_og = meta_type_scrape_og['content'] if defined?(meta_type_scrape_og['content'])
+      @meta_type_scrape_og = meta_type_scrape_og['content'].strip if defined?(meta_type_scrape_og['content'])
 
       # meta keyword
       meta_keyword_scrape_pre = doc.css("meta[name='keywords']").first
-      @meta_keyword_scrape = meta_keyword_scrape_pre['content'] if defined?(meta_keyword_scrape_pre['content'])
+      @meta_keyword_scrape = meta_keyword_scrape_pre['content'].strip if defined?(meta_keyword_scrape_pre['content'])
 
       # meta author
       meta_author_scrape_pre = doc.css("meta[name='author']").first
-      @meta_author_scrape = meta_author_scrape_pre['content'] if defined?(meta_author_scrape_pre['content'])
+      @meta_author_scrape = meta_author_scrape_pre['content'].strip if defined?(meta_author_scrape_pre['content'])
       meta_author_scrape_pre2 = doc.css('a[rel=author]').text
-      @meta_author_scrape2 = meta_author_scrape_pre2 if defined?(meta_author_scrape_pre2)
+      @meta_author_scrape2 = meta_author_scrape_pre2.strip if defined?(meta_author_scrape_pre2)
       @meta_author_scrape ||= @meta_author_scrape2
 
       # flash[:notice] = #{@meta_author_scrape}

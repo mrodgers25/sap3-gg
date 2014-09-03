@@ -17,12 +17,23 @@
 //= require_tree .
 
 
+// no operation
+var ready;
+ready = function() {
+    $('#noop').click(function (event) {
+        meta_type_scrape_og.value = meta_type_scrape_og.value;
+        event.preventDefault(); // Prevent link from following its href
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 //copy title
 var ready;
 ready = function() {
     $('#copy-title').click(function (event) {
-        story_url_url_title.value = meta_title_scrape.value;
+//        story_url_url_title.value = meta_title_scrape.value;
+        story_urls_attributes_0_url_title.value = meta_title_scrape.value;
         event.preventDefault(); // Prevent link from following its href
     });
 };
@@ -33,7 +44,9 @@ $(document).on('page:load', ready);
 var ready;
 ready = function() {
     $('#copy-desc').click(function (event) {
-        story_url_url_desc.value = meta_desc_scrape.value;
+//        alert("in desc")
+        story_urls_attributes_0_url_desc.value = meta_desc_scrape.value;
+//        story_url_url_desc.value = meta_desc_scrape.value;
         event.preventDefault(); // Prevent link from following its href
     });
 };
@@ -44,7 +57,8 @@ $(document).on('page:load', ready);
 var ready;
 ready = function() {
     $('#copy-keyw').click(function (event) {
-        story_url_url_keywords.value = meta_keyword_scrape.value;
+        story_urls_attributes_0_url_keywords.value = meta_keyword_scrape.value;
+//        story_url_url_keywords.value = meta_keyword_scrape.value;
         event.preventDefault(); // Prevent link from following its href
     });
 };

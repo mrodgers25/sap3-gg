@@ -10,21 +10,6 @@ class StoriesController < ApplicationController
   require 'net/http'
   require 'net/protocol'
 
-  # def url_show
-  #   @source_url_pre = params[:source_url]  #grab user input
-  #   d_url = Domainatrix.parse(@source_url_pre)
-  #   # dot = "." unless @source_url_pre.nil?
-  #   full_domain = d_url.domain
-  #   split_full_domain = full_domain.split(".")
-  #   split_full_domain.length == 2 ? @source_url = split_full_domain[0] + "." + split_full_domain[1] :
-  #       @source_url = split_full_domain[1] + "." + split_full_domain[2]
-  #   # @source_url = @domain
-  #   @full_web_url = d_url.url
-  #
-  #   unless @source_url_pre == ""
-  #     display_url
-  #   end
-  # end
 
   def scrape
 
@@ -43,10 +28,10 @@ class StoriesController < ApplicationController
 
   # GET /stories/new
   def new
+
+    # parse the domain
     @source_url_pre = params[:source_url_pre]  #grab user input
     d_url = Domainatrix.parse(@source_url_pre)
-    # @domain = d_url.host
-
     @full_domain = d_url.host
     split_full_domain = @full_domain.split(".")
     if split_full_domain.length == 2
@@ -54,15 +39,14 @@ class StoriesController < ApplicationController
     else
       @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
     end
-
-
-    # @source_url = @domain
     @full_web_url = d_url.url
 
     unless @source_url_pre == ""
       display_url
     end
+
     @story = Story.new
+    @story.urls.build
   end
 
   # GET /stories/1/edit
@@ -79,6 +63,7 @@ class StoriesController < ApplicationController
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
+        Rails.logger.info(@story.errors.inspect)
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -117,6 +102,7 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:media_id, :story_type, :author, :story_month, :story_date, :story_year)
+      params.require(:story).permit( :media_id, :story_type, :author, :story_month, :story_date, :story_year, :primary,
+                                    urls_attributes: [ :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords ])
     end
 end
