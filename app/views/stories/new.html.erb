@@ -50,7 +50,7 @@
                   <td>&nbsp;Page URL</td>
                   <td><%= u.text_field :url_full, :value => params[:source_url_pre], :disabled => true, :size => 100 %>
                     &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
-                    &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary %></td>
+                    &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                 </tr>
                 <tr>
                   <td><%= button_to '', :class => "btn btn-xs", :id => "copy-title", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
