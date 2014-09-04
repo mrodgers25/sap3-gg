@@ -8,7 +8,7 @@
       <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>
             Scraped Type&nbsp;
         <% end %></td>
-      <td><%= text_field_tag(:meta_type_scrape_og, @meta_type_scrape_og, size:20, :disabled => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
+      <td><%= text_field_tag(:meta_type_scrape_og, @meta_type_scrape_og, size:20, :readonly => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
       <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
                                  "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
                                  "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
@@ -17,7 +17,7 @@
       <td><%= button_to '', :class => "btn btn-xs", :id => "copy-author", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
             Scraped Author&nbsp;<span class="glyphicon glyphicon-save"></span>
         <% end %></td>
-      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :disabled => true, style:"background-color:#ECF7A3;", size:45) %>
+      <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :readonly => true, style:"background-color:#ECF7A3;", size:45) %>
     </tr>
     <tr style="padding-top: 8px">
       <td>&nbsp;Story Author</td>
@@ -27,9 +27,9 @@
       <td><%= button_to '', :class => "btn btn-xs", :id => "copy-dates", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
             Scraped Date&nbsp;<span class="glyphicon glyphicon-save"></span>
         <% end %></td>
-      <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
-      <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
-      <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :disabled => true, :style => "text-align: center;background-color:#ECF7A3") %>
+      <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
+      <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
+      <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
     </tr>
     <tr>
       <td>&nbsp;Story Date</td>
@@ -48,7 +48,7 @@
               <table class="table-responsive table-condensed">
                 <tr>
                   <td>&nbsp;Page URL</td>
-                  <td><%= u.text_field :url_full, :value => params[:source_url_pre], :disabled => true, :size => 100 %>
+                  <td><%= u.text_field :url_full, :value => params[:source_url_pre], :readonly => true, :size => 100 %>
                     &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
                     &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                 </tr>
@@ -70,7 +70,7 @@
                       Scraped Desc&nbsp;<span class="glyphicon glyphicon-save"></span>
                   <% end %>
                 </td>
-                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150, :disabled => true, style:"background-color:#ECF7A3") %>
+                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150, :readonly => true, style:"background-color:#ECF7A3") %>
                 <td></td>
                 </tr>
                 <tr>
@@ -84,12 +84,13 @@
                         Scraped Keyw&nbsp;<span class="glyphicon glyphicon-save"></span>
                     <% end %>
                   </td>
-                  <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :disabled => true, style:"background-color:#ECF7A3") %>
+                  <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :readonly => true, style:"background-color:#ECF7A3") %>
                   <td></td>
                 </tr>
-                <td>&nbsp;URL Keywords</td>
-                <td><%= u.text_field :url_keywords, :size => 100 %></td>
-                <td></td>
+                  <td>&nbsp;URL Keywords</td>
+                  <td><%= u.text_field :url_keywords, :size => 100 %>
+                    &nbsp;&nbsp;Domain&nbsp;<%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35 %></td>
+                  <td></td>
                 </tr>
               </table>
             </div></div>
