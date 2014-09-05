@@ -1,5 +1,9 @@
 <h3>Story</h3>
 <p>
+  <strong>Tagline: </strong>
+  <%= @story.editor_tagline %>
+  <strong>Location Codes: </strong>
+  <%= @story.location_code %><br>
   <strong>Entered: </strong>
   <%= @story.created_at.strftime("%Y %m %d") %>
   <strong>Type: </strong>

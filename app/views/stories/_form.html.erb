@@ -15,6 +15,11 @@
       <div class="panel-body">
         <table class="table-responsive table-condensed">
           <tr>
+            <td>&nbsp;Editor Tagline </td>
+            <td><%= f.text_field :editor_tagline, :placeholder => "Maximum 40 chars", :maxlength => 40, :size => 40 %>
+              &nbsp;&nbsp;&nbsp;&nbsp;Location Codes&nbsp;&nbsp;<%= f.text_field :location_code, :onkeyup =>"this.value = this.value.toUpperCase();", :placeholder => "Enter comma separated location codes", :size => 50 %></td>
+          </tr>
+          <tr>
             <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>
                   Scraped Type&nbsp;
               <% end %></td>
@@ -29,7 +34,7 @@
               <% end %></td>
             <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :readonly => true, style:"background-color:#ECF7A3;", size:45) %>
           </tr>
-          <tr style="padding-top: 8px">
+          <tr>
             <td>&nbsp;Story Author</td>
             <td><%= f.text_field :author, :size => 50 %></td>
           </tr>
@@ -45,8 +50,7 @@
             <td>&nbsp;Story Date</td>
             <td><%= f.text_field :story_year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
               <%= f.text_field :story_month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
-              <%= f.text_field :story_date, :placeholder => "dd", :size => 2, :style => "text-align: center" %>&nbsp;&nbsp
-              <%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
+              <%= f.text_field :story_date, :placeholder => "dd", :size => 2, :style => "text-align: center" %></td>
           </tr>
         </table>
       </div></div>
@@ -95,11 +99,12 @@
                     <% end %>
                   </td>
                   <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :readonly => true, style:"background-color:#ECF7A3") %>
+                    &nbsp;&nbsp;Domain&nbsp;<%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %>
                   <td></td>
                 </tr>
                 <td>&nbsp;URL Keywords</td>
                 <td><%= u.text_field :url_keywords, :size => 100 %>
-                  &nbsp;&nbsp;Domain&nbsp;<%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %></td>
+                  &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
                 <td></td>
                 </tr>
               </table>
