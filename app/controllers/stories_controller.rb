@@ -59,11 +59,11 @@ class StoriesController < ApplicationController
     @story = Story.new(story_params)
 
     respond_to do |format|
-      if @story.save!
+      if @story.save
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
-        logger.debug @url.errors.inspect
+        # logger.debug @url.errors.inspect
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -102,7 +102,7 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit( :media_id, :story_type, :author, :story_month, :story_date, :story_year, :primary,
-                                    urls_attributes: [ :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain ])
+      params.require(:story).permit( :media_id, :story_type, :author, :story_month, :story_date, :story_year,
+                                    urls_attributes: [ :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary ])
     end
 end

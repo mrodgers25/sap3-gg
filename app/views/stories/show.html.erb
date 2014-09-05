@@ -1,16 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <h3>Story</h3>
 <p>
-  <strong>Created: </strong>
+  <strong>Entered: </strong>
   <%= @story.created_at.strftime("%Y %m %d") %>
   <strong>Type: </strong>
   <%= @story.story_type %>
   <strong>Author: </strong>
   <%= @story.author %>
-  <strong>Published: </strong>
+  <strong>Published: YYYY </strong>
   <%= @story.story_year %>&nbsp;
+  <strong>MM </strong>
   <%= @story.story_month %>&nbsp;
+  <strong>DD </strong>
   <%= @story.story_date %>
 </p>
 
@@ -18,19 +18,28 @@
 
 <div style="margin-left: 25px">
   <% @story.urls.each do |u| %>
-    <%= truncate(u.url_full, :length => 60) %>&nbsp;&nbsp;
+
+    <strong>URL: </strong>
+    <%= truncate(u.url_full, :length => 100) %><br>
+
     <strong>Domain: </strong>&nbsp;
-    <%= truncate(u.url_domain, :length => 30) %><br>
-    <strong>Type: </strong>&nbsp;
+    <%= truncate(u.url_domain, :length => 30) %>&nbsp;&nbsp;
+
+    <strong>Type: </strong>
     <%= truncate(u.url_type, :length => 20) %>&nbsp;&nbsp;
-    <strong>Primary?: </strong>&nbsp
+
+    <strong>Primary?: </strong>
     <%= u.primary %>&nbsp;&nbsp;<br>
+
     <strong>Title: </strong>
-    <%= truncate(u.url_title, :length => 60) %>&nbsp;&nbsp;<br>
+    <%= truncate(u.url_title, :length => 100) %>&nbsp;&nbsp;<br>
+
     <strong>Description: </strong>
-    <%= truncate(u.url_desc, :length => 60) %>&nbsp;&nbsp;<br>
+    <%= truncate(u.url_desc, :length => 100) %>&nbsp;&nbsp;<br>
+
     <strong>Keywords: </strong>
-    <%= truncate(u.url_keywords, :length => 60) %>&nbsp;&nbsp;<br><br>
+    <%= truncate(u.url_keywords, :length => 100) %>&nbsp;&nbsp;<br><br>
+
   <% end %>
 </div>
 
