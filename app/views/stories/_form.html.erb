@@ -17,7 +17,7 @@
           <tr>
             <td>&nbsp;Editor Tagline </td>
             <td><%= f.text_field :editor_tagline, :placeholder => "Maximum 40 chars", :maxlength => 40, :size => 40 %>
-              &nbsp;&nbsp;&nbsp;&nbsp;Location Codes&nbsp;&nbsp;<%= f.text_field :location_code, :onkeyup =>"this.value = this.value.toUpperCase();", :placeholder => "Enter comma separated location codes", :size => 50 %></td>
+              &nbsp;&nbsp;&nbsp;&nbsp;Location Codes&nbsp;&nbsp;<%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();", :placeholder => "Enter comma separated location codes", :size => 50 %></td>
           </tr>
           <tr>
             <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>
