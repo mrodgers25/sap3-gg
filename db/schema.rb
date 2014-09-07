@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905224807) do
+ActiveRecord::Schema.define(version: 20140906152923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 20140905224807) do
     t.string   "url_domain"
     t.string   "url_full"
     t.boolean  "primary"
+    t.boolean  "url_title_track"
+    t.boolean  "url_desc_track"
+    t.boolean  "url_keywords_track"
   end
 
   create_table "users", force: true do |t|

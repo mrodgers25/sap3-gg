@@ -6,6 +6,25 @@ class Story < ActiveRecord::Base
   validates :author, presence: true
 
   attr_accessor :source_url_pre
-  # attr_accessor :scraped_domain
-  # attr_accessor :meta_author_scrape
+
+  before_create :set_track_flag
+  #
+  # def set_track_flag
+  #   if @title_scrape == params[:story][:url_title]
+  #     self.url_title_track = true
+  #   else
+  #     self.url_title_track = false
+  #   end
+  # end
+
+
+  def set_track_flag
+    Story.update_attribute(:url_title_track => true) # undefined method `update_attributes'
+    # self.url_title_track = true # undefined method `url_title_track='
+    # @story.url_title_track = true # undefined method `url' for nil:NilClass
+    # @story.url.url_title_track = true # undefined method `url' for nil:NilClass
+    # :url_title_track = true if @title_scrape == params[:story][:url_title] # syntax error, unexpected '='
+    # params[:story][:url_title_track] = true if @title_scrape == params[:story][:url_title] # undefined local variable or method `params'
+  end
+
 end

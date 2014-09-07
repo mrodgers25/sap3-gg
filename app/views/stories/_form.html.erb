@@ -93,7 +93,6 @@
                   <td></td>
                 </tr>
                 <tr>
-                <tr>
                   <td><%= button_to '', :class => "btn btn-xs", :id => "copy-keyw", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
                         Scraped Keyw&nbsp;<span class="glyphicon glyphicon-save"></span>
                     <% end %>
@@ -102,15 +101,23 @@
                     &nbsp;&nbsp;Domain&nbsp;<%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %>
                   <td></td>
                 </tr>
-                <td>&nbsp;URL Keywords</td>
-                <td><%= u.text_field :url_keywords, :size => 100 %>
-                  &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
-                <td></td>
+                <tr>
+                  <td>&nbsp;URL Keywords</td>
+                  <td><%= u.text_field :url_keywords, :size => 100 %>
+                    &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
+                  <td></td>
                 </tr>
+                <%= u.hidden_field :url_title_track %>
+                <%= u.hidden_field :url_desc_track %>
+                <%= u.hidden_field :url_keywords_track %>
               </table>
             </div></div>
         </div>
     <% end %>
 
-    <iframe class="embed-responsive-item" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
+    <%= debug(params) if Rails.env.development? %>
+    <%= debug(flash) if Rails.env.development? %>
+    <%= debug(response) if Rails.env.development? %>
+
+    <iframe class="embed-responsive-item" sandbox="allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
 <% end %>
