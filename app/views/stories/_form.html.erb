@@ -107,7 +107,7 @@
                     &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
                   <td></td>
                 </tr>
-    
+                <%= u.hidden_field :url_title_track, :value => true %>
                 <%= u.hidden_field :url_desc_track %>
                 <%= u.hidden_field :url_keywords_track %>
               </table>
