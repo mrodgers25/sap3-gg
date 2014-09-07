@@ -19,7 +19,7 @@ class Story < ActiveRecord::Base
 
 
   def set_track_flag
-    Story.update_attribute(:url_title_track => true) # undefined method `update_attributes'
+    # Story.update_attribute(:url_title_track => true) # undefined method `update_attributes'
     # self.url_title_track = true # undefined method `url_title_track='
     # @story.url_title_track = true # undefined method `url' for nil:NilClass
     # @story.url.url_title_track = true # undefined method `url' for nil:NilClass
