@@ -8,15 +8,6 @@ class Story < ActiveRecord::Base
   attr_accessor :source_url_pre
 
   before_create :set_track_flag
-  #
-  # def set_track_flag
-  #   if @title_scrape == params[:story][:url_title]
-  #     self.url_title_track = true
-  #   else
-  #     self.url_title_track = false
-  #   end
-  # end
-
 
   def set_track_flag
     # Story.update_attribute(:url_title_track => true) # undefined method `update_attributes'
