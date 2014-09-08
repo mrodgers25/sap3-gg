@@ -20,6 +20,7 @@ gem 'high_voltage'
 gem 'nokogiri'
 gem 'domainatrix'
 gem 'sanitize'
+
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
   gem 'better_errors'
@@ -27,4 +28,5 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'debugger2'
 end
