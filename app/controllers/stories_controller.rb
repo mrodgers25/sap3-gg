@@ -26,9 +26,9 @@ class StoriesController < ApplicationController
   # GET /stories/new
   def new
     # parse the domain
-    @source_url_pre = params[:source_url_pre]  #grab user input
-    if @source_url_pre.present?
-      get_domain_info
+    source_url_pre = params[:source_url_pre]  #grab user input
+    if source_url_pre.present?
+      get_domain_info(source_url_pre)
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
@@ -56,7 +56,7 @@ class StoriesController < ApplicationController
       else
         # TODO: this is not working ?  To re-render the 'new' template, you still have to fill
         #       in all of your instance variables or else you will have blank values
-        get_domain_info
+        get_domain_info(@story.urls.first.url_full)
         @screen_scraper = ScreenScraper.new
         @screen_scraper.scrape!(@full_web_url)
         format.html { render :new }
@@ -91,8 +91,8 @@ class StoriesController < ApplicationController
 
   private
 
-  def get_domain_info
-    d_url = Domainatrix.parse(@source_url_pre)
+  def get_domain_info(source_url_pre)
+    d_url = Domainatrix.parse(source_url_pre)
     @full_domain = d_url.host
     split_full_domain = @full_domain.split(".")
     if split_full_domain.length == 2
