@@ -1,5 +1,6 @@
 <%= form_for @story do |f| %>
     <br>
+    <!-- TODO: you needs to test for errors from the nested URLs also -->
     <% if @story.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
@@ -23,7 +24,7 @@
             <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>
                   Scraped Type&nbsp;
               <% end %></td>
-            <td><%= text_field_tag(:meta_type_scrape_og, @meta_type_scrape_og, size:20, :readonly => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
+            <td><%= text_field_tag(:meta_type_scrape_og, @screen_scraper.meta_type, size:20, :readonly => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
               <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
                                          "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
                                          "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
@@ -32,7 +33,7 @@
             <td><%= button_to '', :class => "btn btn-xs", :id => "copy-author", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
                   Scraped Author&nbsp;<span class="glyphicon glyphicon-save"></span>
               <% end %></td>
-            <td><%= text_field_tag(:meta_author_scrape, @meta_author_scrape, :readonly => true, style:"background-color:#ECF7A3;", size:45) %>
+            <td><%= text_field_tag(:meta_author_scrape, @screen_scraper.meta_author, :readonly => true, style:"background-color:#ECF7A3;", size:45) %>
           </tr>
           <tr>
             <td>&nbsp;Story Author</td>
@@ -42,9 +43,9 @@
             <td><%= button_to '', :class => "btn btn-xs", :id => "copy-dates", style:"background-color:#ECF7A3; border: 1px solid #ccc;" do %>
                   Scraped Date&nbsp;<span class="glyphicon glyphicon-save"></span>
               <% end %></td>
-            <td><%= text_field_tag(:year, @year, :size => 4, placeholder: "yyyy", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
-              <%= text_field_tag(:month, @month, :size => 2, placeholder: "mm", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
-              <%= text_field_tag(:date, @date, :size => 2, placeholder: "dd", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
+            <td><%= text_field_tag(:year, @screen_scraper.year, :size => 4, placeholder: "yyyy", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
+              <%= text_field_tag(:month, @screen_scraper.month, :size => 2, placeholder: "mm", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
+              <%= text_field_tag(:date, @screen_scraper.day, :size => 2, placeholder: "dd", :readonly => true, :style => "text-align: center;background-color:#ECF7A3") %>
           </tr>
           <tr>
             <td>&nbsp;Story Date</td>
@@ -71,7 +72,7 @@
                         Scraped Title&nbsp;<span class="glyphicon glyphicon-save"></span>
                     <% end %>
                   </td>
-                  <td><%= text_field_tag(:meta_title_scrape, @title_scrape, :class => "c150-yellow") %></td>
+                  <td><%= text_field_tag(:meta_title_scrape, @screen_scraper.title, :class => "c150-yellow") %></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -84,7 +85,7 @@
                       Scraped Desc&nbsp;<span class="glyphicon glyphicon-save"></span>
                   <% end %>
                 </td>
-                <td><%= text_field_tag(:meta_desc_scrape, @meta_desc_scrape, size:150, :readonly => true, style:"background-color:#ECF7A3") %>
+                <td><%= text_field_tag(:meta_desc_scrape, @screen_scraper.meta_desc, size:150, :readonly => true, style:"background-color:#ECF7A3") %>
                 <td></td>
                 </tr>
                 <tr>
@@ -97,7 +98,7 @@
                         Scraped Keyw&nbsp;<span class="glyphicon glyphicon-save"></span>
                     <% end %>
                   </td>
-                  <td><%= text_field_tag(:meta_keyword_scrape, @meta_keyword_scrape, size:100, :readonly => true, style:"background-color:#ECF7A3") %>
+                  <td><%= text_field_tag(:meta_keyword_scrape, @screen_scraper.meta_keywords, size:100, :readonly => true, style:"background-color:#ECF7A3") %>
                     &nbsp;&nbsp;Domain&nbsp;<%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %>
                   <td></td>
                 </tr>
@@ -107,9 +108,9 @@
                     &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save Story", class: 'btn btn-sm btn-success' %></td>
                   <td></td>
                 </tr>
-                <%= u.hidden_field :url_title_track, :value => true %>
-                <%= u.hidden_field :url_desc_track %>
-                <%= u.hidden_field :url_keywords_track %>
+                <%= u.hidden_field :raw_url_title_scrape, :value => @screen_scraper.title %>
+                <%= u.hidden_field :raw_url_desc_scrape, :value => @screen_scraper.meta_desc %>
+                <%= u.hidden_field :raw_url_keywords_scrape, :value => @screen_scraper.meta_keywords %>
               </table>
             </div></div>
         </div>
