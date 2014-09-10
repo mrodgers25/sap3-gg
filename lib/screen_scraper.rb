@@ -13,7 +13,7 @@ class ScreenScraper
     begin
       doc = Nokogiri::HTML(open(scrape_url, 'User-Agent' => BROWSER))
       # TODO: handle possible redirection from http --> https
-    rescue # TODO: catpure a sepcific NOKOGIRI exception
+    rescue # TODO: capture a specific NOKOGIRI exception
       return false
     end
 
@@ -77,7 +77,7 @@ class ScreenScraper
       alpha_date_match = alpha_date_regex.match(@clean_text)
       alpha_date_match_pos = (alpha_date_regex =~ @clean_text)
       alpha_month = alpha_date_match[:month].strip.downcase
-      alpha_month_num = set_alpha_month(alpha_month)
+      alpha_month_num = set_alpha_month_num(alpha_month)
     end
 
     num_date_match_pos = 0
@@ -100,7 +100,7 @@ class ScreenScraper
         set_num_date(num_date_match)
       end
       if num_date_match_pos == 0 && alpha_date_match_pos != 0
-        set_alpha_date(alpha_date_num, alpha_date_match)
+        set_alpha_date(alpha_month_num, alpha_date_match)
       end
     end
 
