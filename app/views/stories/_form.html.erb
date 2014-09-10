@@ -58,24 +58,13 @@
 
     <%= f.fields_for :urls do |u| %>
 
-        <% if @urls.errors.any? %>
-            <div id="url error_explanation">
-              <h2><%= pluralize(@urls.errors.count, "error") %> prohibited this story from being saved:</h2>
-              <ul>
-                <% @urls.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
         <div class="form-group">
           <div class="panel panel-default">
             <div class="panel-body">
               <table class="table-responsive table-condensed">
                 <tr>
                   <td>&nbsp;Page URL</td>
-                  <td><%= u.text_field :url_full, :value => params[:source_url_pre], :readonly => true, :size => 100 %>
+                  <td><%= u.text_field :url_full, :value => @source_url_pre, :readonly => true, :size => 100 %>
                     &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
                     &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                 </tr>
