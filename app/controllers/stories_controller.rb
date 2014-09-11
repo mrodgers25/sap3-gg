@@ -26,13 +26,13 @@ class StoriesController < ApplicationController
   # GET /stories/new
   def new
     # parse the domain
-    source_url_pre = params[:source_url_pre]  #grab user input
-    if source_url_pre.present?
-      get_domain_info(source_url_pre)
+    @source_url_pre = params[:source_url_pre]  #grab user input
+    if @source_url_pre.present?
+      get_domain_info(@source_url_pre)
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
-        @url = @story.urls.build
+        @story.urls.build
       else
         # TODO: what if the scrape fails ?  Not handling this gracefully.
       end
@@ -54,9 +54,8 @@ class StoriesController < ApplicationController
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
-        # TODO: this is not working ?  To re-render the 'new' template, you still have to fill
-        #       in all of your instance variables or else you will have blank values
-        get_domain_info(@story.urls.first.url_full)
+        @source_url_pre = @story.urls.first.url_full
+        get_domain_info(@source_url_pre)
         @screen_scraper = ScreenScraper.new
         @screen_scraper.scrape!(@full_web_url)
         format.html { render :new }

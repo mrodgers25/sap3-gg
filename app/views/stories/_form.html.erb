@@ -64,7 +64,7 @@
               <table class="table-responsive table-condensed">
                 <tr>
                   <td>&nbsp;Page URL</td>
-                  <td><%= u.text_field :url_full, :value => params[:source_url_pre], :readonly => true, :size => 100 %>
+                  <td><%= u.text_field :url_full, :value => @source_url_pre, :readonly => true, :size => 100 %>
                     &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
                     &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                 </tr>
