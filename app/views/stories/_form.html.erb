@@ -58,17 +58,6 @@
 
     <%= f.fields_for :urls do |u| %>
 
-        <% if @urls.errors.any? %>
-            <div id="url error_explanation">
-              <h2><%= pluralize(@urls.errors.count, "error") %> prohibited this story from being saved:</h2>
-              <ul>
-                <% @urls.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
         <div class="form-group">
           <div class="panel panel-default">
             <div class="panel-body">
