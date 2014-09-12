@@ -16,14 +16,6 @@ ActiveRecord::Schema.define(version: 20140906152923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "media", force: true do |t|
-    t.string   "media_type"
-    t.string   "url_id"
-    t.string   "media_desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "media_infos", force: true do |t|
     t.string   "media_type"
     t.string   "url_id"

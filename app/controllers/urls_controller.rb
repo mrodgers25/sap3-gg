@@ -1,5 +1,6 @@
 class UrlsController < ApplicationController
   before_action :set_url, only: [:show, :edit, :update, :destroy]
+  # before_action :set_url, only: [:new, :create, :show, :edit, :update, :destroy]
 
   # GET /urls
   # GET /urls.json
@@ -69,6 +70,8 @@ class UrlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
-      params.require(:url).permit(:url, :url_entered, :url_type, :url_title, :url_desc)
+      params.require(:url).permit(:id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary,
+                                  :url_title_track, :url_desc_track, :url_keywords_track,
+                                  :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape)
     end
 end

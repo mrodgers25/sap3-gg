@@ -2,12 +2,7 @@
 
 <p>
   <strong>Url:</strong>
-  <%= @url.url %>
-</p>
-
-<p>
-  <strong>Url entered:</strong>
-  <%= @url.url_entered %>
+  <%= @url.url_full %>
 </p>
 
 <p>
@@ -23,6 +18,26 @@
 <p>
   <strong>Url desc:</strong>
   <%= @url.url_desc %>
+</p>
+
+<p>
+  <strong>Url keywords:</strong>
+  <%= @url.url_keywords %>
+</p>
+
+<p>
+  <strong>Url title track:</strong>
+  <%= @url.url_title_track %>
+</p>
+
+<p>
+  <strong>Url desc track:</strong>
+  <%= @url.url_desc_track %>
+</p>
+<p>
+
+  <strong>Url keyw track:</strong>
+  <%= @url.url_keywords_track %>
 </p>
 
 <%= link_to 'Edit', edit_url_path(@url) %> |
