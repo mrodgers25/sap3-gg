@@ -88,3 +88,11 @@ ready = function() {
 };
 $(document).ready(ready);
 $(document).on('page:load', ready)
+
+//Create hover tips
+$(document).ready(function() {
+    $('.has-tooltip').tooltip();
+    $('.has-popover').popover({
+        trigger: 'hover'
+    });
+});

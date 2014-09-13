@@ -17,8 +17,24 @@
         <table class="table-responsive table-condensed">
           <tr>
             <td>&nbsp;Editor Tagline </td>
-            <td><%= f.text_field :editor_tagline, :placeholder => "Maximum 40 chars", :maxlength => 40, :size => 40 %>
-              &nbsp;&nbsp;&nbsp;&nbsp;Location Codes&nbsp;&nbsp;<%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();", :placeholder => "Enter comma separated location codes", :size => 50 %></td>
+            <td>
+              <%= f.text_field :editor_tagline, :placeholder => "Maximum 40 chars", :maxlength => 40, :size => 40 %>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span  class="has-popover" data-toggle="popover" data-placement="right" title="Location Codes" data-html="true"
+                                               data-content="<strong>NYC</strong> New York-Northern New Jersey-Long Island, NY-NJ-PA MSA<br>
+                                                            ​<strong>SD</strong>​ San Diego-Carlsbad-San Marcos, CA MSA<br>
+                                                            ​<strong>LA</strong>​ Los Angeles-Long Beach-Santa Ana, CA MSA<br>
+                                                            ​<strong>SF</strong>​ San Francisco-Oakland-Fremont, CA MSA<br>
+                                                            ​<strong>CHI</strong>​​ Chicago-Joliet-Naperville, IL-IN-WI MSA<br>
+                                                            ​<strong>BOS</strong>​ Boston-Cambridge-Quincy, MA-NH MSA<br>
+                                                            ​<strong>DC</strong>​ Washington-Arlington-Alexandria, DC-VA-MD-WV MSA<br>
+                                                            ​<strong>SEA</strong>​ Seattle-Tacoma-Bellevue, WA MSA<br>
+                                                            ​<strong>PHIL</strong>​ Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA<br>
+                                                            ​<strong>PORT</strong>​ ​Portland-Vancouver-Hillsboro, OR-WA MSA<br>
+                                                            ​<strong>AUST</strong>​ Austin-Round Rock-San Marcos, TX MSA<br>
+                                                            ​<strong>NOLA</strong>​ New Orleans-Metairie-Kenner, LA MSA">
+                    Location Codes&nbsp;&nbsp;<%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();",
+                    :placeholder => "Enter comma separated location codes", :size => 50 %></span>
+            </td>
           </tr>
           <tr>
             <td><%= button_to '', :class => "btn btn-xs", :id => "noop", style:"background-color:#ECF7A3;" do %>

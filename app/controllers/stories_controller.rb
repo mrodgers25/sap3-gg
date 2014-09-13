@@ -34,11 +34,11 @@ class StoriesController < ApplicationController
         @story = Story.new
         @story.urls.build
       else
-        flash.now.alert = "We didn't find that URL – give it another shot"
+        flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
       end
     else
-      flash.now.alert = "You have to enter a real URL for this to work"
+      flash.now.alert = "You have to enter a URL for this to work"
       render :scrape
     end
   end
