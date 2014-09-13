@@ -86,7 +86,7 @@ class ScreenScraper
     unless num_date_regex.match(@clean_text).nil?
       num_date_match = num_date_regex.match(@clean_text)
       num_date_match_pos = (num_date_regex =~ @clean_text)
-      num_date_match = num_date_match[0].strip
+      # num_date_match = num_date_match[0].strip # seems to be breaking the code
     end
 
     unless num_date_match_pos == 0 && alpha_date_match_pos == 0
