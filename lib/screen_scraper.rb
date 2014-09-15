@@ -27,7 +27,7 @@ class ScreenScraper
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     meta_desc_content = meta_desc_scrape_pre['content'].strip if defined?(meta_desc_scrape_pre['content'])
     if meta_desc_content
-      @meta_desc = meta_desc_content
+      @meta_desc = meta_desc_content.truncate(25)
     else
       meta_desc_scrape_og_pre = doc.at('meta[property="og:description"]')
       @meta_desc = meta_desc_scrape_og_pre['content'].strip if defined?(meta_desc_scrape_og_pre['content'])

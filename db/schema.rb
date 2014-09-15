@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906152923) do
+ActiveRecord::Schema.define(version: 20140915014249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140906152923) do
     t.integer  "story_year"
     t.text     "editor_tagline"
     t.text     "location_code"
+    t.string   "category_code"
   end
 
   create_table "urls", force: true do |t|
