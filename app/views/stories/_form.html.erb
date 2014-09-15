@@ -39,6 +39,7 @@
                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"
                                        data-content="<strong>A</strong><br>
                                                     ​<strong>FD</strong>​<br>
+                                                    ​<strong>L</strong>​<br>
                                                     ​<strong>SH</strong>​<br>
                                                     ​<strong>SR</strong>​<br>
                                                     ​<strong>SP</strong>​">
@@ -82,7 +83,7 @@
                    <td>Domain</td>
                    <td><%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %>
                      &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
-                    &nbsp;&nbsp;&nbsp;Primary? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
+                    &nbsp;&nbsp;&nbsp;Primary URL? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                    <td></td>
                 </tr>
                 <tr>
