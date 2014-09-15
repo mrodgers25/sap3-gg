@@ -111,7 +111,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;URL Title</td>
-                  <td><%= u.text_field :url_title, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_title, rows: 1, style:"width: 825px" %></td>
                   <td></td
                 </tr>
                 <tr>
@@ -124,7 +124,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;URL Desc</td>
-                  <td><%= u.text_field :url_desc, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 1, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -137,7 +137,7 @@
                 </tr>
                 <tr>
                   <td>&nbsp;URL Keywords</td>
-                  <td><%= u.text_field :url_keywords, style:"width: 825px" %>
+                  <td><%= u.text_area :url_keywords, rows: 1, style:"width: 825px" %>
                     &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
                   <td></td>
                 </tr>
