@@ -22,7 +22,7 @@
           <tr>
             <td>Location</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
-                                       data-content= <%= raw @location_options %> >
+                                       data-content= <% raw @location_options %> >
                     <%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Enter comma separated location codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"

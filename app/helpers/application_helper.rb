@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def location_options
+  def location_options()
     @location_options = "<strong>NYC</strong><br>
                         ​<strong>SD</strong>​<br>
                         ​<strong>LA</strong>​<br>
@@ -14,6 +14,5 @@ module ApplicationHelper
                         ​<strong>AUST</strong>​<br>
                         ​<strong>NOLA</strong>​"
   end
-  helper_method :location_options
 
 end
