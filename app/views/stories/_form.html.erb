@@ -22,18 +22,7 @@
           <tr>
             <td>Location</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
-                                       data-content="<strong>NYC</strong><br>
-                                                    ​<strong>SD</strong>​<br>
-                                                    ​<strong>LA</strong>​<br>
-                                                    ​<strong>SF</strong>​<br>
-                                                    ​<strong>CHI</strong><br>
-                                                    ​<strong>BOS</strong>​<br>
-                                                    ​<strong>DC</strong>​<br>
-                                                    ​<strong>SEA</strong><br>
-                                                    ​<strong>PHIL</strong><br>
-                                                    ​<strong>PORT</strong>​<br>
-                                                    ​<strong>AUST</strong>​<br>
-                                                    ​<strong>NOLA</strong>​">
+                                       data-content= <%= raw @location_options %> >
                     <%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Enter comma separated location codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"
@@ -93,7 +82,7 @@
                 </tr>
                 <tr>
                   <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 1, :value => @screen_scraper.meta_desc.truncate(250), style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 1, :value => @screen_scraper.meta_desc, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>

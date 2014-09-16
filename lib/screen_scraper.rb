@@ -21,16 +21,16 @@ class ScreenScraper
     ##       this class should return true upon success
 
     # meta title
-    @title = doc.at_css('title').content.strip
+    @title = doc.at_css('title').content.strip.truncate(150)
 
     # meta description
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
     meta_desc_content = meta_desc_scrape_pre['content'].strip if defined?(meta_desc_scrape_pre['content'])
     if meta_desc_content
-      @meta_desc = meta_desc_content.truncate(25)
+      @meta_desc = meta_desc_content.truncate(150)
     else
       meta_desc_scrape_og_pre = doc.at('meta[property="og:description"]')
-      @meta_desc = meta_desc_scrape_og_pre['content'].strip if defined?(meta_desc_scrape_og_pre['content'])
+      @meta_desc = meta_desc_scrape_og_pre['content'].strip.truncate(150) if defined?(meta_desc_scrape_og_pre['content'])
     end
 
     # meta type
@@ -39,7 +39,7 @@ class ScreenScraper
 
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
-    @meta_keywords = meta_keywords_scrape_pre['content'].strip if defined?(meta_keywords_scrape_pre['content'])
+    @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(150) if defined?(meta_keywords_scrape_pre['content'])
 
     # meta author
     meta_author_scrape_pre = doc.css("meta[name='author']").first
