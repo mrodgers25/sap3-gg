@@ -28,25 +28,6 @@ ready = function() {
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-//copy description
-//var ready;
-//ready = function() {
-//    $('#copy-desc').click(function (event) {
-//        story_urls_attributes_0_url_desc.value = meta_desc_scrape.value;
-//        event.preventDefault(); // Prevent link from following its href
-//    });
-//};
-//$(document).ready(ready);
-//$(document).on('page:load', ready);
-
-//code block in erb to call the copy-desc js
-//<td><%= button_to '', :class => "btn btn-xs", :id => "copy-desc", style:"background-color:#ECF7A3; border: 1px solid #ccc" do %>
-//Scraped Desc&nbsp;<span class="glyphicon glyphicon-save"></span>
-//    <% end %>
-//        </td>
-//            <td><%= text_field_tag(:meta_desc_scrape, @screen_scraper.meta_desc.truncate(250), :readonly => true, style:"background-color:#ECF7A3; width: 825px") %>
-
-
 //Create hover tips
 $(document).ready(function() {
     $('.has-tooltip').tooltip();

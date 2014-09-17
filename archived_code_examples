@@ -1,0 +1,52 @@
+// helper and view code that holds popover values
+# module ApplicationHelper
+#
+#   def location_options
+#     location_options = "<strong>NYC</strong><br>
+#                         ​<strong>SD</strong>​<br>
+#                         ​<strong>LA</strong>​<br>
+#                         ​<strong>SF</strong>​<br>
+#                         ​<strong>NOLA</strong>​"
+#   end
+# end
+
+<span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
+                                       data-content= "<%= raw location_options %>" >
+                    <%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();",
+                    :placeholder => "Enter comma separated location codes", :size => 50 %></span>
+
+# paragraph search
+# para = ""
+# doc.css("p").each do |item|
+#   if item.text.strip.length > 100
+#     para << item.text.strip
+#     para << "\n"
+#   end
+# end
+# @para = para
+
+# extract phone number; will be used for places
+# phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
+# unless phone_regex.match(para).nil?
+#   phone_match = phone_regex.match(para)
+#   # @phone_match = phone_match.string #return full string
+#   @phone_match = phone_match[0].strip
+# end
+
+// js and view code to copy description from field a to b on click
+//var ready;
+//ready = function() {
+//    $('#copy-desc').click(function (event) {
+//        story_urls_attributes_0_url_desc.value = meta_desc_scrape.value;
+//        event.preventDefault(); // Prevent link from following its href
+//    });
+//};
+//$(document).ready(ready);
+//$(document).on('page:load', ready);
+
+code block in erb to call the copy-desc js
+<td><%= button_to '', :class => "btn btn-xs", :id => "copy-desc", style:"background-color:#ECF7A3; border: 1px solid #ccc" do %>
+Scraped Desc&nbsp;<span class="glyphicon glyphicon-save"></span>
+    <% end %>
+        </td>
+            <td><%= text_field_tag(:meta_desc_scrape, @screen_scraper.meta_desc.truncate(250), :readonly => true, style:"background-color:#ECF7A3; width: 825px") %>

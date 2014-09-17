@@ -50,16 +50,6 @@ class ScreenScraper
       @meta_author = meta_author_scrape2
     end
 
-    # paragraph search
-    # para = ""
-    # doc.css("p").each do |item|
-    #   if item.text.strip.length > 100
-    #     para << item.text.strip
-    #     para << "\n"
-    #   end
-    # end
-    # @para = para
-
     doc2 = open(scrape_url, 'User-Agent' => BROWSER).read
     clean_text = Sanitize.fragment(doc2, :remove_contents => ['script', 'style'])
     @clean_text = clean_text.split.join(" ")
@@ -151,13 +141,5 @@ class ScreenScraper
     @day = alpha_date_match[:day]
     @year = alpha_date_match[:year]
   end
-
-  # extract phone number; will be used for places
-  # phone_regex = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
-  # unless phone_regex.match(para).nil?
-  #   phone_match = phone_regex.match(para)
-  #   # @phone_match = phone_match.string #return full string
-  #   @phone_match = phone_match[0].strip
-  # end
 
 end
