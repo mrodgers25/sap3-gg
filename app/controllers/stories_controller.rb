@@ -15,7 +15,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.order("id DESC").all
   end
 
   # GET /stories/1
@@ -59,7 +59,12 @@ class StoriesController < ApplicationController
     @year = @story.story_year
     @month = @story.story_month
     @day = @story.story_date
-    @meta_desc = @story.urls.url_desc
+    @source_url_pre = @story.urls.first.url_full
+    @base_domain = @story.urls.first.url_domain
+    @title = @story.urls.first.url_title
+    @meta_desc = @story.urls.first.url_desc
+    @meta_keywords = @story.urls.first.url_keywords
+    @full_web_url = @story.urls.first.url_full
   end
 
   # POST /stories
@@ -128,7 +133,8 @@ class StoriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
-      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline, :location_code,
+      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year,
+      :editor_tagline, :location_code, :category_code,
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary,
         :url_title_track, :url_desc_track, :url_keywords_track,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918041629) do
+ActiveRecord::Schema.define(version: 20140918224409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20140918041629) do
     t.string   "story_id"
     t.string   "url_domain"
     t.string   "url_full"
-    t.boolean  "primary"
     t.boolean  "url_title_track"
     t.boolean  "url_desc_track"
     t.boolean  "url_keywords_track"

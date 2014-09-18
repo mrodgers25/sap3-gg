@@ -34,10 +34,7 @@
     <%= truncate(u.url_domain, :length => 30) %>&nbsp;&nbsp;
 
     <strong>Type: </strong>
-    <%= truncate(u.url_type, :length => 20) %>&nbsp;&nbsp;
-
-    <strong>Primary?: </strong>
-    <%= u.primary %>&nbsp;&nbsp;<br>
+    <%= truncate(u.url_type, :length => 20) %>&nbsp;&nbsp;<br>
 
     <strong>Title: </strong>
     <%= truncate(u.url_title, :length => 100) %>&nbsp;&nbsp;<br>
@@ -59,5 +56,4 @@
 <%= debug(flash) if Rails.env.development? %>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
-
+<%= link_to 'Stories List', stories_path %>
