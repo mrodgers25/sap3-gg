@@ -18,15 +18,15 @@
 
 
 // no operation
-var ready;
-ready = function() {
-    $('#noop').click(function (event) {
-        meta_type_scrape_og.value = meta_type_scrape_og.value;
-        event.preventDefault(); // Prevent link from following its href
-    });
-};
-$(document).ready(ready);
-$(document).on('page:load', ready);
+//var ready;
+//ready = function() {
+//    $('#noop').click(function (event) {
+//        meta_type_scrape_og.value = meta_type_scrape_og.value;
+//        event.preventDefault(); // Prevent link from following its href
+//    });
+//};
+//$(document).ready(ready);
+//$(document).on('page:load', ready);
 
 //Create hover tips
 $(document).ready(function() {

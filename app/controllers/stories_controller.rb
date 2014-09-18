@@ -33,6 +33,14 @@ class StoriesController < ApplicationController
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
         @story.urls.build
+        @meta_type = @screen_scraper.meta_type
+        @meta_author = @screen_scraper.meta_author
+        @year = @screen_scraper.year
+        @month = @screen_scraper.month
+        @day = @screen_scraper.day
+        @title = @screen_scraper.title
+        @meta_desc = @screen_scraper.meta_desc
+        @meta_keywords = @screen_scraper.meta_keywords
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
@@ -45,6 +53,13 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
+    @story = Story.find(params[:id])
+    @meta_type = @story.scraped_type
+    @meta_author = @story.author
+    @year = @story.story_year
+    @month = @story.story_month
+    @day = @story.story_date
+    @meta_desc = @story.urls.url_desc
   end
 
   # POST /stories
@@ -113,7 +128,7 @@ class StoriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
-      :media_id, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline, :location_code,
+      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline, :location_code,
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary,
         :url_title_track, :url_desc_track, :url_keywords_track,

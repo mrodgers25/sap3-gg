@@ -34,20 +34,20 @@
           </tr>
           <tr>
             <td>Scraped Type</td>
-            <td><%= text_field_tag(:meta_type_scrape_og, @screen_scraper.meta_type, size:20, :readonly => true, style:"background-color:#ECF7A3") %>&nbsp;&nbsp;&nbsp;Story Type
+            <td><%= f.text_field :scraped_type, :value => @meta_type, size:20, :readonly => true %>&nbsp;&nbsp;&nbsp;Story Type
               <%= f.select :story_type, ["Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
                                          "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
                                          "Guide", "Hotel Guide", "Book", "Industry Awards"] %></td>
           </tr>
           <tr>
             <td>Story Author</td>
-            <td><%= f.text_field :author, :value => @screen_scraper.meta_author, :size => 50 %></td>
+            <td><%= f.text_field :author, :value => @meta_author, :size => 50 %></td>
           </tr>
           <tr>
             <td>Story Date</td>
-            <td><%= f.text_field :story_year, :value => @screen_scraper.year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
-              <%= f.text_field :story_month, :value => @screen_scraper.month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
-              <%= f.text_field :story_date, :value => @screen_scraper.day, :placeholder => "dd", :size => 2, :style => "text-align: center" %></td>
+            <td><%= f.text_field :story_year, :value => @year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
+              <%= f.text_field :story_month, :value => @month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
+              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :size => 2, :style => "text-align: center" %></td>
           </tr>
         </table>
       </div></div>
@@ -65,30 +65,30 @@
                 </tr>
                 <tr>
                    <td>Domain</td>
-                   <td><%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35, style:"background-color:#ECF7A3" %>
+                   <td><%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35 %>
                      &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %>
                     &nbsp;&nbsp;&nbsp;Primary URL? &nbsp;<%= u.check_box :primary, {}, true, false %></td>
                    <td></td>
                 </tr>
                 <tr>
                   <td>URL Title</td>
-                  <td><%= u.text_area :url_title, rows: 1, :value => @screen_scraper.title, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_title, rows: 1, :value => @title, style:"width: 825px" %></td>
                   <td></td
                 </tr>
                 <tr>
                   <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 1, :value => @screen_scraper.meta_desc, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 1, :value => @meta_desc, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>URL Keywords</td>
-                  <td><%= u.text_area :url_keywords, rows: 1, :value => @screen_scraper.meta_keywords, style:"width: 825px" %>
+                  <td><%= u.text_area :url_keywords, rows: 1, :value => @meta_keywords, style:"width: 825px" %>
                     &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
                   <td></td>
                 </tr>
-                <%= u.hidden_field :raw_url_title_scrape, :value => @screen_scraper.title %>
-                <%= u.hidden_field :raw_url_desc_scrape, :value => @screen_scraper.meta_desc %>
-                <%= u.hidden_field :raw_url_keywords_scrape, :value => @screen_scraper.meta_keywords %>
+                <%= u.hidden_field :raw_url_title_scrape, :value => @title %>
+                <%= u.hidden_field :raw_url_desc_scrape, :value => @meta_desc %>
+                <%= u.hidden_field :raw_url_keywords_scrape, :value => @meta_keywords %>
               </table>
             </div></div>
         </div>
