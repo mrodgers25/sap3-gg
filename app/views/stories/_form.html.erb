@@ -58,18 +58,18 @@
         <table class="table-responsive table-condensed">
           <tr>
             <td>Editor Tagline </td>
-            <td>  <%= f.text_field :editor_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 40 %>  </td>
+            <td>  <%= f.text_field :editor_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60 %>  </td>
           </tr>
           <tr>
             <td>Location</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw location_options %>" >
                     <%= f.text_field :location_code, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Enter comma separated location codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    :placeholder => "Comma separated location codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw category_options %>" >
                     Category&nbsp;&nbsp;<%= f.text_field :category_code, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Enter comma separated category codes", :size => 50 %></span>
+                    :placeholder => "Comma sep cat codes", :size => 25 %></span>
             </td>
             <td></td>
           </tr>
