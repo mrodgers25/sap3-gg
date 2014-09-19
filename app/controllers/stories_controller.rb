@@ -33,14 +33,7 @@ class StoriesController < ApplicationController
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
         @story.urls.build
-        @meta_type = @screen_scraper.meta_type
-        @meta_author = @screen_scraper.meta_author
-        @year = @screen_scraper.year
-        @month = @screen_scraper.month
-        @day = @screen_scraper.day
-        @title = @screen_scraper.title
-        @meta_desc = @screen_scraper.meta_desc
-        @meta_keywords = @screen_scraper.meta_keywords
+        set_scrape_fields
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
@@ -48,6 +41,38 @@ class StoriesController < ApplicationController
     else
       flash.now.alert = "You have to enter a URL for this to work"
       render :scrape
+    end
+  end
+
+  def set_scrape_fields
+    @title = @screen_scraper.title
+    @meta_desc = @screen_scraper.meta_desc
+    @meta_keywords = @screen_scraper.meta_keywords
+    @meta_type = @screen_scraper.meta_type
+    @meta_author = @screen_scraper.meta_author
+    @year = @screen_scraper.year
+    @month = @screen_scraper.month
+    @day = @screen_scraper.day
+  end
+
+  # POST /stories
+  # POST /stories.json
+  def create
+    @story = Story.new(story_params)
+
+    respond_to do |format|
+      if @story.save
+        format.html { redirect_to @story, notice: 'Story was successfully created.' }
+        format.json { render :show, status: :created, location: @story }
+      else
+        @source_url_pre = @story.urls.first.url_full
+        get_domain_info(@source_url_pre)
+        @screen_scraper = ScreenScraper.new
+        @screen_scraper.scrape!(@full_web_url)
+        set_scrape_fields
+        format.html { render :new }
+        format.json { render json: @story.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -65,26 +90,6 @@ class StoriesController < ApplicationController
     @meta_desc = @story.urls.first.url_desc
     @meta_keywords = @story.urls.first.url_keywords
     @full_web_url = @story.urls.first.url_full
-  end
-
-  # POST /stories
-  # POST /stories.json
-  def create
-    @story = Story.new(story_params)
-
-    respond_to do |format|
-      if @story.save
-        format.html { redirect_to @story, notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
-      else
-        @source_url_pre = @story.urls.first.url_full
-        get_domain_info(@source_url_pre)
-        @screen_scraper = ScreenScraper.new
-        @screen_scraper.scrape!(@full_web_url)
-        format.html { render :new }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /stories/1
