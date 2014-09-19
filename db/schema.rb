@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918224409) do
+ActiveRecord::Schema.define(version: 20140919210238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,15 +37,19 @@ ActiveRecord::Schema.define(version: 20140918224409) do
     t.text     "location_code"
     t.string   "category_code"
     t.string   "scraped_type"
+    t.boolean  "author_track"
+    t.boolean  "story_year_track"
+    t.boolean  "story_month_track"
+    t.boolean  "story_date_track"
   end
 
   create_table "urls", force: true do |t|
     t.string   "url_type"
     t.string   "url_title"
-    t.string   "url_desc"
+    t.text     "url_desc"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url_keywords"
+    t.text     "url_keywords"
     t.string   "story_id"
     t.string   "url_domain"
     t.string   "url_full"

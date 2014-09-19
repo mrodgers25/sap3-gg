@@ -36,13 +36,12 @@
                 </tr>
                 <tr>
                   <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 1, :value => @meta_desc, :maxlength => 250, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 3, :value => @meta_desc, :maxlength => 1000, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>URL Keywords</td>
-                  <td><%= u.text_area :url_keywords, rows: 1, :value => @meta_keywords, :maxlength => 250, style:"width: 825px" %>
-                    &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
+                  <td><%= u.text_area :url_keywords, rows: 1, :value => @meta_keywords, :maxlength => 1000, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <%= u.hidden_field :raw_url_title_scrape, :value => @title %>
@@ -88,8 +87,13 @@
             <td>Story Date</td>
             <td><%= f.text_field :story_year, :value => @year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
               <%= f.text_field :story_month, :value => @month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
-              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :size => 2, :style => "text-align: center" %></td>
+              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :size => 2, :style => "text-align: center" %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
           </tr>
+          <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>
+          <%= f.hidden_field :raw_story_year_scrape, :value => @year %>
+          <%= f.hidden_field :raw_story_month_scrape, :value => @month %>
+          <%= f.hidden_field :raw_story_date_scrape, :value => @day %>
         </table>
       </div></div>
 

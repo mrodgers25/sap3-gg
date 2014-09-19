@@ -19,7 +19,12 @@
   <strong>MM </strong>
   <%= @story.story_month %>&nbsp;
   <strong>DD </strong>
-  <%= @story.story_date %>
+  <%= @story.story_date %><br>
+  <strong>Story Tracking Author/YYYY/MM/DD: </strong>
+  <%= @story.author_track %>&nbsp;&nbsp;
+  <%= @story.story_year_track %>&nbsp;&nbsp;
+  <%= @story.story_month_track %>&nbsp;&nbsp;
+  <%= @story.story_date_track %>&nbsp;&nbsp;<br>
 </p>
 
 <h3>URL</h3>
@@ -45,7 +50,7 @@
     <strong>Keywords: </strong>
     <%= truncate(u.url_keywords, :length => 100) %>&nbsp;&nbsp;<br>
 
-    <strong>Tracking Title/Desc/Keywords: </strong>
+    <strong>URL Tracking Title/Desc/Keywords: </strong>
     <%= u.url_title_track %>&nbsp;&nbsp;
     <%= u.url_desc_track %>&nbsp;&nbsp;
     <%= u.url_keywords_track %>&nbsp;&nbsp;<br><br>
