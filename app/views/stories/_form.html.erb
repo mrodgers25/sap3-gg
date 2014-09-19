@@ -31,17 +31,17 @@
                 </tr>
                 <tr>
                   <td>URL Title</td>
-                  <td><%= u.text_area :url_title, rows: 1, :value => @title, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_title, rows: 1, :value => @title, :maxlength => 250, style:"width: 825px" %></td>
                   <td></td
                 </tr>
                 <tr>
                   <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 1, :value => @meta_desc, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 1, :value => @meta_desc, :maxlength => 250, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>URL Keywords</td>
-                  <td><%= u.text_area :url_keywords, rows: 1, :value => @meta_keywords, style:"width: 825px" %>
+                  <td><%= u.text_area :url_keywords, rows: 1, :value => @meta_keywords, :maxlength => 250, style:"width: 825px" %>
                     &nbsp;&nbsp&nbsp;&nbsp<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
                   <td></td>
                 </tr>
@@ -58,7 +58,7 @@
         <table class="table-responsive table-condensed">
           <tr>
             <td>Editor Tagline </td>
-            <td>  <%= f.text_field :editor_tagline, :placeholder => "Maximum 40 chars", :maxlength => 60, :size => 40 %>  </td>
+            <td>  <%= f.text_field :editor_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 40 %>  </td>
           </tr>
           <tr>
             <td>Location</td>
