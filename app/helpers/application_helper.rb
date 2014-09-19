@@ -16,7 +16,8 @@ module ApplicationHelper
   end
 
   def category_options
-    category_options = "​<strong>FD</strong>​<br>
+    category_options = "​<strong>A</strong>​<br>
+                        ​<strong>FD</strong>​<br>
                         ​<strong>L</strong>​<br>
                         ​<strong>SH</strong>​<br>
                         ​<strong>SR</strong>​<br>

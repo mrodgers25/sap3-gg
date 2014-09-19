@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
   accepts_nested_attributes_for :urls
 
   validates :story_type, presence: true
-  validates :author, presence: true
+  # validates :author, presence: true
 
   # attr_accessor :source_url_pre
 
