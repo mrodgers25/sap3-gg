@@ -7,7 +7,7 @@ class Url < ActiveRecord::Base
 
   attr_accessor :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
 
-  before_create :set_track_fields
+  before_validation :set_track_fields
   # before_validation :set_track_fields
 
   def set_track_fields
