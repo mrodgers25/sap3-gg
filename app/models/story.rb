@@ -5,8 +5,6 @@ class Story < ActiveRecord::Base
   validates :story_type, presence: true
   # validates :author, presence: true
 
-  # attr_accessor :source_url_pre
-
   attr_accessor :source_url_pre, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create

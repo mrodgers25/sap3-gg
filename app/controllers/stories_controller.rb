@@ -54,6 +54,9 @@ class StoriesController < ApplicationController
     @year = @screen_scraper.year
     @month = @screen_scraper.month
     @day = @screen_scraper.day
+
+    @itemprop_pub_date_match
+
   end
 
   # POST /stories

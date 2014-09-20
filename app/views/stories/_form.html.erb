@@ -68,7 +68,7 @@
                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw category_options %>" >
                     Category&nbsp;&nbsp;<%= f.text_field :category_code, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Comma sep cat codes", :size => 25 %></span>
+                    :placeholder => "Comma separated category codes", :size => 30 %></span>
             </td>
             <td></td>
           </tr>
@@ -85,9 +85,9 @@
           </tr>
           <tr>
             <td>Story Date</td>
-            <td><%= f.text_field :story_year, :value => @year, :placeholder => "yyyy", :size => 4, :style => "text-align: center"  %>
-              <%= f.text_field :story_month, :value => @month, :placeholder => "mm", :size => 2, :style => "text-align: center"  %>
-              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :size => 2, :style => "text-align: center" %>
+            <td><%= f.text_field :story_year, :value => @year, :placeholder => "yyyy", :maxlength => 4, :style => "text-align: center"  %>
+              <%= f.text_field :story_month, :value => @month, :placeholder => "mm", :maxlength => 2, :style => "text-align: center"  %>
+              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :maxlength => 2, :style => "text-align: center" %>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
           </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>

@@ -55,7 +55,12 @@ class ScreenScraper
     @clean_text = clean_text.split.join(" ")
 
     # extract date
-    alpha_date_match_pos = 0  # initialize
+    itemprop_pub_pre = doc.at('meta[itemprop="datePublished"]')  # get published date using schema.org format (usatoday, etc.)
+    itemprop_pub_date = itemprop_pub_pre['content'].strip if defined?(itemprop_pub_pre['content'])
+    itemprop_date_regex = /(?<iyear>\d{4})-(?<imonth>\d{2})-(?<iday>\d{2})/
+    itemprop_pub_date_match = itemprop_date_regex.match(itemprop_pub_date)
+
+    alpha_date_match_pos = 0  # try to locate alpha date format
     alpha_date_match = nil
     alpha_month_num = nil
     alpha_date_regex = /(?x)(?i)  # turn on free spacing to allow spaces & comments and turn off case sensitive
@@ -70,27 +75,30 @@ class ScreenScraper
       alpha_month_num = set_alpha_month_num(alpha_month)
     end
 
-    num_date_match_pos = 0
+    num_date_match_pos = 0  # try to locate number mm/dd/yy or yyyy format
     num_date_match = nil
     num_date_regex = /(?<dmonth>\d{1,2})\/(?<dday>\d{1,2})\/(?<dyear>\d{2,4})/
     unless num_date_regex.match(@clean_text).nil?
       num_date_match = num_date_regex.match(@clean_text)
       num_date_match_pos = (num_date_regex =~ @clean_text)
-      # num_date_match = num_date_match[0].strip # seems to be breaking the code
     end
 
-    unless num_date_match_pos == 0 && alpha_date_match_pos == 0
-      if num_date_match_pos != 0 && num_date_match_pos < alpha_date_match_pos
-        set_num_date(num_date_match)
-      end
-      if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
-        set_alpha_date(alpha_month_num, alpha_date_match)
-      end
-      if num_date_match_pos != 0 && alpha_date_match_pos == 0
-        set_num_date(num_date_match)
-      end
-      if num_date_match_pos == 0 && alpha_date_match_pos != 0
-        set_alpha_date(alpha_month_num, alpha_date_match)
+    unless itemprop_pub_date_match.blank?
+      set_itemprop_pub_date(itemprop_pub_date_match)
+    else
+      unless num_date_match_pos == 0 && alpha_date_match_pos == 0
+        if num_date_match_pos != 0 && num_date_match_pos < alpha_date_match_pos
+          set_num_date(num_date_match)
+        end
+        if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
+          set_alpha_date(alpha_month_num, alpha_date_match)
+        end
+        if num_date_match_pos != 0 && alpha_date_match_pos == 0
+          set_num_date(num_date_match)
+        end
+        if num_date_match_pos == 0 && alpha_date_match_pos != 0
+          set_alpha_date(alpha_month_num, alpha_date_match)
+        end
       end
     end
 
@@ -128,6 +136,12 @@ class ScreenScraper
       else
        '99'
     end
+  end
+
+  def set_itemprop_pub_date(itemprop_pub_date_match)
+    @year = itemprop_pub_date_match[:iyear].to_i
+    @month = itemprop_pub_date_match[:imonth].to_i
+    @day = itemprop_pub_date_match[:iday].to_i
   end
 
   def set_num_date(num_date_match)
