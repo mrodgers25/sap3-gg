@@ -10,11 +10,10 @@ class Story < ActiveRecord::Base
   before_validation :set_story_track_fields, on: :create
 
   def set_story_track_fields
-
-    self.author_track = (self.raw_author_scrape == self.author ? true : false)
-    self.story_year_track = (self.raw_story_year_scrape == self.story_year.to_s ? true : false)
-    self.story_month_track = (self.raw_story_month_scrape == self.story_month.to_s ? true : false)
-    self.story_date_track = (self.raw_story_date_scrape == self.story_date.to_s ? true : false)
+    self.author_track = (self.raw_author_scrape == self.author) ? true : false
+    self.story_year_track = (self.raw_story_year_scrape.to_i == self.story_year.to_i) ? true : false
+    self.story_date_track  = (self.raw_story_date_scrape.to_i == self.story_date.to_i) ? true : false
+    self.story_month_track = (self.raw_story_month_scrape.to_i == self.story_month.to_i) ? true : false
   end
 
 end

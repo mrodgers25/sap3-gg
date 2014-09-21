@@ -85,9 +85,9 @@
           </tr>
           <tr>
             <td>Story Date</td>
-            <td><%= f.text_field :story_year, :value => @year, :placeholder => "yyyy", :maxlength => 4, :style => "text-align: center"  %>
-              <%= f.text_field :story_month, :value => @month, :placeholder => "mm", :maxlength => 2, :style => "text-align: center"  %>
-              <%= f.text_field :story_date, :value => @day, :placeholder => "dd", :maxlength => 2, :style => "text-align: center" %>
+            <td><%= f.number_field :story_year, :value => @year, :placeholder => "yyyy", in: 2000...2020, :style => "text-align: center"  %>
+              <%= f.number_field :story_month, :value => @month, :placeholder => "mm", in: 1...13, :style => "text-align: center"  %>
+              <%= f.number_field :story_date, :value => @day, :placeholder => "dd", in: 1...32, :style => "text-align: center" %>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
           </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>

@@ -110,31 +110,31 @@ class ScreenScraper
   def set_alpha_month_num(alpha_month)
     case alpha_month
       when 'jan','january'
-       '1'
+       1
       when 'feb','february'
-       '2'
+       2
       when 'mar','march'
-       '3'
+       3
       when 'apr','april'
-       '4'
+       4
       when 'may'
-       '5'
+       5
       when 'jun','june'
-       '6'
+       6
       when 'jul','july'
-       '7'
+       7
       when 'aug','august'
-       '8'
+       8
       when 'sep','september'
-       '9'
+       9
       when 'oct','october'
-       '10'
+       10
       when 'nov','november'
-       '11'
+       11
       when 'dec','december'
-       '12'
+       12
       else
-       '99'
+       99
     end
   end
 
@@ -145,15 +145,15 @@ class ScreenScraper
   end
 
   def set_num_date(num_date_match)
-    @month = num_date_match[:dmonth]
-    @day = num_date_match[:dday]
-    @year = num_date_match[:dyear]
+    @month = num_date_match[:dmonth].to_i
+    @day = num_date_match[:dday].to_i
+    @year = num_date_match[:dyear].to_i
   end
 
   def set_alpha_date(alpha_month_num, alpha_date_match)
-    @month = alpha_month_num
-    @day = alpha_date_match[:day]
-    @year = alpha_date_match[:year]
+    @month = alpha_month_num.to_i
+    @day = alpha_date_match[:day].to_i
+    @year = alpha_date_match[:year].to_i
   end
 
 end
