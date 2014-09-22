@@ -8,9 +8,7 @@ found_counter = 0
 doc.css('img').each do |i|
     src_url = doc.css('img')[c]['src'].to_s
     alt_text = doc.css('img')[c]['alt'].to_s
-    if src_url.empty?
-      puts "empty"
-    else
+    unless src_url.empty?
       found_counter += 1
       puts "Found counter is: #{found_counter}"
       puts "src: #{src_url}"
