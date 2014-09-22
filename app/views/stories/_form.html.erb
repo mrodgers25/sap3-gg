@@ -50,6 +50,41 @@
               </table>
             </div></div>
         </div>
+
+        <%= f.fields_for :images do |i| %>
+            <% zzz = "http://www.gannett-cdn.com/-mm-/c3e677c550ca4edc0dfa387fcca6f816a7ff22c1/c=0-0-1995-1500&r=x513&c=680x510/local/-/media/USATODAY/USATODAY/2014/09/16/1410887792000-Hard Rock Exterior_Photo Credit Hard Rock Hotel.jpg" %>
+            <% bbb = "http://www.travelandleisure.com/images/amexpub/0043/4121/201406-w-ultimate-bacon-guide-barbacon-article.jpg" %>
+            <% ccc = "http://i.kinja-img.com/gawker-media/image/upload/s--tbU9kbzw--/c_fit,fl_progressive,q_80,w_636/q8mnfcdlmqjcxggvgolw.jpg" %>
+            <div class="form-group">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <table class="table-responsive table-condensed">
+                    <tr>
+                      <td></td>
+                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Vegas Baby. It's all here in the hot summer sun!
+                          <%= image_tag(zzz, width: "250", alt: "Vegas baby") %>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Bacon bacon! Get it while it's hot, crispy and good!
+                          <%= image_tag(bbb, width: "250", alt: "Bacon") %>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Grab your motocross bike and hit the trail
+                          <%= image_tag(ccc, width: "250", alt: "Bike") %>
+                      </td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </div></div>
+            </div>
+        <% end %>
+
     <% end %>
 
     <div class="panel panel-default">

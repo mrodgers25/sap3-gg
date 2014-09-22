@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922194142) do
+ActiveRecord::Schema.define(version: 20140922211334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: true do |t|
+    t.text     "src_url"
+    t.text     "alt_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "media_infos", force: true do |t|
     t.string   "media_type"

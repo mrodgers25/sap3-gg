@@ -5,6 +5,9 @@ class Url < ActiveRecord::Base
   validates :url_desc, presence: true
   validates :url_domain, presence: true
 
+  has_many :images, inverse_of: :url
+  accepts_nested_attributes_for :images
+
   attr_accessor :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
 
   before_validation :set_track_fields, on: :create

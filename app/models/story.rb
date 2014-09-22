@@ -14,7 +14,7 @@ class Story < ActiveRecord::Base
     self.story_year_track = (self.raw_story_year_scrape.to_i == self.story_year.to_i) ? true : false
     self.story_month_track = (self.raw_story_month_scrape.to_i == self.story_month.to_i) ? true : false
     self.story_date_track  = (self.raw_story_date_scrape.to_i == self.story_date.to_i) ? true : false
-    1 == 1  # this returns a true at the end of the method; otherwise fails if last statement is false
+    true  # this returns a true at the end of the method; otherwise method fails if last statement is false
   end
 
 end
