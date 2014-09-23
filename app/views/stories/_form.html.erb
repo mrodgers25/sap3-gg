@@ -58,31 +58,44 @@
             <div class="form-group">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <table class="table-responsive table-condensed">
-                    <tr>
-                      <td></td>
-                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Vegas Baby. It's all here in the hot summer sun!
-                          <%= image_tag(zzz, width: "250", alt: "Vegas baby") %>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Bacon bacon! Get it while it's hot, crispy and good!
-                          <%= image_tag(bbb, width: "250", alt: "Bacon") %>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><%= i.radio_button :src_url, false %>&nbsp;&nbsp;Grab your motocross bike and hit the trail for fun, exercise and maybe some pain.
-                          <%= image_tag(ccc, width: "250", alt: "Bike") %>
-                      </td>
-                      <td></td>
-                    </tr>
-                  </table>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-1 text-right">
+                        <%= i.radio_button :src_url, "1" %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= i.label(:src_url_1, " Vegas Baby. It's all here in the hot summer sun!") %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= image_tag(zzz, width: "250", alt: "Vegas Baby") %><br>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-1 text-right">
+                        <%= i.radio_button :src_url, "2" %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= i.label(:src_url_2, "Bacon bacon! Get it while it's hot, crispy and good! Yeah baby!", size: 25) %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= image_tag(bbb, width: "250", alt: "Bacon") %><br>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-1 text-right">
+                        <%= i.radio_button :src_url, "3" %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= i.label(:src_url_3, "Grab your motocross bike and hit the trail for fun, exercise and maybe even some pain. I'm going to make this desription extra long to see what happens.") %>
+                      </div>
+                      <div class="col-md-2">
+                        <%= image_tag(ccc, width: "250", alt: "Bike") %>
+                      </div>
+                    </div>
+                  </div>
                 </div></div>
             </div>
+
         <% end %>
 
     <% end %>

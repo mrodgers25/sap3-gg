@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-doc = Nokogiri::HTML(open("http://www.usatoday.com/experience/america/best-of-lists/10best-rock-and-roll-hotels-around-the-usa/15676735/"))
+doc = Nokogiri::HTML(open("http://www.huffingtonpost.com/2014/07/23/green-hotels-eco-friendly-travelers_n_5599709.html"))
 
 c = 0
 found_counter = 0
@@ -24,3 +24,5 @@ doc.css('img').each do |i|
 end
 
 puts "Image hash is: #{page_imgs}"
+
+puts doc
