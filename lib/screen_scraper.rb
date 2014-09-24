@@ -102,6 +102,28 @@ class ScreenScraper
       end
     end
 
+    # get images
+    loop_counter = 0
+    found_counter = 0
+    page_imgs = Hash.new
+
+    doc.css('img').each do |i|
+      src_url = doc.css('img')[loop_counter]['src'].to_s
+      alt_text = doc.css('img')[loop_counter]['alt'].to_s
+      unless src_url.empty? || (src_url.include? "blank.")
+        puts "Found counter is: #{found_counter}"
+        puts "src: #{src_url}"
+        puts "alt: #{alt_text}"
+        page_imgs[found_counter] = { "src_url" => src_url, "alt_text" => alt_text }
+        found_counter += 1
+      end
+      puts "Loop counter is: #{loop_counter}"
+      loop_counter += 1
+      if found_counter > 9  # sets the number of images returned to 10
+        break
+      end
+    end
+
     return true
   end
 
