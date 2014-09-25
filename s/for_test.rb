@@ -38,7 +38,8 @@ puts "4th image src is: #{page_imgs[3]["src_url"]}"
 fourth_img = page_imgs[3]["src_url"]
 
 page_imgs.each do |key,array|
-  puts "key =  #{key}"
+  concat_str = "key#{key}"
+  puts "concat_str is #{concat_str}"
   puts array
   puts "src = #{page_imgs[key]["src_url"]}"
   puts "alt = #{page_imgs[key]["alt_text"]}"

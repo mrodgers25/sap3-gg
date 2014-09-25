@@ -52,68 +52,27 @@
         </div>
 
         <%= f.fields_for :images do |i| %>
-            <% zzz = "http://www.gannett-cdn.com/-mm-/c3e677c550ca4edc0dfa387fcca6f816a7ff22c1/c=0-0-1995-1500&r=x513&c=680x510/local/-/media/USATODAY/USATODAY/2014/09/16/1410887792000-Hard Rock Exterior_Photo Credit Hard Rock Hotel.jpg" %>
-            <% bbb = "http://www.travelandleisure.com/images/amexpub/0043/4121/201406-w-ultimate-bacon-guide-barbacon-article.jpg" %>
-            <% ccc = "http://i.kinja-img.com/gawker-media/image/upload/s--tbU9kbzw--/c_fit,fl_progressive,q_80,w_636/q8mnfcdlmqjcxggvgolw.jpg" %>
             <div class="form-group">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-md-1 text-right">
-                        <%= i.radio_button :src_url, "1" %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= i.label(:src_url_1, " Vegas Baby. It's all here in the hot summer sun!") %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= image_tag(zzz, width: "250", alt: "Vegas Baby") %><br>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-1 text-right">
-                        <%= i.radio_button :src_url, "2" %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= i.label(:src_url_2, "Bacon bacon! Get it while it's hot, crispy and good! Yeah baby!", size: 25) %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= image_tag(bbb, width: "250", alt: "Bacon") %><br>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-1 text-right">
-                        <%= i.radio_button :src_url, "3" %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= i.label(:src_url_3, "Grab your motocross bike and hit the trail for fun, exercise and maybe even some pain. I'm going to make this description extra long to see what happens.") %>
-                      </div>
-                      <div class="col-md-2">
-                        <%= image_tag(ccc, width: "250", alt: "Bike") %>
-                      </div>
-                    </div>
 
                       <% @page_imgs.each do |key,array| %>
                           <div class="row">
                             <div class="col-md-1 text-right">
-                              <%= i.radio_button :src_url, key %>
+                              <%= i.radio_button :src_url, :value => @page_imgs[key]["src_url"] %>
                             </div>
                             <div class="col-md-2">
-                              <% src_url_key = ":src_url_" + key.to_s %>
-                              <%= i.label( :src_url_key, @page_imgs[key]["alt_text"]) %>
+                              <%= i.label( :src_url, @page_imgs[key]["alt_text"]) %>
                             </div>
                             <div class="col-md-2">
                               <%= image_tag(@page_imgs[key]["src_url"], width: "250") %><br>
                             </div>
                           </div>
                       <% end %>
-
-
-                    </div>
-                  </div>#
+                  </div>
                 </div></div>
             </div>
-
         <% end %>
 
     <% end %>

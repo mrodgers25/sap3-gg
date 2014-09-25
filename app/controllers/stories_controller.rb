@@ -149,6 +149,9 @@ class StoriesController < ApplicationController
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
+      ],
+      images_attributes: [
+        :src_url
       ]
     )
   end

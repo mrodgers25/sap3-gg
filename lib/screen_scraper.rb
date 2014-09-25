@@ -112,13 +112,13 @@ class ScreenScraper
       src_url = doc.css('img')[loop_counter]['src'].to_s
       alt_text = doc.css('img')[loop_counter]['alt'].to_s
       unless src_url.empty?
-        if src_url.match(/(jpg|jpeg|gif|png)/i) && src_url.match(/(http)/i) && FastImage.size(src_url)[0] > 99
+        # if src_url.match(/(jpg|jpeg|gif|png)/i) && src_url.match(/(http)/i) && FastImage.size(src_url)[0] > 99
           puts "Found counter is: #{found_counter}"
           puts "src: #{src_url}"
           puts "alt: #{alt_text}"
           @page_imgs[found_counter] = { "src_url" => src_url, "alt_text" => alt_text }
           found_counter += 1
-        end
+        # end
       end
       puts "Loop counter is: #{loop_counter}"
       loop_counter += 1
