@@ -20,6 +20,7 @@ gem 'high_voltage'
 gem 'nokogiri'
 gem 'domainatrix'
 gem 'sanitize'
+gem 'fastimage'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do

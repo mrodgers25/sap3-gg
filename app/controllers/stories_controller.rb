@@ -54,6 +54,7 @@ class StoriesController < ApplicationController
     @year = @screen_scraper.year
     @month = @screen_scraper.month
     @day = @screen_scraper.day
+    @page_imgs = @screen_scraper.page_imgs
 
     @itemprop_pub_date_match
 

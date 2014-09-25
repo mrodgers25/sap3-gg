@@ -60,6 +60,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
+    fastimage (1.6.3)
+      addressable (~> 2.3, >= 2.3.5)
     high_voltage (2.2.1)
     hike (1.2.3)
     hub (1.12.2)
@@ -178,6 +180,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   domainatrix
+  fastimage
   high_voltage
   hub
   jbuilder (~> 2.0)

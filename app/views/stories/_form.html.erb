@@ -91,14 +91,26 @@
                       <div class="col-md-2">
                         <%= image_tag(ccc, width: "250", alt: "Bike") %>
                       </div>
+                    </div>
 
                       <% @page_imgs.each do |key,array| %>
-                        <%= i.radio_button :src_url, :value => @page_imgs[key][:src_url] %>
+                          <div class="row">
+                            <div class="col-md-1 text-right">
+                              <%= i.radio_button :src_url, key %>
+                            </div>
+                            <div class="col-md-2">
+                              <% src_url_key = ":src_url_" + key.to_s %>
+                              <%= i.label( :src_url_key, @page_imgs[key]["alt_text"]) %>
+                            </div>
+                            <div class="col-md-2">
+                              <%= image_tag(@page_imgs[key]["src_url"], width: "250") %><br>
+                            </div>
+                          </div>
                       <% end %>
 
 
                     </div>
-                  </div>
+                  </div>#
                 </div></div>
             </div>
 

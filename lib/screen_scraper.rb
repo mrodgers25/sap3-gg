@@ -1,11 +1,12 @@
 require 'open-uri'
 require 'nokogiri'
 require 'sanitize'
+require 'fastimage'
 
 class ScreenScraper
 
   BROWSER = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
-  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year
+  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year, :page_imgs
 
   def scrape!(scrape_url)
 
@@ -105,17 +106,19 @@ class ScreenScraper
     # get images
     loop_counter = 0
     found_counter = 0
-    page_imgs = Hash.new
+    @page_imgs = Hash.new
 
     doc.css('img').each do |i|
       src_url = doc.css('img')[loop_counter]['src'].to_s
       alt_text = doc.css('img')[loop_counter]['alt'].to_s
-      unless src_url.empty? || (src_url.include? "blank.")
-        puts "Found counter is: #{found_counter}"
-        puts "src: #{src_url}"
-        puts "alt: #{alt_text}"
-        page_imgs[found_counter] = { "src_url" => src_url, "alt_text" => alt_text }
-        found_counter += 1
+      unless src_url.empty?
+        if src_url.match(/(jpg|jpeg|gif|png)/i) && src_url.match(/(http)/i) && FastImage.size(src_url)[0] > 99
+          puts "Found counter is: #{found_counter}"
+          puts "src: #{src_url}"
+          puts "alt: #{alt_text}"
+          @page_imgs[found_counter] = { "src_url" => src_url, "alt_text" => alt_text }
+          found_counter += 1
+        end
       end
       puts "Loop counter is: #{loop_counter}"
       loop_counter += 1
