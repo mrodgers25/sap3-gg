@@ -146,14 +146,10 @@ class StoriesController < ApplicationController
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline,
       :location_code, :category_code,:raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
       urls_attributes: [
-        :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary,
+        :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
-        :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
-      ],
-      images_attributes: [
-        :src_url
-      ]
-    )
+        :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
+            images_attributes: [:id, :src_url, :alt_text, :url_id ]])
   end
 
 end

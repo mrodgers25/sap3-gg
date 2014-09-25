@@ -51,7 +51,7 @@
             </div></div>
         </div>
 
-        <%= f.fields_for :images do |i| %>
+        <%= u.fields_for :images do |i| %>
             <div class="form-group">
               <div class="panel panel-default">
                 <div class="panel-body">
@@ -70,11 +70,12 @@
                             </div>
                           </div>
                       <% end %>
-                  </div>
+
+                    </div>
                 </div></div>
             </div>
-        <% end %>
 
+        <% end %>
     <% end %>
 
     <div class="panel panel-default">

@@ -16,6 +16,7 @@ class UrlsController < ApplicationController
   # GET /urls/new
   def new
     @url = Url.new
+    @url.images.build
   end
 
   # GET /urls/1/edit
