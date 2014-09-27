@@ -25,6 +25,7 @@ gem 'fastimage'
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
   gem 'better_errors'
+  gem 'awesome_print', :require => 'ap'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'hub', :require=>nil
   gem 'quiet_assets'

@@ -22,6 +22,7 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+    @url = @story.urls.find(params[:id])
   end
 
   # GET /stories/new
@@ -33,7 +34,10 @@ class StoriesController < ApplicationController
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
-        @story.urls.build
+        urls = @story.urls.build
+        # @story.urls.build
+        urls.images.build
+        image.page_imgs = @page_imgs  # make page_imgs available to image model
         set_scrape_fields
       else
         flash.now.alert = "We can't find that URL – give it another shot"

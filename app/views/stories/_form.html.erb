@@ -60,7 +60,7 @@
                       <% @page_imgs.each do |key,array| %>
                           <div class="row">
                             <div class="col-md-1 text-right">
-                              <%= i.radio_button :src_url, :value => @page_imgs[key]["src_url"] %>
+                              <%= i.radio_button :src_url, key %>
                             </div>
                             <div class="col-md-2">
                               <%= i.label( :src_url, @page_imgs[key]["alt_text"]) %>

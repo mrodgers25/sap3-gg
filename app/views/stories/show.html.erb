@@ -53,17 +53,21 @@
     <strong>URL Tracking Title/Desc/Keywords: </strong>
     <%= u.url_title_track %>&nbsp;&nbsp;
     <%= u.url_desc_track %>&nbsp;&nbsp;
-    <%= u.url_keywords_track %>&nbsp;&nbsp;<br><br>
+    <%= u.url_keywords_track %>&nbsp;&nbsp;<br>
 
   <% end %>
 </div>
 
-  <h3>Image</h3>
+<h3>Image</h3>
+<div style="margin-left: 50px">
 
   <% @url.images.each do |i| %>
     <strong>Image: </strong>
     <%= truncate(i.src_url, :length => 100) %>&nbsp;&nbsp;<br>
+    <strong>Image Text: </strong>
+    <%= truncate(i.alt_text, :length => 100) %>&nbsp;&nbsp;<br><br>
   <% end %>
+</div>
 
 
 <%= debug(params) if Rails.env.development? %>
