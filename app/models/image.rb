@@ -8,6 +8,7 @@ class Image < ActiveRecord::Base
   def set_image_fields
     # self.src_url = self.src_url["src_url"]
     # self.src_url = @image_url_text["src_url"]
+
     self.alt_text = @page_imgs[0]["alt_text"]
   end
 end

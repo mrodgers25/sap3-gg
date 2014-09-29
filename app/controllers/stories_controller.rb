@@ -35,10 +35,10 @@ class StoriesController < ApplicationController
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
         urls = @story.urls.build
-        # @story.urls.build
-        urls.images.build
-        image.page_imgs = @page_imgs  # make page_imgs available to image model
+        images = urls.images.build
         set_scrape_fields
+        images = Image.new  # make page_imgs available to image model
+        images.page_imgs = @page_imgs  # make page_imgs available to image model
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
