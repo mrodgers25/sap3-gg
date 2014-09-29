@@ -106,7 +106,7 @@ class ScreenScraper
     # get images
     loop_counter = 0
     found_counter = 0
-    @page_imgs = Hash.new
+    @page_imgs = []
 
     doc.css('img').each do |i|
       src_url = doc.css('img')[loop_counter]['src'].to_s
@@ -118,9 +118,9 @@ class ScreenScraper
             if FastImage.size(src_url, :raise_on_failure=>true)[0].to_i > 99
               puts "Found counter is: #{found_counter}"
               puts "src: #{src_url}"
-              puts "img size: #{FastImage.size(src_url)}"
+              # puts "img size: #{FastImage.size(src_url)}"
               puts "alt: #{alt_text}"
-              page_imgs[found_counter] = { "src_url" => src_url, "alt_text" => alt_text }
+              @page_imgs << { "src_url" => src_url, "alt_text" => alt_text }
               found_counter += 1
             end
           rescue

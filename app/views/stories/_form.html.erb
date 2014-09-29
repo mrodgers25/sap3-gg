@@ -57,16 +57,16 @@
                 <div class="panel-body">
                   <div class="container-fluid">
 
-                      <% @page_imgs.each do |key,array| %>
+                      <% @page_imgs.each do |hash| %>
                           <div class="row">
                             <div class="col-md-1 text-right">
-                              <%= i.radio_button :src_url, key %>
+                              <%= i.radio_button :image_data, hash.to_json %>
                             </div>
                             <div class="col-md-2">
-                              <%= i.label( :src_url, @page_imgs[key]["alt_text"]) %>
+                              <%= i.label( :src_url, hash["alt_text"]) %>
                             </div>
                             <div class="col-md-2">
-                              <%= image_tag(@page_imgs[key]["src_url"], width: "250") %><br>
+                              <%= image_tag(hash["src_url"], width: "250") %><br>
                             </div>
                           </div>
                       <% end %>
