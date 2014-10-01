@@ -27,6 +27,9 @@ module Sap3Gg
     config.generators do |g|
       g.stylesheets false
     end
+
+    config.autoload_paths << Rails.root.join('lib')
+
   end
 end
 

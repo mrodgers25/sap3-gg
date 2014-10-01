@@ -55,15 +55,15 @@
             <div class="form-group">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <div class="container-fluid">
+                  <div class="container-fluid"><strong>Choose an Image</strong><br><br>
 
                       <% @page_imgs.each do |hash| %>
                           <div class="row">
-                            <div class="col-md-1 text-right">
+                            <div class="col-lg-1 text-right">
                               <%= i.radio_button :image_data, hash.to_json %>
                             </div>
                             <div class="col-md-2">
-                              <%= i.label( :src_url, hash["alt_text"]) %>
+                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %>
                             </div>
                             <div class="col-md-2">
                               <%= image_tag(hash["src_url"], width: "250") %><br>
@@ -71,7 +71,15 @@
                           </div>
                       <% end %>
 
+                    <div class="row">
+                      <div class="col-md-2">
+                        <%= i.label( :manual_url, "or Enter URL Manually") %>
+                      </div>
+                      <div class="col-md-2 text-left">
+                        <%= i.text_area :manual_url, :cols => 80 %><br>
+                      </div>
                     </div>
+                  </div>
                 </div></div>
             </div>
 
@@ -126,5 +134,5 @@
     <%= debug(params) if Rails.env.development? %>
     <%= debug(flash) if Rails.env.development? %>
 
-    <iframe class="embed-responsive-item" sandbox="allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="600px">error!</iframe>
+    <iframe class="embed-responsive-item" sandbox="allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
 <% end %>

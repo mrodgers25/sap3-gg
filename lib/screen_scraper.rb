@@ -120,7 +120,7 @@ class ScreenScraper
               puts "src: #{src_url}"
               # puts "img size: #{FastImage.size(src_url)}"
               puts "alt: #{alt_text}"
-              @page_imgs << { "src_url" => src_url, "alt_text" => alt_text }
+              @page_imgs << { "src_url" => src_url, "alt_text" => alt_text.capitalize }
               found_counter += 1
             end
           rescue
@@ -129,9 +129,9 @@ class ScreenScraper
         end
       end
 
-      puts "Loop counter is: #{loop_counter}"
+      # puts "Loop counter is: #{loop_counter}"
       loop_counter += 1
-      if found_counter > 9  # sets the number of images returned to 10
+      if found_counter > 4  # sets the number of images returned to 5
         break
       end
     end

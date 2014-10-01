@@ -22,7 +22,12 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
-    @url = @story.urls.find(params[:id])
+    @story = Story.find(params[:id])
+
+    # @urls = @story.urls.find(params[:id])
+    @urls = @story.urls
+    @images = @urls.first.images
+    # @images = @urls.images
   end
 
   # GET /stories/new
@@ -37,8 +42,6 @@ class StoriesController < ApplicationController
         url = @story.urls.build
         url.images.build
         set_scrape_fields
-        # @images = Image.new  # make page_imgs available to image model
-        # @images.page_imgs = @page_imgs  # make page_imgs available to image model
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
@@ -67,7 +70,7 @@ class StoriesController < ApplicationController
   # POST /stories
   # POST /stories.json
   def create
-    my_params = set_image_params(story_params)
+    my_params = set_image_params(story_params) # unless story_params["urls_attributes"]["0"]["images_attributes"].nil? # comment out for debug
     @story = Story.new(my_params)
 
     respond_to do |format|
@@ -75,12 +78,10 @@ class StoriesController < ApplicationController
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
-        @source_url_pre = @story.urls.first.url_full
+        @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
+        # @source_url_pre = @story.urls.first.url_full
         get_domain_info(@source_url_pre)
-        # @screen_scraper = ScreenScraper.new
-        # @screen_scraper.scrape!(@full_web_url)
-        # set_scrape_fields
-        set_scrape_fields_on_fail(story_params)
+        # set_scrape_fields_on_fail(story_params)  # commented out for debug
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -147,15 +148,25 @@ class StoriesController < ApplicationController
   end
 
   def set_scrape_fields_on_fail(hash)
-    # to do
+    @meta_type = hash["story_type"]
+    @meta_author = hash["author"]
+    @year = hash["story_year"]
+    @month = hash["story_month"]
+    @day = hash["story_date"]
+    @title = hash['urls_attributes']['0']['url_title']
+    @meta_desc = hash['urls_attributes']['0']['url_desc']
+    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
   end
 
   def set_image_params(story_params)
     image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
-    image_data_hash = JSON.parse(image_data)
-    story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
-    story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
+    unless image_data.nil?
+      image_data_hash = JSON.parse(image_data)
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
+    end
     story_params
+    # binding.pry
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -167,7 +178,7 @@ class StoriesController < ApplicationController
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data ]])
+            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url ]])
   end
 
 end

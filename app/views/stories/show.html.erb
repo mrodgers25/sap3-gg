@@ -30,7 +30,7 @@
 <h3>URL</h3>
 
 <div style="margin-left: 25px">
-  <% @story.urls.each do |u| %>
+  <% @urls.each do |u| %>
 
     <strong>URL: </strong>
     <%= truncate(u.url_full, :length => 100) %><br>
@@ -58,16 +58,18 @@
   <% end %>
 </div>
 
+<% if true %>
 <h3>Image</h3>
 <div style="margin-left: 50px">
 
-  <% @url.images.each do |i| %>
+  <% @images.each do |i| %>
     <strong>Image: </strong>
     <%= truncate(i.src_url, :length => 100) %>&nbsp;&nbsp;<br>
     <strong>Image Text: </strong>
     <%= truncate(i.alt_text, :length => 100) %>&nbsp;&nbsp;<br><br>
   <% end %>
 </div>
+<% end %>
 
 
 <%= debug(params) if Rails.env.development? %>

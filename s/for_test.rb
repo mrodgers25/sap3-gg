@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'fastimage'
-doc = Nokogiri::HTML(open("http://www.huffingtonpost.com/anne-maxfield/noshis-coney-island_b_5688871.html"))
+doc = Nokogiri::HTML(open("http://www.latimes.com/food/la-fo-0927-virbila-sidebar-20140927-story.html"))
 
 # get images
 loop_counter = 0
