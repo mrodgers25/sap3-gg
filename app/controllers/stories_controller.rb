@@ -52,25 +52,10 @@ class StoriesController < ApplicationController
     end
   end
 
-  def set_scrape_fields
-    @title = @screen_scraper.title
-    @meta_desc = @screen_scraper.meta_desc
-    @meta_keywords = @screen_scraper.meta_keywords
-    @meta_type = @screen_scraper.meta_type
-    @meta_author = @screen_scraper.meta_author
-    @year = @screen_scraper.year
-    @month = @screen_scraper.month
-    @day = @screen_scraper.day
-    @page_imgs = @screen_scraper.page_imgs
-
-    @itemprop_pub_date_match
-
-  end
-
   # POST /stories
   # POST /stories.json
   def create
-    my_params = set_image_params(story_params) # unless story_params["urls_attributes"]["0"]["images_attributes"].nil? # comment out for debug
+    my_params = set_image_params(story_params)
     @story = Story.new(my_params)
 
     respond_to do |format|
@@ -81,7 +66,7 @@ class StoriesController < ApplicationController
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
         # @source_url_pre = @story.urls.first.url_full
         get_domain_info(@source_url_pre)
-        # set_scrape_fields_on_fail(story_params)  # commented out for debug
+        set_scrape_fields_on_fail(story_params)
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -147,15 +132,34 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
+  def set_scrape_fields
+    @title = @screen_scraper.title
+    @meta_desc = @screen_scraper.meta_desc
+    @meta_keywords = @screen_scraper.meta_keywords
+    @meta_type = @screen_scraper.meta_type
+    @meta_author = @screen_scraper.meta_author
+    @year = @screen_scraper.year
+    @month = @screen_scraper.month
+    @day = @screen_scraper.day
+    @page_imgs = @screen_scraper.page_imgs
+
+    @itemprop_pub_date_match
+
+  end
+
   def set_scrape_fields_on_fail(hash)
+    @title = hash['urls_attributes']['0']['url_title']
+    @meta_desc = hash['urls_attributes']['0']['url_desc']
+    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
+    @meta_tagline = hash["editor_tagline"]
+    @meta_location = hash["location_code"]
+    @meta_category = hash["category_code"]
     @meta_type = hash["story_type"]
     @meta_author = hash["author"]
     @year = hash["story_year"]
     @month = hash["story_month"]
     @day = hash["story_date"]
-    @title = hash['urls_attributes']['0']['url_title']
-    @meta_desc = hash['urls_attributes']['0']['url_desc']
-    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
+    
   end
 
   def set_image_params(story_params)
