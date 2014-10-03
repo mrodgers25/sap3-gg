@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'fastimage'
-doc = Nokogiri::HTML(open("http://www.latimes.com/food/la-fo-0927-virbila-sidebar-20140927-story.html"))
+doc = Nokogiri::HTML(open("http://skift.com/2014/09/14/how-one-luxury-new-york-hotel-caters-to-independent-chinese-travelers"))
 
 # get images
 loop_counter = 0
@@ -29,7 +29,7 @@ doc.css('img').each do |i|
   end
   puts "Loop counter is: #{loop_counter}"
   loop_counter += 1
-  if found_counter > 9
+  if found_counter > 4
     break
   end
 end
@@ -39,6 +39,7 @@ end
 # puts "4th image src is: #{page_imgs[3]["src_url"]}"
 # fourth_img = page_imgs[3]["src_url"]
 
+puts "\nprinting out page_imgs array below vvvvv"
 page_imgs.each do |key,array|
   concat_str = "key#{key}"
   puts "concat_str is #{concat_str}"
