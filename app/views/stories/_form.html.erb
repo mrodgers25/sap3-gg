@@ -59,21 +59,19 @@
 
                     <% unless @page_imgs.nil? %>
                          <% @page_imgs.each do |hash| %>
-                          <div class="row">
-                            <div class="col-lg-1 text-right">
-                              <%= i.radio_button :image_data, hash.to_json %>
-                            </div>
-                            <div class="col-md-2">
-                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %>
-                            </div>
-                            <div class="col-md-2">
-                              <%= image_tag(hash["src_url"], width: "250") %><br>
+                          <div class="row-fluid">
+                            <div class="span12">
+                              <%= i.radio_button :image_data, hash.to_json %>&nbsp;
+                              <%= i.label( :src_url, hash["alt_text"], width: "250", :style => "font-weight:normal; font-style:italic; font-size:1.3em") %>
+                              <div class="text-left">
+                                <%= image_tag(hash["src_url"], width: "250") %><br>
+                              </div>
                             </div>
                           </div>
                       <% end %>
                     <% end %>
 
-                    <div class="row">
+                    <div class="row-fluid">
                       <div class="col-md-2">
                         <%= i.label( :manual_url, "or Enter URL Manually") %>
                       </div>
@@ -96,15 +94,24 @@
             <td>  <%= f.text_field :editor_tagline, :value => @meta_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60 %>  </td>
           </tr>
           <tr>
-            <td>Location</td>
+            <td>Locations</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw location_options %>" >
                     <%= f.text_field :location_code, :value => @meta_location, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Comma separated location codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Category Codes" data-html="true" data-trigger="focus"
+                    :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place Category Codes" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw category_options %>" >
-                    Category&nbsp;&nbsp;<%= f.text_field :category_code, :value => @meta_category, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Comma separated category codes", :size => 30 %></span>
+                    Place Categories&nbsp;&nbsp;<%= f.text_field :category_code, :value => @meta_category, :onkeyup => "this.value = this.value.toUpperCase();",
+                    :placeholder => "Comma separated codes", :size => 30 %></span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Story Categories</td>
+            <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Story Category Codes" data-html="true" data-trigger="focus"
+                       data-content= "<%= raw story_category_options %>" >
+                    <%= f.text_field :story_category, :value => @meta_story_category, :onkeyup => "this.value = this.value.toUpperCase();",
+                                     :placeholder => "Comma separated codes", :size => 50 %></span>
             </td>
             <td></td>
           </tr>

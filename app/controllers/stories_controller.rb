@@ -154,12 +154,14 @@ class StoriesController < ApplicationController
     @meta_tagline = hash["editor_tagline"]
     @meta_location = hash["location_code"]
     @meta_category = hash["category_code"]
+    @meta_story_category = hash["story_category"]
     @meta_type = hash["story_type"]
     @meta_author = hash["author"]
     @year = hash["story_year"]
     @month = hash["story_month"]
     @day = hash["story_date"]
-    
+    # @page_imgs = @screen_scraper.page_imgs
+
   end
 
   def set_image_params(story_params)
@@ -177,12 +179,12 @@ class StoriesController < ApplicationController
   def story_params
     params.require(:story).permit(
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline,
-      :location_code, :category_code,:raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
+      :location_code, :category_code, :story_category, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url ]])
+            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, page_imgs: [] ]])
   end
 
 end

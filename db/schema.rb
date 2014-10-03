@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925224015) do
+ActiveRecord::Schema.define(version: 20141003203842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140925224015) do
     t.boolean  "story_month_track"
     t.boolean  "story_date_track"
     t.string   "scraped_type"
+    t.string   "story_category"
   end
 
   create_table "urls", force: true do |t|

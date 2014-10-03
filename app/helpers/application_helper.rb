@@ -1,10 +1,10 @@
 module ApplicationHelper
 
   def location_options
-    location_options = "<strong>NYC</strong><br>
-                        ​<strong>SD</strong>​<br>
-                        ​<strong>LA</strong>​<br>
+    location_options = "<strong>SD</strong>​<br>
                         ​<strong>SF</strong>​<br>
+                        ​<strong>LA</strong>​<br>
+                        <strong>NYC</strong><br>
                         ​<strong>CHI</strong><br>
                         ​<strong>BOS</strong>​<br>
                         ​<strong>DC</strong>​<br>
@@ -17,6 +17,15 @@ module ApplicationHelper
 
   def category_options
     category_options = "​<strong>A</strong>​<br>
+                        ​<strong>FD</strong>​<br>
+                        ​<strong>L</strong>​<br>
+                        ​<strong>SH</strong>​<br>
+                        ​<strong>SR</strong>​<br>
+                        ​<strong>SP</strong>​"
+  end
+
+  def story_category_options
+    story_category_options = "​<strong>A</strong>​<br>
                         ​<strong>FD</strong>​<br>
                         ​<strong>L</strong>​<br>
                         ​<strong>SH</strong>​<br>

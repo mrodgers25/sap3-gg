@@ -3,9 +3,11 @@
   <strong>Tagline: </strong>
   <%= @story.editor_tagline %><br>
   <strong>Location Codes: </strong>
-  <%= @story.location_code %>
-  <strong>Category Codes: </strong>
-  <%= @story.category_code %><br>
+  <%= @story.location_code %>&nbsp;&nbsp;
+  <strong>Place Categories: </strong>
+  <%= @story.category_code %>&nbsp;&nbsp;
+  <strong>Story Categories: </strong>
+  <%= @story.story_category %><br>
   <strong>Entered: </strong>
   <%= @story.created_at.strftime("%Y %m %d") %>
   <strong>Scraped Type: </strong>
