@@ -110,6 +110,8 @@ class ScreenScraper
 
     doc.css('img').each do |i|
       src_url = doc.css('img')[loop_counter]['src'].to_s
+      src_url_data_original = doc.css('img')[loop_counter]['data-original'].to_s
+      src_url = src_url_data_original if src_url.empty?
       alt_text = doc.css('img')[loop_counter]['alt'].to_s
 
       unless src_url.empty?
