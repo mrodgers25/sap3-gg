@@ -160,8 +160,10 @@ class StoriesController < ApplicationController
     @year = hash["story_year"]
     @month = hash["story_month"]
     @day = hash["story_date"]
-    # @page_imgs = @screen_scraper.page_imgs
-
+    @page_imgs = []
+    params['image_src_cache'].each do |key, src_url|
+      @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
+    end
   end
 
   def set_image_params(story_params)
@@ -172,7 +174,6 @@ class StoriesController < ApplicationController
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
     end
     story_params
-    # binding.pry
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -184,7 +185,7 @@ class StoriesController < ApplicationController
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, page_imgs: [] ]])
+            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url]])
   end
 
 end

@@ -58,14 +58,18 @@
                   <div class="container-fluid"><strong>Choose an Image</strong><br><br>
 
                     <% unless @page_imgs.nil? %>
-                         <% @page_imgs.each do |hash| %>
-                          <div class="row-fluid">
-                            <div class="span12">
-                              <%= i.radio_button :image_data, hash.to_json %>&nbsp;
-                              <%= i.label( :src_url, hash["alt_text"], width: "250", :style => "font-weight:normal; font-style:italic; font-size:1.3em") %>
-                              <div class="text-left">
-                                <%= image_tag(hash["src_url"], width: "250") %><br>
-                              </div>
+                      <% @page_imgs.each_with_index do |hash, idx| %>
+                          <div class="row">
+                            <div class="col-lg-1 text-right">
+                              <%= i.radio_button :image_data, hash.to_json %>
+                              <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                              <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                            </div>
+                            <div class="col-md-2">
+                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %>
+                            </div>
+                            <div class="col-md-2">
+                              <%= image_tag(hash["src_url"], width: "250") %><br>
                             </div>
                           </div>
                       <% end %>
