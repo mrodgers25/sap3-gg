@@ -55,16 +55,22 @@
             <div class="form-group">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <div class="container-fluid"><strong>Choose an Image</strong><br><br>
+                  <div class="container-fluid">
+
+                    <% unless @image1 %>
+                      <strong>Choose an Image</strong><br><br>
+                    <% end %>
 
                     <% unless @page_imgs.nil? %>
                       <% @page_imgs.each_with_index do |hash, idx| %>
                           <div class="row">
-                            <div class="col-lg-1 text-right">
-                              <%= i.radio_button :image_data, hash.to_json %>
-                              <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
-                              <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
-                            </div>
+                            <% unless @image1 %>
+                              <div class="col-lg-1 text-right">
+                                <%= i.radio_button :image_data, hash.to_json, radio_btn_opts %>
+                                <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                                <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                              </div>
+                            <% end %>
                             <div class="col-md-2">
                               <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %>
                             </div>
@@ -75,14 +81,16 @@
                       <% end %>
                     <% end %>
 
-                    <div class="row-fluid">
-                      <div class="col-md-2">
-                        <%= i.label( :manual_url, "or Enter URL Manually") %>
+                    <% unless @image1 %>
+                      <div class="row-fluid">
+                        <div class="col-md-2">
+                          <%= i.label( :manual_url, "or Enter URL Manually") %>
+                        </div>
+                        <div class="col-md-2 text-left">
+                          <%= i.text_area :manual_url, :cols => 80 %><br>
+                        </div>
                       </div>
-                      <div class="col-md-2 text-left">
-                        <%= i.text_area :manual_url, :cols => 80 %><br>
-                      </div>
-                    </div>
+                    <% end %>
                   </div>
                 </div></div>
             </div>

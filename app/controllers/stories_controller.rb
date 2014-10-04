@@ -55,6 +55,7 @@ class StoriesController < ApplicationController
   # POST /stories
   # POST /stories.json
   def create
+    # TODO:  check_manual_url(params)
     my_params = set_image_params(story_params)
     @story = Story.new(my_params)
 
@@ -81,18 +82,26 @@ class StoriesController < ApplicationController
     @year = @story.story_year
     @month = @story.story_month
     @day = @story.story_date
-    @source_url_pre = @story.urls.first.url_full
-    @base_domain = @story.urls.first.url_domain
-    @title = @story.urls.first.url_title
-    @meta_desc = @story.urls.first.url_desc
-    @meta_keywords = @story.urls.first.url_keywords
-    @full_web_url = @story.urls.first.url_full
+
+    @url1 = @story.urls.first
+    @source_url_pre = @url1.url_full
+    @base_domain = @url1.url_domain
+    @title = @url1.url_title
+    @meta_desc = @url1.url_desc
+    @meta_keywords = @url1.url_keywords
+    @full_web_url = @url1.url_full
+
+    @image1 = @url1.images.first
+    @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text}]
   end
 
   # PATCH/PUT /stories/1
   # PATCH/PUT /stories/1.json
   def update
     respond_to do |format|
+      # TODO: if you have params[:manual_url], you may need to get out and verify the image exists
+      #       if it does not exist return an error
+      #       if it does exist, get the src_url and alt_text and nest them into story_params properly
       if @story.update(story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
         format.json { render :show, status: :ok, location: @story }
