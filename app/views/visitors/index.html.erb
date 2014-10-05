@@ -1,10 +1,3 @@
-<h3>Welcome</h3>
-<pre>Our mission is to provide curated, professionally written
-stories as an alternative to user-contributed content about
-places to eat, drink, stay and enjoy life.
-
-Stay tuned—Stories About Places is currently in intensive development.</pre>
-
 <% if false %>
     <% if user_signed_in? %>
         <% if current_user.admin? %>
@@ -20,9 +13,14 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
     <% end %>
 <% end %>
 
+<div class="jumbotron text-center">
+  <p class="text-muted" style="font-weight: bold">Our mission is to provide curated, professionally written<br>
+    stories as an alternative to user-contributed content about<br>
+    places to eat, drink, stay and enjoy life.</p>
+</div>
 
 <div class="container">
-  <div class="row b-align">
+  <div class="row">
         <% @stories.each do |story| %>
             <div class="col-lg-4 text-left">
 
