@@ -22,26 +22,23 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
 
 
 <div class="row-fluid">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <% @stories.each do |story| %>
-      <h3>Story</h3>
-      <%= story.author %>&nbsp;&nbsp;
-      <%= story.story_month %>&nbsp;&nbsp;
-      <%= story.story_date %>&nbsp;&nbsp;
-      <%= story.story_year %>&nbsp;&nbsp;&nbsp;&nbsp;
 
         <% story.urls.each do |u| %>
-          <%= u.url_title %>
 
             <% u.images.each do |i| %>
-                <%= image_tag(i.src_url, width: "250") %>
+                <%= image_tag(i.src_url, width: "400") %>
             <% end %>
 
-        <% end %>
+      by <%= story.author %>&nbsp;&nbsp;
+      <%= story.story_month %>/
+      <%= story.story_date %>/
+      <%= story.story_year %><br>
 
-      <%= link_to 'Show', story %>&nbsp;&nbsp;
-      <%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;
-      <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <%= u.url_title %><br><br>
+
+  <% end %><br>
     <% end %>
   </div>
 </div>
