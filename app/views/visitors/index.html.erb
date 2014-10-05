@@ -4,15 +4,44 @@ stories as an alternative to user-contributed content about
 places to eat, drink, stay and enjoy life.
 
 Stay tuned—Stories About Places is currently in intensive development.</pre>
-<% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <h3>Admin</h3>
-    <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
-  <% else %>
-    <h3>You've signed up. Download a free book.</h3>
-    <%= link_to 'Download PDF', products_path('product.pdf'), :class => 'btn btn-success btn-large' %>
-  <% end %>
-<% else %>
-  <h3>Sign up and download a free book.</h3>
-  <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+
+<% if false %>
+    <% if user_signed_in? %>
+        <% if current_user.admin? %>
+            <h3>Admin</h3>
+            <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
+        <% else %>
+            <h3>You've signed up. Download a free book.</h3>
+            <%= link_to 'Download PDF', products_path('product.pdf'), :class => 'btn btn-success btn-large' %>
+        <% end %>
+    <% else %>
+        <h3>Sign up and download a free book.</h3>
+        <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+    <% end %>
 <% end %>
+
+
+<div class="row-fluid">
+  <div class="col-md-2">
+    <% @stories.each do |story| %>
+      <h3>Story</h3>
+      <%= story.author %>&nbsp;&nbsp;
+      <%= story.story_month %>&nbsp;&nbsp;
+      <%= story.story_date %>&nbsp;&nbsp;
+      <%= story.story_year %>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <% story.urls.each do |u| %>
+          <%= u.url_title %>
+
+            <% u.images.each do |i| %>
+                <%= image_tag(i.src_url, width: "250") %>
+            <% end %>
+
+        <% end %>
+
+      <%= link_to 'Show', story %>&nbsp;&nbsp;
+      <%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;
+      <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    <% end %>
+  </div>
+</div>
