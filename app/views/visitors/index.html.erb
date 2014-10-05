@@ -21,24 +21,26 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
 <% end %>
 
 
-<div class="row-fluid">
-  <div class="col-md-3">
-    <% @stories.each do |story| %>
+<div class="container-fluid">
+  <div class="row-fluid pull-bottom">
+        <% @stories.each do |story| %>
+            <div class="col-lg-4 text-center">
 
-        <% story.urls.each do |u| %>
+                <% story.urls.each do |u| %>
 
-            <% u.images.each do |i| %>
-                <%= image_tag(i.src_url, width: "400") %>
-            <% end %>
+                    <% u.images.each do |i| %>
+                        <%= image_tag(i.src_url, width: "400") %>
+                    <% end %>
 
-      by <%= story.author %>&nbsp;&nbsp;
-      <%= story.story_month %>/
-      <%= story.story_date %>/
-      <%= story.story_year %><br>
+                  by <%= story.author %>&nbsp;&nbsp;
+                  <%= story.story_month %>/
+                  <%= story.story_date %>/
+                  <%= story.story_year %><br>
 
-            <%= u.url_title %><br><br>
+                    <%= u.url_title %>
 
-  <% end %><br>
-    <% end %>
+                <% end %><br>
+            </div>
+        <% end %>
   </div>
 </div>
