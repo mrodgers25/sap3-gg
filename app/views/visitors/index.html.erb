@@ -29,7 +29,7 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
                 <% story.urls.each do |u| %>
 
                     <% u.images.each do |i| %>
-                        <%= image_tag(i.src_url, width: "400") %>
+                        <%= image_tag(i.src_url, width: "450") %>
                     <% end %>
                   <% unless story.author.present? %>
                       by <%= story.author %>&nbsp;&nbsp;
