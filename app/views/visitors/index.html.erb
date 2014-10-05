@@ -32,8 +32,9 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
                         <%= image_tag(i.src_url) %>
                     <% end %>
                   <% if story.author.present? %>
-                      by <%= story.author %>&nbsp;&nbsp;
+                    by <%= story.author %>&nbsp;&nbsp;
                   <% end %>
+                  <%= story.editor_tagline %>/
                   <%= story.story_month %>/
                   <%= story.story_date %>/
                   <%= story.story_year %><br>
