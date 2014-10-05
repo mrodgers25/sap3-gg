@@ -38,9 +38,9 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
                   <%= story.story_date %>/
                   <%= story.story_year %><br>
                   <% if story.editor_tagline.present? %>
-                    <strong><%= story.editor_tagline %><br></strong>
+                    <span class="text-muted" style="font-weight: bold"><%= story.editor_tagline %></span><br>
                   <% end %>
-                  
+
                   <%= u.url_title %><br>
 
                 <% end %><br>
