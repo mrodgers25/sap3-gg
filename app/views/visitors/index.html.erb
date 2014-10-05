@@ -24,12 +24,12 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
 <div class="container-fluid">
   <div class="row-fluid">
         <% @stories.each do |story| %>
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 text-left">
 
                 <% story.urls.each do |u| %>
 
                     <% u.images.each do |i| %>
-                        <%= image_tag(i.src_url, width: "450") %>
+                        <%= image_tag(i.src_url) %>
                     <% end %>
                   <% if story.author.present? %>
                       by <%= story.author %>&nbsp;&nbsp;
