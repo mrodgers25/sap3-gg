@@ -34,9 +34,8 @@ Stay tuned—Stories About Places is currently in intensive development.</pre>
                   <% if story.author.present? %>
                     by <%= story.author %>&nbsp;&nbsp;
                   <% end %>
-                  <%= story.story_month %>/
-                  <%= story.story_date %>/
-                  <%= story.story_year %><br>
+                  <% slash_date = "#{story.story_month}/#{story.story_date}/#{story.story_year}" %>
+                  <%= "#{slash_date}" %><br>
                   <% if story.editor_tagline.present? %>
                     <span class="text-muted" style="font-weight: bold"><%= story.editor_tagline %></span><br>
                   <% end %>
