@@ -4,6 +4,7 @@ class Url < ActiveRecord::Base
   validates :url_title, :presence => { :message => "TITLE is required" }
   validates :url_desc, :presence => { :message => "DESCRIPTION is required" }
   validates :url_domain, presence: true
+  validates :url_full, :uniqueness => { :message => "Duplicate URL" }
 
   has_many :images, inverse_of: :url
   accepts_nested_attributes_for :images

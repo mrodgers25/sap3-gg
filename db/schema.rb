@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003203842) do
+ActiveRecord::Schema.define(version: 20141006225644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20141003203842) do
     t.datetime "updated_at"
     t.integer  "url_id"
   end
+
+  add_index "images", ["url_id"], name: "index_images_on_url_id", using: :btree
 
   create_table "media_infos", force: true do |t|
     t.string   "media_type"
@@ -66,6 +68,9 @@ ActiveRecord::Schema.define(version: 20141003203842) do
     t.boolean  "url_desc_track"
     t.boolean  "url_keywords_track"
   end
+
+  add_index "urls", ["story_id"], name: "index_urls_on_story_id", using: :btree
+  add_index "urls", ["url_full"], name: "index_urls_on_url_full", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
