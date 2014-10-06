@@ -1,8 +1,7 @@
 class Story < ActiveRecord::Base
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
-
-  # validates :story_type, presence: true
+  validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
   attr_accessor :source_url_pre, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
