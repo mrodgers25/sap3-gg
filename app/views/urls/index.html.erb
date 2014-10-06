@@ -3,11 +3,14 @@
 <table>
   <thead>
     <tr>
+      <th>Url Id</th>
       <th>Url</th>
-      <th>Url entered</th>
-      <th>Url type</th>
-      <th>Url title</th>
-      <th>Url desc</th>
+      <th>Created</th>
+      <% if false %>
+          <th>Url type</th>
+          <th>Url title</th>
+          <th>Url desc</th>
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,11 +18,14 @@
   <tbody>
     <% @urls.each do |url| %>
       <tr>
-        <td><%= url.url %></td>
-        <td><%= url.url_entered %></td>
-        <td><%= url.url_type %></td>
-        <td><%= url.url_title %></td>
-        <td><%= url.url_desc %></td>
+        <td><%= url.id %></td>
+        <td><%= url.url_full %></td>
+        <td><%= url.created_at %></td>
+        <% if false %>
+            <td><%= url.url_type %></td>
+            <td><%= url.url_title %></td>
+            <td><%= url.url_desc %></td>
+        <% end %>
         <td><%= link_to 'Show', url %></td>
         <td><%= link_to 'Edit', edit_url_path(url) %></td>
         <td><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>

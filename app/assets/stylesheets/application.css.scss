@@ -40,7 +40,4 @@
 
 body { padding-top: 9px; }
 
-.b-align {
-//  display: inline-block !important;
-//  vertical-align: middle !important;
-}
+.bottom-align { display: table-cell; vertical-align: bottom; float: none; }
