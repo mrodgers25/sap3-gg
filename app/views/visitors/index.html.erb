@@ -28,14 +28,16 @@
 
                     <% u.images.each do |i| %>
                         <%= link_to image_tag(i.src_url, :height =>200), u.url_full, target: '_blank' %>
-                    <% end %><em>
-                  <% if story.author.present? %>
-                    by <%= story.author %>&nbsp;&nbsp;
-                  <% end %>
-                  <% slash_date = "#{story.story_month}/#{story.story_date}/#{story.story_year}" %>
-                  <%= "#{slash_date}" %></em><br>
-                  <% if story.editor_tagline.present? %>
-                    <span class="text-muted" style=font-family:"Arial Narrow"><%= story.editor_tagline %></span><br>
+                    <% end %>
+                  <span class="text-muted">
+                      <% if story.author.present? %>
+                        by <%= story.author %>&nbsp;&nbsp;
+                      <% end %>
+                      <% slash_date = "#{story.story_month}/#{story.story_date}/#{story.story_year}" %>
+                      <%= "#{slash_date}" %><br>
+                  </span>
+                  <% if story.editor_tagline.present? %><em>
+                    <span style=font-family:"Arial Narrow"><%= story.editor_tagline %></span></em><br>
                   <% end %>
                   <span style="font-size:1.2em">
                   <%= u.url_title %><br>
