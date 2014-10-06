@@ -14,9 +14,9 @@
 <% end %>
 
 <div class="jumbotron text-center">
-  <p class="text-muted" style="font-weight: bold">Our mission is to provide curated, professionally written<br>
-    stories as an alternative to user-contributed content about<br>
-    places to eat, drink, stay and enjoy life.</p>
+  <p class="text-primary" style="line-height: 120%; display:inline">Our mission is to provide professionally written and <br>
+    curated stories as an alternative to user-contributed content<br>
+    about places to eat, drink, stay, and enjoy life</p>
 </div>
 
 <div class="container">
@@ -28,18 +28,18 @@
 
                     <% u.images.each do |i| %>
                         <%= link_to image_tag(i.src_url, :height =>200), u.url_full %>
-                    <% end %>
+                    <% end %><em>
                   <% if story.author.present? %>
                     by <%= story.author %>&nbsp;&nbsp;
                   <% end %>
                   <% slash_date = "#{story.story_month}/#{story.story_date}/#{story.story_year}" %>
-                  <%= "#{slash_date}" %><br>
+                  <%= "#{slash_date}" %></em><br>
                   <% if story.editor_tagline.present? %>
                     <span class="text-muted" style="font-weight: bold"><%= story.editor_tagline %></span><br>
                   <% end %>
-
+                  <span style="font-size:1.2em">
                   <%= u.url_title %><br>
-
+                  </span>
                 <% end %><br>
             </div>
         <% end %>
