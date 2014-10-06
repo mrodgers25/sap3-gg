@@ -27,7 +27,7 @@
                 <% story.urls.each do |u| %>
 
                     <% u.images.each do |i| %>
-                        <%= link_to image_tag(i.src_url, :height =>200), u.url_full %>
+                        <%= link_to image_tag(i.src_url, :height =>200), u.url_full, target: '_blank' %>
                     <% end %><em>
                   <% if story.author.present? %>
                     by <%= story.author %>&nbsp;&nbsp;
