@@ -30,14 +30,9 @@
   margin-top: -40px;
 }
 
-//.btn-primary { background-color: #80CC80 !important;}
-
-/* new button */
-//.btn-stories {
-//  @extend .btn-primary;
-//  background-color:#80CC80;
-//}
-
-body { padding-top: 9px; }
+body { padding-top: 9px;
+       background:white !important;
+  }
 
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
+

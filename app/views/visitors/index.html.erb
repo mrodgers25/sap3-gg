@@ -20,7 +20,7 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row" style="font-family: Source Sans Pro">
         <% @stories.each do |story| %>
             <div class="col-lg-4 text-left">
 
@@ -33,8 +33,8 @@
                   <% if story.editor_tagline.present? %><em>
                     <p style="font-family: Arial Narrow; margin-bottom: 2%"><%= story.editor_tagline %></p></em>
                   <% end %>
-                  <p style="font-size:1.1em; font-weight: bold; margin-bottom: 2%">
-                    <%= u.url_title %><br>
+                  <p style="font-size:1.1em; font-weight: bold; margin-bottom: 2%; display: inline">
+                    <%= u.url_title %>
                   </p>
                   <p class="text-muted" style="margin-bottom: 2%">
                     <% if story.author.present? %>
@@ -45,7 +45,7 @@
                     <% slash_date = mmddyy ? mmddyy : mmyy %>
                     <%= "#{slash_date}" %><br>
                   </p>
-                  <p class="text-primary"><%= u.url_desc.truncate(250) %></p><br>
+                  <p><%= u.url_desc.truncate(250, :separator => ' ') %></p><br>
                 <% end %><br>
             </div>
         <% end %>
