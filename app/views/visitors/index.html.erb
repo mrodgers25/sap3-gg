@@ -44,7 +44,7 @@
                     <% slash_date = mmddyy ? mmddyy : mmyy %>
                     <%= "#{slash_date}" %><br>
                   </span>
-                    <%= u.url_desc %><br>
+                    <%= u.url_desc.truncate(250) %><br>
                 <% end %><br>
             </div>
         <% end %>
