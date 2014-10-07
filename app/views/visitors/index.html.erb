@@ -29,19 +29,22 @@
                     <% u.images.each do |i| %>
                         <%= link_to image_tag(i.src_url, :height =>200), u.url_full, target: '_blank' %>
                     <% end %>
-                  <span class="text-muted">
-                      <% if story.author.present? %>
-                        by <%= story.author %>&nbsp;&nbsp;
-                      <% end %>
-                      <% slash_date = "#{story.story_month}/#{story.story_date}/#{story.story_year}" %>
-                      <%= "#{slash_date}" %><br>
-                  </span>
                   <% if story.editor_tagline.present? %><em>
                     <span style=font-family:"Arial Narrow"><%= story.editor_tagline %></span></em><br>
                   <% end %>
-                  <span  class="text-primary" style="font-size:1.1em">
+                  <span  class="text-primary" style="font-size:1.1em; font-weight: bold">
                     <%= u.url_title %><br>
                   </span>
+                  <span class="text-muted">
+                    <% if story.author.present? %>
+                      by <%= story.author %>&nbsp;&nbsp;
+                    <% end %>
+                    <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
+                    <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
+                    <% slash_date = mmddyy ? mmddyy : mmyy %>
+                    <%= "#{slash_date}" %><br>
+                  </span>
+                    <%= u.url_desc %><br>
                 <% end %><br>
             </div>
         <% end %>

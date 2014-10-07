@@ -170,7 +170,7 @@ class StoriesController < ApplicationController
     @month = hash["story_month"]
     @day = hash["story_date"]
     @page_imgs = []
-    params['image_src_cache'].each do |key, src_url|
+    params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
       @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
     end
   end
