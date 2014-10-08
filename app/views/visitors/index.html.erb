@@ -28,7 +28,7 @@
                 <% story.urls.each do |u| %>
 
                   <p style="margin-bottom: 2%"><% u.images.each do |i| %>
-                        <%= link_to image_tag(i.src_url, :height =>200), u.url_full, target: '_blank' %>
+                        <%= link_to image_tag(i.src_url, :height =>300), u.url_full, target: '_blank' %>
                         <% end %>
                   </p>
                   <% if story.editor_tagline.present? %><em>
