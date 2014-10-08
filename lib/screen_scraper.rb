@@ -117,12 +117,13 @@ class ScreenScraper
       unless src_url.empty?
         if src_url.match(/(jpg|jpeg|gif|png)/i) && src_url.match(/(http)/i)
           begin
-            if FastImage.size(src_url, :raise_on_failure=>true)[0].to_i > 199
+            image_size_array = FastImage.size(src_url, :raise_on_failure=>true)
+            if image_size_array[0].to_i > 199
               puts "Found counter is: #{found_counter}"
               puts "src: #{src_url}"
               # puts "img size: #{FastImage.size(src_url)}"
               puts "alt: #{alt_text}"
-              @page_imgs << { "src_url" => src_url, "alt_text" => alt_text.capitalize }
+              @page_imgs << { "src_url" => src_url, "alt_text" => alt_text.capitalize, "image_width" => image_size_array[0], "image_height" => image_size_array[1] }
               found_counter += 1
             end
           rescue

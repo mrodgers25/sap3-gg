@@ -1,7 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 require 'fastimage'
-doc = Nokogiri::HTML(open("http://skift.com/2014/09/14/how-one-luxury-new-york-hotel-caters-to-independent-chinese-travelers"))
+doc = Nokogiri::HTML(open("http://www.huffingtonpost.com/2014/07/23/green-hotels-eco-friendly-travelers_n_5599709.html"))
+# doc = Nokogiri::HTML(open("http://skift.com/2014/09/14/how-one-luxury-new-york-hotel-caters-to-independent-chinese-travelers"))
 
 # get images
 loop_counter = 0
@@ -17,7 +18,8 @@ doc.css('img').each do |i|
   unless src_url.empty?
     if src_url.match(/(jpg|jpeg|gif|png)/i) && src_url.match(/(http)/i)
       begin
-        if FastImage.size(src_url, :raise_on_failure=>true)[0].to_i > 99
+        image_size_array = FastImage.size(src_url, :raise_on_failure=>true)
+        if image_size_array[0].to_i > 199
           puts "Found counter is: #{found_counter}"
           puts "src: #{src_url}"
           puts "img size: #{FastImage.size(src_url)}"
