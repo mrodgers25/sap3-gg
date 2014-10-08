@@ -23,13 +23,13 @@ module ApplicationHelper
   end
 
   def story_category_options
-    story_category_options = "<strong>(ED) Editor Picks</strong><br>
+    story_category_options = "<strong>(EP) Editor Picks</strong><br>
                         ​<strong>(UN) More Unique Than Usual</strong>​<br>
                         ​<strong>(TL) Top/Best/Coolest Lists</strong>​<br>
                         ​<strong>(SI) Suggested Itineraries</strong>​<br>
                         ​<strong>(FF) Family Friendly</strong>​<br>
                         ​<strong>(IA) Industry Awards</strong>​<br>
-                        ​<strong>(P) Pet Friendly</strong>​"
+                        ​<strong>(PF) Pet Friendly</strong>​"
 
   end
 

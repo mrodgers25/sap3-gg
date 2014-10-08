@@ -67,7 +67,7 @@ class StoriesController < ApplicationController
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
         # @source_url_pre = @story.urls.first.url_full
         get_domain_info(@source_url_pre)
-        set_scrape_fields_on_fail(story_params)
+        set_fields_on_fail(story_params)
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -77,13 +77,17 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
+    @meta_tagline = @story.editor_tagline  # story fields
+    @meta_location = @story.location_code
+    @meta_category = @story.category_code
+    @meta_story_category = @story.story_category
     @meta_type = @story.scraped_type
     @meta_author = @story.author
     @year = @story.story_year
     @month = @story.story_month
     @day = @story.story_date
 
-    @url1 = @story.urls.first
+    @url1 = @story.urls.first  # url fields
     @source_url_pre = @url1.url_full
     @base_domain = @url1.url_domain
     @title = @url1.url_title
@@ -91,7 +95,7 @@ class StoriesController < ApplicationController
     @meta_keywords = @url1.url_keywords
     @full_web_url = @url1.url_full
 
-    @image1 = @url1.images.first
+    @image1 = @url1.images.first  # image fields
     @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text}]
   end
 
@@ -156,7 +160,7 @@ class StoriesController < ApplicationController
 
   end
 
-  def set_scrape_fields_on_fail(hash)
+  def set_fields_on_fail(hash)
     @title = hash['urls_attributes']['0']['url_title']
     @meta_desc = hash['urls_attributes']['0']['url_desc']
     @meta_keywords = hash['urls_attributes']['0']['url_keywords']
