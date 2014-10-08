@@ -20,6 +20,13 @@
   color:#ffffff;
 }
 
+.navbar-sap .nav > li > a:focus,
+.navbar-sap .nav > li > a:hover {
+  color: white;  /* change the hover font color */
+  text-decoration: none;
+  background-color: #3D3D3D;  /* change the hover background color */
+}
+
 /* style the header */
 .container-fluid {
   margin-top: 10px;
