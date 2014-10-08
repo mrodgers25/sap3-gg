@@ -27,7 +27,8 @@
 
                 <% story.urls.each do |u| %>
 
-                  <p style="margin-bottom: 2%"><% u.images.each do |i| %>
+                  <p style="margin-bottom: 2%">
+                        <% u.images.each do |i| %>
                         <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
                         <% end %>
                   </p>

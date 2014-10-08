@@ -32,4 +32,5 @@ group :development do
   gem 'rails_layout'
   gem 'pry'
   gem 'railroady'
+  gem 'bullet'
 end
