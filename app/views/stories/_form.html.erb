@@ -72,7 +72,9 @@
                               </div>
                             <% end %>
                             <div class="col-md-2">
-                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %>
+                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %><br>
+                              <% size = hash["image_width"].to_s + " x " + hash["image_height"].to_s %>Size:
+                              <%= i.label( :src_url, size, :style => "font-weight:normal") %>
                             </div>
                             <div class="col-md-2">
                               <%= image_tag(hash["src_url"], width: "250") %><br>

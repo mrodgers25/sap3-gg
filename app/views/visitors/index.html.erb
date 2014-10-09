@@ -13,43 +13,52 @@
     <% end %>
 <% end %>
 
-<div class="jumbotron text-center">
-  <p class="text-primary" style="line-height: 120%; display:inline; font-size:1.9em;">Professionally authored and curated<br>
-    stories as an alternative to user-contributed content<br>
-    to discover great places to eat, drink, stay, and enjoy life</p>
-</div>
+<div class="form-group">
+  <div class="panel panel-default">
+    <div class="panel-body">
 
-<div class="container">
-  <div class="row bottom-align" style="font-family: Source Sans Pro">
+    <div class="container">
 
-        <% @stories.each do |story| %>
-            <div class="col-lg-4 text-left">
+      <p class="text-primary" style="line-height: 120%; font-size:1.7em; text-align: center; padding-top: 5%">Professionally authored and curated<br>
+        stories as an alternative to user-contributed content<br>
+        to discover great places to eat, drink, stay, and enjoy life</p><br>
 
-                <% story.urls.each do |u| %>
 
-                  <p style="margin-bottom: 2%">
-                        <% u.images.each do |i| %>
-                        <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+      <div class="row" style="font-family: Source Sans Pro">
+
+
+
+            <% @stories.each do |story| %>
+                <div class="col-lg-4 text-left">
+
+                    <% story.urls.each do |u| %>
+
+                      <p style="margin-bottom: 2%">
+                            <% u.images.each do |i| %>
+                            <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+                            <% end %>
+                      </p>
+                      <% if story.editor_tagline.present? %><em>
+                        <p style="font-family: Arial Narrow; margin-bottom: 2%"><%= story.editor_tagline %></p></em>
+                      <% end %>
+                      <p style="font-size:1.1em; font-weight: bold; display: inline">
+                        <%= u.url_title %>
+                      </p>
+                      <p class="text-muted" style="margin-bottom: 2%">
+                        <% if story.author.present? %>
+                          by <%= story.author %>&nbsp;&nbsp;
                         <% end %>
-                  </p>
-                  <% if story.editor_tagline.present? %><em>
-                    <p style="font-family: Arial Narrow; margin-bottom: 2%"><%= story.editor_tagline %></p></em>
-                  <% end %>
-                  <p style="font-size:1.1em; font-weight: bold; display: inline">
-                    <%= u.url_title %>
-                  </p>
-                  <p class="text-muted" style="margin-bottom: 2%">
-                    <% if story.author.present? %>
-                      by <%= story.author %>&nbsp;&nbsp;
-                    <% end %>
-                    <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
-                    <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
-                    <% slash_date = mmddyy ? mmddyy : mmyy %>
-                    <%= "#{slash_date}" %><br>
-                  </p>
-                  <p><%= u.url_desc.truncate(250, :separator => ' ') %></p><br>
-                <% end %><br>
-            </div>
-        <% end %>
+                        <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
+                        <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
+                        <% slash_date = mmddyy ? mmddyy : mmyy %>
+                        <%= "#{slash_date}" %><br>
+                      </p>
+                      <p><%= u.url_desc.truncate(250, :separator => ' ') %></p><br>
+                    <% end %><br>
+                </div>
+            <% end %>
+      </div>
+    </div>
+    </div>
   </div>
 </div>

@@ -68,7 +68,11 @@
     <strong>Image: </strong>
     <%= truncate(i.src_url, :length => 100) %>&nbsp;&nbsp;<br>
     <strong>Image Text: </strong>
-    <%= truncate(i.alt_text, :length => 100) %>&nbsp;&nbsp;<br><br>
+    <%= truncate(i.alt_text, :length => 100) %>&nbsp;&nbsp;<br>
+    <strong>Image Width: </strong>
+    <%= i.image_width %>&nbsp;&nbsp;<br>
+    <strong>Image Height: </strong>
+    <%= i.image_height %>&nbsp;&nbsp;<br><br>
   <% end %>
 </div>
 <% end %>
