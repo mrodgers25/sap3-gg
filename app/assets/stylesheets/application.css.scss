@@ -27,7 +27,14 @@
   background-color: #3D3D3D;  /* change the hover background color */
 }
 a {
-  color: inherit;
+  color: inherit;  /* allows font-color to override bootstrap */
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #fff;
+  color: #737373;
+  text-decoration: none;
 }
 
 /* style the header */
