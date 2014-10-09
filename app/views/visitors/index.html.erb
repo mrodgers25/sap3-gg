@@ -33,8 +33,8 @@
                             <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
                             <% end %>
                       </p>
-                      <% if story.editor_tagline.present? %><em>
-                        <p style="font-family: Arial Narrow; margin-bottom: 2%"><%= story.editor_tagline %></p></em>
+                      <% if story.editor_tagline.present? %>
+                        <p style="font-family: Arial Narrow; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
                       <% end %>
                       <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
                         <%= link_to u.url_title, u.url_full, target: '_blank' %>

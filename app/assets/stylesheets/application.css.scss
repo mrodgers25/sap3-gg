@@ -31,6 +31,11 @@ a {
   background-color: inherit;
 }
 
+a:visited {
+  color: inherit;  /* allows font-color to override bootstrap */
+  background-color: inherit;
+}
+
 a:hover {
   background-color: #fff;
   color: #3366FF;
