@@ -23,10 +23,7 @@
         stories as an alternative to user-contributed content<br>
         to discover great places to eat, drink, stay, and enjoy life</p><br>
 
-
       <div class="row" style="font-family: Source Sans Pro">
-
-
 
             <% @stories.each do |story| %>
                 <div class="col-lg-4 text-left">
@@ -41,8 +38,8 @@
                       <% if story.editor_tagline.present? %><em>
                         <p style="font-family: Arial Narrow; margin-bottom: 2%"><%= story.editor_tagline %></p></em>
                       <% end %>
-                      <p style="font-size:1.1em; font-weight: bold; display: inline">
-                        <%= u.url_title %>
+                      <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
+                        <%= link_to u.url_title, u.url_full, target: '_blank' %>
                       </p>
                       <p class="text-muted" style="margin-bottom: 2%">
                         <% if story.author.present? %>
