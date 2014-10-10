@@ -67,6 +67,7 @@ a:hover {
 .row-centered {
   text-align:center;
 }
+
 .col-centered {
   display:inline-block;
   float:none;
@@ -75,6 +76,7 @@ a:hover {
   /* inline-block space fix */
   margin-right:-4px;
 }
+
 
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
 
