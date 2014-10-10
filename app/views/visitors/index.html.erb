@@ -19,10 +19,10 @@
 
     <div class="container" style="margin-top: 2%">
 
-      <div class="row" style="font-family: Source Sans Pro">
+      <div class="row row-centered" style="font-family: Source Sans Pro">
 
             <% @stories.each do |story| %>
-                <div class="col-lg-4 text-left">
+                <div class="col-lg-4 col-centered text-left">
 
                     <% story.urls.each do |u| %>
 
@@ -32,15 +32,13 @@
                                 <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
 
                             <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %>
-                            <%= "#{number_with_precision(image_prop, precision: 2)}" %><br>
+                            <% @image_adj = (0.7 - (image_prop ||= 0.7).round(1)) * 1000 %>
 
                             <% end %>
                       </p>
                       <% if story.editor_tagline.present? %>
-                        <p style="font-family: Arial Narrow; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
+                        <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
                       <% end %>
-                      <% title_line_count = u.url_title.size / 26 %>
-                      title line count = <%= "#{title_line_count.ceil}" %><br>
                       <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
                         <%= link_to u.url_title, u.url_full, target: '_blank' %>
                       </p>
@@ -53,17 +51,30 @@
                         <% slash_date = mmddyy ? mmddyy : mmyy %>
                         <%= "#{slash_date}" %><br>
                       </p>
-                      <% desc_line_count = u.url_desc.size / 46 %>
-                      desc line count = <%= "#{desc_line_count.ceil}" %><br>
-                      <p><%= u.url_desc %></p><br>
-                      <%# u.url_desc.truncate(250, :separator => ' ') %>
 
-                      <% br_repeat = 5 %>
-                      <% image_padding = "" %>
-                      <%= "#{br_repeat}.times { image_padding << '<br>' }" %>
-                      <%= "padding is: #{image_padding} " %>
+                      <% desc_trunc = 300 - @image_adj %>
+                      <p><%= u.url_desc.truncate(desc_trunc, :separator => ' ') %></p>
 
-                    <% end %><br>
+                      <% if false %>
+
+                          <% title_line_count = u.url_title.size / 26 %>
+                          title line count = <%= "#{title_line_count.ceil}" %><br>
+
+                          <% desc_line_count = u.url_desc.size / 46 %>
+                          <% title_desc_line_count = title_line_count + desc_line_count %>
+                          <% textline_px_adj = title_desc_line_count / 2 * 100 %>
+                          textline count = <%= "#{title_desc_line_count.ceil}" %>&nbsp;
+                          textline px adj = <%= "#{textline_px_adj.round}" %><br>
+                          <% story_px_padding = 200 - ( @image_adj + textline_px_adj ) %>
+                          <%= "img px adj: #{@image_adj.round} " %>
+                          <%= "padding px: #{story_px_padding.round} " %><br><br>
+                          trunc desc at: <%= desc_trunc_char = u.url_desc.size + (( story_px_padding / 100 ) * 92 ) %>
+                          <p><%= u.url_desc.truncate(desc_trunc_char, :separator => ' ') %></p>
+                          <%= desc_px_padding = (desc_trunc_char - u.url_desc.size > 0 ? ( desc_trunc_char - u.url_desc.size  ) : 0) %>
+                          <%= raw("<p style='margin-bottom: #{desc_px_padding.round}px'></p>") %>
+                      <% end %>
+
+                <% end %><br>
                 </div>
             <% end %>
       </div>

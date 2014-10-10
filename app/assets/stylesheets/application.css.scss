@@ -54,5 +54,27 @@ a:hover {
   max-width: 1600px; /* or 950px */
 }
 
+.row{
+  overflow: hidden;
+}
+
+[class*="col-"]{
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
+}
+
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
 
