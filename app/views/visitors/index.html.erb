@@ -28,12 +28,19 @@
 
                       <p style="margin-bottom: 2%">
                             <% u.images.each do |i| %>
-                            <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+
+                                <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+
+                            <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %>
+                            <%= "#{number_with_precision(image_prop, precision: 2)}" %><br>
+
                             <% end %>
                       </p>
                       <% if story.editor_tagline.present? %>
                         <p style="font-family: Arial Narrow; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
                       <% end %>
+                      <% title_line_count = u.url_title.size / 26 %>
+                      title line count = <%= "#{title_line_count.ceil}" %><br>
                       <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
                         <%= link_to u.url_title, u.url_full, target: '_blank' %>
                       </p>
@@ -46,7 +53,16 @@
                         <% slash_date = mmddyy ? mmddyy : mmyy %>
                         <%= "#{slash_date}" %><br>
                       </p>
-                      <p><%= u.url_desc.truncate(250, :separator => ' ') %></p><br>
+                      <% desc_line_count = u.url_desc.size / 46 %>
+                      desc line count = <%= "#{desc_line_count.ceil}" %><br>
+                      <p><%= u.url_desc %></p><br>
+                      <%# u.url_desc.truncate(250, :separator => ' ') %>
+
+                      <% br_repeat = 5 %>
+                      <% image_padding = "" %>
+                      <%= "#{br_repeat}.times { image_padding << '<br>' }" %>
+                      <%= "padding is: #{image_padding} " %>
+
                     <% end %><br>
                 </div>
             <% end %>
