@@ -32,7 +32,7 @@
                                 <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
 
                             <%= image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %>
-                            <%= @desc_trunc = 220 + ((0.7 - (image_prop ||= 0.7).round(1)) * 1000) %>
+                            <%= @desc_trunc = 500 + ((0.7 - (image_prop ||= 0.7)) * 1000) %>
 
                             <% end %>
                       </p>
