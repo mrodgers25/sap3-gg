@@ -1,10 +1,10 @@
 require 'domainatrix'
 require 'screen_scraper'
 ## TODO: not sure why you are requiring the following libraries ?
-require 'uri'
-require 'socket'
-require 'net/http'
-require 'net/protocol'
+# require 'uri'
+# require 'socket'
+# require 'net/http'
+# require 'net/protocol'
 
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
@@ -16,7 +16,6 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     @stories = Story.order("id DESC").all
-    # render text: self._process_action_callbacks
   end
 
   # GET /stories/1

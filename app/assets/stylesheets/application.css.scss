@@ -26,6 +26,7 @@
   text-decoration: none;
   background-color: #3D3D3D;  /* change the hover background color */
 }
+
 a {
   color: inherit;  /* allows font-color to override bootstrap */
   background-color: inherit;
@@ -58,15 +59,15 @@ a:hover {
   overflow: hidden;
 }
 
-[class*="col-"]{
-  margin-bottom: -99999px;
-  padding-bottom: 99999px;
-}
+//[class*="col-"]{
+//  margin-bottom: -99999px;
+//  padding-bottom: 99999px;
+//}
 
 /* centered columns styles */
-.row-centered {
-  text-align:center;
-}
+//.row-centered {
+//  text-align:center;
+//}
 
 .col-centered {
   display:inline-block;
