@@ -13,7 +13,7 @@ class VisitorsController < ApplicationController
     unless @stories.first.nil?
       @urls = @stories.first.urls.includes(:images)
     else
-      flash.now.alert = "Story not found"
+      flash.now.alert = "No Stories found"
     end
     @images = @urls.first.images unless @urls.nil?
 
