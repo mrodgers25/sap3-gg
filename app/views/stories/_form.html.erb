@@ -115,8 +115,8 @@
                     :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place  Categories" data-html="true" data-trigger="focus"
-                                       data-content= "<%= raw category_options %>" >Place Categories&nbsp;&nbsp;
-                    <%= f.text_field :place_category, :value => @meta_category, :onkeyup => "this.value = this.value.toUpperCase();",
+                                       data-content= "<%= raw place_category_options %>" >Place Categories&nbsp;&nbsp;
+                    <%= f.text_field :place_category, :value => @meta_place, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 30 %></span>
             </td>
             <td></td>

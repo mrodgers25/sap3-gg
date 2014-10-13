@@ -5,9 +5,9 @@ class VisitorsController < ApplicationController
     # @stories = Story.story_place_code(params[:story_place_code]) if params[:story_place_code].present?
     # @stories = Story.story_place_code(params[:story_place_code]).order("id DESC").limit(36).includes(:urls).limit(36) if params[:story_place_code].present?
     # @stories_pre = Story.order("id DESC").limit(36).includes(:urls).limit(36)
-    if params[:story_place_category].present?
-      if params[:story_place_category].size == 2
-        @stories = Story.order("id DESC").limit(36).includes(:urls).story_place_category(params[:story_place_category])
+    if params[:user_place_category].present?
+      if params[:user_place_category].size == 2
+        @stories = Story.order("id DESC").limit(36).includes(:urls).selected_category(params[:user_place_category])
       else
         flash.now.alert = "Place category must be two characters to filter stories"
         return
@@ -21,7 +21,13 @@ class VisitorsController < ApplicationController
       flash.now.alert = "No Stories found"
     end
     @images = @urls.first.images unless @urls.nil?
-
+    # binding.pry
   end
 
+private
+
+  def visitor_params
+    params.require(:visitor).permit(:selected_category, :user_place_category)
+  end
 end
+

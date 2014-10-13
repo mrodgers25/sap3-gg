@@ -13,13 +13,13 @@ module ApplicationHelper
                         ​<strong>TX-Austin (AUST)</strong>​<br>"
   end
 
-  def category_options
-    category_options = "​<strong>(A) Attraction</strong>​<br>
+  def place_category_options
+    place_category_options = "​<strong>(A) Attraction</strong>​<br>
                         ​<strong>(FD) Food & Drink</strong>​<br>
                         ​<strong>(L) Lodging</strong>​<br>
                         ​<strong>(SH) Shopping</strong>​<br>
-                        ​<strong>(SR) Services</strong>​<br>
-                        ​<strong>(SP) Sports & Activities</strong>​"
+                        ​<strong>(SR) Service</strong>​<br>
+                        ​<strong>(SP) Sport or Activity</strong>​"
   end
 
   def story_category_options

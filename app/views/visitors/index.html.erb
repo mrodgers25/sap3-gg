@@ -1,24 +1,13 @@
-<% if false %>
-    <% if user_signed_in? %>
-        <% if current_user.admin? %>
-            <h3>Admin</h3>
-            <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
-        <% else %>
-            <h3>You've signed up. Download a free book.</h3>
-            <%= link_to 'Download PDF', products_path('product.pdf'), :class => 'btn btn-success btn-large' %>
-        <% end %>
-    <% else %>
-        <h3>Sign up and download a free book.</h3>
-        <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
-    <% end %>
-<% end %>
-
 <div class="form-group">
   <div class="panel panel-default">
     <div class="panel-body">
 
     <div class="container" style="margin-top: 2%">
-
+      <div class="text-right" style="font-size:1.5em">
+        <%= select_tag :user_place_category, options_for_select([['All',''],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \
+                                                                    ['Shopping','S'],['Service','SR'],['Sport or Activity','SP']]) %>&nbsp;
+        <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', :controller => "visitors", :action => "index", :method => "get" %>
+      </div>
       <div class="row row-centered" style="font-family: Source Sans Pro">
 
             <% @stories.each do |story| %>
@@ -65,6 +54,22 @@
 </div>
 
 <% if false %>
+
+    <% if false %>
+        <% if user_signed_in? %>
+            <% if current_user.admin? %>
+                <h3>Admin</h3>
+                <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
+            <% else %>
+                <h3>You've signed up. Download a free book.</h3>
+                <%= link_to 'Download PDF', products_path('product.pdf'), :class => 'btn btn-success btn-large' %>
+            <% end %>
+        <% else %>
+            <h3>Sign up and download a free book.</h3>
+            <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+        <% end %>
+    <% end %>
+
 
     <% title_line_count = u.url_title.size / 26 %>
     title line count = <%= "#{title_line_count.ceil}" %><br>

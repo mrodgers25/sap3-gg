@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :urls
   resources :images
 
-  root to: 'visitors#index'
+  root to: 'visitors#index', via: [:get, :post]  #added by gg
   get 'products/:id', to: 'products#show', :as => :products
   devise_for :users
   resources :users

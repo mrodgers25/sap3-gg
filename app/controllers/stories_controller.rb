@@ -16,7 +16,6 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     @stories = Story.order("id DESC").all
-    # render text: self._process_action_callbacks
   end
 
   # GET /stories/1
