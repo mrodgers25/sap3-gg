@@ -10,8 +10,12 @@ class VisitorsController < ApplicationController
     else
       @stories = Story.order("id DESC").limit(36).includes(:urls).limit(36)
     end
-    @urls = @stories.first.urls.includes(:images)
-    @images = @urls.first.images
+    unless @stories.first.nil?
+      @urls = @stories.first.urls.includes(:images)
+    else
+      flash.now.alert = "Story not found"
+    end
+    @images = @urls.first.images unless @urls.nil?
 
   end
 

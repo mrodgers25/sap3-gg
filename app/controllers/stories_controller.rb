@@ -1,10 +1,10 @@
 require 'domainatrix'
 require 'screen_scraper'
 ## TODO: not sure why you are requiring the following libraries ?
-# require 'uri'
-# require 'socket'
-# require 'net/http'
-# require 'net/protocol'
+require 'uri'
+require 'socket'
+require 'net/http'
+require 'net/protocol'
 
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
@@ -16,6 +16,7 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     @stories = Story.order("id DESC").all
+    # render text: self._process_action_callbacks
   end
 
   # GET /stories/1
@@ -184,11 +185,11 @@ class StoriesController < ApplicationController
       image_data_hash = JSON.parse(image_data)
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["image_width"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_height"]= image_data_hash["image_height"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["src_url"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"][""]= image_data_hash["alt_text"]
     end
     story_params
-    # binding.pry
+    binding.pry
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
