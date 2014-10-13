@@ -4,7 +4,7 @@
     <div class="panel-body">
 
     <div class="container" style="margin-top: 2%">
-      <div class="text-right" style="font-size:1.5em; margin-bottom: 2%">
+      <div class="text-right" style="font-size:1.5em; margin-bottom: 1%">
         <%= select_tag :user_place_category, options_for_select([['All',nil],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \
                                                                     ['Shopping','S'],['Service','SR'],['Sport or Activity','SP']], params[:user_place_category]) %>&nbsp;
         <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', :method => "post" %>
