@@ -114,9 +114,9 @@
                     <%= f.text_field :location_code, :value => @meta_location, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place Category Codes" data-html="true" data-trigger="focus"
+                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place  Categories" data-html="true" data-trigger="focus"
                                        data-content= "<%= raw category_options %>" >Place Categories&nbsp;&nbsp;
-                    <%= f.text_field :category_code, :value => @meta_category, :onkeyup => "this.value = this.value.toUpperCase();",
+                    <%= f.text_field :place_category, :value => @meta_category, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 30 %></span>
             </td>
             <td></td>

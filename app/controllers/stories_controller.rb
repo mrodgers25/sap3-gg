@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     @meta_tagline = @story.editor_tagline  # story fields
     @meta_location = @story.location_code
-    @meta_category = @story.category_code
+    @meta_place = @story.place_category
     @meta_story_category = @story.story_category
     @meta_type = @story.scraped_type
     @meta_author = @story.author
@@ -166,7 +166,7 @@ class StoriesController < ApplicationController
     @meta_keywords = hash['urls_attributes']['0']['url_keywords']
     @meta_tagline = hash["editor_tagline"]
     @meta_location = hash["location_code"]
-    @meta_category = hash["category_code"]
+    @meta_place = hash["place_category"]
     @meta_story_category = hash["story_category"]
     @meta_type = hash["story_type"]
     @meta_author = hash["author"]
@@ -196,7 +196,7 @@ class StoriesController < ApplicationController
   def story_params
     params.require(:story).permit(
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :story_year, :editor_tagline,
-      :location_code, :category_code, :story_category, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
+      :location_code, :place_category, :story_category, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
