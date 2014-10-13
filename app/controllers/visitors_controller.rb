@@ -6,12 +6,7 @@ class VisitorsController < ApplicationController
     # @stories = Story.story_place_code(params[:story_place_code]).order("id DESC").limit(36).includes(:urls).limit(36) if params[:story_place_code].present?
     # @stories_pre = Story.order("id DESC").limit(36).includes(:urls).limit(36)
     if params[:user_place_category].present?
-      if params[:user_place_category].size == 2
-        @stories = Story.order("id DESC").limit(36).includes(:urls).selected_category(params[:user_place_category])
-      else
-        flash.now.alert = "Place category must be two characters to filter stories"
-        return
-      end
+      @stories = Story.order("id DESC").limit(36).includes(:urls).user_place_category(params[:user_place_category])
     else
       @stories = Story.order("id DESC").limit(36).includes(:urls).limit(36)
     end
@@ -26,8 +21,5 @@ class VisitorsController < ApplicationController
 
 private
 
-  def visitor_params
-    params.require(:visitor).permit(:selected_category, :user_place_category)
-  end
 end
 
