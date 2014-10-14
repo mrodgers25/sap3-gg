@@ -13,12 +13,22 @@
 
   <div class="field">
     <%= f.label :src_url %><br>
-    <%= f.text_field :src_url %>
+    <%= f.text_area :src_url, :cols => 150 %>
   </div>
 
   <div class="field">
     <%= f.label :alt_text %><br>
-    <%= f.text_field :alt_text %>
+    <%= f.text_area :alt_text, :cols => 150  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_width %><br>
+    <%= f.text_field :image_width  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_height %><br>
+    <%= f.text_field :image_height %>
   </div>
 
   <div class="actions">
