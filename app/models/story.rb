@@ -3,7 +3,9 @@ class Story < ActiveRecord::Base
   accepts_nested_attributes_for :urls
   validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
+  scope :user_location_code, -> (user_location_code) { where("location_code like ?", "%#{user_location_code.upcase}%")}
   scope :user_place_category, -> (user_place_category) { where("place_category like ?", "%#{user_place_category.upcase}%")}
+  scope :user_story_category, -> (user_story_category) { where("story_category like ?", "%#{user_story_category.upcase}%")}
 
   attr_accessor :source_url_pre, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 

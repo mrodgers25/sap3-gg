@@ -34,4 +34,12 @@ $(document).ready(function() {
     $('.has-popover').popover({
         trigger: 'hover'
     });
+
+//    sample js to submit on place category change; not needed when more than one select
+//    $('select#user_place_category').on('change', function(){
+//        var mySelect = $(this);
+//        mySelect.parents('form').submit();
+//    });
+
 });
+
