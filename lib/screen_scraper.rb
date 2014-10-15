@@ -64,13 +64,14 @@ class ScreenScraper
     alpha_date_match_pos = 0  # try to locate alpha date format
     alpha_date_match = nil
     alpha_month_num = nil
-    alpha_date_regex = /(?x)(?i)  # turn on free spacing to allow spaces & comments and turn off case sensitive
-                        (?<month>jan(?>uary|\.)?\s|feb(?>ruary|\.)?\s|mar(?>ch|\.)?\s|apr(?>il|\.)?\s|may\s|jun(?>e|\.)?\s|  # first six months
-                        jul(?>y|\.)?\s|aug(?>ust|\.)?\s|sep(?>tember|\.)?\s|oct(?>ober|\.)?\s|nov(?>ember|\.)?\s|dec(?>ember|\.)?\s)  # second six months
+    alpha_date_regex = /(?x)(?i)  # turns on free spacing to allow spaces & comments and turn off case sensitive
+                        (?<month>jan(?>uary|\.)?\s|feb(?>ruary|\.)?\s|mar(?>ch|\.)?\s|apr(?>il|\.)?\s|may\s|jun(?>e|\.)?\s|  # process first six months
+                        jul(?>y|\.)?\s|aug(?>ust|\.)?\s|sep(?>tember|\.)?\s|oct(?>ober|\.)?\s|nov(?>ember|\.)?\s|dec(?>ember|\.)?\s)  # process second six months
                         (?<day>\d{1,2})?(,|,\s|\s)?  # optional day and separators
                         (?<year>\d{4})/  # four digit year
     unless alpha_date_regex.match(@clean_text).nil?
       alpha_date_match = alpha_date_regex.match(@clean_text)
+      # puts "alpha date match is: #{alpha_date_match}"
       alpha_date_match_pos = (alpha_date_regex =~ @clean_text)
       alpha_month = alpha_date_match[:month].strip.downcase
       alpha_month_num = set_alpha_month_num(alpha_month)
@@ -146,29 +147,29 @@ class ScreenScraper
 
   def set_alpha_month_num(alpha_month)
     case alpha_month
-      when 'jan','january'
+      when 'jan','jan.','january'
        1
-      when 'feb','february'
+      when 'feb','feb.','february'
        2
-      when 'mar','march'
+      when 'mar','mar.','march'
        3
-      when 'apr','april'
+      when 'apr','apr.','april'
        4
-      when 'may'
+      when 'may','may.'
        5
-      when 'jun','june'
+      when 'jun','jun.','june'
        6
-      when 'jul','july'
+      when 'jul','jul.','july'
        7
-      when 'aug','august'
+      when 'aug','aug.','august'
        8
-      when 'sep','september'
+      when 'sep','sep.','september'
        9
-      when 'oct','october'
+      when 'oct','oct.','october'
        10
-      when 'nov','november'
+      when 'nov','nov.','november'
        11
-      when 'dec','december'
+      when 'dec','dec.','december'
        12
       else
        99
@@ -176,18 +177,21 @@ class ScreenScraper
   end
 
   def set_itemprop_pub_date(itemprop_pub_date_match)
+    puts "set_itemprop_pub_date"
     @year = itemprop_pub_date_match[:iyear].to_i
     @month = itemprop_pub_date_match[:imonth].to_i
     @day = itemprop_pub_date_match[:iday].to_i
   end
 
   def set_num_date(num_date_match)
+    puts "set_num_date"
     @month = num_date_match[:dmonth].to_i
     @day = num_date_match[:dday].to_i
     @year = num_date_match[:dyear].to_i
   end
 
   def set_alpha_date(alpha_month_num, alpha_date_match)
+    puts "set_alpha_date"
     @month = alpha_month_num.to_i
     @day = alpha_date_match[:day].to_i
     @year = alpha_date_match[:year].to_i
