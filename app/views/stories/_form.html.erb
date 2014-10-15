@@ -158,5 +158,5 @@
     <%= debug(params) if Rails.env.development? %>
     <%= debug(flash) if Rails.env.development? %>
 
-    <iframe class="embed-responsive-item" sandbox="allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
+    <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
 <% end %>
