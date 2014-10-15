@@ -188,7 +188,7 @@ class StoriesController < ApplicationController
       story_params["urls_attributes"]["0"]["images_attributes"]["0"][""]= image_data_hash["alt_text"]
     end
     story_params
-    binding.pry
+    # binding.pry
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
