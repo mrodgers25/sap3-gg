@@ -184,8 +184,8 @@ class StoriesController < ApplicationController
       image_data_hash = JSON.parse(image_data)
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["src_url"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"][""]= image_data_hash["alt_text"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["image_width"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_height"]= image_data_hash["image_height"]
     end
     story_params
     # binding.pry
