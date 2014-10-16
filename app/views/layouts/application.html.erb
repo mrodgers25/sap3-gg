@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= favicon_link_tag 'favicon.ico' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Stories about Places" %></title>
     <meta name="Stories About Places" content="<%= content_for?(:description) ? yield(:description) : "Stories About Places" %>">
