@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :stories #original from generate
   resources :urls
   resources :images
+  resources :visitors
 
   root to: 'visitors#index', via: [:get, :post]  #added by gg
   get 'products/:id', to: 'products#show', :as => :products

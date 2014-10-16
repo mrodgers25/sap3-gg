@@ -22,10 +22,9 @@
   </ul>
 </li>
 
-
 <% if user_signed_in? %>
-  <li><%= link_to 'Log out', destroy_user_session_path, :method=>'delete' %></li>
+  <li><%= link_to 'Log out', destroy_user_session_path, :method=>'delete', :class=>"btn btn-link btn-primary" %></li>
 <% else %>
-  <li><%= link_to 'Log in', new_user_session_path %></li>
+  <li><button type="button" class="btn btn-default navbar-btn btn-primary" data-toggle="modal" data-target="#responsive">Login</button></li>
 <% end %>
 
