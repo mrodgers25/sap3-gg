@@ -14,23 +14,19 @@
     <li><%= link_to 'Scrape', stories_scrape_path %></li>
     <li class="divider"></li>
     <li><%= link_to 'Stories List', stories_path %></li>
-    <li class="divider"></li>
     <li><%= link_to 'Urls List', urls_path %></li>
-    <li class="divider"></li>
     <li><%= link_to 'Images List', images_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+    <li><%= link_to 'Users', users_path %></li>
   </ul>
 </li>
 
 
 <% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
   <li><%= link_to 'Sign in', new_user_session_path %></li>
   <li><%= link_to 'Sign up', new_user_registration_path %></li>
 <% end %>
-<% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <li><%= link_to 'Users', users_path %></li>
-  <% end %>
-<% end %>
+
