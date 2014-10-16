@@ -1,16 +1,18 @@
 module ApplicationHelper
 
   def location_options
-    location_options = "<strong>CA-San Francisco (SF)</strong>​<br>
+    location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
                         ​<strong>CA-Los Angeles (LA)</strong>​<br>
                         ​<strong>CA-San Diego (SD)</strong>​<br>
                         <strong>IL-Chicago (CHI)</strong><br>
                         ​<strong>LA-New Orleans (NOLA)</strong><br>
                         ​<strong>MA-Boston (BOS)</strong>​<br>
+                        ​<strong>NV-Las Vegas (NV)</strong>​<br>
                         ​<strong>NY-New York City (NYC)</strong>​<br>
                         ​<strong>OR-Portland (PORT)</strong><br>
                         ​<strong>PA-Philadelphia (PHIL)</strong><br>
-                        ​<strong>TX-Austin (AUST)</strong>​<br>"
+                        ​<strong>TX-Austin (AUST)</strong>​<br>
+                        ​<strong>WA-Seattle (SEA)</strong>​<br>"
   end
 
   def place_category_options
@@ -33,7 +35,7 @@ module ApplicationHelper
 
   end
 
-  # add these three methods for devise access
+  # added these three methods for devise access by login modal
   def resource_name
     :user
   end
