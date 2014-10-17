@@ -25,9 +25,6 @@ class VisitorsController < ApplicationController
     # binding.pry
   end
 
-  def new
-
-  end
 
 private
 
