@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def location_options
     location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
+                        ​<strong>CA-San Francisco (SF)</strong>​<br>
                         ​<strong>CA-Los Angeles (LA)</strong>​<br>
                         ​<strong>CA-San Diego (SD)</strong>​<br>
                         <strong>IL-Chicago (CHI)</strong><br>
