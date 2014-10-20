@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
     @full_web_url = @url1.url_full
 
     @image1 = @url1.images.first  # image fields
-    @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text}]
+    @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text, 'image_width' => @image1.image_width, 'image_height' => @image1.image_height}]
   end
 
   # PATCH/PUT /stories/1
