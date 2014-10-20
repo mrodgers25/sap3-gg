@@ -61,50 +61,77 @@
                       <strong>Choose an Image</strong><br><br>
                     <% end %>
 
-                    <% unless @page_imgs.nil? %>
-                      <% @page_imgs.each_with_index do |hash, idx| %>
-                          <div class="row">
-                            <% unless @image1 %>
-                              <div class="col-lg-1 text-right">
-                                <%= i.radio_button :image_data, hash.to_json %>
-                                <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
-                                <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                  <% if params[:action] != "edit" %>
+
+                      <% unless @page_imgs.nil? %>  <!-- display scraped images -->
+                          <% @page_imgs.each_with_index do |hash, idx| %>
+                              <div class="row">
+                                <% unless @image1 %>
+                                  <div class="col-lg-1 text-right">
+                                    <%= i.radio_button :image_data, hash.to_json %>
+                                    <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                                    <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                                  </div>
+                                <% end %>
+                                <div class="col-md-2">
+                                  <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %><br>
+                                  <% size = hash["image_width"].to_s + " x " + hash["image_height"].to_s %>Size:
+                                  <%= i.label( :src_url, size, :style => "font-weight:normal") %>
+                                </div>
+                                <div class="col-md-2">
+                                  <%= image_tag(hash["src_url"], width: "250") %><br>
+                                </div>
                               </div>
-                            <% end %>
-                            <div class="col-md-2">
-                              <%= i.label( :src_url, hash["alt_text"], :style => "font-weight:normal") %><br>
-                              <% size = hash["image_width"].to_s + " x " + hash["image_height"].to_s %>Size:
-                              <%= i.label( :src_url, size, :style => "font-weight:normal") %>
+                          <% end %>
+                      <% end %>
+
+                      <% unless @image1 %>   <!-- display prompt for manual image -->
+                          <div class="row-fluid"  style="border-top: 1px solid #BABFBA"><br>
+                            <div class="col-md-1">
+                              <%= i.label( :manual_url, "or Enter Manually") %>
                             </div>
-                            <div class="col-md-2">
-                              <%= image_tag(hash["src_url"], width: "250") %><br>
+                            <div class="col-md-1 text-right">
+                              URL<br><br>
+                            </div>
+                            <div class="col-md-10 text-left">
+                              <%= i.text_area :manual_url, :cols => 80 %><br>
+                            </div><br>
+                          </div>
+                          <div class="row-fluid">
+                            <div class="col-md-2 text-right">
+                              Width<br><br>
+                            </div>
+                            <div class="col-md-4 text-left">
+                              <%= i.text_field :image_width %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
+                              <%= i.text_field :image_height %><br>
                             </div>
                           </div>
                       <% end %>
+
+                  <% else %>
+
+                        <div class="row-fluid"><br> <!-- display db values on edit -->
+                          <div class="col-md-1">
+                          </div>
+                          <div class="col-md-1 text-right">
+                            URL<br><br>
+                          </div>
+                          <div class="col-md-10 text-left">
+                            <%= i.text_area :src_url, :cols => 80 %><br>
+                          </div><br>
+                        </div>
+                        <div class="row-fluid">
+                          <div class="col-md-2 text-right">
+                            Width<br><br>
+                          </div>
+                          <div class="col-md-4 text-left">
+                            <%= i.text_field :image_width %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
+                            <%= i.text_field :image_height %><br>
+                          </div>
+                        </div>
+
                     <% end %>
 
-                    <% unless @image1 %>
-                      <div class="row-fluid"  style="border-top: 1px solid #BABFBA"><br>
-                        <div class="col-md-1">
-                          <%= i.label( :manual_url, "or Enter Manually") %>
-                        </div>
-                        <div class="col-md-1 text-right">
-                          URL<br><br>
-                        </div>
-                        <div class="col-md-10 text-left">
-                          <%= i.text_area :manual_url, :cols => 80 %><br>
-                        </div><br>
-                      </div>
-                      <div class="row-fluid">
-                        <div class="col-md-2 text-right">
-                          Width<br><br>
-                        </div>
-                        <div class="col-md-4 text-left">
-                            <%= i.number_field :image_width, :value => hash["image_width"] %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
-                            <%= i.number_field :image_height %><br>
-                        </div>
-                      </div>
-                  <% end %>
                   </div>
                 </div></div>
             </div>
