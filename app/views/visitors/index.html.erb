@@ -6,7 +6,7 @@
       <div class="text-right" style="font-size:1.5em">
         <%= form_tag do %>
             <%= select_tag :user_location_code, options_for_select([['All Locations',nil],['AZ-Phoenix','PHX'],['CA-San Francisco','SF'],['CA-Los Angeles','LA'], \
-                                                                    ['CA-San Diego','SD'],['IL-Chicago','CHI'],['LA-New Orleans','NOLA'],['MA-Boston','BOS'], \
+                                                                    ['CA-San Diego','SD'],['IL-Chicago','CHI'],['DC-Washington','DC'],['LA-New Orleans','NOLA'],['MA-Boston','BOS'], \
                                                                     ['NV-Las Vegas','LV'],['NY-New York City','NYC'],['OR-Portland','PORT'],['PA-Philadelphia','PHIL'], \
                                                                     ['TX-Austin','AUST'],['WA-Seattle','WA']], params[:user_location_code]) %>&nbsp;
             <%= select_tag :user_place_category, options_for_select([['All Place Types',nil],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \

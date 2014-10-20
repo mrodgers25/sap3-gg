@@ -5,6 +5,7 @@ module ApplicationHelper
                         ​<strong>CA-San Francisco (SF)</strong>​<br>
                         ​<strong>CA-Los Angeles (LA)</strong>​<br>
                         ​<strong>CA-San Diego (SD)</strong>​<br>
+                        ​<strong>DC-Washington (DC)</strong>​<br>
                         <strong>IL-Chicago (CHI)</strong><br>
                         ​<strong>LA-New Orleans (NOLA)</strong><br>
                         ​<strong>MA-Boston (BOS)</strong>​<br>

@@ -1,0 +1,40 @@
+         <tr>
+            <td>Locations</td>
+            <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
+                                       data-content= "<strong>CA-San Francisco (SF)</strong>​<br>
+                        ​<strong>CA-Los Angeles (LA)</strong>​<br>
+                        ​<strong>CA-San Diego (SD)</strong>​<br>
+                        <strong>IL-Chicago (CHI)</strong><br>
+                        ​<strong>LA-New Orleans (NOLA)</strong><br>
+                        ​<strong>MA-Boston (BOS)</strong>​<br>
+                        ​<strong>NY-New York City (NYC)</strong>​<br>
+                        ​<strong>OR-Portland (PORT)</strong><br>
+                        ​<strong>PA-Philadelphia (PHIL)</strong><br>
+                        ​<strong>TX-Austin (AUST)</strong>​<br>" >
+                    <input id="story_location_code" name="story[location_code]" onkeyup="this.value = this.value.toUpperCase();" placeholder="Comma separated codes" size="50" type="text" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place Category Codes" data-html="true" data-trigger="focus"
+                                       data-content= "​<strong>(A) Attraction</strong>​<br>
+                        ​<strong>(FD) Food & Drink</strong>​<br>
+                        ​<strong>(L) Lodging</strong>​<br>
+                        ​<strong>(SH) Shopping</strong>​<br>
+                        ​<strong>(SR) Services</strong>​<br>
+                        ​<strong>(SP) Sports & Activities</strong>​" >Place Categories&nbsp;&nbsp;
+                    <input id="story_category_code" name="story[category_code]" onkeyup="this.value = this.value.toUpperCase();" placeholder="Comma separated codes" size="30" type="text" /></span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Story Categories</td>
+            <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Story Category Codes" data-html="true" data-trigger="focus"
+                       data-content= "<strong>(EP) Editor Picks</strong><br>
+                        ​<strong>(UN) More Unique Than Usual</strong>​<br>
+                        ​<strong>(TL) Top/Best/Coolest Lists</strong>​<br>
+                        ​<strong>(SI) Suggested Itineraries</strong>​<br>
+                        ​<strong>(FF) Family Friendly</strong>​<br>
+                        ​<strong>(IA) Industry Awards</strong>​<br>
+                        ​<strong>(PF) Pet Friendly</strong>​" >
+                    <input id="story_story_category" name="story[story_category]" onkeyup="this.value = this.value.toUpperCase();" placeholder="Comma separated codes" size="50" type="text" /></span>
+            </td>
+            <td></td>
+          </tr>
