@@ -31,8 +31,9 @@ module ApplicationHelper
                         ​<strong>(UN) More Unique Than Usual</strong>​<br>
                         ​<strong>(TL) Top/Best/Coolest Lists</strong>​<br>
                         ​<strong>(SI) Suggested Itineraries</strong>​<br>
-                        ​<strong>(FF) Family Friendly</strong>​<br>
                         ​<strong>(IA) Industry Awards</strong>​<br>
+                        ​<strong>(RO) Romance</strong>​<br>
+                        ​<strong>(FF) Family Friendly</strong>​<br>
                         ​<strong>(PF) Pet Friendly</strong>​"
 
   end

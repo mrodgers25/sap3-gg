@@ -12,7 +12,7 @@
             <%= select_tag :user_place_category, options_for_select([['All Place Types',nil],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \
                                                                         ['Shopping','S'],['Service','SR'],['Sport or Activity','SP']], params[:user_place_category]) %>&nbsp;
             <%= select_tag :user_story_category, options_for_select([['All Story Categories',nil],['Editor Picks','EP'],['More Unique Than Usual','UN'],['Top/Best/Coolest Lists','TL'], \
-                                                                        ['Suggested Itineraries','SI'],['Family Friendly','FF'], \
+                                                                        ['Suggested Itineraries','SI'],['Family Friendly','FF'],['Romance','RO'], \
                                                                         ['Industry Awards','IA'],['Pet Friendly','PF']], params[:user_story_category]) %>&nbsp;
             <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "margin-bottom: 5px; font-size: .8em" %>
         <% end %>
