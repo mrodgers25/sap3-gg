@@ -2,8 +2,7 @@ namespace :reports do
   desc "dump csv listing for story/urls/images for analysis"
   task csv_dump: :environment do
     require 'csv'
-
-    # file = File.expand_path('#{RAILS_ROOT}/tmp/story_listing.csv')
+    require 'sendgrid-ruby'
 
     file = Rails.root.join('tmp','story_listing.csv')
     puts "File will be #{file}"
@@ -21,7 +20,21 @@ namespace :reports do
         end
       end
     end
-     puts "Wrote csv file to #{file}"
+
+    client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
+
+    mail = SendGrid::Mail.new do |m|
+      m.to = 'ggehrich@gmail.com'
+      m.from = 'StoriesAboutPlaces.com'
+      m.subject = 'CSV Export'
+      m.text = 'Your latest export is attached.'
+    end
+
+    mail.add_attachment('#{file}')
+    
+    puts client.send(mail)
+
+    puts "Wrote csv file to #{file}"
   end
 
   desc "TODO"
