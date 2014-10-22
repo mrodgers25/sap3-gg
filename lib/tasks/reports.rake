@@ -30,8 +30,8 @@ namespace :reports do
       m.text = 'Your latest export is attached.'
     end
 
-    mail.add_attachment('#{file}')
-    
+    mail.add_attachment("#{file}")
+
     puts client.send(mail)
 
     puts "Wrote csv file to #{file}"
