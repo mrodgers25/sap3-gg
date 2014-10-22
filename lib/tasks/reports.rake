@@ -20,6 +20,7 @@ namespace :reports do
         end
       end
     end
+    puts "Wrote csv file to #{file}"
 
   end
 
