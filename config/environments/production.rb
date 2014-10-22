@@ -80,4 +80,24 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # railsapp instructions on setting up test emails using gmail
+  config.action_mailer.default_url_options = { :host => 'sap3-gg.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.net",
+      # address: "smtp.sendgrid.net",
+      port: 587,
+      domain: "sap3-gg.herokuapp.com",
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV["GMAIL_USERNAME"],
+      # user_name: ENV["SENDGRID_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
+      # password: ENV["SENDGRID_PASSWORD"]
+  }
+
 end
