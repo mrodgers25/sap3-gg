@@ -6,6 +6,7 @@ namespace :reports do
     # file = File.expand_path('#{RAILS_ROOT}/tmp/story_listing.csv')
 
     file = Rails.root.join('tmp','story_listing.csv')
+    puts "File will be #{file}"
 
     stories = Story.includes(:urls => [:images])
 
@@ -19,8 +20,7 @@ namespace :reports do
                 s.story_month_track, s.story_date_track, u.url_full]
         end
       end
-   rescue "Problem with the csv write"
-     end
+    end
      puts "Wrote csv file to #{file}"
   end
 
