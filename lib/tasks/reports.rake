@@ -19,9 +19,9 @@ namespace :reports do
                 s.story_month_track, s.story_date_track, u.url_full]
         end
       end
-    end
-    puts "Wrote csv file to #{file}"
-
+   rescue "Problem with the csv write"
+     end
+     puts "Wrote csv file to #{file}"
   end
 
   desc "TODO"
