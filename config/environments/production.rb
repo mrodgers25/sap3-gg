@@ -88,16 +88,16 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.net",
-      # address: "smtp.sendgrid.net",
+      # address: "smtp.gmail.net",
+      address: "smtp.sendgrid.net",
       port: 587,
       domain: "sap3-gg.herokuapp.com",
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: ENV["GMAIL_USERNAME"],
-      # user_name: ENV["SENDGRID_USERNAME"],
-      password: ENV["GMAIL_PASSWORD"]
-      # password: ENV["SENDGRID_PASSWORD"]
+      # user_name: ENV["GMAIL_USERNAME"],
+      user_name: ENV["SENDGRID_USERNAME"],
+      # password: ENV["GMAIL_PASSWORD"]
+      password: ENV["SENDGRID_PASSWORD"]
   }
 
 end
