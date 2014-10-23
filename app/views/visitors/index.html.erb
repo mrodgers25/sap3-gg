@@ -19,43 +19,43 @@
       </div>
       <div class="row row-centered" style="font-family: Source Sans Pro">
 
-            <% @stories.each do |story| %>
-                <div class="col-lg-4 col-centered text-left">
+        <% @stories.each do |story| %>
+            <div class="col-lg-4 col-centered text-left">
 
-                    <% story.urls.each do |u| %>
+                <% story.urls.each do |u| %>
 
-                      <p style="margin-bottom: 2%">
-                            <% u.images.each do |i| %>
+                  <p style="margin-bottom: 2%">
+                        <% u.images.each do |i| %>
 
-                                <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+                            <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
 
-                            <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
-                            <% @desc_trunc = 220 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length -->
-                            <% @desc_trunc = @desc_trunc < 75 ? 75 : @desc_trunc %> <!-- set min desc length to 75px -->
+                        <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
+                        <% @desc_trunc = 220 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length -->
+                        <% @desc_trunc = @desc_trunc < 75 ? 75 : @desc_trunc %> <!-- set min desc length to 75px -->
 
-                            <% end %>
-                      </p>
-                      <% if story.editor_tagline.present? %>
-                        <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
-                      <% end %>
-                      <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
-                        <%= link_to u.url_title, u.url_full, target: '_blank' %>
-                      </p>
-                      <p class="text-muted" style="margin-bottom: 2%">
-                        <% if story.author.present? %>
-                          by <%= story.author %>&nbsp;&nbsp;
                         <% end %>
-                        <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
-                        <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
-                        <% slash_date = mmddyy ? mmddyy : mmyy %>
-                        <%= "#{slash_date}" %><br>
-                      </p>
+                  </p>
+                  <% if story.editor_tagline.present? %>
+                    <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
+                  <% end %>
+                  <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
+                    <%= link_to u.url_title, u.url_full, target: '_blank' %>
+                  </p>
+                  <p class="text-muted" style="margin-bottom: 2%">
+                    <% if story.author.present? %>
+                      by <%= story.author %>&nbsp;&nbsp;
+                    <% end %>
+                    <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
+                    <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
+                    <% slash_date = mmddyy ? mmddyy : mmyy %>
+                    <%= "#{slash_date}" %><br>
+                  </p>
 
-                      <p><%= u.url_desc.truncate(@desc_trunc, :separator => ' ') %></p>
+                  <p><%= u.url_desc.truncate(@desc_trunc, :separator => ' ') %></p>
 
-                <% end %><br>
-                </div>
-            <% end %>
+            <% end %><br>
+            </div>
+        <% end %>
       </div>
     </div>
     </div>
