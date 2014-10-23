@@ -21,7 +21,7 @@ namespace :reports do
       end
     end
 
-    client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
+    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
     mail = SendGrid::Mail.new do |m|
       m.to = 'ggehrich@gmail.com'
