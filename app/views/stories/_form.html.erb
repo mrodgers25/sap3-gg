@@ -184,8 +184,9 @@
             <td>Story Date</td>
             <td><%= f.number_field :story_year, :value => @year, :placeholder => "yyyy", in: 2000...2020, :style => "text-align: center"  %>
               <%= f.number_field :story_month, :value => @month, :placeholder => "mm", in: 1...13, :style => "text-align: center"  %>
-              <%= f.number_field :story_date, :value => @day, :placeholder => "dd", in: 1...32, :style => "text-align: center" %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
+              <%= f.number_field :story_date, :value => @day, :placeholder => "dd", in: 1...32, :style => "text-align: center" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    SAP Publish Date–Time&nbsp;&nbsp;&nbsp;<%= f.datetime_select :sap_publish_date, use_month_numbers: true, include_blank: true %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
           </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>
           <%= f.hidden_field :raw_story_year_scrape, :value => @year %>
