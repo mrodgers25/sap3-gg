@@ -6,6 +6,8 @@ class ReportsController < ApplicationController
 
     file = Rails.root.join('tmp','story_listing.csv')
     puts "File will be #{file}"
+    logged_in_user_email = User.find(current_user).email
+    puts "User is #{logged_in_user_email}"
 
     stories = Story.includes(:urls => [:images])
 
