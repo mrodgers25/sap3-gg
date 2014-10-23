@@ -1,6 +1,6 @@
-namespace :reports do
-  desc "Export CSV listing for story/urls/images for analysis"
-  task csv_dump: :environment do
+class ReportsController < ApplicationController
+
+  def csv_export
     require 'csv'
     require 'sendgrid-ruby'
 
@@ -32,11 +32,6 @@ namespace :reports do
 
     mail.add_attachment("#{file}")
     puts client.send(mail)
-
-  end
-
-  desc "TODO"
-  task my_task2: :environment do
   end
 
 end
