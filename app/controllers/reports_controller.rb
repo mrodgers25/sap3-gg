@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
     mail = SendGrid::Mail.new do |m|
-      m.to = 'ggehrich@gmail.com'
+      m.to = "#{logged_in_user_email}"
       m.from = 'StoriesAboutPlaces.com'
       m.subject = 'CSV Export'
       m.text = 'Your latest export is attached.'
