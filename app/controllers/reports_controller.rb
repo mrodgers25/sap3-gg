@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
     mail.add_attachment("#{file}")
     puts client.send(mail)
 
-    redirect_to 'visitors/index'
+    redirect_to '/'
 
 end
 
