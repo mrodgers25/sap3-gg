@@ -32,6 +32,9 @@ class ReportsController < ApplicationController
 
     mail.add_attachment("#{file}")
     puts client.send(mail)
+
+    render 'visitors/index'
+
   end
 
 end
