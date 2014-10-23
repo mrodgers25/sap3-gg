@@ -37,7 +37,7 @@ class ReportsController < ApplicationController
 
     # redirect_to '/'
 
-    format.html { redirect_to '/', notice: "Export send to #{logged_in_user_email}"}
+    redirect_to root, notice: "Export sent to #{logged_in_user_email}"
 
 end
 
