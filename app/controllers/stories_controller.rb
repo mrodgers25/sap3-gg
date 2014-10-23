@@ -23,11 +23,8 @@ class StoriesController < ApplicationController
   # GET /stories/1.json
   def show
     @story = Story.find(params[:id])
-
-    # @urls = @story.urls.find(params[:id])
     @urls = @story.urls
     @images = @urls.first.images
-    # @images = @urls.images
   end
 
   # GET /stories/new
@@ -77,6 +74,8 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
+    @previous = Story.where("id < ?", params[:id]).order(:id).last
+    @next = Story.where("id > ?", params[:id]).order(:id).first
     @meta_tagline = @story.editor_tagline  # story fields
     @meta_location = @story.location_code
     @meta_place = @story.place_category

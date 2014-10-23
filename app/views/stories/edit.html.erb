@@ -1,4 +1,11 @@
 <h1>Editing story</h1>
+<% if @previous %>
+  <%= link_to '< Previous', edit_story_path(@previous) %> |
+<% end %>
+
+<% if @next %>
+  <%= link_to 'Next >', edit_story_path(@next) %>
+<% end %>
 
 <%= render 'form' %>
 
