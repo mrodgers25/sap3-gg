@@ -35,7 +35,9 @@ class ReportsController < ApplicationController
     mail.add_attachment("#{file}")
     puts client.send(mail)
 
-    redirect_to '/'
+    # redirect_to '/'
+
+    format.html { redirect_to '/', notice: "Export send to #{logged_in_user_email}"}
 
 end
 
