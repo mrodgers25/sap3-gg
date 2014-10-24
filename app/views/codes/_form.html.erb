@@ -1,0 +1,31 @@
+<%= form_for(@code) do |f| %>
+  <% if @code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@code.errors.count, "error") %> prohibited this code from being saved:</h2>
+
+      <ul>
+      <% @code.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="field">
+	  <%= f.label :code_type %>&nbsp;&nbsp;
+	  <%= f.text_field :code_type, maxlength: 50 %>
+	</div>
+	<div class="field">
+	  <%= f.label :code_key %>&nbsp;&nbsp;
+	  <%= f.text_field :code_key, maxlength: 50 %>
+	</div>
+	<div class="field">
+	  <%= f.label :code_value %>&nbsp;&nbsp;
+	  <%= f.text_field :code_value, maxlength: 50 %>
+	</div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,18 +11,16 @@
   <strong>Story Categories: </strong>
   <%= @story.story_category %><br>
   <strong>Entered: </strong>
-  <%= @story.created_at.strftime("%Y %m %d") %>
+  <%= @story.created_at.strftime("%Y %m %d") %>&nbsp;&nbsp;
   <strong>Scraped Type: </strong>
-  <%= @story.scraped_type %>
+  <%= @story.scraped_type %>&nbsp;&nbsp;
   <strong>Type: </strong>
-  <%= @story.story_type %>
+  <%= @story.story_type %>&nbsp;&nbsp;
   <strong>Author: </strong>
-  <%= @story.author %>
-  <strong>Published: YYYY </strong>
+  <%= @story.author %>&nbsp;&nbsp;
+  <strong>Media Published: </strong>
   <%= @story.story_year %>&nbsp;
-  <strong>MM </strong>
   <%= @story.story_month %>&nbsp;
-  <strong>DD </strong>
   <%= @story.story_date %><br>
   <strong>SAP Publish Dt: </strong>
   <%= @story.sap_publish_date %><br>

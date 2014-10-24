@@ -1,0 +1,11 @@
+<p id="notice" style="margin-top: 40px"><%= notice %></p>
+
+<strong>Code Type: </strong>
+<%= @code.code_type %><br>
+<strong>Code Key: </strong>
+<%= @code.code_key %><br>
+<strong>Code Value: </strong>
+<%= @code.code_value %><br>
+
+<%= link_to 'Edit', edit_code_path(@code) %> |
+<%= link_to 'Back', codes_path %>

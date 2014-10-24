@@ -1,0 +1,33 @@
+<h1>Listing codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Code Type</th>
+      <th>Code Key</th>
+      <th>Code Value&nbsp;&nbsp;</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @codes.each do |code| %>
+      <tr>
+        <td><%= code.id %>&nbsp;&nbsp;</td>
+        <td><%= code.code_type %>&nbsp;&nbsp;</td>
+        <td><%= code.code_key %>&nbsp;&nbsp;</td>
+        <td><%= code.code_value %>&nbsp;&nbsp;</td>
+
+
+        <td><%= link_to 'Show', code %>&nbsp;&nbsp;</td>
+        <td><%= link_to 'Edit', edit_code_path(code) %>&nbsp;&nbsp;</td>
+        <td><%= link_to 'Destroy', code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Code', new_code_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :codes
+
   resources :media_infos
 
   match 'stories/new' => 'stories#new', via: [:get, :post]  #added by gg
