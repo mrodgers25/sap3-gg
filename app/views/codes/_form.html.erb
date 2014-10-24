@@ -13,11 +13,11 @@
 
 	<div class="field">
 	  <%= f.label :code_type %>&nbsp;&nbsp;
-	  <%= f.text_field :code_type, maxlength: 50 %>
+	  <%= f.select :code_type, ['SAP_PUBLISH_SCHEDULER','LOCATION_CODE','PLACE_CATEGORY','STORY_CATEGORY'], maxlength: 50 %>
 	</div>
 	<div class="field">
 	  <%= f.label :code_key %>&nbsp;&nbsp;
-	  <%= f.text_field :code_key, maxlength: 50 %>
+	  <%= f.text_field :code_key, :onkeyup => "this.value = this.value.toUpperCase();", maxlength: 50 %>
 	</div>
 	<div class="field">
 	  <%= f.label :code_value %>&nbsp;&nbsp;
