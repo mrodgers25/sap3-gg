@@ -71,6 +71,8 @@
   <% @images.each do |i| %>
     <strong>Id: </strong>
     <%= i.id %>&nbsp;&nbsp;
+    <strong>Manual?: </strong>
+    <%= i.manual_enter %>&nbsp;&nbsp;
     <strong>Image: </strong>
     <%= truncate(i.src_url, :length => 100) %>&nbsp;&nbsp;<br>
     <strong>Image Text: </strong>

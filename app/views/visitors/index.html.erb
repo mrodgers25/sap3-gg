@@ -95,4 +95,6 @@
     <p><%= u.url_desc.truncate(desc_trunc_char, :separator => ' ') %></p>
     <%= desc_px_padding = (desc_trunc_char - u.url_desc.size > 0 ? ( desc_trunc_char - u.url_desc.size  ) : 0) %>
     <%= raw("<p style='margin-bottom: #{desc_px_padding.round}px'></p>") %>
+
 <% end %>
+

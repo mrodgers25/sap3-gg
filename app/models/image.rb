@@ -8,6 +8,7 @@ class Image < ActiveRecord::Base
 
   def check_manual_url
     self.src_url ||= self.manual_url
+    self.manual_enter = (self.manual_url.present? ? true : false)
   end
 
 end
