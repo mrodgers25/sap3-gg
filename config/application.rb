@@ -31,7 +31,7 @@ module Sap3Gg
     config.autoload_paths << Rails.root.join('lib')
 
     config.time_zone = "Pacific Time (US & Canada)"
-    config.active_record.default_timezone = :local
+    config.active_record.default_timezone = :utc
 
   end
 end

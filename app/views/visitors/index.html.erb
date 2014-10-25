@@ -36,14 +36,16 @@
                         <% end %>
                   </p>
                   <% if story.editor_tagline.present? %>
-                    <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%"><em><%= story.editor_tagline %></em></p>
+                    <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%">
+                      <em><%= story.editor_tagline %></em><meta itemprop="comment" content="<%= story.editor_tagline %>">
+                    </p>
                   <% end %>
                   <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
                     <%= link_to u.url_title, u.url_full, target: '_blank' %>
                   </p>
                   <p class="text-muted" style="margin-bottom: 2%">
                     <% if story.author.present? %>
-                      by <%= story.author %>&nbsp;&nbsp;
+                      by <%= story.author %><meta itemprop="author" content="<%= story.author %>">&nbsp;&nbsp;
                     <% end %>
                     <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
                     <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
