@@ -2,7 +2,7 @@ class VisitorsController < ApplicationController
 
   def index
 
-    story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value ? \
+    story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value.present? ? \
       Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value : 36
     @stories = Story.order("id DESC").limit(36).includes(:urls => [:images]).limit(story_limit)
 
