@@ -1,3 +1,7 @@
+<head>
+  <meta http-equiv="refresh" content="3600">  <!-- refresh every one hour -->
+</head>
+
 <div class="form-group">
   <div class="panel panel-default">
     <div class="panel-body">
@@ -5,6 +9,9 @@
     <div class="container" style="margin-top: 1%">
       <div class="text-right" style="font-size:1.5em">
         <%= form_tag do %>
+
+          <%= render 'countdown' %>
+
             <%= select_tag :user_location_code, options_for_select([['All Locations',nil],['AZ-Phoenix','PHX'],['CA-San Francisco','SF'],['CA-Los Angeles','LA'], \
                                                                     ['CA-San Diego','SD'],['IL-Chicago','CHI'],['DC-Washington','DC'],['LA-New Orleans','NOLA'],['MA-Boston','BOS'], \
                                                                     ['NV-Las Vegas','LV'],['NY-New York City','NYC'],['OR-Portland','PORT'],['PA-Philadelphia','PHIL'], \

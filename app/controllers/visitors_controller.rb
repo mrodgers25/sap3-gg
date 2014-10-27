@@ -13,8 +13,15 @@ class VisitorsController < ApplicationController
 
     flash.now.alert = "No Stories found" if @stories.empty?
 
+    # respond_to do |format|
+    #   format.js
+    # end
+
   end
 
+  def refresh_timer
+
+  end
 
 private
 

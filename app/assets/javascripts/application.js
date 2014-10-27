@@ -17,17 +17,6 @@
 //= require_tree .
 
 
-// no operation
-//var ready;
-//ready = function() {
-//    $('#noop').click(function (event) {
-//        meta_type_scrape_og.value = meta_type_scrape_og.value;
-//        event.preventDefault(); // Prevent link from following its href
-//    });
-//};
-//$(document).ready(ready);
-//$(document).on('page:load', ready);
-
 //Create hover tips
 $(document).ready(function() {
     $('.has-tooltip').tooltip();
@@ -35,11 +24,20 @@ $(document).ready(function() {
         trigger: 'hover'
     });
 
-//    sample js to submit on place category change; not needed when more than one select
-//    $('select#user_place_category').on('change', function(){
-//        var mySelect = $(this);
-//        mySelect.parents('form').submit();
-//    });
-
+    function refreshTimer(){
+        $.ajax({
+            url: '/visitors/refresh_timer',
+            format: 'js'
+        })
+    }
 });
+
+function refreshTimer(){
+    $.ajax({
+        url: '/visitors/refresh_timer',
+        format: 'js'
+    })
+}
+setInterval(refreshTimer, 1000);
+
 
