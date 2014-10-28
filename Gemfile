@@ -23,6 +23,7 @@ gem 'fastimage'
 gem 'mail'
 gem 'figaro'
 gem 'sendgrid-ruby'
+gem 'delayed_job_active_record'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
