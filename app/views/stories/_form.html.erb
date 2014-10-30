@@ -192,6 +192,7 @@
                     <%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
           </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>
+          <%= f.hidden_field :data_entry_begin_time, :value => @data_entry_begin_time %>
           <%= f.hidden_field :raw_story_year_scrape, :value => @year %>
           <%= f.hidden_field :raw_story_month_scrape, :value => @month %>
           <%= f.hidden_field :raw_story_date_scrape, :value => @day %>

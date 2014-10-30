@@ -30,6 +30,7 @@ class StoriesController < ApplicationController
   # GET /stories/new
   def new
     # parse the domain
+    @data_entry_begin_time = params[:data_entry_begin_time]  #grab user input
     @source_url_pre = params[:source_url_pre]  #grab user input
     if @source_url_pre.present?
       get_domain_info(@source_url_pre)
@@ -54,6 +55,7 @@ class StoriesController < ApplicationController
   def create
     # TODO:  check_manual_url(params)
     my_params = set_image_params(story_params)
+    # @data_entry_begin_time = data_entry_begin_time(story_params)
     @story = Story.new(my_params)
 
     respond_to do |format|
@@ -62,7 +64,6 @@ class StoriesController < ApplicationController
         format.json { render :show, status: :created, location: @story }
       else
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
-        # @source_url_pre = @story.urls.first.url_full
         get_domain_info(@source_url_pre)
         set_fields_on_fail(story_params)
         format.html { render :new }
@@ -191,11 +192,16 @@ class StoriesController < ApplicationController
     # binding.pry
   end
 
+  def schedule_story
+
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
-      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year, :editor_tagline,
-      :location_code, :place_category, :story_category, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape,
+      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year,
+      :editor_tagline, :location_code, :place_category, :story_category, :raw_author_scrape, :raw_story_year_scrape,
+      :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time,
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028172303) do
+ActiveRecord::Schema.define(version: 20141030003222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20141028172303) do
     t.string   "scraped_type"
     t.string   "story_category"
     t.datetime "sap_publish_date"
-    t.time     "data_entry_time"
+    t.integer  "data_entry_time"
   end
 
   create_table "urls", force: true do |t|
