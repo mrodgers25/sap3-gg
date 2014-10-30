@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.1.4'
+ruby '2.1.4'
+gem 'rails', '4.1.6'
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
