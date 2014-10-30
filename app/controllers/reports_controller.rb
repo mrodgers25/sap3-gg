@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
 
     CSV.open( file, 'w' ) do |writer|
       writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
-            "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs",URL","Domain","Manual"]
+            "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Manual"]
       stories.each do |s|
         s.urls.each do |u|
           u.images.each do |i|
