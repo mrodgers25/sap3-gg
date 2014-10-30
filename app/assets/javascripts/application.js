@@ -38,6 +38,6 @@ function refreshTimer(){
         format: 'js'
     })
 }
-setInterval(refreshTimer, 1000);
+setInterval(refreshTimer, 60000);
 
 
