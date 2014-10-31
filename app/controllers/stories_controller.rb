@@ -194,6 +194,7 @@ class StoriesController < ApplicationController
 
   def schedule_story
     stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")
+    stories_every_n_secs = 60 * 60 * 24 / stories_per_day
     next_story_to_publish = Story.order("created_at").where("sap_publish_date is null").pluck("id").first
 
   end
