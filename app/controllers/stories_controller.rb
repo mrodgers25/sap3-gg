@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.order("id DESC").all
+    @stories = Story.order("id DESC").all.includes(:urls)
   end
 
   # GET /stories/1

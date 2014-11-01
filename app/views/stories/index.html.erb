@@ -6,38 +6,26 @@
       <th>ID&nbsp;&nbsp;</th>
       <th>Created&nbsp;&nbsp;</th>
       <th>SAP Publish&nbsp;&nbsp;</th>
-      <th>Story type&nbsp;&nbsp;</th>
-      <th>Location Cd&nbsp;&nbsp;</th>
-      <th>Place Category&nbsp;&nbsp;</th>
-      <th>Story Category&nbsp;&nbsp;</th>
       <th>Tagline&nbsp;&nbsp;</th>
-      <th>Author&nbsp;&nbsp;</th>
-      <th>mm&nbsp;&nbsp;</th>
-      <th>dd&nbsp;&nbsp;</th>
-      <th>yy</th>&nbsp;&nbsp;
+      <th>URL&nbsp;&nbsp;</th>
       <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @stories.each do |story| %>
-      <tr>
-        <td><%= story.id %>&nbsp;&nbsp;</td>
-        <td><%= story.created_at %>&nbsp;&nbsp;</td>
-        <td><%= story.sap_publish_date %>&nbsp;&nbsp;</td>
-        <td><%= story.story_type %>&nbsp;&nbsp;</td>
-        <td><%= story.location_code %>&nbsp;&nbsp;</td>
-        <td><%= story.place_category %>&nbsp;&nbsp;</td>
-        <td><%= story.story_category %>&nbsp;&nbsp;</td>
-        <td><%= story.editor_tagline %>&nbsp;&nbsp;</td>
-        <td><%= story.author %>&nbsp;&nbsp;</td>
-        <td><%= story.story_month %>&nbsp;&nbsp;</td>
-        <td><%= story.story_date %>&nbsp;&nbsp;</td>
-        <td><%= story.story_year %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td><%= link_to 'Show', story %>&nbsp;&nbsp;</td>
-        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;</td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;</td>
-      </tr>
+      <% story.urls.each do |u| %>
+	      <tr>
+	        <td><%= story.id %>&nbsp;&nbsp;</td>
+	        <td nowrap><%= story.created_at.strftime("%m-%e-%y %H:%M") %>&nbsp;&nbsp;</td>
+	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%m-%e-%y %H:%M") %>&nbsp;&nbsp;</td>
+	        <td><%= story.editor_tagline %>&nbsp;&nbsp;</td>
+	        <td><%= u.url_full %>&nbsp;&nbsp;</td>
+	        <td><%= link_to 'Show', story %>&nbsp;&nbsp;</td>
+	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;</td>
+	        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;</td>
+	      </tr>
+	    <% end %>
     <% end %>
   </tbody>
 </table>
