@@ -15,8 +15,13 @@ namespace :schedule_story do
     next_story_to_publish = Story.order("created_at").where("sap_publish_date is null").pluck("id").first
     puts "next_story_to_publish ---> #{next_story_to_publish}"
 
-    next_story_pub_datetime_str = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("id","code_value").first
-    puts "next_story_pub_datetime_str ---> #{next_story_pub_datetime_str[1]}"
+    if Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").present?
+      next_story_pub_datetime_str = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("id","code_value").first
+      puts "next_story_pub_datetime_str ---> #{next_story_pub_datetime_str[1]}"
+    else
+      puts "the code 'NEXT_STORY_PUB_DATETIME' is required for the story scheduler...exiting"
+      exit
+    end
 
     next_story_pub_datetime = next_story_pub_datetime_str[1].to_datetime
     puts "next_story_pub_datetime ---> #{next_story_pub_datetime.in_time_zone("Pacific Time (US & Canada)")}"
