@@ -19,9 +19,9 @@
 	        <td><%= story.id %>&nbsp;&nbsp;</td>
 	        <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;&nbsp;</td>
 	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S") %> &nbsp;&nbsp;</td>
-	        <td class="30%"><%= story.editor_tagline %></td>
-	        <td width="40%"><%= u.url_full %>&nbsp;&nbsp;</td>
-	        <td><%= link_to 'Show', story %>&nbsp;&nbsp;</td>
+	        <td class="40%"><%= story.editor_tagline %>&nbsp;&nbsp;</td>
+	        <td width="40%"><%= u.url_full %></td>
+	        <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;&nbsp;</td>
 	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;</td>
 	        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;</td>
 	      </tr>
