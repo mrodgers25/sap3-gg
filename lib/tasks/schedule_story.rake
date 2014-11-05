@@ -36,7 +36,7 @@ namespace :schedule_story do
         Story.find(next_story_to_publish).update_attributes(sap_publish_date: Time.now)
         Code.find(next_story_pub_datetime_arr[0]).update_attributes(code_value: (Time.now + 3600).in_time_zone("Pacific Time (US & Canada)").strftime("%Y-%m-%dT%H:%M:%S%z"))
         puts "publishing story ---> #{next_story_to_publish}"
-        puts "updating code table 'NEXT_STORY_TO_PUBLISH' using code id ---> #{next_story_to_publish} with #{Time.now + stories_every_x_secs}"
+        puts "updating code table 'NEXT_STORY_TO_PUBLISH' using code id ---> #{next_story_to_publish} with #{Time.now + 3600).in_time_zone("Pacific Time (US & Canada)").strftime("%Y-%m-%dT%H:%M:%S%z"}"
         # puts "redirecting to root to refresh landing page"
         # redirect_to "/"
       else
