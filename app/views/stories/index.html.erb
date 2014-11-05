@@ -1,13 +1,13 @@
 <h1>Listing stories</h1>
 
-<table>
+<table style="word-wrap: break-word">
   <thead>
     <tr>
       <th>ID&nbsp;&nbsp;</th>
       <th>Created&nbsp;&nbsp;</th>
       <th>SAP Publish&nbsp;&nbsp;</th>
-      <th class="col-lg-3">Tagline&nbsp;&nbsp;</th>
-      <th class="col-lg-3">URL&nbsp;&nbsp;</th>
+      <th>Tagline&nbsp;&nbsp;</th>
+      <th>URL&nbsp;&nbsp;</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -19,8 +19,8 @@
 	        <td><%= story.id %>&nbsp;&nbsp;</td>
 	        <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S%z") %> &nbsp;&nbsp;</td>
 	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S%z") %> &nbsp;&nbsp;</td>
-	        <td class="col-lg-3"><%= story.editor_tagline %></td>
-	        <td class="col-lg-3"><%= u.url_full %>&nbsp;&nbsp;</td>
+	        <td class="30%"><%= story.editor_tagline %></td>
+	        <td width="40%"><%= u.url_full %>&nbsp;&nbsp;</td>
 	        <td><%= link_to 'Show', story %>&nbsp;&nbsp;</td>
 	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;</td>
 	        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;</td>
