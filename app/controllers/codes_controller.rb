@@ -4,7 +4,7 @@ class CodesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @codes = Code.all
+    @codes = Code.all.order("code_type","code_key")
     respond_with(@codes)
   end
 
