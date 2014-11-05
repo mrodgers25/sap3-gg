@@ -23,11 +23,13 @@ namespace :schedule_story do
       exit
     end
 
-    next_story_pub_datetime = next_story_pub_datetime_str[1].to_datetime
-    puts "next_story_pub_datetime ---> #{next_story_pub_datetime.in_time_zone("Pacific Time (US & Canada)")}"
+    if next_story_pub_datetime_str.present?
+      next_story_pub_datetime = next_story_pub_datetime_str[1].to_datetime
+      puts "next_story_pub_datetime ---> #{next_story_pub_datetime.in_time_zone("Pacific Time (US & Canada)")}"
 
-    time_left_before_pub = (next_story_pub_datetime.to_time - Time.now).round
-    puts "time_left_before_pub ---> #{time_left_before_pub.round} secs"
+      time_left_before_pub = (next_story_pub_datetime.to_time - Time.now).round
+      puts "time_left_before_pub ---> #{time_left_before_pub.round} secs"
+    end
 
     unless next_story_to_publish.nil?
       if time_left_before_pub <= 0
