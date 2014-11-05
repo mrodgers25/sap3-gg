@@ -1,13 +1,15 @@
 <div id="timer" style="font-family: Arial Narrow; color: #9C9C9C; float: left; font-size: .9em; padding-top: 4px">
-	<% next_story_pub_datetime = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("code_value").first if Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").present? %>
-	<% if next_story_pub_datetime.to_datetime > Time.now  %>
-		<% time_remaining_until_pub_secs = (next_story_pub_datetime.to_time + 60 - Time.now).round  %>
-		<% time_remaining_until_pub = Time.at(time_remaining_until_pub_secs).utc.strftime("%H:%M")  %>
-    Next Story in <%= time_remaining_until_pub %>
-	<% else %>
-    New Story available now – refresh page
-    <!--<script type="text/javascript">-->
-	    <!--window.location.href="/"  // put your correct path in a string here-->
-    <!--</script>-->
+	<% if Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").present? %>
+		<% next_story_pub_datetime = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("code_value").first %>
+		<% if next_story_pub_datetime.to_datetime > Time.now  %>
+			<% time_remaining_until_pub_secs = (next_story_pub_datetime.to_time + 60 - Time.now).round  %>
+			<% time_remaining_until_pub = Time.at(time_remaining_until_pub_secs).utc.strftime("%H:%M")  %>
+	    Next Story in <%= time_remaining_until_pub %>
+		<% else %>
+	    New Story available now – refresh page
+	    <!--<script type="text/javascript">-->
+		    <!--window.location.href="/"  // put your correct path in a string here-->
+	    <!--</script>-->
+		<% end %>
 	<% end %>
 </div>
