@@ -1,13 +1,13 @@
 <h1>Listing stories</h1>
 
-<table style=" table-layout: fixed; word-break: break-all">
+<table>
   <thead>
     <tr>
-      <th>ID&nbsp;&nbsp;</th>
-      <th>Created&nbsp;&nbsp;</th>
-      <th>SAP Publish&nbsp;&nbsp;</th>
+      <th>ID&nbsp;</th>
+      <th>Created&nbsp;</th>
+      <th>SAP Publish&nbsp;</th>
       <th>Tagline&nbsp;&nbsp;</th>
-      <th>URL&nbsp;&nbsp;</th>
+      <th>URL</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -16,14 +16,14 @@
     <% @stories.each do |story| %>
       <% story.urls.each do |u| %>
 	      <tr>
-	        <td><%= story.id %>&nbsp;&nbsp;</td>
-	        <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;&nbsp;</td>
-	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S") %> &nbsp;&nbsp;</td>
+	        <td><%= story.id %>&nbsp;</td>
+	        <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
+	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
 	        <td class="40%"><%= story.editor_tagline %>&nbsp;&nbsp;</td>
-	        <td width="40%"><%= u.url_full %></td>
-	        <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;&nbsp;</td>
-	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;&nbsp;</td>
-	        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;</td>
+	        <td width="40%" style="word-break: break-all"><%= u.url_full %></td>
+	        <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
+	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
+	        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	      </tr>
 	    <% end %>
     <% end %>
