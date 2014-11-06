@@ -12,16 +12,15 @@
 
           <%= render 'countdown' %>
 
-            <%= select_tag :user_location_code, options_for_select([['All Locations',nil],['AZ-Phoenix','PHX'],['CA-San Francisco','SF'],['CA-Los Angeles','LA'], \
-                                                                    ['CA-San Diego','SD'],['IL-Chicago','CHI'],['DC-Washington','DC'],['LA-New Orleans','NOLA'],['MA-Boston','BOS'], \
-                                                                    ['NV-Las Vegas','LV'],['NY-New York City','NYC'],['OR-Portland','PORT'],['PA-Philadelphia','PHIL'], \
-                                                                    ['TX-Austin','AUST'],['WA-Seattle','SEA']], params[:user_location_code]) %>&nbsp;
-            <%= select_tag :user_place_category, options_for_select([['All Place Types',nil],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \
+          <%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;
+
+          <%= select_tag :user_place_category, options_for_select([['All Place Types',nil],['Attraction','A'],['Food & Drink','FD'],['Lodging','L'], \
                                                                         ['Shopping','S'],['Service','SR'],['Sport or Activity','SP']], params[:user_place_category]) %>&nbsp;
-            <%= select_tag :user_story_category, options_for_select([['All Story Categories',nil],['Editor Picks','EP'],['More Unique Than Usual','UN'],['Top/Best/Coolest Lists','TL'], \
+          <%= select_tag :user_story_category, options_for_select([['All Story Categories',nil],['Editor Picks','EP'],['More Unique Than Usual','UN'],['Top/Best/Coolest Lists','TL'], \
                                                                         ['Suggested Itineraries','SI'],['Family Friendly','FF'],['Romance','RO'], \
                                                                         ['Industry Awards','IA'],['Pet Friendly','PF']], params[:user_story_category]) %>&nbsp;
-            <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "margin-bottom: 5px; font-size: .8em" %>
+          <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "margin-bottom: 5px; font-size: .8em" %>
+
         <% end %>
       </div>
       <div class="row row-centered" style="font-family: Source Sans Pro">
