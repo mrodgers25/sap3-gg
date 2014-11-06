@@ -3,7 +3,7 @@ class VisitorsController < ApplicationController
   def index
 
     # database dropdown object
-    @location_codes = Code.order("code_value").where("code_type = 'LOCATION_CODE'")
+    @location_codes = Code.order("ascii(code_value)").where("code_type = 'LOCATION_CODE'")
 
     story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value unless \
       Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
