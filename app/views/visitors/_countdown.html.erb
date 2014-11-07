@@ -8,7 +8,7 @@
       <% time_since_pub_mins = Time.at(time_since_pub_secs + 60).utc.strftime("%-M") %>
       <% if time_remaining_until_pub_secs > 60 %>
         <% if time_since_pub_secs < 300 %>
-          Last story released about <%= pluralize(time_since_pub_mins,'minute') %> ago
+          Last story released <%= pluralize(time_since_pub_mins,'minute') %> ago
 				<% else %>
           Next Story in <%= time_remaining_until_pub %>
 				<% end %>
