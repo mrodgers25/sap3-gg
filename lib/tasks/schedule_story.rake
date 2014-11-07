@@ -2,6 +2,7 @@ namespace :schedule_story do
   desc "see if it's time to publish the next story"
   task check_pub_time: :environment do
 
+    include Rails.application.routes.url_helpers
     9.times do
       stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")[0].to_i
       puts "stories_per_day ---> #{stories_per_day}"
@@ -38,8 +39,6 @@ namespace :schedule_story do
           Code.find(next_story_pub_datetime_arr[0]).update_attributes(code_value: (Time.now + stories_every_x_secs).in_time_zone("Pacific Time (US & Canada)").strftime("%Y-%m-%dT%H:%M:%S%z"))
           puts "publishing story ---> #{next_story_to_publish}"
           puts "updating code table 'NEXT_STORY_TO_PUBLISH' using code id ---> #{next_story_to_publish} with #{(Time.now + stories_every_x_secs).in_time_zone("Pacific Time (US & Canada)").strftime("%Y-%m-%dT%H:%M:%S%z")}"
-          # puts "redirecting to root to refresh landing page"
-          # redirect_to "visitors"
         else
           puts "too soon to publish; #{time_left_before_pub} secs remaining"
         end
