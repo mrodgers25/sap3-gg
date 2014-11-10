@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def show_location_hover
+    location_hover = Code.where("code_type = 'LOCATION_CODE'").pluck("code_key","code_value")
+    # location_hover.each do |key,value|
+    #   puts "(" + key + ")" + value
+    #   # puts "(" + key + ")" + value
+    # end
+  end
+
   def location_options
     location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
                         ​<strong>CA-San Francisco (SF)</strong>​<br>

@@ -12,6 +12,8 @@
         </div>
     <% end %>
 
+	  <% location_hover = Code.where("code_type = 'LOCATION_CODE'").pluck("code_key","code_value").to_s %>
+
     <%= f.fields_for :urls do |u| %>
 
         <div class="form-group" style="margin-top: .5%">
@@ -151,7 +153,7 @@
           <tr>
             <td>Locations</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
-                                       data-content= "<%= raw location_options %>" >
+                                       data-content= "<%= location_hover %>" >
                     <%= f.text_field :location_code, :value => @meta_location, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
