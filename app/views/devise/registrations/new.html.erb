@@ -1,17 +1,29 @@
-<h2>Sign up</h2>
+<div class="container" style="padding-top: 2%">
+  <div class="panel panel-default">
+    <div class="panel-body" style="padding-left: 4%; padding-right: 4%">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+			<h2>Sign up</h2>
 
-  <div class="form-inputs">
-    <%= f.input :email, label: "Email: ", required: true, autofocus: true, maxlength: 50 %>&nbsp;&nbsp;
-    <%= f.input :password, label: "Password: ", required: true, maxlength: 50 %>&nbsp;&nbsp;
-    <%= f.input :password_confirmation, label: "Confirm Password: ", required: true %><br>
+			<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			  <%= f.error_notification %>
+
+			  <div class="form-inputs">
+			    <%= f.input :first_name, label: "First Name ", required: true, autofocus: true, maxlength: 20 %>&nbsp;&nbsp;
+			    <%= f.input :last_name, label: "Last Name ", maxlength: 20 %>&nbsp;&nbsp;<br>
+			    Tell us the cities you want to see stories about and we'll give you access to our curated "Editor Picks"<br><br>
+			    <%= f.input :city_preference, label: "Cities ", placeholder: "city, city, etc", maxlength: 20 %>&nbsp;&nbsp;
+			    <%= f.input :email, label: "Email ", required: true, maxlength: 50 %>&nbsp;&nbsp;
+			    <%= f.input :password, label: "Password ", required: true, maxlength: 50 %>&nbsp;&nbsp;
+			    <%= f.input :password_confirmation, label: "Confirm Password ", required: true %><br>
+			  </div>
+
+			  <div class="form-actions">
+			    <%= f.button :submit, "Sign up" %><br><br>
+			  </div>
+			<% end %>
+
+			<%= render "devise/shared/links" %>
+
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
