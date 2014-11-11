@@ -24,12 +24,12 @@ $(document).ready(function() {
         trigger: 'hover'
     });
 
-    function refreshTimer(){
-        $.ajax({
-            url: '/visitors/refresh_timer',
-            format: 'js'
-        })
-    }
+//    function refreshTimer(){
+//        $.ajax({
+//            url: '/visitors/refresh_timer',
+//            format: 'js'
+//        })
+//    }
 });
 
 function refreshTimer(){
@@ -38,6 +38,6 @@ function refreshTimer(){
         format: 'js'
     })
 }
-setInterval(refreshTimer, 60000); // # 1000 ticks/sec
+setInterval(refreshTimer, 30000); // # 1000 ticks/sec
 
 
