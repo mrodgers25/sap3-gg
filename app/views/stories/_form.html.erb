@@ -153,12 +153,12 @@
           <tr>
             <td>Locations</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
-                                       data-content= "<%= location_hover %>" >
+                                       data-content= "<%= location_options %>" >
                     <%= f.text_field :location_code, :value => @meta_location, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place  Categories" data-html="true" data-trigger="focus"
-                                       data-content= "<%= raw place_category_options %>" >Place Categories&nbsp;&nbsp;
+                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place Types" data-html="true" data-trigger="focus"
+                                       data-content= "<%= place_category_options %>" >Place Type Codes&nbsp;&nbsp;
                     <%= f.text_field :place_category, :value => @meta_place, :onkeyup => "this.value = this.value.toUpperCase();",
                     :placeholder => "Comma separated codes", :size => 30 %></span>
             </td>
@@ -167,7 +167,7 @@
           <tr>
             <td>Story Categories</td>
             <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Story Category Codes" data-html="true" data-trigger="focus"
-                       data-content= "<%= raw story_category_options %>" >
+                       data-content= "<%= story_category_options %>" >
                     <%= f.text_field :story_category, :value => @meta_story_category, :onkeyup => "this.value = this.value.toUpperCase();",
                                      :placeholder => "Comma separated codes", :size => 50 %></span>
             </td>
