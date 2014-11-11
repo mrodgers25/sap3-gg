@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   resources :media_infos
 
-  match 'stories/new' => 'stories#new', via: [:get, :post]  #added by gg
-  match 'stories/scrape' => 'stories#scrape', via: [:get, :post]  #added by gg
-  match '/' => 'visitors#index', via: [:get, :post]  #added by gg
-  match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]  #added by gg
-  match '/reports/csv_export' => 'reports#csv_export', via: [:get, :post]  #added by gg
+  match 'stories/new' => 'stories#new', via: [:get, :post]
+  match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
+  match '/' => 'visitors#index', via: [:get, :post]
+  # match '/visitors' => 'visitors#index', via: [:get, :post] # changed to remove "/visitors" from showing using filter
+  match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
+  match '/reports/csv_export' => 'reports#csv_export', via: [:get, :post]
 
   resources :stories #original from generate
   resources :urls
