@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def location_options
-    hover_list_arr = Code.order("code_value").where("code_type = 'LOCATION_CODE' and code_key != ''").pluck("code_key","code_value")
+  hover_list_arr = Code.order("ascii(code_value)").where("code_type = 'LOCATION_CODE' and code_key != ''").pluck("code_key","code_value")
 
     hover_list = ""
 
