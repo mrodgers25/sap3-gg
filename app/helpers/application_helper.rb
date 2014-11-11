@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def location_options
-    hover_list_arr = Code.where("code_type = 'LOCATION_CODE' and code_key != ''").pluck("code_key","code_value")
+    hover_list_arr = Code.order("code_value").where("code_type = 'LOCATION_CODE' and code_key != ''").pluck("code_key","code_value")
 
     hover_list = ""
 
@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def place_category_options
-    hover_list_arr = Code.where("code_type = 'PLACE_CATEGORY' and code_key != ''").pluck("code_key","code_value")
+    hover_list_arr = Code.order("code_value").where("code_type = 'PLACE_CATEGORY' and code_key != ''").pluck("code_key","code_value")
 
     hover_list = ""
 
@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def story_category_options
-    hover_list_arr = Code.where("code_type = 'STORY_CATEGORY' and code_key != ''").pluck("code_key","code_value")
+    hover_list_arr = Code.order("code_value").where("code_type = 'STORY_CATEGORY' and code_key != ''").pluck("code_key","code_value")
 
     hover_list = ""
 

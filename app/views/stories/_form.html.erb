@@ -12,8 +12,6 @@
         </div>
     <% end %>
 
-	  <% location_hover = Code.where("code_type = 'LOCATION_CODE'").pluck("code_key","code_value").to_s %>
-
     <%= f.fields_for :urls do |u| %>
 
         <div class="form-group" style="margin-top: .5%">
