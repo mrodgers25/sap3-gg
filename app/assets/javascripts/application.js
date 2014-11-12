@@ -24,12 +24,12 @@ $(document).ready(function() {
         trigger: 'hover'
     });
 
-//    function refreshTimer(){
-//        $.ajax({
-//            url: '/visitors/refresh_timer',
-//            format: 'js'
-//        })
-//    }
+    function refreshTimer(){
+        $.ajax({
+            url: '/visitors/refresh_timer',
+            format: 'js'
+        })
+    }
 });
 
 function refreshTimer(){
