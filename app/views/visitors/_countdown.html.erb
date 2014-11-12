@@ -14,7 +14,11 @@
             Last story released <%= pluralize(time_since_pub_mins,'minute') %> ago
           <% end %>
         <% else %>
-          Next Story in <%= time_remaining_until_pub %>
+          <% if time_remaining_until_pub_secs > 59 %>
+            New Story in <%= time_remaining_until_pub %>
+					<% else %>
+						New story in a few moments
+          <% end %>
         <% end %>
         <!--New story available now – refreshing page-->
         <!--<script type="text/javascript">-->
