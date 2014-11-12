@@ -1,0 +1,46 @@
+<!-- Button trigger modal -->
+<br><br><br><button class="btn btn-link" data-toggle="modal" data-target="#responsive">
+  Login
+</button>
+
+
+<div id="responsive" class="modal fade" tabindex="-1" data-width="1000" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <div class="modal-header">
+              <span style="font-size: 2em">Login</span>
+              <button type="button" class="close" data-dismiss="modal"
+                      aria-hidden="true">x</button><br>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-inputs">
+                    <%= f.input :email, label:"Email ", required: false, maxlength: 50, autofocus: true %><br>
+                    <%= f.input :password, required: false, maxlength: 50 %><br>
+                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %><br>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+
+                <%= render "devise/shared/links" %>
+
+            </div>
+
+            <div class="modal-footer">
+              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br><br>
+              <%= link_to "Haven't registered yet? Sign up.", new_user_registration_path %>
+
+            </div>
+
+        <% end %>
+      </div>
+  </div>
+</div>
+
+
