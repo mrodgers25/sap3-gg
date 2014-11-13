@@ -4,10 +4,12 @@ class ReportsController < ApplicationController
     require 'csv'
     require 'sendgrid-ruby'
 
-    file = Rails.root.join('tmp','story_listing.csv')
-    puts "File will be #{file}"
     logged_in_user_email = User.find(current_user).email
     puts "User is #{logged_in_user_email}"
+
+    # story export
+    file = Rails.root.join('tmp','story_listing.csv')
+    puts "File will be #{file}"
 
     stories = Story.includes(:urls => [:images])
 
@@ -25,6 +27,24 @@ class ReportsController < ApplicationController
       end
     end
 
+    # user export
+    file2 = Rails.root.join('tmp','user_listing.csv')
+    puts "File will be #{file2}"
+
+    users = User.all
+
+    CSV.open( file2, 'w' ) do |writer|
+      writer << ["email","reset_password_sent_at","remember_created_at","sign_in_count","current_sign_in_at","last_sign_in_at", \
+      "current_sign_in_ip","last_sign_in_ip","created_at","updated_at","name","role","confirmation_token","confirmed_at", \
+      "confirmation_sent_at","unconfirmed_email","first_name","last_name","city_preference"]
+      
+      users.each do |u|
+            writer << [u.email,u.reset_password_sent_at,u.remember_created_at,u.sign_in_count,u.current_sign_in_at,u.last_sign_in_at, \
+      u.current_sign_in_ip,u.last_sign_in_ip,u.created_at,u.updated_at,u.name,u.role,u.confirmation_token,u.confirmed_at, \
+      u.confirmation_sent_at,u.unconfirmed_email,u.first_name,u.last_name,u.city_preference]
+      end
+    end
+
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
     mail = SendGrid::Mail.new do |m|
@@ -34,7 +54,7 @@ class ReportsController < ApplicationController
       m.text = 'Your latest export is attached.'
     end
 
-    mail.add_attachment("#{file}")
+    mail.add_attachment("#{file}","#{file2}")
     puts client.send(mail)
 
     # redirect_to '/'
