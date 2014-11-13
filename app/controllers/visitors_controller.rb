@@ -12,7 +12,8 @@ class VisitorsController < ApplicationController
     # database dropdown data
     @location_codes = Code.order("ascii(code_value)").where("code_type = 'LOCATION_CODE'")
     @story_place_types = Code.order("code_value").where("code_type = 'PLACE_CATEGORY'")
-    @story_categories = Code.order("ascii(code_value)").where("code_type = 'STORY_CATEGORY'")
+    @story_categories_loggedin = Code.order("ascii(code_value)").where("code_type = 'STORY_CATEGORY'")
+    @story_categories_notloggedin = Code.order("ascii(code_value)").where("code_type = 'STORY_CATEGORY' and code_key != 'EP'")
     @stories = @stories.user_location_code(params[:user_location_code]) if params[:user_location_code].present?
     @stories = @stories.user_place_category(params[:user_place_category]) if params[:user_place_category].present?
     @stories = @stories.user_story_category(params[:user_story_category]) if params[:user_story_category].present?
