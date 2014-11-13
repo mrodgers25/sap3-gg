@@ -4,21 +4,41 @@
 
 			<h2>Sign up</h2>
 
-			<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-			  <%= f.error_notification %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 			  <div class="form-inputs">
-			    <%= f.input :first_name, label: "First Name ", required: true, autofocus: true, maxlength: 20 %>&nbsp;&nbsp;
-			    <%= f.input :last_name, label: "Last Name ", maxlength: 20 %>&nbsp;&nbsp;<br>
-			    Tell us the cities you want to see stories about and we'll give you access to our curated "Editor Picks"<br><br>
-			    <%= f.input :city_preference, label: "Cities ", placeholder: "city, city, etc", maxlength: 20 %>&nbsp;&nbsp;
-			    <%= f.input :email, label: "Email ", required: true, maxlength: 50 %>&nbsp;&nbsp;
-			    <%= f.input :password, label: "Password ", required: true, maxlength: 50 %>&nbsp;&nbsp;
-			    <%= f.input :password_confirmation, label: "Confirm Password ", required: true %><br>
+			    <p style="color: gray">So we don't have to say "hey you" ....</p>
+			    <table>
+			      <tr>
+			        <td style="padding-bottom: 10px">First Name&nbsp;&nbsp;</td>
+							<td style="padding-bottom: 10px"><%= f.text_field :first_name, required: true, autofocus: true, maxlength: 20 %></td>
+			      </tr>
+				    <tr>
+				      <td>Last Name</td>
+					    <td><%= f.text_field :last_name, maxlength: 20 %></td>
+					  </tr>
+			    </table><br>
+			    <p style="color: gray">Tell us the cities you want to see stories about and we'll give you access to our curated "Editor Picks"</p>
+			    <%= f.text_field :city_preference, label: "Cities ", placeholder: "City1, City2, etc", maxlength: 20 %><br><br>
+				  <table>
+					  <tr>
+					    <td style="padding-bottom: 10px">Email</td>
+						  <td style="padding-bottom: 10px"><%= f.text_field :email, required: true, maxlength: 50 %>&nbsp;&nbsp;</td>
+						</tr>
+					  <tr>
+					    <td style="padding-bottom: 10px">Password</td>
+						  <td style="padding-bottom: 10px"><%= f.password_field :password, required: true, maxlength: 50 %>&nbsp;&nbsp;</td>
+						</tr>
+					  <tr>
+					    <td style="padding-bottom: 10px">Confirm Password&nbsp;&nbsp;</td>
+						  <td style="padding-bottom: 10px"><%= f.password_field :password_confirmation, required: true %></td>
+					  </tr>
+					</table><br>
+			    <p style="color: gray">We promise to never sell your personal information to anyone</p>
 			  </div>
 
 			  <div class="form-actions">
-			    <%= f.button :submit, "Sign up" %><br><br>
+			    <button type="submit" class="btn btn-primary">Submit</button><br><br>
 			  </div>
 			<% end %>
 
