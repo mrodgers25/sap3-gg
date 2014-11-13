@@ -54,7 +54,8 @@ class ReportsController < ApplicationController
       m.text = 'Your latest export is attached.'
     end
 
-    mail.add_attachment("#{file}","#{file2}")
+    mail.add_attachment("#{file}")
+    mail.add_attachment("#{file2}")
     puts client.send(mail)
 
     # redirect_to '/'
