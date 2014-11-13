@@ -16,6 +16,8 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+//= require social-share-button
+
 //Create hover tips
 $(document).ready(function() {
     $('.has-tooltip').tooltip();

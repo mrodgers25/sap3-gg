@@ -24,6 +24,7 @@ gem 'mail'
 gem 'figaro'
 gem 'sendgrid-ruby'
 gem 'delayed_job_active_record'
+gem 'social-share-button'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do
