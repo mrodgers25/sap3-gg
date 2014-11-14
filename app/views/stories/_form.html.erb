@@ -196,7 +196,7 @@
           <%= f.hidden_field :raw_story_year_scrape, :value => @year %>
           <%= f.hidden_field :raw_story_month_scrape, :value => @month %>
           <%= f.hidden_field :raw_story_date_scrape, :value => @day %>
-          <%= f.hidden_field :data_entry_user, :value => user_session %>
+          <%= f.hidden_field :data_entry_user, :value => current_user.email %>
         </table>
       </div></div>
 
