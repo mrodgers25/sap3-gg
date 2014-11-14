@@ -19,9 +19,16 @@
           <% else %>
             <%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;
 		      <% end %>
+
+		      <% unless user_signed_in? %>
+	          <span style="font-size: .7em; color: darkgrey" class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+	          <span style="font-size: .7em; color: darkgrey">Login for access to Editor Picks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			    <% end %>
+
           <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "margin-bottom: 5px; font-size: .8em" %>
 
         <% end %>
+
       </div>
       <div class="row row-centered" style="font-family: Source Sans Pro">
 
