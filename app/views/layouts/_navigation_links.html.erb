@@ -29,6 +29,7 @@
 </li>
 
 <% if user_signed_in? %>
+  <li><%= link_to 'Edit Acct', edit_user_registration_path, :class=>"btn btn-link btn-primary" %></li>
   <li><%= link_to 'Log out', destroy_user_session_path, :method=>'delete', :class=>"btn btn-link btn-primary" %></li>
 <% else %>
   <li><button type="button" class="btn btn-default navbar-btn btn-primary" data-toggle="modal" data-target="#responsive">Login/Sign Up</button></li>
