@@ -21,6 +21,8 @@ class VisitorsController < ApplicationController
     # menu display
     if user_signed_in?
       # signedin_as = ""
+      fname = ""
+      lname = ""
       lname = current_user.last_name unless current_user.last_name.nil?
       fname = current_user.first_name unless current_user.first_name.nil?
       signedin_as = first_name + " " + last_name
