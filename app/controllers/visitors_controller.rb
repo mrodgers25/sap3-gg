@@ -18,15 +18,6 @@ class VisitorsController < ApplicationController
     @stories = @stories.user_place_category(params[:user_place_category]) if params[:user_place_category].present?
     @stories = @stories.user_story_category(params[:user_story_category]) if params[:user_story_category].present?
 
-    # menu display
-    if user_signed_in?
-      signedin_as, fname, lname = "","",""
-      fname = current_user.first_name unless current_user.first_name.nil?
-      lname = current_user.last_name unless current_user.last_name.nil?
-      full_name = fname + " " + lname
-      @signedin_as = (fname == "" ? current_user.email : full_name)
-      # binding.pry
-    end
   end
 
   def refresh_timer
