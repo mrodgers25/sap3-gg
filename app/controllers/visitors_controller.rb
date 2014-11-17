@@ -24,7 +24,8 @@ class VisitorsController < ApplicationController
       fname = current_user.first_name unless current_user.first_name.nil?
       lname = current_user.last_name unless current_user.last_name.nil?
       full_name = fname + " " + lname
-      @signedin_as = full_name = " " ? current_user.email : full_name
+      @signedin_as = (fname == "" ? current_user.email : full_name)
+      # binding.pry
     end
   end
 
