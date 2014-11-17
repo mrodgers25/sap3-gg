@@ -27,6 +27,44 @@
     <li><%= link_to 'Users', users_path %></li>
   </ul>
 </li>
+
+<% if user_signed_in? %>
+  <li><%= link_to 'Log out', destroy_user_session_path, :method=>'delete', :class=>"btn btn-link btn-primary" %></li>
+<% else %>
+  <li><button type="button" class="btn btn-default navbar-btn btn-primary" data-toggle="modal" data-target="#responsive">Login/Sign Up</button></li>
+<% end %>
+
+
+<% if false %>
+<%# add navigation links to this file %>
+<li><%= link_to 'Home', root_path %></li>
+
+<li class="dropdown">
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Admin <span class="caret"></span>
+      </a>
+    <% end %>
+  <% end %>
+
+  <ul class="dropdown-menu" role="menu">
+    <li><%= link_to 'Add New Story', stories_scrape_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Stories List', stories_path %></li>
+    <li><%= link_to 'Urls List', urls_path %></li>
+    <li><%= link_to 'Images List', images_path %></li>
+    <li><%= link_to 'Codes List', codes_path %></li>
+    <li><%= link_to 'Add Codes', new_code_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Users List', users_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'CSV Export', reports_csv_export_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+    <li><%= link_to 'Users', users_path %></li>
+  </ul>
+</li>
 <li>
   <% if user_signed_in? %>
     <% signedin_as = current_user.first_name + " " + current_user.last_name %>
@@ -43,4 +81,6 @@
     <li><button type="button" class="btn btn-default navbar-btn btn-primary" data-toggle="modal" data-target="#responsive">Login/Sign Up</button></li>
 	<% end %>
 </li>
+
+<% end %>
 
