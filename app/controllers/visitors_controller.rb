@@ -18,14 +18,13 @@ class VisitorsController < ApplicationController
     @stories = @stories.user_place_category(params[:user_place_category]) if params[:user_place_category].present?
     @stories = @stories.user_story_category(params[:user_story_category]) if params[:user_story_category].present?
 
-    # scheduler data - not used because timer display doesn't work for some reason when calling these from here instead on in view
-    # @code_for_next_pub = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'")
-    # @next_story_pub_datetime = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("updated_at","code_value").first
-
-    # respond_to do |format|
-    #   format.js
-    # end
-
+    if user_signed_in?
+      signedin_as = ""
+      signedin_as = current_user.last_name unless current_user.last_name.nil?
+      signedin_as = current_user.first_name + " " + signedin_as unless current_user.first_name.nil?
+      signedin_as = current_user.first_name + " " + current_user.last_name
+      @signedin_as = signedin_as == " " ? current_user.email : signedin_as
+    end
   end
 
   def refresh_timer
