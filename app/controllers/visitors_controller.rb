@@ -21,11 +21,10 @@ class VisitorsController < ApplicationController
     # menu display
     if user_signed_in?
       signedin_as, fname, lname = "","",""
-      lname = current_user.last_name unless current_user.last_name.nil?
       fname = current_user.first_name unless current_user.first_name.nil?
-      signedin_as = fname + " " + lname
-    #   signedin_as = current_user.first_name + " " + current_user.last_name
-    #   @signedin_as = signedin_as == " " ? current_user.email : signedin_as
+      lname = current_user.last_name unless current_user.last_name.nil?
+      full_name = fname + " " + lname
+      @signedin_as = full_name = " " ? current_user.email : full_name
     end
   end
 
