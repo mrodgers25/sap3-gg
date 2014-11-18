@@ -2,7 +2,7 @@
   <!-- meta http-equiv="refresh" content="3600">  <!-- refresh every one hour -->
 </head>
 
-<div class="form-group" style="margin-top: -6px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
+<div class="form-group" style="margin-top: 20px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
   <div class="panel panel-default">
     <div class="panel-body">
 
@@ -10,23 +10,41 @@
       <div class="text-right" style="font-size:1.5em">
         <%= form_tag do %>
 
-          <%= render 'countdown' %>
 
-          <%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>
-          <%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>
-          <% if user_signed_in? %>
-	          <%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>
-          <% else %>
-            <%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>
-		      <% end %>
 
-		      <% unless user_signed_in? %>
-	          <span style="font-size: .7em; color: darkgrey; white-space: nowrap;"><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
-	              </span>&nbsp;Login to access Editor Picks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-	          <!--<span style="font-size: .7em; color: darkgrey">Login to access Editor Picks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-			    <% end %>
 
-          <%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "margin-bottom: 5px; font-size: .8em" %>
+          <nav class="navbar navbar-default" role="navigation" style="padding-top: 50px">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse"
+                      data-target="#example-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <%= render 'countdown' %>
+
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;</li>
+                <li><%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;</li>
+                <% if user_signed_in? %>
+                  <li><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                <% else %>
+                  <li><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                <% end %>
+                <% unless user_signed_in? %>
+	                  <li><span style="font-size: .7em; color: darkgrey; white-space: nowrap;"><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
+	                    </span>&nbsp;Login to access Editor Picks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;</li>
+                <% end %>
+                <li><%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "padding-right: 5px,margin-bottom: 5px; font-size: 1em" %></li>
+
+              </ul>
+            </div>
+          </nav>
+
 
         <% end %>
 
