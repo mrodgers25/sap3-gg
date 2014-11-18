@@ -12,9 +12,9 @@
 
           <%= render 'countdown' %>
 
-          <%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;
-          <%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;
-          <% if user_signed_in? %>
+          <%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>
+          &nbsp;<%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>
+          &nbsp;<% if user_signed_in? %>
 	          <%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;
           <% else %>
             <%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;
