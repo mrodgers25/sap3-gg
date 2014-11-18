@@ -82,7 +82,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # railsapp instructions on setting up test emails using gmail
-  config.action_mailer.default_url_options = { :host => 'sap3-gg.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'storiesaboutplaces.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
@@ -91,7 +91,7 @@ Rails.application.configure do
       # address: "smtp.gmail.net",
       address: "smtp.sendgrid.net",
       port: 587,
-      domain: "sap3-gg.herokuapp.com",
+      domain: "storiesaboutplaces.com",
       authentication: "plain",
       enable_starttls_auto: true,
       # user_name: ENV["GMAIL_USERNAME"],
