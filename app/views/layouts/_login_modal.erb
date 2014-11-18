@@ -38,8 +38,9 @@
           <div class="modal-footer">
 
             <%= link_to "Forgot your password?", new_password_path(resource_name) %><br>
-            <%= link_to "Haven't registered yet? Sign up.", new_user_registration_path %><br>
             <%= render "devise/shared/links" %>
+            <span style="font-size: 1.5em">Haven't registered yet?&nbsp;&nbsp;&nbsp;<strong><%= link_to "Sign up", \
+                new_user_registration_path %></strong></span><br>
 
           </div>
 
