@@ -32,9 +32,11 @@
       <%= render 'layouts/navigation' %>
     </header>
     <% if Rails.env.development? %>
-			padding_pct = "1%"
-	  <% end %>
-  <main role="main" style="padding-top: padding_pct; padding-left: 1%">
+			padding_amt = ".5%"
+    <% else %>
+      padding_amt = "-2px"
+  <% end %>
+  <main role="main" style="padding-top: padding_amt; padding-left: 1%">
     <!--padding needed to compensate for the header-->
        <%= render 'layouts/messages' %>
        <%= yield %>
