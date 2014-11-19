@@ -1,4 +1,5 @@
 class VisitorsController < ApplicationController
+  require 'google-webfonts'
 
   def index
 
