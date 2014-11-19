@@ -2,7 +2,7 @@
   <!-- meta http-equiv="refresh" content="3600">  <!-- refresh every one hour -->
 </head>
 
-<div class="form-group" style="margin-top: 20px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
+<div class="form-group" style="margin-top: 5px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
   <div class="panel panel-default">
     <div class="panel-body">
 
@@ -10,7 +10,7 @@
       <div class="text-right" style="font-size:1.5em">
         <%= form_tag do %>
 
-          <nav class="navbar navbar-default" role="navigation" style="padding-top: 4px; margin-bottom: 10px; min-height: 30px">
+          <nav class="navbar navbar-default" role="navigation" style="padding-top: 4px; margin-bottom: 10px; min-height: 35px">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse"
                       data-target="#example-navbar-collapse">
@@ -25,15 +25,15 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li><%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;</li>
-                <li style="padding-bottom: 5px"><%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;</li>
+                <li style="margin-top: 3px"><%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;</li>
+                <li style="margin-top: 3px""><%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;</li>
                 <% if user_signed_in? %>
-                  <li><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                  <li style="margin-top: 3px"><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
                 <% else %>
-                  <li style="margin-top: 5px"><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                  <li style="margin-top: 3px"><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
                 <% end %>
                 <% unless user_signed_in? %>
-	                  <li><span style="font-size: .7em; color: darkgrey; white-space: nowrap;"><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
+	                  <li style="margin-top: 2px"><span style="font-size: .7em; color: darkgrey; white-space: nowrap;"><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
 	                    </span>&nbsp;Login to access Editor Picks</span>&nbsp;&nbsp;&nbsp;</li>
                 <% end %>
                 <li style="padding-right: 10px; padding-bottom: 0px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag "Filter Stories", class: 'btn btn-xs btn-success', style: "font-size: 1.1em" %></li>
