@@ -25,12 +25,12 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
               <ul class="nav navbar-nav navbar-right" style="font-size: 1.1em">
-                <li style="padding-bottom: 2px"><%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;</li>
-                <li><%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;</li>
+                <li style="padding-bottom: 4px"><%= select_tag :user_location_code, options_from_collection_for_select(@location_codes,'code_key','code_value', params[:user_location_code]) %>&nbsp;</li>
+                <li style="padding-bottom: 4px"><%= select_tag :user_place_category, options_from_collection_for_select(@story_place_types,'code_key','code_value', params[:user_place_category]) %>&nbsp;</li>
                 <% if user_signed_in? %>
-                  <li><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                  <li style="padding-bottom: 4px"><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_loggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
                 <% else %>
-                  <li><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
+                  <li style="padding-bottom: 4px"><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
                 <% end %>
                 <% unless user_signed_in? %>
 	                  <li style="margin-top: 3px; font-size: 14px"><span style="font-size: .8em; color: darkgrey; white-space: nowrap;"><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
