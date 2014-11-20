@@ -13,9 +13,8 @@ class StoryPolicy
   end
 
   def destroy?
-    allowed = ["associate","admin"]
+    allowed = ["admin"]
     allowed.include?(@current_user.role)
-    # binding.pry
   end
 
   # def index?
