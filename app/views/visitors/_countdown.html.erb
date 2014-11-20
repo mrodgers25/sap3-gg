@@ -1,4 +1,4 @@
-<div id="timer" style="font-family: 'Roboto', sans-serif; color: #4A4A4A; float: left; font-size: 14px; margin-left: 10px; margin-top: -3px">
+<div id="timer" style="font-family: 'Roboto', sans-serif; color: #4A4A4A; float: left; font-size: 14px; margin-left: 10px; margin-top: 0px">
   <% if Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").present? %>
     <% next_story_pub_datetime = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("updated_at","code_value").first %>
     <% if next_story_pub_datetime[1].present?  %>
