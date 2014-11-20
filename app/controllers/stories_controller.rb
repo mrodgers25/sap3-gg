@@ -11,6 +11,7 @@ class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   def scrape
+    authorize Story
   end
 
   # GET /stories
@@ -119,6 +120,7 @@ class StoriesController < ApplicationController
   # DELETE /stories/1
   # DELETE /stories/1.json
   def destroy
+    authorize Story
     @story.destroy
     respond_to do |format|
       format.html { redirect_to stories_url, notice: 'Story was successfully destroyed.' }
