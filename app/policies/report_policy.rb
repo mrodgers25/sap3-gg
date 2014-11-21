@@ -6,13 +6,13 @@ class ReportPolicy
     @user = model
   end
 
-  def csv_export_stories_users?
+  def export_stories_users?
     allowed = ["admin"]
     allowed.include?(@current_user.role)
     # binding.pry
   end
 
-  def csv_export_stories?
+  def export_stories?
     allowed = ["associate","admin"]
     allowed.include?(@current_user.role)
   end
