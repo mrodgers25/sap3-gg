@@ -194,16 +194,6 @@ class StoriesController < ApplicationController
     # binding.pry
   end
 
-  # def schedule_story
-  #   stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")
-  #   stories_every_x_secs = 60 * 60 * 24 / stories_per_day
-  #   next_story_to_publish = Story.order("created_at").where("sap_publish_date is null").pluck("id").first
-
-    # next_story_pub_datetime_str = Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").pluck("code_value")[0]
-    # next_story_pub_datetime = next_story_pub_datetime_str.to_datetime.in_time_zone("Pacific Time (US & Canada)")
-  # end
-
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(

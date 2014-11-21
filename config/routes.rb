@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   match '/' => 'visitors#index', via: [:get, :post]
   # match '/visitors' => 'visitors#index', via: [:get, :post] # changed to remove "/visitors" from showing using filter
   match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
-  match '/reports/csv_export' => 'reports#csv_export', via: [:get, :post]
+  match '/reports/export_stories_users' => 'reports#export_stories_users', via: [:get, :post]
+  match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
 
   resources :stories #original from generate
   resources :urls
