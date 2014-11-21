@@ -6,7 +6,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="text-right" style="font-size:1.5em">
         <%= form_tag do %>
 
@@ -41,21 +41,20 @@
             </div>
           </nav>
 
-
         <% end %>
 
       </div>
-      <div class="row row-centered" style="font-family: Source Sans Pro">
+      <div class="row" style="font-family: Source Sans Pro">
 
         <% @stories.each do |story| %>
-            <div class="col-lg-4 col-centered text-left">
+          <div class="col-lg-4 col-sm-6 col-xs-12">
 
                 <% story.urls.each do |u| %>
 
                   <p style="margin-bottom: 2%">
                         <% u.images.each do |i| %>
 
-                            <%= link_to image_tag(i.src_url, :width =>450), u.url_full, target: '_blank' %>
+                            <%= link_to image_tag(i.src_url, :width =>750, :class => "img-responsive"), u.url_full, target: '_blank' %>
 
                         <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
                         <% @desc_trunc = 220 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length -->
@@ -91,40 +90,4 @@
     </div>
   </div>
 </div>
-
-<% if false %>
-
-    <% if false %>
-        <% if user_signed_in? %>
-            <% if current_user.admin? %>
-                <h3>Admin</h3>
-                <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
-            <% else %>
-                <h3>You've signed up. Download a free book.</h3>
-                <%= link_to 'Download PDF', products_path('product.pdf'), :class => 'btn btn-success btn-large' %>
-            <% end %>
-        <% else %>
-            <h3>Sign up and download a free book.</h3>
-            <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
-        <% end %>
-    <% end %>
-
-
-    <% title_line_count = u.url_title.size / 26 %>
-    title line count = <%= "#{title_line_count.ceil}" %><br>
-
-    <% desc_line_count = u.url_desc.size / 46 %>
-    <% title_desc_line_count = title_line_count + desc_line_count %>
-    <% textline_px_adj = title_desc_line_count / 2 * 100 %>
-    textline count = <%= "#{title_desc_line_count.ceil}" %>&nbsp;
-    textline px adj = <%= "#{textline_px_adj.round}" %><br>
-    <% story_px_padding = 200 - ( @image_adj + textline_px_adj ) %>
-    <%= "img px adj: #{@image_adj.round} " %>
-    <%= "padding px: #{story_px_padding.round} " %><br><br>
-    trunc desc at: <%= desc_trunc_char = u.url_desc.size + (( story_px_padding / 100 ) * 92 ) %>
-    <p><%= u.url_desc.truncate(desc_trunc_char, :separator => ' ') %></p>
-    <%= desc_px_padding = (desc_trunc_char - u.url_desc.size > 0 ? ( desc_trunc_char - u.url_desc.size  ) : 0) %>
-    <%= raw("<p style='margin-bottom: #{desc_px_padding.round}px'></p>") %>
-
-<% end %>
 
