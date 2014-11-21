@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 
-  def csv_export_stories_users
+  def export_stories_users
     authorize Report
 
     require 'csv'
@@ -64,7 +64,7 @@ class ReportsController < ApplicationController
 
 end
 
-  def csv_export_stories
+  def export_stories
     authorize Report
 
     require 'csv'
