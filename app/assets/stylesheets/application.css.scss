@@ -98,6 +98,14 @@ a:hover {
     font-size: 150%;
     line-height: 1.0;
   }
+  .timer-display {
+    font-family: 'Roboto', sans-serif;
+    color: #4A4A4A;
+    float: left;
+    font-size: 1.0em;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 }
 
 //table and desktop
@@ -113,6 +121,15 @@ a:hover {
     font-size:120%;
     line-height: 1.0;
   }
+  .timer-display {
+    font-family: 'Roboto', sans-serif;
+    color: #4A4A4A;
+    float: left;
+    font-size: 1em;
+    margin-left: 15px;
+    margin-top: 2px;
+  }
+
 }
 
 //tablet
