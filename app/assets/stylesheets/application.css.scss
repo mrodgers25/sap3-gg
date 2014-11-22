@@ -88,27 +88,42 @@ a:hover {
 @media (max-width: 768px) {
   .btn-responsive {
     padding: 2px 8px;
-    font-size:70%;
-    line-height: 1.6;
+    font-size:100%;
+    line-height: 1.8;
     border-radius:3px;
   }
 }
-//table
-@media (min-width: 769px) and (max-width: 992px) {
+
+//table and desktop
+@media (min-width: 769px) {
   .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.0;
+  }
+  .select-dropdown-hdr {
     padding:4px 9px;
     font-size:60%;
     line-height: 1.0;
   }
 }
 
+//tablet
+//@media (min-width: 769px) and (max-width: 992px) {
+//  .btn-responsive {
+//    padding:4px 9px;
+//    font-size:60%;
+//    line-height: 1.0;
+//  }
+//}
+
 //desktop
-@media (min-width: 993px) {
-  .btn-responsive {
-    padding:4px 9px;
-    font-size:60%;
-    line-height: 1.0;
-  }
-}
+//@media (min-width: 993px) {
+//  .btn-responsive {
+//    padding:4px 9px;
+//    font-size:60%;
+//    line-height: 1.0;
+//  }
+//}
 
 
