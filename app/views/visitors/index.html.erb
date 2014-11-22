@@ -51,7 +51,7 @@
 
               <% story.urls.each do |u| %>
 
-                <p style="margin-bottom: 2%">
+                <p style="margin-bottom: 2%; text-align: left">
                   <% u.images.each do |i| %>
 
                     <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), u.url_full, target: '_blank' %>
