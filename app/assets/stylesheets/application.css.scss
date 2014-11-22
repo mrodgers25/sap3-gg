@@ -88,22 +88,29 @@ a:hover {
 @media (max-width: 768px) {
   .btn-responsive {
     padding: 2px 8px;
-    font-size:100%;
+    font-size: 120%;
     line-height: 1.8;
-    border-radius:3px;
+    border-radius: 3px;
+  }
+  .select-dropdown-hdr {
+    padding-bottom: 6px;
+    padding-left: 0px;
+    font-size: 120%;
+    line-height: 1.0;
   }
 }
 
 //table and desktop
 @media (min-width: 769px) {
   .btn-responsive {
-    padding:4px 9px;
-    font-size:90%;
+    padding:4px 12px;
+    font-size:110%;
     line-height: 1.0;
   }
   .select-dropdown-hdr {
-    padding:4px 9px;
-    font-size:60%;
+    padding:4px;
+    padding-left:4px;
+    font-size:120%;
     line-height: 1.0;
   }
 }
