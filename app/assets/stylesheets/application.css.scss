@@ -84,19 +84,29 @@ a:hover {
 
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
 
+//phone
 @media (max-width: 768px) {
   .btn-responsive {
     padding:2px 4px;
-    font-size:200%;
-    line-height: 1.2;
+    font-size:100%;
+    line-height: 1.5;
     border-radius:3px;
   }
 }
-
+//table
 @media (min-width: 769px) and (max-width: 992px) {
   .btn-responsive {
     padding:4px 9px;
-    font-size:200%;
+    font-size:100%;
+    line-height: 1.2;
+  }
+}
+
+//desktop
+@media (min-width: 993px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:100%;
     line-height: 1.2;
   }
 }
