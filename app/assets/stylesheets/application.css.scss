@@ -111,12 +111,13 @@ a:hover {
 //table and desktop
 @media (min-width: 769px) {
   .btn-responsive {
-    padding:7px 12px;
+    padding:4px 12px;
+    margin-top: 5px;
     font-size:110%;
     line-height: 1.0;
   }
   .select-dropdown-hdr {
-    padding-top:6px;
+    padding-top:8px;
     padding-left:4px;
     font-size:120%;
     line-height: 1.0;
@@ -126,7 +127,7 @@ a:hover {
     color: #4A4A4A;
     float: left;
     font-size: 1.2em;
-    padding-top: 2px;
+    padding-top: 6px;
     padding-left: 15px;
   }
 
