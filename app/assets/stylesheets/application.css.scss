@@ -87,8 +87,8 @@ a:hover {
 //phone
 @media (max-width: 768px) {
   .btn-responsive {
-    padding: 2px 8px;
-    font-size: 120%;
+    padding: 1px 8px;
+    font-size: 130%;
     line-height: 1.8;
     border-radius: 3px;
   }
@@ -103,8 +103,8 @@ a:hover {
     color: #4A4A4A;
     float: left;
     font-size: 1.0em;
-    padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 15px;
+    padding-left: 20px;
   }
 }
 
@@ -125,9 +125,9 @@ a:hover {
     font-family: 'Roboto', sans-serif;
     color: #4A4A4A;
     float: left;
-    font-size: 1em;
-    margin-left: 15px;
-    margin-top: 2px;
+    font-size: 1.2em;
+    padding-top: 1px;
+    padding-left: 15px;
   }
 
 }
