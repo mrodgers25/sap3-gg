@@ -86,6 +86,10 @@ a:hover {
 
 //mobile
 @media (max-width: 768px) {
+  .nav-select {
+    min-height: 40px;
+    margin-top: 0px;
+  }
   .btn-responsive {
     padding: 1px 8px;
     font-size: 130%;
@@ -115,6 +119,10 @@ a:hover {
 
 //table and desktop
 @media (min-width: 769px) {
+  .nav-select {
+    min-height: 40px;
+    margin-top: 15px;
+  }
   .timer-display {
     font-family: 'Roboto', sans-serif;
     color: #4A4A4A;
