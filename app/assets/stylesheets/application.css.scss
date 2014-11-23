@@ -84,7 +84,7 @@ a:hover {
 
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
 
-//phone
+//mobile
 @media (max-width: 768px) {
   .btn-responsive {
     padding: 1px 8px;
@@ -97,6 +97,11 @@ a:hover {
     padding-left: 0px;
     font-size: 150%;
     line-height: 1.0;
+  }
+  .editor-pick {
+    visibility: hidden;
+    font-size: 6px;
+    line-height: .1;
   }
   .timer-display {
     font-family: 'Roboto', sans-serif;
@@ -124,6 +129,13 @@ a:hover {
     font-size:120%;
     line-height: 1.0;
   }
+  .editor-pick {
+    margin-top: 11px;
+    font-size: 14px;
+    font-size: .8em;
+    color: darkgrey;
+    white-space: nowrap;
+  }
   .btn-responsive {
     padding:4px 12px;
     margin-top: 6px;
@@ -131,14 +143,6 @@ a:hover {
     font-size:110%;
     line-height: 1.0;
   }
-}
-
-.login-prompt {
-  margin-top: 11px;
-  font-size: 14px;
-  font-size: .8em;
-  color: darkgrey;
-  white-space: nowrap;
 }
 
 //tablet

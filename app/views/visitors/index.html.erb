@@ -33,7 +33,7 @@
                     <li  class="select-dropdown-hdr""><%= select_tag :user_story_category, options_from_collection_for_select(@story_categories_notloggedin,'code_key','code_value', params[:user_story_category]) %>&nbsp;</li>
                   <% end %>
                   <% unless user_signed_in? %>
-                    <li class="login-prompt"><span><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
+                    <li class="editor-pick"><span><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
 	                    </span>&nbsp;Login to access Editor Picks</span>&nbsp;&nbsp;&nbsp;</li>
                   <% end %>
                   <li style="padding-left: 20px; padding-right: 5px; padding-top: 1px"><%= submit_tag "Filter Stories", class: 'btn btn-success btn-lg btn-responsive'%></li>
