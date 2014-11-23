@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="text-right">
           <%= form_tag do %>
-
+				<br><br>
             <nav class="navbar navbar-default" role="navigation" style="min-height: 40px">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -34,7 +34,7 @@
                   <% end %>
                   <% unless user_signed_in? %>
                     <li class="editor-pick"><span><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
-	                    </span>&nbsp;Login to access Editor Picks</span>&nbsp;&nbsp;&nbsp;</li>
+	                    </span>&nbsp;Login to access<br>&nbsp;&nbsp;&nbsp;&nbsp;Editor Picks</span></li>
                   <% end %>
                   <li style="padding-left: 20px; padding-right: 5px; padding-top: 1px"><%= submit_tag "Filter Stories", class: 'btn btn-success btn-lg btn-responsive'%></li>
                 </ul>

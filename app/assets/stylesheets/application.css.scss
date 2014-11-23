@@ -130,16 +130,20 @@ a:hover {
     line-height: 1.0;
   }
   .editor-pick {
-    margin-top: 11px;
-    font-size: 14px;
+    margin-top: 9px;
     font-size: .8em;
     color: darkgrey;
-    white-space: nowrap;
+//    white-space: nowrap;
+    width: 150px;
+    line-height: 1.1;
+    text-align: left;
+
   }
   .btn-responsive {
     padding:6px 12px;
     margin-top: 4px;
     margin-right: 15px;
+    margin-left: -30px;
     font-size:110%;
     line-height: 1.0;
   }
