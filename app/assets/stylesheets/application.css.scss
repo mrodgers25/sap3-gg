@@ -86,7 +86,7 @@ a:hover {
 
 //mobile
 @media (max-width: 768px) {
-  .nav-select {
+  .navsap-select {
     min-height: 40px;
     margin-top: 0px;
   }
@@ -96,10 +96,10 @@ a:hover {
     line-height: 1.8;
     border-radius: 3px;
   }
-  .select-dropdown-hdr {
+  .select-dropdown-hdr select {
+    font-family: 'Arial Narrow', sans-serif;
     padding-bottom: 10px;
     padding-left: 0px;
-    font-size: 150%;
     line-height: 1.0;
   }
   .editor-pick {
@@ -117,7 +117,7 @@ a:hover {
   }
 }
 
-//table and desktop
+//tablet and desktop
 @media (min-width: 769px) {
   .nav-select {
     min-height: 40px;
