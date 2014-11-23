@@ -15,8 +15,9 @@ namespace :schedule_story do
       puts "last_story_published_at ---> #{last_story_published_at}"
 
       # grab the oldest story by original publish date
-      next_story_to_publish = Story.order("story_year","story_month","story_date").where("sap_publish_date is null").pluck("id").first
-      # next_story_to_publish = Story.order("created_at").where("sap_publish_date is null").pluck("id").first
+      # next_story_to_publish = Story.order("story_year","story_month","story_date").where("sap_publish_date is null").pluck("id").first
+      # grab the oldest story by original created date
+      next_story_to_publish = Story.order("created_at").where("sap_publish_date is null").pluck("id").first
       puts "next_story_to_publish ---> #{next_story_to_publish}"
 
       if Code.where("code_key = 'NEXT_STORY_PUB_DATETIME'").present?

@@ -6,8 +6,8 @@ class VisitorsController < ApplicationController
     story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value unless \
       Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
     story_limit ||= 36
-    # @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
-    @stories = Story.order("story_year DESC","story_month DESC","story_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
+    @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
+    # @stories = Story.order("story_year DESC","story_month DESC","story_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
 
     flash.now.alert = "No Stories found" if @stories.empty?
 
