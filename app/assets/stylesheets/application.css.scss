@@ -120,7 +120,7 @@ a:hover {
 
 //tablet and desktop
 @media (min-width: 769px) {
-  .nav-select {
+  .navsap-select {
     min-height: 40px;
     margin-top: 10px;
   }
@@ -158,13 +158,13 @@ a:hover {
 }
 
 //tablet
-//@media (min-width: 769px) and (max-width: 992px) {
-//  .btn-responsive {
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
 //    padding:4px 9px;
-//    font-size:60%;
+    font-size:100%;
 //    line-height: 1.0;
-//  }
-//}
+  }
+}
 
 //desktop
 //@media (min-width: 993px) {
