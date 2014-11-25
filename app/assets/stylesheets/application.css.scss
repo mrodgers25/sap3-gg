@@ -117,6 +117,7 @@ a:hover {
   }
   .btn-responsive {
     padding: 1px 8px;
+    margin-right: 6px;
     font-size: 130%;
     line-height: 1.8;
     border-radius: 3px;
@@ -139,10 +140,10 @@ a:hover {
   }
   .select-dropdown-hdr select {
     font-family: 'Arial Narrow', sans-serif;
-    font-size: 110%;
+    font-size: 100%;
     margin-top: 7px;
     padding-left: 0px;
-    line-height: 1.0;
+    line-height: 100%;
   }
   .editor-pick {
     visibility: hidden;
@@ -160,7 +161,8 @@ a:hover {
     }
   }
   .btn-responsive {
-    margin-top: 4px;
+    margin-top: 5px;
+    margin-right: 10px;
     padding: 0px 8px;
     font-size: 90%;
     line-height: 1.8;
@@ -199,7 +201,7 @@ a:hover {
   }
   .btn-responsive {
     padding:6px 12px;
-    margin-top: 4px;
+    margin-top: 5px;
     margin-right: 15px;
     margin-left: -15px;
     font-size:110%;
