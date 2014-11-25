@@ -133,7 +133,7 @@ a:hover {
     font-family: 'Roboto', sans-serif;
     color: #4A4A4A;
     float: left;
-    font-size: 1.0em;
+    font-size: .9em;
     padding-top: 7px;
     padding-left: 10px;
   }
@@ -152,8 +152,12 @@ a:hover {
     width: 150px;
     text-align: left;
     line-height: 1.1;
-    margin-right: -160px;
+    margin-right: -140px;
     //    white-space: nowrap;
+    .nav-sap-toggle {
+      padding: 6px 8px;
+      margin-left: 0px;
+    }
   }
   .btn-responsive {
     margin-top: 4px;
