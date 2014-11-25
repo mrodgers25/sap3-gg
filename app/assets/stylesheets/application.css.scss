@@ -87,14 +87,8 @@ a:hover {
 //mobile
 @media (max-width: 768px) {
   .navsap-select {
-    min-height: 40px;
+    min-height: 35px;
     margin-top: 0px;
-  }
-  .btn-responsive {
-    padding: 1px 8px;
-    font-size: 130%;
-    line-height: 1.8;
-    border-radius: 3px;
   }
   .select-dropdown-hdr select {
     font-family: 'Arial Narrow', sans-serif;
@@ -113,13 +107,65 @@ a:hover {
     color: #4A4A4A;
     float: left;
     font-size: 1.0em;
-    padding-top: 15px;
+    padding-top: 9px;
     padding-left: 20px;
+  }
+  .nav-sap-toggle {
+    padding: 6px 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .btn-responsive {
+    padding: 1px 8px;
+    font-size: 130%;
+    line-height: 1.8;
+    border-radius: 3px;
   }
 }
 
-//tablet and desktop
-@media (min-width: 769px) {
+//tablet
+@media (min-width: 769px) and (max-width: 992px) {
+  .navsap-select {
+    min-height: 35px;
+    margin-top: 15px;
+  }
+  .timer-display {
+    font-family: 'Roboto', sans-serif;
+    color: #4A4A4A;
+    float: left;
+    font-size: 1.0em;
+    padding-top: 7px;
+    padding-left: 10px;
+  }
+  .select-dropdown-hdr select {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 110%;
+    margin-top: 7px;
+    padding-left: 0px;
+    line-height: 1.0;
+  }
+  .editor-pick {
+    visibility: hidden;
+    margin-top: 6px;
+    font-size: .7em;
+    color: darkgrey;
+    width: 150px;
+    text-align: left;
+    line-height: 1.1;
+    margin-right: -140px;
+    //    white-space: nowrap;
+  }
+  .btn-responsive {
+    margin-top: 4px;
+    padding: 0px 8px;
+    font-size: 90%;
+    line-height: 1.8;
+    border-radius: 3px;
+  }
+}
+
+//desktop
+@media (min-width: 993px) {
   .navsap-select {
     min-height: 40px;
     margin-top: 10px;
@@ -145,7 +191,7 @@ a:hover {
     width: 150px;
     text-align: left;
     line-height: 1.1;
-//    white-space: nowrap;
+    //    white-space: nowrap;
   }
   .btn-responsive {
     padding:6px 12px;
@@ -154,15 +200,6 @@ a:hover {
     margin-left: -15px;
     font-size:110%;
     line-height: 1.0;
-  }
-}
-
-//tablet
-@media (min-width: 769px) and (max-width: 992px) {
-  .btn-responsive {
-//    padding:4px 9px;
-    font-size:100%;
-//    line-height: 1.0;
   }
 }
 
