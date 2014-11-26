@@ -86,7 +86,7 @@ a:hover {
 
 //mobile
 @media (max-width: 768px) {
-  .navsap-select {
+  .nav-sap-select {
     min-height: 35px;
     margin-top: 0px;
   }
@@ -126,7 +126,7 @@ a:hover {
 
 //tablet
 @media (min-width: 769px) and (max-width: 992px) {
-  .navsap-select {
+  .nav-sap-select {
     min-height: 35px;
     margin-top: 15px;
   }
@@ -162,6 +162,7 @@ a:hover {
   .btn-responsive {
     margin-top: 5px;
     margin-right: 10px;
+    margin-left: 10px;
     padding: 0px 8px;
     font-size: 90%;
     line-height: 1.8;
@@ -171,7 +172,7 @@ a:hover {
 
 //desktop
 @media (min-width: 993px) {
-  .navsap-select {
+  .nav-sap-select {
     min-height: 40px;
     margin-top: 10px;
   }
@@ -191,6 +192,7 @@ a:hover {
   }
   .editor-pick {
     margin-top: 9px;
+    margin-right: -20px;
     font-size: .8em;
     color: darkgrey;
     width: 150px;
@@ -198,10 +200,10 @@ a:hover {
     line-height: 1.1;
   }
   .btn-responsive {
-    padding:6px 12px;
-    margin-top: 5px;
+    padding:5px 12px;
+    margin-top: 4px;
     margin-right: 15px;
-    margin-left: -15px;
+    margin-left: 25px;
     font-size:110%;
   }
 }
