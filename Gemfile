@@ -26,6 +26,7 @@ gem 'sendgrid-ruby'
 gem 'delayed_job_active_record'
 gem 'social-share-button'
 gem 'google-webfonts'
+gem 'ahoy_matey'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do

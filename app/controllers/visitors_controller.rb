@@ -3,6 +3,9 @@ class VisitorsController < ApplicationController
 
   def index
 
+    # track user activity on landing page
+    track_action
+
     story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value unless \
       Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
     story_limit ||= 36
@@ -26,7 +29,10 @@ class VisitorsController < ApplicationController
 
   end
 
-private
+protected
+
+  def track_action
+    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
+  end
 
 end
-
