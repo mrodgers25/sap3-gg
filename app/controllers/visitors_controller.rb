@@ -5,6 +5,7 @@ class VisitorsController < ApplicationController
 
     # track user activity on landing page
     track_action
+    ahoy.track "Page", title: "Landing"
 
     story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value unless \
       Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
