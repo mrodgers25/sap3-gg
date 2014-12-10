@@ -92,7 +92,7 @@
 				            </p>
 				          <% else %>
 		                <p class="story-actions-links story-actions" id="save_story">
-		                  <%= link_to "SAVE THIS STORY", "#", :onclick => "alert('Sign In to Save Stories!')" %>
+		                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
 		                </p>
 			            <% end %>
 		            </div>

@@ -32,9 +32,17 @@ var Stories = function(){
     });
   }
 
+  var cannotSaveStory = function(){
+    var myLink = $(this);
+    myLink.after('<div class="alert alert-danger">Sign In to save Story</div>');
+    var alert = myLink.siblings('.alert');
+    alert.delay(5000).fadeOut(1000);
+  }
+
   return {
     init: function(){
       $('.save_story_link').on('click', saveStory);
+      $('.cannot_save_story_link').on('click', cannotSaveStory);
     }
   }
 
