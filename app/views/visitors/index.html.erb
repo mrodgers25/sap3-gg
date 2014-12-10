@@ -46,7 +46,7 @@
         <div class="row row-centered" style="font-family: Source Sans Pro">
 
           <% @stories.each do |story| %>
-            <div class="col-sm-4 col-centered text-left" style="margin-right: -15px">
+            <div class="col-sm-4 col-centered text-left story_div" style="margin-right: -15px">
             <!--<div class="col-lg-4 col-centered text-left">-->
 
               <% story.urls.each do |u| %>
@@ -88,7 +88,7 @@
 
 		              <% if user_signed_in? %>
 				            <p class="story-actions-links story-actions" id="save_story">
-				                <%= link_to "SAVE THIS STORY", save_story_path(u), remote: true %>
+				                <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => story.id %>
 				            </p>
 				          <% else %>
 		                <p class="story-actions-links story-actions" id="save_story">
@@ -105,6 +105,3 @@
     </div>
   </div>
 </div>
-
-
-

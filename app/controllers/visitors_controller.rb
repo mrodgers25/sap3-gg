@@ -38,13 +38,19 @@ class VisitorsController < ApplicationController
   end
 
   def save_story
-    if user_signed_in?
-      user_saved_story = Usersavedstory.new
-      user_saved_story.user_id = current_user.id.to_i
-      user_saved_story.story_id = params[:id].to_i
-      user_saved_story.save
-      puts "story is #{params[:id]}"
-      render nothing: true
+    respond_to do |format|
+      format.json do
+        if user_signed_in?
+          user_saved_story = Usersavedstory.new
+          user_saved_story.user_id = current_user.id.to_i
+          user_saved_story.story_id = params[:id].to_i
+          if user_saved_story.save
+            render json: {success: true}
+          else
+            render json: {success: false}
+          end 
+        end
+      end
     end
   end
 
