@@ -47,6 +47,38 @@ a:hover {
   text-decoration: none;
 }
 
+#save_story a:active {
+  color: #3366FF;
+  font-weight: bold;
+}
+
+.story-actions-links a, .story_actions-links a:visited {
+  color: rgba(51, 102, 255, 0.64);
+  font-family: 'Arial Narrow';
+//  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  background-color: inherit;
+}
+
+.story-actions  {
+  background-color:  rgb(245, 245, 245);
+  margin-top: -2%;
+  margin-bottom: 1%;
+  font-size: 90%;
+  text-align: center;
+  padding-top: 4px;
+  padding-top: 2px;
+}
+
+.story-text-block {
+  background-color: rgb(245, 245, 245);
+  padding-top: 2%;
+  padding-left: 1.5%;
+  padding-right: 1%;
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+}
+
   /* make all images responsive */
   img {
     display: block;
@@ -83,6 +115,11 @@ a:hover {
 }
 
 .bottom-align { display: table-cell; vertical-align: bottom; float: none; }
+
+.btn-sap-saved {
+  margin-top: -50px;
+  margin-bottom: -50px;
+}
 
 //mobile
 @media (max-width: 768px) {
@@ -132,7 +169,7 @@ a:hover {
   }
   .timer-display {
     font-family: 'Roboto', sans-serif;
-    color: #4A4A4A;
+    color: #4a4a4a;
     float: left;
     font-size: .8em;
     padding-top: 7px;

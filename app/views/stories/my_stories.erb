@@ -1,0 +1,35 @@
+<div class="container" style="padding-top: 2%">
+  <div class="panel panel-default">
+    <div class="panel-body" style="padding-left: 4%; padding-right: 4%"
+			<p style="font-size: 1.5em"></p>
+
+			<table class="table table-condensed">
+				<caption style="font-size: 2em; font-weight: 300; text-align: center">My Saved Stories</caption>
+			  <thead>
+			  <tr style="margin-left: 20px">
+			    <th>Saved&nbsp;</th>
+			    <th>Published&nbsp;</th>
+			    <th>Story</th>
+			    <th colspan="4"></th>
+			  </tr>
+			  </thead>
+
+			  <tbody>
+			  <% @my_stories.each do |story| %>
+			    <% published_at = (story.story_year.to_s + '-' + story.story_month.to_s.rjust(2, '0') + '-' +
+							          story.story_date.to_s.rjust(2, '0')).to_date.try(:strftime, "%b %d, %Y") %>
+			    <tr style="margin-left: 20px">
+			      <td nowrap><%= story.uss_created_at.in_time_zone("Pacific Time (US & Canada)").try(:strftime, "%b %d, %Y") %> &nbsp;</td>
+			      <td nowrap><%= published_at %> &nbsp;</td>
+			      <td><b><%= story.editor_tagline %></b><br>
+			          <%= story.url_title + '....from ' + story.url_domain %>&nbsp;</td>
+			      <td style="height: 10px">&nbsp;<%= button_to 'View Story', story.url_full, form: {target: '_blank'}, class: 'btn btn-xs btn-info btn-sap-saved' %>&nbsp;</td>
+			    </tr>
+			  <% end %>
+			  </tbody>
+
+			</table>
+
+	  </div>
+  </div>
+</div>

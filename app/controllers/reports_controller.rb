@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_filter :authenticate_user!
-  after_action:verify_authorized
+  after_action :verify_authorized
 
   def export_stories_users
     authorize Report

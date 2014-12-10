@@ -1,5 +1,3 @@
-
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -13,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205143047) do
+ActiveRecord::Schema.define(version: 20141210151622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,7 +103,7 @@ ActiveRecord::Schema.define(version: 20141205143047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "url_keywords"
-    t.string   "story_id"
+    t.integer  "story_id"
     t.string   "url_domain"
     t.string   "url_full"
     t.boolean  "url_title_track"
@@ -143,6 +141,15 @@ ActiveRecord::Schema.define(version: 20141205143047) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "usersavedstories", force: true do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "usersavedstories", ["user_id", "story_id"], name: "index_usersavedstories_on_user_id_and_story_id", unique: true, using: :btree
 
   create_table "visits", id: :uuid, force: true do |t|
     t.uuid     "visitor_id"

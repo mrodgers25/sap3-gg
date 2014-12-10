@@ -37,7 +37,18 @@ class VisitorsController < ApplicationController
 
   end
 
-protected
+  def save_story
+    if user_signed_in?
+      user_saved_story = Usersavedstory.new
+      user_saved_story.user_id = current_user.id.to_i
+      user_saved_story.story_id = params[:id].to_i
+      user_saved_story.save
+      puts "story is #{params[:id]}"
+      render nothing: true
+    end
+  end
+
+  protected
 
   def track_action
     ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters

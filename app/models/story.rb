@@ -1,6 +1,9 @@
 class Story < ActiveRecord::Base
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
+  has_many :usersavedstories
+  accepts_nested_attributes_for :usersavedstories
+
   validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
   # landing page dropdown
