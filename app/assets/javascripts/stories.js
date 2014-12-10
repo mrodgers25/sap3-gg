@@ -16,21 +16,20 @@ var Stories = function(){
     })
     .done(function(data){
       if(data.success == true){
-        storyDiv.append(successMsg)
+        storyDiv.append(successMsg);
         myLink.replaceWith('<span class="story_saved_message">Saved</span>');
       }
       else {
-        storyDiv.append(failMsg)
+        storyDiv.append(failMsg);
       }
     })
     .fail(function(data){
-      storyDiv.append(failMsg)
+      storyDiv.append(failMsg);
     })
     .always(function(){
-      var alertDiv = storyDiv.find('.alert')
+      var alertDiv = storyDiv.find('.alert');
       alertDiv.delay(5000).fadeOut(1000);
     });
-
   }
 
   return {
