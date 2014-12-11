@@ -42,4 +42,13 @@ function refreshTimer(){
 }
 setInterval(refreshTimer, 30000); // # 1000 ticks/sec
 
+var Utils = function(){
 
+  return {
+    flashMessage: function(msg, status){
+      var myHtml = '<div class="alert alert-' + status + '">' + msg + '</div>';
+      return myHtml;
+    }
+  }
+
+}();

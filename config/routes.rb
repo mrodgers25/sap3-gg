@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
   match 'stories/my_stories' => 'stories#my_stories', via: [:get, :post]
   match '/' => 'visitors#index', via: [:get, :post]
-  match '/visitors/save_story/:id' => 'visitors#save_story', via: [:get, :post], as: :save_story
+
+  post '/visitors/save_story/:id', to: 'visitors#save_story', as: :save_story
+  post '/visitors/forget_story/:id', to: 'visitors#forget_story', as: :forget_story
+
   match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
   match '/reports/export_stories_users' => 'reports#export_stories_users', via: [:get, :post]
   match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
