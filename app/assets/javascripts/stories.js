@@ -29,7 +29,7 @@ var Stories = function(){
     })
     .always(function(){
       var alertDiv = storyDiv.find('.alert');
-      alertDiv.delay(5000).fadeOut(1000);
+      alertDiv.delay(3000).fadeOut(1000);
     });
   }
 
@@ -37,7 +37,7 @@ var Stories = function(){
     var myLink = $(this);
     myLink.after(Utils.flashMessage('Sign In to save Story', 'danger'));
     var alertDiv = myLink.siblings('.alert')
-    alertDiv.delay(5000).fadeOut(1000);
+    alertDiv.delay(3000).fadeOut(1000);
   }
 
   var forgetStory = function(){
@@ -65,7 +65,7 @@ var Stories = function(){
     })
     .always(function(){
       var alertDiv = storyDiv.find('.alert')
-      alertDiv.delay(5000).fadeOut(1000);
+      alertDiv.delay(3000).fadeOut(1000);
     });
   }
 
