@@ -1,0 +1,1510 @@
+2014-12-11T17:33:56.812241+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (8.7ms)
+2014-12-11T17:33:56.802010+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:33:56.812548+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.1ms)
+2014-12-11T17:34:08.838976+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e939163d-121b-4e79-a3ee-5b577bbdf360 fwd="108.199.253.93" dyno=web.1 connect=8ms service=36ms status=304 bytes=432
+2014-12-11T17:34:08.802420+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:34:08 +0000
+2014-12-11T17:34:08.828792+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (19.4ms)
+2014-12-11T17:34:08.828869+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (19.8ms)
+2014-12-11T17:34:08.829244+00:00 app[web.1]: Completed 200 OK in 21ms (Views: 2.6ms | ActiveRecord: 17.9ms)
+2014-12-11T17:34:08.807890+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:34:16.877438+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:34:16.906370+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:34:16.901094+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:34:16.877432+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:34:16.902897+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:34:16.906620+00:00 app[scheduler.9544]: time_left_before_pub ---> -925080 secs
+2014-12-11T17:34:16.906558+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:34:16.906622+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:34:26.175803+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e9a7eeb1-c8ff-4fcf-ad71-3b9e89a31340 fwd="76.176.36.190" dyno=web.1 connect=2ms service=26ms status=304 bytes=432
+2014-12-11T17:34:26.157170+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:34:26.172027+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.1ms)
+2014-12-11T17:34:26.172126+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.7ms)
+2014-12-11T17:34:26.172420+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 4.6ms | ActiveRecord: 9.4ms)
+2014-12-11T17:34:26.149925+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:34:26 +0000
+2014-12-11T17:34:30.206677+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f77463f1-a5f1-4759-a222-5415e34ada98 fwd="108.199.253.93" dyno=web.1 connect=5ms service=11ms status=304 bytes=432
+2014-12-11T17:34:30.194120+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:34:30 +0000
+2014-12-11T17:34:30.202978+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T17:34:30.203291+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 2.6ms)
+2014-12-11T17:34:30.203061+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:34:30.197944+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:34:44.678901+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3509d6fa-ef1f-485f-ac3d-4224b4c5530c fwd="108.199.253.93" dyno=web.1 connect=1ms service=17ms status=304 bytes=432
+2014-12-11T17:34:44.661250+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:34:44 +0000
+2014-12-11T17:34:44.674911+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 2.4ms | ActiveRecord: 8.2ms)
+2014-12-11T17:34:44.674568+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.6ms)
+2014-12-11T17:34:44.674680+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.9ms)
+2014-12-11T17:34:44.663542+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:34:55.883852+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c8241081-600c-49ad-9deb-2ba668a20092 fwd="76.176.36.190" dyno=web.1 connect=3ms service=14ms status=304 bytes=432
+2014-12-11T17:34:55.870579+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:34:55 +0000
+2014-12-11T17:34:55.879731+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.2ms)
+2014-12-11T17:34:55.880084+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 2.6ms)
+2014-12-11T17:34:55.873864+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:34:55.879892+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.5ms)
+2014-12-11T17:35:00.822735+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0676aed6-f9bf-406a-a25e-1c4b06907c7e fwd="108.199.253.93" dyno=web.1 connect=1ms service=31ms status=304 bytes=432
+2014-12-11T17:35:00.792534+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:35:00 +0000
+2014-12-11T17:35:00.818219+00:00 app[web.1]: Completed 200 OK in 21ms (Views: 6.8ms | ActiveRecord: 13.8ms)
+2014-12-11T17:35:00.816898+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (18.4ms)
+2014-12-11T17:35:00.796612+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:00.817843+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (19.6ms)
+2014-12-11T17:35:16.225759+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3f53a89c-6428-4304-9610-f51e097fafb7 fwd="108.199.253.93" dyno=web.1 connect=5ms service=10ms status=304 bytes=432
+2014-12-11T17:35:16.215271+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:35:16 +0000
+2014-12-11T17:35:16.222223+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:35:16.217367+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:16.222364+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:35:16.222556+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.1ms)
+2014-12-11T17:35:16.909377+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:35:16.909384+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:35:16.933466+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:35:16.927032+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:35:16.930061+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:35:16.933869+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:35:16.933964+00:00 app[scheduler.9544]: time_left_before_pub ---> -925140 secs
+2014-12-11T17:35:16.933970+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:35:26.880466+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.6ms | ActiveRecord: 4.5ms)
+2014-12-11T17:35:26.867624+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:35:26 +0000
+2014-12-11T17:35:26.880191+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.8ms)
+2014-12-11T17:35:26.880261+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.3ms)
+2014-12-11T17:35:26.872518+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:26.887249+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0cda4b6c-3e0c-411b-b01d-b9fd6951c58f fwd="76.176.36.190" dyno=web.1 connect=5ms service=19ms status=304 bytes=432
+2014-12-11T17:35:30.820673+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8d833779-c3b6-45e7-92ff-14848caea1dc fwd="108.199.253.93" dyno=web.1 connect=6ms service=22ms status=304 bytes=432
+2014-12-11T17:35:30.796477+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:35:30 +0000
+2014-12-11T17:35:30.815674+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.1ms)
+2014-12-11T17:35:30.815744+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.4ms)
+2014-12-11T17:35:30.816122+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 8.1ms | ActiveRecord: 3.0ms)
+2014-12-11T17:35:30.804148+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:47.775082+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c685a046-2fe2-44f8-8c39-a96732eec7c0 fwd="108.199.253.93" dyno=web.1 connect=2ms service=11ms status=304 bytes=432
+2014-12-11T17:35:47.770913+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:35:47.763736+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:35:47 +0000
+2014-12-11T17:35:47.770834+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:35:47.771103+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 2.4ms)
+2014-12-11T17:35:47.766042+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:57.867753+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:35:57.864288+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:35:57 +0000
+2014-12-11T17:35:57.882687+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (13.7ms)
+2014-12-11T17:35:57.882768+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (14.0ms)
+2014-12-11T17:35:57.883006+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 2.1ms | ActiveRecord: 12.4ms)
+2014-12-11T17:35:57.891104+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9b02b385-8f93-46b4-a478-73c2cc3ae663 fwd="76.176.36.190" dyno=web.1 connect=2ms service=27ms status=304 bytes=432
+2014-12-11T17:36:00.829067+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=53eaaf1f-3365-464a-822c-07d1df801d0b fwd="108.199.253.93" dyno=web.1 connect=6ms service=34ms status=304 bytes=432
+2014-12-11T17:36:00.793643+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:36:00 +0000
+2014-12-11T17:36:00.819256+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (12.5ms)
+2014-12-11T17:36:00.819371+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (12.9ms)
+2014-12-11T17:36:00.819623+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 2.3ms | ActiveRecord: 11.2ms)
+2014-12-11T17:36:00.801445+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:36:16.952687+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:36:16.936686+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:36:16.957328+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:36:16.936675+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:36:16.954312+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:36:16.957603+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:36:16.957542+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:36:16.957598+00:00 app[scheduler.9544]: time_left_before_pub ---> -925200 secs
+2014-12-11T17:36:28.875546+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a41892c4-ba03-467f-97bd-457f2a027dc7 fwd="76.176.36.190" dyno=web.1 connect=3ms service=11ms status=304 bytes=432
+2014-12-11T17:36:28.866449+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:36:28.864397+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:36:28 +0000
+2014-12-11T17:36:28.871081+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:36:28.871158+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T17:36:28.871362+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 2.3ms)
+2014-12-11T17:36:31.725884+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e3d585fa-6b8c-4d20-930d-a460dc8fff27 fwd="108.199.253.93" dyno=web.1 connect=1ms service=12ms status=304 bytes=432
+2014-12-11T17:36:31.713342+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:36:31 +0000
+2014-12-11T17:36:31.721576+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.6ms)
+2014-12-11T17:36:31.721662+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.0ms)
+2014-12-11T17:36:31.721901+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 3.3ms)
+2014-12-11T17:36:31.715548+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:36:59.876095+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0aa2bbbe-09bd-48ff-a89c-267bf103cbaa fwd="76.176.36.190" dyno=web.1 connect=4ms service=10ms status=304 bytes=432
+2014-12-11T17:36:59.865886+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:36:59 +0000
+2014-12-11T17:36:59.872514+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:36:59.867866+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:36:59.872791+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 2.2ms)
+2014-12-11T17:36:59.872598+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.6ms)
+2014-12-11T17:37:03.259235+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:37:03 +0000
+2014-12-11T17:37:03.268961+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.1ms)
+2014-12-11T17:37:03.269412+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 2.4ms)
+2014-12-11T17:37:03.261765+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:37:03.269111+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.5ms)
+2014-12-11T17:37:03.272806+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=96c2f9a0-6fc8-4469-b116-ed92fb8d36c9 fwd="108.199.253.93" dyno=web.1 connect=3ms service=13ms status=304 bytes=432
+2014-12-11T17:37:16.960252+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:37:16.960262+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:37:16.983647+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:37:16.977856+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:37:16.979576+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:37:16.983880+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:37:16.983823+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:37:16.983876+00:00 app[scheduler.9544]: time_left_before_pub ---> -925260 secs
+2014-12-11T17:37:29.889191+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=456c624d-1206-41ad-8aa5-6ec9d0ac3abc fwd="76.176.36.190" dyno=web.1 connect=2ms service=20ms status=304 bytes=432
+2014-12-11T17:37:29.881024+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.1ms)
+2014-12-11T17:37:29.881096+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.4ms)
+2014-12-11T17:37:29.881323+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.0ms | ActiveRecord: 9.0ms)
+2014-12-11T17:37:29.865883+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:37:29 +0000
+2014-12-11T17:37:29.869626+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:37:33.795625+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8451bcdc-21fe-4591-81b4-7efd264ee4d6 fwd="108.199.253.93" dyno=web.1 connect=1ms service=9ms status=304 bytes=432
+2014-12-11T17:37:33.785443+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:37:33 +0000
+2014-12-11T17:37:33.792754+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T17:37:33.792945+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.1ms)
+2014-12-11T17:37:33.792676+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:37:33.787837+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:37:48.448465+00:00 heroku[api]: Starting process with command `rails c` by ggehrich@gmail.com
+2014-12-11T17:37:54.150062+00:00 heroku[run.3921]: Awaiting client
+2014-12-11T17:37:54.190965+00:00 heroku[run.3921]: Starting process with command `rails c`
+2014-12-11T17:37:54.536322+00:00 heroku[run.3921]: State changed from starting to up
+2014-12-11T17:37:59.996787+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0841a709-bc52-4073-ab86-585e550458e8 fwd="76.176.36.190" dyno=web.1 connect=3ms service=25ms status=304 bytes=432
+2014-12-11T17:37:59.989687+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.8ms)
+2014-12-11T17:37:59.971983+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:37:59 +0000
+2014-12-11T17:37:59.989803+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (12.2ms)
+2014-12-11T17:37:59.990254+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 2.6ms | ActiveRecord: 10.2ms)
+2014-12-11T17:37:59.976410+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:38:05.061354+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=17a1a756-2fd9-4dfa-9855-c9f699f1f66e fwd="108.199.253.93" dyno=web.1 connect=1ms service=11ms status=304 bytes=432
+2014-12-11T17:38:05.052550+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:38:05.050299+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:38:05 +0000
+2014-12-11T17:38:05.058326+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.5ms)
+2014-12-11T17:38:05.058416+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.8ms)
+2014-12-11T17:38:05.058684+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 3.3ms)
+2014-12-11T17:38:17.002620+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:38:16.986355+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:38:16.986346+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:38:17.007502+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:38:17.004480+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:38:17.007674+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:38:17.007727+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:38:17.007723+00:00 app[scheduler.9544]: time_left_before_pub ---> -925320 secs
+2014-12-11T17:38:29.981359+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8ad05c1a-6295-48d3-8d6e-7b73eacd41b3 fwd="76.176.36.190" dyno=web.1 connect=5ms service=24ms status=304 bytes=432
+2014-12-11T17:38:29.964004+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:38:29.978311+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.5ms)
+2014-12-11T17:38:29.978044+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.8ms)
+2014-12-11T17:38:29.978927+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 3.2ms | ActiveRecord: 9.1ms)
+2014-12-11T17:38:29.960536+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:38:29 +0000
+2014-12-11T17:38:36.611697+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a4b1da8c-5e44-4e26-a7cd-893050bb0b67 fwd="108.199.253.93" dyno=web.1 connect=1ms service=18ms status=304 bytes=432
+2014-12-11T17:38:36.591202+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:38:36 +0000
+2014-12-11T17:38:36.606248+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.8ms)
+2014-12-11T17:38:36.606326+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.1ms)
+2014-12-11T17:38:36.606601+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 2.6ms)
+2014-12-11T17:38:36.594185+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:38:59.878615+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=05038909-090b-4dca-bc2b-4e44b1ef4d4e fwd="76.176.36.190" dyno=web.1 connect=0ms service=19ms status=304 bytes=432
+2014-12-11T17:38:59.860937+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:38:59 +0000
+2014-12-11T17:38:59.875973+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.4ms)
+2014-12-11T17:38:59.877848+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 10.1ms | ActiveRecord: 3.7ms)
+2014-12-11T17:38:59.863258+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:38:59.877571+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.7ms)
+2014-12-11T17:39:08.194836+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=7757852e-1a2b-4409-95ff-e0e04a9e63c4 fwd="108.199.253.93" dyno=web.1 connect=24ms service=30ms status=304 bytes=432
+2014-12-11T17:39:08.164177+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:39:08 +0000
+2014-12-11T17:39:08.188231+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.3ms)
+2014-12-11T17:39:08.189727+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 4.0ms | ActiveRecord: 9.5ms)
+2014-12-11T17:39:08.172779+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:39:08.189402+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (12.8ms)
+2014-12-11T17:39:17.010109+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:39:17.035240+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:39:17.010121+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:39:17.041933+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:39:17.042258+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:39:17.042323+00:00 app[scheduler.9544]: time_left_before_pub ---> -925380 secs
+2014-12-11T17:39:17.042325+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:39:17.037905+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:39:29.886725+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=4462e821-1380-4a32-b535-938b4964d626 fwd="76.176.36.190" dyno=web.1 connect=5ms service=22ms status=304 bytes=432
+2014-12-11T17:39:29.883007+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (8.8ms)
+2014-12-11T17:39:29.883114+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.2ms)
+2014-12-11T17:39:29.883524+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.5ms | ActiveRecord: 7.5ms)
+2014-12-11T17:39:29.866406+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:39:29 +0000
+2014-12-11T17:39:29.871691+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:39:39.696359+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:39:39.691780+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:39:39 +0000
+2014-12-11T17:39:39.718743+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (20.0ms)
+2014-12-11T17:39:39.718888+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (20.4ms)
+2014-12-11T17:39:39.729079+00:00 app[web.1]: Completed 200 OK in 33ms (Views: 6.5ms | ActiveRecord: 14.6ms)
+2014-12-11T17:39:39.732087+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=86f8e14b-0ac5-41f0-810d-254887df691e fwd="108.199.253.93" dyno=web.1 connect=0ms service=41ms status=304 bytes=432
+2014-12-11T17:39:59.884063+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f3b14ae0-8b83-42ac-9883-df7652501c44 fwd="76.176.36.190" dyno=web.1 connect=4ms service=16ms status=304 bytes=432
+2014-12-11T17:39:59.883066+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.8ms | ActiveRecord: 4.4ms)
+2014-12-11T17:39:59.869345+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:39:59 +0000
+2014-12-11T17:39:59.882343+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.8ms)
+2014-12-11T17:39:59.874808+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:39:59.882580+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.3ms)
+2014-12-11T17:40:11.243562+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=aa475ed2-7c94-46d4-84ae-55489810f5a1 fwd="108.199.253.93" dyno=web.1 connect=0ms service=17ms status=304 bytes=432
+2014-12-11T17:40:11.239700+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 3.0ms | ActiveRecord: 8.4ms)
+2014-12-11T17:40:11.225294+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:40:11 +0000
+2014-12-11T17:40:11.239208+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.1ms)
+2014-12-11T17:40:11.227326+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:40:11.239362+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.4ms)
+2014-12-11T17:40:17.044753+00:00 app[scheduler.9544]: stories_per_day ---> 2
+2014-12-11T17:40:17.044765+00:00 app[scheduler.9544]: stories_every_x_secs ---> 43200
+2014-12-11T17:40:17.061110+00:00 app[scheduler.9544]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:40:17.065907+00:00 app[scheduler.9544]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:40:17.062772+00:00 app[scheduler.9544]: next_story_to_publish ---> 
+2014-12-11T17:40:17.066075+00:00 app[scheduler.9544]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:40:17.066132+00:00 app[scheduler.9544]: No stories available to publish
+2014-12-11T17:40:17.066126+00:00 app[scheduler.9544]: time_left_before_pub ---> -925440 secs
+2014-12-11T17:40:29.877894+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9476f7d5-0de6-439e-920a-061397758418 fwd="76.176.36.190" dyno=web.1 connect=0ms service=11ms status=304 bytes=432
+2014-12-11T17:40:29.870906+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:40:29.876811+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.3ms)
+2014-12-11T17:40:29.876731+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.0ms)
+2014-12-11T17:40:29.868292+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:40:29 +0000
+2014-12-11T17:40:29.877032+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.7ms)
+2014-12-11T17:40:42.803360+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=ff4a3ec9-8fef-42bb-abc0-6cc8478132e5 fwd="108.199.253.93" dyno=web.1 connect=4ms service=27ms status=304 bytes=432
+2014-12-11T17:40:42.776149+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:40:42 +0000
+2014-12-11T17:40:42.796847+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (12.7ms)
+2014-12-11T17:40:42.797506+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 3.2ms | ActiveRecord: 10.8ms)
+2014-12-11T17:40:42.782593+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:40:42.797094+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (13.2ms)
+2014-12-11T17:41:00.001461+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.8ms)
+2014-12-11T17:41:00.001902+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 3.4ms)
+2014-12-11T17:40:59.993016+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:40:59 +0000
+2014-12-11T17:41:00.001538+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.2ms)
+2014-12-11T17:40:59.995072+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:41:00.006359+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=980b77b4-c86f-46c0-9984-2fa2fd7559bd fwd="76.176.36.190" dyno=web.1 connect=2ms service=14ms status=304 bytes=432
+2014-12-11T17:41:14.326866+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:41:14.338949+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.7ms)
+2014-12-11T17:41:14.321436+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:41:14 +0000
+2014-12-11T17:41:14.338450+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.2ms)
+2014-12-11T17:41:14.339285+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.9ms | ActiveRecord: 8.7ms)
+2014-12-11T17:41:14.345698+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=6dab7e86-a396-432b-b71b-5d3771c9669f fwd="108.199.253.93" dyno=web.1 connect=6ms service=23ms status=304 bytes=432
+2014-12-11T17:41:18.370631+00:00 heroku[scheduler.9544]: State changed from up to complete
+2014-12-11T17:41:18.361678+00:00 heroku[scheduler.9544]: Process exited with status 0
+2014-12-11T17:41:29.985346+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=2e76cb23-bdac-45ca-b156-091cb60931e3 fwd="76.176.36.190" dyno=web.1 connect=1ms service=20ms status=304 bytes=432
+2014-12-11T17:41:29.966551+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:41:29 +0000
+2014-12-11T17:41:29.974927+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.1ms)
+2014-12-11T17:41:29.975003+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.5ms)
+2014-12-11T17:41:29.977769+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 2.6ms)
+2014-12-11T17:41:29.968906+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:41:45.889152+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3d948354-1f28-4c2a-bd58-2a708adfd54c fwd="108.199.253.93" dyno=web.1 connect=2ms service=29ms status=304 bytes=432
+2014-12-11T17:41:45.859263+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:41:45 +0000
+2014-12-11T17:41:45.881738+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.8ms)
+2014-12-11T17:41:45.882188+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 2.5ms | ActiveRecord: 14.3ms)
+2014-12-11T17:41:45.864527+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:41:45.881938+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (16.2ms)
+2014-12-11T17:41:59.924217+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=860cd4ca-17fa-47fe-b485-4b15f9cfeb90 fwd="76.176.36.190" dyno=web.1 connect=4ms service=33ms status=304 bytes=432
+2014-12-11T17:41:59.891650+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:41:59 +0000
+2014-12-11T17:41:59.916253+00:00 app[web.1]: Completed 200 OK in 20ms (Views: 9.6ms | ActiveRecord: 6.1ms)
+2014-12-11T17:41:59.912654+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.5ms)
+2014-12-11T17:41:59.896482+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:41:59.912882+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.9ms)
+2014-12-11T17:42:17.443663+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e83cc579-9d21-4193-8bff-739dfaaeb91d fwd="108.199.253.93" dyno=web.1 connect=9ms service=25ms status=304 bytes=432
+2014-12-11T17:42:17.416832+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:42:17 +0000
+2014-12-11T17:42:17.436273+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.7ms)
+2014-12-11T17:42:17.436493+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.1ms)
+2014-12-11T17:42:17.437079+00:00 app[web.1]: Completed 200 OK in 17ms (Views: 2.8ms | ActiveRecord: 13.0ms)
+2014-12-11T17:42:17.420214+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:42:17.947699+00:00 heroku[api]: Starting process with command `bundle exec rake schedule_story:check_pub_time` by scheduler@addons.heroku.com
+2014-12-11T17:42:22.528982+00:00 heroku[scheduler.8315]: Starting process with command `bundle exec rake schedule_story:check_pub_time`
+2014-12-11T17:42:23.158244+00:00 heroku[scheduler.8315]: State changed from starting to up
+2014-12-11T17:42:26.583644+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:42:26.593379+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:42:26.593445+00:00 app[scheduler.8315]: time_left_before_pub ---> -925570 secs
+2014-12-11T17:42:26.593450+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:42:26.551001+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:42:26.551023+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:42:26.581805+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:42:26.592645+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:42:29.891871+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:42:29.888010+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:42:29 +0000
+2014-12-11T17:42:29.903342+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.4ms)
+2014-12-11T17:42:29.903421+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.7ms)
+2014-12-11T17:42:29.903671+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.5ms | ActiveRecord: 7.9ms)
+2014-12-11T17:42:29.907499+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9a1f26f1-bb51-4590-a72f-89972e0277d6 fwd="76.176.36.190" dyno=web.1 connect=7ms service=20ms status=304 bytes=432
+2014-12-11T17:42:45.927193+00:00 heroku[router]: at=info method=POST path="/users/1" host=sap-staging.herokuapp.com request_id=dfc613c4-72df-4ec6-a23a-3175184d0037 fwd="108.199.253.93" dyno=web.1 connect=0ms service=37ms status=302 bytes=1121
+2014-12-11T17:42:45.894198+00:00 app[web.1]: Processing by UsersController#destroy as HTML
+2014-12-11T17:42:45.894224+00:00 app[web.1]:   Parameters: {"authenticity_token"=>"SOrmFgt3s4fau5tQYP158RtZrmxJ8uvlv9u+JdOCjlY=", "id"=>"1"}
+2014-12-11T17:42:45.913762+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/users
+2014-12-11T17:42:45.890658+00:00 app[web.1]: Started DELETE "/users/1" for 108.199.253.93 at 2014-12-11 17:42:45 +0000
+2014-12-11T17:42:45.913895+00:00 app[web.1]: Completed 302 Found in 20ms (ActiveRecord: 12.3ms)
+2014-12-11T17:42:46.201361+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=85190e5e-65ca-4013-ba0a-4cdb4cabc509 fwd="108.199.253.93" dyno=web.1 connect=3ms service=45ms status=200 bytes=14308
+2014-12-11T17:42:46.157650+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 17:42:46 +0000
+2014-12-11T17:42:46.180552+00:00 app[web.1]:   Rendered users/_user.html.erb (4.2ms)
+2014-12-11T17:42:46.174676+00:00 app[web.1]:   Rendered users/_user.html.erb (2.2ms)
+2014-12-11T17:42:46.184163+00:00 app[web.1]:   Rendered users/_user.html.erb (2.0ms)
+2014-12-11T17:42:46.189102+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.9ms)
+2014-12-11T17:42:46.186918+00:00 app[web.1]:   Rendered users/_user.html.erb (1.2ms)
+2014-12-11T17:42:46.186987+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (17.0ms)
+2014-12-11T17:42:46.191907+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.7ms)
+2014-12-11T17:42:46.192199+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:42:46.193591+00:00 app[web.1]: Completed 200 OK in 33ms (Views: 22.4ms | ActiveRecord: 8.7ms)
+2014-12-11T17:42:46.191961+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (4.1ms)
+2014-12-11T17:42:46.160263+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T17:42:46.176206+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T17:42:46.182041+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T17:42:46.185580+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T17:42:46.191507+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T17:42:46.193277+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.9ms)
+2014-12-11T17:42:46.530699+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=8551589e-12e2-462e-bc0d-4d3e008a4e4f fwd="108.199.253.93" dyno=web.1 connect=9ms service=2ms status=304 bytes=62
+2014-12-11T17:42:46.532809+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=4442f21a-468b-4bc4-9725-c4ea866c6a20 fwd="108.199.253.93" dyno=web.1 connect=1ms service=3ms status=304 bytes=62
+2014-12-11T17:42:46.551205+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=bff8922a-0826-4614-882b-cba9fc56605d fwd="108.199.253.93" dyno=web.1 connect=5ms service=2ms status=304 bytes=62
+2014-12-11T17:42:46.718345+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 17:42:46 +0000
+2014-12-11T17:42:46.730443+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=a6634113-41ed-4d38-b7af-5ed7a0719717 fwd="108.199.253.93" dyno=web.1 connect=9ms service=13ms status=304 bytes=160
+2014-12-11T17:42:59.942733+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=37ba3a50-d148-46eb-ae52-091d76871afb fwd="76.176.36.190" dyno=web.1 connect=11ms service=58ms status=304 bytes=432
+2014-12-11T17:42:59.886031+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:42:59 +0000
+2014-12-11T17:42:59.924106+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (24.1ms)
+2014-12-11T17:42:59.924189+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (24.4ms)
+2014-12-11T17:42:59.924662+00:00 app[web.1]: Completed 200 OK in 32ms (Views: 4.3ms | ActiveRecord: 21.5ms)
+2014-12-11T17:42:59.892343+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:43:16.764503+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8a679c65-5bdb-454d-a53c-a9a3fd3ec2a9 fwd="108.199.253.93" dyno=web.1 connect=2ms service=71ms status=304 bytes=432
+2014-12-11T17:43:16.745069+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:43:16 +0000
+2014-12-11T17:43:16.760035+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.0ms)
+2014-12-11T17:43:16.760160+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.3ms)
+2014-12-11T17:43:16.760585+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 3.6ms)
+2014-12-11T17:43:16.753566+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:43:26.596191+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:43:26.596180+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:43:26.615663+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:43:26.624209+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:43:26.620591+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:43:26.624584+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:43:26.624703+00:00 app[scheduler.8315]: time_left_before_pub ---> -925630 secs
+2014-12-11T17:43:26.624738+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:43:29.977276+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:43:29 +0000
+2014-12-11T17:43:29.981301+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:43:29.989951+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.2ms)
+2014-12-11T17:43:29.990028+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.5ms)
+2014-12-11T17:43:29.990260+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 3.0ms)
+2014-12-11T17:43:30.002277+00:00 heroku[router]: at=info method=GET path="/visitors
+/refresh_timer" host=sap-staging.herokuapp.com request_id=7278efa6-24e2-48c3-9e40-4e4a09a8155f fwd="76.176.36.190" dyno=web.1 connect=5ms service=26ms status=304 bytes=432
+2014-12-11T17:43:46.836987+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=fddf9197-cb2a-4638-bf36-2551fd288f7a fwd="108.199.253.93" dyno=web.1 connect=5ms service=32ms status=304 bytes=432
+2014-12-11T17:43:46.806798+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:43:46 +0000
+2014-12-11T17:43:46.832717+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (8.2ms)
+2014-12-11T17:43:46.833185+00:00 app[web.1]: Completed 200 OK in 23ms (Views: 11.6ms | ActiveRecord: 6.0ms)
+2014-12-11T17:43:46.832825+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (16.7ms)
+2014-12-11T17:43:46.810057+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:43:59.890227+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.5ms)
+2014-12-11T17:43:59.878993+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:43:59 +0000
+2014-12-11T17:43:59.900571+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=d4c691db-7cb6-40a2-bb7a-7374f59cb401 fwd="76.176.36.190" dyno=web.1 connect=3ms service=19ms status=304 bytes=432
+2014-12-11T17:43:59.890338+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.8ms)
+2014-12-11T17:43:59.890658+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 6.0ms)
+2014-12-11T17:43:59.881281+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:44:17.810026+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:44:17 +0000
+2014-12-11T17:44:17.817929+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T17:44:17.818009+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T17:44:17.818222+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.3ms)
+2014-12-11T17:44:17.812943+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:44:17.822164+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f6858a8e-23e6-4abf-9c17-47c3b015284e fwd="108.199.253.93" dyno=web.1 connect=39ms service=11ms status=304 bytes=432
+2014-12-11T17:44:26.631226+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:44:26.694904+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:44:26.631273+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:44:26.677549+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:44:26.693846+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:44:26.694857+00:00 app[scheduler.8315]: time_left_before_pub ---> -925690 secs
+2014-12-11T17:44:26.684825+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:44:26.694327+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:44:30.855402+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f72c4f33-471e-465e-b29a-242169c310c6 fwd="76.176.36.190" dyno=web.1 connect=1ms service=17ms status=304 bytes=432
+2014-12-11T17:44:30.843171+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:44:30.851378+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 3.0ms | ActiveRecord: 4.2ms)
+2014-12-11T17:44:30.850900+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.8ms)
+2014-12-11T17:44:30.839378+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:44:30 +0000
+2014-12-11T17:44:30.851036+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.4ms)
+2014-12-11T17:44:48.206506+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=2fd21333-997d-4c03-babb-0e5f16c7848a fwd="108.199.253.93" dyno=web.1 connect=3ms service=22ms status=304 bytes=432
+2014-12-11T17:44:48.182487+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:44:48 +0000
+2014-12-11T17:44:48.195162+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (8.7ms)
+2014-12-11T17:44:48.197981+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 4.9ms | ActiveRecord: 7.3ms)
+2014-12-11T17:44:48.185832+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:44:48.195369+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.2ms)
+2014-12-11T17:45:00.875897+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=308972af-54b7-421e-b640-c6c481f5fad5 fwd="76.176.36.190" dyno=web.1 connect=3ms service=31ms status=304 bytes=432
+2014-12-11T17:45:00.853677+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:45:00.871607+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 7.2ms | ActiveRecord: 9.8ms)
+2014-12-11T17:45:00.871002+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.7ms)
+2014-12-11T17:45:00.845970+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:45:00 +0000
+2014-12-11T17:45:00.871215+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (16.2ms)
+2014-12-11T17:45:05.448436+00:00 heroku[router]: at=info method=GET path="/users/sign_in" host=sap-staging.herokuapp.com request_id=6b69d262-d5ff-4505-b1fa-a6bc5ac247ae fwd="76.176.36.190" dyno=web.1 connect=6ms service=43ms status=200 bytes=7900
+2014-12-11T17:45:05.406117+00:00 app[web.1]: Started GET "/users/sign_in" for 76.176.36.190 at 2014-12-11 17:45:05 +0000
+2014-12-11T17:45:05.424544+00:00 app[web.1]:   Rendered devise/sessions/new.html.erb within layouts/application (6.0ms)
+2014-12-11T17:45:05.433409+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T17:45:05.436306+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (2.0ms)
+2014-12-11T17:45:05.415661+00:00 app[web.1]: Processing by Devise::SessionsController#new as HTML
+2014-12-11T17:45:05.434132+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:45:05.436571+00:00 app[web.1]: Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.0ms)
+2014-12-11T17:45:05.429949+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T17:45:05.433795+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.8ms)
+2014-12-11T17:45:05.433915+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (4.9ms)
+2014-12-11T17:45:06.745745+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=d1a2e9ec-9064-4191-9209-f7be16cf46ba fwd="76.176.36.190" dyno=web.1 connect=2ms service=2ms status=304 bytes=62
+2014-12-11T17:45:06.742825+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=543fd3ef-162c-4a8a-b58d-b9f8691eacf2 fwd="76.176.36.190" dyno=web.1 connect=1ms service=2ms status=304 bytes=62
+2014-12-11T17:45:06.751211+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=7f5aaf02-7870-4e86-a6b7-7e43931f1059 fwd="76.176.36.190" dyno=web.1 connect=4ms service=6ms status=304 bytes=62
+2014-12-11T17:45:08.662960+00:00 app[web.1]: Started GET "/" for 76.176.36.190 at 2014-12-11 17:45:08 +0000
+2014-12-11T17:45:08.677373+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:45:08.722607+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.2ms)
+2014-12-11T17:45:08.724671+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.9ms)
+2014-12-11T17:45:08.724783+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (2.7ms)
+2014-12-11T17:45:08.724979+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:45:08.726313+00:00 app[web.1]: Completed 200 OK in 61ms (Views: 39.2ms | ActiveRecord: 16.4ms)
+2014-12-11T17:45:08.724318+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T17:45:08.665598+00:00 app[web.1]: Processing by VisitorsController#index as HTML
+2014-12-11T17:45:08.726082+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.0ms)
+2014-12-11T17:45:08.720964+00:00 app[web.1]:   Rendered visitors/index.html.erb within layouts/application (47.3ms)
+2014-12-11T17:45:08.731049+00:00 heroku[router]: at=info method=GET path="/" host=sap-staging.herokuapp.com request_id=5a2fef76-a33a-4b93-b029-02a36a938bf4 fwd="76.176.36.190" dyno=web.1 connect=2ms service=67ms status=304 bytes=767
+2014-12-11T17:45:10.939004+00:00 heroku[router]: at=info method=GET path="/" host=sap-staging.herokuapp.com request_id=d76c9d7d-8766-428e-ae9f-0d228f466e51 fwd="76.176.36.190" dyno=web.1 connect=2ms service=67ms status=304 bytes=767
+2014-12-11T17:45:10.873875+00:00 app[web.1]: Processing by VisitorsController#index as HTML
+2014-12-11T17:45:10.929885+00:00 app[web.1]:   Rendered visitors/index.html.erb within layouts/application (48.8ms)
+2014-12-11T17:45:10.934760+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.9ms)
+2014-12-11T17:45:10.871683+00:00 app[web.1]: Started GET "/" for 76.176.36.190 at 2014-12-11 17:45:10 +0000
+2014-12-11T17:45:10.885036+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T17:45:10.931379+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.2ms)
+2014-12-11T17:45:10.933418+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.9ms)
+2014-12-11T17:45:10.933465+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (2.7ms)
+2014-12-11T17:45:10.933684+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:45:10.934993+00:00 app[web.1]: Completed 200 OK in 61ms (Views: 43.3ms | ActiveRecord: 13.3ms)
+2014-12-11T17:45:10.932952+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T17:45:14.608862+00:00 heroku[router]: at=info method=GET path="/users/sign_up" host=sap-staging.herokuapp.com request_id=708a9792-e611-4430-a9d6-8999027757cd fwd="76.176.36.190" dyno=web.1 connect=1ms service=29ms status=200 bytes=9736
+2014-12-11T17:45:14.582503+00:00 app[web.1]: Started GET "/users/sign_up" for 76.176.36.190 at 2014-12-11 17:45:14 +0000
+2014-12-11T17:45:14.598166+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T17:45:14.590291+00:00 app[web.1]:   Rendered devise/registrations/new.html.erb within layouts/application (1.5ms)
+2014-12-11T17:45:14.601152+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.5ms)
+2014-12-11T17:45:14.586655+00:00 app[web.1]: Processing by Devise::RegistrationsController#new as HTML
+2014-12-11T17:45:14.596086+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.9ms)
+2014-12-11T17:45:14.598992+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.7ms)
+2014-12-11T17:45:14.601538+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+2014-12-11T17:45:14.599073+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (4.6ms)
+2014-12-11T17:45:14.599416+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:45:19.743946+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.5ms)
+2014-12-11T17:45:19.730181+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:45:19 +0000
+2014-12-11T17:45:19.734970+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:45:19.744269+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.5ms | ActiveRecord: 6.0ms)
+2014-12-11T17:45:19.744084+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.9ms)
+2014-12-11T17:45:19.749861+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=b30d8ce2-9787-4bdc-9976-30305cceff91 fwd="108.199.253.93" dyno=web.1 connect=5ms service=18ms status=304 bytes=432
+2014-12-11T17:45:26.697481+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:45:26.697490+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:45:26.713836+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:45:26.719133+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:45:26.719433+00:00 app[scheduler.8315]: time_left_before_pub ---> -925750 secs
+2014-12-11T17:45:26.715679+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:45:26.719360+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:45:26.719437+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:45:44.734961+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f86e8282-0e2a-46cf-98e2-1b9ad1b9b529 fwd="76.176.36.190" dyno=web.1 connect=1ms service=12ms status=304 bytes=432
+2014-12-11T17:45:44.723828+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:45:44 +0000
+2014-12-11T17:45:44.726112+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:45:44.732146+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.7ms)
+2014-12-11T17:45:44.732224+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.0ms)
+2014-12-11T17:45:44.732422+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 3.5ms)
+2014-12-11T17:45:49.782550+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9605394d-0647-42ea-8f07-54d10932feed fwd="108.199.253.93" dyno=web.1 connect=0ms service=16ms status=304 bytes=432
+2014-12-11T17:45:49.764918+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:45:49 +0000
+2014-12-11T17:45:49.778318+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.8ms)
+2014-12-11T17:45:49.778431+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.1ms)
+2014-12-11T17:45:49.778670+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 2.6ms | ActiveRecord: 8.1ms)
+2014-12-11T17:45:49.767198+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:46:14.842626+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:46:14.839797+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:46:14 +0000
+2014-12-11T17:46:14.851426+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.5ms)
+2014-12-11T17:46:14.851530+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.8ms)
+2014-12-11T17:46:14.851831+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.3ms | ActiveRecord: 6.1ms)
+2014-12-11T17:46:14.855468+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=5c4d6d21-a949-4c88-abc2-0cce195a3d57 fwd="76.176.36.190" dyno=web.1 connect=5ms service=15ms status=304 bytes=432
+2014-12-11T17:46:20.041234+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.3ms)
+2014-12-11T17:46:20.040895+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T17:46:20.041031+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:46:20.028918+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:46:20 +0000
+2014-12-11T17:46:20.035666+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:46:20.044769+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0e111787-ce3e-4469-9ce0-e124e1517236 fwd="108.199.253.93" dyno=web.1 connect=1ms service=15ms status=304 bytes=432
+2014-12-11T17:46:26.722025+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17
+:46:26.722035+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:46:26.742045+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:46:26.749769+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:46:26.746190+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:46:26.750167+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:46:26.750279+00:00 app[scheduler.8315]: time_left_before_pub ---> -925810 secs
+2014-12-11T17:46:26.750314+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:46:44.842889+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:46:44 +0000
+2014-12-11T17:46:44.855724+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.3ms)
+2014-12-11T17:46:44.856016+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.2ms | ActiveRecord: 4.7ms)
+2014-12-11T17:46:44.855634+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (6.0ms)
+2014-12-11T17:46:44.847983+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:46:44.865080+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=16b995bf-e9ea-410e-90c1-be9e349db5fd fwd="76.176.36.190" dyno=web.1 connect=8ms service=22ms status=304 bytes=432
+2014-12-11T17:46:51.584193+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=633da5e9-9f2e-485d-861c-7f4ddf5f5835 fwd="108.199.253.93" dyno=web.1 connect=3ms service=16ms status=304 bytes=432
+2014-12-11T17:46:51.566729+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:46:51 +0000
+2014-12-11T17:46:51.580727+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.2ms)
+2014-12-11T17:46:51.580596+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.7ms)
+2014-12-11T17:46:51.580984+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.9ms | ActiveRecord: 8.1ms)
+2014-12-11T17:46:51.569003+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:47:14.838080+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:47:14 +0000
+2014-12-11T17:47:14.855974+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (13.9ms)
+2014-12-11T17:47:14.855892+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (13.6ms)
+2014-12-11T17:47:14.858516+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 3.6ms | ActiveRecord: 11.0ms)
+2014-12-11T17:47:14.840802+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:47:14.866932+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=580903a9-4561-436b-8f37-cd7cd542f4c7 fwd="76.176.36.190" dyno=web.1 connect=4ms service=29ms status=304 bytes=432
+2014-12-11T17:47:21.789477+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=4e402012-0652-41d7-8cc0-772b4e08366a fwd="108.199.253.93" dyno=web.1 connect=1ms service=25ms status=304 bytes=432
+2014-12-11T17:47:21.763722+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:47:21 +0000
+2014-12-11T17:47:21.785817+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.3ms)
+2014-12-11T17:47:21.785927+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (14.8ms)
+2014-12-11T17:47:21.786203+00:00 app[web.1]: Completed 200 OK in 16ms (Views: 2.5ms | ActiveRecord: 12.8ms)
+2014-12-11T17:47:21.770048+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:47:26.752748+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:47:26.770065+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:47:26.752736+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:47:26.775802+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:47:26.776019+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:47:26.776089+00:00 app[scheduler.8315]: time_left_before_pub ---> -925870 secs
+2014-12-11T17:47:26.776093+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:47:26.772346+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:47:37.396534+00:00 app[web.1]: Started POST "/users" for 76.176.36.190 at 2014-12-11 17:47:37 +0000
+2014-12-11T17:47:37.400255+00:00 app[web.1]: Processing by Devise::RegistrationsController#create as HTML
+2014-12-11T17:47:37.400328+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"first_name"=>"Ronaldus", "last_name"=>"Hodsonian", "city_preference"=>"San Diego, New York City", "email"=>"rhodson@storiesaboutplaces.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+2014-12-11T17:47:37.864078+00:00 app[web.1]:   Rendered devise/mailer/confirmation_instructions.html.erb (1.8ms)
+2014-12-11T17:47:38.393210+00:00 heroku[router]: at=info method=POST path="/users" host=sap-staging.herokuapp.com request_id=729b6837-e537-42c2-8a86-f34c504e3f40 fwd="76.176.36.190" dyno=web.1 connect=3ms service=1000ms status=302 bytes=1193
+2014-12-11T17:47:38.384735+00:00 app[web.1]: 
+2014-12-11T17:47:38.390388+00:00 app[web.1]: Completed 302 Found in 990ms (ActiveRecord: 23.9ms)
+2014-12-11T17:47:38.624565+00:00 app[web.1]: Processing by VisitorsController#index as HTML
+2014-12-11T17:47:38.390206+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/
+2014-12-11T17:47:38.384742+00:00 app[web.1]: Sent mail to rhodson@storiesaboutplaces.com (510.8ms)
+2014-12-11T17:47:38.617302+00:00 app[web.1]: Started GET "/" for 76.176.36.190 at 2014-12-11 17:47:38 +0000
+2014-12-11T17:47:38.749816+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.4ms)
+2014-12-11T17:47:38.668163+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.8ms)
+2014-12-11T17:47:38.750129+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:47:38.747263+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.3ms)
+2014-12-11T17:47:38.751576+00:00 app[web.1]: Completed 200 OK in 127ms (Views: 53.6ms | ActiveRecord: 57.9ms)
+2014-12-11T17:47:38.749861+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.3ms)
+2014-12-11T17:47:38.745495+00:00 app[web.1]:   Rendered visitors/index.html.erb within layouts/application (88.8ms)
+2014-12-11T17:47:38.749390+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T17:47:38.751310+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.0ms)
+2014-12-11T17:47:38.759391+00:00 heroku[router]: at=info method=GET path="/" host=sap-staging.herokuapp.com request_id=3eeda4ec-628b-4c78-80ee-4164802baafc fwd="76.176.36.190" dyno=web.1 connect=38ms service=145ms status=200 bytes=60897
+2014-12-11T17:47:38.966197+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=8b07f2ab-921c-4673-b55b-78736690d3a8 fwd="76.176.36.190" dyno=web.1 connect=10ms service=12ms status=304 bytes=62
+2014-12-11T17:47:38.962679+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=bdd5e13c-0e42-408d-8f8b-c99f93d41971 fwd="76.176.36.190" dyno=web.1 connect=3ms service=10ms status=304 bytes=62
+2014-12-11T17:47:38.965440+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=356c5d03-a4e2-4e42-bcdb-b4108ae8449a fwd="76.176.36.190" dyno=web.1 connect=3ms service=11ms status=304 bytes=62
+2014-12-11T17:47:51.770254+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T17:47:51.762424+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:47:51 +0000
+2014-12-11T17:47:51.770620+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 2.2ms)
+2014-12-11T17:47:51.770345+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.2ms)
+2014-12-11T17:47:51.764776+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:47:51.774242+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3ae50dd5-7595-40ab-ac19-36476d180281 fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T17:48:09.075876+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:48:09.081921+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.1ms)
+2014-12-11T17:48:09.072697+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:48:09 +0000
+2014-12-11T17:48:09.081727+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T17:48:09.082190+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.4ms)
+2014-12-11T17:48:09.084886+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a1431f75-0c90-480f-9110-da6c1b8571a1 fwd="76.176.36.190" dyno=web.1 connect=2ms service=13ms status=304 bytes=432
+2014-12-11T17:48:21.769932+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=40354a30-ec41-4a8b-9ddd-069dbc70f92e fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T17:48:21.761094+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:48:21.766030+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.6ms)
+2014-12-11T17:48:21.765949+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:48:21.766365+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.1ms)
+2014-12-11T17:48:21.758868+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:48:21 +0000
+2014-12-11T17:48:26.778335+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:48:26.778345+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:48:26.794632+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:48:26.799428+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:48:26.796333+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:48:26.799653+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:48:26.799649+00:00 app[scheduler.8315]: time_left_before_pub ---> -925930 secs
+2014-12-11T17:48:26.799601+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:48:44.055716+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=491dc8d6-b448-4b99-81ff-07ff29220d59 fwd="76.176.36.190" dyno=web.1 connect=1ms service=20ms status=304 bytes=432
+2014-12-11T17:48:44.036024+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:48:44 +0000
+2014-12-11T17:48:44.052006+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (12.2ms)
+2014-12-11T17:48:44.052086+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (12.6ms)
+2014-12-11T17:48:44.052458+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 2.2ms | ActiveRecord: 10.9ms)
+2014-12-11T17:48:44.038326+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:48:52.958103+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c4e8d846-9be3-4133-9244-fc4898a236f2 fwd="108.199.253.93" dyno=web.1 connect=2ms service=18ms status=304 bytes=432
+2014-12-11T17:48:52.949053+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.1ms)
+2014-12-11T17:48:52.938482+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:48:52 +0000
+2014-12-11T17:48:52.949191+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.5ms)
+2014-12-11T17:48:52.949527+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 5.7ms)
+2014-12-11T17:48:52.940559+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:49:14.851674+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=7cdb9126-bdd5-4cf9-aa9b-921b2d7b6e1d fwd="76.176.36.190" dyno=web.1 connect=3ms service=26ms status=304 bytes=432
+2014-12-11T17:49:14.848838+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 3.6ms | ActiveRecord: 13.3ms)
+2014-12-11T17:49:14.848275+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.7ms)
+2014-12-11T17:49:14.848364+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (16.1ms)
+2014-12-11T17:49:14.828397+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:49:14 +0000
+2014-12-11T17:49:14.830655+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:49:23.769345+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.8ms)
+2014-12-11T17:49:23.760092+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:49:23 +0000
+2014-12-11T17:49:23.769481+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.6ms)
+2014-12-11T17:49:23.769696+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 3.1ms)
+2014-12-11T17:49:23.762268+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:49:23.775159+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=6932c55f-3940-444d-89a6-612083c73f69 fwd="108.199.253.93" dyno=web.1 connect=1ms service=17ms status=304 bytes=432
+2014-12-11T17:49:26.801937+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:49:26.801949+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:49:26.818255+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:49:26.823378+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:49:26.820054+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:49:26.823558+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:49:26.823612+00:00 app[scheduler.8315]: time_left_before_pub ---> -925990 secs
+2014-12-11T17:49:26.823617+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:49:45.914563+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:49:45 +0000
+2014-12-11T17:49:45.921888+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T17:49:45.921978+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T17:49:45.922191+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.2ms)
+2014-12-11T17:49:45.916855+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:49:45.924722+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=78991012-9379-46ec-a15d-53e1e9591637 fwd="76.176.36.190" dyno=web.1 connect=2ms service=11ms status=304 bytes=432
+2014-12-11T17:49:55.724807+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=5b75cb96-c207-4782-b94d-c62c41606530 fwd="108.199.253.93" dyno=web.1 connect=14ms service=24ms status=304 bytes=432
+2014-12-11T17:49:55.701133+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:49:55 +0000
+2014-12-11T17:49:55.717567+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.6ms)
+2014-12-11T17:49:55.718000+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 3.2ms | ActiveReco
+rd: 8.0ms)
+2014-12-11T17:49:55.705987+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:49:55.717786+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.9ms)
+2014-12-11T17:50:16.855869+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9a9791e6-7905-42e6-8779-550fb4b71a8b fwd="76.176.36.190" dyno=web.1 connect=2ms service=21ms status=304 bytes=432
+2014-12-11T17:50:16.833893+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:50:16 +0000
+2014-12-11T17:50:16.850439+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.2ms)
+2014-12-11T17:50:16.850361+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.9ms)
+2014-12-11T17:50:16.850761+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.1ms | ActiveRecord: 8.6ms)
+2014-12-11T17:50:16.839028+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:50:25.766761+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.4ms)
+2014-12-11T17:50:25.766830+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.7ms)
+2014-12-11T17:50:25.767139+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 3.0ms)
+2014-12-11T17:50:25.756963+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:50:25 +0000
+2014-12-11T17:50:25.776296+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=4500d8a3-da6d-4a26-84aa-7607acf22d6a fwd="108.199.253.93" dyno=web.1 connect=2ms service=15ms status=304 bytes=432
+2014-12-11T17:50:25.760879+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:50:26.826121+00:00 app[scheduler.8315]: stories_every_x_secs ---> 43200
+2014-12-11T17:50:26.848183+00:00 app[scheduler.8315]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:50:26.826111+00:00 app[scheduler.8315]: stories_per_day ---> 2
+2014-12-11T17:50:26.842975+00:00 app[scheduler.8315]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:50:26.845076+00:00 app[scheduler.8315]: next_story_to_publish ---> 
+2014-12-11T17:50:26.848406+00:00 app[scheduler.8315]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:50:26.848463+00:00 app[scheduler.8315]: No stories available to publish
+2014-12-11T17:50:26.848459+00:00 app[scheduler.8315]: time_left_before_pub ---> -926050 secs
+2014-12-11T17:50:47.867976+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=6dfa8606-1a18-496a-98c1-87673788427b fwd="76.176.36.190" dyno=web.1 connect=2ms service=37ms status=304 bytes=432
+2014-12-11T17:50:47.832857+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:50:47 +0000
+2014-12-11T17:50:47.859419+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.0ms)
+2014-12-11T17:50:47.859726+00:00 app[web.1]: Completed 200 OK in 16ms (Views: 3.0ms | ActiveRecord: 12.7ms)
+2014-12-11T17:50:47.859344+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.6ms)
+2014-12-11T17:50:47.843172+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:50:55.803353+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c54bbace-bf36-49b6-8bab-5e22b853ef27 fwd="108.199.253.93" dyno=web.1 connect=5ms service=44ms status=304 bytes=432
+2014-12-11T17:50:55.759041+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:50:55 +0000
+2014-12-11T17:50:55.793862+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (18.4ms)
+2014-12-11T17:50:55.793874+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (18.8ms)
+2014-12-11T17:50:55.799823+00:00 app[web.1]: Completed 200 OK in 35ms (Views: 17.6ms | ActiveRecord: 16.6ms)
+2014-12-11T17:50:55.765536+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:51:18.833887+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=97e2c6a2-7ea8-43eb-9cf4-d6bf2ce36381 fwd="76.176.36.190" dyno=web.1 connect=2ms service=11ms status=304 bytes=432
+2014-12-11T17:51:18.827352+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:51:18.820145+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:51:18 +0000
+2014-12-11T17:51:18.827435+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:51:18.827636+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.3ms)
+2014-12-11T17:51:18.822448+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:51:25.760971+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:51:25.753791+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:51:25 +0000
+2014-12-11T17:51:25.761321+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.1ms)
+2014-12-11T17:51:25.756108+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:51:25.761084+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:51:25.765071+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=2e1779ea-1d3c-4456-867f-36227b95becb fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T17:51:27.638480+00:00 heroku[scheduler.8315]: Process exited with status 0
+2014-12-11T17:51:27.649698+00:00 heroku[scheduler.8315]: State changed from up to complete
+2014-12-11T17:51:49.818736+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:51:49 +0000
+2014-12-11T17:51:49.839187+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.8ms)
+2014-12-11T17:51:49.839269+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.1ms)
+2014-12-11T17:51:49.839528+00:00 app[web.1]: Completed 200 OK in 17ms (Views: 2.3ms | ActiveRecord: 13.4ms)
+2014-12-11T17:51:49.822913+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:51:49.842426+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=7248ed23-f30b-4642-b664-3c2a367df064 fwd="76.176.36.190" dyno=web.1 connect=2ms service=25ms status=304 bytes=432
+2014-12-11T17:51:55.761742+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=288ab22f-6934-48d9-81c8-5960e3b56967 fwd="108.199.253.93" dyno=web.1 connect=0ms service=9ms status=304 bytes=432
+2014-12-11T17:51:55.751075+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:51:55 +0000
+2014-12-11T17:51:55.758186+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T17:51:55.758059+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:51:55.758435+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.2ms)
+2014-12-11T17:51:55.753289+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:52:02.668528+00:00 heroku[api]: Starting process with command `bundle exec rake schedule_story:check_pub_time` by scheduler@addons.heroku.com
+2014-12-11T17:52:08.003035+00:00 heroku[scheduler.6223]: Starting process with command `bundle exec rake schedule_story:check_pub_time`
+2014-12-11T17:52:08.634977+00:00 heroku[scheduler.6223]: State changed from starting to up
+2014-12-11T17:52:14.643633+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:52:14.768957+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:52:14.643611+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:52:14.739727+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:52:14.770409+00:00 app[scheduler.6223]: time_left_before_pub ---> -926158 secs
+2014-12-11T17:52:14.744038+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:52:14.770321+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:52:14.770415+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:52:20.846196+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f382e5c6-d249-4aa5-b0f8-f578cf7b2f5f fwd="76.176.36.190" dyno=web.1 connect=3ms service=14ms status=304 bytes=432
+2014-12-11T17:52:20.831948+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:52:20 +0000
+2014-12-11T17:52:20.839322+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T17:52:20.834307+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:52:20.839495+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:52:20.839678+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.4ms)
+2014-12-11T17:52:25.762234+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.1ms)
+2014-12-11T17:52:25.762562+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.2ms)
+2014-12-11T17:52:25.762148+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T17:52:25.752730+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:52:25 +0000
+2014-12-11T17:52:25.756701+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:52:25.767094+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c300b5d6-3c44-42b1-827d-5be07d8d4a2e fwd="108.199.253.93" dyno=web.1 connect=3ms service=13ms status=304 bytes=432
+2014-12-11T17:52:51.819444+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:52:51 +0000
+2014-12-11T17:52:51.830791+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T17:52:51.831235+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 2.2ms)
+2014-12-11T17:52:51.825086+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:52:51.830967+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.2ms)
+2014-12-11T17:52:51.834549+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=309be246-4fa7-4730-8773-bc29cb456c05 fwd="76.176.36.190" dyno=web.1 connect=5ms service=15ms status=304 bytes=432
+2014-12-11T17:52:55.767583+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (8.8ms)
+2014-12-11T17:52:55.768123+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 2.4ms | ActiveRecord: 7.6ms)
+2014-12-11T17:52:55.752149+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:52:55 +0000
+2014-12-11T17:52:55.767784+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (9.3ms)
+2014-12-11T17:52:55.757212+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:52:55.772197+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=04918ff2-9291-43f2-b455-b83af7a4b7c3 fwd="108.199.253.93" dyno=web.1 connect=4ms service=18ms status=304 bytes=432
+2014-12-11T17:53:14.776709+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:53:14.776719+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:53:14.802187+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:53:14.814244+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:53:14.804868+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:53:14.814580+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:53:14.814516+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:53:14.814577+00:00 app[scheduler.6223]: time_left_before_pub ---> -926218 secs
+2014-12-11T17:53:22.835237+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=de9ce6e1-af76-4a80-977f-a1c934e04a88 fwd="76.176.36.190" dyno=web.1 connect=1ms service=17ms status=304 bytes=432
+2014-12-11T17:53:22.829825+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T17:53:22.817562+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:53:22 +0000
+2014-12-11T17:53:22.829926+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:53:22.830186+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.1ms | ActiveRecord: 2.5ms)
+2014-12-11T17:53:22.823471+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:53:31.665640+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3204a724-26bf-4652-960e-a7f6dd604754 fwd="108.199.253.93" dyno=web.1 connect=1ms service=9ms status=304 bytes=432
+2014-12-11T17:53:31.662145+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.1ms)
+2014-12-11T17:53:31.661866+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:53:31.661945+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T17:53:31.654822+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:53:31 +0000
+2014-12-11T17:53:31.657057+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:53:53.829441+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=81b45bd6-a7e4-4e4d-a372-ef9305d629b9 fwd="76.176.36.190" dyno=web.1 connect=5ms service=13ms status=304 bytes=432
+2014-12-11T17:53:53.824828+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.9ms)
+2014-12-11T17:53:53.816707+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:53:53 +0000
+2014-12-11T17:53:53.828455+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.6ms)
+2014-12-11T17:53:53.828447+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.4ms)
+2014-12-11T17:53:53.819312+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:54:01.655975+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:54:01.653487+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:54:01 +0000
+2014-12-11T17:54:01.661006+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T17:54:01.661158+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:54:01.661350+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.3ms)
+2014-12-11T17:54:01.664515+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8dc70b8e-5ce5-4a73-a62c-1a6afed92ab3 fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T17:54:03.571867+00:00 heroku[router]: at=info method=POST path="/users/3" host=sap-staging.herokuapp.com request_id=9492593f-a460-4eaa-b058-cdee002fb7fc fwd="108.199.253.93" dyno=web.1 connect=11ms service=43ms status=302 bytes=1121
+2014-12-11T17:54:03.528358+00:00 app[web.1]: Started PATCH "/users/3" for 108.199.253.93 at 2014-12-11 17:54:03 +0000
+2014-12-11T17:54:03.537191+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOrmFgt3s4fau5tQYP158RtZrmxJ8uvlv9u+JdOCjlY=", "user"=>{"role"=>"admin"}, "commit"=>"Change Role", "id"=>"3"}
+2014-12-11T17:54:03.565216+00:00 app[web.1]: Completed 302 Found in 28ms (ActiveRecord: 18.0ms)
+2014-12-11T17:54:03.534381+00:00 app[web.1]: Processing by UsersController#update as HTML
+2014-12-11T17:54:03.562528+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/users
+2014-12-11T17:54:03.8
+04879+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 17:54:03 +0000
+2014-12-11T17:54:03.845227+00:00 app[web.1]:   Rendered users/_user.html.erb (13.0ms)
+2014-12-11T17:54:03.875493+00:00 app[web.1]:   Rendered users/_user.html.erb (12.6ms)
+2014-12-11T17:54:03.897949+00:00 app[web.1]:   Rendered users/_user.html.erb (3.4ms)
+2014-12-11T17:54:03.923519+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.4ms)
+2014-12-11T17:54:03.929178+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (16.2ms)
+2014-12-11T17:54:03.911182+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (86.7ms)
+2014-12-11T17:54:03.859055+00:00 app[web.1]:   Rendered users/_user.html.erb (2.4ms)
+2014-12-11T17:54:03.931849+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.7ms)
+2014-12-11T17:54:03.812430+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T17:54:03.856272+00:00 app[web.1]:   Rendered users/_user.html.erb (2.8ms)
+2014-12-11T17:54:03.862633+00:00 app[web.1]:   Rendered users/_user.html.erb (3.2ms)
+2014-12-11T17:54:03.890349+00:00 app[web.1]:   Rendered users/_user.html.erb (10.7ms)
+2014-12-11T17:54:03.907363+00:00 app[web.1]:   Rendered users/_user.html.erb (6.5ms)
+2014-12-11T17:54:03.916285+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (1.7ms)
+2014-12-11T17:54:03.927242+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (7.2ms)
+2014-12-11T17:54:03.929833+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.3ms)
+2014-12-11T17:54:03.932350+00:00 app[web.1]: Completed 200 OK in 120ms (Views: 103.2ms | ActiveRecord: 11.6ms)
+2014-12-11T17:54:03.940197+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=3e0ce6e8-58c9-4612-92e9-232dda7273ec fwd="108.199.253.93" dyno=web.1 connect=5ms service=137ms status=200 bytes=15186
+2014-12-11T17:54:04.393372+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=87978173-8135-48e9-b4e1-7a03c81f9ea7 fwd="108.199.253.93" dyno=web.1 connect=7ms service=9ms status=304 bytes=62
+2014-12-11T17:54:04.406308+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=33aa6305-8947-4b3e-b907-6596e5382a64 fwd="108.199.253.93" dyno=web.1 connect=1ms service=11ms status=304 bytes=62
+2014-12-11T17:54:04.394362+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=2b9bb245-2cd8-4d66-8a6f-68206eb75c41 fwd="108.199.253.93" dyno=web.1 connect=6ms service=7ms status=304 bytes=62
+2014-12-11T17:54:04.592358+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=a5949c06-57eb-4425-bcf9-400ec5c74fda fwd="108.199.253.93" dyno=web.1 connect=4ms service=7ms status=304 bytes=160
+2014-12-11T17:54:04.585181+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 17:54:04 +0000
+2014-12-11T17:54:14.600569+00:00 app[web.1]: Completed 302 Found in 48ms (ActiveRecord: 12.3ms)
+2014-12-11T17:54:14.541254+00:00 app[web.1]: Started PATCH "/users/6" for 108.199.253.93 at 2014-12-11 17:54:14 +0000
+2014-12-11T17:54:14.762139+00:00 app[web.1]:   Rendered users/_user.html.erb (2.3ms)
+2014-12-11T17:54:14.730264+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T17:54:14.749953+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T17:54:14.789274+00:00 app[web.1]:   Rendered users/_user.html.erb (1.2ms)
+2014-12-11T17:54:14.777622+00:00 app[web.1]:   Rendered users/_user.html.erb (1.9ms)
+2014-12-11T17:54:14.615155+00:00 heroku[router]: at=info method=POST path="/users/6" host=sap-staging.herokuapp.com request_id=a2e621cc-af9e-46fb-9921-ad420df1723b fwd="108.199.253.93" dyno=web.1 connect=1ms service=75ms status=302 bytes=1121
+2014-12-11T17:54:14.546105+00:00 app[web.1]: Processing by UsersController#update as HTML
+2014-12-11T17:54:14.551941+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOrmFgt3s4fau5tQYP158RtZrmxJ8uvlv9u+JdOCjlY=", "user"=>{"role"=>"admin"}, "commit"=>"Change Role", "id"=>"6"}
+2014-12-11T17:54:14.598781+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/users
+2014-12-11T17:54:14.716068+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 17:54:14 +0000
+2014-12-11T17:54:14.745166+00:00 app[web.1]:   Rendered users/_user.html.erb (1.9ms)
+2014-12-11T17:54:14.771572+00:00 app[web.1]:   Rendered users/_user.html.erb (2.5ms)
+2014-12-11T17:54:14.790658+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (53.3ms)
+2014-12-11T17:54:14.787836+00:00 app[web.1]:   Rendered users/_user.html.erb (3.6ms)
+2014-12-11T17:54:14.794151+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (1.0ms)
+2014-12-11T17:54:14.813393+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (7.1ms)
+2014-12-11T17:54:14.813877+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.2ms)
+2014-12-11T17:54:14.824306+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=f42c1e1a-48c4-40a6-9b26-bde0ff05e535 fwd="108.199.253.93" dyno=web.1 connect=1ms service=109ms status=200 bytes=15186
+2014-12-11T17:54:14.759498+00:00 app[web.1]:   Rendered users/_user.html.erb (8.5ms)
+2014-12-11T17:54:14.813498+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (20.8ms)
+2014-12-11T17:54:14.808173+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T17:54:14.819302+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (5.2ms)
+2014-12-11T17:54:14.819835+00:00 app[web.1]: Completed 200 OK in 89ms (Views: 78.1ms | ActiveRecord: 8.0ms)
+2014-12-11T17:54:14.817116+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:54:14.817124+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:54:14.841409+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:54:14.834309+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:54:14.841615+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:54:14.836557+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:54:14.841674+00:00 app[scheduler.6223]: time_left_before_pub ---> -926278 secs
+2014-12-11T17:54:14.841679+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:54:15.129598+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 17:54:15 +0000
+2014-12-11T17:54:15.140663+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=867c6680-6f14-4d2e-b856-7130d64c678d fwd="108.199.253.93" dyno=web.1 connect=11ms service=10ms status=304 bytes=160
+2014-12-11T17:54:24.830250+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9469f58d-d921-4f18-88de-e8e5fd369d1f fwd="76.176.36.190" dyno=web.1 connect=2ms service=11ms status=304 bytes=432
+2014-12-11T17:54:24.819582+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:54:24 +0000
+2014-12-11T17:54:24.826958+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T17:54:24.826861+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T17:54:24.821815+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:54:24.827248+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 2.1ms)
+2014-12-11T17:54:45.030510+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=f5b637dd-5d9b-44ec-9e93-bf288e8b1e2b fwd="108.199.253.93" dyno=web.1 connect=2ms service=9ms status=304 bytes=432
+2014-12-11T17:54:45.020796+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:54:45 +0000
+2014-12-11T17:54:45.027571+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:54:45.027726+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:54:45.027982+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.2ms)
+2014-12-11T17:54:45.022895+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:54:55.848533+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=4361da72-27a0-4719-a4eb-89f748833f07 fwd="76.176.36.190" dyno=web.1 connect=5ms service=29ms status=304 bytes=432
+2014-12-11T17:54:55.820071+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:54:55 +0000
+2014-12-11T17:54:55.842880+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.5ms)
+2014-12-11T17:54:55.843281+00:00 app[web.1]: Completed 200 OK in 17ms (Views: 3.4ms | ActiveRecord: 12.5ms)
+2014-12-11T17:54:55.842969+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.0ms)
+2014-12-11T17:54:55.826276+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:55:14.851458+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:55:14.900174+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:55:14.851454+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:55:14.884949+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:55:14.893747+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:55:14.900629+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:55:14.900632+00:00 app[scheduler.6223]: time_left_before_pub ---> -926338 secs
+2014-12-11T17:55:14.900633+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:55:15.029190+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=975de614-a63c-4082-b0c3-236b8d6148b1 fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T17:55:15.018544+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:55:15 +0000
+2014-12-11T17:55:15.026218+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:55:15.026300+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T17:55:15.026531+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.2ms)
+2014-12-11T17:55:15.021261+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:55:26.812741+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:55:26.817358+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.6ms)
+2014-12-11T17:55:26.817550+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.0ms)
+2014-12-11T17:55:26.810791+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:55:26 +0000
+2014-12-11T17:55:26.817280+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:55:26.822656+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=6360262e-2e82-415d-8333-bccdd1294e99 fwd="76.176.36.190" dyno=web.1 connect=2ms service=12ms status=304 bytes=432
+2014-12-11T17:55:45.040163+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=df9d8941-bc0c-4e2c-baee-05f889f9b6ef fwd="108.199.253.93" dyno=web.1 connect=2ms service=20ms status=304 bytes=432
+2014-12-11T17:55:45.020438+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:55:45 +0000
+2014-12-11T17:55:45.030754+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.5ms)
+2014-12-11T17:55:45.032815+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 3.3ms)
+2014-12-11T17:55:45.024653+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:55:45.032556+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.6ms)
+2014-12-11T17:55:57.833805+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=23d62f74-ec25-4d8c-a3c5-7c5b968cad3b fwd="76.176.36.190" dyno=web.1 connect=3ms service=27ms status=304 bytes=432
+2014-12-11T17:55:57.807100+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:55:57 +0000
+2014-12-11T17:55:57.830049+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.6ms)
+2014-12-11T17:55:57.830139+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.9ms)
+2014-12-11T17:55:57.830436+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 8.3ms | ActiveRecord: 8.5ms)
+2014-12-11T17:55:57.812588+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:56:15.033912+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=1f23f013-841a-409c-bc9b-fc37918f5ede fwd="108.199.253.93" dyno=web.1 connect=3ms service=12ms status=304 bytes=432
+2014-12-11T17:56:14.908662+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:56:14.908707+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:56:14.943292+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:56:14.949190+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:56:14.945701+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:56:14.949558+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:56:14.949671+00:00 app[scheduler.6223]: time_left_before_pub ---> -926398 secs
+2014-12-11T17:56:14.949706+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:56:15.021128+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:56:15 +0000
+2014-12-11T17:56:15.027776+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T17:56:15.027859+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.6ms)
+2014-12-11T17:56:15.028053+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.1ms)
+2014-12-11T17:56:15.023234+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:56:28.821030+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=6faf3050-8619-4d14-a3c6-2c87ad4056df fwd="76.176.36.190" dyno=web.1 connect=1ms service=11ms status=304 bytes=432
+2014-12-11T17:56:28.811854+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:56:28.816772+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T17:56:28.816976+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.3ms)
+2014-12-11T17:56:28.809732+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:56:28 +0000
+2014-12-11T17:56:28.816675+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:56:45.030099+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e41f0bd4-5400-4942-a5d3-ddc32d98c5a5 fwd="108.199.253.93" dyno=web.1 connect=1ms service=9ms status=304 bytes=432
+2014-12-11T17:56:45.020643+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:56:45 +0000
+2014-12-11T17:56:45.027121+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.2ms)
+2014-12-11T17:56:45.027217+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.5ms)
+2014-12-11T17:56:45.027417+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.0ms)
+2014-12-11T17:56:45.
+022577+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:56:59.817907+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=2af2aacb-51f7-4f26-b64f-141e6de93174 fwd="76.176.36.190" dyno=web.1 connect=2ms service=11ms status=304 bytes=432
+2014-12-11T17:56:59.806451+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:56:59 +0000
+2014-12-11T17:56:59.813781+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:56:59.814000+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.3ms)
+2014-12-11T17:56:59.813711+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T17:56:59.808863+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:57:15.043197+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=7e08bf5c-6d05-4411-97d0-db3aa9fef7cf fwd="108.199.253.93" dyno=web.1 connect=1ms service=23ms status=304 bytes=432
+2014-12-11T17:57:15.131613+00:00 app[scheduler.6223]: time_left_before_pub ---> -926458 secs
+2014-12-11T17:57:15.131658+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:57:15.131011+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:57:14.976004+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:57:14.976010+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:57:15.121407+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:57:15.019427+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:57:15 +0000
+2014-12-11T17:57:15.038051+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.0ms | ActiveRecord: 9.6ms)
+2014-12-11T17:57:15.037761+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.7ms)
+2014-12-11T17:57:15.037843+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.0ms)
+2014-12-11T17:57:15.025811+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:57:15.126460+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:57:15.131362+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:57:33.403414+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=add0dd01-ea2a-45fe-9f03-de747fbd7e0f fwd="76.176.36.190" dyno=web.1 connect=3ms service=67ms status=304 bytes=432
+2014-12-11T17:57:33.400382+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (6.5ms)
+2014-12-11T17:57:33.388721+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:57:33 +0000
+2014-12-11T17:57:33.400457+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.9ms)
+2014-12-11T17:57:33.400762+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 5.2ms)
+2014-12-11T17:57:33.392501+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:57:45.037682+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=bd8a1afd-edae-4f25-8c8c-bb72950f268b fwd="108.199.253.93" dyno=web.1 connect=4ms service=15ms status=304 bytes=432
+2014-12-11T17:57:45.021287+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:57:45 +0000
+2014-12-11T17:57:45.031599+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.9ms)
+2014-12-11T17:57:45.031659+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.2ms)
+2014-12-11T17:57:45.031956+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 3.7ms)
+2014-12-11T17:57:45.023715+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:58:03.812937+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=d3067a13-9b5b-4c48-9771-0bccb984a7ff fwd="76.176.36.190" dyno=web.1 connect=2ms service=12ms status=304 bytes=432
+2014-12-11T17:58:03.806407+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.8ms)
+2014-12-11T17:58:03.801379+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:58:03.799213+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:58:03 +0000
+2014-12-11T17:58:03.806172+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T17:58:03.806623+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.2ms)
+2014-12-11T17:58:15.044556+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8988f42f-d959-448f-a138-38c6bbac3e83 fwd="108.199.253.93" dyno=web.1 connect=2ms service=24ms status=304 bytes=432
+2014-12-11T17:58:15.023111+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:58:15 +0000
+2014-12-11T17:58:15.041375+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (13.1ms)
+2014-12-11T17:58:15.041873+00:00 app[web.1]: Completed 200 OK in 16ms (Views: 2.9ms | ActiveRecord: 11.3ms)
+2014-12-11T17:58:15.026079+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:58:15.041548+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (13.5ms)
+2014-12-11T17:58:15.185306+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:58:15.174673+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:58:15.185726+00:00 app[scheduler.6223]: time_left_before_pub ---> -926518 secs
+2014-12-11T17:58:15.136954+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:58:15.137009+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:58:15.185728+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:58:15.185633+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:58:15.180031+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:58:21.511209+00:00 heroku[router]: at=info method=GET path="/" host=sap-staging.herokuapp.com request_id=b0f0602f-3268-4cc3-ac35-641a44636b7b fwd="76.176.36.190" dyno=web.1 connect=2ms service=71ms status=200 bytes=60289
+2014-12-11T17:58:21.493762+00:00 app[web.1]:   Rendered visitors/index.html.erb within layouts/application (44.1ms)
+2014-12-11T17:58:21.442811+00:00 app[web.1]: Processing by VisitorsController#index as HTML
+2014-12-11T17:58:21.496914+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T17:58:21.498657+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.9ms)
+2014-12-11T17:58:21.453060+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.0ms)
+2014-12-11T17:58:21.440895+00:00 app[web.1]: Started GET "/" for 76.176.36.190 at 2014-12-11 17:58:21 +0000
+2014-12-11T17:58:21.495292+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.2ms)
+2014-12-11T17:58:21.497579+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T17:58:21.498965+00:00 app[web.1]: Completed 200 OK in 56ms (Views: 37.6ms | ActiveRecord: 14.4ms)
+2014-12-11T17:58:21.497361+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (2.7ms)
+2014-12-11T17:58:21.497309+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.9ms)
+2014-12-11T17:58:45.045903+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=51ca1353-d327-4016-b090-1a37b754994f fwd="108.199.253.93" dyno=web.1 connect=5ms service=24ms status=304 bytes=432
+2014-12-11T17:58:45.042456+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (12.3ms)
+2014-12-11T17:58:45.021138+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:58:45 +0000
+2014-12-11T17:58:45.042744+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 3.0ms | ActiveRecord: 9.9ms)
+2014-12-11T17:58:45.042363+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.9ms)
+2014-12-11T17:58:45.026674+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:58:51.721997+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a94a92b4-8835-480c-8800-e74ff4d6f896 fwd="76.176.36.190" dyno=web.1 connect=2ms service=16ms status=304 bytes=432
+2014-12-11T17:58:51.705855+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:58:51 +0000
+2014-12-11T17:58:51.714585+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T17:58:51.714711+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.1ms)
+2014-12-11T17:58:51.715185+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.5ms)
+2014-12-11T17:58:51.709447+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:59:15.044213+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=4ca87dc2-dcf7-4c62-a9ff-b11c8aae087f fwd="108.199.253.93" dyno=web.1 connect=2ms service=25ms status=304 bytes=432
+2014-12-11T17:59:15.039213+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (12.9ms)
+2014-12-11T17:59:15.021042+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:59:15 +0000
+2014-12-11T17:59:15.039296+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (13.3ms)
+2014-12-11T17:59:15.039583+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 2.5ms | ActiveRecord: 11.5ms)
+2014-12-11T17:59:15.024688+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:59:15.192583+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T17:59:15.192591+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T17:59:15.221852+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T17:59:15.231722+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T17:59:15.226051+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T17:59:15.232083+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T17:59:15.232201+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T17:59:15.232198+00:00 app[scheduler.6223]: time_left_before_pub ---> -926578 secs
+2014-12-11T17:59:21.655371+00:00 app[web.1]: Completed 200 OK in 27ms (Views: 15.1ms | ActiveRecord: 10.7ms)
+2014-12-11T17:59:21.615686+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:59:21 +0000
+2014-12-11T17:59:21.645973+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (12.2ms)
+2014-12-11T17:59:21.652505+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (18.9ms)
+2014-12-11T17:59:21.627579+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:59:21.661206+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=98333e88-607c-4a10-9179-f1dde3150bf3 fwd="76.176.36.190" dyno=web.1 connect=4ms service=49ms status=304 bytes=432
+2014-12-11T17:59:46.334190+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=ca3c1b8c-6a9b-46bd-960b-1e9a2d079e99 fwd="108.199.253.93" dyno=web.1 connect=29ms service=27ms status=304 bytes=432
+2014-12-11T17:59:46.317636+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:59:46.307367+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 17:59:46 +0000
+2014-12-11T17:59:46.323390+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.9ms)
+2014-12-11T17:59:46.323799+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 2.7ms)
+2014-12-11T17:59:46.323515+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.3ms)
+2014-12-11T17:59:51.615709+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 17:59:51 +0000
+2014-12-11T17:59:51.628496+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (6.3ms)
+2014-12-11T17:59:51.628888+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.4ms | ActiveRecord: 4.8ms)
+2014-12-11T17:59:51.628658+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (6.6ms)
+2014-12-11T17:59:51.620909+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T17:59:51.631961+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8f93b52e-70c1-48da-93a3-48c705b08d18 fwd="76.176.36.190" dyno=web.1 connect=4ms service=20ms status=304 bytes=432
+2014-12-11T18:00:15.254323+00:00 app[scheduler.6223]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:00:15.235856+00:00 app[scheduler.6223]: stories_per_day ---> 2
+2014-12-11T18:00:15.259854+00:00 app[scheduler.6223]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:00:15.235921+00:00 app[scheduler.6223]: stories_every_x_secs ---> 43200
+2014-12-11T18:00:15.260188+00:00 app[scheduler.6223]: time_left_before_pub ---> -926638 secs
+2014-12-11T18:00:15.256361+00:00 app[scheduler.6223]: next_story_to_publish ---> 
+2014-12-11T18:00:15.260137+00:00 app[scheduler.6223]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:00:15.260193+00:00 app[scheduler.6223]: No stories available to publish
+2014-12-11T18:00:18.640905+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=eba5024c-fa1d-4aaa-a4e3-7d7da1d0ed24 fwd="108.199.253.93" dyno=web.1 connect=1ms service=9ms status=304 bytes=432
+2014-12-11T18:00:18.633567+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:00:18.631429+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:00:18 +0000
+2014-12-11T18:00:18.638311+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 2.1ms)
+2014-12-11T18:00:18.638036+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.2ms)
+2014-12-11T18:00:18.638116+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.5ms)
+2014-12-11T18:00:21.625673+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=1bcd4e92-41a1-41f6-8b8d-a70e4c02c27d fwd="76.176.36.190" dyno=web.1 connect=2ms service=18ms status=304 bytes=432
+2014-12-11T18:00:21.610733+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:00:21.607940+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:00:21 +0000
+2014-12-11T18:00:21.622248+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.8ms)
+2014-12-11T18:00:21.622339+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.1ms)
+2014-12-11T18:00:21.622549+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 7.5ms | ActiveRecord: 3.3ms)
+2014-12-11T18:00:48.757031+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=920059e6-8c9f-44ba-98a2-b2e130dffe2d fwd="108.199.253.93" dyno=web.1 connect=5ms service=25ms status=304 bytes=432
+2014-12-11T18:00:48.730988+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:00:48 +0000
+2014-12-11T18:00:48.748042+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.5ms)
+2014-12-11T18:00:48.748128+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.8ms)
+2014-12-11T18:00:48.748365+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.2ms | ActiveRecord: 9.3ms)
+2014-12-11T18:00:48.735936+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:00:51.648778+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=723f6d3e-c60f-4841-9ac3-7aca631d8c88 fwd="76.176.36.190" dyno=web.1 connect=7ms service=26ms status=304 bytes=432
+201
+4-12-11T18:00:51.622903+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:00:51 +0000
+2014-12-11T18:00:51.641269+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.3ms)
+2014-12-11T18:00:51.641367+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.6ms)
+2014-12-11T18:00:51.641570+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 2.2ms | ActiveRecord: 10.0ms)
+2014-12-11T18:00:51.628692+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:01:16.168889+00:00 heroku[scheduler.6223]: Process exited with status 0
+2014-12-11T18:01:16.181511+00:00 heroku[scheduler.6223]: State changed from up to complete
+2014-12-11T18:01:18.728211+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:01:18 +0000
+2014-12-11T18:01:18.749350+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.5ms)
+2014-12-11T18:01:18.749716+00:00 app[web.1]: Completed 200 OK in 17ms (Views: 2.6ms | ActiveRecord: 13.8ms)
+2014-12-11T18:01:18.749435+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.8ms)
+2014-12-11T18:01:18.732611+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:01:18.753145+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=b6807038-2921-4a60-ae82-1c0724bc3d70 fwd="108.199.253.93" dyno=web.1 connect=1ms service=27ms status=304 bytes=432
+2014-12-11T18:01:21.636688+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9ecba8b4-6edb-496e-8452-8707c01301f0 fwd="76.176.36.190" dyno=web.1 connect=1ms service=25ms status=304 bytes=432
+2014-12-11T18:01:21.612923+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:01:21.610817+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:01:21 +0000
+2014-12-11T18:01:21.628940+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.7ms)
+2014-12-11T18:01:21.629060+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.0ms)
+2014-12-11T18:01:21.629465+00:00 app[web.1]: Completed 200 OK in 16ms (Views: 13.5ms | ActiveRecord: 2.2ms)
+2014-12-11T18:01:48.749120+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=749d197e-3bba-4a2a-bd71-c92d32587fec fwd="108.199.253.93" dyno=web.1 connect=1ms service=20ms status=304 bytes=432
+2014-12-11T18:01:48.730168+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:01:48 +0000
+2014-12-11T18:01:48.746066+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (11.2ms)
+2014-12-11T18:01:48.746479+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 3.6ms | ActiveRecord: 8.6ms)
+2014-12-11T18:01:48.746236+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.6ms)
+2014-12-11T18:01:48.733513+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:01:51.640499+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (6.8ms)
+2014-12-11T18:01:51.640983+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.1ms | ActiveRecord: 5.6ms)
+2014-12-11T18:01:51.620716+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:01:51 +0000
+2014-12-11T18:01:51.644514+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=b54e85e4-e946-49c8-ba37-5e19c41ba9d7 fwd="76.176.36.190" dyno=web.1 connect=1ms service=28ms status=304 bytes=432
+2014-12-11T18:01:51.640669+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.1ms)
+2014-12-11T18:01:51.631536+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:02:18.743708+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=81dc8d44-4144-44a1-aa50-db50388ef300 fwd="108.199.253.93" dyno=web.1 connect=1ms service=22ms status=304 bytes=432
+2014-12-11T18:02:18.721801+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:02:18 +0000
+2014-12-11T18:02:18.734179+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.2ms)
+2014-12-11T18:02:18.736651+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 3.7ms)
+2014-12-11T18:02:18.734249+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.8ms)
+2014-12-11T18:02:18.726367+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:02:21.633426+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=b1186e6a-ae72-43c1-b718-96eece526541 fwd="76.176.36.190" dyno=web.1 connect=1ms service=14ms status=304 bytes=432
+2014-12-11T18:02:21.618594+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:02:21 +0000
+2014-12-11T18:02:21.627680+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.0ms)
+2014-12-11T18:02:21.627808+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.4ms)
+2014-12-11T18:02:21.628138+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 3.6ms)
+2014-12-11T18:02:21.621109+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:02:48.721994+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:02:48 +0000
+2014-12-11T18:02:48.731474+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.5ms)
+2014-12-11T18:02:48.731554+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.9ms)
+2014-12-11T18:02:48.725295+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:02:48.731852+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 3.1ms)
+2014-12-11T18:02:48.735006+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a31909e9-ca3b-454f-8add-3269475eeace fwd="108.199.253.93" dyno=web.1 connect=2ms service=13ms status=304 bytes=432
+2014-12-11T18:02:51.630656+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=87dd8c9e-9858-46bd-9c29-ca6f94135eac fwd="76.176.36.190" dyno=web.1 connect=1ms service=12ms status=304 bytes=432
+2014-12-11T18:02:51.619009+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:02:51 +0000
+2014-12-11T18:02:51.625824+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.2ms)
+2014-12-11T18:02:51.625914+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.5ms)
+2014-12-11T18:02:51.626111+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.0ms)
+2014-12-11T18:02:51.621057+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:02:58.423964+00:00 heroku[api]: Starting process with command `bundle exec rake schedule_story:check_pub_time` by scheduler@addons.heroku.com
+2014-12-11T18:03:03.371305+00:00 heroku[scheduler.2915]: Starting process with command `bundle exec rake schedule_story:check_pub_time`
+2014-12-11T18:03:04.041066+00:00 heroku[scheduler.2915]: State changed from starting to up
+2014-12-11T18:03:07.320257+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:03:07.370570+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:03:07.382586+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:03:07.320284+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:03:07.372278+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:03:07.383460+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:03:07.383543+00:00 app[scheduler.2915]: time_left_before_pub ---> -926810 secs
+2014-12-11T18:03:07.383547+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:03:18.778622+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=10a1b3ec-3428-4582-9aba-b8f5b2a59631 fwd="108.199.253.93" dyno=web.1 connect=1ms service=56ms status=304 bytes=432
+2014-12-11T18:03:18.766729+00:00 app[web.1]: Completed 200 OK in 36ms (Views: 14.8ms | ActiveRecord: 14.3ms)
+2014-12-11T18:03:18.726509+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:03:18 +0000
+2014-12-11T18:03:18.758262+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (26.2ms)
+2014-12-11T18:03:18.758425+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (26.8ms)
+2014-12-11T18:03:18.730444+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:03:21.638185+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9febee89-a5ae-4922-aa4f-50245706ad29 fwd="76.176.36.190" dyno=web.1 connect=1ms service=15ms status=304 bytes=432
+2014-12-11T18:03:21.622668+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:03:21 +0000
+2014-12-11T18:03:21.624807+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:03:21.632665+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (5.1ms)
+2014-12-11T18:03:21.632742+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.5ms)
+2014-12-11T18:03:21.632995+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 2.2ms | ActiveRecord: 3.8ms)
+2014-12-11T18:03:22.090854+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a72be18b-4b39-40ca-8d20-d54b02ef174d fwd="76.176.36.190" dyno=web.1 connect=1ms service=13ms status=304 bytes=469
+2014-12-11T18:03:22.079133+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:03:22 +0000
+2014-12-11T18:03:22.087273+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T18:03:22.087152+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T18:03:22.087529+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 2.3ms)
+2014-12-11T18:03:22.081587+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:03:48.718337+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:03:48 +0000
+2014-12-11T18:03:48.725697+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T18:03:48.725788+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.1ms)
+2014-12-11T18:03:48.726072+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.4ms)
+2014-12-11T18:03:48.729082+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=8a5c6bb1-e048-472e-85b0-d4ba9aae875d fwd="108.199.253.93" dyno=web.1 connect=1ms service=10ms status=304 bytes=432
+2014-12-11T18:03:48.720407+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:03:51.635435+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=e5b8052a-2760-4bf9-8e99-05b66c0e4b0d fwd="76.176.36.190" dyno=web.1 connect=1ms service=14ms status=304 bytes=432
+2014-12-11T18:03:51.621400+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:03:51 +0000
+2014-12-11T18:03:51.628771+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.8ms)
+2014-12-11T18:03:51.628854+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.2ms)
+2014-12-11T18:03:51.629072+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.3ms)
+2014-12-11T18:03:51.623441+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:04:07.406660+00:00 app[scheduler.2915]: time_left_before_pub ---> -926870 secs
+2014-12-11T18:04:07.406665+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:04:07.402135+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:04:07.406403+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:04:07.385491+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:04:07.385500+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:04:07.406608+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:04:07.404350+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:04:18.733023+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=eed62a67-8941-4542-a3b0-e50478a1d666 fwd="108.199.253.93" dyno=web.1 connect=1ms service=12ms status=304 bytes=432
+2014-12-11T18:04:18.721392+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:04:18 +0000
+2014-12-11T18:04:18.729607+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.3ms)
+2014-12-11T18:04:18.729700+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.7ms)
+2014-12-11T18:04:18.729952+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.9ms)
+2014-12-11T18:04:18.723499+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:04:21.627622+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T18:04:21.627667+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T18:04:21.627890+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.3ms)
+2014-12-11T18:04:21.620304+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:04:21 +0000
+2014-12-11T18:04:21.622629+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:04:21.630754+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=34320e54-1e15-4fa5-a611-e264f787aaf6 fwd="76.176.36.190" dyno=web.1 connect=1ms service=11ms status=304 bytes=432
+2014-12-11T18:04:34.705126+00:00 app[web.1]: Started POST "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:04:34 +0000
+2014-12-11T18:04:34.709048+00:00 app[web.1]: Processing by Devise::SessionsController#create as HTML
+2014-12-11T18:04:34.709058+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"email"=>"coastalron57@mac.com", "password"=>"[FILTERED]", "remember_me"=>"0"}}
+2014-12-11T18:04:34.853018+00:00 app[web.1]: Completed 401 Unauthorized in 144ms
+2014-12-11T18:04:34.865407+00:00 heroku[router]: at=info method=POST path="/users/sign_in" host=sap-staging.herokuapp.com request_id=d820f889-9a5a-4b56-8d14-be383d4b8f08 fwd="76.176.36.190" dyno=web.1 connect=23ms service=165ms status=302 bytes=1077
+2014-12-11T18:04:35.073670+00:00 heroku[router]: at=info method=GET path="/users/sign_in" host=sap-staging.herokuapp.com request_id=70dcbd8a-25d2-468c-aab3-b95872f3fb95 fwd="76.176.36.190" dyno=web.1 connect=3ms service=26ms status=200 bytes=8327
+2014-12-11T18:04:35.050460+00:00 app[web.1]: Started GET "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:04:35 +0000
+2014-12-11T18:04:35.062036+00:00 app[web.1]:   Rendered devise/sessions/new.html.erb within layouts/application (3.1ms)
+2014-12-11T18:04:35.064894+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:04:35.067791+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.2ms)
+2014-12-11T18:04:35.063692+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T18:04:35.056648+00:00 app[web.1]: Processing by Devise::SessionsController#new as HTML
+2014-12-11T18:04:35.066107+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.3ms)
+2014-12-11T18:04:35.066173+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.2ms)
+2014-12-11T18:04:35.068081+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+2014-12-11T18:04:35.066481+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.2ms)
+2014-12-11T18:04:35.292186+00:00 heroku[router]: at=info m
+ethod=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=48bde263-cfea-4ad4-ac20-708c7a58bdc3 fwd="76.176.36.190" dyno=web.1 connect=6ms service=10ms status=304 bytes=62
+2014-12-11T18:04:35.280486+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=6ed7ba87-c721-4b09-a178-e4091b224069 fwd="76.176.36.190" dyno=web.1 connect=5ms service=2ms status=304 bytes=62
+2014-12-11T18:04:35.268268+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=82696e5c-57f1-4d84-9f6c-e1577d3aa2d9 fwd="76.176.36.190" dyno=web.1 connect=2ms service=7ms status=304 bytes=62
+2014-12-11T18:04:37.508486+00:00 app[web.1]: Started PATCH "/users/8" for 108.199.253.93 at 2014-12-11 18:04:37 +0000
+2014-12-11T18:04:37.511371+00:00 app[web.1]: Processing by UsersController#update as HTML
+2014-12-11T18:04:37.511403+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOrmFgt3s4fau5tQYP158RtZrmxJ8uvlv9u+JdOCjlY=", "user"=>{"role"=>"admin"}, "commit"=>"Change Role", "id"=>"8"}
+2014-12-11T18:04:37.543629+00:00 app[web.1]: Completed 302 Found in 32ms (ActiveRecord: 24.0ms)
+2014-12-11T18:04:37.543490+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/users
+2014-12-11T18:04:37.549430+00:00 heroku[router]: at=info method=POST path="/users/8" host=sap-staging.herokuapp.com request_id=d6938757-2636-4408-a570-7d78467e1a33 fwd="108.199.253.93" dyno=web.1 connect=4ms service=41ms status=302 bytes=1121
+2014-12-11T18:04:37.815475+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=a181c0bb-4c12-4ce2-80d8-2f64f0d197a4 fwd="108.199.253.93" dyno=web.1 connect=2ms service=34ms status=200 bytes=15186
+2014-12-11T18:04:37.781719+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 18:04:37 +0000
+2014-12-11T18:04:37.796938+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T18:04:37.800067+00:00 app[web.1]:   Rendered users/_user.html.erb (1.4ms)
+2014-12-11T18:04:37.794048+00:00 app[web.1]:   Rendered users/_user.html.erb (1.8ms)
+2014-12-11T18:04:37.808934+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:04:37.810776+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.0ms)
+2014-12-11T18:04:37.803727+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T18:04:37.795460+00:00 app[web.1]:   Rendered users/_user.html.erb (1.2ms)
+2014-12-11T18:04:37.785652+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T18:04:37.798465+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T18:04:37.802233+00:00 app[web.1]:   Rendered users/_user.html.erb (2.0ms)
+2014-12-11T18:04:37.805397+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (15.5ms)
+2014-12-11T18:04:37.807428+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.8ms)
+2014-12-11T18:04:37.805293+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T18:04:37.809330+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.7ms)
+2014-12-11T18:04:37.809388+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.1ms)
+2014-12-11T18:04:37.809619+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:04:37.810986+00:00 app[web.1]: Completed 200 OK in 25ms (Views: 20.1ms | ActiveRecord: 2.7ms)
+2014-12-11T18:04:38.200849+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 18:04:38 +0000
+2014-12-11T18:04:38.206614+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=591d0039-836f-471f-9002-0e2f7c714e7b fwd="108.199.253.93" dyno=web.1 connect=0ms service=4ms status=304 bytes=160
+2014-12-11T18:04:40.413022+00:00 heroku[router]: at=info method=GET path="/users/sign_in" host=sap-staging.herokuapp.com request_id=0302f756-f5cb-4cb5-a735-090e34735bc1 fwd="76.176.36.190" dyno=web.1 connect=1ms service=20ms status=200 bytes=7900
+2014-12-11T18:04:40.410644+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+2014-12-11T18:04:40.395957+00:00 app[web.1]: Started GET "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:04:40 +0000
+2014-12-11T18:04:40.408571+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:04:40.405348+00:00 app[web.1]:   Rendered devise/sessions/new.html.erb within layouts/application (3.3ms)
+2014-12-11T18:04:40.399590+00:00 app[web.1]: Processing by Devise::SessionsController#new as HTML
+2014-12-11T18:04:40.407225+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T18:04:40.408924+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.4ms)
+2014-12-11T18:04:40.408973+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (2.5ms)
+2014-12-11T18:04:40.409176+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:04:40.410430+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.1ms)
+2014-12-11T18:04:40.522577+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=3915b6de-4d04-4d3e-b0d3-b2be0e40e6b6 fwd="76.176.36.190" dyno=web.1 connect=1ms service=1ms status=304 bytes=62
+2014-12-11T18:04:40.521340+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=a086ec8e-c59a-4e35-8ac3-17ed164c8422 fwd="76.176.36.190" dyno=web.1 connect=6ms service=3ms status=304 bytes=62
+2014-12-11T18:04:40.623993+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=ff99937a-3560-449c-9e4d-d27323919e91 fwd="76.176.36.190" dyno=web.1 connect=1ms service=4ms status=304 bytes=62
+2014-12-11T18:04:50.016625+00:00 app[web.1]:   Rendered devise/sessions/new.html.erb within layouts/application (2.9ms)
+2014-12-11T18:04:50.009040+00:00 app[web.1]: Started GET "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:04:50 +0000
+2014-12-11T18:04:50.019211+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:04:49.798043+00:00 app[web.1]: Started POST "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:04:49 +0000
+2014-12-11T18:04:50.020931+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.9ms)
+2014-12-11T18:04:49.800656+00:00 app[web.1]: Processing by Devise::SessionsController#create as HTML
+2014-12-11T18:04:49.800686+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"email"=>"coastalron57@mac.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+2014-12-11T18:04:50.011449+00:00 app[web.1]: Processing by Devise::SessionsController#new as HTML
+2014-12-11T18:04:49.903845+00:00 app[web.1]: Completed 401 Unauthorized in 103ms
+2014-12-11T18:04:50.018036+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T18:04:50.019545+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.4ms)
+2014-12-11T18:04:50.019595+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (2.3ms)
+2014-12-11T18:04:50.019827+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:04:50.021129+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.0ms)
+2014-12-11T18:04:49.911144+00:00 heroku[router]: at=info method=POST path="/users/sign_in" host=sap-staging.herokuapp.com request_id=8faaeca0-179c-4483-ac74-ab8b9eb2feb9 fwd="76.176.36.190" dyno=web.1 connect=8ms service=116ms status=302 bytes=1077
+2014-12-11T18:04:50.024806+00:00 heroku[router]: at=info method=GET path="/users/sign_in" host=sap-staging.herokuapp.com request_id=f4fba20a-660c-49de-bee3-0a9d722e08be fwd="76.176.36.190" dyno=web.1 connect=6ms service=16ms status=200 bytes=8327
+2014-12-11T18:04:50.219680+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=ebb6baab-9fc6-4f2f-a2cf-faa95f6a5692 fwd="76.176.36.190" dyno=web.1 connect=2ms service=4ms status=304 bytes=62
+2014-12-11T18:04:50.128748+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=97eb33e9-8244-4578-b56d-a23ef49f7789 fwd="76.176.36.190" dyno=web.1 connect=1ms service=2ms status=304 bytes=62
+2014-12-11T18:04:50.224322+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=8755b5be-c306-4b0d-b298-1fd48e578569 fwd="76.176.36.190" dyno=web.1 connect=3ms service=5ms status=304 bytes=62
+2014-12-11T18:05:07.435446+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:05:07.435554+00:00 app[scheduler.2915]: time_left_before_pub ---> -926930 secs
+2014-12-11T18:05:07.426266+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:05:07.435662+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:05:07.428299+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:05:07.409985+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:05:07.409993+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:05:07.432990+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:05:08.093569+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:05:08.091209+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:05:08 +0000
+2014-12-11T18:05:08.098882+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.9ms)
+2014-12-11T18:05:08.099178+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.4ms)
+2014-12-11T18:05:08.098954+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.2ms)
+2014-12-11T18:05:08.112628+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=96f86c1c-637d-434b-9ac5-6eceac40c542 fwd="108.199.253.93" dyno=web.1 connect=18ms service=16ms status=304 bytes=432
+2014-12-11T18:05:09.975315+00:00 app[web.1]: Started POST "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:05:09 +0000
+2014-12-11T18:05:10.215350+00:00 app[web.1]:   Rendered devise/sessions/new.html.erb within layouts/application (4.4ms)
+2014-12-11T18:05:10.200741+00:00 app[web.1]: Started GET "/users/sign_in" for 76.176.36.190 at 2014-12-11 18:05:10 +0000
+2014-12-11T18:05:10.219326+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:05:10.221252+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.1ms)
+2014-12-11T18:05:10.098322+00:00 app[web.1]: Completed 401 Unauthorized in 114ms
+2014-12-11T18:05:10.221545+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 11.1ms | ActiveRecord: 0.0ms)
+2014-12-11T18:05:09.984114+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"email"=>"rhodson@platrasha.com", "password"=>"[FILTERED]", "remember_me"=>"0"}}
+2014-12-11T18:05:10.217610+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.6ms)
+2014-12-11T18:05:10.207711+00:00 app[web.1]: Processing by Devise::SessionsController#new as HTML
+2014-12-11T18:05:09.984058+00:00 app[web.1]: Processing by Devise::SessionsController#create as HTML
+2014-12-11T18:05:10.219700+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.9ms)
+2014-12-11T18:05:10.220015+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.2ms)
+2014-12-11T18:05:10.219744+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.2ms)
+2014-12-11T18:05:10.106162+00:00 heroku[router]: at=info method=POST path="/users/sign_in" host=sap-staging.herokuapp.com request_id=1e81009d-66af-43c1-9716-2339c258e8ef fwd="76.176.36.190" dyno=web.1 connect=3ms service=131ms status=302 bytes=1077
+2014-12-11T18:05:10.232005+00:00 heroku[router]: at=info method=GET path="/users/sign_in" host=sap-staging.herokuapp.com request_id=5af3bd12-845b-46b8-bb4b-a5b1e0999ffe fwd="76.176.36.190" dyno=web.1 connect=1ms service=35ms status=200 bytes=8327
+2014-12-11T18:05:10.418866+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=017472c3-d77e-4a34-b799-c290cc943c85 fwd="76.176.36.190" dyno=web.1 connect=3ms service=3ms status=304 bytes=62
+2014-12-11T18:05:10.340430+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=303b6146-e220-4e88-8804-0f00da82cbd1 fwd="76.176.36.190" dyno=web.1 connect=9ms service=4ms status=304 bytes=62
+2014-12-11T18:05:10.416597+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=479e7928-688d-4ffe-ba05-f93164c7de08 fwd="76.176.36.190" dyno=web.1 connect=1ms service=2ms status=304 bytes=62
+2014-12-11T18:05:38.128352+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=16cb7316-47d6-48eb-b92f-4edb7d28d5d0 fwd="108.199.253.93" dyno=web.1 connect=12ms service=28ms status=304 bytes=432
+2014-12-11T18:05:38.099630+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:05:38 +0000
+2014-12-11T18:05:38.121596+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.6ms)
+2014-12-11T18:05:38.122214+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 3.4ms | ActiveRecord: 8.8ms)
+2014-12-11T18:05:38.108686+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:05:38.121807+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.0ms)
+2014-12-11T18:05:40.541227+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=ee9b89b9-1ae7-4513-acef-0afa4b2b63f5 fwd="76.176.36.190" dyno=web.1 connect=6ms service=16ms status=304 bytes=432
+2014-12-11T18:05:40.537278+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.6ms)
+2014-12-11T18:05:40.527667+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:05:40 +0000
+2014-12-11T18:05:40.537707+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 3.0ms)
+2014-12-11T18:05:40.537364+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.9ms)
+2014-12-11T18:05:40.530718+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:06:07.437578+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:06:07.457885+00:00 app[scheduler.2915]: time_left_before_pub ---> -926990 secs
+2014-12-11T18:06:07.457551+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:06:07.452985+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:06:07.457921+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:06:07.437587+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:06:07.457801+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:06:07.454159+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:06:08.168322+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (13.6ms)
+2014-12-11T18:06:08.146277+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:06:08 +0000
+2014-12-11T18:06:08.168645+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 8.3ms | ActiveRecord: 6.0ms)
+2014-12-11T18:06:08.168236+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (13.2
+ms)
+2014-12-11T18:06:08.153584+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:06:08.192170+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=a13dfaed-7753-407e-9c19-47589052f66d fwd="108.199.253.93" dyno=web.1 connect=21ms service=56ms status=304 bytes=432
+2014-12-11T18:06:11.673094+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=2fec6837-7869-4897-9ed9-1d36c88e3a06 fwd="76.176.36.190" dyno=web.1 connect=4ms service=18ms status=304 bytes=432
+2014-12-11T18:06:11.657846+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:06:11.670229+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (11.0ms)
+2014-12-11T18:06:11.654327+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:06:11 +0000
+2014-12-11T18:06:11.670117+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (10.7ms)
+2014-12-11T18:06:11.670466+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 2.4ms | ActiveRecord: 9.3ms)
+2014-12-11T18:06:38.130191+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3141578d-7149-4288-8129-ab18607b4cf4 fwd="108.199.253.93" dyno=web.1 connect=6ms service=11ms status=304 bytes=432
+2014-12-11T18:06:38.116566+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:06:38 +0000
+2014-12-11T18:06:38.118636+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:06:38.123259+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.3ms)
+2014-12-11T18:06:38.123344+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.6ms)
+2014-12-11T18:06:38.123528+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.1ms)
+2014-12-11T18:06:42.881709+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=45420890-6285-4364-aabd-67eb940ee905 fwd="76.176.36.190" dyno=web.1 connect=3ms service=18ms status=304 bytes=432
+2014-12-11T18:06:42.875492+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.9ms)
+2014-12-11T18:06:42.875745+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 2.1ms)
+2014-12-11T18:06:42.862798+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:06:42 +0000
+2014-12-11T18:06:42.875368+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.4ms)
+2014-12-11T18:06:42.869326+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:07:07.479481+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:07:07.459872+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:07:07.476203+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:07:07.459863+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:07:07.479739+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:07:07.479736+00:00 app[scheduler.2915]: time_left_before_pub ---> -927050 secs
+2014-12-11T18:07:07.477450+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:07:07.479684+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:07:08.064195+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:07:08.061984+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:07:08 +0000
+2014-12-11T18:07:08.068955+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T18:07:08.069024+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T18:07:08.069220+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.2ms)
+2014-12-11T18:07:08.071600+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=7f8bc5a7-7353-4866-96a3-ad8cf86f3871 fwd="108.199.253.93" dyno=web.1 connect=1ms service=9ms status=304 bytes=432
+2014-12-11T18:07:13.816067+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=82720297-aa41-43ec-95e0-70b1a97f242b fwd="76.176.36.190" dyno=web.1 connect=1ms service=14ms status=304 bytes=432
+2014-12-11T18:07:13.812956+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 2.3ms)
+2014-12-11T18:07:13.801399+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:07:13 +0000
+2014-12-11T18:07:13.811961+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.0ms)
+2014-12-11T18:07:13.806418+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:07:13.812541+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.9ms)
+2014-12-11T18:07:17.731975+00:00 app[web.1]:   Rendered users/_user.html.erb (1.5ms)
+2014-12-11T18:07:17.741156+00:00 app[web.1]:   Rendered users/_user.html.erb (1.5ms)
+2014-12-11T18:07:17.748097+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.1ms)
+2014-12-11T18:07:17.750298+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.4ms)
+2014-12-11T18:07:17.733785+00:00 app[web.1]:   Rendered users/_user.html.erb (1.5ms)
+2014-12-11T18:07:17.742900+00:00 app[web.1]:   Rendered users/_user.html.erb (1.4ms)
+2014-12-11T18:07:17.739426+00:00 app[web.1]:   Rendered users/_user.html.erb (1.3ms)
+2014-12-11T18:07:17.748677+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.3ms)
+2014-12-11T18:07:17.679939+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T18:07:17.748192+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.9ms)
+2014-12-11T18:07:17.729928+00:00 app[web.1]:   Rendered users/_user.html.erb (5.0ms)
+2014-12-11T18:07:17.750719+00:00 app[web.1]: Completed 200 OK in 71ms (Views: 36.5ms | ActiveRecord: 15.1ms)
+2014-12-11T18:07:17.745758+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (1.1ms)
+2014-12-11T18:07:17.676222+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 18:07:17 +0000
+2014-12-11T18:07:17.743267+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (38.6ms)
+2014-12-11T18:07:17.747623+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.2ms)
+2014-12-11T18:07:17.737796+00:00 app[web.1]:   Rendered users/_user.html.erb (1.5ms)
+2014-12-11T18:07:17.724634+00:00 app[web.1]:   Rendered users/_user.html.erb (8.4ms)
+2014-12-11T18:07:17.762287+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=e6cb180d-b417-43c5-afb2-b0b111e58131 fwd="108.199.253.93" dyno=web.1 connect=3ms service=85ms status=200 bytes=14877
+2014-12-11T18:07:19.065263+00:00 heroku[router]: at=info method=GET path="/assets/application-c6773e9d841794958db157d03a267967.css" host=sap-staging.herokuapp.com request_id=5b4a25fb-65fc-4ee2-9c81-52bf45d2e999 fwd="108.199.253.93" dyno=web.1 connect=9ms service=10ms status=304 bytes=62
+2014-12-11T18:07:19.082631+00:00 heroku[router]: at=info method=GET path="/assets/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd%20whitestick-9dd36284f5e234da963552d826e5c97c.png" host=sap-staging.herokuapp.com request_id=f52feb7a-e0db-43a6-b5b1-d675b6a14e55 fwd="108.199.253.93" dyno=web.1 connect=3ms service=14ms status=304 bytes=62
+2014-12-11T18:07:19.245544+00:00 heroku[router]: at=info method=GET path="/assets/application-30089c24ecd80af77f06de5b09e4fd65.js" host=sap-staging.herokuapp.com request_id=291a8608-79dc-489d-9fa9-2b7aea6c8391 fwd="108.199.253.93" dyno=web.1 connect=15ms service=32ms status=304 bytes=62
+2014-12-11T18:07:19.485701+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 18:07:19 +0000
+2014-12-11T18:07:19.647498+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=b614e2df-763a-4996-81c7-435a467700ca fwd="108.199.253.93" dyno=web.1 connect=49ms service=88ms status=304 bytes=160
+2014-12-11T18:07:19.854458+00:00 heroku[router]: at=info method=GET path="/assets/favicon-d47e86f03d572239cf04eb67b8716455.ico" host=sap-staging.herokuapp.com request_id=64576949-81af-4e9c-8e61-c250fcbcaa47 fwd="108.199.253.93" dyno=web.1 connect=33ms service=23ms status=304 bytes=62
+2014-12-11T18:07:44.781441+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:07:44 +0000
+2014-12-11T18:07:44.804957+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (14.6ms)
+2014-12-11T18:07:44.806558+00:00 app[web.1]: Completed 200 OK in 22ms (Views: 4.6ms | ActiveRecord: 12.2ms)
+2014-12-11T18:07:44.784265+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:07:44.806178+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (16.1ms)
+2014-12-11T18:07:44.814520+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=43dae82e-6a01-4b61-87d8-48e9636b48eb fwd="76.176.36.190" dyno=web.1 connect=7ms service=34ms status=304 bytes=432
+2014-12-11T18:07:47.661462+00:00 heroku[router]: at=info method=POST path="/users/11" host=sap-staging.herokuapp.com request_id=a26ba7f7-fd57-4fb9-bcd0-9a9d49e432e3 fwd="108.199.253.93" dyno=web.1 connect=2ms service=58ms status=302 bytes=1121
+2014-12-11T18:07:47.851282+00:00 app[web.1]:   Rendered users/_user.html.erb (21.2ms)
+2014-12-11T18:07:47.651892+00:00 app[web.1]: Completed 302 Found in 33ms (ActiveRecord: 16.5ms)
+2014-12-11T18:07:47.618448+00:00 app[web.1]:   Parameters: {"authenticity_token"=>"SOrmFgt3s4fau5tQYP158RtZrmxJ8uvlv9u+JdOCjlY=", "id"=>"11"}
+2014-12-11T18:07:47.796277+00:00 app[web.1]: Processing by UsersController#index as HTML
+2014-12-11T18:07:47.609237+00:00 app[web.1]: Started DELETE "/users/11" for 108.199.253.93 at 2014-12-11 18:07:47 +0000
+2014-12-11T18:07:47.829543+00:00 app[web.1]:   Rendered users/_user.html.erb (19.8ms)
+2014-12-11T18:07:47.615554+00:00 app[web.1]: Processing by UsersController#destroy as HTML
+2014-12-11T18:07:47.651616+00:00 app[web.1]: Redirected to http://sap-staging.herokuapp.com/users
+2014-12-11T18:07:47.790793+00:00 app[web.1]: Started GET "/users" for 108.199.253.93 at 2014-12-11 18:07:47 +0000
+2014-12-11T18:07:48.105506+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (6.8ms)
+2014-12-11T18:07:48.002055+00:00 app[web.1]:   Rendered users/_user.html.erb (16.3ms)
+2014-12-11T18:07:48.089616+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (24.5ms)
+2014-12-11T18:07:47.883409+00:00 app[web.1]:   Rendered users/_user.html.erb (31.6ms)
+2014-12-11T18:07:48.123126+00:00 app[web.1]: Completed 200 OK in 327ms (Views: 314.8ms | ActiveRecord: 9.5ms)
+2014-12-11T18:07:48.029108+00:00 app[web.1]:   Rendered users/_user.html.erb (2.5ms)
+2014-12-11T18:07:48.090376+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (27.6ms)
+2014-12-11T18:07:47.985100+00:00 app[web.1]:   Rendered users/_user.html.erb (23.2ms)
+2014-12-11T18:07:48.062555+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (31.0ms)
+2014-12-11T18:07:48.029402+00:00 app[web.1]:   Rendered users/index.html.erb within layouts/application (222.2ms)
+2014-12-11T18:07:48.107317+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.7ms)
+2014-12-11T18:07:47.941322+00:00 app[web.1]:   Rendered users/_user.html.erb (43.3ms)
+2014-12-11T18:07:48.098123+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (59.5ms)
+2014-12-11T18:07:48.177539+00:00 heroku[router]: at=info method=GET path="/users" host=sap-staging.herokuapp.com request_id=7b9a5d76-69de-409f-9b0e-41f92b5df087 fwd="108.199.253.93" dyno=web.1 connect=24ms service=389ms status=200 bytes=14308
+2014-12-11T18:07:48.533279+00:00 heroku[router]: at=info method=GET path="/assets/sprites/social-share-button.png" host=sap-staging.herokuapp.com request_id=b4820a0e-636e-4131-9aba-49c4bf6e2993 fwd="108.199.253.93" dyno=web.1 connect=46ms service=13ms status=304 bytes=160
+2014-12-11T18:07:48.520178+00:00 app[web.1]: Started GET "/assets/sprites/social-share-button.png" for 108.199.253.93 at 2014-12-11 18:07:48 +0000
+2014-12-11T18:08:01.609087+00:00 app[web.1]: Started GET "/" for 76.176.36.190 at 2014-12-11 18:08:01 +0000
+2014-12-11T18:08:01.641638+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (6.1ms)
+2014-12-11T18:08:01.763251+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.2ms)
+2014-12-11T18:08:01.767757+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (4.3ms)
+2014-12-11T18:08:01.772835+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.2ms)
+2014-12-11T18:08:01.774461+00:00 app[web.1]: Completed 200 OK in 161ms (Views: 110.4ms | ActiveRecord: 37.6ms)
+2014-12-11T18:08:01.761318+00:00 app[web.1]:   Rendered visitors/index.html.erb within layouts/application (127.2ms)
+2014-12-11T18:08:01.613503+00:00 app[web.1]: Processing by VisitorsController#index as HTML
+2014-12-11T18:08:01.765459+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.4ms)
+2014-12-11T18:08:01.772457+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (9.7ms)
+2014-12-11T18:08:01.774200+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.1ms)
+2014-12-11T18:08:01.781445+00:00 heroku[router]: at=info method=GET path="/" host=sap-staging.herokuapp.com request_id=180a4ad9-0346-4d58-8b64-3b94d284deb0 fwd="76.176.36.190" dyno=web.1 connect=2ms service=173ms status=304 bytes=767
+2014-12-11T18:08:06.232175+00:00 heroku[router]: at=info method=GET path="/users/sign_up" host=sap-staging.herokuapp.com request_id=192a0987-f694-4303-bc3c-201baae681e8 fwd="76.176.36.190" dyno=web.1 connect=1ms service=39ms status=304 bytes=767
+2014-12-11T18:08:06.195230+00:00 app[web.1]: Started GET "/users/sign_up" for 76.176.36.190 at 2014-12-11 18:08:06 +0000
+2014-12-11T18:08:06.207724+00:00 app[web.1]:   Rendered devise/registrations/new.html.erb within layouts/application (1.8ms)
+2014-12-11T18:08:06.213714+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T18:08:06.219022+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (4.0ms)
+2014-12-11T18:08:06.198096+00:00 app[web.1]: Processing by Devise::RegistrationsController#new as HTML
+2014-12-11T18:08:06.214717+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:08:06.214296+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.0ms)
+2014-12-11T18:08:06.214302+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.4ms)
+2014-12-11T18:08:06.211976+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T18:08:06.219342+00:00 app[web.1]: Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+2014-12-11T18:08:07.504854+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:08:07.507475+00:00 app[scheduler.2915]: time_left_before_pub ---> -927111 secs
+2014-12-11T18:08:07.482370+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:08:07.482378+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:08:07.506982+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:08:07.503244+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:08:07.507376+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:08:07.507478+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:08:18.417291+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=ef246195-8489-49d6-8d98-f93b094091ff fwd="108.199.253.93" dyno=web.1 connect=2ms service=13ms status=304 bytes=432
+2014-12-11T18:08:18.411139+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.6ms)
+2014-12-11T18:08:18.411431+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.2ms)
+2014-12-11T18:08:18.411215+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T18:08:18.403740+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:08:18 +0000
+2014-12-11T18:08:
+18.406125+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:08:23.154124+00:00 app[web.1]: Started POST "/users" for 76.176.36.190 at 2014-12-11 18:08:23 +0000
+2014-12-11T18:08:23.157576+00:00 app[web.1]: Processing by Devise::RegistrationsController#create as HTML
+2014-12-11T18:08:23.157612+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"first_name"=>"Ron", "last_name"=>"Hodson", "city_preference"=>"", "email"=>"rhodson@mac.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+2014-12-11T18:08:23.541762+00:00 heroku[router]: at=info method=POST path="/users" host=sap-staging.herokuapp.com request_id=186ba448-43c9-40c2-a5cb-2b6a716e1a1c fwd="76.176.36.190" dyno=web.1 connect=1ms service=389ms status=200 bytes=9867
+2014-12-11T18:08:23.531695+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.5ms)
+2014-12-11T18:08:23.534348+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.3ms)
+2014-12-11T18:08:23.527050+00:00 app[web.1]:   Rendered devise/registrations/new.html.erb within layouts/application (2.7ms)
+2014-12-11T18:08:23.532343+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.5ms)
+2014-12-11T18:08:23.534829+00:00 app[web.1]: Completed 200 OK in 377ms (Views: 11.0ms | ActiveRecord: 12.8ms)
+2014-12-11T18:08:23.529372+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.5ms)
+2014-12-11T18:08:23.532409+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (4.1ms)
+2014-12-11T18:08:23.532779+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:08:48.423090+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=3334b8ba-0acf-436a-af7c-b25883bd13dd fwd="108.199.253.93" dyno=web.1 connect=2ms service=23ms status=304 bytes=432
+2014-12-11T18:08:48.399499+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:08:48 +0000
+2014-12-11T18:08:48.413408+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.7ms)
+2014-12-11T18:08:48.413483+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (4.0ms)
+2014-12-11T18:08:48.413784+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 2.3ms)
+2014-12-11T18:08:48.408460+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:08:53.756538+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=91512c27-b156-4923-884c-42331dbd9f51 fwd="76.176.36.190" dyno=web.1 connect=1ms service=22ms status=304 bytes=432
+2014-12-11T18:08:53.736209+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:08:53.752868+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (15.2ms)
+2014-12-11T18:08:53.734018+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:08:53 +0000
+2014-12-11T18:08:53.753295+00:00 app[web.1]: Completed 200 OK in 17ms (Views: 2.8ms | ActiveRecord: 13.5ms)
+2014-12-11T18:08:53.752940+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (15.5ms)
+2014-12-11T18:09:01.072276+00:00 app[web.1]: Started POST "/users" for 76.176.36.190 at 2014-12-11 18:09:01 +0000
+2014-12-11T18:09:01.077416+00:00 app[web.1]: Processing by Devise::RegistrationsController#create as HTML
+2014-12-11T18:09:01.077530+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"first_name"=>"Ron", "last_name"=>"Hodson", "city_preference"=>"", "email"=>"rhodson@mac.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+2014-12-11T18:09:01.258811+00:00 app[web.1]:   Rendered devise/registrations/new.html.erb within layouts/application (2.0ms)
+2014-12-11T18:09:01.260683+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.4ms)
+2014-12-11T18:09:01.262240+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T18:09:01.264936+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.2ms)
+2014-12-11T18:09:01.263527+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:09:01.262926+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.0ms)
+2014-12-11T18:09:01.265330+00:00 app[web.1]: Completed 200 OK in 188ms (Views: 8.7ms | ActiveRecord: 3.7ms)
+2014-12-11T18:09:01.262731+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (1.7ms)
+2014-12-11T18:09:01.270006+00:00 heroku[router]: at=info method=POST path="/users" host=sap-staging.herokuapp.com request_id=7da4782a-01be-4ea3-a61c-46d27118d0ef fwd="76.176.36.190" dyno=web.1 connect=2ms service=200ms status=200 bytes=9867
+2014-12-11T18:09:07.525107+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:09:07.528535+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:09:07.509291+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:09:07.509282+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:09:07.526558+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:09:07.528786+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:09:07.528729+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:09:07.528783+00:00 app[scheduler.2915]: time_left_before_pub ---> -927171 secs
+2014-12-11T18:09:18.412451+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c282b436-8ca4-4b7b-8304-6c6b5f835340 fwd="108.199.253.93" dyno=web.1 connect=2ms service=12ms status=304 bytes=432
+2014-12-11T18:09:18.399008+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:09:18 +0000
+2014-12-11T18:09:18.407799+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (4.7ms)
+2014-12-11T18:09:18.408150+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 3.2ms)
+2014-12-11T18:09:18.401628+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:09:18.407901+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (5.1ms)
+2014-12-11T18:09:31.480134+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:09:31 +0000
+2014-12-11T18:09:31.489220+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.5ms)
+2014-12-11T18:09:31.489295+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.9ms)
+2014-12-11T18:09:31.484182+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:09:31.489530+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.2ms)
+2014-12-11T18:09:31.493086+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=0e09a633-0c32-4a0a-be3f-a16f85552838 fwd="76.176.36.190" dyno=web.1 connect=4ms service=12ms status=304 bytes=432
+2014-12-11T18:09:45.604744+00:00 app[web.1]: Started POST "/users" for 76.176.36.190 at 2014-12-11 18:09:45 +0000
+2014-12-11T18:09:45.723498+00:00 app[web.1]:   Rendered layouts/_navigation_links.html.erb (0.5ms)
+2014-12-11T18:09:45.725898+00:00 app[web.1]:   Rendered layouts/_login_modal.erb (2.2ms)
+2014-12-11T18:09:45.725971+00:00 app[web.1]:   Rendered layouts/_navigation.html.erb (3.5ms)
+2014-12-11T18:09:45.726276+00:00 app[web.1]:   Rendered layouts/_messages.html.erb (0.1ms)
+2014-12-11T18:09:45.728146+00:00 app[web.1]: Completed 200 OK in 118ms (Views: 9.5ms | ActiveRecord: 7.2ms)
+2014-12-11T18:09:45.610212+00:00 app[web.1]: Processing by Devise::RegistrationsController#create as HTML
+2014-12-11T18:09:45.610239+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"JtA17+V/6W5xlZbxd9poIBgL0yaK5pWcZuxEaI/qPaU=", "user"=>{"first_name"=>"Ron", "last_name"=>"Hodson", "city_preference"=>"San Diego", "email"=>"rhodson@mac.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+2014-12-11T18:09:45.725332+00:00 app[web.1]:   Rendered devise/shared/_links.html.erb (0.3ms)
+2014-12-11T18:09:45.721258+00:00 app[web.1]:   Rendered devise/registrations/new.html.erb within layouts/application (2.3ms)
+2014-12-11T18:09:45.727866+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (1.4ms)
+2014-12-11T18:09:45.734077+00:00 heroku[router]: at=info method=POST path="/users" host=sap-staging.herokuapp.com request_id=5e85a1a2-0246-4b28-b135-ef2cd84bd483 fwd="76.176.36.190" dyno=web.1 connect=1ms service=134ms status=200 bytes=9876
+2014-12-11T18:09:48.478413+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (7.5ms)
+2014-12-11T18:09:48.462298+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:09:48 +0000
+2014-12-11T18:09:48.478457+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (7.9ms)
+2014-12-11T18:09:48.478707+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 6.1ms)
+2014-12-11T18:09:48.469361+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:09:48.483991+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=07cce571-cf98-4fed-8dca-41de1ba6d642 fwd="108.199.253.93" dyno=web.1 connect=5ms service=21ms status=304 bytes=432
+2014-12-11T18:10:07.556624+00:00 app[scheduler.2915]: next_story_pub_datetime code_value ---> 2014-11-30T16:36:17-0800
+2014-12-11T18:10:07.550808+00:00 app[scheduler.2915]: last_story_published_at ---> 2014-11-30 04:36:17 -0800
+2014-12-11T18:10:07.552197+00:00 app[scheduler.2915]: next_story_to_publish ---> 
+2014-12-11T18:10:07.531903+00:00 app[scheduler.2915]: stories_every_x_secs ---> 43200
+2014-12-11T18:10:07.531892+00:00 app[scheduler.2915]: stories_per_day ---> 2
+2014-12-11T18:10:07.556946+00:00 app[scheduler.2915]: No stories available to publish
+2014-12-11T18:10:07.556889+00:00 app[scheduler.2915]: next_story_pub_datetime ---> 2014-11-30 16:36:17 -0800
+2014-12-11T18:10:07.556943+00:00 app[scheduler.2915]: time_left_before_pub ---> -927231 secs
+2014-12-11T18:10:15.975879+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 76.176.36.190 at 2014-12-11 18:10:15 +0000
+2014-12-11T18:10:15.989684+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (9.9ms)
+2014-12-11T18:10:15.989757+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (10.3ms)
+2014-12-11T18:10:15.990079+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.5ms | ActiveRecord: 8.5ms)
+2014-12-11T18:10:15.978148+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:10:16.008933+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=c37fb0d2-2f92-4a1c-8f92-a2606b531458 fwd="76.176.36.190" dyno=web.1 connect=2ms service=37ms status=304 bytes=432
+2014-12-11T18:10:16.727600+00:00 heroku[run.3921]: State changed from up to complete
+2014-12-11T18:10:16.717317+00:00 heroku[run.3921]: Process exited with status 0
+2014-12-11T18:10:18.401947+00:00 app[web.1]: Started GET "/visitors/refresh_timer" for 108.199.253.93 at 2014-12-11 18:10:18 +0000
+2014-12-11T18:10:18.416851+00:00 app[web.1]:   Rendered visitors/_countdown.html.erb (3.4ms)
+2014-12-11T18:10:18.417435+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.1ms)
+2014-12-11T18:10:18.411937+00:00 app[web.1]: Processing by VisitorsController#refresh_timer as */*
+2014-12-11T18:10:18.417047+00:00 app[web.1]:   Rendered visitors/refresh_timer.js.erb (3.7ms)
+2014-12-11T18:10:18.420621+00:00 heroku[router]: at=info method=GET path="/visitors/refresh_timer" host=sap-staging.herokuapp.com request_id=9d439edb-a323-40d4-b1fc-1b609afdcb14 fwd="108.199.253.93" dyno=web.1 connect=3ms service=18ms status=304 bytes=432

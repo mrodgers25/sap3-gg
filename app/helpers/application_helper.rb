@@ -56,7 +56,7 @@ module ApplicationHelper
       Usersavedstory.where("story_id = #{st_id} and user_id = #{us_id}").count == 1 ? true : false
     end
   end
-  
+
 
   # def location_options
   #   location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
