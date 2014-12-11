@@ -51,6 +51,13 @@ module ApplicationHelper
     return raw hover_list
   end
 
+  def story_saved?(st_id,us_id)
+    if user_signed_in?
+      Usersavedstory.where("story_id = #{st_id} and user_id = #{us_id}").count == 1 ? true : false
+    end
+  end
+  
+
   # def location_options
   #   location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
   #                       ​<strong>CA-San Francisco (SF)</strong>​<br>

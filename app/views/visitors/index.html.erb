@@ -87,9 +87,15 @@
 	                <p><%= u.url_desc.truncate(@desc_trunc, :separator => ' ') %></p>
 
 		              <% if user_signed_in? %>
-				            <p class="story-actions-links story-actions" id="save_story">
-				                <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => story.id %>
-				            </p>
+		                <% if story_saved?(story.id,current_user.id) %>
+					            <p class="story-actions-links story-actions" id="forget_story">
+					                <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => story.id %>
+					            </p>
+					          <% else %>
+		                  <p class="story-actions-links story-actions" id="save_story">
+		                    <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => story.id %>
+		                  </p>
+					          <% end %>
 				          <% else %>
 		                <p class="story-actions-links story-actions" id="save_story">
 		                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>

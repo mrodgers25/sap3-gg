@@ -69,7 +69,6 @@ class VisitorsController < ApplicationController
     end
   end
 
-
   protected
 
   def track_action
