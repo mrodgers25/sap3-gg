@@ -17,7 +17,7 @@ var Stories = function(){
     .done(function(data){
       if(data.success == true){
         storyDiv.append(successMsg);
-        myLink.replaceWith('<span class="story_saved_message">Saved</span>');
+        myLink.replaceWith('<span class="story_saved_message">FORGET THIS STORY</span>');
       }
       else {
         storyDiv.append(failMsg);
@@ -36,7 +36,7 @@ var Stories = function(){
     var myLink = $(this);
     myLink.after('<div class="alert alert-danger">Sign In to save Story</div>');
     var alert = myLink.siblings('.alert');
-    alert.delay(5000).fadeOut(1000);
+    alert.delay(3000).fadeOut(1000);
   }
 
   return {
