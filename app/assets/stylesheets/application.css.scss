@@ -138,6 +138,13 @@ a:hover {
 
 //mobile
 @media (max-width: 768px) {
+
+  .logo-nav img{
+    width:250px;
+    max-width:100%;
+    margin-top: 10px;
+  }
+
   .nav-sap-select {
     min-height: 35px;
     margin-top: 0px;
