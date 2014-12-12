@@ -1,5 +1,3 @@
-class Ahoy::Store < Ahoy::Stores::LogStore
+class Ahoy::Store < Ahoy::Stores::ActiveRecordStore
   # customize here
-  Ahoy.quiet = true
-  Ahoy.visit_duration = 30.minutes
 end
