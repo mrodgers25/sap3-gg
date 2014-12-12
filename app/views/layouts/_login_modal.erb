@@ -5,41 +5,37 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-          <div class="modal-header">
-            <span style="font-size: 2em">Sign in</span>
-            <button type="button" class="close" data-dismiss="modal"
-                    aria-hidden="true">x</button><br>
+        <div class="modal-header">
+          <span style="font-size: 2em">Sign in</span>
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-hidden="true">x</button><br>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group">
+                <div class="col-xs-3 signin-input-sap" >Email</div>
+	              <div class="col-xl-12" style="padding-bottom: 10px"><%= f.text_field :email, required: false, maxlength: 60, class: "form-control", autofocus: true %></div>
+                <div class="col-xs-3 signin-input-sap" style="padding-bottom: 5px">Password</div>
+                <div class="col-xl-12"><%= f.password_field :password, required: false, maxlength: 60, class: "form-control" %></div>
+                <div class="col-xs-12 remember-sap">Remember Me&nbsp;&nbsp;&nbsp;
+                <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %></div><br>
           </div>
 
-          <div class="modal-body">
-
-            <div class="form-inputs">
-
-                  <div class="col-xs-3 signin-input-sap" >Email</div>
-		              <div class="col-xl-12" style="padding-bottom: 10px"><%= f.text_field :email, required: false, size: 40, maxlength: 60, autofocus: true %></div>
-
-                  <div class="col-xs-3 signin-input-sap" style="padding-bottom: 5px">Password</div>
-                  <div class="col-xl-12"><%= f.password_field :password, required: false, size: 40, maxlength: 60 %></div>
-
-                  <div class="col-xs-12 remember-sap">Remember Me&nbsp;&nbsp;&nbsp;
-                  <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %></div><br>
-
-            </div>
-
-            <div class="form-actions signin-sap">
-              <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-
+          <div class="form-actions signin-sap">
+            <button type="submit" class="btn btn-primary">Sign in</button><br><br>
           </div>
 
-          <div class="modal-footer">
+        </div>
 
-            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br>
-            <%= render "devise/shared/links" %>
-            <span class="signup signup-links">Haven't registered yet?&nbsp;&nbsp;&nbsp;<strong><%= link_to "Sign up", \
-                new_user_registration_path %></strong></span><br>
+        <div class="modal-footer">
 
-          </div>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br>
+          <%= render "devise/shared/links" %>
+          <span class="signup signup-links">Haven't registered yet?&nbsp;&nbsp;&nbsp;<strong><%= link_to "Sign up", \
+              new_user_registration_path %></strong></span><br>
+
+        </div>
 
       <% end %>
     </div>
