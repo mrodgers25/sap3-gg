@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div id="responsive" class="modal fade" data-width="1000" role="dialog"  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -13,23 +14,19 @@
           <div class="modal-body">
 
             <div class="form-inputs">
-              <table>
-                <tr>
-                  <td style="padding-bottom: 10px">Email</td>
-                  <td style="padding-bottom: 10px"><%= f.text_field :email, required: false, maxlength: 50, autofocus: true %></td>
-                </tr>
-                <tr>
-                  <td style="padding-bottom: 10px">Password</td>
-                  <td style="padding-bottom: 10px"><%= f.password_field :password, required: false, maxlength: 50 %></td>
-                </tr>
-                <tr>
-                  <td>Remember Me&nbsp;</td>
-                  <td><%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %></td>
-                </tr>
-              </table><br>
+
+                  <div class="col-xs-3 signin-input-sap" >Email</div>
+		              <div class="col-xl-12" style="padding-bottom: 10px"><%= f.text_field :email, required: false, size: 40, maxlength: 60, autofocus: true %></div>
+
+                  <div class="col-xs-3 signin-input-sap" style="padding-bottom: 5px">Password</div>
+                  <div class="col-xl-12"><%= f.password_field :password, required: false, size: 40, maxlength: 60 %></div>
+
+                  <div class="col-xs-12 remember-sap">Remember Me&nbsp;&nbsp;&nbsp;
+                  <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %></div><br>
+
             </div>
 
-            <div class="form-actions">
+            <div class="form-actions signin-sap">
               <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
 
@@ -39,7 +36,7 @@
 
             <%= link_to "Forgot your password?", new_password_path(resource_name) %><br>
             <%= render "devise/shared/links" %>
-            <span style="font-size: 1.5em">Haven't registered yet?&nbsp;&nbsp;&nbsp;<strong><%= link_to "Sign up", \
+            <span class="signup signup-links">Haven't registered yet?&nbsp;&nbsp;&nbsp;<strong><%= link_to "Sign up", \
                 new_user_registration_path %></strong></span><br>
 
           </div>
@@ -47,4 +44,5 @@
       <% end %>
     </div>
   </div>
+</div>
 </div>
