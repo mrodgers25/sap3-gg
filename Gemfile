@@ -25,6 +25,7 @@ gem 'figaro'
 gem 'sendgrid-ruby'
 gem 'delayed_job_active_record'
 gem 'social-share-button'
+gem 'awesome_print', :require => 'ap'
 gem 'google-webfonts'
 gem 'ahoy_matey'
 
@@ -32,7 +33,6 @@ gem 'ahoy_matey'
 group :development do
   gem 'spring'
   gem 'better_errors'
-  gem 'awesome_print', :require => 'ap'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'hub', :require=>nil
   gem 'quiet_assets'
