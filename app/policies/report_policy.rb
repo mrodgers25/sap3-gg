@@ -17,4 +17,9 @@ class ReportPolicy
     allowed.include?(@current_user.role)
   end
 
+  def user_actions?
+    allowed = ["associate","admin"]
+    allowed.include?(@current_user.role)
+  end
+
 end

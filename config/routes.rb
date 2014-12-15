@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
   match '/reports/export_stories_users' => 'reports#export_stories_users', via: [:get, :post]
   match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
+  match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
 
   resources :stories #original from generate
   resources :urls
