@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   resources :codes
 
-  resources :media_infos
-
   match 'stories/new' => 'stories#new', via: [:get, :post]
   match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
   match 'stories/my_stories' => 'stories#my_stories', via: [:get, :post]
