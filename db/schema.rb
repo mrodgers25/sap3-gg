@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210151622) do
+ActiveRecord::Schema.define(version: 20141217165708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,16 +65,24 @@ ActiveRecord::Schema.define(version: 20141210151622) do
 
   add_index "images", ["url_id"], name: "index_images_on_url_id", using: :btree
 
-  create_table "media_infos", force: true do |t|
+  create_table "mediaowners", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "url_domain"
+    t.string   "owner_name"
     t.string   "media_type"
-    t.string   "url_id"
-    t.string   "media_desc"
+    t.string   "distribution_type"
+    t.string   "publication_name"
+    t.boolean  "paywall_yn"
+    t.string   "content_frequency_time"
+    t.string   "content_frequency_other"
+    t.string   "content_frequency_guide"
+    t.boolean  "nextissue_yn"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "stories", force: true do |t|
-    t.string   "media_id"
     t.string   "story_type"
     t.string   "author"
     t.datetime "created_at"
@@ -94,6 +102,7 @@ ActiveRecord::Schema.define(version: 20141210151622) do
     t.datetime "sap_publish_date"
     t.integer  "data_entry_time"
     t.string   "data_entry_user"
+    t.integer  "mediaowner_id"
   end
 
   create_table "urls", force: true do |t|

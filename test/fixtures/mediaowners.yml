@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story_id: 1
+  title: MyString
+  url: MyString
+  url_domain: MyString
+  owner_name: MyString
+  media_type: MyString
+  distribution_type: MyString
+  publication_name: MyString
+  paywall_yn: false
+  content_frequency_time: MyString
+  content_frequency_other: MyString
+  content_frequency_guide: MyString
+  nextissue_yn: false
+
+two:
+  story_id: 1
+  title: MyString
+  url: MyString
+  url_domain: MyString
+  owner_name: MyString
+  media_type: MyString
+  distribution_type: MyString
+  publication_name: MyString
+  paywall_yn: false
+  content_frequency_time: MyString
+  content_frequency_other: MyString
+  content_frequency_guide: MyString
+  nextissue_yn: false

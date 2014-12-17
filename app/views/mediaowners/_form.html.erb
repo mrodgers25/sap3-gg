@@ -1,0 +1,65 @@
+<%= form_for(@mediaowner) do |f| %>
+  <% if @mediaowner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mediaowner.errors.count, "error") %> prohibited this mediaowner from being saved:</h2>
+
+      <ul>
+      <% @mediaowner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :url_domain %><br>
+    <%= f.text_field :url_domain %>
+  </div>
+  <div class="field">
+    <%= f.label :owner_name %><br>
+    <%= f.text_field :owner_name %>
+  </div>
+  <div class="field">
+    <%= f.label :media_type %><br>
+    <%= f.text_field :media_type %>
+  </div>
+  <div class="field">
+    <%= f.label :distribution_type %><br>
+    <%= f.text_field :distribution_type %>
+  </div>
+  <div class="field">
+    <%= f.label :publication_name %><br>
+    <%= f.text_field :publication_name %>
+  </div>
+  <div class="field">
+    <%= f.label :paywall_yn %><br>
+    <%= f.check_box :paywall_yn %>
+  </div>
+  <div class="field">
+    <%= f.label :content_frequency_time %><br>
+    <%= f.text_field :content_frequency_time %>
+  </div>
+  <div class="field">
+    <%= f.label :content_frequency_other %><br>
+    <%= f.text_field :content_frequency_other %>
+  </div>
+  <div class="field">
+    <%= f.label :content_frequency_guide %><br>
+    <%= f.text_field :content_frequency_guide %>
+  </div>
+  <div class="field">
+    <%= f.label :nextissue_yn %><br>
+    <%= f.check_box :nextissue_yn %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
