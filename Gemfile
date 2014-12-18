@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'pg'
 gem 'thin'
+gem 'pry'
 gem 'simple_form'
 gem 'pundit'
 gem 'high_voltage'
@@ -37,7 +38,6 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'pry'
   gem 'railroady'
   gem 'bundler-updater'  # run bundler-updater on the command line individually approve each gem needing update
   # gem 'bullet'  # detects n+1 queries
