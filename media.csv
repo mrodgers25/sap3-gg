@@ -1,4 +1,4 @@
-URL Title_For_Display,URL For_Display,Authority Clean,Owned By,Media Type (match to db Media Type),Mode of Online Distribution,Physical Publication Name,Paywall?,Content Freqency - Daily,Content Freqency - Other,Content Freqency - Guide,"If Magazine, On NextIssue?"
+title,url,url_domain,owner_name,media_type,distribution_type,publication_name,paywall_yn,content_frequency_time,content_frequency_other,content_frequency_guide,nextissue_yn
 USATODAY.com,http://www.usatoday.com/,,"Gannett Company, Inc",,News,,,Daily,,,
 The Huffington Post,http://www.huffingtonpost.com/,,,,News,,,Daily,,,
 Los Angeles Times,http://www.latimes.com/,,,,News,,,Daily,,,
