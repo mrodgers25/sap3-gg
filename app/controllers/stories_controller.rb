@@ -20,13 +20,6 @@ class StoriesController < ApplicationController
     @stories = Story.order("id DESC").all.includes(:urls)
   end
 
-  def my_stories
-    if user_signed_in?
-      @my_stories = Story.select("stories.*,urls.*,usersavedstories.created_at as uss_created_at").joins(:usersavedstories). \
-          joins(:urls).where("usersavedstories.user_id = #{current_user.id.to_i}").order("uss_created_at DESC")
-    end
-  end
-
   # GET /stories/1
   # GET /stories/1.json
   def show

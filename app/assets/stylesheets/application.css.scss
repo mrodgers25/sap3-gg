@@ -136,6 +136,13 @@ a:hover {
   margin-bottom: -22px;
 }
 
+.btn-forget {
+  font-size: 12px;
+  padding: 4px 8px;
+  margin-top: -22px;
+  margin-bottom: -22px;
+}
+
 //mobile
 @media (max-width: 768px) {
 
@@ -212,6 +219,9 @@ a:hover {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+  }
+  .saved-story-title {
+    text-decoration: underline;
   }
 
 }
