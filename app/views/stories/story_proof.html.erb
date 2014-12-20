@@ -1,0 +1,35 @@
+<div style="width: 450px; margin-left: 50px; margin-top: 50px" >
+
+  <h3>Story Proof</h3><br>
+  <div style="text-align: left">
+    <% @images.each do |i| %>
+      <%= image_tag(i.src_url, style:"width: 450px") %><br>
+    <% end %>
+  </div>
+
+  <div style="margin-top: -10px">
+    <i><%= @story.editor_tagline %></i><br>
+	  <% @urls.each do |u| %>
+	    <strong><%= u.url_title %></strong><br>
+	  <% end %>
+  </div>
+
+  <span style="color: gray"> by
+  <%= @story.author %>&nbsp;&nbsp;
+  <%= @story.story_month %>/
+  <%= @story.story_date %>/
+  <%= @story.story_year %></span><br>
+
+	<div style="margin-top: 10px">
+	  <% @urls.each do |u| %>
+	    <%= u.url_desc %>&nbsp;&nbsp;<br>
+	  <% end %>
+	</div><br><br>
+
+  <%= link_to 'Add New Story', stories_scrape_path %> |
+  <%= link_to 'Edit', edit_story_path(@story) %> |
+  <%= link_to 'List', stories_path %>  |
+  <%= link_to 'Show', story_path %>
+
+</div>
+

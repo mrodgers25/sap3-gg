@@ -28,6 +28,12 @@ class StoriesController < ApplicationController
     @images = @urls.first.images
   end
 
+  def story_proof
+    @story = Story.find(params[:id])
+    @urls = @story.urls
+    @images = @urls.first.images
+  end
+
   # GET /stories/new
   def new
     # parse the domain
@@ -61,7 +67,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story, notice: 'Story was successfully created.' }
+        format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]

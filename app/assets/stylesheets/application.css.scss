@@ -215,7 +215,7 @@ a:hover {
     padding-top : 3px;
   }
   .container-sap {
-    margin-top: -20px;
+    margin-top: -20px; // overrides the 40px margin-top in the main application.html.erb
     padding-left: 0;
     padding-right: .6%;
     padding-bottom: 0;

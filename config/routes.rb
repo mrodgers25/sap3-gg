@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   match 'stories/new' => 'stories#new', via: [:get, :post]
   match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
+  match 'stories/story_proof/:id' => 'stories#story_proof', via: [:get, :post], as: :story_proof
   match '/my_stories' => 'usersavedstories#my_stories', via: [:get, :post]
   match '/usersavedstories/:id' => 'usersavedstories#destroy', via: [:delete], as: :destroy_usersavedstories
   match '/' => 'visitors#index', via: [:get, :post]
