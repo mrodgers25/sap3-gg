@@ -40,6 +40,7 @@ class StoriesController < ApplicationController
     @data_entry_begin_time = params[:data_entry_begin_time]  #grab user input
     @source_url_pre = params[:source_url_pre]  #grab user input
     if @source_url_pre.present?
+      get_locations_and_categories
       get_domain_info(@source_url_pre)
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@full_web_url)
@@ -67,12 +68,15 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
+        add_locations_and_categories(@story, story_params)
         format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
+        binding.pry
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
         get_domain_info(@source_url_pre)
         set_fields_on_fail(story_params)
+        get_locations_and_categories
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -104,6 +108,9 @@ class StoriesController < ApplicationController
 
     @image1 = @url1.images.first  # image fields
     @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text, 'image_width' => @image1.image_width, 'image_height' => @image1.image_height}]
+    @selected_location_ids = @story.locations.map(&:id)
+    @selected_place_category_ids = @story.place_categories.map(&:id)
+    @selected_story_category_ids = @story.story_categories.map(&:id)
   end
 
   # PATCH/PUT /stories/1
@@ -114,9 +121,11 @@ class StoriesController < ApplicationController
       #       if it does not exist return an error
       #       if it does exist, get the src_url and alt_text and nest them into story_params properly
       if @story.update(story_params)
+        add_locations_and_categories(@story, story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
         format.json { render :show, status: :ok, location: @story }
       else
+        get_locations_and_categories
         format.html { render :edit }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -185,6 +194,9 @@ class StoriesController < ApplicationController
     params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
       @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
     end
+    @selected_location_ids = process_chosen_params(hash['location_ids'])
+    @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
+    @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
   end
 
   def set_image_params(story_params)
@@ -200,12 +212,42 @@ class StoriesController < ApplicationController
     # binding.pry
   end
 
+  def get_locations_and_categories
+    @locations = Location.order(:name)
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
+  end
+
+  def add_locations_and_categories(story, my_params)
+    process_chosen_params(my_params[:location_ids]).each do |my_id|
+      location = Location.where(id: my_id).first
+      story.locations << location if location && !story.locations.include?(location)
+    end
+    process_chosen_params(my_params[:place_category_ids]).each do |my_id|
+      pc = PlaceCategory.where(id: my_id).first
+      story.place_categories << pc if pc && !story.place_categories.include?(pc)
+    end
+    process_chosen_params(my_params[:story_category_ids]).each do |my_id|
+      sc = StoryCategory.where(id: my_id).first
+      story.story_categories << sc if sc && !story.story_categories.include?(sc)
+    end
+  end
+
+  def process_chosen_params(my_params)
+    if my_params.present?
+      my_params.reject{|p| p.empty?}.map{|p| p.to_i}
+    end
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year,
-      :editor_tagline, :location_code, :place_category, :story_category, :raw_author_scrape, :raw_story_year_scrape,
+      :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user,
+      :location_ids => [],
+      :place_category_ids => [],
+      :story_category_ids => [],
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,

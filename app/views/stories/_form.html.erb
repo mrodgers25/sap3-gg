@@ -153,24 +153,16 @@
           </tr>
           <tr>
             <td>Locations</td>
-            <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Location Codes" data-html="true" data-trigger="focus"
-                                       data-content= "<%= location_options %>" >
-                    <%= f.text_field :location_code, :value => @meta_location, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Comma separated codes", :size => 50 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                <span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Place Type Codes" data-html="true" data-trigger="focus"
-                                       data-content= "<%= place_category_options %>" >Place Type&nbsp;&nbsp;
-                    <%= f.text_field :place_category, :value => @meta_place, :onkeyup => "this.value = this.value.toUpperCase();",
-                    :placeholder => "Comma separated codes", :size => 30 %></span>
+            <td colspan="2">
+              <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, {:multiple => true} %>
+              &nbsp;&nbsp;
+              <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, {:multiple => true} %>
             </td>
-            <td></td>
           </tr>
           <tr>
             <td>Story Categories</td>
-            <td><span  class="has-popover" data-toggle="popover" data-placement="bottom" title="Story Category Codes" data-html="true" data-trigger="focus"
-                       data-content= "<%= story_category_options %>" >
-                    <%= f.text_field :story_category, :value => @meta_story_category, :onkeyup => "this.value = this.value.toUpperCase();",
-                                     :placeholder => "Comma separated codes", :size => 50 %></span>
+            <td>
+              <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @selected_story_category_ids), {}, {:multiple => true} %>
             </td>
             <td></td>
           </tr>

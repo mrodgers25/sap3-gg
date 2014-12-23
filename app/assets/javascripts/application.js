@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require ahoy
-
+//= require chosen.jquery
 //= require bootstrap-sprockets
 //= require_tree .
 

@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require social-share-button
+ *= require chosen
  */
 
 @import "bootstrap-sprockets";
@@ -356,6 +357,3 @@ a:hover {
   }
 
 }
-
-
-
