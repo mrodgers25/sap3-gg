@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217165708) do
+ActiveRecord::Schema.define(version: 20141223004946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20141217165708) do
 
   add_index "images", ["url_id"], name: "index_images_on_url_id", using: :btree
 
+  create_table "locations", force: true do |t|
+    t.string   "code",       null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["code"], name: "index_locations_on_code", unique: true, using: :btree
+
   create_table "mediaowners", force: true do |t|
     t.string   "title"
     t.string   "url"
@@ -81,6 +90,15 @@ ActiveRecord::Schema.define(version: 20141217165708) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "place_categories", force: true do |t|
+    t.string   "code",       null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "place_categories", ["code"], name: "index_place_categories_on_code", unique: true, using: :btree
 
   create_table "stories", force: true do |t|
     t.string   "story_type"
@@ -104,6 +122,42 @@ ActiveRecord::Schema.define(version: 20141217165708) do
     t.string   "data_entry_user"
     t.integer  "mediaowner_id"
   end
+
+  create_table "story_categories", force: true do |t|
+    t.string   "code",       null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_categories", ["code"], name: "index_story_categories_on_code", unique: true, using: :btree
+
+  create_table "story_locations", force: true do |t|
+    t.integer  "story_id",    null: false
+    t.integer  "location_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_locations", ["story_id", "location_id"], name: "index_story_locations_on_story_id_and_location_id", unique: true, using: :btree
+
+  create_table "story_place_categories", force: true do |t|
+    t.integer  "story_id",          null: false
+    t.integer  "place_category_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_place_categories", ["story_id", "place_category_id"], name: "index_story_place_categories_on_story_id_and_place_category_id", unique: true, using: :btree
+
+  create_table "story_story_categories", force: true do |t|
+    t.integer  "story_id",          null: false
+    t.integer  "story_category_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_story_categories", ["story_id", "story_category_id"], name: "index_story_story_categories_on_story_id_and_story_category_id", unique: true, using: :btree
 
   create_table "urls", force: true do |t|
     t.string   "url_type"

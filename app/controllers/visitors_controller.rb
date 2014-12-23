@@ -6,32 +6,37 @@ class VisitorsController < ApplicationController
     # track user activity on landing page
     track_action
 
-    story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value unless \
-      Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
-    story_limit_filtered = Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").code_value unless \
-      Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").nil?
+    # database dropdown data
+    @location_codes = Location.order(:name)
+    @story_place_types = PlaceCategory.order(:name)
+    @story_categories_loggedin = StoryCategory.order(:name)
+    @story_categories_notloggedin = StoryCategory.where.not(code: 'EP').order(:name)
+
+    unless Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
+      story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value
+    end
     story_limit ||= 36
+    unless Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").nil?
+      story_limit_filtered = Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").code_value
+    end
+    story_limit_filtered ||= 36
+
     @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
-    @stories_filtered = Story.order("story_year DESC","story_month DESC","story_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit_filtered)
+    # is there a reason you are ordering the results differently if the user is using a filter ?
+    if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
+      @stories = @stories.order("story_year DESC","story_month DESC","story_date DESC").limit(story_limit_filtered)
+    end
+    if params[:location_id].present?
+      @stories = @stories.joins(:locations).where("locations.id = #{params[:location_id]}")
+    end
+    if params[:place_category_id].present?
+      @stories = @stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}")
+    end
+    if params[:story_category_id].present?
+      @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}")
+    end
 
     flash.now.alert = "No Stories found" if @stories.empty?
-
-    # database dropdown data
-    @location_codes = Code.order("ascii(code_value)").where("code_type = 'LOCATION_CODE'")
-    @story_place_types = Code.order("code_value").where("code_type = 'PLACE_CATEGORY'")
-    @story_categories_loggedin = Code.order("ascii(code_value)").where("code_type = 'STORY_CATEGORY'")
-    @story_categories_notloggedin = Code.order("ascii(code_value)").where("code_type = 'STORY_CATEGORY' and code_key != 'EP'")
-
-    if params[:user_location_code].present? || params[:user_place_category].present? || params[:user_story_category].present?
-      @stories_filtered = @stories_filtered.user_location_code(params[:user_location_code]) if params[:user_location_code].present?
-      @stories_filtered = @stories_filtered.user_place_category(params[:user_place_category]) if params[:user_place_category].present?
-      @stories_filtered = @stories_filtered.user_story_category(params[:user_story_category]) if params[:user_story_category].present?
-      @stories = @stories_filtered
-    else
-      @stories = @stories.user_location_code(params[:user_location_code]) if params[:user_location_code].present?
-      @stories = @stories.user_place_category(params[:user_place_category]) if params[:user_place_category].present?
-      @stories = @stories.user_story_category(params[:user_story_category]) if params[:user_story_category].present?
-    end
 
   end
 

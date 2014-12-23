@@ -1,11 +1,21 @@
 class Story < ActiveRecord::Base
+  validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
+
+
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
   has_many :usersavedstories
   accepts_nested_attributes_for :usersavedstories
 
-  validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
+  has_many :story_locations, dependent: :destroy
+  has_many :locations, through: :story_locations
 
+  has_many :story_story_categories, dependent: :destroy
+  has_many :story_categories, through: :story_story_categories
+
+  has_many :story_place_categories, dependent: :destroy
+  has_many :place_categories, through: :story_place_categories
+  
   # landing page dropdown
   scope :user_location_code, -> (user_location_code) { where("location_code in (?)", "#{user_location_code.upcase.gsub(/,/, "','")}")}
   scope :user_place_category, -> (user_place_category) { where("place_category = ?", "#{user_place_category.upcase}")}
