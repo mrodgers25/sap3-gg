@@ -1,6 +1,6 @@
 <div style="width: 450px; margin-left: 50px; margin-top: 50px" >
 
-  <h3>Story Proof</h3><br>
+  <p>Id: <%= @story.id %></p><br>
   <div style="text-align: left">
     <% @images.each do |i| %>
       <%= image_tag(i.src_url, style:"width: 450px") %><br>
