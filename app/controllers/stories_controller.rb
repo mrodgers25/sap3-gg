@@ -108,6 +108,7 @@ class StoriesController < ApplicationController
 
     @image1 = @url1.images.first  # image fields
     @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text, 'image_width' => @image1.image_width, 'image_height' => @image1.image_height}]
+    get_locations_and_categories
     @selected_location_ids = @story.locations.map(&:id)
     @selected_place_category_ids = @story.place_categories.map(&:id)
     @selected_story_category_ids = @story.story_categories.map(&:id)
