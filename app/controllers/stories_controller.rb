@@ -72,7 +72,6 @@ class StoriesController < ApplicationController
         format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
-        binding.pry
         @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
         get_domain_info(@source_url_pre)
         set_fields_on_fail(story_params)
