@@ -26,27 +26,27 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li class="select-dropdown-hdr">
                     <%= select_tag :location_id,
-                          options_from_collection_for_select(@location_codes,'id','name', params[:user_location_code]),
-                          prompt: 'Locations'
+                          options_from_collection_for_select(@location_codes,'id','name', params[:location_id]),
+                          prompt: 'All Locations'
                     %>&nbsp;
                     </li>
                   <li  class="select-dropdown-hdr">
                     <%= select_tag :place_category_id,
-                          options_from_collection_for_select(@story_place_types,'id','name', params[:user_place_category]),
+                          options_from_collection_for_select(@story_place_types,'id','name', params[:place_category_id]),
                           prompt: 'All Place Types'
                      %>&nbsp;
                   </li>
                   <% if user_signed_in? %>
                     <li  class="select-dropdown-hdr">
                       <%= select_tag :story_category_id,
-                            options_from_collection_for_select(@story_categories_loggedin,'id','name', params[:user_story_category]),
+                            options_from_collection_for_select(@story_categories_loggedin,'id','name', params[:story_category_id]),
                             prompt: 'All Story Categories'
                       %>&nbsp;
                     </li>
                   <% else %>
                     <li class="select-dropdown-hdr">
                       <%= select_tag :user_story_category,
-                        options_from_collection_for_select(@story_categories_notloggedin,'id','name', params[:user_story_category]),
+                        options_from_collection_for_select(@story_categories_notloggedin,'id','name', params[:story_category_id]),
                         prompt: 'All Story Categories'
                       %>&nbsp;
                     </li>
