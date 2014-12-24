@@ -22,9 +22,10 @@ class VisitorsController < ApplicationController
     story_limit_filtered ||= 36
 
     @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
-    # is there a reason you are ordering the results differently if the user is using a filter ?
+    @stories_filtered = Story.where("sap_publish_date is not null").includes(:urls => [:images]).limit(story_limit)
+
     if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
-      @stories = @stories.order("story_year DESC","story_month DESC","story_date DESC").limit(story_limit_filtered)
+      @stories = @stories_filtered.order("story_year DESC","story_month DESC","story_date DESC").limit(story_limit_filtered)
     end
     if params[:location_id].present?
       @stories = @stories.joins(:locations).where("locations.id = #{params[:location_id]}")
