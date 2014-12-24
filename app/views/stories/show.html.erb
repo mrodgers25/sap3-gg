@@ -1,15 +1,15 @@
-<h3>Story</h3>
+<br><h3>Story</h3>
 <p>
   <strong>Id: </strong>
   <%= @story.id %>&nbsp;&nbsp;
   <strong>Tagline: </strong>
   <%= @story.editor_tagline %><br>
   <strong>Location Codes: </strong>
-  <%= @story.location_code %>&nbsp;&nbsp;
+	<%= @story.locations.map { |location| location.code }.to_sentence %>&nbsp;&nbsp;
   <strong>Place Categories: </strong>
-  <%= @story.place_category %>&nbsp;&nbsp;
+  <%= @story.place_categories.map { |place_category| place_category.code }.to_sentence %>&nbsp;&nbsp;
   <strong>Story Categories: </strong>
-  <%= @story.story_category %><br>
+  <%= @story.story_categories.map { |story_category| story_category.code }.to_sentence %><br>
   <strong>Entered: </strong>
   <%= @story.created_at.strftime("%A, %b %d") %>&nbsp;&nbsp;
   <strong>Scraped Type: </strong>
