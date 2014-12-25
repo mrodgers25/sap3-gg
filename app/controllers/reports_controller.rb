@@ -109,45 +109,49 @@ end
 
   end
 
-  # def user_actions
-  #   authorize Report
-  #
-  #   require 'csv'
-  #   require 'sendgrid-ruby'
-  #
-  #   logged_in_user_email = User.find(current_user).email
-  #
-  #   # story export
-  #   file = Rails.root.join('tmp','action_listing.csv')
-  #   puts "File will be #{file}"
-  #
-  #   actions = Ahoy::Event.includes(:user).joins(:user).select("user_id","last_name" as "u_last_name","email","properties")
-  #
-  #   CSV.open( file, 'w' ) do |writer|
-  #     # writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
-  #     #       "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Manual"]
-  #       actions.each do |a|
-  #         writer << [a.user_id, a.last_name, a.time]
-  #       end
-  #     end
-  #
-  #   # a[3].values[0] # for controller value
-  #   # a[3].values[1] # for action value
-  #
-  #   client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
-  #
-  #   mail = SendGrid::Mail.new do |m|
-  #     m.to = "#{logged_in_user_email}"
-  #     m.from = 'StoriesAboutPlaces.com'
-  #     m.subject = 'User Actions'
-  #     m.text = 'Your latest export is attached.'
-  #   end
-  #
-  #   mail.add_attachment("#{file}")
-  #   puts client.send(mail)
-  #
-  #   redirect_to :back, notice: "Export sent to #{logged_in_user_email}"
-  #
-  # end
+  def user_actions
+    authorize Report
+
+    require 'csv'
+    require 'sendgrid-ruby'
+
+    logged_in_user_email = User.find(current_user).email
+
+    # story export
+    file = Rails.root.join('tmp','action_listing.csv')
+    puts "File will be #{file}"
+
+    actions = User.includes(:events)
+
+    CSV.open( file, 'w' ) do |writer|
+      writer << ["First", "Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
+        actions.each do |a|
+          a.events.each do |e|
+            if e.properties.values[5].present?  # filter actions
+              writer << [a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
+                  e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
+            end
+            unless e.properties.values[5].present?  # non-filter actions
+              writer << [a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
+            end
+          end
+        end
+      end
+
+    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
+
+    mail = SendGrid::Mail.new do |m|
+      m.to = "#{logged_in_user_email}"
+      m.from = 'StoriesAboutPlaces.com'
+      m.subject = 'User Actions'
+      m.text = 'Your latest export is attached.'
+    end
+
+    mail.add_attachment("#{file}")
+    puts client.send(mail)
+
+    redirect_to :back, notice: "Export sent to #{logged_in_user_email}"
+
+  end
 
 end
