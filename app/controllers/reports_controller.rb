@@ -124,15 +124,15 @@ end
     actions = User.includes(:events)
 
     CSV.open( file, 'w' ) do |writer|
-      writer << ["First", "Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
+      writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
         actions.each do |a|
           a.events.each do |e|
             if e.properties.values[5].present?  # filter actions
-              writer << [a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
+              writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
                   e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
             end
             unless e.properties.values[5].present?  # non-filter actions
-              writer << [a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
+              writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
             end
           end
         end
