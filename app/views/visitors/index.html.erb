@@ -77,7 +77,7 @@
                     <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), u.url_full, target: '_blank' %>
 
                     <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
-                    <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220, trying 320 -->
+                    <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220 -->
                     <% @desc_trunc = @desc_trunc < 75 ? 75 : @desc_trunc %> <!-- set min desc length to 75px -->
 
                   <% end %>

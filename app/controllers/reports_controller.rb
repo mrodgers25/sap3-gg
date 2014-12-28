@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
     file = Rails.root.join('tmp','story_listing.csv')
     puts "File will be #{file}"
 
-    stories = Story.includes(:urls => [:images])
+    stories = Story.includes(:urls => [:images]).order(:id)
 
     CSV.open( file, 'w' ) do |writer|
       writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
@@ -77,7 +77,7 @@ end
     file = Rails.root.join('tmp','story_listing.csv')
     puts "File will be #{file}"
 
-    stories = Story.includes(:urls => [:images])
+    stories = Story.includes(:urls => [:images]).order(:id)
 
     CSV.open( file, 'w' ) do |writer|
       writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
