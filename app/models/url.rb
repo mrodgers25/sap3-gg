@@ -1,9 +1,9 @@
 class Url < ActiveRecord::Base
   belongs_to :story, inverse_of: :urls
-  validates :url_type, presence: true
-  validates :url_title, :presence => { :message => "TITLE is required" }
-  validates :url_desc, :presence => { :message => "DESCRIPTION is required" }
-  validates :url_domain, presence: true
+  # validates :url_type, presence: true
+  # validates :url_title, :presence => { :message => "TITLE is required" }
+  # validates :url_desc, :presence => { :message => "DESCRIPTION is required" }
+  # validates :url_domain, presence: true
   validates :url_full, :uniqueness => { :message => "Duplicate URL" }
 
   has_many :images, inverse_of: :url

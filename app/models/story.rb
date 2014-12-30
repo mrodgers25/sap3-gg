@@ -1,5 +1,6 @@
 class Story < ActiveRecord::Base
-  validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
+  include ApplicationHelper
+  # validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
   attr_accessor :location_ids, :place_category_ids, :story_category_ids
 
@@ -20,6 +21,7 @@ class Story < ActiveRecord::Base
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create
+  before_save :set_story_complete
 
   def set_story_track_fields
     self.author_track = (self.raw_author_scrape == self.author) ? true : false
@@ -30,6 +32,10 @@ class Story < ActiveRecord::Base
     self.story_month_track = (self.raw_story_month_scrape.to_i == self.story_month.to_i) ? true : false
     self.story_date_track  = (self.raw_story_date_scrape.to_i == self.story_date.to_i) ? true : false
     true  # this returns a true at the end of the method; otherwise method fails if last statement is false
+  end
+
+  def set_story_complete
+    self.story_complete = story_url_complete?(self.id)
   end
 
 end
