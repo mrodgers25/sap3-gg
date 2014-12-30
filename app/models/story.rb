@@ -35,7 +35,7 @@ class Story < ActiveRecord::Base
   end
 
   def set_story_complete
-    self.story_complete = story_url_complete?(self.id)
+    self.story_complete = story_url_complete?
   end
 
   def story_url_complete?
