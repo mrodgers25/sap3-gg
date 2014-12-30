@@ -57,38 +57,6 @@ module ApplicationHelper
     end
   end
 
-  def story_url_complete?(id)
-
-    story_is_complete = Story.where("id = #{id} \
-      and (story_year is not null \
-          or story_month is not null \
-          or story_date is not null) \
-      and (location_code != '' \
-          or place_category != '' \
-          or story_category != '') \
-      and editor_tagline is not null").present?
-
-    url_is_complete = Url.where("story_id = #{id} \
-      and url_type != '' \
-      and url_title  != '' \
-      and url_desc != '' \
-      and url_domain != '' ").present?
-
-    if (story_is_complete && url_is_complete)
-      return true
-    else
-      return false
-    end
-
-    # trace
-    # puts "id is #{id}"
-    # puts "story_is_complete is #{story_is_complete}"
-    # puts "url_is_complete is #{url_is_complete}"
-    # puts "story_url_is_complete is #{story_url_is_complete}"
-
-  end
-
-
   # def location_options
   #   location_options = "<strong>AZ-Phoenix (PHX)</strong>​<br>
   #                       ​<strong>CA-San Francisco (SF)</strong>​<br>

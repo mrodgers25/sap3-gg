@@ -38,4 +38,29 @@ class Story < ActiveRecord::Base
     self.story_complete = story_url_complete?(self.id)
   end
 
+  def story_url_complete?
+
+    story_is_complete = Story.where("id = #{self.id} \
+    and (story_year is not null \
+    or story_month is not null \
+    or story_date is not null) \
+    and (location_code != '' \
+    or place_category != '' \
+    or story_category != '') \
+    and editor_tagline is not null").present?
+
+    url_is_complete = Url.where("story_id = #{self.id} \
+    and url_type != '' \
+    and url_title  != '' \
+    and url_desc != '' \
+    and url_domain != '' ").present?
+
+    if (story_is_complete && url_is_complete)
+      return true
+    else
+      return false
+    end
+
+  end
+
 end
