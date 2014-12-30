@@ -40,27 +40,36 @@ class Story < ActiveRecord::Base
   end
 
   def story_url_complete?
+    where_str = "(sl.story_id IS NOT NULL OR spc.story_id IS NOT NULL OR ssc.story_id IS NOT NULL)"
+    where_str += " AND (urls.url_type != '' AND urls.url_title != '' AND urls.url_desc != '' AND urls.url_domain != '')"
+    where_str += " AND stories.id = #{self.id}"
 
-    story_is_complete = Story.where("id = #{self.id} \
-    and (story_year is not null \
-    or story_month is not null \
-    or story_date is not null) \
-    and (location_code != '' \
-    or place_category != '' \
-    or story_category != '') \
-    and editor_tagline is not null").present?
+    Story.joins("LEFT OUTER JOIN story_locations sl ON (stories.id = sl.story_id)")
+    .joins("LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)")
+    .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
+    .joins(:urls)
+    .where(where_str)
 
-    url_is_complete = Url.where("story_id = #{self.id} \
-    and url_type != '' \
-    and url_title  != '' \
-    and url_desc != '' \
-    and url_domain != '' ").present?
+    # story_is_complete = Story.where("id = #{self.id} \
+    # and (story_year is not null \
+    # or story_month is not null \
+    # or story_date is not null) \
+    # and (location_code != '' \
+    # or place_category != '' \
+    # or story_category != '') \
+    # and editor_tagline is not null").present?
+    #
+    # url_is_complete = Url.where("story_id = #{self.id} \
+    # and url_type != '' \
+    # and url_title  != '' \
+    # and url_desc != '' \
+    # and url_domain != '' ").present?
 
-    if (story_is_complete && url_is_complete)
-      return true
-    else
-      return false
-    end
+    # if (story_is_complete && url_is_complete)
+    #   return true
+    # else
+    #   return false
+    # end
 
   end
 
