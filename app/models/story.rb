@@ -21,7 +21,7 @@ class Story < ActiveRecord::Base
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create
-  before_save :set_story_complete
+  after_save :set_story_complete
 
   def set_story_track_fields
     self.author_track = (self.raw_author_scrape == self.author) ? true : false
@@ -36,6 +36,7 @@ class Story < ActiveRecord::Base
 
   def set_story_complete
     self.story_complete = story_url_complete?
+    update_attribute(:story_complete, story_url_complete?)
   end
 
   def story_url_complete?
