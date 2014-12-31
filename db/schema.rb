@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230153838) do
+ActiveRecord::Schema.define(version: 20141231061839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,14 +109,11 @@ ActiveRecord::Schema.define(version: 20141230153838) do
     t.integer  "story_date"
     t.integer  "story_year"
     t.text     "editor_tagline"
-    t.text     "location_code"
-    t.string   "place_category"
     t.boolean  "author_track"
     t.boolean  "story_year_track"
     t.boolean  "story_month_track"
     t.boolean  "story_date_track"
     t.string   "scraped_type"
-    t.string   "story_category"
     t.datetime "sap_publish_date"
     t.integer  "data_entry_time"
     t.string   "data_entry_user"

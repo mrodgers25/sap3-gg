@@ -23,6 +23,7 @@ class ScreenScraper
 
     # meta title
     @title = doc.at_css('title').content.strip.truncate(250)
+    @title = (@title == '') ? nil : @title
 
     # meta description
     meta_desc_scrape_pre = doc.css("meta[name='description']").first
@@ -41,6 +42,7 @@ class ScreenScraper
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
     @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995) if defined?(meta_keywords_scrape_pre['content'])
+    # binding.pry
 
     # meta author
     meta_author_scrape_pre = doc.css("meta[name='author']").first

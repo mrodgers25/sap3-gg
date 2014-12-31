@@ -143,6 +143,9 @@ a:hover {
   margin-top: -22px;
   margin-bottom: -22px;
 }
+.incomplete {
+  background: rgba(255, 251, 5, 0.69);
+}
 
 //mobile
 @media (max-width: 768px) {

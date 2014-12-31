@@ -88,20 +88,24 @@ class StoriesController < ApplicationController
     @previous = Story.where("id < ?", params[:id]).order(:id).last
     @next = Story.where("id > ?", params[:id]).order(:id).first
     @meta_tagline = @story.editor_tagline  # story fields
-    @meta_location = @story.location_code
-    @meta_place = @story.place_category
-    @meta_story_category = @story.story_category
+    @tagline_complete = (@meta_tagline.present? ? 'complete' : 'incomplete')
+    # @meta_location = @story.location_code
+    # @meta_place = @story.place_category
+    # @meta_story_category = @story.story_category
     @meta_type = @story.scraped_type
     @meta_author = @story.author
     @year = @story.story_year
     @month = @story.story_month
     @day = @story.story_date
+    @date_complete = ( (@year.present? || @month.present? || @day.present?) ? 'complete' : 'incomplete')
 
     @url1 = @story.urls.first  # url fields
     @source_url_pre = @url1.url_full
     @base_domain = @url1.url_domain
     @title = @url1.url_title
+    @title_complete = (@title.present? ? 'complete' : 'incomplete')
     @meta_desc = @url1.url_desc
+    @desc_complete = (@meta_desc.present? ? 'complete' : 'incomplete')
     @meta_keywords = @url1.url_keywords
     @full_web_url = @url1.url_full
 
@@ -110,6 +114,7 @@ class StoriesController < ApplicationController
     get_locations_and_categories
     @selected_location_ids = @story.locations.map(&:id)
     @selected_place_category_ids = @story.place_categories.map(&:id)
+    @pc_complete = (@selected_place_category_ids.present? ? 'complete' : 'incomplete')
     @selected_story_category_ids = @story.story_categories.map(&:id)
   end
 
@@ -182,9 +187,9 @@ class StoriesController < ApplicationController
     @meta_desc = hash['urls_attributes']['0']['url_desc']
     @meta_keywords = hash['urls_attributes']['0']['url_keywords']
     @meta_tagline = hash["editor_tagline"]
-    @meta_location = hash["location_code"]
-    @meta_place = hash["place_category"]
-    @meta_story_category = hash["story_category"]
+    # @meta_location = hash["location_code"]
+    # @meta_place = hash["place_category"]
+    # @meta_story_category = hash["story_category"]
     @meta_type = hash["story_type"]
     @meta_author = hash["author"]
     @year = hash["story_year"]
@@ -244,7 +249,7 @@ class StoriesController < ApplicationController
     params.require(:story).permit(
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
-      :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user,
+      :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],

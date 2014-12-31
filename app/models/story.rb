@@ -21,7 +21,7 @@ class Story < ActiveRecord::Base
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create
-  after_save :set_story_complete
+  after_commit :set_story_complete
 
   def set_story_track_fields
     self.author_track = (self.raw_author_scrape == self.author) ? true : false
@@ -36,11 +36,14 @@ class Story < ActiveRecord::Base
 
   def set_story_complete
     self.story_complete = story_url_complete?
-    update_attribute(:story_complete, story_url_complete?)
+    update_attribute(:story_complete, self.story_complete)
+    # binding.pry
   end
 
   def story_url_complete?
-    where_str = "(sl.story_id IS NOT NULL OR spc.story_id IS NOT NULL OR ssc.story_id IS NOT NULL)"
+    where_str = "(spc.story_id IS NOT NULL)"
+    where_str += " AND (stories.story_year IS NOT NULL OR stories.story_month IS NOT NULL OR stories.story_date IS NOT NULL)"  # at least one date value
+    where_str += " AND stories.editor_tagline != '' "
     where_str += " AND (urls.url_type != '' AND urls.url_title != '' AND urls.url_desc != '' AND urls.url_domain != '')"
     where_str += " AND stories.id = #{self.id}"
 

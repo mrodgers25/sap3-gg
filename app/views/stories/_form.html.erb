@@ -1,5 +1,5 @@
 <%= form_for @story do |f| %>
-    <br>
+  <br>
     <!-- TODO: you needs to test for errors from the nested URLs also -->
     <% if @story.errors.any? %>
         <div id="error_explanation">
@@ -31,12 +31,13 @@
                 </tr>
                 <tr>
                   <td>URL Title</td>
-                  <td><%= u.text_area :url_title, rows: 2, :value => @title, :maxlength => 250, style:"width: 825px" %></td>
-                  <td></td
+                  <td><%= u.text_area :url_title, rows: 2, :value => @title, :maxlength => 250, style:"width: 825px", class: "#{@title_complete}" %></td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 3, :value => @meta_desc, :maxlength => 1000, style:"width: 825px" %></td>
+                  <td><%= u.text_area :url_desc, rows: 3, :value => @meta_desc, :maxlength => 1000, style:"width: 825px", class: "#{@desc_complete}" %>
+                  </td>
                   <td></td>
                 </tr>
                 <tr>
@@ -149,7 +150,9 @@
         <table class="table-responsive table-condensed">
           <tr>
             <td>Editor Tagline </td>
-            <td>  <%= f.text_field :editor_tagline, :value => @meta_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60 %>  </td>
+            <td>  <%= f.text_field :editor_tagline, :value => @meta_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60,
+                                   class: "#{@tagline_complete}" %>
+            </td>
           </tr>
           <tr>
             <td>Locations</td>
@@ -179,13 +182,20 @@
           </tr>
           <tr>
             <td>Story Date</td>
-            <td><%= f.number_field :story_year, :value => @year, :placeholder => "yyyy", in: 2000...2020, :style => "text-align: center"  %>
-              <%= f.number_field :story_month, :value => @month, :placeholder => "mm", in: 1...13, :style => "text-align: center"  %>
-              <%= f.number_field :story_date, :value => @day, :placeholder => "dd", in: 1...32, :style => "text-align: center" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td><%= f.number_field :story_year, :value => @year, :placeholder => "yyyy", in: 2000...2020, :style => "text-align: center", class: "#{@date_complete}" %>
+              <%= f.number_field :story_month, :value => @month, :placeholder => "mm", in: 1...13, :style => "text-align: center", class: "#{@date_complete}"  %>
+              <%= f.number_field :story_date, :value => @day, :placeholder => "dd", in: 1...32, :style => "text-align: center", class: "#{@date_complete}" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     SAP Publish Date–Time&nbsp;&nbsp;&nbsp;
-                    <%= f.datetime_select :sap_publish_date, use_month_numbers: true, start_year: 2014, include_blank: true %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%= f.submit "Save", class: 'btn btn-sm btn-success' %></td>
+                    <%= f.datetime_select :sap_publish_date, use_month_numbers: true, start_year: 2014, include_blank: true %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
           </tr>
+	        <tr>
+		        <td class="<%= "#{:story_complete == true ? 'complete' : 'incomplete'}" %>" >
+			        <%= :story_complete == true ? "Story Complete" : "Incomplete Story" %>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;
+		          <%= f.submit "Save", class: 'btn btn-sm btn-success' %>
+		        </td>
+	        </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>
           <%= f.hidden_field :data_entry_begin_time, :value => @data_entry_begin_time %>
           <%= f.hidden_field :raw_story_year_scrape, :value => @year %>
@@ -194,9 +204,6 @@
           <%= f.hidden_field :data_entry_user, :value => current_user.email %>
         </table>
       </div></div>
-
-    <%= debug(params) if Rails.env.development? %>
-    <%= debug(flash) if Rails.env.development? %>
 
     <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
 <% end %>
