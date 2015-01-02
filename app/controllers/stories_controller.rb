@@ -72,7 +72,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        add_locations_and_categories(@story, story_params)
+        update_locations_and_categories(@story, story_params)
         format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
@@ -131,7 +131,7 @@ class StoriesController < ApplicationController
       #       if it does not exist return an error
       #       if it does exist, get the src_url and alt_text and nest them into story_params properly
       if @story.update(story_params)
-        add_locations_and_categories(@story, story_params)
+        update_locations_and_categories(@story, story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
         format.json { render :show, status: :ok, location: @story }
       else
@@ -228,19 +228,15 @@ class StoriesController < ApplicationController
     @story_categories = StoryCategory.order(:name)
   end
 
-  def add_locations_and_categories(story, my_params)
-    process_chosen_params(my_params[:location_ids]).each do |my_id|
-      location = Location.where(id: my_id).first
-      story.locations << location if location && !story.locations.include?(location)
-    end
-    process_chosen_params(my_params[:place_category_ids]).each do |my_id|
-      pc = PlaceCategory.where(id: my_id).first
-      story.place_categories << pc if pc && !story.place_categories.include?(pc)
-    end
-    process_chosen_params(my_params[:story_category_ids]).each do |my_id|
-      sc = StoryCategory.where(id: my_id).first
-      story.story_categories << sc if sc && !story.story_categories.include?(sc)
-    end
+  def update_locations_and_categories(story, my_params)
+    new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
+    story.locations = new_locations
+
+    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
+    story.place_categories = new_place_categories
+
+    new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
+    story.story_categories = new_story_categories
   end
 
   def process_chosen_params(my_params)
