@@ -21,7 +21,8 @@ class Story < ActiveRecord::Base
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create
-  after_commit :set_story_complete
+
+  after_validation :set_story_complete
 
   def set_story_track_fields
     self.author_track = (self.raw_author_scrape == self.author) ? true : false
@@ -35,8 +36,10 @@ class Story < ActiveRecord::Base
   end
 
   def set_story_complete
-    self.story_complete = story_url_complete?
-    update_attribute(:story_complete, self.story_complete)
+    story_check = (self.editor_tagline != '' and
+        (self.story_year != nil or self.story_month != nil or self.story_date != nil) and
+        (self.urls.first.url_type != '' and self.urls.first.url_title != '' and self.urls.first.url_desc != '' and self.urls.first.url_domain != ''))
+    write_attribute(:story_complete, story_check ? true : false)
     # binding.pry
   end
 
@@ -51,7 +54,7 @@ class Story < ActiveRecord::Base
     .joins("LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)")
     .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
     .joins(:urls)
-    .where(where_str)
+    .where(where_str).present?
 
     # story_is_complete = Story.where("id = #{self.id} \
     # and (story_year is not null \

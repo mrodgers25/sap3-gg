@@ -189,12 +189,14 @@
                     <%= f.datetime_select :sap_publish_date, use_month_numbers: true, start_year: 2014, include_blank: true %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
           </tr>
 	        <tr>
-		        <td class="<%= "#{:story_complete == true ? 'complete' : 'incomplete'}" %>" >
-			        <%= :story_complete == true ? "Story Complete" : "Incomplete Story" %>
-		        </td>
-		        <td>&nbsp;&nbsp;&nbsp;
+		        <td>
 		          <%= f.submit "Save", class: 'btn btn-sm btn-success' %>
 		        </td>
+	          <% if params[:action] != 'new' %>
+		          <td class="<%= "#{@story_complete == true ? 'complete' : 'incomplete'}" %>" >
+	              <%= @story_complete == true ? "Story Complete" : "Incomplete Story – Missing Fields Are Yellow" %>
+	            </td>
+	          <% end %>
 	        </tr>
           <%= f.hidden_field :raw_author_scrape, :value => @meta_author %>
           <%= f.hidden_field :data_entry_begin_time, :value => @data_entry_begin_time %>

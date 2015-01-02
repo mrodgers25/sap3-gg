@@ -1,0 +1,37 @@
+<h1>Incomplete Stories List</h1>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th>ID&nbsp;</th>
+    <th>Created&nbsp;</th>
+    <th>Orig Publish&nbsp;</th>
+    <th>SAP Publish&nbsp;</th>
+    <th>Tagline&nbsp;&nbsp;</th>
+    <th>URL</th>
+    <th colspan="5"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @stories.each do |story| %>
+    <% story.urls.each do |u| %>
+      <tr>
+        <td><%= story.id %>&nbsp;</td>
+        <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
+        <td nowrap><%= story.story_year.to_s + '-' + story.story_month.to_s.rjust(2, '0') + '-' + story.story_date.to_s.rjust(2, '0') %> &nbsp;</td>
+        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
+        <td class="40%"><%= story.editor_tagline %>&nbsp;&nbsp;</td>
+        <td width="40%" style="word-break: break-all"><%= u.url_full %></td>
+        <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
+        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
+        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Scrape New Story', stories_scrape_path %>

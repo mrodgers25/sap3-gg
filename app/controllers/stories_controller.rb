@@ -20,6 +20,10 @@ class StoriesController < ApplicationController
     @stories = Story.order("id DESC").all.includes(:urls)
   end
 
+  def incomplete
+    @stories = Story.order("id DESC").where(story_complete: false).includes(:urls)
+  end
+
   # GET /stories/1
   # GET /stories/1.json
   def show
@@ -98,6 +102,7 @@ class StoriesController < ApplicationController
     @month = @story.story_month
     @day = @story.story_date
     @date_complete = ( (@year.present? || @month.present? || @day.present?) ? 'complete' : 'incomplete')
+    @story_complete = @story.story_complete
 
     @url1 = @story.urls.first  # url fields
     @source_url_pre = @url1.url_full
