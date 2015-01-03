@@ -28,7 +28,7 @@ class VisitorsController < ApplicationController
       @stories = @stories_filtered.order("story_year DESC","story_month DESC","story_date DESC").limit(story_limit_filtered)
     end
     if params[:location_id].present?
-      @stories = @stories.joins(:locations).where("locations.id = #{params[:location_id]}")
+      @stories = @stories.joins(:locations).order("ascii(name)").where("locations.id = #{params[:location_id]}")
     end
     if params[:place_category_id].present?
       @stories = @stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}")
