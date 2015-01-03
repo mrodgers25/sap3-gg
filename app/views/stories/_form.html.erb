@@ -30,13 +30,13 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td>URL Title</td>
-                  <td><%= u.text_area :url_title, rows: 2, :value => @title, :maxlength => 250, style:"width: 825px", class: "#{@title_complete}" %></td>
+                  <td class="<%= "#{@title_complete}" %>" >URL Title</td>
+                  <td><%= u.text_area :url_title, rows: 2, :value => @title, :maxlength => 250, style:"width: 825px" %></td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>URL Desc</td>
-                  <td><%= u.text_area :url_desc, rows: 3, :value => @meta_desc, :maxlength => 1000, style:"width: 825px", class: "#{@desc_complete}" %>
+                  <td class="<%= "#{@desc_complete}" %>" >URL Desc</td>
+                  <td><%= u.text_area :url_desc, rows: 3, :value => @meta_desc, :maxlength => 1000, style:"width: 825px" %>
                   </td>
                   <td></td>
                 </tr>
@@ -149,9 +149,8 @@
       <div class="panel-body">
         <table class="table-responsive table-condensed">
           <tr>
-            <td>Editor Tagline </td>
-            <td>  <%= f.text_field :editor_tagline, :value => @meta_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60,
-                                   class: "#{@tagline_complete}" %>
+            <td class="<%= "#{@tagline_complete}" %>" >Editor Tagline </td>
+            <td>  <%= f.text_field :editor_tagline, :value => @meta_tagline, :placeholder => "Maximum 60 chars", :maxlength => 60, :size => 60 %>
             </td>
           </tr>
           <tr>
@@ -161,8 +160,8 @@
 	          </td>
 	        </tr>
 	        <tr>
-	          <td>Place Categories</td>
-		        <td class="<%= "#{@pc_complete}" %>" >
+	          <td class="<%= "#{@pc_complete}" %>" >Place Categories</td>
+		        <td>
               <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {},
                               {:multiple => true} %>
             </td>
