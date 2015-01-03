@@ -67,7 +67,6 @@ class StoriesController < ApplicationController
   def create
     # TODO:  check_manual_url(params)
     my_params = set_image_params(story_params)
-    # @data_entry_begin_time = data_entry_begin_time(story_params)
     @story = Story.new(my_params)
 
     respond_to do |format|

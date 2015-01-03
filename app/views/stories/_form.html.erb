@@ -158,8 +158,13 @@
             <td>Locations</td>
             <td colspan="2">
               <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, {:multiple => true} %>
-              &nbsp;&nbsp;
-              <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, {:multiple => true} %>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>Place Categories</td>
+		        <td class="<%= "#{@pc_complete}" %>" >
+              <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {},
+                              {:multiple => true} %>
             </td>
           </tr>
           <tr>
@@ -194,7 +199,7 @@
 		        </td>
 	          <% if params[:action] != 'new' %>
 		          <td class="<%= "#{@story_complete == true ? 'complete' : 'incomplete'}" %>" >
-	              <%= @story_complete == true ? "Story Complete" : "Incomplete Story – Missing Fields Are Yellow" %>
+	              <%= @story_complete == true ? "Story Complete" : "Incomplete Story – Missing Fields In Yellow" %>
 	            </td>
 	          <% end %>
 	        </tr>
