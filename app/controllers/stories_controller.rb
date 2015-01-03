@@ -21,7 +21,7 @@ class StoriesController < ApplicationController
   end
 
   def incomplete
-    @stories = Story.order("id DESC").where(story_complete: false).includes(:urls)
+    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
   end
 
   # GET /stories/1
