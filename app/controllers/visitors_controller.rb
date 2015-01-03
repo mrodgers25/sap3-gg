@@ -7,7 +7,7 @@ class VisitorsController < ApplicationController
     track_action
 
     # database dropdown data
-    @location_codes = Location.order(:name)
+    @location_codes = Location.order("ascii(name)")
     @story_place_types = PlaceCategory.order(:name)
     @story_categories_loggedin = StoryCategory.order(:name)
     @story_categories_notloggedin = StoryCategory.where.not(code: 'EP').order(:name)
