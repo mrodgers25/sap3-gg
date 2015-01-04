@@ -183,12 +183,14 @@ class ScreenScraper
     @year = itemprop_pub_date_match[:iyear].to_i
     @month = itemprop_pub_date_match[:imonth].to_i
     @day = itemprop_pub_date_match[:iday].to_i
+    @day = @day == 0 ? 1 : @day
   end
 
   def set_num_date(num_date_match)
     puts "set_num_date"
     @month = num_date_match[:dmonth].to_i
     @day = num_date_match[:dday].to_i
+    @day = @day == 0 ? 1 : @day
     @year = num_date_match[:dyear].to_i
   end
 
@@ -196,6 +198,7 @@ class ScreenScraper
     puts "set_alpha_date"
     @month = alpha_month_num.to_i
     @day = alpha_date_match[:day].to_i
+    @day = @day == 0 ? 1 : @day
     @year = alpha_date_match[:year].to_i
   end
 
