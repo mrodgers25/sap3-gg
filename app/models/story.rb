@@ -43,7 +43,7 @@ class Story < ActiveRecord::Base
     # binding.pry
   end
 
-  def story_url_complete?
+  def story_url_complete?  # currently not used
     where_str = "(spc.story_id IS NOT NULL)"
     where_str += " AND (stories.story_year IS NOT NULL OR stories.story_month IS NOT NULL OR stories.story_date IS NOT NULL)"  # at least one date value
     where_str += " AND stories.editor_tagline != '' "
@@ -55,27 +55,6 @@ class Story < ActiveRecord::Base
     .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
     .joins(:urls)
     .where(where_str).present?
-
-    # story_is_complete = Story.where("id = #{self.id} \
-    # and (story_year is not null \
-    # or story_month is not null \
-    # or story_date is not null) \
-    # and (location_code != '' \
-    # or place_category != '' \
-    # or story_category != '') \
-    # and editor_tagline is not null").present?
-    #
-    # url_is_complete = Url.where("story_id = #{self.id} \
-    # and url_type != '' \
-    # and url_title  != '' \
-    # and url_desc != '' \
-    # and url_domain != '' ").present?
-
-    # if (story_is_complete && url_is_complete)
-    #   return true
-    # else
-    #   return false
-    # end
 
   end
 
