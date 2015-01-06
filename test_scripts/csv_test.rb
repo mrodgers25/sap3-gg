@@ -11,6 +11,7 @@ CSV.open( file, 'w' ) do |writer|
   writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
             "Story Yr Trk","Data Entered By","Media Owner Id","Story Complete","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Manual"]
   stories.each do |s|
+    @url_full,@url_domain,@manual_enter,@location_name,@pc_name,@sc_name = ["","","","","",""]
     s.urls.each do |u|
       @url_full = u.url_full
       @url_domain = u.url_domain
@@ -18,15 +19,10 @@ CSV.open( file, 'w' ) do |writer|
         @manual_enter = i.manual_enter
       end
     end
-    s.locations.each do |l|
-      @location_name = l.name
-    end
-    s.place_categories.each do |pc|
-      @pc_name = pc.name
-    end
-    s.story_categories.each do |sc|
-      @sc_name = sc.name
-    end
+    @location_name = s.locations.map { |l| l.code }.join(',')
+    @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
+    @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
+
     writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.data_entry_user, s.mediaowner_id, \
                   s.story_complete, \

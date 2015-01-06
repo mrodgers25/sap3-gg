@@ -27,15 +27,10 @@ class ReportsController < ApplicationController
             @manual_enter = i.manual_enter
           end
         end
-        s.locations.each do |l|
-          @location_name = l.name
-        end
-        s.place_categories.each do |pc|
-          @pc_name = pc.name
-        end
-        s.story_categories.each do |sc|
-          @sc_name = sc.name
-        end
+        @location_name = s.locations.map { |l| l.code }.join(',')
+        @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
+        @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
+
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.data_entry_user, s.mediaowner_id, \
                   s.story_complete, \
