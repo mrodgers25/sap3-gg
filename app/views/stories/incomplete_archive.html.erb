@@ -5,7 +5,6 @@
   <tr>
     <th>ID&nbsp;</th>
     <th>Created&nbsp;</th>
-    <th>Sequence&nbsp;</th>
     <th>Title&nbsp;&nbsp;</th>
     <th colspan="5"></th>
   </tr>
@@ -17,11 +16,10 @@
       <tr>
         <td><%= story.id %>&nbsp;</td>
         <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
-        <td><%= story.release_seq %>&nbsp;&nbsp;</td>
-        <td><%= u.url_title %>&nbsp;&nbsp;</td>
+         <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
         <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
-        <td><%= link_to 'Seq', edit_seq_path(story) %>&nbsp;</td>
+        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   <% end %>
@@ -30,4 +28,4 @@
 
 <br>
 
-<%= link_to 'All Stories', stories_path %>
+<%= link_to 'Scrape New Story', stories_scrape_path %>

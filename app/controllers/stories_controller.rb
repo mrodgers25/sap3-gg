@@ -20,8 +20,19 @@ class StoriesController < ApplicationController
     @stories = Story.order("id DESC").all.includes(:urls)
   end
 
+  # def incomplete
+  #   @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
+  # end
+  #
   def incomplete
-    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
+    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+  end
+
+  def edit_seq
+    @story = Story.find(params[:id])
+    @urls = @story.urls
+    @url_title = @urls.last.url_title
+    @sequence = @story.release_seq
   end
 
   # GET /stories/1
@@ -130,9 +141,14 @@ class StoriesController < ApplicationController
       #       if it does not exist return an error
       #       if it does exist, get the src_url and alt_text and nest them into story_params properly
       if @story.update(story_params)
-        update_locations_and_categories(@story, story_params)
-        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-        format.json { render :show, status: :ok, location: @story }
+        if params[:source_action] != 'edit_seq'
+          update_locations_and_categories(@story, story_params)
+          format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+          format.json { render :show, status: :ok, location: @story }
+        else
+          set_release_seq
+          format.html { redirect_to incomplete_stories_path, notice: 'Sequence was successfully updated.' }
+        end
       else
         get_locations_and_categories
         format.html { render :edit }
@@ -153,6 +169,15 @@ class StoriesController < ApplicationController
   end
 
   private
+
+  def set_release_seq
+    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    seq = 1
+    @stories.each do |s|
+      s.update_attributes(release_seq: seq)
+      seq += 1
+    end
+  end
 
   def get_domain_info(source_url_pre)
     d_url = Domainatrix.parse(source_url_pre)
@@ -250,6 +275,7 @@ class StoriesController < ApplicationController
       :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
+      :release_seq,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],
