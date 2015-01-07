@@ -9,7 +9,7 @@ stories = Story.eager_load(:urls => [:images]).eager_load(:locations).eager_load
 
 CSV.open( file, 'w' ) do |writer|
   writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
-            "Story Yr Trk","Data Entered By","Media Owner Id","Story Complete","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Manual"]
+            "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Media Owner Id","Manual Img","Data Entered By","Story Complete"]
   stories.each do |s|
     @url_full,@url_domain,@manual_enter,@location_name,@pc_name,@sc_name = ["","","","","",""]
     s.urls.each do |u|
@@ -24,9 +24,8 @@ CSV.open( file, 'w' ) do |writer|
     @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
 
     writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
-                  @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.data_entry_user, s.mediaowner_id, \
-                  s.story_complete, \
-                  s.story_month_track, s.story_date_track, s.data_entry_time, @url_full, @url_domain, @manual_enter]
+                  @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
+                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
   end
 end
 
