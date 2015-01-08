@@ -201,8 +201,11 @@ class StoriesController < ApplicationController
     else
       @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
     end
-    # @name_display = Mediaowner.where(url_domain: @base_domain).first.owner_name
-    # @name_display = @name_display.present? ? @name_display : 'NO DOMAIN NAME FOUND'
+    if Mediaowner.where(url_domain: @base_domain).first.present?
+      @name_display =  Mediaowner.where(url_domain: @base_domain).first.owner_name
+    else
+      @name_display = 'NO DOMAIN NAME FOUND'
+    end
     @full_web_url = d_url.url
   end
 
