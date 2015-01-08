@@ -118,7 +118,8 @@ class StoriesController < ApplicationController
     @url1 = @story.urls.first  # url fields
     @source_url_pre = @url1.url_full
     @base_domain = @url1.url_domain
-    @name_display = Mediaowner.where(url_domain: @base_domain).first.owner_name unless Mediaowner.where(url_domain: @base_domain).first.owner_name.nil?
+    binding.pry
+    @name_display = Mediaowner.where(url_domain: @base_domain).first.owner_name.to_s
     @name_display = @name_display.present? ? @name_display : 'NO DOMAIN NAME FOUND'
     @title = @url1.url_title
     @title_complete = (@title.present? ? 'complete' : 'incomplete')
