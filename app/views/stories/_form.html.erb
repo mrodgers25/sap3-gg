@@ -25,8 +25,11 @@
                 </tr>
                 <tr>
                   <td>Domain</td>
-                  <td><%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 35 %>
-                    &nbsp;&nbsp;URL Type &nbsp;&nbsp;<%= u.select :url_type, ["Media"] %></td>
+                  <td><%= u.text_field :url_domain, :value => @base_domain, :readonly => true, :size => 25 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= text_field_tag 'name_display', @name_display, :readonly => true, size: 45 %>
+                    &nbsp;&nbsp;URL Type &nbsp;&nbsp;
+                    <%= u.select :url_type, ["Media"] %></td>
                   <td></td>
                 </tr>
                 <tr>

@@ -18,24 +18,28 @@ class MediaownersController < ApplicationController
   #   respond_with(@mediaowner)
   # end
   #
-  # def edit
-  # end
-  #
+  def edit
+    authorize Mediaowner
+
+  end
+
   # def create
   #   @mediaowner = Mediaowner.new(mediaowner_params)
   #   @mediaowner.save
   #   respond_with(@mediaowner)
   # end
   #
-  # def update
-  #   @mediaowner.update(mediaowner_params)
-  #   respond_with(@mediaowner)
-  # end
-  #
-  # def destroy
-  #   @mediaowner.destroy
-  #   respond_with(@mediaowner)
-  # end
+  def update
+    authorize Mediaowner
+    @mediaowner.update(mediaowner_params)
+    respond_with(@mediaowner)
+  end
+
+  def destroy
+    authorize Mediaowner
+    @mediaowner.destroy
+    respond_with(@mediaowner)
+  end
 
   private
 

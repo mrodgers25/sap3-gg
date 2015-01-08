@@ -63,6 +63,7 @@ class StoriesController < ApplicationController
         url = @story.urls.build
         url.images.build
         set_scrape_fields
+        # binding.pry
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
@@ -117,6 +118,8 @@ class StoriesController < ApplicationController
     @url1 = @story.urls.first  # url fields
     @source_url_pre = @url1.url_full
     @base_domain = @url1.url_domain
+    @name_display = Mediaowner.where(url_domain: @base_domain).first.owner_name
+    @name_display = @name_display.present? ? @name_display : 'NO DOMAIN NAME FOUND'
     @title = @url1.url_title
     @title_complete = (@title.present? ? 'complete' : 'incomplete')
     @meta_desc = @url1.url_desc
@@ -193,6 +196,8 @@ class StoriesController < ApplicationController
     else
       @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
     end
+    @name_display = Mediaowner.where(url_domain: @base_domain).first.owner_name
+    @name_display = @name_display.present? ? @name_display : 'NO DOMAIN NAME FOUND'
     @full_web_url = d_url.url
   end
 
