@@ -25,7 +25,7 @@ class StoriesController < ApplicationController
   end
 
   def sequence
-    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
   end
 
   def edit_seq
