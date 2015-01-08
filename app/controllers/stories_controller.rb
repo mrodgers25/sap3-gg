@@ -171,7 +171,12 @@ class StoriesController < ApplicationController
   private
 
   def set_release_seq
-    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    new_seq = Story.find(params[:id]).release_seq
+    if new_seq > params[:old_seq].to_i
+      @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    else
+      @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    end
     seq = 1
     @stories.each do |s|
       s.update_attributes(release_seq: seq)

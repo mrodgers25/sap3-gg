@@ -16,13 +16,14 @@
     <div class="form-group" style="margin-top: .5%">
     <div class="panel panel-default">
       <div class="panel-body">
-        <h1>Edit Publish Sequence</h1>
+        <h1>Edit Publish Sequence</h1><br>
 				Sequence:
         <%= f.number_field :release_seq, :value => @sequence, style: "width: 50px; text-align: center"  %>&nbsp;&nbsp;&nbsp;
 	      Title:
         <%= u.text_field :url_title, :value => @url_title, :readonly => true, size: 100  %><br>
         <%= hidden_field_tag 'source_action', 'edit_seq' %>
-        <%= f.submit "Save", class: 'btn btn-sm btn-success' %>
+        <%= hidden_field_tag 'old_seq', @sequence %><br>
+        <%= f.submit "Re-Sequence", class: 'btn btn-sm btn-success' %>
       </div>
 		</div>
 	</div>

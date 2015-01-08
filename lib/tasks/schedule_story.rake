@@ -4,6 +4,7 @@ namespace :schedule_story do
 
     include Rails.application.routes.url_helpers
     9.times do
+      puts "Begin loop timer: #{Time.now}"
       stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")[0].to_i
       puts "stories_per_day ---> #{stories_per_day}"
 
@@ -48,6 +49,7 @@ namespace :schedule_story do
       else
         puts "No stories available to publish"
       end
+      puts "End loop timer: #{Time.now}"
       sleep 60
     end
   end
