@@ -1,10 +1,12 @@
-<h1>Incomplete Stories List</h1>
+<h1>Complete Unpublished Stories List</h1>
 
 <table class="table table-condensed">
   <thead>
   <tr>
     <th>ID&nbsp;</th>
     <th>Created&nbsp;</th>
+    <th style="text-align: center">Sequence&nbsp;</th>
+    <th>Re-Seq&nbsp;</th>
     <th>Title&nbsp;&nbsp;</th>
     <th colspan="5"></th>
   </tr>
@@ -16,10 +18,12 @@
       <tr>
         <td><%= story.id %>&nbsp;</td>
         <td nowrap><%= story.created_at.strftime("%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
-         <td><%= u.url_title %>&nbsp;&nbsp;</td>
+        <td style="text-align: center"><%= story.release_seq %>&nbsp;&nbsp;</td>
+        <td style="line-height: 1.0"><%= button_to 'Seq', edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
+                    style: "margin-top: -3px; margin-bottom: -15px" %>&nbsp;</td>
+        <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
         <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   <% end %>
@@ -28,4 +32,4 @@
 
 <br>
 
-<%= link_to 'Scrape New Story', stories_scrape_path %>
+<%= link_to 'All Stories', stories_path %>

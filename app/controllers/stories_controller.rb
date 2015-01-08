@@ -20,11 +20,11 @@ class StoriesController < ApplicationController
     @stories = Story.order("id DESC").all.includes(:urls)
   end
 
-  # def incomplete
-  #   @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
-  # end
-  #
   def incomplete
+    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
+  end
+
+  def sequence
     @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
   end
 
@@ -147,7 +147,7 @@ class StoriesController < ApplicationController
           format.json { render :show, status: :ok, location: @story }
         else
           set_release_seq
-          format.html { redirect_to incomplete_stories_path, notice: 'Sequence was successfully updated.' }
+          format.html { redirect_to sequence_stories_path, notice: 'Sequence was successfully updated.' }
         end
       else
         get_locations_and_categories

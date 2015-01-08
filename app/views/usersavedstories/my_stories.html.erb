@@ -23,7 +23,8 @@
 			      <td nowrap ><p class="hidden-xs" style="display: inline"><%= published_at %></p> &nbsp;</td>
 				    <% display_title = s.url_title + '....from ' + s.url_domain %>
 			      <td class="saved-story-title"><%= link_to display_title, s.url_full %></b>&nbsp;</td>
-			      <td style="line-height: 1.0">&nbsp;<%= button_to 'View Story', s.url_full, form: {target: '_blank'}, class: 'btn btn-sap btn-info btn-sap-saved hidden-xs' %>&nbsp;</td>
+			      <td style="line-height: 1.0">&nbsp;<%= button_to 'View Story', s.url_full, form: {target: '_blank'}, \
+			                    class: 'btn btn-sap btn-info btn-sap-saved hidden-xs' %>&nbsp;</td>
 			      <td style="line-height: 1.0">&nbsp;<%= button_to 'Forget', destroy_usersavedstories_path(s.story_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-forget' %>&nbsp;</td>
 			    </tr>
 			  <% end %>
