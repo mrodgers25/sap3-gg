@@ -123,8 +123,6 @@ class StoriesController < ApplicationController
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
-    binding.pry
-    # @name_display = @name_display.present? ? @name_display : 'NO DOMAIN NAME FOUND'
     @title = @url1.url_title
     @title_complete = (@title.present? ? 'complete' : 'incomplete')
     @meta_desc = @url1.url_desc
