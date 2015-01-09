@@ -119,7 +119,7 @@ class StoriesController < ApplicationController
     @source_url_pre = @url1.url_full
     @base_domain = @url1.url_domain
     if Mediaowner.where(url_domain: @base_domain).first.present?
-      @name_display =  Mediaowner.where(url_domain: @base_domain).first.owner_name
+      @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
@@ -200,7 +200,7 @@ class StoriesController < ApplicationController
       @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
     end
     if Mediaowner.where(url_domain: @base_domain).first.present?
-      @name_display =  Mediaowner.where(url_domain: @base_domain).first.owner_name
+      @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
