@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :mediaowners
-
-  resources :codes
 
   match 'stories/new' => 'stories#new', via: [:get, :post]
   match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
@@ -24,7 +21,11 @@ Rails.application.routes.draw do
   resources :stories #original from generate
   resources :urls
   resources :images
-  # resources :visitors
+  resources :mediaowners
+  resources :locations
+  resources :place_categories
+  resources :story_categories
+  resources :codes
 
   root to: 'visitors#index', via: [:get, :post]  #added by gg
   get 'products/:id', to: 'products#show', :as => :products

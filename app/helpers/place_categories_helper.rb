@@ -1,0 +1,2 @@
+module PlaceCategoriesHelper
+end

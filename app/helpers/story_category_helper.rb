@@ -1,0 +1,2 @@
+module StoryCategoryHelper
+end
