@@ -4,7 +4,7 @@ class PlaceCategoriesController < ApplicationController
   # GET /place_categories
   # GET /place_categories.json
   def index
-    @place_categories = PlaceCategory.all
+    @place_categories = PlaceCategory.all.order(:name)
   end
 
   # GET /place_categories/1

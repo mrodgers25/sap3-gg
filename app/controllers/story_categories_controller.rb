@@ -4,7 +4,7 @@ class StoryCategoriesController < ApplicationController
   # GET /story_categories
   # GET /story_categories.json
   def index
-    @story_categories = StoryCategory.all
+    @story_categories = StoryCategory.all.order(:name)
   end
 
   # GET /story_categories/1
