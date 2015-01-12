@@ -64,13 +64,13 @@ class ReportsController < ApplicationController
     users = User.all
 
     CSV.open( file2, 'w' ) do |writer|
-      writer << ["id","first_name","last_name","role","email","reset_password_sent_at","remember_created_at","sign_in_count","current_sign_in_at","last_sign_in_at", \
-      "current_sign_in_ip","last_sign_in_ip","created_at","updated_at","confirmed_at", \
+      writer << ["id","first_name","last_name","role","email","reset_password_sent_at","remember_created_at","sign_in_count", \
+      "created_at","updated_at","confirmed_at", \
       "confirmation_sent_at","unconfirmed_email","city_preference"]
       
       users.each do |u|
-            writer << [u.id,u.first_name,u.last_name,u.role,u.email,u.reset_password_sent_at,u.remember_created_at,u.sign_in_count,u.current_sign_in_at,u.last_sign_in_at, \
-      u.current_sign_in_ip,u.last_sign_in_ip,u.created_at,u.updated_at,u.confirmed_at, \
+            writer << [u.id,u.first_name,u.last_name,u.role,u.email,u.reset_password_sent_at,u.remember_created_at,u.sign_in_count, \
+      u.created_at,u.updated_at,u.confirmed_at, \
       u.confirmation_sent_at,u.unconfirmed_email,u.city_preference]
       end
     end
