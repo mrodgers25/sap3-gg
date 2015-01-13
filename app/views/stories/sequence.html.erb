@@ -21,8 +21,8 @@
         <td style="line-height: 1.0; text-align: right"><%= button_to story.release_seq.nil? ? "––" : story.release_seq, edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
                     style: "margin-top: -3px; margin-bottom: -15px" %>&nbsp;</td>
         <td>&nbsp;&nbsp;<%= u.url_domain %></td>
-        <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td width="10%"><%= story.locations.map { |location| location.code }.join(', ') %>&nbsp;&nbsp;</td>
+        <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
         <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
       </tr>
