@@ -18,7 +18,7 @@
       <tr>
         <td><%= story.id %>&nbsp;</td>
         <td nowrap><%= story.created_at.strftime("%Y-%m-%d") %>&nbsp;</td>
-        <td style="line-height: 1.0; text-align: center"><%= button_to story.release_seq.nil? ? "" : story.release_seq, edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
+        <td style="line-height: 1.0; text-align: center"><%= button_to story.release_seq.nil? ? "––" : story.release_seq, edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
                     style: "margin-top: -3px; margin-bottom: -15px" %>&nbsp;</td>
         <td><%= u.url_domain %></td>
         <td><%= u.url_title %>&nbsp;&nbsp;</td>
