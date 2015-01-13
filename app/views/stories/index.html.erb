@@ -21,7 +21,7 @@
 	        <td nowrap><%= story.created_at.strftime("%Y-%m-%d %H:%M:%S") %> &nbsp;</td>
 	        <td nowrap><%= story.story_complete == true ? 'Yes' : 'No' %> &nbsp;</td>
 	        <td nowrap><%= story.sap_publish_date.try(:strftime, "%Y-%m-%dT%H:%M:%S") %> &nbsp;</td>
-	        <td class="40%"><%= story.editor_tagline %>&nbsp;&nbsp;</td>
+	        <td width="40%"><%= story.editor_tagline %>&nbsp;&nbsp;</td>
 	        <td width="40%" style="word-break: break-all"><%= u.url_title %></td>
 	        <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
 	        <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
