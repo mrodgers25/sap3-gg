@@ -4,9 +4,9 @@
   <thead>
   <tr>
     <th>ID&nbsp;</th>
-    <th>Created&nbsp;</th>
-    <th style="text-align: center">Seq&nbsp;</th>
-    <th>Domain&nbsp;&nbsp;</th>
+    <th>Created</th>
+    <th style="text-align: right">Seq</th>
+    <th>&nbsp;&nbsp;Domain&nbsp;&nbsp;</th>
     <th>Title&nbsp;&nbsp;</th>
     <th colspan="5"></th>
   </tr>
@@ -17,10 +17,10 @@
     <% story.urls.each do |u| %>
       <tr>
         <td><%= story.id %>&nbsp;</td>
-        <td nowrap><%= story.created_at.strftime("%Y-%m-%d") %>&nbsp;</td>
-        <td style="line-height: 1.0; text-align: center"><%= button_to story.release_seq.nil? ? "––" : story.release_seq, edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
+        <td nowrap><%= story.created_at.strftime("%Y-%m-%d") %></td>
+        <td style="line-height: 1.0; text-align: right"><%= button_to story.release_seq.nil? ? "––" : story.release_seq, edit_seq_path(story), class: 'btn btn-sap btn-info hidden-xs',
                     style: "margin-top: -3px; margin-bottom: -15px" %>&nbsp;</td>
-        <td><%= u.url_domain %></td>
+        <td>&nbsp;&nbsp;<%= u.url_domain %></td>
         <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td width="10%"><%= story.locations.map { |location| location.code }.join(', ') %>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
