@@ -5,7 +5,8 @@
 			<span style="font-size: 2em"><strong>Sign up</strong></span><span style="font-size: 1.3em">&nbsp;&nbsp;&nbsp;(and get access to our curated "Editor Picks")</span><hr>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
+        <%= devise_error_messages! %>
+		    
 			  <div class="form-inputs">
 			    <p style="color: gray; line-height: 80%">So we don't have to say "hey you"</p>
 			    <table>
@@ -30,6 +31,9 @@
 						</tr>
 					  <tr>
 					    <td style="padding-bottom: 10px; font-size: 110%">Password</td>
+					    <% if @minimum_password_length %>
+					      <em>(<%= @minimum_password_length %> characters minimum)</em>
+					    <% end %><br />
 						  <td style="padding-bottom: 10px"><%= f.password_field :password, required: true, maxlength: 50 %>&nbsp;&nbsp;</td>
 						</tr>
 					  <tr>
