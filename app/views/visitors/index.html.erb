@@ -1,3 +1,4 @@
+<!-- AKA the landing page -->
 <head>
   <meta http-equiv="refresh" content="3600">  <!-- refresh every one hour -->
 </head>
@@ -95,9 +96,17 @@
 	                </p>
 
 	                <p class="text-muted" style="margin-bottom: 2%">
-	                  <% if story.author.present? %>
-	                    by <%= story.author %><meta itemprop="author" content="<%= story.author %>">&nbsp;&nbsp;
-	                  <% end %>
+
+		                <% if Mediaowner.where(url_domain: u.url_domain).present? %>
+		                  <% unless Mediaowner.where(url_domain: u.url_domain).last.title.nil? %>
+	                     <%= title = Mediaowner.where(url_domain: u.url_domain).last.title %> &nbsp;&nbsp;
+			                <% end %>
+			              <% end %>
+
+	                  <!--% if story.author.present? %>-->
+	                    <!--by %= story.author %><meta itemprop="author" content="<%= story.author %>">&nbsp;&nbsp;-->
+	                  <!--% end %>-->
+
 	                  <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
 	                  <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
 	                  <% slash_date = mmddyy ? mmddyy : mmyy %>
