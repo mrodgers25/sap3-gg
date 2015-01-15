@@ -103,10 +103,6 @@
 			                <% end %>
 			              <% end %>
 
-	                  <!--% if story.author.present? %>-->
-	                    <!--by %= story.author %><meta itemprop="author" content="<%= story.author %>">&nbsp;&nbsp;-->
-	                  <!--% end %>-->
-
 	                  <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
 	                  <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
 	                  <% slash_date = mmddyy ? mmddyy : mmyy %>
