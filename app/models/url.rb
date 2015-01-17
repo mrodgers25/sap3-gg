@@ -9,6 +9,8 @@ class Url < ActiveRecord::Base
   has_many :images, inverse_of: :url
   accepts_nested_attributes_for :images
 
+  has_one :mediaowner, foreign_key: "url_domain", primary_key: "url_domain"
+
   attr_accessor :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
 
   before_validation :set_track_fields, on: :create

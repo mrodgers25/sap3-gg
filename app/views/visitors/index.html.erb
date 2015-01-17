@@ -99,9 +99,9 @@
 
 	                <p class="text-muted" style="margin-bottom: 2%">
 
-		                <% if Mediaowner.where(url_domain: u.url_domain).present? %>
-		                  <% unless Mediaowner.where(url_domain: u.url_domain).last.title.nil? %>
-	                     <%= title = Mediaowner.where(url_domain: u.url_domain).last.title %> &nbsp;&nbsp;
+		                <% if u.mediaowner.present? %>
+		                  <% unless u.mediaowner.title.nil? %>
+	                     <%= u.mediaowner.title %> &nbsp;&nbsp;
 			                <% end %>
 			              <% end %>
 

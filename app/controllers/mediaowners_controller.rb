@@ -51,6 +51,6 @@ class MediaownersController < ApplicationController
     end
 
     def mediaowner_params
-      params.require(:mediaowner).permit(:title, :url, :url_domain, :owner_name, :media_type, :distribution_type, :publication_name, :paywall_yn, :content_frequency_time, :content_frequency_other, :content_frequency_guide, :nextissue_yn)
+      params.require(:mediaowner).permit(:title, :url_full, :url_domain, :owner_name, :media_type, :distribution_type, :publication_name, :paywall_yn, :content_frequency_time, :content_frequency_other, :content_frequency_guide, :nextissue_yn)
     end
 end
