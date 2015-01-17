@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107052150) do
+ActiveRecord::Schema.define(version: 20150117142647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20150107052150) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "mediaowners", ["url_domain"], name: "index_mediaowners_on_url_domain", unique: true, using: :btree
 
   create_table "place_categories", force: true do |t|
     t.string   "code",       null: false

@@ -4,7 +4,7 @@ class MediaownersController < ApplicationController
   respond_to :js, :html
 
   def index
-    @mediaowners = Mediaowner.order("title").all
+    @mediaowners = Mediaowner.order("url_domain").all
     authorize Mediaowner
     respond_with(@mediaowners)
   end
