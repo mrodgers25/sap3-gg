@@ -191,20 +191,30 @@ class StoriesController < ApplicationController
   end
 
   def get_domain_info(source_url_pre)
-    d_url = Domainatrix.parse(source_url_pre)
-    @full_domain = d_url.host
-    split_full_domain = @full_domain.split(".")
-    if split_full_domain.length == 2
-      @base_domain = split_full_domain[0].to_s + "." + split_full_domain[1].to_s
-    else
-      @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
-    end
+
+    full_url = Domainatrix.parse(source_url_pre).url
+    sub = Domainatrix.parse(source_url_pre).subdomain
+    domain = Domainatrix.parse(source_url_pre).domain
+    suffix = Domainatrix.parse(source_url_pre).public_suffix
+    prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+    @base_domain = prefix + domain + '.' + suffix
+    # binding.pry
+
+    # d_url = Domainatrix.parse(source_url_pre)
+    # @full_domain = d_url.host
+    # split_full_domain = @full_domain.split(".")
+    # if split_full_domain.length == 2
+    #   @base_domain = split_full_domain[0].to_s + "." + split_full_domain[1].to_s
+    # else
+    #   @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
+    # end
+
     if Mediaowner.where(url_domain: @base_domain).first.present?
       @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
-    @full_web_url = d_url.url
+    @full_web_url = full_url
   end
 
   # Use callbacks to share common setup or constraints between actions.
