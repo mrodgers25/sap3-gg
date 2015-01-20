@@ -109,6 +109,7 @@ class StoriesController < ApplicationController
     # @meta_story_category = @story.story_category
     @meta_type = @story.scraped_type
     @meta_author = @story.author
+    @outside_usa = @story.outside_usa
     @year = @story.story_year
     @month = @story.story_month
     @day = @story.story_date
@@ -242,9 +243,6 @@ class StoriesController < ApplicationController
     @meta_desc = hash['urls_attributes']['0']['url_desc']
     @meta_keywords = hash['urls_attributes']['0']['url_keywords']
     @meta_tagline = hash["editor_tagline"]
-    # @meta_location = hash["location_code"]
-    # @meta_place = hash["place_category"]
-    # @meta_story_category = hash["story_category"]
     @meta_type = hash["story_type"]
     @meta_author = hash["author"]
     @year = hash["story_year"]
@@ -298,7 +296,7 @@ class StoriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
-      :media_id, :scraped_type, :story_type, :author, :story_month, :story_date, :sap_publish_date, :story_year,
+      :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_month, :story_date, :sap_publish_date, :story_year,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :release_seq,

@@ -185,7 +185,9 @@
           </tr>
           <tr>
             <td>Story Author</td>
-            <td><%= f.text_field :author, :value => @meta_author, :size => 50 %></td>
+            <td><%= f.text_field :author, :value => @meta_author, :size => 50 %>&nbsp;&nbsp;&nbsp;&nbsp;
+            Outside USA?&nbsp;&nbsp;
+            <%= f.check_box :outside_usa, :value => @outside_usa %></td>
           </tr>
           <tr>
             <td>Story Date</td>

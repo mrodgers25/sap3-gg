@@ -1,22 +1,23 @@
-# url = Url.all
+# full_url = Domainatrix.parse(source_url_pre).url
+# sub = Domainatrix.parse(source_url_pre).subdomain
+# domain = Domainatrix.parse(source_url_pre).domain
+# suffix = Domainatrix.parse(source_url_pre).public_suffix
+# prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+# @base_domain = prefix + domain + '.' + suffix
 
-source_url_pre = 'http://austin.culturemap.com/news/restaurants-bars/01-16-15-new-restaurant-openings-ramen-tatsu-ya-juiceland-chilantro-luckys-fuzzys/'
-full_url = Domainatrix.parse(source_url_pre).url
-sub = Domainatrix.parse(source_url_pre).subdomain
-domain = Domainatrix.parse(source_url_pre).domain
-suffix = Domainatrix.parse(source_url_pre).public_suffix
-prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
-@base_domain = prefix + domain + '.' + suffix
+url = Url.all
 
+url.each do |u|
+  sub = Domainatrix.parse(u.url_full).subdomain
+  domain = Domainatrix.parse(u.url_full).domain
+  suffix = Domainatrix.parse(u.url_full).public_suffix
+  prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+  d_url = prefix + domain + '.' + suffix
+  puts "parsed url is #{d_url}"
+  u.update_attributes(url_domain: d_url)
+end
 
-# url.each do |u|
-#   sub = Domainatrix.parse(u.url_full).subdomain
-#   domain = Domainatrix.parse(u.url_full).domain
-#   suffix = Domainatrix.parse(u.url_full).public_suffix
-#   prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
-#   d_url = prefix + domain + '.' + suffix
-#   puts "parsed url is #{d_url}"
-# end
+url.pluck("id","url_domain")
 #
 #
 # d_url = Domainatrix.parse(source_url_pre)
