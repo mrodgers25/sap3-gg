@@ -21,7 +21,7 @@ class VisitorsController < ApplicationController
     end
     story_limit_filtered ||= 36
 
-    @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
+    @stories = Story.order("sap_publish_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
     @stories_filtered = Story.where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
 
     if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
