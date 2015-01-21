@@ -179,7 +179,7 @@ class StoriesController < ApplicationController
 
   def set_release_seq
     new_seq = Story.find(params[:id]).release_seq
-    if new_seq > params[:old_seq].to_i
+    if new_seq >= params[:old_seq].to_i
       @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
     else
       @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
