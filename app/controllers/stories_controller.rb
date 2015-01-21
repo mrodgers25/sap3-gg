@@ -180,15 +180,16 @@ class StoriesController < ApplicationController
   def set_release_seq
     new_seq = Story.find(params[:id]).release_seq
     old_seq = params[:old_seq].to_i
-    if new_seq > old_seq
-      Story.find(params[:id]).update_attributes(release_seq: (new_seq + 1))
+    if new_seq <= old_seq
+      Story.find(params[:id]).update_attributes(release_seq: (new_seq - 1))
     end
-    @stories = Story.joins(:urls).order("stories.release_seq, stories.id").where(story_complete: true, sap_publish_date: nil).includes(:urls)
+    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
     seq = 1
     @stories.each do |s|
       s.update_attributes(release_seq: seq)
       seq += 1
     end
+    # binding.pry
   end
 
   # def set_release_seq   ! this reversed seq the unsequenced stories when moving story in one direction
