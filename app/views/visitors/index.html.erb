@@ -76,7 +76,7 @@
                   <% u.images.each do |i| %>
 
 		                <% if valid_url?(i.src_url) %>
-                      <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), u.url_full, target: '_blank' %>
+                      <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), outbound_click_path(url: u.encoded_url), target: '_blank' %>
 			              <% end %>
 
                     <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
@@ -94,7 +94,7 @@
 	                <% end %>
 
 	                <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
-	                  <%= link_to u.url_title, u.url_full, target: '_blank' %>
+	                  <%= link_to u.url_title, outbound_click_path(url: u.encoded_url), target: '_blank' %>
 	                </p>
 
 	                <p class="text-muted" style="margin-bottom: 2%">
