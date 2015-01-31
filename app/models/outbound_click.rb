@@ -1,3 +1,3 @@
 class OutboundClick < ActiveRecord::Base
-  validates :user_id, :url, presence: true
+  validates :url, presence: true
 end
