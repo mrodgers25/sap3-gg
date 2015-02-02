@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20150131161434) do
   add_index "mediaowners", ["url_domain"], name: "index_mediaowners_on_url_domain", unique: true, using: :btree
 
   create_table "outbound_clicks", force: true do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "user_id"
     t.string   "url",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"

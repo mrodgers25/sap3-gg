@@ -29,6 +29,8 @@ gem 'social-share-button'
 gem 'awesome_print', :require => 'ap'
 gem 'google-webfonts'
 gem 'ahoy_matey'
+gem 'unirest'
+gem 'json'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 group :development do

@@ -144,13 +144,15 @@ end
 
     logged_in_user_email = User.find(current_user).email
 
-    # story export
-    file = Rails.root.join('tmp','action_listing.csv')
-    puts "File will be #{file}"
+    # action export
+    file1 = Rails.root.join('tmp','action_listing.csv')
+    puts "File1 will be #{file1}"
+    file2 = Rails.root.join('tmp','outbound_click_listing.csv')
+    puts "File2 will be #{file2}"
 
     actions = User.includes(:events)
 
-    CSV.open( file, 'w' ) do |writer|
+    CSV.open( file1, 'w' ) do |writer|
       writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
         actions.each do |a|
           a.events.each do |e|
@@ -163,18 +165,28 @@ end
             end
           end
         end
+    end
+
+    outbound_clicks = OutboundClick.all
+
+    CSV.open( file2, 'w' ) do |writer|
+      writer << ["Id","UserId","Url","Created"]
+      outbound_clicks.each do |c|
+        writer << [c.id, c.user_id, c.url, c.created_at]
       end
+    end
 
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
     mail = SendGrid::Mail.new do |m|
       m.to = "#{logged_in_user_email}"
       m.from = 'StoriesAboutPlaces.com'
-      m.subject = 'User Actions'
+      m.subject = 'Internal User Actions and External Outbound Clicks'
       m.text = 'Your latest export is attached.'
     end
 
-    mail.add_attachment("#{file}")
+    mail.add_attachment("#{file1}")
+    mail.add_attachment("#{file2}")
     puts client.send(mail)
 
     redirect_to :back, notice: "Export sent to #{logged_in_user_email}"
