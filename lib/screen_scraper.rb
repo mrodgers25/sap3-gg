@@ -73,7 +73,6 @@ class ScreenScraper
                         (?<year>\d{4})/  # four digit year
     unless alpha_date_regex.match(@clean_text).nil?
       alpha_date_match = alpha_date_regex.match(@clean_text)
-      # puts "alpha date match is: #{alpha_date_match}"
       alpha_date_match_pos = (alpha_date_regex =~ @clean_text)
       alpha_month = alpha_date_match[:month].strip.downcase
       alpha_month_num = set_alpha_month_num(alpha_month)
@@ -122,15 +121,14 @@ class ScreenScraper
           begin
             image_size_array = FastImage.size(src_url, :raise_on_failure=>true)
             if image_size_array[0].to_i > 199
-              puts "Found counter is: #{found_counter}"
-              puts "src: #{src_url}"
-              # puts "img size: #{FastImage.size(src_url)}"
-              puts "alt: #{alt_text}"
+              # puts "Found counter is: #{found_counter}"
+              # puts "src: #{src_url}"
+              # puts "alt: #{alt_text}"
               @page_imgs << { "src_url" => src_url, "alt_text" => alt_text.capitalize, "image_width" => image_size_array[0], "image_height" => image_size_array[1] }
               found_counter += 1
             end
           rescue
-            puts "FastImage error"
+            # puts "FastImage error"
           end
         end
       end
@@ -179,7 +177,7 @@ class ScreenScraper
   end
 
   def set_itemprop_pub_date(itemprop_pub_date_match)
-    puts "set_itemprop_pub_date"
+    # puts "set_itemprop_pub_date"
     @year = itemprop_pub_date_match[:iyear].to_i
     @month = itemprop_pub_date_match[:imonth].to_i
     @day = itemprop_pub_date_match[:iday].to_i
@@ -187,7 +185,7 @@ class ScreenScraper
   end
 
   def set_num_date(num_date_match)
-    puts "set_num_date"
+    # puts "set_num_date"
     @month = num_date_match[:dmonth].to_i
     @day = num_date_match[:dday].to_i
     @day = @day == 0 ? 1 : @day
@@ -195,7 +193,7 @@ class ScreenScraper
   end
 
   def set_alpha_date(alpha_month_num, alpha_date_match)
-    puts "set_alpha_date"
+    # puts "set_alpha_date"
     @month = alpha_month_num.to_i
     @day = alpha_date_match[:day].to_i
     @day = @day == 0 ? 1 : @day

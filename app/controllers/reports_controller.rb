@@ -59,7 +59,7 @@ class ReportsController < ApplicationController
 
     # user export
     file2 = Rails.root.join('tmp','user_listing.csv')
-    puts "File will be #{file2}"
+    # puts "File will be #{file2}"
 
     users = User.all
 
@@ -102,7 +102,7 @@ end
 
     # story export
     file = Rails.root.join('tmp','story_listing.csv')
-    puts "File will be #{file}"
+    # puts "File will be #{file}"
 
     stories = Story.includes(:urls => [:images]).order(:id)
 
@@ -146,9 +146,9 @@ end
 
     # action export
     file1 = Rails.root.join('tmp','action_listing.csv')
-    puts "File1 will be #{file1}"
+    # puts "File1 will be #{file1}"
     file2 = Rails.root.join('tmp','outbound_click_listing.csv')
-    puts "File2 will be #{file2}"
+    # puts "File2 will be #{file2}"
 
     actions = User.includes(:events)
 
