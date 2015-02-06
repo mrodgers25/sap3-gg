@@ -150,7 +150,8 @@ end
     file2 = Rails.root.join('tmp','outbound_click_listing.csv')
     # puts "File2 will be #{file2}"
 
-    actions = User.includes(:events)
+    actions = User.includes(:events).joins(:events).order("ahoy_events.time")
+    # actions = User.includes(:events)
 
     CSV.open( file1, 'w' ) do |writer|
       writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
