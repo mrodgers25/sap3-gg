@@ -89,11 +89,14 @@ class ReportsController < ApplicationController
       end
     end
 
+    puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
+    puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
+
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
     mail = SendGrid::Mail.new do |m|
       m.to = "#{logged_in_user_email}"
-      m.from = 'StoriesAboutPlaces.com backend'
+      m.from = 'StoriesAboutPlaces.com'
       m.subject = 'Export of all Stories, Users and Actions'
       m.text = 'Your latest export files are attached.'
     end

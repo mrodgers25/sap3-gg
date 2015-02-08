@@ -16,5 +16,5 @@ class ReportPolicy
   #   allowed = ["associate","admin"]
   #   allowed.include?(@current_user.role)
   # end
-  
+
 end
