@@ -6,20 +6,15 @@ class ReportPolicy
     @user = model
   end
 
-  def export_stories_users?
+  def export_all?
     allowed = ["admin"]
     allowed.include?(@current_user.role)
     # binding.pry
   end
 
-  def export_stories?
-    allowed = ["associate","admin"]
-    allowed.include?(@current_user.role)
-  end
-
-  def user_actions?
-    allowed = ["associate","admin"]
-    allowed.include?(@current_user.role)
-  end
-
+  # def export_stories?
+  #   allowed = ["associate","admin"]
+  #   allowed.include?(@current_user.role)
+  # end
+  
 end
