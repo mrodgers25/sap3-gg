@@ -108,7 +108,7 @@ class ReportsController < ApplicationController
 
     puts client.send(mail)
 
-    redirect_to :back, notice: "Exports sent. Expect a few minutes for delivery to #{logged_in_user_email}"
+    redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
   end
 
