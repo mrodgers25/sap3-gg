@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   post '/visitors/forget_story/:id', to: 'visitors#forget_story', as: :forget_story
 
   match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
-  match '/reports/export_stories_users' => 'reports#export_stories_users', via: [:get, :post]
-  match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
-  match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
+  match '/reports/export_all' => 'reports#export_all', via: [:get, :post]
+  # match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
+  # match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
   
   get '/click', to: 'outbound_clicks#show', as: :outbound_click
   
