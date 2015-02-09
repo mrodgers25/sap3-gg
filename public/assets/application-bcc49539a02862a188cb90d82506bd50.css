@@ -8843,19 +8843,24 @@ img {
 }
 
 /* line 154, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+a.btn-view, a.btn-view:hover, a.btn-view:visited {
+  color: white;
+}
+
+/* line 158, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
 .incomplete {
   background: rgba(255, 251, 5, 0.69);
 }
 
 @media (max-width: 768px) {
-  /* line 161, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 165, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .logo-nav img {
     width: 220px;
     max-width: 100%;
     margin-top: 10px;
   }
 
-  /* line 167, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 171, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .nav-sap-select {
     min-height: 35px;
     margin-top: 0px;
@@ -8863,7 +8868,7 @@ img {
     margin-bottom: 10px;
   }
 
-  /* line 173, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 177, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .select-dropdown-hdr select {
     font-family: 'Arial Narrow', sans-serif;
     font-size: 1.2em;
@@ -8872,14 +8877,14 @@ img {
     line-height: 1.0;
   }
 
-  /* line 180, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 184, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .editor-pick {
     visibility: hidden;
     font-size: 6px;
     line-height: .1;
   }
 
-  /* line 185, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 189, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .timer-display {
     font-family: 'Roboto', sans-serif;
     color: #4A4A4A;
@@ -8889,14 +8894,14 @@ img {
     padding-left: 20px;
   }
 
-  /* line 193, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 197, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .nav-sap-toggle {
     padding: 6px 8px;
     margin-top: 4px;
     margin-bottom: 4px;
   }
 
-  /* line 198, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 202, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .btn-responsive {
     padding: 1px 8px;
     margin-right: 6px;
@@ -8905,45 +8910,45 @@ img {
     border-radius: 3px;
   }
 
-  /* line 205, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 209, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-input-sap {
     padding-bottom: 3px;
     padding-left: 4px;
   }
 
-  /* line 209, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 213, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .remember-sap {
     padding-top: 9px;
     padding-left: 4px;
   }
 
-  /* line 213, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 217, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-sap {
     margin-top: 17px;
     margin-bottom: -10px;
   }
 
-  /* line 217, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 221, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup {
     font-size: 1.2em;
   }
 
-  /* line 220, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 224, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup-links a, .story_actions-links a:visited {
     color: rgba(51, 102, 255, 0.64);
   }
 
-  /* line 223, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 227, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .panel-sap {
     padding: 0;
   }
 
-  /* line 226, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 230, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .landing-panel-sap {
     padding-top: 3px;
   }
 
-  /* line 229, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 233, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .container-sap {
     margin-top: -20px;
     padding-left: 0;
@@ -8951,13 +8956,13 @@ img {
     padding-bottom: 0;
   }
 
-  /* line 235, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 239, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .saved-story-title {
     text-decoration: underline;
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
-  /* line 243, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 247, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .nav-sap-select {
     min-height: 35px;
     margin-top: 0px;
@@ -8965,7 +8970,7 @@ img {
     margin-bottom: 10px;
   }
 
-  /* line 249, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 253, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .timer-display {
     font-family: 'Roboto', sans-serif;
     color: #4a4a4a;
@@ -8975,7 +8980,7 @@ img {
     padding-left: 10px;
   }
 
-  /* line 257, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 261, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .select-dropdown-hdr select {
     font-family: 'Arial Narrow', sans-serif;
     font-size: 100%;
@@ -8984,7 +8989,7 @@ img {
     line-height: 100%;
   }
 
-  /* line 264, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 268, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .editor-pick {
     visibility: hidden;
     margin-top: 6px;
@@ -8996,13 +9001,13 @@ img {
     margin-right: -140px;
   }
 
-  /* line 274, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 278, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .nav-sap-toggle {
     padding: 6px 8px;
     margin-left: 0px;
   }
 
-  /* line 278, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 282, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .btn-responsive {
     margin-top: 5px;
     margin-right: 5px;
@@ -9013,40 +9018,40 @@ img {
     border-radius: 3px;
   }
 
-  /* line 287, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 291, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-input-sap {
     padding-bottom: 3px;
     padding-left: 4px;
   }
 
-  /* line 291, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 295, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .remember-sap {
     padding-top: 10px;
   }
 
-  /* line 294, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 298, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-sap {
     margin-top: 20px;
     padding-left: 10px;
   }
 
-  /* line 298, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 302, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup {
     font-size: 1.4em;
   }
 
-  /* line 301, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 305, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup-links a, .story_actions-links a:visited {
     color: rgba(51, 102, 255, 0.64);
   }
 
-  /* line 304, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 308, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .landing-panel-sap {
     padding-top: 3px;
   }
 }
 @media (min-width: 1025px) {
-  /* line 312, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 316, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .nav-sap-select {
     min-height: 40px;
     margin-top: 0px;
@@ -9054,7 +9059,7 @@ img {
     margin-bottom: 15px;
   }
 
-  /* line 318, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 322, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .timer-display {
     font-family: 'Roboto', sans-serif;
     color: #4A4A4A;
@@ -9064,7 +9069,7 @@ img {
     padding-left: 15px;
   }
 
-  /* line 326, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 330, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .select-dropdown-hdr {
     padding-top: 9px;
     padding-left: 4px;
@@ -9072,7 +9077,7 @@ img {
     line-height: 1.0;
   }
 
-  /* line 332, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 336, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .editor-pick {
     margin-top: 9px;
     margin-right: -50px;
@@ -9083,7 +9088,7 @@ img {
     line-height: 1.1;
   }
 
-  /* line 341, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 345, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .btn-responsive {
     padding: 5px 12px;
     margin-top: 4px;
@@ -9092,34 +9097,34 @@ img {
     font-size: 110%;
   }
 
-  /* line 348, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 352, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-input-sap {
     padding-bottom: 3px;
     padding-left: 4px;
   }
 
-  /* line 352, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 356, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .remember-sap {
     padding-top: 10px;
   }
 
-  /* line 355, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 359, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signin-sap {
     margin-top: 20px;
     padding-left: 10px;
   }
 
-  /* line 359, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 363, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup {
     font-size: 1.4em;
   }
 
-  /* line 362, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 366, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .signup-links a, .story_actions-links a:visited {
     color: rgba(51, 102, 255, 0.64);
   }
 
-  /* line 365, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
+  /* line 369, /Users/gg/RubymineProjects/sap3-gg/app/assets/stylesheets/application.css.scss */
   .panel-sap {
     padding-left: 4%;
     padding-right: 4%;

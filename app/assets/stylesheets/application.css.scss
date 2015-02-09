@@ -150,6 +150,10 @@ a:hover {
   margin-bottom: -26px;
 }
 
+a.btn-view, a.btn-view:hover, a.btn-view:visited {
+  color: white;
+}
+
 .incomplete {
   background: rgba(255, 251, 5, 0.69);
 }
