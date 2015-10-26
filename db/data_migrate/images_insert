@@ -1,0 +1,29 @@
+Image.create(story_id: 1675, image_size_h: "1365", image_size_v: "910",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 2, full_url: "https://goo.gl/qU2dUh", domain: "lh3.googleusercontent.com")
+
+Image.create(story_id: 1673, image_size_h: "1600", image_size_v: "1200",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 4, full_url: "http://www.getawaymavens.com/wp-content/uploads/2015/05/Doorman-at-Wink-and-Nod.jpg", domain: "www.getawaymavens.com")
+
+Image.create(story_id: 1672, image_size_h: "700", image_size_v: "400",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 5, full_url: "http://images-resrc.staticlp.com/S=W748/O=75/http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2015/04/william-penn-statue.jpg", domain: "www.lonelyplanet.com")
+
+Image.create(story_id: 1671, image_size_h: "2000", image_size_v: "1300",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 6, full_url: "http://assets3.thrillist.com/v1/image/1467483/size/tmg-slideshow_xl", domain: "assets3.thrillist.com")
+
+Image.create(story_id: 1670, image_size_h: "858", image_size_v: "536",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 7, full_url: "http://i.telegraph.co.uk/multimedia/archive/03299/Denver-Art-Museum_3299829k.jpg", domain: "i.telegraph.co.uk")
+
+Image.create(story_id: 1669, image_size_h: "858", image_size_v: "536",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 8, full_url: "http://i.telegraph.co.uk/multimedia/archive/03299/Denver-Art-Museum_3299829k.jpg", domain: "i.telegraph.co.uk")
+
+Image.create(story_id: 1668, image_size_h: "2000", image_size_v: "1300",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 9, full_url: "http://assets3.thrillist.com/v1/image/1467483/size/tmg-slideshow_xl", domain: "assets3.thrillist.com")
+
+Image.create(story_id: 1667, image_size_h: "1600", image_size_v: "1200",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 10, full_url: "http://images-resrc.staticlp.com/S=W748/O=75/http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2015/04/william-penn-statue.jpg", domain: "www.lonelyplanet.com")
+
+Image.create(story_id: 1667, image_size_h: "470", image_size_v: "353",image_type: "manual")
+Url.create(urlable_type: "Image", urlable_id: 13, full_url: "http://cdn.firstwefeast.com/assets/2015/04/Coopers-Country-Store-Ext-2-e1426858393587.jpg", domain: "cdn.firstwefeast.com")
+
+http://cdn.firstwefeast.com/assets/2015/04/Coopers-Country-Store-Ext-2-e1426858393587.jpg
+

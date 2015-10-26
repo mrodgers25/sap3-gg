@@ -98,7 +98,7 @@
                               URL<br><br>
                             </div>
                             <div class="col-md-10 text-left">
-                              <%= i.text_area :manual_url, :cols => 80 %><br>
+                              <%= i.text_area_tag :manual_url, :cols => 80 %><br>
                             </div><br>
                           </div>
 	                        <div class="col-md-1">
@@ -111,7 +111,6 @@
                             <div class="col-md-4 text-left">
                               <%= i.text_field :image_width %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
                               <%= i.text_field :image_height %><br>
-                              <%= i.hidden_field :manual_enter %>
                             </div>
                           </div>
                       <% end %>
@@ -135,7 +134,6 @@
                           <div class="col-md-4 text-left">
                             <%= i.text_field :image_width %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
                             <%= i.text_field :image_height %><br>
-                            <%= i.hidden_field :manual_enter %>
                           </div>
                         </div>
 

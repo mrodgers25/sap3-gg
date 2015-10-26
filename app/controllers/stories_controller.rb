@@ -283,6 +283,7 @@ class StoriesController < ApplicationController
 
   def set_image_params(story_params)
     image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
+    binding.pry
     unless image_data.nil?
       image_data_hash = JSON.parse(image_data)
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
@@ -320,7 +321,7 @@ class StoriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(
-      :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_month, :story_date, :sap_publish_date, :story_year,
+      :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :sap_publish_date,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :release_seq,
