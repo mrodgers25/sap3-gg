@@ -283,7 +283,7 @@ class StoriesController < ApplicationController
 
   def set_image_params(story_params)
     image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
-    binding.pry
+    # binding.pry
     unless image_data.nil?
       image_data_hash = JSON.parse(image_data)
       story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
