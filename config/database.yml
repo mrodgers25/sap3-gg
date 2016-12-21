@@ -18,7 +18,7 @@ development:
   encoding: unicode
   database: sap3-gg_development
   pool:     5
-  username: sap3-gg
+  username: martharodgers  #sap3-gg
   password:
   template: template0
 
@@ -46,7 +46,7 @@ test:
   encoding: unicode
   database: sap3-gg_test
   pool:     5
-  username: sap3-gg
+  username: martharodgers  #sap3-gg
   password:
   template: template0
 
@@ -56,6 +56,6 @@ production:
   encoding: unicode
   database: sap3-gg_production
   pool:     5
-  username: sap3-gg
+  username: martharodgers  #sap3-gg
   password:
   template: template0
