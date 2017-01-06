@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :events
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :admin  # Turn this back to :user
   end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable #, :confirmable
 end
