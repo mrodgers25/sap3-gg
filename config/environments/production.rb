@@ -16,11 +16,16 @@ Rails.application.configure do
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
-  # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
+  #The following 2 lines are added due to Rails 4.2.0 upgrade
+  # For large-scale production use, consider using a caching reverse proxy like
+  # NGINX, varnish or squid.
+
   # config.action_dispatch.rack_cache = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  #following 3 lines are added due to Rails 4.2.0 upgrade
+  # Disable serving static files from the `/public` folder by default since
+  # Apache or NGINX already handles this.
+  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -30,20 +35,27 @@ Rails.application.configure do
   config.assets.compile = true
   # config.assets.compile = false # changed by gg
 
-  # Generate digests for assets URLs.
+  #following 2 lines were due to Rails 4.2.0 upgrade
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
   # `config.assets.precompile` has moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  #Slight changes in next two lines due to upgrade to Rails 4.2.0
+  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
+  #This section changed due to upgrade to Rails 4.2.0
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  #config.log_level = :info
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -55,7 +67,8 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  #Changed quotations due to upgrade to Rails 4.2.0
+  # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -72,6 +85,7 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  # Following two lines can be deleted (info via upgrade to Rails 4.2.0)
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 

@@ -20,6 +20,10 @@ module Sap3Gg
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    #Added these two lines due to upgrade to Rails 4.2.0
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
     # added by gg to use iframe
     config.action_dispatch.default_headers.merge!({'X-Frame-Options' => 'ALLOWALL'})
 

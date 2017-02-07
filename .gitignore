@@ -18,7 +18,12 @@
 # minimal Rails specific artifacts
 db/*.sqlite3
 /db/*.sqlite3-journal
+
+
 /log/*
+## update for Rails 4.2
+!/log/.keep
+
 /tmp/*
 
 # various artifacts
