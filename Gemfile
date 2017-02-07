@@ -1,14 +1,28 @@
 source 'https://rubygems.org'
 ruby '2.1.4'
-gem 'rails', '4.1.6'
+#upgrade to 4.2.0
+gem 'rails', '4.2.0'
 gem 'rails_12factor', group: :production
-gem 'sass-rails', '~> 4.0.3'
+
+#due to upgrade to 4.2.0
+#gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
+
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+
+#due to upgrade to 4.2.0
+# Use CoffeeScript for .coffee assets and views
+#gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
+
+
 gem 'jquery-rails'
 # gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+
+gem 'sdoc', '~> 0.4.0', group: :doc
+
+
 gem 'bootstrap-sass', '~> 3.2.0'  # had to hard code version number to get it to work
 gem 'devise', '~>3.5.5' #had to hard code version number to get it to work
 gem 'pg'
@@ -34,7 +48,13 @@ gem 'unirest'
 gem 'json'
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
-group :development do
+#due to upgrade to 4.2.0 - some changes here....
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
