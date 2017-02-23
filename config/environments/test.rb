@@ -35,7 +35,7 @@ Rails.application.configure do
 
   #Added following two lines due to upgrade to Rails 4.2.0
   # Randomize the order test cases are executed.
-  config.active_support.test_order = :random
+  config.active_support.test_order = :sorted # or `:random` if we prefer
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
