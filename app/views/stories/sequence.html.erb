@@ -26,6 +26,7 @@
         <td><%= u.url_title %>&nbsp;&nbsp;</td>
         <td>&nbsp;&nbsp;<%= link_to 'Show', story %>&nbsp;</td>
         <td><%= link_to 'Edit', edit_story_path(story) %>&nbsp;</td>
+        <td class="col-xs-2 col-xs-offset-4"><%= link_to "Publish Now", pub_now_path(story), class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   <% end %>

@@ -43,6 +43,12 @@ class StoriesController < ApplicationController
     @sequence = @story.release_seq
   end
 
+  def pub_now
+    Story.find(params[:id]).update_attributes(sap_publish_date: Time.now)
+    #redirect_to action: "/", notice: 'Story was successfully published.'
+    redirect_to root_path
+  end
+
   # GET /stories/1
   # GET /stories/1.json
   def show

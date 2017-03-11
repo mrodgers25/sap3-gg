@@ -17,8 +17,6 @@ class ApplicationController < ActionController::Base
           |u| u.permit(registration_params << :current_password)
       }
     elsif params[:action] == 'create'
-      puts "HELLOOOO**************************"
-
       devise_parameter_sanitizer.for(:sign_up) {
           |u| u.permit(registration_params)
       }

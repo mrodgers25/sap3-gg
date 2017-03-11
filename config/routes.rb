@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   match 'stories/incomplete' => 'stories#incomplete', via: [:get, :post], as: :incomplete_stories
   match 'stories/sequence' => 'stories#sequence', via: [:get, :post], as: :sequence_stories
   match 'stories/:id/edit_seq' => 'stories#edit_seq', via: [:get, :post], as: :edit_seq
+  match 'stories/:id/publish_now' => 'stories#pub_now', via: [:get, :post], as: :pub_now
   match 'stories/story_proof/:id' => 'stories#story_proof', via: [:get, :post], as: :story_proof
   match '/my_stories' => 'usersavedstories#my_stories', via: [:get, :post]
   match '/usersavedstories/:id' => 'usersavedstories#destroy', via: [:delete], as: :destroy_usersavedstories
@@ -17,9 +18,9 @@ Rails.application.routes.draw do
   match '/reports/export_all' => 'reports#export_all', via: [:get, :post]
   # match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
   # match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
-  
+
   get '/click', to: 'outbound_clicks#show', as: :outbound_click
-  
+
   resources :stories #original from generate
   resources :urls
   resources :images
