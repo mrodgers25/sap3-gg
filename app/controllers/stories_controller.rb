@@ -45,8 +45,7 @@ class StoriesController < ApplicationController
 
   def pub_now
     Story.find(params[:id]).update_attributes(sap_publish_date: Time.now)
-    #redirect_to action: "/", notice: 'Story was successfully published.'
-    redirect_to root_path
+    redirect_to root_path, notice: 'Story was successfully published.'
   end
 
   # GET /stories/1
