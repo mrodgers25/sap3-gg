@@ -89,8 +89,8 @@ class ReportsController < ApplicationController
       end
     end
 
-    # puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
-    # puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
+     puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
+     puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
