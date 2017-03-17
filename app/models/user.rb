@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :events
 
   def set_default_role
-    self.role ||= :admin  # Turn this back to :user
+    self.role ||= :user
   end
 
   # Include default devise modules. Others available are:
