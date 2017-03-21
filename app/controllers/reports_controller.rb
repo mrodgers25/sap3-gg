@@ -62,8 +62,8 @@ class ReportsController < ApplicationController
     file_o = Rails.root.join('tmp','outbound_click_listing.csv')
     # puts "Outbound clicks file will be #{file_o}"
 
-    actions = User.includes(:events).joins(:events).order("ahoy_events.time")
-    # actions = User.includes(:events)
+    #actions = User.includes(:events).joins(:events).order("ahoy_events.time")
+     actions = User.includes(:events)
 
     CSV.open( file_a, 'w' ) do |writer|
       writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
