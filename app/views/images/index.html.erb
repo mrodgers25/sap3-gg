@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @images.each do |image| %>
+    <% @images.reverse.each do |image| %>
       <tr>
         <td><%= image.id %>&nbsp;&nbsp;</td>
         <td><%= image.src_url %>&nbsp;&nbsp;</td>
