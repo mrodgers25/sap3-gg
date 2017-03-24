@@ -41,6 +41,7 @@ gem 'fastimage'
 gem 'mail', '~>2.6.3'
 gem 'figaro'
 gem 'sendgrid-ruby'
+
 gem 'delayed_job_active_record'
 gem 'social-share-button'
 gem 'awesome_print', :require => 'ap'
