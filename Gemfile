@@ -66,4 +66,6 @@ group :development do
   gem 'railroady'
   gem 'bundler-updater'  # run bundler-updater on the command line individually approve each gem needing update
   # gem 'bullet'  # detects n+1 queries
+  # test new viewing database option
+  gem 'rails_db'
 end
