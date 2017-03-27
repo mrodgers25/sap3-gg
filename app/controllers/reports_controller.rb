@@ -94,7 +94,7 @@ puts "******Email is #{logged_in_user_email}*****"
      puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
      puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
-    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
+    #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
 #sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
@@ -105,8 +105,30 @@ puts "******Email is #{logged_in_user_email}*****"
 #content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
-#sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-#response = sg.client.mail._('send').post(request_body: mail.to_json)
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+data = JSON.parse('{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "mrodgers25@gmail.com"
+        }
+      ],
+      "subject": "Hello World from the SendGrid Ruby Library!"
+    }
+  ],
+  "from": {
+    "email": "mrodgers@storiesaboutplaces.com"
+  },
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "Hello, Email!"
+    }
+  ]
+}')
+response = sg.client.mail._("send").post(request_body: data)
+
 #puts response.status_code
 #puts response.body
 #puts response.headers
