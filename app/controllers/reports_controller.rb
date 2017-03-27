@@ -126,7 +126,7 @@ data = JSON.parse('{
       "type": "text/plain",
       "value": "Hello, Email!"
     }
-  ]
+  ],
   "attachments": [
     {
       "type": "text/plain",
