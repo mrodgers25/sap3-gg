@@ -7,6 +7,8 @@ class ReportsController < ApplicationController
 
     require 'csv'
     require 'sendgrid-ruby'
+#NEXT LINE IS TEST
+    include SendGrid
 
 #byebug
 
@@ -94,25 +96,49 @@ puts "******Email is #{logged_in_user_email}*****"
      puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
      puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
-    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
+    #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
 #sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
+#NEXT SECTION IS A TEST
+from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
+to = Email.new(email: 'mrodgers25@gmail.com')
+subject = 'Sending with SendGrid is Fun'
+content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+mail = Mail.new(from, subject, to, content)
+
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+response = sg.client.mail._('send').post(request_body: mail.to_json)
+puts response.status_code
+puts response.body
+puts response.headers
 
 
-    mail = SendGrid::Mail.new do |m|
-      m.to = "#{logged_in_user_email}"
-      m.from = 'StoriesAboutPlaces.com'
-      m.subject = 'Export of all Stories, Users and Actions'
-      m.text = 'Your latest export files are attached.'
-    end
 
-    mail.add_attachment("#{file_s}")
-    mail.add_attachment("#{file_u}")
-    mail.add_attachment("#{file_a}")
-    mail.add_attachment("#{file_o}")
+    #mail = SendGrid::Mail.new do |m|
+    #  m.to = "#{logged_in_user_email}"
+    #  m.from = 'StoriesAboutPlaces.com'
+    #  m.subject = 'Export of all Stories, Users and Actions'
+    #  m.text = 'Your latest export files are attached.'
+    #end
 
-    puts client.send(mail)
+    #mail.add_attachment("#{file_s}")
+    #mail.add_attachment("#{file_u}")
+    #mail.add_attachment("#{file_a}")
+    #mail.add_attachment("#{file_o}")
+
+    #puts client.send(mail)
+
+
+
+
+
+
+
+
+
+
+
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
