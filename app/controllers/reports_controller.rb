@@ -137,7 +137,9 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
       m.text = 'Your latest export files are attached.'
     end
 
-    mail.add_attachment("#{file_s}")
+    mail.addFile("#{file_s}")
+
+    #mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
