@@ -8,7 +8,10 @@ class ReportsController < ApplicationController
     require 'csv'
     require 'sendgrid-ruby'
 
-    logged_in_user_email = User.find(current_user).email
+#byebug
+
+    logged_in_user_email = current_user.email #User.find(current_user).email
+puts "******Email is #{logged_in_user_email}*****"
 
     # story export
     file_s = Rails.root.join('tmp','story_listing.csv')
@@ -93,6 +96,10 @@ class ReportsController < ApplicationController
 
     client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
+#sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+#response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+
     mail = SendGrid::Mail.new do |m|
       m.to = "#{logged_in_user_email}"
       m.from = 'StoriesAboutPlaces.com'
@@ -101,9 +108,9 @@ class ReportsController < ApplicationController
     end
 
     mail.add_attachment("#{file_s}")
-    #mail.add_attachment("#{file_u}")
-    #mail.add_attachment("#{file_a}")
-    #mail.add_attachment("#{file_o}")
+    mail.add_attachment("#{file_u}")
+    mail.add_attachment("#{file_a}")
+    mail.add_attachment("#{file_o}")
 
     puts client.send(mail)
 
