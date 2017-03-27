@@ -127,6 +127,12 @@ data = JSON.parse('{
       "value": "Hello, Email!"
     }
   ]
+  "attachments": [
+    {
+      "type": "text/plain",
+      "filename": "#{file_s}"
+    }
+  ]
 }')
 response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
