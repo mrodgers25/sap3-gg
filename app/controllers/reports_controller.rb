@@ -135,7 +135,7 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
       m.from = 'mrodgers@StoriesAboutPlaces.com'
       m.subject = 'Export of all Stories, Users and Actions'
       m.text = 'Your latest export files are attached.'
-      m.files = "#{file_s}"
+      #m.files = "#{file_s}"
     end
 
     #mail.addFile("#{file_s}")
