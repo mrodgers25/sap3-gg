@@ -135,16 +135,18 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
       m.from = 'StoriesAboutPlaces.com'
       m.subject = 'Export of all Stories, Users and Actions'
       m.text = 'Your latest export files are attached.'
+      m.files = file_s
     end
 
-    mail.addFile("#{file_s}")
+    #mail.addFile("#{file_s}")
 
     #mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
-    puts client.send(mail)
+    #puts client.send(mail)
+    client.send(mail)
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
