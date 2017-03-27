@@ -142,12 +142,12 @@ response = sg.client.mail._("send").post(request_body: data)
       m.text = 'Your latest export files are attached.'
     end
 
-    mail.add_attachment("#{file_s}")
+    #mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
-    puts client.send(mail)
+    #puts client.send(mail)
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
