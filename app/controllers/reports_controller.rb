@@ -102,8 +102,8 @@ puts "******Email is #{logged_in_user_email}*****"
 #from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
 #to = Email.new(email: 'mrodgers25@gmail.com')
 #subject = 'Sending with SendGrid is Fun'
-content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', content)
+#content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.mail._('send').post(request_body: mail.to_json)
