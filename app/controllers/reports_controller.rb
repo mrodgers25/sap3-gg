@@ -105,7 +105,7 @@ puts "******Email is #{logged_in_user_email}*****"
 #content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
 data = JSON.parse('{
   "personalizations": [
     {
