@@ -140,10 +140,9 @@ end
       m.from = 'mrodgers@StoriesAboutPlaces.com'
       m.subject = 'Export of all Stories, Users and Actions'
       m.html = 'Your latest export files are attached.'
-      #m.files = "#{file_s}"
     end
 
-    sendgrid.send(email)
+    puts sendgrid.send(email)
 
     #mail.addFile("#{file_s}")
 
