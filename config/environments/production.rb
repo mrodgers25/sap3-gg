@@ -104,14 +104,14 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       # address: "smtp.gmail.net",
       address: "smtp.sendgrid.net",
-      port: 587,
-      domain: "storiesaboutplaces.com",
-      authentication: "plain",
+      port: "587",
+      #domain: "storiesaboutplaces.com",
+      :domain               =>  'heroku.com',
+      authentication: :plain,
       enable_starttls_auto: true,
       # user_name: ENV["GMAIL_USERNAME"],
       user_name: ENV["SENDGRID_USERNAME"],
       # password: ENV["GMAIL_PASSWORD"]
       password: ENV["SENDGRID_PASSWORD"]
   }
-
 end

@@ -13,8 +13,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Don't care if the mailer can't send...changed this down below
+  #config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -54,11 +54,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
   config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
       port: "587",
-      #domain: "localhost:3000",
-      domain: "gmail.com",
+      domain: "localhost:3000",
+      #domain: "gmail.com",
       authentication: "plain",
       enable_starttls_auto: true,
       user_name: ENV["GMAIL_USERNAME"],
