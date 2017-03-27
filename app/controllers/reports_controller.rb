@@ -7,8 +7,6 @@ class ReportsController < ApplicationController
 
     require 'csv'
     require 'sendgrid-ruby'
-#NEXT LINE IS TEST
-    include SendGrid
 
 #byebug
 
