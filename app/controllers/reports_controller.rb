@@ -96,7 +96,7 @@ puts "******Email is #{logged_in_user_email}*****"
 
     #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
-client = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
 #NEXT SECTION IS A TEST
 #from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
