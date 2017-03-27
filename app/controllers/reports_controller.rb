@@ -94,7 +94,7 @@ puts "******Email is #{logged_in_user_email}*****"
      puts "sendgrid user is: #{ENV["SENDGRID_USERNAME"]}"
      puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
-    #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
+    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
 
 #sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
@@ -104,7 +104,7 @@ puts "******Email is #{logged_in_user_email}*****"
 #subject = 'Sending with SendGrid is Fun'
 #content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
-
+/#
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
 data = JSON.parse('{
   "personalizations": [
@@ -128,11 +128,7 @@ data = JSON.parse('{
   ]
 }')
 response = sg.client.mail._("send").post(request_body: data)
-
-#puts response.status_code
-#puts response.body
-#puts response.headers
-
+#/
 
 
     mail = SendGrid::Mail.new do |m|
@@ -142,12 +138,12 @@ response = sg.client.mail._("send").post(request_body: data)
       m.text = 'Your latest export files are attached.'
     end
 
-    #mail.add_attachment("#{file_s}")
+    mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
-    #puts client.send(mail)
+    puts client.send(mail)
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
