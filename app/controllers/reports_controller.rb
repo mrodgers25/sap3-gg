@@ -144,11 +144,11 @@ class ReportsController < ApplicationController
 ## END EXAMPLE THAT WORKS###
 
 ###Test email send with simple example###
-from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
-to = Email.new(email: '#{logged_in_user_email}')
-subject = 'Export of all Stories, Users and Actions'
-content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
-mail = Mail.new(from, subject, to, content)
+  from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
+  to = Email.new(email: 'mrodgers25@gmail.com')
+  subject = 'Export of all Stories, Users and Actions'
+  content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
+  mail = SendGrid::Mail.new(from, subject, to, content)
 #puts mail.to_json
 #
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
