@@ -153,7 +153,7 @@ content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even 
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'], host: 'https://api.sendgrid.com')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
   puts response.body
