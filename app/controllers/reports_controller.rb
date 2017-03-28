@@ -149,7 +149,7 @@ to = Email.new(email: '#{logged_in_user_email}')
 subject = 'Export of all Stories, Users and Actions'
 content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
 mail = Mail.new(from, subject, to, content)
-puts mail.to_json
+#puts mail.to_json
 #
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
