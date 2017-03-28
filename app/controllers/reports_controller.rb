@@ -159,7 +159,6 @@ content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even 
   puts response.body
   puts response.headers
 
-
 ### END of email send with simple example ###
 
 
