@@ -144,28 +144,29 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 ## END EXAMPLE THAT WORKS###
 
 ###Test email send with simple example###
-#from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
-#to = Email.new(email: 'mrodgers25@gmail.com')
-#subject = 'Sending with SendGrid is Fun'
-#content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-#  mail = Mail.new(from, subject, to, content)
-#  puts mail.to_json
+from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
+to = Email.new(email: '#{logged_in_user_email}')
+subject = 'Export of all Stories, Users and Actions'
+content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
+mail = Mail.new(from, subject, to, content)
+puts mail.to_json
 #
-#  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
-#  response = sg.client.mail._('send').post(request_body: mail.to_json)
-#  puts response.status_code
-#  puts response.body
-#  puts response.headers
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  puts response.status_code
+  puts response.body
+  puts response.headers
 ### END of email send with simple example ###
 
+#THIS IS THE ORIGINAL CODE
+#    mail = SendGrid::Mail.new do |m|
+#      m.to = 'mrodgers25@gmail.com'
+#      m.from = 'mrodgers@StoriesAboutPlaces.com'
+#      m.subject = 'Export of all Stories, Users and Actions'
+#      m.txt = 'Your latest export files are attached.'
+#    end
+## END OF ORIGINAL CODE
 
-
-    mail = SendGrid::Mail.new do |m|
-      m.to = 'mrodgers25@gmail.com'
-      m.from = 'mrodgers@StoriesAboutPlaces.com'
-      m.subject = 'Export of all Stories, Users and Actions'
-      m.txt = 'Your latest export files are attached.'
-    end
 ## TEST ADDING ATTACHMENT ##
 #  attachment = Attachment.new
 #  attachment.content = 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12'
@@ -182,7 +183,8 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
-    puts client.send(mail)
+##Part of original code
+#    puts client.send(mail)
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
