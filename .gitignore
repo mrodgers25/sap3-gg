@@ -87,3 +87,4 @@ pickle-email-*.html
 /config/application.yml
 
 TODO.txt
+sendgrid.env
