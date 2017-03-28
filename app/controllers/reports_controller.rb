@@ -151,9 +151,9 @@ class ReportsController < ApplicationController
   mail = SendGrid::Mail.new(from, subject, to, content)
 #
   attachment = Attachment.new
-  attachment.content = '#{file_s}' #'BwdW'
+  attachment.content = 'testreport' #'BwdW'
   attachment.type = 'text/plain'  #'image/png'
-  attachment.filename = '#{file_s}'  #'banner.png'
+  attachment.filename = file_s  #'banner.png'
   attachment.disposition = 'inline'
   attachment.content_id = 'Report'  #Banner'
   mail.attachments = attachment
