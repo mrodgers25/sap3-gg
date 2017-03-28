@@ -105,7 +105,7 @@ Rails.application.configure do
       # address: "smtp.gmail.net",
       address: "smtp.sendgrid.net",
       port: "587",
-      domain: "storiesaboutplaces.com",
+      domain: "sendgrid.com",
       #:domain               =>  'heroku.com',
       authentication: :plain,
       enable_starttls_auto: true,
