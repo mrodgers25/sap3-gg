@@ -139,6 +139,7 @@ puts response.status_code
 puts response.body
 puts response.headers
 
+
     #mail = SendGrid::Mail.new do |m|
     #  m.to = 'mrodgers25@gmail.com'
     #  m.from = 'mrodgers@StoriesAboutPlaces.com'
