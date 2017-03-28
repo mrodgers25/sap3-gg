@@ -2,6 +2,8 @@ class ReportsController < ApplicationController
   before_filter :authenticate_user!
   after_action :verify_authorized
 
+  include SendGrid
+
   def export_all
     authorize Report
 
