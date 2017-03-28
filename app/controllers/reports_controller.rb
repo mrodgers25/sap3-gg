@@ -151,7 +151,7 @@ class ReportsController < ApplicationController
   content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
   mail = SendGrid::Mail.new(from, subject, to, content)
 #
-  my_file = File.read('action_listing.csv')
+  my_file = File.read(file_a)
   my_file_encoded = Base64.encode64(my_file)
 
   attachment = Attachment.new
