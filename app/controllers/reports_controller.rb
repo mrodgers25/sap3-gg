@@ -166,8 +166,18 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
       m.subject = 'Export of all Stories, Users and Actions'
       m.txt = 'Your latest export files are attached.'
     end
+## TEST ADDING ATTACHMENT ##
+#  attachment = Attachment.new
+#  attachment.content = 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12'
+#  attachment.type = 'application/pdf'
+#  attachment.filename = 'balance_001.pdf'
+#  attachment.disposition = 'attachment'
+#  attachment.content_id = 'Balance Sheet'
 
-    mail.add_attachment("#{file_s}")
+#  mail.attachments = attachment
+## END TEST ADD ATTACHMENT ##
+
+    #mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
