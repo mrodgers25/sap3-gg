@@ -143,14 +143,15 @@ class ReportsController < ApplicationController
 #puts response.headers
 ## END EXAMPLE THAT WORKS###
 
-###Test email send with simple example###
+###Test email send with simple example -- THIS WORKS!###
   from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
   to = Email.new(email: 'mrodgers25@gmail.com')
   subject = 'Export of all Stories, Users and Actions'
   content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
   mail = SendGrid::Mail.new(from, subject, to, content)
-#puts mail.to_json
 #
+mail.addAttachment("#{file_s}")
+
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
@@ -169,16 +170,15 @@ class ReportsController < ApplicationController
 
 ## TEST ADDING ATTACHMENT ##
 #  attachment = Attachment.new
-#  attachment.content = 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12'
-#  attachment.type = 'application/pdf'
-#  attachment.filename = 'balance_001.pdf'
-#  attachment.disposition = 'attachment'
-#  attachment.content_id = 'Balance Sheet'
-
+#  attachment.content = '#{file_s}' #'BwdW'
+#  attachment.type = 'text/plain'  #'image/png'
+#  attachment.filename = '#{file_s}'  #'banner.png'
+#  attachment.disposition = 'inline'
+#  attachment.content_id = 'Report'  #Banner'
 #  mail.attachments = attachment
 ## END TEST ADD ATTACHMENT ##
 
-    #mail.add_attachment("#{file_s}")
+      #mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")

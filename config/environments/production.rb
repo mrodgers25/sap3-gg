@@ -102,16 +102,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-      #address: "smtp.gmail.net",
       address: "smtp.sendgrid.net",
       port: 587,
       domain: "storiesaboutplaces.com",
-      #domain:               'gmail.com',
       authentication: :plain,
       enable_starttls_auto: true,
-      #user_name: 'mrodgers25@gmail.com',
       user_name: ENV["SENDGRID_USERNAME"],
-      #password: 'MarMail24'
       password: ENV["SENDGRID_PASSWORD"]
   }
 
