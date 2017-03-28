@@ -155,7 +155,7 @@ class ReportsController < ApplicationController
   my_file_encoded = Base64.encode64(my_file)
 
   attachment = Attachment.new
-  attachment.content = my_file_encoded #'BwdW'
+  attachment.content = '#{my_file_encoded}' #'BwdW'
   attachment.type = 'text/csv'  #'image/png'
   attachment.filename = 'story_listing.csv'  #'banner.png'
   attachment.disposition = 'inline'
