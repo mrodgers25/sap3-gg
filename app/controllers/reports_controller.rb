@@ -134,19 +134,19 @@ data = JSON.parse('{
       "value": "Hello, Email!"
     }
   ],
-    "attachments": [
-    {
-      "content": #{my_file_encoded},
-      "content_id": "ii_139db99fdb5c3704",
-      "disposition": "inline",
-      "filename": "story_listing.csv",
-      "name": "story_listing",
-      "type": "csv"
-    }
-  ]
+  "attachments": ['story_listing.csv']= { :data=> ActiveSupport::Base64.encode64(my_file), :encoding => 'base64' }
   }')
 
-
+ #{}"attachments": [
+  #  {
+  #    "content": #{my_file_encoded},
+  #    "content_id": "ii_139db99fdb5c3704",
+  #    "disposition": "inline",
+  #    "filename": "story_listing.csv",
+  #    "name": "story_listing",
+  #    "type": "csv"
+  #  }
+  #]
 
 response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
