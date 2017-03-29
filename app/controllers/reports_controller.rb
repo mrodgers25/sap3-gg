@@ -110,7 +110,7 @@ class ReportsController < ApplicationController
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
 ## Example that works ###
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 data = JSON.parse('{
   "personalizations": [
     {
