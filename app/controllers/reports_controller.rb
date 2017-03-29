@@ -136,13 +136,12 @@ data = JSON.parse('{
   ],
     "attachments": [
     {
-
       "content": "#{my_file_encoded}",
       "content_id": "ii_139db99fdb5c3704",
       "disposition": "inline",
       "filename": "story_listing.csv",
       "name": "story_listing",
-      "type": "csv",
+      "type": "csv"
     }
   ]
   }')
