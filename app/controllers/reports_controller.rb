@@ -110,67 +110,70 @@ class ReportsController < ApplicationController
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
 ## Example that works ###
-#sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
-#data = JSON.parse('{
-#  "personalizations": [
-#    {
-#      "to": [
-#        {
-#          "email": "mrodgers25@gmail.com"
-#        }
-#      ],
-#      "subject": "Hello World from the SendGrid Ruby Library!"
-#    }
-#  ],
-#  "from": {
-#    "email": "mrodgers@storiesaboutplaces.com"
-#  },
-#  "content": [
-#    {
-#      "type": "text/plain",
-#      "value": "Hello, Email!"
-#    }
-#  ],
-#  "attachments": [
-#    {
-#      "type": "text/plain",
-#      "filename": "#{file_s}"
-#    }
-#  ]
-#}')
-#response = sg.client.mail._("send").post(request_body: data)
-#puts response.status_code
-#puts response.body
-#puts response.headers
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_PASSWORD'])
+data = JSON.parse('{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "mrodgers25@gmail.com"
+        }
+      ],
+      "subject": "Hello World from the SendGrid Ruby Library!"
+    }
+  ],
+  "from": {
+    "email": "mrodgers@storiesaboutplaces.com"
+  },
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "Hello, Email!"
+    }
+  ]
+  }')
+
+  #{}"attachments": [
+  #  {
+  #    "type": "text/plain",
+  #    "filename": "#{file_s}"
+  #  }
+  #]
+
+response = sg.client.mail._("send").post(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
 ## END EXAMPLE THAT WORKS###
 
+## PUT THIS ASIDE AND TRY JSON VERSION NOW ##
 ###Test email send with simple example -- THIS WORKS!###
-  from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
-  to = Email.new(email: 'mrodgers25@gmail.com')
-  subject = 'Export of all Stories, Users and Actions'
-  content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
-  mail = SendGrid::Mail.new(from, subject, to, content)
+#  from = Email.new(email: 'mrodgers@storiesaboutplaces.com')
+#  to = Email.new(email: 'mrodgers25@gmail.com')
+#  subject = 'Export of all Stories, Users and Actions'
+#  content = Content.new(type: 'text/plain', value: 'Your latest export files are attached.')
+#  mail = SendGrid::Mail.new(from, subject, to, content)
 #
-  my_file = File.read(file_s)
-  my_file_encoded = Base64.encode64(my_file)
-
-  attachment = Attachment.new
-  attachment.content = my_file_encoded #'BwdW'
-  attachment.type = 'text/csv'  #'image/png'
-  attachment.filename = 'story_listing.csv'  #'banner.png'
-  attachment.disposition = 'inline'
-  attachment.content_id = 'Report'  #Banner'
-  mail.attachments = attachment
-  puts mail.to_json
-
+#  my_file = File.read(file_s)
+#  my_file_encoded = Base64.encode64(my_file)
+#
+#  attachment = Attachment.new
+#  attachment.content = my_file_encoded #'BwdW'
+#  attachment.type = 'text/csv'  #'image/png'
+#  attachment.filename = 'story_listing.csv'  #'banner.png'
+#  attachment.disposition = 'inline'
+#  attachment.content_id = 'Report'  #Banner'
+#  mail.attachments = attachment
+#  puts mail.to_json
   #
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
-  response = sg.client.mail._('send').post(request_body: mail.to_json)
-  puts response.status_code
-  puts response.body
-  puts response.headers
+#  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
+#  response = sg.client.mail._('send').post(request_body: mail.to_json)
+#  puts response.status_code
+#  puts response.body
+#  puts response.headers
 ### END of email send with simple example ###
+########
 
 #THIS IS THE ORIGINAL CODE
 #    mail = SendGrid::Mail.new do |m|
