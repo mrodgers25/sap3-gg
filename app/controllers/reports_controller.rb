@@ -156,7 +156,7 @@ class ReportsController < ApplicationController
 
   attachment = Attachment.new
   attachment.content = my_file_encoded #'BwdW'
-  attachment.type = 'text/plain'  #'image/png'
+  attachment.type = 'text/csv'  #'image/png'
   attachment.filename = file_s  #'banner.png'
   attachment.disposition = 'inline'
   attachment.content_id = 'Report'  #Banner'
