@@ -111,6 +111,9 @@ class ReportsController < ApplicationController
 
 ## Example that works ###
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
+ my_file = File.read(file_s)
+ my_file_encoded = Base64.encode64(my_file)
+
 data = JSON.parse('{
   "personalizations": [
     {
@@ -130,15 +133,21 @@ data = JSON.parse('{
       "type": "text/plain",
       "value": "Hello, Email!"
     }
+  ],
+    "attachments": [
+    {
+
+      "content": "#{my_file_encoded}",
+      "content_id": "ii_139db99fdb5c3704",
+      "disposition": "inline",
+      "filename": "story_listing.csv",
+      "name": "story_listing",
+      "type": "csv",
+    }
   ]
   }')
 
-  #{}"attachments": [
-  #  {
-  #    "type": "text/plain",
-  #    "filename": "#{file_s}"
-  #  }
-  #]
+
 
 response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
