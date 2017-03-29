@@ -155,13 +155,14 @@ class ReportsController < ApplicationController
   my_file_encoded = Base64.encode64(my_file)
 
   attachment = Attachment.new
-  attachment.content = '#{my_file_encoded}' #'BwdW'
-  attachment.type = 'text/csv'  #'image/png'
-  attachment.filename = 'story_listing.csv'  #'banner.png'
+  attachment.content = my_file_encoded #'BwdW'
+  attachment.type = 'text/plain'  #'image/png'
+  attachment.filename = file_s  #'banner.png'
   attachment.disposition = 'inline'
   attachment.content_id = 'Report'  #Banner'
   mail.attachments = attachment
   puts mail.to_json
+
   #
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'], host: 'https://api.sendgrid.com')
