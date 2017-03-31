@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
 
     # story export
     file_s = Rails.root.join('tmp','story_listing.csv')
-    # puts "Story file will be #{file_s}"
+    puts "Story file will be #{file_s}"
 
     stories = Story.eager_load(:urls => [:images]).eager_load(:locations).eager_load(:place_categories).eager_load(:story_categories).order(:id)
 
@@ -204,10 +204,12 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 
 ## END TEST ADD ATTACHMENT ##
 
-    mail.addattachment("#{file_s}")
+    #mail.add_attachment("#{file_s}")
+    mail.add_attachment('tmp','story_listing.csv')
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
+
 
 ##Part of original code
     puts client.send(mail)
