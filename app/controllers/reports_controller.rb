@@ -98,6 +98,7 @@ class ReportsController < ApplicationController
      puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
     #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
+    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_API"])
 
 #client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 
@@ -109,34 +110,34 @@ class ReportsController < ApplicationController
 #content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 #mail = Mail.new('StoriesAboutPlaces.com', 'TEST', '#{logged_in_user_email}', 'Your latest export files are attached.')
 
-## Example that works ###
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
- my_file = File.read(file_s)
- my_file_encoded = Base64.encode64(my_file)
-
-data = JSON.parse('{
-  "personalizations": [
-    {
-      "to": [
-        {
-          "email": "mrodgers25@gmail.com"
-        }
-      ],
-      "subject": "Hello World from the SendGrid Ruby Library!"
-    }
-  ],
-  "from": {
-    "email": "mrodgers@storiesaboutplaces.com"
-  },
-  "content": [
-    {
-      "type": "text/plain",
-      "value": "Hello, Email!"
-    }
-  ],
-  "attachments": ['story_listing.csv']= { :data=> ActiveSupport::Base64.encode64(my_file), :encoding => 'base64' }
-  }')
-
+## Example that works - excpet attachments ###
+#sg = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
+# my_file = File.read(file_s)
+# my_file_encoded = Base64.encode64(my_file)
+#
+#data = JSON.parse('{
+#  "personalizations": [
+#    {
+#      "to": [
+#        {
+#          "email": "mrodgers25@gmail.com"
+#        }
+#      ],
+#      "subject": "Hello World from the SendGrid Ruby Library!"
+#    }
+#  ],
+#  "from": {
+#    "email": "mrodgers@storiesaboutplaces.com"
+#  },
+#  "content": [
+#    {
+#      "type": "text/plain",
+#      "value": "Hello, Email!"
+#    }
+#  ],
+#  "attachments": ['story_listing.csv']= { :data=> ActiveSupport::Base64.encode64(my_file), :encoding => 'base64' }
+#  }')
+## OR
  #{}"attachments": [
   #  {
   #    "content": #{my_file_encoded},
@@ -147,11 +148,10 @@ data = JSON.parse('{
   #    "type": "csv"
   #  }
   #]
-
-response = sg.client.mail._("send").post(request_body: data)
-puts response.status_code
-puts response.body
-puts response.headers
+#response = sg.client.mail._("send").post(request_body: data)
+#puts response.status_code
+#puts response.body
+#puts response.headers
 ## END EXAMPLE THAT WORKS###
 
 ## PUT THIS ASIDE AND TRY JSON VERSION NOW ##
@@ -184,12 +184,12 @@ puts response.headers
 ########
 
 #THIS IS THE ORIGINAL CODE
-#    mail = SendGrid::Mail.new do |m|
-#      m.to = 'mrodgers25@gmail.com'
-#      m.from = 'mrodgers@StoriesAboutPlaces.com'
-#      m.subject = 'Export of all Stories, Users and Actions'
-#      m.txt = 'Your latest export files are attached.'
-#    end
+    mail = SendGrid::Mail.new do |m|
+      m.to = "#{logged_in_user_email}"
+      m.from = 'StoriesAboutPlaces.com'
+      m.subject = 'Export of all Stories, Users and Actions'
+      m.text = 'Your latest export files are attached.'
+    end
 ## END OF ORIGINAL CODE
 
 ## TEST ADDING ATTACHMENT ##
@@ -204,13 +204,14 @@ puts response.headers
 
 ## END TEST ADD ATTACHMENT ##
 
-    #mail.add_attachment("#{file_s}")
+    mail.add_attachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
 ##Part of original code
-#    puts client.send(mail)
+    puts client.send(mail)
+
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
