@@ -98,9 +98,9 @@ class ReportsController < ApplicationController
      puts "sendgrid password is: #{ENV["SENDGRID_PASSWORD"]}"
 
     #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
-    client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_API"])
+    #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_API"])
 
-#client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
+client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
 #NEXT SECTION IS A TEST
