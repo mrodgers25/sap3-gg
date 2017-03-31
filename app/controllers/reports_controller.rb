@@ -204,7 +204,7 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 
 ## END TEST ADD ATTACHMENT ##
 
-    mail.add_attachment("#{file_s}")
+    mail.addattachment("#{file_s}")
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
