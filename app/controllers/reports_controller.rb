@@ -1,9 +1,95 @@
 class ReportsController < ApplicationController
-  before_filter :authenticate_user!
-  after_action :verify_authorized
+  #before_filter :authenticate_user!
+  #after_action :verify_authorized
 
   include SendGrid
 
+
+  def index
+    #authorize Report
+
+    @reports = Story.all
+
+    #respond_to do |format|
+    #  format.html
+    #  format.csv { send_data @reports.to_csv, filename: 'export_stories2.csv' }
+    #end
+  end
+
+  def export_allstories
+    @reports = Story.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @reports.to_csv, filename: 'export_allstories.csv' }
+    end
+  end
+
+  def export_stories
+
+    #file_s = Rails.root.join('tmp','story_listing.csv')
+    #puts "Story file will be #{file_s}"
+
+    stories = Story.eager_load(:urls => [:images]).eager_load(:locations).eager_load(:place_categories).eager_load(:story_categories).order(:id)
+
+    output = CSV.generate do |writer|
+      writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Location","Place Category","Story Category","Author Trk", \
+            "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Media Owner Id","Manual Img","Data Entered By","Story Complete"]
+      stories.each do |s|
+        @url_full,@url_domain,@manual_enter,@location_name,@pc_name,@sc_name = ["","","","","",""]
+        s.urls.each do |u|
+          @url_full = u.url_full
+          @url_domain = u.url_domain
+          u.images.each do |i|
+            @manual_enter = i.manual_enter
+          end
+        end
+        @location_name = s.locations.map { |l| l.code }.join(',')
+        @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
+        @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
+
+        writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
+                  @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
+                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
+        end
+      end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data output, filename: 'export_stories.csv' }
+    end
+  end
+
+  def export_images
+    @images = Image.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @images.to_csv, filename: 'export_images.csv' }
+    end
+  end
+
+  def export_mediaowners
+    @mediaowners = Mediaowner.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @mediaowners.to_csv, filename: 'export_mediaowners.csv' }
+    end
+  end
+
+  def export_usersaved
+    @usersaved = Usersavedstory.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @usersaved.to_csv, filename: 'export_usersavedstory.csv' }
+    end
+  end
+
+
+
+## Below here was the origin code ##
   def export_all
     authorize Report
 
@@ -11,7 +97,6 @@ class ReportsController < ApplicationController
     require 'sendgrid-ruby'
     require 'base64'
 
-#byebug
 
     logged_in_user_email = current_user.email #User.find(current_user).email
     puts "******Email is #{logged_in_user_email}*****"
@@ -100,7 +185,7 @@ class ReportsController < ApplicationController
     #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_PASSWORD"])
     #client = SendGrid::Client.new(api_user: ENV["SENDGRID_USERNAME"], api_key: ENV["SENDGRID_API"])
 
-client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
+#client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 
 #response = sg.client.mail._('send').post(request_body: mail.to_json)
 #NEXT SECTION IS A TEST
@@ -184,12 +269,12 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 ########
 
 #THIS IS THE ORIGINAL CODE
-    mail = SendGrid::Mail.new do |m|
-      m.to = "#{logged_in_user_email}"
-      m.from = 'StoriesAboutPlaces.com'
-      m.subject = 'Export of all Stories, Users and Actions'
-      m.text = 'Your latest export files are attached.'
-    end
+    #mail = SendGrid::Mail.new do |m|
+     # m.to = "#{logged_in_user_email}"
+     # m.from = 'StoriesAboutPlaces.com'
+     # m.subject = 'Export of all Stories, Users and Actions'
+     # m.text = 'Your latest export files are attached.'
+    #end
 ## END OF ORIGINAL CODE
 
 ## TEST ADDING ATTACHMENT ##
@@ -205,14 +290,14 @@ client = SendGrid::API.new(api_key: ENV['SENDGRID_API'])
 ## END TEST ADD ATTACHMENT ##
 
     #mail.add_attachment("#{file_s}")
-    mail.add_attachment('tmp','story_listing.csv')
+    #mail.add_attachment('tmp','story_listing.csv')
     #mail.add_attachment("#{file_u}")
     #mail.add_attachment("#{file_a}")
     #mail.add_attachment("#{file_o}")
 
 
 ##Part of original code
-    puts client.send(mail)
+    #puts client.send(mail)
 
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"

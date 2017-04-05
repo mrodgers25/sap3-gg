@@ -16,12 +16,22 @@ Rails.application.routes.draw do
 
   match '/visitors/refresh_timer' => 'visitors#refresh_timer', via: [:get]
   match '/reports/export_all' => 'reports#export_all', via: [:get, :post]
+  match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
+  match '/index' => 'reports_controller#index', via: [:get, :post]
+  match '/reports/export_allstories' => 'reports#export_allstories', via: [:get, :post]
+  match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
+  match '/reports/export_images' => 'reports#export_images', via: [:get, :post]
+  match '/reports/export_mediaowners' => 'reports#export_mediaowners', via: [:get, :post]
+  match '/reports/export_usersaved' => 'reports#export_usersaved', via: [:get, :post]
+
+
   # match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
   # match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
 
   get '/click', to: 'outbound_clicks#show', as: :outbound_click
 
   resources :stories #original from generate
+  resources :reports
   resources :urls
   resources :images
   resources :mediaowners

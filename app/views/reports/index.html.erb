@@ -1,0 +1,16 @@
+
+<h1>Reports</h1>
+
+  <h3>Choose a report to Download:</h3>
+<ul style="list-style-type: none">
+  <br>
+  <li style="font-size:16px", class="btn btn-default btn-block"><%= link_to "--->>> Export All Stories In Default Format      <<<---", reports_export_allstories_path(format: "csv") %></li>
+  <br><br>
+  <li style="font-size:16px", class="btn btn-default btn-block"><%= link_to "--->>> Export Stories In Original Format     <<<---", reports_export_stories_path(format: "csv") %></li>
+  <br><br>
+  <li style="font-size:16px", class="btn btn-default btn-block"><%= link_to "--->>> Export All Images Information         <<<---", reports_export_images_path(format: "csv") %></li>
+  <br><br>
+  <li style="font-size:16px", class="btn btn-default btn-block"><%= link_to "--->>> Export All Media Owners Information         <<<---", reports_export_mediaowners_path(format: "csv") %></li>
+  <br><br>
+  <li style="font-size:16px", class="btn btn-default btn-block"><%= link_to "--->>> Export All User Saved Stories Information <<<---", reports_export_usersaved_path(format: "csv") %></li>
+</ul>
