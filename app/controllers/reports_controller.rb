@@ -87,6 +87,73 @@ class ReportsController < ApplicationController
     end
   end
 
+  ##One of the origin reports ##
+  def export_userlisting
+  # user export
+    #file_u = Rails.root.join('tmp','user_listing.csv')
+    # puts "User file will be #{file_u}"
+    users = User.order(:id)
+
+    output = CSV.generate do |writer|
+      writer << ["id","first_name","last_name","role","email","city_preference","created_at","confirmation_sent_at", \
+      "confirmed_at","reset_password_sent_at","remember_created_at", \
+      "unconfirmed_email","updated_at","sign_in_count"]
+
+      users.each do |u|
+       writer << [u.id,u.first_name,u.last_name,u.role,u.email,u.city_preference,u.created_at,u.confirmation_sent_at, \
+        u.confirmed_at,u.reset_password_sent_at,u.remember_created_at, \
+        u.unconfirmed_email,u.updated_at,u.sign_in_count]
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data output, filename: 'export_userlisting.csv' }
+    end
+  end
+
+  def export_actionlisting
+  #action export
+    #file_a = Rails.root.join('tmp','action_listing.csv')
+    # puts "Action file will be #{file_a}"
+    actions = User.includes(:events).joins(:events).order("ahoy_events.time")
+
+    output = CSV.generate do |writer|
+      writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
+      actions.each do |a|
+        a.events.each do |e|
+          if e.properties.values[5].present?  # filter actions
+            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
+                  e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
+          end
+          unless e.properties.values[5].present?  # non-filter actions
+            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data output, filename: 'export_actionlisting.csv' }
+    end
+  end
+
+  def export_outboundclick
+    #file_o = Rails.root.join('tmp','outbound_click_listing.csv')
+    # puts "Outbound clicks file will be #{file_o}"
+    outbound_clicks = OutboundClick.all
+
+    output = CSV.generate do |writer|
+      writer << ["Id","UserId","Url","Created"]
+      outbound_clicks.each do |c|
+        writer << [c.id, c.user_id, c.url, c.created_at]
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data output, filename: 'export_outboundclick.csv' }
+    end
+  end
 
 
 ## Below here was the origin code ##

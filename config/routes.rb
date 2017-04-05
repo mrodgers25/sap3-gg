@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   match '/reports/export_images' => 'reports#export_images', via: [:get, :post]
   match '/reports/export_mediaowners' => 'reports#export_mediaowners', via: [:get, :post]
   match '/reports/export_usersaved' => 'reports#export_usersaved', via: [:get, :post]
+  match '/reports/export_userlisting' => 'reports#export_userlisting', via: [:get, :post]
+  match '/reports/export_actionlisting' => 'reports#export_actionlisting', via: [:get, :post]
+  match '/reports/export_outboundclick' => 'reports#export_outboundclick', via: [:get, :post]
 
 
   # match '/reports/export_stories' => 'reports#export_stories', via: [:get, :post]
