@@ -67,6 +67,7 @@ GEM
     bundler-updater (0.0.3)
       thor
     byebug (9.0.6)
+    choice (0.2.0)
     codemirror-rails (5.16.0)
       railties (>= 3.0, < 6.0)
     coderay (1.1.1)
@@ -177,6 +178,11 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.5.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
@@ -213,6 +219,7 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rest-client (1.6.9)
       mime-types (~> 1.16)
+    ruby-graphviz (1.2.3)
     ruby_http_client (3.0.1)
     safely_block (0.2.0)
       errbase
@@ -306,6 +313,7 @@ DEPENDENCIES
   quiet_assets
   railroady
   rails (= 4.2.0)
+  rails-erd
   rails_12factor
   rails_db
   rails_layout
