@@ -89,7 +89,7 @@
                           <% end %>
                       <% end %>
 
-                      <% unless @image1 %>   <!-- display prompt for manual image --->
+                      <!-- <% unless @image1 %>   display prompt for manual image
                           <div class="row-fluid"  style="border-top: 1px solid #BABFBA"><br>
                             <div class="col-md-1">
                               <%= i.label( :manual_url, "or Enter Manually") %>
@@ -113,9 +113,31 @@
                               <%= i.text_field :image_height %><br>
                             </div>
                           </div>
-                      <% end %>
+                      <% end %> -->
 
-                  <% else %>
+<!--Manual option -->
+                       <div class="row"><br> <!-- display db values on edit -->
+
+                          <div class="col-md-1 text-right">
+                            or Enter URL Manually<br><br>
+                          </div>
+                          <div class="col-md-10 text-left">
+                            <%= i.text_area :src_url, :cols => 80 %><br>
+                          </div><br>
+                        </div>
+                        <div class="row-fluid">
+                          <div class="col-md-2 text-right">
+                            Width<br><br>
+                          </div>
+                          <div class="col-md-4 text-left">
+                            <%= i.text_field :image_width %>&nbsp;&nbsp;&nbsp;&nbsp;Height&nbsp;&nbsp;
+                            <%= i.text_field :image_height %><br>
+                          </div>
+                        </div>
+<!--END MANUAL OPTION-->
+
+
+                  <% else %>  <!-- if it IS EDIT -->
 
                         <div class="row-fluid"><br> <!-- display db values on edit -->
                           <div class="col-md-1">
@@ -136,12 +158,13 @@
                             <%= i.text_field :image_height %><br>
                           </div>
                         </div>
+                    <% end %>  <!-- end IF EDITING-->
 
-                    <% end %>
 
                   </div>
                 </div></div>
             </div>
+
 
         <% end %>
     <% end %>
