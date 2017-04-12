@@ -37,25 +37,12 @@
                           prompt: 'All Place Types'
                      %>&nbsp;
                   </li>
-                  <% if user_signed_in? %>
-                    <li  class="select-dropdown-hdr">
+                    <li class="select-dropdown-hdr">
                       <%= select_tag :story_category_id,
-                            options_from_collection_for_select(@story_categories_loggedin,'id','name', params[:story_category_id]),
+                            options_from_collection_for_select(@story_categories,'id','name', params[:story_category_id]),
                             prompt: 'All Story Categories'
                       %>&nbsp;
                     </li>
-                  <% else %>
-                    <li class="select-dropdown-hdr">
-                      <%= select_tag :user_story_category,
-                        options_from_collection_for_select(@story_categories_notloggedin,'id','name', params[:story_category_id]),
-                        prompt: 'All Story Categories'
-                      %>&nbsp;
-                    </li>
-                  <% end %>
-                  <% unless user_signed_in? %>
-                    <li class="editor-pick"><span><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true">
-	                    </span>&nbsp;Login to access<br>&nbsp;&nbsp;&nbsp;&nbsp;Editor Picks</span></li>
-                  <% end %>
                   <li><%= submit_tag "Filter Stories", class: 'btn btn-success btn-lg btn-responsive'%></li>
                 </ul>
               </div>
