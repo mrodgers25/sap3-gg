@@ -1,0 +1,44 @@
+<h1>Individual Story Page</h1>
+
+<div class="table-responsive">
+
+<table class ="table table-bordered table-hover">
+
+  <caption>Story: <%= @story.editor_tagline %></caption>
+
+  <tr>
+    <th>Published By:</th>
+    <td><%= @publisher.title %></td>
+    <td rowspan="4"><img src= "<%= @images.first.src_url %>" ></img> </td>
+  </tr>
+  <tr>
+    <th>Authored By:</th>
+    <td><%= @story.author %></td>
+  </tr>
+  <tr>
+    <th>Published Date:</th>
+    <td><%= @story.story_year %>&nbsp;
+        <%= @story.story_month %>&nbsp;
+        <%= @story.story_date %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= @description %></td>
+  </tr>
+</table>
+
+</div>
+
+
+  <strong>Location Codes: </strong>
+  <%= @story.locations.map { |location| location.name }.to_sentence %>&nbsp;&nbsp;
+  <strong>Place Categories: </strong>
+  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %>&nbsp;&nbsp;
+  <strong>Story Categories: </strong>
+  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %><br>
+  <strong>Type: </strong>
+  <%= @story.story_type %>&nbsp;&nbsp;
+
+
+
+<!-- This was moved from line 65 in visitors/index.html.erc -->
+

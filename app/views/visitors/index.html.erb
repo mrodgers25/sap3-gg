@@ -62,9 +62,8 @@
                 <p style="margin-bottom: 0%; text-align: left">
                   <% u.images.each do |i| %>
 
-		                <% if valid_url?(i.src_url) %>
-                      <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), outbound_click_path(url: u.encoded_url), target: '_blank' %>
-			              <% end %>
+		               <!-- used to ask this:  if valid_url?(i.src_url) -->
+                    <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.id) %>
 
                     <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
                     <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220 -->
@@ -81,7 +80,8 @@
 	                <% end %>
 
 	                <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
-	                  <%= link_to u.url_title, outbound_click_path(url: u.encoded_url), target: '_blank' %>
+	                 <!-- <%= link_to u.url_title, outbound_click_path(url: u.encoded_url), target: '_blank' %> -->
+
 	                </p>
 
 	                <p class="text-muted" style="margin-bottom: 2%">

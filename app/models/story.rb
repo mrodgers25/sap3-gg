@@ -18,6 +18,8 @@ class Story < ActiveRecord::Base
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
 
+  has_one :mediaowner, through: :urls
+
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   before_validation :set_story_track_fields, on: :create
