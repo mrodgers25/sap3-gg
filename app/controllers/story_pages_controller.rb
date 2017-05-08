@@ -6,6 +6,8 @@
       @images = @urls.first.images
       @publisher = @urls.first.mediaowner
       @description = @urls.first.url_desc
+      testcase = SecureRandom.urlsafe_base64(3)
+      puts "******************* #{testcase} *****************************"
       puts "******************* #{@images.first.src_url} *****************************"
 
       render template: "story_pages/show.html.erb"

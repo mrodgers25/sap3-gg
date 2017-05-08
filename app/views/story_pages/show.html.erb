@@ -4,6 +4,51 @@
 
 <br>
 
+<style type="text/css">
+    #Table
+    {
+        display: table;
+        width: 80%;
+        table-layout: fixed;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+    }
+    #Title
+    {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+    #Heading
+    {
+        display: table;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+        font-size: large;
+        font-weight: bold;
+        text-align: left;
+    }
+    #Row
+    {
+        display: table;
+        text-align: left;
+
+    }
+    #Cell
+    {
+        display: table;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+</style>
+
+
 <% if user_signed_in? %>
   <% if story_saved?(@story.id,current_user.id) %>
     <p class="story-actions-links story-actions" id="forget_story">
@@ -20,10 +65,25 @@
   </p>
 <% end %>
 
-<div class="container-fluid">
-<div class="row">
+
+<!--<div id="Table">  class="table"> -->
+<!--<div id="Row" >  class="row"> -->
+    <div id="Header">
+      <div class="col-sm-4 col-sm-push-8" style="background-color:none;"><img src= "<%= @images.first.src_url %>" ></img></div>
+      <!--<div class="col-sm-8 col-sm-pull-4" style="background-color:none;"><%= @description %></div> -->
+    </div>
+    <div id="Row">
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;"><%= @description %></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:orange;"><a href="<%= @urls.first.url_full %>"> To read the full story click here...</a></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Published By:<a href="<%=@publisher.url_full%>"><%= @publisher.title %></a></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Authored By:<%= @story.author %></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Published Date: <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Location(s):<%= @story.locations.map { |location| location.name }.to_sentence %></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Place Category/Categories:<%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></div>
+      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Story Category/Categories:<%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></div>
+</div>
 <!--<div class="table-responsive"> -->
-  <table class ="table table-bordered table-hover">
+  <!-- <table class ="table table-bordered table-hover">
   <tr>
     <div class="col-sm-4 col-sm-push-8"><td colspan="2"><%= @description %> </td> </div>
     <div class="col-sm-8 col-sm-pull-4"><td rowspan="8"><img src= "<%= @images.first.src_url %>" ></img> </td> </div>
@@ -59,9 +119,9 @@
     <td><%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></td>
   </tr>
 </table>
+</div> -->
 
-</div>
-</div>
-</div>
+<!--</div> -->
+<!--</div> -->
 <br>
 <br>

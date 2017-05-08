@@ -108,6 +108,14 @@ a:hover {
   overflow-y: auto;
 }
 
+#story_page {
+  font-family: 'Arial Narrow';
+  border-style: solid;
+  border-width: thin;
+  border-color: orange;
+}
+.table {display:block; }
+
 
 /* style the header */
 .container-fluid {
