@@ -62,8 +62,14 @@
                 <p style="margin-bottom: 0%; text-align: left">
                   <% u.images.each do |i| %>
 
-		               <!-- used to ask this:  if valid_url?(i.src_url) -->
+<!-- Check if user is ADMIN to link to story-pages at this time  -->
+        <% if user_signed_in? && current_user.admin? %>
                     <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.id) %>
+        <% else %>
+            <% if valid_url?(i.src_url) %>
+               <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), u.url_full %>
+            <% end %>
+        <% end %>
 
                     <% image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %> <!-- calc image proportions -->
                     <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220 -->
