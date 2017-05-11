@@ -35,7 +35,7 @@
     {
         display: table;
         text-align: left;
-
+        font-size: large;
     }
     #Cell
     {
@@ -66,7 +66,7 @@
 <% end %>
 
 
-<!--<div id="Table">  class="table"> -->
+<!--<div id="Table">  class="table">  -->
 <!--<div id="Row" >  class="row"> -->
     <div id="Header">
       <div class="col-sm-4 col-sm-push-8" style="background-color:none;"><img src= "<%= @images.first.src_url %>" ></img></div>
@@ -74,13 +74,13 @@
     </div>
     <div id="Row">
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;"><%= @description %></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:orange;"><a href="<%= @urls.first.url_full %>"> To read the full story click here...</a></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Published By:<a href="<%=@publisher.url_full%>"><%= @publisher.title %></a></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Authored By:<%= @story.author %></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Published Date: <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Location(s):<%= @story.locations.map { |location| location.name }.to_sentence %></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Place Category/Categories:<%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></div>
-      <div id="Cell" class="col-sm-8 col-sm-pull-4" style="background-color:none;">Story Category/Categories:<%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"><a href="<%= @urls.first.url_full %>"> To read the full story click here...</a></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Published By:<a style="text-align: right" href="<%=@publisher.url_full%>">  <%= @publisher.title %></a></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Authored By:  <%= @story.author %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Published Date:   <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Location(s):  <%= @story.locations.map { |location| location.name }.to_sentence %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Place Category/Categories:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Story Category/Categories:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></div>
 </div>
 <!--<div class="table-responsive"> -->
   <!-- <table class ="table table-bordered table-hover">
