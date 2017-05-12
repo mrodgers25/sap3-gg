@@ -74,7 +74,7 @@
     </div>
     <div id="Row">
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;"><%= @description %></div>
-      <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"><a href="<%= @urls.first.url_full %>"> To read the full story click here...</a></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"><a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Published By:<a style="text-align: right" href="<%=@publisher.url_full%>">  <%= @publisher.title %></a></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Authored By:  <%= @story.author %></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Published Date:   <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
