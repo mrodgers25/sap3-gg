@@ -70,58 +70,16 @@
 <!--<div id="Row" >  class="row"> -->
     <div id="Header">
       <div class="col-sm-4 col-sm-push-8" style="background-color:none;"><img src= "<%= @images.first.src_url %>" ></img></div>
-      <!--<div class="col-sm-8 col-sm-pull-4" style="background-color:none;"><%= @description %></div> -->
     </div>
     <div id="Row">
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;"><%= @description %></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"><a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div>
-      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Published By:<a style="text-align: right" href="<%=@publisher.url_full%>">  <%= @publisher.title %></a></div>
+      <% if @publisher != "None"  %>
+        <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Published By:<a style="text-align: right" href="<%=@publisher.url_full%>">  <%= @publisher.title %></a></div>
+      <% end %>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Authored By:  <%= @story.author %></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Published Date:   <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Location(s):  <%= @story.locations.map { |location| location.name }.to_sentence %></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Place Category/Categories:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></div>
       <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Story Category/Categories:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></div>
 </div>
-<!--<div class="table-responsive"> -->
-  <!-- <table class ="table table-bordered table-hover">
-  <tr>
-    <div class="col-sm-4 col-sm-push-8"><td colspan="2"><%= @description %> </td> </div>
-    <div class="col-sm-8 col-sm-pull-4"><td rowspan="8"><img src= "<%= @images.first.src_url %>" ></img> </td> </div>
-  </tr>
-  <tr>
-    <td colspan="2" bgcolor="orange"><a href="<%= @urls.first.url_full %>"> To read the full story click here...</a> </td>
-  </tr>
-  <tr>
-    <th>Published By:</th>
-    <td><a href="<%=@publisher.url_full%>"><%= @publisher.title %></a> </td>
-  </tr>
-  <tr>
-    <th>Authored By:</th>
-    <td><%= @story.author %></td>
-  </tr>
-  <tr>
-    <th>Published Date:</th>
-    <td><%= @story.story_month %> /
-        <%= @story.story_date %> /
-        <%= @story.story_year %>&nbsp;
-        </td>
-  </tr>
-  <tr>
-    <th>Location(s):</th>
-    <td><%= @story.locations.map { |location| location.name }.to_sentence %></td>
-  </tr>
-  <tr>
-    <th>Place Category/Categories:</th>
-    <td><%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></td>
-  </tr>
-  <tr>
-    <th>Story Category/Categories:</th>
-    <td><%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></td>
-  </tr>
-</table>
-</div> -->
-
-<!--</div> -->
-<!--</div> -->
-<br>
-<br>

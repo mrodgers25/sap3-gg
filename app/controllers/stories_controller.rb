@@ -76,7 +76,7 @@ class StoriesController < ApplicationController
         url = @story.urls.build
         url.images.build
         set_scrape_fields
-        # binding.pry
+        #binding.pry
       else
         flash.now.alert = "We can't find that URL – give it another shot"
         render :scrape
@@ -108,6 +108,11 @@ class StoriesController < ApplicationController
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
     end
+    #This script is used to update the permalink field in all stories
+      url_title = @story.urls.first.url_title.parameterize
+      rand_hex = SecureRandom.hex(2)
+      permalink = "#{rand_hex}/#{url_title}"
+      @story.update_attribute(:permalink, "#{permalink}")
   end
 
   # GET /stories/1/edit

@@ -42,7 +42,8 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index', via: [:get, :post]  #added by gg
   get 'products/:id', to: 'products#show', :as => :products
-  get 'story_pages/:id', to: 'story_pages#show', :as => :story_pages
+  #get 'story_pages/:id', to: 'story_pages#show', :as => :story_pages
+  get 'story_pages/*permalink', to: 'story_pages#show', :as => :story_pages
 
   devise_for :users
   resources :users

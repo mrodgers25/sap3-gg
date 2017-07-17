@@ -1,24 +1,17 @@
   class StoryPagesController < ApplicationController
 
     def show
-      @story = Story.find(params[:id])
+      @story = Story.find_by(permalink: (params[:permalink]))
       @urls = @story.urls
       @images = @urls.first.images
-      @publisher = @urls.first.mediaowner
+      @publisher = @urls.first.mediaowner.nil? ? "None" : @urls.first.mediaowner
       @description = @urls.first.url_desc
-
-      #check if @publisher.url_full is defined!
-
-      testcase = SecureRandom.urlsafe_base64(3)
-      puts "******************* #{testcase} *****************************"
-      puts "******************* #{@images.first.src_url} *****************************"
-
       render template: "story_pages/show.html.erb"
     end
 
       def story_params
     params.require(:story).permit(
-      :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :sap_publish_date,
+      :media_id, :scraped_type, :story_type, :author, :outside_usa, :permalink, :story_year, :story_month, :story_date, :sap_publish_date,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :release_seq,

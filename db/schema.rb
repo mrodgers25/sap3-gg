@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131161434) do
+ActiveRecord::Schema.define(version: 20170716205915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20150131161434) do
     t.boolean  "story_complete"
     t.integer  "release_seq"
     t.boolean  "outside_usa"
+    t.string   "random_field"
+    t.string   "permalink"
   end
 
   add_index "stories", ["sap_publish_date"], name: "index_stories_on_sap_publish_date", using: :btree
