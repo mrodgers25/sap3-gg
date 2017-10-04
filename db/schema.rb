@@ -130,7 +130,6 @@ ActiveRecord::Schema.define(version: 20170716205915) do
     t.boolean  "story_complete"
     t.integer  "release_seq"
     t.boolean  "outside_usa"
-    t.string   "random_field"
     t.string   "permalink"
   end
 

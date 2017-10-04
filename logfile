@@ -85,3 +85,14 @@ LOG:  could not bind IPv4 socket: Address already in use
 HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
 WARNING:  could not create listen socket for "localhost"
 FATAL:  could not create any TCP/IP sockets
+FATAL:  database files are incompatible with server
+DETAIL:  The data directory was initialized by PostgreSQL version 9.5, which is not compatible with this version 9.6.5.
+LOG:  database system was shut down at 2017-09-17 18:27:59 PDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  received fast shutdown request
+LOG:  aborting any active transactions
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
