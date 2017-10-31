@@ -1,0 +1,85 @@
+<h1 align="center">Individual Story Page</h1>
+
+<h2>Story: <%= @story.editor_tagline %></h2>
+
+<br>
+
+<style type="text/css">
+    #Table
+    {
+        display: table;
+        width: 80%;
+        table-layout: fixed;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+    }
+    #Title
+    {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+    #Heading
+    {
+        display: table;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+        font-size: large;
+        font-weight: bold;
+        text-align: left;
+    }
+    #Row
+    {
+        display: table;
+        text-align: left;
+        font-size: large;
+    }
+    #Cell
+    {
+        display: table;
+        border: solid;
+        font-size: large;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+</style>
+
+
+<% if user_signed_in? %>
+  <% if story_saved?(@story.id,current_user.id) %>
+    <p class="story-actions-links story-actions" id="forget_story">
+        <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => @story.id %>
+    </p>
+  <% else %>
+    <p style="color:red;text-align:center" class="story-actions-links story-actions" id="save_story">
+      <%= link_to "SAVE THIS STORY TO YOUR PROFILE", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.id %>
+    </p>
+  <% end %>
+<% else %>
+  <p style="color:red;text-align:center" class="story-actions-links story-actions" id="save_story">
+    <%= link_to "SAVE THIS STORY TO YOUR PROFILE", "javascript:void(0)", class: 'cannot_save_story_link' %>
+  </p>
+<% end %>
+
+
+<!--<div id="Table">  class="table">  -->
+<!--<div id="Row" >  class="row"> -->
+    <div id="Header">
+      <div class="col-sm-4 col-sm-push-8" style="background-color:none;"><img src= "<%= @images.first.src_url %>" ></img></div>
+    </div>
+    <div id="Row">
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;"><%= @description %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"><a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div>
+      <% if @publisher != "None"  %>
+        <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Published By:<a style="text-align: right" href="<%=@publisher.url_full%>">  <%= @publisher.title %></a></div>
+      <% end %>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Authored By:  <%= @story.author %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Published Date:   <%= @story.story_month %> / <%= @story.story_date %> / <%= @story.story_year %>&nbsp;</div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none; border:thin solid;">Location(s):  <%= @story.locations.map { |location| location.name }.to_sentence %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Place Category/Categories:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></div>
+      <div class="col-sm-8 col-sm-pull-4" style="background-color:none;border:thin solid;">Story Category/Categories:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></div>
+</div>
