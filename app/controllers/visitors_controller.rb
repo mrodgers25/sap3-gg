@@ -14,15 +14,26 @@ class VisitorsController < ApplicationController
     #@story_categories_loggedin = StoryCategory.order(:name)
     #@story_categories_notloggedin = StoryCategory.where.not(code: 'EP').order(:name)
 
-
     unless Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
       story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value
     end
-    story_limit ||= 36
+
+    if user_signed_in? && current_user.admin?
+      story_limit = 75
+    else
+      story_limit = 36
+    end
+
+    # story_limit ||= 36
     unless Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").nil?
       story_limit_filtered = Code.find_by(code_key: "LANDING_PAGE_FILTERED_COUNT").code_value
     end
-    story_limit_filtered ||= 36
+
+    if user_signed_in? && current_user.admin?
+      story_limit_filtered = 75
+    else
+      story_limit_filtered = 36
+    end
 
     @stories = Story.order("sap_publish_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
     # @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)

@@ -53,7 +53,7 @@
             <div class="col-sm-4 col-centered text-left story_div" style="margin-right: -15px">
 
             <%# story.urls.each do |u| %>
-              <p style="margin-bottom: 0%; text-align: left">
+              <p style="margin-bottom: 0%; text-align: left"></p>
               <%# @story.images.each do |i| %>
 
 <!-- Check if user is ADMIN to link to story-pages at this time  -->
@@ -68,11 +68,15 @@
                    <% if user_signed_in? %>
                     <% if story_saved?(@story.id,current_user.id) %>
                       <p class="story-actions-links story-actions" id="forget_story">
-                          <%= button_to "You Saved This Story", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => @story.permalink %>
+                          <%#= button_to "You Saved This Story", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => @story.permalink %>
+                          <%= link_to "You Saved This Story", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%>
                       </p>
                     <% else %>
+                    <p></p>
                       <p class="story-actions-links story-actions" id="save_story">
-                        <%= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.permalink %>
+                        <%#= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.permalink %>
+                    <p style="margin-bottom: 0%; text-align: center">
+                    <%= link_to "SAVE THIS STORY", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%></p>
                       </p>
                     <% end %>
                   <% else %>
@@ -105,33 +109,40 @@
                   <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
                    <%= link_to @urls.first.url_title, outbound_click_path(url: @urls.first.encoded_url), target: '_blank' %>
                   </p>
+                  <br>
+                  <!-- <p style="font-color: white, margin-bottom: 2%"></p> -->
 
-                  <p class="text-muted" style="margin-bottom: 2%">
 <!-- ADD in button "read this story at Publisher" -->
     <!-- <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"> -->
-      <%= button_to "Read this story at Publisher", @urls.first.url_full %>
+    <!--   <%#= button_to "Read this story at Publisher", class: "btn btn-success", @urls.first.url_full %> -->
+
+                <p style="margin-bottom: 0%; text-align: center">
+                <%= link_to "Read This Story at Publisher", @urls.first.url_full, class: "btn btn-small btn-primary btn-responsive "%></p>
+                <p></p>
+
       <!-- <a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div> -->
 <!-- END button to read story at publisher -->
                     <% if @urls.first.mediaowner.present? %>
                       <% unless @urls.first.mediaowner.title.nil? %>
+                      <p> Publisher:
                        <%= @urls.first.mediaowner.title %> &nbsp;&nbsp;
                       <% end %>
                     <% end %>
-
+                        Story Date:
                     <% mmyy = @story.story_month ? "#{@story.story_month}/#{@story.story_year}" : nil %>
                     <% mmddyy = @story.story_date && mmyy ? "#{@story.story_month}/#{@story.story_date}/#{@story.story_year}" : nil %>
                     <% slash_date = mmddyy ? mmddyy : mmyy %>
-                    <%= "#{slash_date}" %><br>
+                    <%= "#{slash_date}" %><br></p>
                   </p>
-                  <p><%= @story.author %></p>
+                  <p>Author: <%= @story.author %></p>
 
                   <!-- <p><%#= @urls.first.url_desc.truncate(@desc_trunc, :separator => ' ') %></p> -->
 
                   <p><%= @urls.first.url_desc %></p>
 
-                  <p> Location(s):  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
-                  <p> Place Category/Categories:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
-                  <p> Story Category/Categories:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></p>
+                  <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
+                  <p> Place Category:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
+                  <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></p>
 
                 </div>
 
