@@ -65,6 +65,7 @@
                   <%# end %> -->
 
 <!-- ADD in SAVED story BUTTON -->
+
                    <% if user_signed_in? %>
                     <% if story_saved?(@story.id,current_user.id) %>
                       <p class="story-actions-links story-actions" id="forget_story">
@@ -73,15 +74,16 @@
                       </p>
                     <% else %>
                     <p></p>
-                      <p class="story-actions-links story-actions" id="save_story">
+                      <p class="story-actions-links story-actions" id="save_story"></p>
                         <%#= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.permalink %>
                     <p style="margin-bottom: 0%; text-align: center">
                     <%= link_to "SAVE THIS STORY", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%></p>
                       </p>
                     <% end %>
                   <% else %>
-                    <p class="story-actions-links story-actions" id="save_story">
-                      <%= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
+                    <p class="story-actions-links story-actions" id="save_story"></p>
+                      <p style="margin-bottom: 0%; text-align: center">
+                      <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
                     </p>
                   <% end %>
 <!-- FINISH add of Saved story button -->
@@ -122,9 +124,11 @@
 
       <!-- <a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div> -->
 <!-- END button to read story at publisher -->
+                  <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
+                    <p>
                     <% if @urls.first.mediaowner.present? %>
                       <% unless @urls.first.mediaowner.title.nil? %>
-                      <p> Publisher:
+                       Publisher:
                        <%= @urls.first.mediaowner.title %> &nbsp;&nbsp;
                       <% end %>
                     <% end %>
@@ -132,7 +136,7 @@
                     <% mmyy = @story.story_month ? "#{@story.story_month}/#{@story.story_year}" : nil %>
                     <% mmddyy = @story.story_date && mmyy ? "#{@story.story_month}/#{@story.story_date}/#{@story.story_year}" : nil %>
                     <% slash_date = mmddyy ? mmddyy : mmyy %>
-                    <%= "#{slash_date}" %><br></p>
+                    <%= "#{slash_date}" %><br>
                   </p>
                   <p>Author: <%= @story.author %></p>
 
@@ -140,7 +144,6 @@
 
                   <p><%= @urls.first.url_desc %></p>
 
-                  <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
                   <p> Place Category:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
                   <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></p>
 
