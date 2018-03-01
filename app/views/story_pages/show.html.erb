@@ -125,18 +125,20 @@
       <!-- <a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div> -->
 <!-- END button to read story at publisher -->
                   <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
-                    <p>
+                  <p>
+                      Story Date:
+                    <% mmyy = @story.story_month ? "#{@story.story_month}/#{@story.story_year}" : nil %>
+                    <% mmddyy = @story.story_date && mmyy ? "#{@story.story_month}/#{@story.story_date}/#{@story.story_year}" : nil %>
+                    <% slash_date = mmddyy ? mmddyy : mmyy %>
+                    <%= "#{slash_date}" %>
+                  </p>
+                  <p>
                     <% if @urls.first.mediaowner.present? %>
                       <% unless @urls.first.mediaowner.title.nil? %>
                        Publisher:
                        <%= @urls.first.mediaowner.title %> &nbsp;&nbsp;
                       <% end %>
                     <% end %>
-                        Story Date:
-                    <% mmyy = @story.story_month ? "#{@story.story_month}/#{@story.story_year}" : nil %>
-                    <% mmddyy = @story.story_date && mmyy ? "#{@story.story_month}/#{@story.story_date}/#{@story.story_year}" : nil %>
-                    <% slash_date = mmddyy ? mmddyy : mmyy %>
-                    <%= "#{slash_date}" %><br>
                   </p>
                   <p>Author: <%= @story.author %></p>
 
