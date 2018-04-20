@@ -5,7 +5,7 @@
 <meta name="twitter:image" content='<%= "#{@images.first.src_url}" %>'/>
 <meta name="twitter:description" content='<%= "#{@story.editor_tagline}" %>'/>
 <meta name="twitter:site" content="@stories_places"/>
-<meta name="twitter:creator" content="@stories_places">
+<meta name="twitter:creator" content="@stories_places"/>
 
 <div class="form-group" style="margin-top: -10px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
   <div class="panel panel-default">
@@ -178,12 +178,11 @@ data-show-count="false">
 <a class="twitter-share-button"
   href="https://twitter.com/share"
   data-size="large"
-  data-text="Great story from @stories_places"
-  data-url='<%="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'
-  data-hashtags="#{@story.locations.map { |location| location.name }.to_sentence}"
-  data-via="">
+  data-url='<%="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'>
 </a>
-
+  <!-- data-text="" -->
+  <!-- data-hashtags='"#{@story.locations.map { |location| location.name }.to_sentence}"' -->
+  <!-- data-via="" -->
   <!-- data-related="twitterapi,twitter"> -->
                 </div>
               <%# end %>
