@@ -62,7 +62,7 @@
             <div class="col-sm-4 col-centered text-left story_div" style="margin-right: -15px">
 
             <%# story.urls.each do |u| %>
-              <p style="margin-bottom: 0%; text-align: left"></p>
+              <p style="margin-bottom: 0%; text-align: left; padding-bottom: 5px"></p>
               <%# @story.images.each do |i| %>
 
 <!-- Check if user is ADMIN to link to story-pages at this time  -->
@@ -85,13 +85,13 @@
                     <p></p>
                       <p class="story-actions-links story-actions" id="save_story"></p>
                         <%#= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.permalink %>
-                    <p style="margin-bottom: 0%; text-align: center">
+                    <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
                     <%= link_to "SAVE THIS STORY", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%></p>
                       </p>
                     <% end %>
                   <% else %>
                     <p class="story-actions-links story-actions" id="save_story"></p>
-                      <p style="margin-bottom: 0%; text-align: center">
+                      <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
                       <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
                     </p>
                   <% end %>
@@ -127,12 +127,13 @@
     <!-- <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"> -->
     <!--   <%#= button_to "Read this story at Publisher", class: "btn btn-success", @urls.first.url_full %> -->
 
-                <p style="margin-bottom: 0%; text-align: center">
+                <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
                 <%= link_to "Read This Story at Publisher", @urls.first.url_full, class: "btn btn-small btn-primary btn-responsive "%></p>
                 <p></p>
 
       <!-- <a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div> -->
 <!-- END button to read story at publisher -->
+
                   <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
                   <p>
                       Story Date:
@@ -151,15 +152,40 @@
                   </p>
                   <p>Author: <%= @story.author %></p>
 
-                  <!-- <p><%#= @urls.first.url_desc.truncate(@desc_trunc, :separator => ' ') %></p> -->
-
                   <p><%= @urls.first.url_desc %></p>
 
                   <p> Place Category:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
-                  <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %></p>
+                  <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %>
 
+<!-- <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+<!-- USE THIS ONE -->
+<!-- <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw"
+class="twitter-hashtag-button"
+data-url='<%#="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'
+data-lang="en"
+data-show-count="false">
+</a> -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- <a href="http://www.twitter.com/intent/tweet?url=http://www.storiesaboutplaces.com/#{@story.permalink}">tweet</a> -->
+<!-- <p><%#= @urls.first.url_desc.truncate(@desc_trunc, :separator => ' ') %></p> -->
+<!-- <button class="js-sharing-popup-twitter" data-share-text="How to add the Tweet button to your website" data-share-url="https://help.twitter.com/en/using-twitter/add-twitter-share-button" data-share-via="" data-share-hashtags="" data-share-related="">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="twtr-icon  twtr-color-fill--blue-dark  has-hover">
+ <path opacity="0" d="M0 0h24v24H0z"></path>
+</svg>
+</button> -->
+</p>
+<a class="twitter-share-button"
+  href="https://twitter.com/share"
+  data-size="large"
+  data-text="Great story from @stories_places"
+  data-url='<%="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'
+  data-hashtags="#{@story.locations.map { |location| location.name }.to_sentence}"
+  data-via="">
+</a>
+
+  <!-- data-related="twitterapi,twitter"> -->
                 </div>
-
               <%# end %>
             </div>
           <% end %>

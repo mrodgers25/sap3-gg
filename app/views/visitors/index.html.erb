@@ -60,7 +60,6 @@
             <% story.urls.each do |u| %>
               <p style="margin-bottom: 0%; text-align: left">
               <% u.images.each do |i| %>
-
 <!-- Check if user is ADMIN to link to story-pages at this time  -->
                 <% if user_signed_in? && current_user.admin? %>
                   <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.permalink), target: '_blank' %>
@@ -104,17 +103,20 @@
 		                <% if story_saved?(story.id,current_user.id) %>
 					            <p class="story-actions-links story-actions" id="forget_story">
 					                <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => story.id %>
-					            </p>
+					            <!-- </p> -->
 					          <% else %>
 		                  <p class="story-actions-links story-actions" id="save_story">
 		                    <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => story.id %>
-		                  </p>
+		                  <!-- </p> -->
 					          <% end %>
 				          <% else %>
 		                <p class="story-actions-links story-actions" id="save_story">
 		                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
-		                </p>
+		                <!-- </p> -->
+
 			            <% end %>
+                    </p>
+
 		            </div>
 
               <% end %>
