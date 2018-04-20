@@ -12,11 +12,10 @@ table, th, td {
 }
 
 .twitter-share-button {
-  display: flex;
-  display:inline-block;
-  justify-content:center;
-  position: relative;
-  margin-left: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .story-text-block {
