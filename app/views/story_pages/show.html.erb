@@ -171,18 +171,31 @@ data-show-count="false">
 <!-- <a href="http://www.twitter.com/intent/tweet?url=http://www.storiesaboutplaces.com/#{@story.permalink}">tweet</a> -->
 <!-- <p><%#= @urls.first.url_desc.truncate(@desc_trunc, :separator => ' ') %></p> -->
 <!-- <button class="js-sharing-popup-twitter" data-share-text="How to add the Tweet button to your website" data-share-url="https://help.twitter.com/en/using-twitter/add-twitter-share-button" data-share-via="" data-share-hashtags="" data-share-related="">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="twtr-icon  twtr-color-fill--blue-dark  has-hover">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="twtr-icon  twtr-color-fill-blue-dark  has-hover">
  <path opacity="0" d="M0 0h24v24H0z"></path>
 </svg>
 </button> -->
 </p>
+<%= @story.permalink %>
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
-  data-text="Great story from @story_places ! "
+  data-text="Great story from Stories About Places (@story_places) "
   data-size="large"
-  data-url='<%="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'>
+  data-url=<%="http://www.storiesaboutplaces.com/#{@story.permalink}"%> >
   Tweet
 </a>
+
+<!-- <a class="twitter-share-button"
+  href="https://twitter.com/share"
+  data-size="large"
+  data-text="custom share text"
+  data-url="http://www.storiesaboutplaces.com/#{@story.permalink}"
+  data-hashtags="example,demo"
+  data-via="twitterdev"
+  data-related="twitterapi,twitter">
+Tweet
+</a> -->
+
   <!-- href="https://twitter.com/share" -->
   <!-- data-hashtags='"#{@story.locations.map { |location| location.name }.to_sentence}"' -->
   <!-- data-via="" -->
