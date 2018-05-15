@@ -176,13 +176,11 @@ data-show-count="false">
 </svg>
 </button> -->
 </p>
-<% twittershare_url = "http://www.storiesaboutplaces.com/#{@story.permalink}" %>
-<%= twittershare_url %>
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
   data-text="Great story from Stories About Places (@story_places) "
   data-size="large"
-  data-url="#{twittershare_url}" >
+  data-url= '<%= "http://www.storiesaboutplaces.com/#{@story.permalink}" %>'>
   Tweet
 </a>
 
