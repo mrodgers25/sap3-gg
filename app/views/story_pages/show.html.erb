@@ -176,31 +176,17 @@ data-show-count="false">
 </svg>
 </button> -->
 </p>
+<% test_url = "http://www.storiesaboutplaces.com/#{@story.permalink}" %>
+<%= params[:story_url] %>
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
   data-text="Great story from Stories About Places (@story_places) "
   data-size="large"
-  data-url= '<%= "http://www.storiesaboutplaces.com/#{@story.permalink}" %>'>
+  data-url="" >
   Tweet
 </a>
 
-<!-- <a class="twitter-share-button"
-  href="https://twitter.com/share"
-  data-size="large"
-  data-text="custom share text"
-  data-url="http://www.storiesaboutplaces.com/#{@story.permalink}"
-  data-hashtags="example,demo"
-  data-via="twitterdev"
-  data-related="twitterapi,twitter">
-Tweet
-</a> -->
-
-  <!-- href="https://twitter.com/share" -->
-  <!-- data-hashtags='"#{@story.locations.map { |location| location.name }.to_sentence}"' -->
-  <!-- data-via="" -->
-  <!-- data-related="twitterapi,twitter"> -->
-                </div>
-              <%# end %>
+              </div>
             </div>
           <% end %>
         </div>
