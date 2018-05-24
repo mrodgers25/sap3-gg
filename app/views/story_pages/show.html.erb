@@ -25,22 +25,7 @@
                   <span class="icon-bar"></span>
                 </button>
 
-                <!-- <span class="timer-display"> <%#= render 'visitors/countdown' %> </span> -->
-
               </div>
-<!--               <div class="collapse navbar-collapse" id="sap-navbar-collapse" style="margin-right: 15px">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="select-dropdown-hdr">
-                    <%#= select_tag :location_id,
-                          options_from_collection_for_select(@location_codes,'id','name', params[:location_id]),
-                          prompt: 'All Locations'
-                    %>&nbsp;
-                    </li> -->
-<!--                   <li  class="select-dropdown-hdr">
-                    <%#= select_tag :place_category_id,
-                          options_from_collection_for_select(@story_place_types,'id','name', params[:place_category_id]),
-                          prompt: 'All Place Types'
-                     %>&nbsp;
                   </li>
                     <li class="select-dropdown-hdr">
                       <%#= select_tag :story_category_id,
@@ -98,7 +83,6 @@
                   <% end %>
 <!-- FINISH add of Saved story button -->
 
-
                  <% if valid_url?(@images.first.src_url) %>
                     <%= link_to image_tag(@images.first.src_url, :width =>1000, :class => "img-responsive") %>
                   <% end %>
@@ -122,18 +106,10 @@
                    <%= link_to @urls.first.url_title, outbound_click_path(url: @urls.first.encoded_url), target: '_blank' %>
                   </p>
                   <br>
-                  <!-- <p style="font-color: white, margin-bottom: 2%"></p> -->
-
-<!-- ADD in button "read this story at Publisher" -->
-    <!-- <div class="col-sm-8 col-sm-pull-4" style="background-color:orange; border:thin solid;"> -->
-    <!--   <%#= button_to "Read this story at Publisher", class: "btn btn-success", @urls.first.url_full %> -->
 
                 <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
                 <%= link_to "Read This Story at Publisher", @urls.first.url_full, class: "btn btn-small btn-primary btn-responsive "%></p>
                 <p></p>
-
-      <!-- <a href="<%= @urls.first.url_full %>" target="_blank"> To read the full story click here...</a></div> -->
-<!-- END button to read story at publisher -->
 
                   <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
                   <p>
@@ -158,28 +134,13 @@
                   <p> Place Category:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
                   <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %>
 
-<!-- <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-<!-- USE THIS ONE -->
-<!-- <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw"
-class="twitter-hashtag-button"
-data-url='<%#="http://www.storiesaboutplaces.com/#{@story.permalink}"%>'
-data-lang="en"
-data-show-count="false">
-</a> -->
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<!-- <a href="http://www.twitter.com/intent/tweet?url=http://www.storiesaboutplaces.com/#{@story.permalink}">tweet</a> -->
-<!-- <p><%#= @urls.first.url_desc.truncate(@desc_trunc, :separator => ' ') %></p> -->
-<!-- <button class="js-sharing-popup-twitter" data-share-text="How to add the Tweet button to your website" data-share-url="https://help.twitter.com/en/using-twitter/add-twitter-share-button" data-share-via="" data-share-hashtags="" data-share-related="">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="twtr-icon  twtr-color-fill-blue-dark  has-hover">
- <path opacity="0" d="M0 0h24v24H0z"></path>
-</svg>
-</button> -->
 </p>
 
 <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
-  data-text="Great story from Stories About Places (@story_places) "
+  data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
   data-size="large"
   data-url="" >
   Tweet
