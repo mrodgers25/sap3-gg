@@ -26,18 +26,6 @@
                 </button>
 
               </div>
-                  <!-- </li> -->
-                    <!-- <li class="select-dropdown-hdr"> -->
-                      <%#= select_tag :story_category_id,
-                            options_from_collection_for_select(@story_categories,'id','name', params[:story_category_id]),
-                            prompt: 'All Story Categories'
-                    </li>
-                  <!-- <li><%#= submit_tag "Filter Stories", class: 'btn btn-success btn-lg btn-responsive'%>
-
-  <!--             </div>
-            </nav>
-
-          <%# end %> -->
 
         </div>
         <div class="row row-centered" style="font-family: Source Sans Pro">
@@ -77,7 +65,7 @@
                   <% else %>
                     <p class="story-actions-links story-actions" id="save_story"></p>
                       <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
-                      <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
+                      <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link btn btn-small btn-primary btn-responsive' %>
                     </p>
                   <% end %>
 <!-- FINISH add of Saved story button -->
@@ -136,14 +124,17 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </p>
+<div class="social-share-button", style="text-align: center" >
+<%= social_share_button_tag(@urls.first.url_title, desc: "The summary of page", 'data-twitter-title' => 'Here’s a great story I found on Stories About Places (@Stories_Places)') %>
+</div>
 
-<a class="twitter-share-button"
+<!-- <a class="twitter-share-button"
   href="https://twitter.com/intent/tweet"
   data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
   data-size="large"
   data-url="" >
   Tweet
-</a>
+</a> -->
               </div>
             </div>
           <% end %>
