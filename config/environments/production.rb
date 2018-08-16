@@ -32,8 +32,10 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  # config.assets.compile = true
   # config.assets.compile = false # changed by gg
+  # added August 16, 2018 --> because error came up during push to staging
+  config.assets.compile = false # Disables security vulnerability
 
   #following 2 lines were due to Rails 4.2.0 upgrade
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
