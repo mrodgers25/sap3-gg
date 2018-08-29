@@ -43,7 +43,7 @@ gem 'figaro'
 gem 'sendgrid-ruby'
 
 gem 'delayed_job_active_record'
-gem 'social-share-button'
+gem 'social-share-button', '~> 0.1.6'
 gem 'awesome_print', :require => 'ap'
 gem 'google-webfonts'
 gem 'ahoy_matey'
