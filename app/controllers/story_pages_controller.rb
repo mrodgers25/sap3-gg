@@ -6,6 +6,7 @@
       @images = @urls.first.images
       @publisher = @urls.first.mediaowner.nil? ? "None" : @urls.first.mediaowner
       @description = @urls.first.url_desc
+      @full_storypage_url = "http://www.storiesaboutplaces.com/story_pages/#{@story.permalink}"
       render template: "story_pages/show.html.erb"
     end
 
