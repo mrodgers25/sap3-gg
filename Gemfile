@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby 2.5.7
 #ruby '2.2.4'
 #ruby '2.1.4'
 #upgrade to 4.2.0
