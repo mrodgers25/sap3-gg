@@ -72,4 +72,6 @@ group :development do
 
   # test new viewing database option
   gem 'rails_db'
+  # added to create seed file
+  gem 'seed_dump'
 end

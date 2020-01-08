@@ -237,6 +237,9 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    seed_dump (3.3.1)
+      activerecord (>= 4)
+      activesupport (>= 4)
     sendgrid-ruby (4.0.8)
       ruby_http_client (~> 3.0.1)
     simple_form (3.4.0)
@@ -321,6 +324,7 @@ DEPENDENCIES
   sanitize
   sass-rails (~> 5.0.6)
   sdoc (~> 0.4.0)
+  seed_dump
   sendgrid-ruby
   simple_form
   social-share-button (~> 1.1.0)
