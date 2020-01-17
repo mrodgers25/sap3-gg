@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
-ruby '2.5.7'
+ruby '2.4.9'
+#ruby '2.5.7'  ## tried upgrading to this with Nate but then code broke
 #ruby '2.2.4'
 #ruby '2.1.4'
 #upgrade to 4.2.0
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.8'
 gem 'rails_12factor', group: :production
 
 #due to upgrade to 4.2.0 had to have version 4.0.3
@@ -28,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.3.7' #changed to 3.3.7 to go with Rails 4.2.0 #, '~> 3.2.0' had to hard code version number to get it to work with old versions of Rails and Ruby
 gem 'devise', '~>3.5.10' #'4.2.0' # '~>3.5.5' #had to hard code version number to get it to work
-gem 'pg'
+gem 'pg', '~> 0.20'
 # gem 'thin'
 gem 'puma'
 gem 'pry'
@@ -47,7 +48,7 @@ gem 'delayed_job_active_record'
 gem 'social-share-button', '~> 1.1.0'
 gem 'awesome_print', :require => 'ap'
 gem 'google-webfonts'
-gem 'ahoy_matey'
+gem 'ahoy_matey', '~> 1.5.5'
 gem 'unirest'
 gem 'json'
 
