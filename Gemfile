@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.4.1'  #~> 3.3.7' #changed to 3.3.7 to go with Rails 4.2.0 #, '~> 3.2.0' had to hard code version number to get it to work with old versions of Rails and Ruby
-gem 'devise', '~>3.5.10' #'4.2.0' # '~>3.5.5' #had to hard code version number to get it to work
+gem 'devise', '~>4.7.1' #'4.2.0' # '~>3.5.5' #had to hard code version number to get it to work
 gem 'pg', '~> 0.20'
 # gem 'thin'
 gem 'puma'
