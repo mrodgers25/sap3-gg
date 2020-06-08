@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby '2.4.9'
+ruby '2.4.9' #this works
 #ruby '2.5.7'  ## tried upgrading to this with Nate but then code broke
 #ruby '2.2.4'
 #ruby '2.1.4'
 #upgrade to 4.2.0
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.11.1' #4.2.8'
 gem 'rails_12factor', group: :production
 
 #due to upgrade to 4.2.0 had to have version 4.0.3
