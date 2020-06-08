@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'bootstrap-sass', '~> 3.3.7' #changed to 3.3.7 to go with Rails 4.2.0 #, '~> 3.2.0' had to hard code version number to get it to work with old versions of Rails and Ruby
+gem 'bootstrap-sass', '~> 3.4.1'  #~> 3.3.7' #changed to 3.3.7 to go with Rails 4.2.0 #, '~> 3.2.0' had to hard code version number to get it to work with old versions of Rails and Ruby
 gem 'devise', '~>3.5.10' #'4.2.0' # '~>3.5.5' #had to hard code version number to get it to work
 gem 'pg', '~> 0.20'
 # gem 'thin'
@@ -51,6 +51,7 @@ gem 'google-webfonts'
 gem 'ahoy_matey', '~> 1.5.5'
 gem 'unirest'
 gem 'json'
+gem 'rest-client', '>= 1.8.0' #added this line after secruity issues popped up in June2020, plus other updates too
 
 # gem 'ransack' #http://railscasts.com/episodes/370-ransack
 #due to upgrade to 4.2.0 - some changes here....
