@@ -43,7 +43,7 @@
                   <%#= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.permalink), target: '_blank' %>
         -->        <%# else %>
 <!--                   <%# if valid_url?(@images.first.src_url) %>
-                    <%#= link_to image_tag(@images.first.src_url, :width =>1000, :class => "img-responsive"), outbound_click_path(url: @images.first.url_full), target: '_blank' %>
+                    <%#= link_to image_tag(@images.first.src_url, :width =>1000, :class => "img-responsive"), @images.first.url_full, target: '_blank' %>
                   <%# end %> -->
 
 <!-- ADD in SAVED story BUTTON -->
@@ -90,7 +90,7 @@
                    </p>
                 <% end %>
                   <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
-                   <%= link_to @urls.first.url_title, outbound_click_path(url: @urls.first.encoded_url), target: '_blank' %>
+                   <%= link_to @urls.first.url_title, @urls.first.encoded_url, target: '_blank' %>
                   </p>
                   <br>
 

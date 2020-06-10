@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   match '/reports/export_outboundclick' => 'reports#export_outboundclick', via: [:get, :post]
   # match '/reports/user_actions' => 'reports#user_actions', via: [:get, :post]
 
-  get '/click', to: 'outbound_clicks#show', as: :outbound_click
+  #get '/click', to: 'outbound_clicks#show', as: :outbound_click
 
   resources :stories #original from generate
   resources :reports
