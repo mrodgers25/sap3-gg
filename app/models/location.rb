@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < ApplicationRecord
   validates :code, presence: true
   validates :code, uniqueness: true
 

@@ -60,29 +60,29 @@
 <ellipse fill="none" stroke="black" cx="418.45" cy="-162" rx="27" ry="18"/>
 <text text-anchor="middle" x="418.45" y="-157.8" font-family="Times,serif" font-size="14.00">User</text>
 </g>
-<!-- ActiveRecord::Base -->
-<g id="node7" class="node"><title>ActiveRecord::Base</title>
+<!-- ApplicationRecord -->
+<g id="node7" class="node"><title>ApplicationRecord</title>
 <ellipse fill="none" stroke="black" cx="306.45" cy="-252.5" rx="81.1422" ry="18"/>
-<text text-anchor="middle" x="306.45" y="-248.3" font-family="Times,serif" font-size="14.00">ActiveRecord::Base</text>
+<text text-anchor="middle" x="306.45" y="-248.3" font-family="Times,serif" font-size="14.00">ApplicationRecord</text>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;Image -->
-<g id="edge1" class="edge"><title>ActiveRecord::Base&#45;&gt;Image</title>
+<!-- ApplicationRecord&#45;&gt;Image -->
+<g id="edge1" class="edge"><title>ApplicationRecord&#45;&gt;Image</title>
 <path fill="none" stroke="black" d="M269.383,-236.397C226.847,-218.694 162.062,-190.447 155.45,-180 126.569,-134.371 151.135,-66.6228 165.222,-35.6007"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;MediaInfo -->
-<g id="edge3" class="edge"><title>ActiveRecord::Base&#45;&gt;MediaInfo</title>
+<!-- ApplicationRecord&#45;&gt;MediaInfo -->
+<g id="edge3" class="edge"><title>ApplicationRecord&#45;&gt;MediaInfo</title>
 <path fill="none" stroke="black" d="M288.581,-234.854C271.381,-218.831 245.552,-194.769 228.598,-178.975"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;Story -->
-<g id="edge5" class="edge"><title>ActiveRecord::Base&#45;&gt;Story</title>
+<!-- ApplicationRecord&#45;&gt;Story -->
+<g id="edge5" class="edge"><title>ApplicationRecord&#45;&gt;Story</title>
 <path fill="none" stroke="black" d="M306.45,-234.436C306.45,-218.765 306.45,-195.666 306.45,-180.011"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;Url -->
-<g id="edge7" class="edge"><title>ActiveRecord::Base&#45;&gt;Url</title>
+<!-- ApplicationRecord&#45;&gt;Url -->
+<g id="edge7" class="edge"><title>ApplicationRecord&#45;&gt;Url</title>
 <path fill="none" stroke="black" d="M320.817,-234.734C337.652,-212.928 361.241,-174.073 344.45,-144 331.368,-120.571 303.204,-106.216 282.659,-98.4572"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;User -->
-<g id="edge8" class="edge"><title>ActiveRecord::Base&#45;&gt;User</title>
+<!-- ApplicationRecord&#45;&gt;User -->
+<g id="edge8" class="edge"><title>ApplicationRecord&#45;&gt;User</title>
 <path fill="none" stroke="black" d="M327.254,-235.061C348.762,-218.066 381.92,-191.865 401.771,-176.179"/>
 </g>
 </g>

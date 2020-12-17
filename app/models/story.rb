@@ -1,4 +1,4 @@
-class Story < ActiveRecord::Base
+class Story < ApplicationRecord
   include ApplicationHelper
   # validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 

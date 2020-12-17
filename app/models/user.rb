@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   enum role: [:user, :associate, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :visits

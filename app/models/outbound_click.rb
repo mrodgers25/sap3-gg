@@ -1,3 +1,3 @@
-class OutboundClick < ActiveRecord::Base
+class OutboundClick < ApplicationRecord
   validates :url, presence: true
 end

@@ -1,4 +1,4 @@
-class StoryLocation < ActiveRecord::Base
+class StoryLocation < ApplicationRecord
   validates :story_id, :location_id, presence: true
   validates :story_id, uniqueness: {scope: :location_id}
 

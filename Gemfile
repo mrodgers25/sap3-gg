@@ -36,6 +36,9 @@ gem 'unirest'
 gem 'json'
 gem 'rest-client'
 
+# new with RAILS 5
+gem 'bootsnap'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -52,4 +55,7 @@ group :development do
   gem 'rails-erd', '1.6.0'
   # test new viewing database option
   # gem 'rails_db', '1.6.0' # rails 5: '<= 2.2.1' rails 6: all
+
+  # new with RAILS 5
+  gem 'listen'
 end

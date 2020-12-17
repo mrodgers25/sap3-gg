@@ -4,7 +4,7 @@ class VisitorsController < ApplicationController
   def index
 
     # track user activity on landing page
-    track_action
+    # track_action
 
     # database dropdown data
     @location_codes = Location.order("ascii(name)")

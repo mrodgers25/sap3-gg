@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   belongs_to :url, inverse_of: :images
   validates :src_url, :presence => { :message => "IMAGE is required" }
   attr_accessor :image_data, :manual_url

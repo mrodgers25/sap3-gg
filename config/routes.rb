@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   match 'stories/new' => 'stories#new', via: [:get, :post]
   match 'stories/scrape' => 'stories#scrape', via: [:get, :post]
   match 'stories/incomplete' => 'stories#incomplete', via: [:get, :post], as: :incomplete_stories
@@ -47,5 +47,4 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
-
 end
