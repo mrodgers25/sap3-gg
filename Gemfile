@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.4.9'
-gem 'rails', '4.2.11.1'
+gem 'rails', '~> 5.2'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0.7'
@@ -51,5 +51,5 @@ group :development do
   #This will create an ERD diagram from your database
   gem 'rails-erd', '1.6.0'
   # test new viewing database option
-  gem 'rails_db', '1.6.0' # rails 5: '<= 2.2.1' rails 6: all
+  # gem 'rails_db', '1.6.0' # rails 5: '<= 2.2.1' rails 6: all
 end
