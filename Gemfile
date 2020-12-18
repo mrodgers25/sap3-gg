@@ -31,7 +31,7 @@ gem 'delayed_job_active_record', '>= 4.1.3' # THIS DOES NOT WORK IN RAILS 6.1
 gem 'social-share-button'
 gem 'awesome_print', :require => 'ap'
 gem 'google-webfonts'
-gem 'ahoy_matey', '<= 2.2.1'
+# gem 'ahoy_matey', '<= 2.2.1'
 gem 'unirest'
 gem 'json'
 gem 'rest-client'
