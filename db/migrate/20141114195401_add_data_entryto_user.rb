@@ -1,4 +1,4 @@
-class AddDataEntrytoUser < ActiveRecord::Migration
+class AddDataEntrytoUser < ActiveRecord::Migration[6.0]
   def change
   end
 end

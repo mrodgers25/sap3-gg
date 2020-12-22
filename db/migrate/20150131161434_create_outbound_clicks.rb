@@ -1,4 +1,4 @@
-class CreateOutboundClicks < ActiveRecord::Migration
+class CreateOutboundClicks < ActiveRecord::Migration[6.0]
   def change
     create_table :outbound_clicks do |t|
       t.integer :user_id

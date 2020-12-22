@@ -1,4 +1,4 @@
-class CreateStoryStoryCategories < ActiveRecord::Migration
+class CreateStoryStoryCategories < ActiveRecord::Migration[6.0]
   def change
     create_table :story_story_categories do |t|
       t.integer :story_id, null: false

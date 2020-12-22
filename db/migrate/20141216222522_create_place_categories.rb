@@ -1,4 +1,4 @@
-class CreatePlaceCategories < ActiveRecord::Migration
+class CreatePlaceCategories < ActiveRecord::Migration[6.0]
   def change
     create_table :place_categories do |t|
       t.string :code, null: false
