@@ -88,3 +88,5 @@ pickle-email-*.html
 
 TODO.txt
 sendgrid.env
+
+/config/master.key
