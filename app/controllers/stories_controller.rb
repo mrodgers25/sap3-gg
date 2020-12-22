@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   def scrape
