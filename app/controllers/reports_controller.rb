@@ -107,22 +107,22 @@ class ReportsController < ApplicationController
 
   def export_actionlisting
   #action export
-    actions = User.includes(:events).joins(:events).order("ahoy_events.time")
+    # actions = User.all
 
-    output = CSV.generate do |writer|
-      writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
-      actions.each do |a|
-        a.events.each do |e|
-          if e.properties.values[5].present?  # filter actions
-            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
-                  e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
-          end
-          unless e.properties.values[5].present?  # non-filter actions
-            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
-          end
-        end
-      end
-    end
+    # output = CSV.generate do |writer|
+    #   writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
+    #   actions.each do |a|
+    #     a.events.each do |e|
+    #       if e.properties.values[5].present?  # filter actions
+    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
+    #               e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
+    #       end
+    #       unless e.properties.values[5].present?  # non-filter actions
+    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
+    #       end
+    #     end
+    #   end
+    # end
     respond_to do |format|
       format.html
       format.csv { send_data output, filename: 'export_actionlisting.csv' }
@@ -208,22 +208,22 @@ class ReportsController < ApplicationController
     file_o = Rails.root.join('tmp','outbound_click_listing.csv')
     # puts "Outbound clicks file will be #{file_o}"
 
-    actions = User.includes(:events).joins(:events).order("ahoy_events.time")
+    # actions = User.includes(:events).joins(:events)
 
-    CSV.open( file_a, 'w' ) do |writer|
-      writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
-      actions.each do |a|
-        a.events.each do |e|
-          if e.properties.values[5].present?  # filter actions
-            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
-                  e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
-          end
-          unless e.properties.values[5].present?  # non-filter actions
-            writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
-          end
-        end
-      end
-    end
+    # CSV.open( file_a, 'w' ) do |writer|
+    #   writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
+    #   actions.each do |a|
+    #     a.events.each do |e|
+    #       if e.properties.values[5].present?  # filter actions
+    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
+    #               e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
+    #       end
+    #       unless e.properties.values[5].present?  # non-filter actions
+    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
+    #       end
+    #     end
+    #   end
+    # end
 
     outbound_clicks = OutboundClick.all
     ##Outbound Reports
