@@ -3,6 +3,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("bootstrap")
 require("social-share-button")
+require("jquery")
 require('chosen-js')
 // CSS
 import 'stylesheets'
