@@ -1,15 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-  <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-  <%= link_to image_pack_tag("sap-logo.png", id: "sap-logo"), root_path %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-light bg-white border-bottom">
+  <button class="btn navbar-toggler mr-1" id="menu-toggle">
+    <i class="fas fa-bars"></i>
   </button>
 
+  <div class="logo-wrapper">
+    <%= link_to image_pack_tag("sap-logo.png", id: "sap-logo"), root_path %>
+  </div>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="btn navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-user"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

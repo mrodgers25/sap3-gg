@@ -49,5 +49,18 @@
 }
 
 #sap-logo {
-  max-width: 30vw;
+  max-width: 255px;
+}
+
+.navbar {
+  justify-content: flex-start;
+  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.2);
+
+  .navbar-toggler {
+    border: none;
+  }
+}
+
+.sidebar {
+  box-shadow: 3px 0px 10px 0px rgba(0,0,0,0.2);
 }
