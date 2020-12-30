@@ -2,7 +2,10 @@
 <html>
   <head>
     <%= favicon_link_tag 'favicon.ico' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	  <% url_env = request.url %>
     <% if Rails.env.development? %>
       <% env_title = "SAP - dev" %>
@@ -15,7 +18,6 @@
     <% end %>
     <title><%= content_for?(:title) ? yield(:title) : env_title %></title>
 
-
     <meta name="Stories About Places" content="<%= content_for?(:description) ? yield(:description) : "Stories About Places" %>">
     <meta property="og:title" content="Stories About Places"/>
     <meta property="og:type" content="Aggregator"/>
@@ -23,10 +25,10 @@
     <meta property="article:publisher" content="Stories About Places" />
     <meta property="article:author" content="Ron Hodson" />
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Roboto:300' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <div id="fb-root"></div>

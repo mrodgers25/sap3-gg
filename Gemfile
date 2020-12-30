@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.7.2'
 gem 'rails', '6.1.0'
+gem 'webpacker'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
@@ -12,7 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '<= 2.9.1'
 gem 'sdoc', group: :doc
-gem 'bootstrap-sass', '3.4.1'
+# gem 'bootstrap-sass', '3.4.1'
 gem 'devise'
 gem 'pg'
 gem 'puma'
@@ -35,7 +36,7 @@ gem 'json'
 gem 'rest-client'
 
 # new with RAILS 5
-gem 'bootsnap'
+gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
