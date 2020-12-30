@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   match 'stories/story_proof/:id' => 'stories#story_proof', via: [:get, :post], as: :story_proof
   match '/my_stories' => 'usersavedstories#my_stories', via: [:get, :post]
   match '/usersavedstories/:id' => 'usersavedstories#destroy', via: [:delete], as: :destroy_usersavedstories
-  match '/' => 'visitors#index', via: [:get, :post]
+  # match '/' => 'visitors#index', via: [:get, :post]
 
   post '/visitors/save_story/:id', to: 'visitors#save_story', as: :save_story
   post '/visitors/forget_story/:id', to: 'visitors#forget_story', as: :forget_story
@@ -39,10 +39,12 @@ Rails.application.routes.draw do
   resources :story_categories
   resources :codes
 
-  root to: 'visitors#index', via: [:get, :post]  #added by gg
+  # root to: 'visitors#index', via: [:get, :post]  #added by gg
   get 'products/:id', to: 'products#show', :as => :products
   #get 'story_pages/:id', to: 'story_pages#show', :as => :story_pages
   get 'story_pages/*permalink', to: 'story_pages#show', :as => :story_pages
+
+  root 'home#index'
 
   devise_for :users
   resources :users
