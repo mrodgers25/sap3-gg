@@ -4,6 +4,8 @@
     "@rails/ujs": "^6.1.0",
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^4.5.3",
+    "chosen-jquery": "^0.1.1",
+    "chosen-js": "^1.8.7",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "rails-ujs": "^5.2.4-4",

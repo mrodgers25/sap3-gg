@@ -9,7 +9,6 @@ gem 'sass-rails'
 gem 'responders'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
-gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '<= 2.9.1'
 gem 'sdoc', group: :doc

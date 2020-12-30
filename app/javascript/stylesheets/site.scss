@@ -1,4 +1,3 @@
-@import '~bootstrap/scss/bootstrap';
 
 /* override bootstrap header */
 .navbar-custom {
@@ -152,7 +151,6 @@ a.btn-view, a.btn-view:hover, a.btn-view:visited {
 
 //mobile
 @media (max-width: 768px) {
-
   .logo-nav img{
     width:220px;
     max-width:100%;
@@ -378,5 +376,4 @@ a.btn-view, a.btn-view:hover, a.btn-view:visited {
     padding-left: 4%;
     padding-right: 4%;
   }
-
 }
