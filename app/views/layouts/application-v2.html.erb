@@ -10,14 +10,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="d-flex" id="wrapper">
+    <div id="wrapper">
+      <%= render 'layouts/top_navbar' %>
+      <%= render 'layouts/side_navbar' %>
+
       <div id="page-content-wrapper">
-        <%= render 'layouts/top_navbar' %>
-        <%= render 'layouts/side_navbar' %>
         <%= render 'layouts/messages' %>
         <%= yield %>
-        <%= render 'layouts/footer' %>
       </div>
+
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
