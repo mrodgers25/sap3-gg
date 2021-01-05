@@ -1,7 +1,5 @@
 <div class="container-fluid">
-  <%=
-    select_tag :location_id,
-    options_from_collection_for_select(@location_codes, 'id', 'name', params[:location_id]),
-    prompt: 'All Locations'
-  %>
+  <%= render partial: 'filters' %>
+
+
 </div>
