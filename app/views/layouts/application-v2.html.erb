@@ -8,9 +8,10 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> %>
   </head>
   <body>
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
       <%= render 'layouts/top_navbar' %>
       <%= render 'layouts/side_navbar' %>
 

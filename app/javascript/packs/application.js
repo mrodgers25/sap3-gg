@@ -5,6 +5,8 @@ require("bootstrap")
 require("social-share-button")
 require("jquery")
 require('chosen-js')
+require('masonry-layout')
+
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
 // CSS

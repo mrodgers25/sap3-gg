@@ -13,13 +13,13 @@ document.addEventListener("turbolinks:load", function () {
   //    }
 });
 
-function refreshTimer() {
-  $.ajax({
-    url: '/visitors/refresh_timer',
-    format: 'js'
-  })
-}
-setInterval(refreshTimer, 30000); // # 1000 ticks/sec
+// function refreshTimer() {
+//   $.ajax({
+//     url: '/visitors/refresh_timer',
+//     format: 'js'
+//   })
+// }
+// setInterval(refreshTimer, 30000); // # 1000 ticks/sec
 
 var Utils = function () {
   return {

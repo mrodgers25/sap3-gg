@@ -1,5 +1,65 @@
 <div class="container-fluid">
   <%= render partial: 'filters' %>
 
+  <div class="grid story-grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
+    <div class="grid-sizer"></div>
+    <% @stories.each do |story| %>
+      <div class="grid-item">
+        <% story.urls.each do |url| %>
+          <div class="image-wrapper">
+            <% url.images.each do |image| %>
+              <%= link_to image_tag(image.src_url), story_pages_path(story.permalink), target: '_blank' %>
+              <% image_prop = image.image_height.to_f / image.image_width.to_f unless image.image_width.nil? %> <!-- calc image proportions -->
+              <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220 -->
+              <% @desc_trunc = @desc_trunc < 75 ? 75 : @desc_trunc %> <!-- set min desc length to 75px -->
+            <% end %>
+          </div>
+          <div>
+            <% if story.editor_tagline.present? %>
+              <p>
+                <em><%= story.editor_tagline %></em><meta itemprop="comment" content="<%= story.editor_tagline %>">
+              </p>
+            <% end %>
 
+            <p>
+              <%= link_to url.url_title, url.encoded_url, target: '_blank' %>
+            </p>
+
+            <p>
+              <% if url.mediaowner.present? %>
+                <% unless url.mediaowner.title.nil? %>
+                  <%= url.mediaowner.title %> &nbsp;&nbsp;
+                <% end %>
+              <% end %>
+
+              <% mmyy = story.story_month ? "#{story.story_month}/#{story.story_year}" : nil %>
+              <% mmddyy = story.story_date && mmyy ? "#{story.story_month}/#{story.story_date}/#{story.story_year}" : nil %>
+              <% slash_date = mmddyy ? mmddyy : mmyy %>
+              <%= "#{slash_date}" %><br>
+            </p>
+
+            <p>
+              <%= url.url_desc.truncate(@desc_trunc, :separator => ' ') %>
+            </p>
+
+            <% if user_signed_in? %>
+              <% if story_saved?(story.id,current_user.id) %>
+                <p class="story-actions-links story-actions" id="forget_story">
+                  <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => story.id %>
+                </p>
+              <% else %>
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => story.id %>
+                </p>
+              <% end %>
+            <% else %>
+              <p class="story-actions-links story-actions" id="save_story">
+                <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link' %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
