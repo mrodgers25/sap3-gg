@@ -18,10 +18,10 @@
 }
 
 #page-content-wrapper {
+  height: 100%;
   z-index: -1;
-  overflow-y: hidden;
   margin-left: 0rem;
-  margin-top: 1rem;
+  margin-top: 4.4rem;
 
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
@@ -29,7 +29,14 @@
   transition: margin .25s ease-out;
 }
 
+#main-content {
+  height: 100vh;
+}
+
 .navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
   justify-content: flex-start;
   box-shadow: 0px 5px 7px -4px rgba(0, 0, 0, 0.2);
 
@@ -39,8 +46,9 @@
 }
 
 #sidebar-wrapper {
+  margin-top: 3.4rem;
   z-index: 1;
-  position: absolute;
+  position: fixed;
   min-height: 100vh;
   margin-left: 0;
   -webkit-transition: margin .25s ease-out;
@@ -67,7 +75,7 @@
   #page-content-wrapper {
     z-index: none;
     margin-left: 15rem;
-    margin-top: 1rem;
+    margin-top: 4.7rem;
   }
 
   #sidebar-wrapper {
