@@ -18,7 +18,9 @@
 }
 
 #page-content-wrapper {
-  margin-left: 15rem;
+  z-index: -1;
+  overflow-y: hidden;
+  margin-left: 0rem;
   margin-top: 1rem;
 
   -webkit-transition: margin .25s ease-out;
@@ -37,6 +39,7 @@
 }
 
 #sidebar-wrapper {
+  z-index: 1;
   position: absolute;
   min-height: 100vh;
   margin-left: 0;
@@ -59,8 +62,16 @@
   border-bottom-width: 1px;
 }
 
-@media (min-width: 768px) {
+// DESKTOP STYLES ABOVE 590px
+@media (min-width: 590px) {
+  #page-content-wrapper {
+    z-index: none;
+    margin-left: 15rem;
+    margin-top: 1rem;
+  }
+
   #sidebar-wrapper {
+    z-index: none;
     margin-left: 0;
   }
 
