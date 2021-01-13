@@ -1,22 +1,12 @@
 <div class="container-fluid" id="main-content">
   <%= render partial: 'filters' %>
 
-  <div class="grid story-grid"
-    data-masonry='{
-      "itemSelector": ".grid-item",
-      "columnWidth": ".grid-sizer",
-      "gutter": ".gutter-sizer",
-      "percentPosition": true,
-      "horizontalOrder": true,
-      "stagger": 30,
-      "resize": true
-    }'
-  >
+  <div class="grid story-grid">
     <div class="grid-sizer"></div>
     <div class="gutter-sizer"></div>
     <% @stories.each do |story| %>
       <div class="grid-item card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_pages_path(story.permalink), target: '_blank' %>
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

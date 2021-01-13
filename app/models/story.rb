@@ -70,4 +70,7 @@ class Story < ApplicationRecord
 
   end
 
+  def latest_image
+    urls.first.images.order(:created_at).last
+  end
 end
