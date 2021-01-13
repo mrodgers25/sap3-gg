@@ -30,19 +30,16 @@
   width: 100%;
 }
 
+.card {
+  padding-bottom: 0;
+}
+
 .grid-item--width2 { width: 40%; }
 .grid-item--width3 { width: 60%; }
 
 .grid-item--height2 { height: 200px; }
 .grid-item--height3 { height: 260px; }
 .grid-item--height4 { height: 360px; }
-
-.grid-item--gigante {
-  width: 320px;
-  height: 360px;
-  z-index: 2; /* above other items */
-}
-
 
 // @media screen and (max-width: 768px) {
 //   .grid-item {
