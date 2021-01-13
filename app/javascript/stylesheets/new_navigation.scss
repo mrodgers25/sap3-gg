@@ -3,7 +3,7 @@
 }
 
 #sap-logo {
-  max-width: 255px;
+  max-width: 240px;
 }
 
 #wrapper.toggled {
@@ -70,8 +70,8 @@
   border-bottom-width: 1px;
 }
 
-// DESKTOP STYLES ABOVE 590px
-@media (min-width: 590px) {
+// DESKTOP STYLES ABOVE 700px
+@media (min-width: 700px) {
   #page-content-wrapper {
     z-index: none;
     margin-left: 15rem;
@@ -89,4 +89,3 @@
     }
   }
 }
-
