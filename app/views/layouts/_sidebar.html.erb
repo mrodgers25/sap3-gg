@@ -1,0 +1,9 @@
+<div class="bg-white" id="sidebar-wrapper">
+  <div class="sidebar list-group list-group-flush border-right">
+    <%= link_to "Top Stories", root_path, class: "list-group-item list-group-item-action bg-white" %>
+    <%= link_to "Filter Stories", root_path, class: "list-group-item list-group-item-action bg-white" %>
+    <%= link_to "My Stories", root_path, class: "list-group-item list-group-item-action bg-white #{disabled_class(current_user)}" %>
+    <%= link_to "About Us", root_path, class: "list-group-item list-group-item-action bg-white" %>
+    <%= link_to "Contact Us", root_path, class: "list-group-item list-group-item-action bg-white" %>
+  </div>
+</div>

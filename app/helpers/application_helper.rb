@@ -120,4 +120,9 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def disabled_navigation(current_user)
+    return if current_user
+
+    'disabled'
+  end
 end
