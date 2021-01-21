@@ -9,7 +9,7 @@ require('chosen-js')
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
 // CSS
-import '../styles/index'
+// import '../styles/index'
 // JS
 import '../js/index'
 // Images
