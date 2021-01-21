@@ -10,9 +10,9 @@ require('chosen-js')
 import "@fortawesome/fontawesome-free/css/all"
 // CSS
 import 'stylesheets/application'
-// import '../styles/index'
+import 'styles'
 // JS
-import '../js/index'
+import 'js'
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
