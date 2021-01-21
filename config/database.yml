@@ -56,6 +56,6 @@ production:
   encoding: unicode
   database: sap3-gg_production
   pool:     5
-  username: sap3-gg
-  password:
-  template: template0
+  # username: sap3-gg
+  # password:
+  # template: template0
