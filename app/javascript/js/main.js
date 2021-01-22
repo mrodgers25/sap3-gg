@@ -1,3 +1,3 @@
-import 'js/stories.js'
-import 'js/site.js'
-import 'js/new_navigation.js'
+import './stories.js'
+import './site.js'
+import './new_navigation.js'
