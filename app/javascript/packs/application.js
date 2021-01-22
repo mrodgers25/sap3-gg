@@ -5,14 +5,12 @@ require("bootstrap")
 require("social-share-button")
 require("jquery")
 require('chosen-js')
-
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
 // CSS
-import 'stylesheets/application'
-import 'styles'
+import 'styles/main'
 // JS
-import 'js'
+import 'js/main'
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
