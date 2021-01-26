@@ -20,11 +20,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     root_path
-    # if session[:user_return_to] == nil
-    #   root_path
-    # else
-    #   super
-    # end
   end
 
   def configure_sign_in_params
