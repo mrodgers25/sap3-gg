@@ -3,12 +3,9 @@ class HomeController < ApplicationController
 
   def index
     # database dropdown data
-    @location_codes = Location.order("ascii(name)")
-    @story_place_types = PlaceCategory.order(:name)
+    @locations        = Location.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
-    #below was a test
-    #@story_categories_loggedin = StoryCategory.order(:name)
-    #@story_categories_notloggedin = StoryCategory.where.not(code: 'EP').order(:name)
 
     unless Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").nil?
       story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value

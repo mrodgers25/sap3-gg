@@ -1,0 +1,14 @@
+#login-logo {
+  max-width: 275px;
+}
+
+.sign-in-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  .btn {
+    width: 75%;
+  }
+}

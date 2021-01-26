@@ -1,29 +1,31 @@
-<div class="row filters">
-  <div class="col-md-3 mb-1 mb-md-0">
-    <%=
-      select_tag :location_id,
-      options_from_collection_for_select(@location_codes, 'id', 'name', params[:location_id]),
-      prompt: 'All Locations',
-      class: 'form-control form-control-sm'
-    %>
+<%= form_tag(root_path, method: :get) do %>
+  <div class="row filters">
+    <div class="col-md-3 mb-1 mb-md-0">
+      <%=
+        select_tag :location_id,
+        options_from_collection_for_select(@locations, 'id', 'name', params[:location_id]),
+        prompt: 'All Locations',
+        class: 'form-control form-control-sm'
+      %>
+    </div>
+    <div class="col-md-3 mb-1 mb-md-0">
+      <%=
+        select_tag :place_category_id,
+        options_from_collection_for_select(@place_categories, 'id', 'name', params[:place_category_id]),
+        prompt: 'All Place Types',
+        class: 'form-control form-control-sm'
+      %>
+    </div>
+    <div class="col-md-3 mb-1 mb-md-0">
+      <%=
+        select_tag :story_category_id,
+        options_from_collection_for_select(@story_categories, 'id', 'name', params[:story_category_id]),
+        prompt: 'All Story Categories',
+        class: 'form-control form-control-sm'
+      %>
+    </div>
+    <div class="col-md-3 mb-1 mb-md-0">
+      <%= submit_tag "Filter Stories", class: 'btn btn-sm btn-secondary' %>
+    </div>
   </div>
-  <div class="col-md-3 mb-1 mb-md-0">
-    <%=
-      select_tag :place_category_id,
-      options_from_collection_for_select(@story_place_types, 'id', 'name', params[:place_category_id]),
-      prompt: 'All Place Types',
-      class: 'form-control form-control-sm'
-    %>
-  </div>
-  <div class="col-md-3 mb-1 mb-md-0">
-    <%=
-      select_tag :story_category_id,
-      options_from_collection_for_select(@story_categories, 'id', 'name', params[:story_category_id]),
-      prompt: 'All Story Categories',
-      class: 'form-control form-control-sm'
-    %>
-  </div>
-  <div class="col-md-3 mb-1 mb-md-0">
-    <%= submit_tag "Filter Stories", class: 'btn btn-sm btn-secondary' %>
-  </div>
-</div>
+<% end %>

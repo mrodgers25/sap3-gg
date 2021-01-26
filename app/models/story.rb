@@ -70,4 +70,29 @@ class Story < ApplicationRecord
 
   end
 
+  def latest_image
+    latest_url.images.order(:created_at).last
+  end
+
+  def latest_url
+    urls.order(:created_at).last
+  end
+
+  def story_display_date
+    if story_month && story_date && story_year
+      "#{story_month}/#{story_date}/#{story_year}"
+    elsif story_month && story_year
+      "#{story_month}/#{story_year}"
+    else
+      nil
+    end
+  end
+
+  def media_owner_and_date_line
+    if latest_url.mediaowner&.title
+      "#{latest_url.mediaowner.title} - #{story_display_date}"
+    else
+      story_display_date
+    end
+  end
 end

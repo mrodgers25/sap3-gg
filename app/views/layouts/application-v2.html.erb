@@ -5,14 +5,13 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div id="wrapper">
-      <%= render 'layouts/top_navbar' %>
-      <%= render 'layouts/side_navbar' %>
+    <div id="wrapper" class="toggled">
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/sidebar' %>
 
       <div id="page-content-wrapper">
         <%= render 'layouts/messages' %>
@@ -21,5 +20,8 @@
 
       <%= render 'layouts/footer' %>
     </div>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
   </body>
 </html>

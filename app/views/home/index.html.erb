@@ -1,5 +1,59 @@
-<div class="container-fluid">
+<div class="container-fluid" id="main-content">
   <%= render partial: 'filters' %>
 
+  <div class="grid story-grid">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <% @stories.each do |story| %>
+      <div class="grid-item grid-card card">
+        <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_pages_path(story.permalink), target: '_blank' %>
+        <div class="card-body">
+          <% if story.editor_tagline %>
+            <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+          <% end %>
 
+          <hr>
+
+          <h5 class="text-center story-title"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+
+          <p class="text-center text-muted media-owner-date-line">
+            <%= story.media_owner_and_date_line %>
+          </p>
+
+          <p class="url-desc">
+            <%= story.latest_url.url_desc %>
+          </p>
+
+          <hr>
+
+          <div class="row">
+            <% if current_user && story_saved?(story.id, current_user.id) %>
+              <div class="col-6 text-center">
+                <p class="story-actions-links story-actions" id="forget_story">
+                  <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-outline-secondary forget_story_link', data: { 'story-id': story.id } %>
+                </p>
+              </div>
+              <div class="col-6 text-center">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': story.id } %>
+                </p>
+              </div>
+            <% elsif current_user %>
+              <div class="col-12 text-center">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': story.id } %>
+                </p>
+              </div>
+            <% else %>
+              <div class="col-12 text-center">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary cannot_save_story_link' %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
