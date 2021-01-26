@@ -18,6 +18,15 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
+  def after_sign_in_path_for(resource)
+    root_path
+    # if session[:user_return_to] == nil
+    #   root_path
+    # else
+    #   super
+    # end
+  end
+
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
   end
