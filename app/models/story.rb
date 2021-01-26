@@ -95,4 +95,22 @@ class Story < ApplicationRecord
       story_display_date
     end
   end
+
+  def display_location
+    locations.pluck(:name).join(', ')
+  end
+
+  def display_publisher
+    return nil unless latest_url.mediaowner.present?
+
+    latest_url.mediaowner&.title
+  end
+
+  def display_place_categories
+    place_categories.pluck(:name).join(', ')
+  end
+
+  def display_story_categories
+    story_categories.pluck(:name).join(', ')
+  end
 end

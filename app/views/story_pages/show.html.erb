@@ -1,144 +1,103 @@
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-<!-- <meta name="description" content='<%#= "#{@story.editor_tagline}" %>'/> -->
-<!-- Meta twitter -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content='<%= "#{@urls.first.url_title}" %>'/>
-<meta name="twitter:image" content='<%= "#{@images.first.src_url}" %>'/>
-<meta name="twitter:description" content='<%= "#{@story.editor_tagline}" %>'/>
-<meta name="twitter:site" content="@stories_places"/>
-<meta name="twitter:creator" content="@stories_places"/>
-
-<div class="form-group" style="margin-top: -10px; margin-left: -20px; margin-bottom: -50px; padding-bottom: 20px">
-  <div class="panel panel-default">
-    <div class="panel-body landing-panel-sap">
-
-      <div class="container-fluid">
-        <div class="text-right" style="padding-top: 4px">
-          <%= form_tag do %>
-            <nav class="navbar navbar-default nav-sap-select" role="navigation" >
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle nav-sap-toggle" data-toggle="collapse"
-                        data-target="#sap-navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-
-              </div>
-
-        </div>
-        <div class="row row-centered" style="font-family: Source Sans Pro">
-
-<!-- Individual Story -->
-          <%# @stories.each do |story| %>
-            <div class="col-sm-4 col-centered text-left story_div" style="margin-right: -15px">
-
-            <%# story.urls.each do |u| %>
-              <p style="margin-bottom: 0%; text-align: left; padding-bottom: 5px"></p>
-              <%# @story.images.each do |i| %>
-
-<!-- Check if user is ADMIN to link to story-pages at this time  -->
-  <!--               <%# if user_signed_in? && current_user.admin? %>
-                  <%#= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.permalink), target: '_blank' %>
-        -->        <%# else %>
-<!--                   <%# if valid_url?(@images.first.src_url) %>
-                    <%#= link_to image_tag(@images.first.src_url, :width =>1000, :class => "img-responsive"), @images.first.url_full, target: '_blank' %>
-                  <%# end %> -->
-
-<!-- ADD in SAVED story BUTTON -->
-
-                   <% if user_signed_in? %>
-                    <% if story_saved?(@story.id,current_user.id) %>
-                      <p class="story-actions-links story-actions" id="forget_story">
-                          <%#= button_to "You Saved This Story", "javascript:void(0)", class: 'forget_story_link', 'data-story-id' => @story.permalink %>
-                          <%= link_to "You Saved This Story", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%>
-                      </p>
-                    <% else %>
-                    <p></p>
-                      <p class="story-actions-links story-actions" id="save_story"></p>
-                        <%#= button_to "SAVE THIS STORY", "javascript:void(0)", class: 'save_story_link', 'data-story-id' => @story.permalink %>
-                    <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
-                    <%= link_to "SAVE THIS STORY", @story.permalink, class: "btn btn-small btn-primary btn-responsive"%></p>
-                      </p>
-                    <% end %>
-                  <% else %>
-                    <p class="story-actions-links story-actions" id="save_story"></p>
-                      <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
-                      <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'cannot_save_story_link btn btn-small btn-primary btn-responsive' %>
-                    </p>
-                  <% end %>
-<!-- FINISH add of Saved story button -->
-
-                 <% if valid_url?(@images.first.src_url) %>
-                    <%= link_to image_tag(@images.first.src_url, :width =>1000, :class => "img-responsive") %>
-                  <% end %>
-                <%# end %>
-
-                  <%# image_prop = i.image_height.to_f / i.image_width.to_f unless i.image_width.nil? %>
-                  <% image_prop = @images.first.image_height.to_f / @images.first.image_width.to_f unless @images.first.image_width.nil? %>
-
-                  <!-- calc image proportions -->
-                  <% @desc_trunc = 270 + ((0.7 - (image_prop ||= 0.7)) * 1000) %> <!-- calc the desc length; base px was 220 -->
-                  <% @desc_trunc = @desc_trunc < 75 ? 75 : @desc_trunc %> <!-- set min desc length to 75px -->
-                <%# end %>
-                </p>
-                <div class="story-text-block">
-                <% if @story.editor_tagline.present? %>
-                   <p style="font-family: Arial Narrow; font-size:1.2em; margin-bottom: 2%">
-                   <em><%= @story.editor_tagline %></em><meta itemprop="comment" content="<%= @story.editor_tagline %>">
-                   </p>
-                <% end %>
-                  <p style="font-color: black;font-size:1.1em; font-weight: bold; display: inline">
-                   <%= link_to @urls.first.url_title, @urls.first.encoded_url, target: '_blank' %>
-                  </p>
-                  <br>
-
-                <p style="margin-bottom: 0%; text-align: center; padding-bottom: 5px">
-                <%= link_to "Read This Story at Publisher", @urls.first.url_full, class: "btn btn-small btn-primary btn-responsive "%></p>
-                <p></p>
-
-                  <p> Location:  <%= @story.locations.map { |location| location.name }.to_sentence %></p>
-                  <p>
-                      Story Date:
-                    <% mmyy = @story.story_month ? "#{@story.story_month}/#{@story.story_year}" : nil %>
-                    <% mmddyy = @story.story_date && mmyy ? "#{@story.story_month}/#{@story.story_date}/#{@story.story_year}" : nil %>
-                    <% slash_date = mmddyy ? mmddyy : mmyy %>
-                    <%= "#{slash_date}" %>
-                  </p>
-                  <p>
-                    <% if @urls.first.mediaowner.present? %>
-                      <% unless @urls.first.mediaowner.title.nil? %>
-                       Publisher:
-                       <%= @urls.first.mediaowner.title %> &nbsp;&nbsp;
-                      <% end %>
-                    <% end %>
-                  </p>
-                  <p>Author: <%= @story.author %></p>
-
-                  <p><%= @urls.first.url_desc %></p>
-
-                  <p> Place Category:  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %></p>
-                  <p> Story Category:  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %>
-
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-</p>
-<section>
-<a class="twitter-share-button"
-  href="https://twitter.com/intent/tweet"
-  data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
-  data-size="large"
-  data-url="" >
-  Tweet
-</a>
-<span class="fb-share-button" data-href="#{@full_storypage_url}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=#{@full_storypage_url}" class="fb-xfbml-parse-ignore">Share</a></span>
-</section>
-
-<!-- "http://www.storiesaboutplaces.com/#{@story.permalink}"%>' -->
-              </div>
-            </div>
+<div class="story-show card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="header text-center">
+          <%= link_to root_path do %>
+            <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
           <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-md-5 img-div">
+        <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), story_pages_path(@story.permalink), target: '_blank' %>
+
+        <div class="action-links">
+          <%# <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <div class="col-6">
+            <a class="twitter-share-button"
+              href="https://twitter.com/intent/tweet"
+              data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
+              data-size="large"
+              data-url="" >
+              Tweet
+            </a>
+          </div>
+          <div class="col-6">
+            <span class="fb-share-button" data-href="#{@full_storypage_url}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=#{@full_storypage_url}" class="fb-xfbml-parse-ignore">Share</a></span>
+          </div> %>
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="card-body">
+          <h5 class="text-center story-title"><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+          <% if @story.editor_tagline %>
+            <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
+          <% end %>
+
+          <p class="text-center text-muted media-owner-date-line">
+            <%= @story.media_owner_and_date_line %>
+          </p>
+
+          <p class="url-desc">
+            <%= @story.latest_url.url_desc %>
+          </p>
+
+          <hr>
+
+          <dl class="row">
+            <dt class="col-6 col-lg-3">Publisher:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.display_publisher %></dd>
+
+            <dt class="col-6 col-lg-3">Author:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.author %></dd>
+
+            <dt class="col-6 col-lg-3">Story Date:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.story_display_date %></dd>
+
+            <dt class="col-6 col-lg-3"><%= 'Location'.pluralize(@story.locations.size) %>:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.display_location %></dd>
+
+            <dt class="col-6 col-lg-3">Place <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.display_place_categories %></dd>
+
+            <dt class="col-6 col-lg-3">Story <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-9"><%= @story.display_story_categories %></dd>
+          </dl>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-4 m-auto">
+              <p>
+                <%= link_to "Read at Publisher", @story.latest_url&.url_full, class: "btn btn-sm btn-info"%></p>
+              </p>
+            </div>
+
+            <% if current_user && story_saved?(@story.id, current_user.id) %>
+              <div class="col-4 m-auto">
+                <p class="story-actions-links story-actions" id="forget_story">
+                  <%= link_to "Forget This Story", "javascript:void(0)", class: 'btn btn-sm btn-outline-secondary forget_story_link', data: { 'story-id': @story.id } %>
+                </p>
+              </div>
+              <div class="col-4 m-auto">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': @story.id } %>
+                </p>
+              </div>
+            <% elsif current_user %>
+              <div class="col-4 m-auto">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': @story.id } %>
+                </p>
+              </div>
+            <% else %>
+              <div class="col-4 m-auto">
+                <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary cannot_save_story_link' %>
+                </p>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
