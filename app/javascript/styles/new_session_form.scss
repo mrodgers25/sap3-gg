@@ -1,0 +1,16 @@
+#new-session-form {
+  #logo {
+    max-width: 275px;
+  }
+
+  .submit-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    .btn {
+      width: 75%;
+    }
+  }
+}

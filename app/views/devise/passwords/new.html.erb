@@ -3,7 +3,9 @@
   <div class="jumbotron bg-white forgot-password mt-5">
 
     <div class="header">
-      <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+      <%= link_to root_path do %>
+      	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+			<% end %>
     </div>
 
     <hr class="my-4">

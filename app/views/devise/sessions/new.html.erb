@@ -1,27 +1,70 @@
-<!-- this form only used if there is an error at login with the modal -->
-<div class="authform">
-	<%= form_for(resource, :as=> resource_name,:url=> session_path(resource_name), :html=> { :role=> 'form'}) do |f| %>
-		<h3>Sign in</h3>
-		<%= devise_error_messages! %>
-		<div class="form-group">
-			<%- if devise_mapping.registerable?%>
-			  <%= link_to 'Sign up', new_registration_path(resource_name),class:'right' %>
-			<% end -%>
-			<%= f.label :email%>
-			<%= f.email_field :email, :autofocus=> true, class: 'form-control'%>
-		</div>
-		<div class="form-group">
-			<%- if devise_mapping.recoverable?%>
-			  <%= link_to "Forgot password?",new_password_path(resource_name),class:'right' %>
-			<% end -%>
-			<%= f.label :password%>
-			<%= f.password_field :password,class:'form-control' %>
-		</div>
-		<%= f.submit 'Sign in', :class=> 'buttonright'%>
-		<% if devise_mapping.rememberable?-%>
-		  <div class="checkbox">
-		    <%= f.check_box :remember_me %> <%= f.label :remember_me%>
-		  </div>
-		<% end -%>
-	<% end %>
-</div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+  <div class="jumbotron bg-white mt-5" id="new-session-form">
+
+    <div class="header  text-center">
+			<%= link_to root_path do %>
+      	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+			<% end %>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="body">
+      <p class="lead text-center">Sign In</p>
+
+      <div class="form-group my-4 max-vw-80 mx-auto">
+        <label>Email address</label>
+				<%= f.text_field :email,
+					required: true,
+					maxlength: 60,
+					autofocus: true,
+					placeholder: "Enter email",
+					class: "form-control"
+				%>
+      </div>
+
+      <div class="form-group my-4 max-vw-80 mx-auto">
+        <label>Password</label>
+				<%= f.password_field :password,
+					required: true,
+					maxlength: 60,
+					placeholder: "Password",
+					class: "form-control"
+				%>
+      </div>
+
+			<div class="row">
+				<div class="col-6 text-left">
+					<div class="form-group">
+						<div class="form-check">
+							<%= f.check_box :remember_me, as: :boolean, class: "form-check-input", id: "remember-me-cb" if devise_mapping.rememberable? %>
+							<label class="form-check-label" for="remember-me-cb">
+								Remember Me?
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 text-right">
+					<div class="form-group">
+						<%= link_to "Forgot password?", new_password_path(resource_name) %>
+					</div>
+				</div>
+			</div>
+
+      <div class="submit-row">
+					<%= f.submit "Sign In", class: "btn btn-primary" %>
+			</div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="footer text-center">
+			<p>
+				Haven't registered yet? <strong><%= link_to "Sign up!", new_user_registration_path %></strong>
+			</p>
+      <p>
+        Nevermind! <strong><%= link_to "Go back", root_path %></strong>
+      </p>
+    </div>
+  </div>
+<% end %>
