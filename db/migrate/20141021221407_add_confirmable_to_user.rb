@@ -1,4 +1,4 @@
-class AddConfirmableToUser < ActiveRecord::Migration
+class AddConfirmableToUser < ActiveRecord::Migration[6.0]
   def change
     change_table(:users) do |t|
       # Confirmable fields

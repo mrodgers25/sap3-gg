@@ -1,4 +1,4 @@
-class StoryCategory < ActiveRecord::Base
+class StoryCategory < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 

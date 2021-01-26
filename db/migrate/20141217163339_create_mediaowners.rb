@@ -1,4 +1,4 @@
-class CreateMediaowners < ActiveRecord::Migration
+class CreateMediaowners < ActiveRecord::Migration[6.0]
   def change
     create_table :mediaowners do |t|
       t.integer :story_id

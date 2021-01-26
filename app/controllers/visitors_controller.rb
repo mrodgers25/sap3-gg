@@ -2,10 +2,6 @@ class VisitorsController < ApplicationController
   require 'google-webfonts'
 
   def index
-
-    # track user activity on landing page
-    track_action
-
     # database dropdown data
     @location_codes = Location.order("ascii(name)")
     @story_place_types = PlaceCategory.order(:name)
@@ -90,12 +86,6 @@ class VisitorsController < ApplicationController
         end
       end
     end
-  end
-
-  protected
-
-  def track_action
-    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
   end
 
 end

@@ -1,4 +1,4 @@
-class AddTypeToStory < ActiveRecord::Migration
+class AddTypeToStory < ActiveRecord::Migration[6.0]
   def change
     change_column :urls, :url_desc, :text
     change_column :urls, :url_keywords, :text
