@@ -45,23 +45,23 @@
           <hr>
 
           <dl class="row">
-            <dt class="col-6 col-lg-3">Publisher:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.display_publisher %></dd>
+            <dt class="col-6 col-lg-4">Publisher:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_publisher || '-' %></dd>
 
-            <dt class="col-6 col-lg-3">Author:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.author %></dd>
+            <dt class="col-6 col-lg-4">Author:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.author || '-' %></dd>
 
-            <dt class="col-6 col-lg-3">Story Date:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.story_display_date %></dd>
+            <dt class="col-6 col-lg-4">Story Date:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.story_display_date || '-' %></dd>
 
-            <dt class="col-6 col-lg-3"><%= 'Location'.pluralize(@story.locations.size) %>:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.display_location %></dd>
+            <dt class="col-6 col-lg-4"><%= 'Location'.pluralize(@story.locations.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_location || '-' %></dd>
 
-            <dt class="col-6 col-lg-3">Place <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.display_place_categories %></dd>
+            <dt class="col-6 col-lg-4">Place <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_place_categories || '-' %></dd>
 
-            <dt class="col-6 col-lg-3">Story <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
-            <dd class="col-6 col-lg-9"><%= @story.display_story_categories %></dd>
+            <dt class="col-6 col-lg-4">Story <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_story_categories || '-' %></dd>
           </dl>
 
           <hr>
