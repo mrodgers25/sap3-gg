@@ -27,4 +27,10 @@ document.addEventListener("turbolinks:load", function () {
     horizontalOrder: true,
     resize: true
   });
+
+  $('.has-tooltip').tooltip();
+  $('.has-popover').popover({
+    trigger: 'hover'
+  });
+
 })

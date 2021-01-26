@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group mt-1">
-            <label for="email-input">Email address</label>
+            <label>Email address</label>
             <%= f.text_field :email,
               required: true,
               maxlength: 60,
@@ -17,11 +17,10 @@
             %>
           </div>
           <div class="form-group">
-            <label for="email-input">Password</label>
+            <label>Password</label>
             <%= f.password_field :password,
               required: true,
               maxlength: 60,
-              autofocus: true,
               placeholder: "Password",
               class: "form-control"
             %>
@@ -44,6 +43,7 @@
               </div>
             </div>
           </div>
+
           <div class="sign-in-row">
             <%= f.submit "Sign In", class: "btn btn-primary" %>
           </div>

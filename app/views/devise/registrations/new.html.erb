@@ -1,56 +1,67 @@
-<div class="container" style="padding-top: 2%">
-  <div class="panel panel-default">
-    <div class="panel-body" style="padding-left: 4%; padding-right: 4%">
 
-			<span style="font-size: 2em"><strong>Sign up</strong></span><span style="font-size: 1.3em">&nbsp;&nbsp;&nbsp;(and get access to our curated "Editor Picks")</span><hr>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="jumbotron bg-white sign-up mt-5">
+    <div class="header text-center">
+      <%= link_to root_path, data: { turbolinks: false } do %>
+      	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+			<% end %>
+    </div>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
+    <hr class="my-4">
 
-			  <div class="form-inputs">
-			    <p style="color: gray; line-height: 80%">So we don't have to say "hey you"</p>
-			    <table>
-			      <tr>
-			        <td style="padding-bottom: 10px; font-size: 110%">First Name&nbsp;&nbsp;</td>
-							<td style="padding-bottom: 10px"><%= f.text_field :first_name, required: true, autofocus: true, maxlength: 20 %></td>
-			      </tr>
-				    <tr>
-				      <td style="font-size: 110%">Last Name</td>
-					    <td><%= f.text_field :last_name, maxlength: 20 %></td>
-					  </tr>
-			    </table><br>
-			    <p style="color: gray; line-height: 110%">We currently give you the ability to filter stories by a limited number of metro areas, but we'll be adding more soon. <br>Which cities or metro areas do you want us to cover for you?</p>
-				  <table>
-					  <tr>
-					    <td style="padding-bottom: 10px; font-size: 110%">Cities</td>
-						  <td style="padding-bottom: 10px"><%= f.text_area :city_preference, placeholder: "City1, City2, City3, etc", cols: 80 %>&nbsp;&nbsp;</td>
-						</tr>
-					  <tr>
-					    <td style="padding-bottom: 10px; font-size: 110%">Email</td>
-						  <td style="padding-bottom: 10px"><%= f.text_field :email, required: true, maxlength: 50 %>&nbsp;&nbsp;</td>
-						</tr>
-					  <tr>
-					    <td style="padding-bottom: 10px; font-size: 110%">Password</td>
-					    <% if @minimum_password_length %>
-					      <em>(<%= @minimum_password_length %> characters minimum)</em>
-					    <% end %><br />
-						  <td style="padding-bottom: 10px"><%= f.password_field :password, required: true, maxlength: 50 %>&nbsp;&nbsp;</td>
-						</tr>
-					  <tr>
-					    <td style="padding-bottom: 10px; font-size: 110%">Confirm Password&nbsp;&nbsp;</td>
-						  <td style="padding-bottom: 10px"><%= f.password_field :password_confirmation, required: true %></td>
-					  </tr>
-					</table>
-			  </div><br>
+    <div class="body">
+      <p class="lead text-center">Sign up and get access to our curated "Editor Picks"</p>
+			<%= devise_error_messages! %>
 
-			  <div class="form-actions">
-			    <button type="submit" class="btn btn-primary">Register</button><br>
-			  </div><hr>
-        <p style="color: #B3B3B3; line-height: 110%">We use software that shows us how you interact with our website so that we can make improvements that provide you with the best customer experience. By signing up you agree to this tracking.</p>
-    <% end %>
+      <div class="form-group my-4 max-vw-80 mx-auto">
+				<%= f.label :first_name, "First Name:" %>
+        <%= f.text_field :first_name, required: true, maxlength: 20, autofocus: true, placeholder: "John", class: "form-control" %>
+				<small class="form-text text-muted">So we don't have to say "hey you"</small>
+      </div>
 
-			<!--%= render "devise/shared/links" %-->
+      <div class="form-group my-4 max-vw-80 mx-auto">
+				<%= f.label :last_name, "Last Name:" %>
+        <%= f.text_field :last_name, required: false, maxlength: 20, placeholder: "Doe", class: "form-control" %>
+      </div>
 
+      <div class="form-group my-4 max-vw-80 mx-auto">
+				<%= f.label :email, "Email:" %>
+        <%= f.text_field :email, required: true, maxlength: 60, placeholder: "john_doe@email.com", class: "form-control" %>
+				<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+
+			<div class="form-group my-4 max-vw-80 mx-auto">
+				<%= f.label :city_preference, 'Cities:' %>
+        <%= f.text_area :city_preference, cols: 80, placeholder: "City1, City2, City3, etc", class: "form-control" %>
+				<small class="form-text text-muted">
+					Which cities or metro areas do you want us to cover for you?<br>
+					This will help you to filter stories by your preferencial metropolitan areas.<br>
+				</small>
+      </div>
+
+			<div class="form-group my-4 max-vw-80 mx-auto">
+				<%= f.label :password, 'Password:' %>
+				<%= f.password_field :password, required: true, placeholder: '********', class: "form-control"%>
+				<small class="form-text text-muted">Make it strong!</small>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :password_confirmation, 'Password Confirmation:' %>
+				<%= f.password_field :password_confirmation, placeholder: '********', class: "form-control" %>
+			</div>
+
+      <div class="sign-in-row mt-4 mx-auto text-center">
+        <%= f.submit "Register", class: "btn btn-primary w-50" %>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="footer text-center">
+      <span>
+				Not ready just yet? It's okay, we'll be here when you are.<br>
+				<strong><%= link_to "Go back", root_path %></strong>
+      </span>
     </div>
   </div>
-</div>
+<% end %>

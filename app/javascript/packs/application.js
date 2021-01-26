@@ -1,9 +1,9 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
+require("jquery")
 require("bootstrap")
 require("social-share-button")
-require("jquery")
 require('chosen-js')
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
@@ -14,3 +14,4 @@ import '../js/main.js'
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+

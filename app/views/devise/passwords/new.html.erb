@@ -1,15 +1,39 @@
-<h2>Forgot your password?</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), method: :post) do |f| %>
+  <div class="jumbotron bg-white forgot-password mt-5">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true, maxlength: 50 %><br>
-  </div>
+    <div class="header">
+      <%= link_to root_path, data: { turbolinks: false } do %>
+      	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+			<% end %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %><br><br>
+    <hr class="my-4">
+
+    <div class="body">
+      <p class="lead m-auto">Forgot your password?</p>
+
+      <div class="form-group my-4 max-vw-80 mx-auto">
+        <%= f.text_field :email,
+          required: true,
+          maxlength: 60,
+          autofocus: true,
+          placeholder: "Enter email",
+          class: "form-control"
+        %>
+      </div>
+
+      <div class="sign-in-row">
+        <%= f.submit "Send me reset password instructions", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="footer m-auto">
+      <span class="m-auto">
+        Nevermind! <strong><%= link_to "Go back", root_path %></strong>
+      </span>
+    </div>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

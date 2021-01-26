@@ -1,9 +1,5 @@
 //Create hover tips
 document.addEventListener("turbolinks:load", function () {
-  $('.has-tooltip').tooltip();
-  $('.has-popover').popover({
-    trigger: 'hover'
-  });
 
   var grid = document.querySelector('.grid');
   grid.addEventListener('click', function (event) {
