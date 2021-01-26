@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="header text-center">
-          <%= link_to root_path do %>
+          <%= link_to root_path, data: { turbolinks: false } do %>
             <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
           <% end %>
         </div>

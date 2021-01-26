@@ -2,7 +2,7 @@
   <div class="jumbotron bg-white mt-5" id="new-session-form">
 
     <div class="header text-center">
-			<%= link_to root_path do %>
+			<%= link_to root_path, data: { turbolinks: false } do %>
       	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
 			<% end %>
     </div>
