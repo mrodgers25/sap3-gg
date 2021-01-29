@@ -1,9 +1,19 @@
 <div class="bg-white" id="sidebar-wrapper">
   <div class="sidebar list-group list-group-flush border-right">
-    <%= link_to "Top Stories", root_path, class: "list-group-item list-group-item-action bg-white" %>
-    <%= link_to "Filter Stories", root_path, class: "list-group-item list-group-item-action bg-white" %>
-    <%= link_to "My Stories", root_path, class: "list-group-item list-group-item-action bg-white #{disabled_class(current_user)}" %>
-    <%= link_to "About Us", root_path, class: "list-group-item list-group-item-action bg-white" %>
-    <%= link_to "Contact Us", root_path, class: "list-group-item list-group-item-action bg-white" %>
+    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-home mr-1"></i> Top Stories
+    <% end %>
+    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-filter mr-1"></i></i> Filter Stories
+    <% end %>
+    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white #{disabled_class(current_user)}" do %>
+      <i class="fas fa-list mr-1"></i> My Stories
+    <% end %>
+    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-address-card mr-1"></i> About Us
+    <% end %>
+    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-envelope mr-1"></i> Contact Us
+    <% end %>
   </div>
 </div>
