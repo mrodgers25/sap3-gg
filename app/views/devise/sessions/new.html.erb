@@ -60,10 +60,10 @@
 
     <div class="footer text-center">
 			<p>
-				Haven't registered yet? <strong><%= link_to "Sign up!", new_user_registration_path %></strong>
+				Haven't registered yet? <strong><%= link_to "Sign up!", new_user_registration_path, data: { turbolinks: false } %></strong>
 			</p>
       <p>
-        Nevermind! <strong><%= link_to "Go back", root_path %></strong>
+        Nevermind! <strong><%= link_to "Go back", root_path, data: { turbolinks: false } %></strong>
       </p>
     </div>
   </div>
