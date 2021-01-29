@@ -89,4 +89,4 @@ production:
   extract_css: true
 
   # Cache manifest.json for performance
-  cache_manifest: false
+  cache_manifest: true

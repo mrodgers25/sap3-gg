@@ -8,9 +8,9 @@ require("social-share-button")
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
 // CSS
-import 'stylesheets/application-stuff.scss'
+import '../styles/main.scss'
 // JS
-import '../js/application-stuff.js'
+import '../js/main.js'
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
