@@ -1,8 +1,18 @@
 .story-show {
   margin: 1rem 0;
 
+  .container {
+    padding-bottom: 1rem;
+  }
+
+  .back-button {
+    margin-top: 1rem;
+  }
+
   .header {
-    margin: 2rem 0;
+    margin-top: -1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid grey;
 
     #logo {
       max-width: 300px;

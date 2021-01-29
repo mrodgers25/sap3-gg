@@ -2,13 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
+        <div class="back-button text-left">
+          <%= link_to root_path, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+            <i class="fas fa-arrow-left mr-1"></i> Go Back
+          <% end %>
+        </div>
         <div class="header text-center">
           <%= link_to root_path, data: { turbolinks: false } do %>
             <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
           <% end %>
         </div>
       </div>
-      <div class="col-12 col-md-5 img-div">
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 img-div m-auto">
         <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), story_pages_path(@story.permalink), target: '_blank' %>
 
         <div class="action-links">
@@ -34,9 +41,7 @@
             <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
           <% end %>
 
-          <p class="text-center text-muted media-owner-date-line">
-            <%= @story.media_owner_and_date_line %>
-          </p>
+          <hr>
 
           <p class="url-desc">
             <%= @story.latest_url.url_desc %>
@@ -69,31 +74,41 @@
           <div class="row">
             <div class="col-4 m-auto">
               <p>
-                <%= link_to "Read at Publisher", @story.latest_url&.url_full, class: "btn btn-sm btn-info"%></p>
+                <%= link_to @story.latest_url&.url_full, class: "btn btn-sm btn-info" do %>
+                  <i class="fas fa-book-open mr-1"></i> Read at Publisher
+                <% end %>
               </p>
             </div>
 
             <% if current_user && story_saved?(@story.id, current_user.id) %>
               <div class="col-4 m-auto">
                 <p class="story-actions-links story-actions" id="forget_story">
-                  <%= link_to "Forget This Story", "javascript:void(0)", class: 'btn btn-sm btn-outline-secondary forget_story_link', data: { 'story-id': @story.id } %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': @story.id }, class: "btn btn-sm btn-primary forget_story_link" do %>
+                   <i class="fas fa-times mr-1"></i> Forget This Story
+                  <% end %>
                 </p>
               </div>
               <div class="col-4 m-auto">
                 <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': @story.id } %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': @story.id }, class: "btn btn-sm btn-primary save_story_link" do %>
+                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                  <% end %>
                 </p>
               </div>
             <% elsif current_user %>
               <div class="col-4 m-auto">
                 <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': @story.id } %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': @story.id }, class: "btn btn-sm btn-primary save_story_link" do %>
+                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                  <% end %>
                 </p>
               </div>
             <% else %>
               <div class="col-4 m-auto">
                 <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "Save This Story", "javascript:void(0)", class: 'btn btn-sm btn-primary cannot_save_story_link' %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': @story.id }, class: "btn btn-sm btn-primary cannot_save_story_link" do %>
+                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                  <% end %>
                 </p>
               </div>
             <% end %>

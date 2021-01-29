@@ -28,26 +28,27 @@
 
           <div class="row">
             <% if current_user && story_saved?(story.id, current_user.id) %>
-              <div class="col-6 text-center">
+              <div class="col-12 text-center">
                 <p class="story-actions-links story-actions" id="forget_story">
-                  <%= link_to "FORGET THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-outline-secondary forget_story_link', data: { 'story-id': story.id } %>
-                </p>
-              </div>
-              <div class="col-6 text-center">
-                <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': story.id } %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-outline-dark  forget_story_link" do %>
+                    <i class="fas fa-times mr-1"></i> Forget This Story
+                  <% end %>
                 </p>
               </div>
             <% elsif current_user %>
               <div class="col-12 text-center">
                 <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary save_story_link', data: { 'story-id': story.id } %>
+                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary save_story_link" do %>
+                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                  <% end %>
                 </p>
               </div>
             <% else %>
               <div class="col-12 text-center">
-                <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "SAVE THIS STORY", "javascript:void(0)", class: 'btn btn-sm btn-primary cannot_save_story_link' %>
+                 <p class="story-actions-links story-actions" id="save_story">
+                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary cannot_save_story_link" do %>
+                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                  <% end %>
                 </p>
               </div>
             <% end %>
