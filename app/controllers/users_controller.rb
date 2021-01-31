@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user
   before_action :remove_empty_password_fields, only: :update
   before_action :check_for_valid_password, only: :update
@@ -10,6 +11,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      # sign in the user again (devise automatically signs the user out after a pw update)
+      bypass_sign_in(@user, scope: :user) if user_params[:password].present?
       redirect_to edit_user_path(@user), notice: "User updated."
     else
       redirect_to edit_user_path(@user), alert: "Unable to update User."
