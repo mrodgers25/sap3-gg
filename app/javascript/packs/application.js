@@ -4,6 +4,7 @@ require("@rails/activestorage").start()
 require("jquery")
 require("bootstrap")
 require("social-share-button")
+require("chosen-js")
 
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
