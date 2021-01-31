@@ -54,3 +54,23 @@
     </div>
   <% end %>
 </div>
+
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <%= form_for(@user, url: registration_path(@user), method: :delete, data: { confirm: "Are you sure?" }) do |f| %>
+    <div class="jumbotron bg-white user-edit">
+      <div class="header text-center">
+        <h3>No More Stories About Places?</h3>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <p class="lead text-center">We'll be sad to see you go.</p>
+
+        <div class="sign-in-row mt-4 mx-auto text-center">
+          <%= f.submit "Cancel My Acount", class: "btn btn-danger w-50" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
