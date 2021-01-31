@@ -14,11 +14,11 @@
       <%= render 'layouts/sidebar' %>
 
       <div id="page-content-wrapper">
-        <%= render 'layouts/messages' %>
+        <div class="container-fluid">
+          <%= render 'layouts/messages' %>
+        </div>
         <%= yield %>
       </div>
-
-      <%= render 'layouts/footer' %>
     </div>
 
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
