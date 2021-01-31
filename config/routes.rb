@@ -43,17 +43,20 @@ Rails.application.routes.draw do
   # get 'products/:id', to: 'products#show', :as => :products
 
 
-
+  # ROOT
   root 'home#index'
-
+  # DEVISE STUFF
   devise_for :users, controllers: {
     sessions: "users/sessions",
     passwords: "users/passwords",
     registrations: "users/registrations"
   }
-
+  # UPDATE USER
   resources :users, only: [:edit, :update]
-
-  get 'story_pages/*permalink', to: 'story_pages#show', :as => :story_pages
-  # get 'story_pages/:id', to: 'story_pages#show', :as => :story_pages
+  # HOME CONTROLLER
+  resources :home, only: [:index]
+  get 'about_us', to: 'home#about_us', as: :about_us
+  get 'contact_us', to: 'home#contact_us', as: :contact_us
+  # STORY SHOW
+  get 'story_pages/*permalink', to: 'story_pages#show', as: :story_pages
 end

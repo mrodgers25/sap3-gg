@@ -47,4 +47,10 @@ class HomeController < ApplicationController
 
     flash.now.alert = "No Stories found" if @stories.empty?
   end
+
+  def about_us
+  end
+
+  def contact_us
+  end
 end

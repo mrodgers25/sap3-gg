@@ -1,13 +1,13 @@
 {
-  "application.js": "/packs/js/application-696dd47e74eba03fdbf2.js",
-  "application.js.map": "/packs/js/application-696dd47e74eba03fdbf2.js.map",
+  "application.js": "/packs/js/application-8a624a90538da25aaa85.js",
+  "application.js.map": "/packs/js/application-8a624a90538da25aaa85.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-696dd47e74eba03fdbf2.js"
+        "/packs/js/application-8a624a90538da25aaa85.js"
       ],
       "js.map": [
-        "/packs/js/application-696dd47e74eba03fdbf2.js.map"
+        "/packs/js/application-8a624a90538da25aaa85.js.map"
       ]
     }
   },
@@ -18,6 +18,7 @@
   "media/images/Stories About Places Logo for dark bkgrd.png": "/packs/media/images/Stories%20About%20Places%20Logo%20for%20dark%20bkgrd-e77f1edc7b74bbd6aec0ed732a92f703.png",
   "media/images/chosen-sprite.png": "/packs/media/images/chosen-sprite-6768c1976c2ad78da1634b00b1e84dc2.png",
   "media/images/favicon.ico": "/packs/media/images/favicon-15d02ea18622e34ee45cc0e0439b06d0.ico",
+  "media/images/san-diego-downtown.jpg": "/packs/media/images/san-diego-downtown-5e2aead36edd1de0c79381e0822a52ef.jpg",
   "media/images/sap-logo.png": "/packs/media/images/sap-logo-65e754a1f5347a94dde28597350a080e.png",
   "media/webfonts/fa-brands-400.eot": "/packs/media/webfonts/fa-brands-400-98f20b9e.eot",
   "media/webfonts/fa-brands-400.svg": "/packs/media/webfonts/fa-brands-400-991c1c76.svg",
