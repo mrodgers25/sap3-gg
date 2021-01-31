@@ -1,38 +1,41 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  after_action :verify_authorized
+  before_action :set_user
+  before_action :remove_empty_password_fields, only: :update
+  before_action :check_for_valid_password, only: :update
 
-  def index
-    @users = User.all
-    authorize User
-  end
+  layout "application_v2"
 
-  def show
-    @user = User.find(params[:id])
-    authorize @user
+  def edit
   end
 
   def update
-    @user = User.find(params[:id])
-    authorize @user
-    if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+    if @user.update(user_params)
+      redirect_to edit_user_path(@user), notice: "User updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to edit_user_path(@user), alert: "Unable to update User."
     end
-  end
-
-  def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
-    redirect_to users_path, :notice => "User deleted."
   end
 
   private
 
-  def secure_params
-    params.require(:user).permit(:role)
+  def set_user
+    @user = User.find(params[:id])
   end
 
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, city_preference: [])
+  end
+
+  def remove_empty_password_fields
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+  end
+
+  def check_for_valid_password
+    return unless user_params[:password].present? || user_params[:password_confirmation].present?
+
+    if user_params[:password] != user_params[:password_confirmation]
+      redirect_to edit_user_path(@user), alert: 'Your password and password confirmation do not match'
+    end
+  end
 end
