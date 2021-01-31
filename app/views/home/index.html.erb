@@ -30,8 +30,8 @@
             <% if current_user && story_saved?(story.id, current_user.id) %>
               <div class="col-12 text-center">
                 <p class="story-actions-links story-actions" id="forget_story">
-                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-outline-dark  forget_story_link" do %>
-                    <i class="fas fa-times mr-1"></i> Forget This Story
+                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-outline-dark forget_story_link" do %>
+                    <i class="fas fa-times mr-1"></i> Forget Story
                   <% end %>
                 </p>
               </div>
@@ -39,7 +39,7 @@
               <div class="col-12 text-center">
                 <p class="story-actions-links story-actions" id="save_story">
                   <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary save_story_link" do %>
-                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                   <i class="fas fa-bookmark mr-1"></i> Save Story
                   <% end %>
                 </p>
               </div>
@@ -47,7 +47,7 @@
               <div class="col-12 text-center">
                  <p class="story-actions-links story-actions" id="save_story">
                   <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary cannot_save_story_link" do %>
-                   <i class="fas fa-bookmark mr-1"></i> Save This Story
+                   <i class="fas fa-bookmark mr-1"></i> Save Story
                   <% end %>
                 </p>
               </div>

@@ -6,7 +6,7 @@
   max-width: 240px;
 }
 
-#wrapper.toggled {
+#wrapper.sb-closed {
   #page-content-wrapper {
     max-width: 100%;
     margin-left: 0;
@@ -18,7 +18,11 @@
 }
 
 #page-content-wrapper {
-  height: 100%;
+  // We make the height enormous here so that we can close the menu
+  // from jquery on click after scrolling down the grid.
+  // The grid system loads in outside of the page initial load
+  // the grid system is much further down the 'page' which causes issues when scrolling
+  height: 12000px;
   z-index: -1;
   margin-left: 0rem;
   margin-top: 4.4rem;
@@ -87,9 +91,35 @@
     margin-left: 0;
   }
 
-  #wrapper.toggled {
+  #wrapper.sb-closed {
     #sidebar-wrapper {
       margin-left: -15rem;
     }
+  }
+}
+// DESKTOP STYLES BELOW 1000px
+@media (max-width: 999px) {
+  #wrapper {
+    // remove clicking on page when sidebar is sb-closed
+    #main-content {
+      pointer-events: none;
+    }
+  }
+
+  #wrapper.sb-closed {
+    #main-content {
+      pointer-events: auto;
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: 375px) {
+  #sap-logo {
+    max-width: 175px;
+  }
+
+  #sidebar-wrapper {
+    margin-top: 3rem;
   }
 }
