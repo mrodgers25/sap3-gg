@@ -18,11 +18,7 @@
 }
 
 #page-content-wrapper {
-  // We make the height enormous here so that we can close the menu
-  // from jquery on click after scrolling down the grid.
-  // The grid system loads in outside of the page initial load
-  // the grid system is much further down the 'page' which causes issues when scrolling
-  height: 12000px;
+  height: 100%;
   z-index: -1;
   margin-left: 0rem;
   margin-top: 4.4rem;
