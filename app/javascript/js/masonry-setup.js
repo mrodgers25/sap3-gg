@@ -22,12 +22,4 @@ document.addEventListener("turbolinks:load", function () {
     horizontalOrder: true,
     resize: true
   });
-
-  // after load set the height of page content to match grid height
-  // We match the height here so that we can close the menu
-  // from jquery on click after scrolling down the grid.
-  // The grid system loads in outside of the page initial load
-  // the grid system is much further down the 'page' which causes issues when scrolling
-  let gridHeight = $(".story-grid").height();
-  $("#page-content-wrapper").css("height", gridHeight+"px");
 })

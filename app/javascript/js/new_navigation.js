@@ -4,13 +4,15 @@ document.addEventListener("turbolinks:load", function () {
     $("#wrapper").toggleClass("sb-closed");
   });
 
-  $("body").on('click', '#page-content-wrapper', function(e) {
-    let screenWidth = $(window).width();
-    let sidebarClosed = $("#wrapper").hasClass("sb-closed");
+  $('body').on('click', function (e) {
+    let didNotClickNavbar = $(e.target).closest('.navbar').length === 0;
+    let didNotClickSidebar = $(e.target).closest('#sidebar-wrapper').length === 0;
+    let screenWidthIsCorrect = $(window).width() < 999;
+    let sidebarIsOpen = !$("#wrapper").hasClass("sb-closed");
 
-    if (screenWidth < 999 && !sidebarClosed) {
+    if (didNotClickNavbar && didNotClickSidebar && screenWidthIsCorrect && sidebarIsOpen) {
       // close the menu
       $("#wrapper").addClass("sb-closed");
     }
-  })
+  });
 })
