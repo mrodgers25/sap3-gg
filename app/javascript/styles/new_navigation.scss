@@ -6,7 +6,7 @@
   max-width: 240px;
 }
 
-#wrapper.toggled {
+#wrapper.sb-closed {
   #page-content-wrapper {
     max-width: 100%;
     margin-left: 0;
@@ -87,9 +87,35 @@
     margin-left: 0;
   }
 
-  #wrapper.toggled {
+  #wrapper.sb-closed {
     #sidebar-wrapper {
       margin-left: -15rem;
     }
+  }
+}
+// DESKTOP STYLES BELOW 1000px
+@media (max-width: 999px) {
+  #wrapper {
+    // remove clicking on page when sidebar is sb-closed
+    #main-content {
+      pointer-events: none;
+    }
+  }
+
+  #wrapper.sb-closed {
+    #main-content {
+      pointer-events: auto;
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: 375px) {
+  #sap-logo {
+    max-width: 175px;
+  }
+
+  #sidebar-wrapper {
+    margin-top: 3rem;
   }
 }

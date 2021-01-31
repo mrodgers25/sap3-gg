@@ -1,5 +1,14 @@
 .sign-up {
-   #logo {
+  #logo {
     max-width: 300px;
+  }
+
+  #error_explanation {
+
+    h2 {
+      font-size: 1rem;
+      color: red;
+      text-align: center;
+    }
   }
 }
