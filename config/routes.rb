@@ -59,4 +59,11 @@ Rails.application.routes.draw do
   get 'contact_us', to: 'home#contact_us', as: :contact_us
   # STORY SHOW
   get 'story_pages/*permalink', to: 'story_pages#show', as: :story_pages
+  # STORY ACTIONS
+  resources :stories, only: [:save_story, :forget_story] do
+    member do
+      post :save_story
+      post :forget_story
+    end
+  end
 end

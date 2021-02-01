@@ -21,37 +21,33 @@
           </p>
 
           <p class="url-desc">
-            <%= truncate(story.latest_url.url_desc, length: 300, omission: '...  ' ) { link_to "Read more", story_pages_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
+            <%= truncate(story.latest_url.url_desc, length: 200, omission: '...  ' ) { link_to "Read more", story_pages_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
           </p>
 
           <hr>
 
           <div class="row">
-            <% if current_user && story_saved?(story.id, current_user.id) %>
-              <div class="col-12 text-center">
-                <p class="story-actions-links story-actions" id="forget_story">
-                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-outline-dark forget_story_link" do %>
+            <div class="col-12 text-center links-div" id=<%= story.id %>>
+              <% if current_user && story.users.include?(current_user) %>
+                <p class="forget-story-link forget-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{story.id}" do %>
                     <i class="fas fa-times mr-1"></i> Forget Story
                   <% end %>
                 </p>
-              </div>
-            <% elsif current_user %>
-              <div class="col-12 text-center">
-                <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary save_story_link" do %>
-                   <i class="fas fa-bookmark mr-1"></i> Save Story
+              <% elsif current_user %>
+                <p class="save-story-link save-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
                   <% end %>
                 </p>
-              </div>
-            <% else %>
-              <div class="col-12 text-center">
-                 <p class="story-actions-links story-actions" id="save_story">
-                  <%= link_to "javascript:void(0)", data: { 'story-id': story.id }, class: "btn btn-sm btn-primary cannot_save_story_link" do %>
-                   <i class="fas fa-bookmark mr-1"></i> Save Story
+              <% else %>
+                <p class="login-to-save-story-link login-to-save-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
                   <% end %>
                 </p>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
