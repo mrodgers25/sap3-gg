@@ -4,6 +4,9 @@ class Story < ApplicationRecord
 
   attr_accessor :location_ids, :place_category_ids, :story_category_ids
 
+  has_and_belongs_to_many :users
+
+
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
   has_many :usersavedstories

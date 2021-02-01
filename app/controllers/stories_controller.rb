@@ -8,7 +8,27 @@ require 'net/protocol'
 
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_story, only: [:show, :edit, :update, :destroy]
+  before_action :set_story, only: [:save_story, :forget_story, :show, :edit, :update, :destroy]
+
+  def save_story
+    @story.users << current_user
+
+    if @story.save
+      render :json => { success: true, message: 'Story saved' }
+    else
+      render :json => { success: false, message: 'Error occured' }
+    end
+  end
+
+  def forget_story
+    @story.users.delete(current_user)
+
+    if @story.save
+      render :json => { success: true, message: 'Forgot story' }
+    else
+      render :json => { success: false, message: 'Error occured' }
+    end
+  end
 
   def scrape
 

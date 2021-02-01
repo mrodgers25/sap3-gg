@@ -2,6 +2,7 @@ class User < ApplicationRecord
   enum role: [:user, :associate, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :visits
+  has_and_belongs_to_many :stories
 
   def set_default_role
     self.role ||= :user

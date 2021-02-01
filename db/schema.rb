@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_051727) do
+ActiveRecord::Schema.define(version: 2021_02_01_005011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,13 @@ ActiveRecord::Schema.define(version: 2020_12_22_051727) do
     t.boolean "outside_usa"
     t.string "permalink"
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
+  end
+
+  create_table "stories_users", id: false, force: :cascade do |t|
+    t.bigint "story_id"
+    t.bigint "user_id"
+    t.index ["story_id"], name: "index_stories_users_on_story_id"
+    t.index ["user_id"], name: "index_stories_users_on_user_id"
   end
 
   create_table "story_categories", id: :serial, force: :cascade do |t|
