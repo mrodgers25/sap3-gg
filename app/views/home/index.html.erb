@@ -21,7 +21,7 @@
           </p>
 
           <p class="url-desc">
-            <%= story.latest_url.url_desc %>
+            <%= truncate(story.latest_url.url_desc, length: 300, omission: '...  ' ) { link_to "Read more", story_pages_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
           </p>
 
           <hr>

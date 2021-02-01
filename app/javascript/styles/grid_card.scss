@@ -1,7 +1,14 @@
 .grid-card {
+  margin-top: 1.5rem;
+
   .story-actions-links {
     a {
       padding: .3rem 1rem;
     }
+  }
+
+  .read-more-link {
+    color: black;
+    font-weight: 500;
   }
 }
