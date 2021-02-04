@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_005011) do
+ActiveRecord::Schema.define(version: 2021_02_01_035804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,9 +144,11 @@ ActiveRecord::Schema.define(version: 2021_02_01_005011) do
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
   end
 
-  create_table "stories_users", id: false, force: :cascade do |t|
+  create_table "stories_users", force: :cascade do |t|
     t.bigint "story_id"
     t.bigint "user_id"
+    t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
     t.index ["story_id"], name: "index_stories_users_on_story_id"
     t.index ["user_id"], name: "index_stories_users_on_user_id"
   end
