@@ -1,0 +1,45 @@
+<div class="container-sm">
+  <div class="jumbotron bg-white my-stories">
+    <div class="header text-center">
+      <h4>My Saved</h4>
+      <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+    </div>
+
+    <hr class="my-4">
+
+    <%= render partial: 'shared/filters', locals: { filter_path: my_stories_path } %>
+
+    <hr class="my-4">
+
+    <div class="table-div">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Publisher/Date</th>
+            <th scope="col">Saved Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @stories.each do |story| %>
+            <tr>
+              <td class="story-image">
+                <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_pages_path(story.permalink), target: '_blank' %>
+              </td>
+              <th style="width: 200px;"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></th>
+              <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
+              <td style="width: 200px;"><%= story.save_date.getlocal.strftime("%-m/%d/%Y - %I:%M%P") || '-' %></td>
+              <td style="width: 200px;">
+                <%= link_to story_pages_path(story.permalink), class: "btn btn-sm btn-primary", target: '_blank' do %>
+                  <i class="fas fa-search mr-1"></i> View Story
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -87,7 +87,7 @@
                 <% end %>
               </p>
             </div>
-            <div class="col-4 text-center links-div" id=<%= @story.id %>>
+            <div class="col-4 m-auto text-center links-div" id=<%= @story.id %>>
               <% if current_user && @story.users.include?(current_user) %>
                 <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
                   <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>

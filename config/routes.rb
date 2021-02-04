@@ -66,4 +66,6 @@ Rails.application.routes.draw do
       post :forget_story
     end
   end
+  # MY STORIES
+  resources :my_stories, only: :index
 end

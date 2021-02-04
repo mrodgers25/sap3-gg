@@ -1,5 +1,5 @@
 <div class="container-fluid" id="main-content">
-  <%= render partial: 'filters' %>
+  <%= render partial: 'shared/filters', locals: { filter_path: root_path } %>
 
   <div class="grid story-grid">
     <div class="grid-sizer"></div>
