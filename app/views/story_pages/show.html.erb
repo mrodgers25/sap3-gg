@@ -38,14 +38,14 @@
         <div class="card-body">
           <h5 class="text-center story-title"><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
           <div class="tagline-div-<%= @story.id %>">
+            <% if @story.editor_tagline %>
+              <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
+            <% end %>
             <% if current_user && @story.users.include?(current_user) %>
+              <hr class="saved-text-hr-<%= @story.id %>">
               <p class="story-saved-text saved-text-<%= @story.id %> text-center">
                 <i class="fas fa-check-square mr-1"></i> Story Saved
               </p>
-              <hr class="saved-text-hr-<%= @story.id %>">
-            <% end %>
-            <% if @story.editor_tagline %>
-              <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
             <% end %>
           </div>
 
