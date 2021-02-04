@@ -42,6 +42,7 @@
               <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
             <% end %>
             <% if current_user && @story.users.include?(current_user) %>
+              <hr>
               <p class="story-saved-text saved-text-<%= @story.id %> text-center">
                 <i class="fas fa-check-square mr-1"></i> Story Saved
               </p>
