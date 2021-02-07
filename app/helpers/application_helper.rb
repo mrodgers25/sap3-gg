@@ -1,6 +1,11 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   require "fastimage"
+
+  def admin_controller?
+    controller.class.name.split("::").first=="Admin"
+  end
 
   def valid_url?(img_url)
     sz = FastImage.size(img_url)

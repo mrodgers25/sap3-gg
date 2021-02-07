@@ -4,6 +4,11 @@ ruby '2.7.2'
 gem 'rails', '6.1.0'
 gem 'webpacker'
 
+# NEW GEMS
+# Pagination
+gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
+
+
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
 gem 'responders'

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   end
 
   def is_role?(role_to_check)
-    role == role_to_check.to_sym
+    role == role_to_check.to_s
   end
 
   # Include default devise modules. Others available are:

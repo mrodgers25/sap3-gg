@@ -11,7 +11,7 @@
   <body>
     <div id="wrapper" class="sb-closed">
       <%= render 'layouts/navbar' %>
-      <%= render 'layouts/sidebar' %>
+      <%= render (admin_controller? ? 'layouts/sidebar_admin' : 'layouts/sidebar') %>
 
       <div id="page-content-wrapper">
         <div class="container-fluid">

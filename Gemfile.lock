@@ -155,6 +155,7 @@ GEM
     nokogumbo (2.0.4)
       nokogiri (~> 1.8, >= 1.8.4)
     orm_adapter (0.5.0)
+    pagy (3.10.0)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -326,6 +327,7 @@ DEPENDENCIES
   listen
   mail (= 2.7.1)
   nokogiri
+  pagy (~> 3.5)
   pg
   pry
   puma
