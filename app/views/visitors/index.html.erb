@@ -62,7 +62,7 @@
               <% u.images.each do |i| %>
 <!-- Check if user is ADMIN to link to story-pages at this time  -->
                 <%# if user_signed_in? && current_user.admin? %>
-                  <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_pages_path(story.permalink), target: '_blank' %>
+                  <%= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), story_path(story.permalink), target: '_blank' %>
                 <%# else %>
                   <%# if valid_url?(i.src_url) %>
                     <%#= link_to image_tag(i.src_url, :width =>1000, :class => "img-responsive"), u.encoded_url, target: '_blank' %>

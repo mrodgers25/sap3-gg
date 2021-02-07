@@ -1,96 +1,116 @@
-<br><h3>Story</h3>
-<p>
-  <strong>Id: </strong>
-  <%= @story.id %>&nbsp;&nbsp;
-  <strong>Tagline: </strong>
-  <%= @story.editor_tagline %><br>
-  <strong>Location Codes: </strong>
-	<%= @story.locations.map { |location| location.name }.to_sentence %>&nbsp;&nbsp;
-  <strong>Place Categories: </strong>
-  <%= @story.place_categories.map { |place_category| place_category.name }.to_sentence %>&nbsp;&nbsp;
-  <strong>Story Categories: </strong>
-  <%= @story.story_categories.map { |story_category| story_category.name }.to_sentence %><br>
-  <strong>Entered: </strong>
-  <%= @story.created_at.strftime("%A, %b %d") %>&nbsp;&nbsp;
-  <strong>Scraped Type: </strong>
-  <%= @story.scraped_type %>&nbsp;&nbsp;
-  <strong>Type: </strong>
-  <%= @story.story_type %>&nbsp;&nbsp;
-  <strong>Author: </strong>
-  <%= @story.author %>&nbsp;&nbsp;
-  <strong>Media Published: </strong>
-  <%= @story.story_year %>&nbsp;
-  <%= @story.story_month %>&nbsp;
-  <%= @story.story_date %><br>
-  <strong>SAP Publish Dt: </strong>
-  <%= @story.sap_publish_date %><br>
-  <strong>Story Tracking– Author/YYYY/MM/DD: </strong>
-  <%= @story.author_track %>&nbsp;&nbsp;
-  <%= @story.story_year_track %>&nbsp;&nbsp;
-  <%= @story.story_month_track %>&nbsp;&nbsp;
-  <%= @story.story_date_track %><br>
-  <strong>Data Entry Seconds</strong>
-  <%= @story.data_entry_time %><br>
-  <strong>Entered By</strong>
-  <%= @story.data_entry_user %><br>
+<div class="story-show card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="back-button text-left">
+          <%= link_to root_path, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+            <i class="fas fa-arrow-left mr-1"></i> Go Back
+          <% end %>
+        </div>
+        <div class="header mt-2 mt-md-0 text-center">
+          <%= link_to root_path, data: { turbolinks: false } do %>
+            <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 img-div m-auto">
+        <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), story_path(@story.permalink), target: '_blank' %>
 
-</p>
+        <div class="action-links">
+          <%# <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <div class="col-6">
+            <a class="twitter-share-button"
+              href="https://twitter.com/intent/tweet"
+              data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
+              data-size="large"
+              data-url="" >
+              Tweet
+            </a>
+          </div>
+          <div class="col-6">
+            <span class="fb-share-button" data-href="#{@full_storypage_url}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=#{@full_storypage_url}" class="fb-xfbml-parse-ignore">Share</a></span>
+          </div> %>
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="card-body">
+          <h5 class="text-center story-title"><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+          <div class="tagline-div-<%= @story.id %>">
+            <% if @story.editor_tagline %>
+              <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
+            <% end %>
+            <% if current_user && @story.users.include?(current_user) %>
+              <hr class="saved-text-hr-<%= @story.id %>">
+              <p class="story-saved-text saved-text-<%= @story.id %> text-center">
+                <i class="fas fa-check-square mr-1"></i> Story Saved
+              </p>
+            <% end %>
+          </div>
 
-<h3>URL</h3>
+          <hr>
 
-<div style="margin-left: 25px">
-  <% @urls.each do |u| %>
+          <p class="url-desc">
+            <%= @story.latest_url.url_desc %>
+          </p>
 
-    <strong>Id: </strong>
-    <%= u.id %>&nbsp;&nbsp;
+          <hr>
 
-      <strong>URL: </strong>
-    <%= u.url_full %><br>
+          <dl class="row">
+            <dt class="col-6 col-lg-4">Publisher:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_publisher || '-' %></dd>
 
-    <strong>Domain: </strong>&nbsp;
-    <%= truncate(u.url_domain, :length => 30) %>&nbsp;&nbsp;
+            <dt class="col-6 col-lg-4">Author:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.author || '-' %></dd>
 
-    <strong>Type: </strong>
-    <%= truncate(u.url_type, :length => 20) %>&nbsp;&nbsp;<br>
+            <dt class="col-6 col-lg-4">Story Date:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.story_display_date || '-' %></dd>
 
-    <strong>Title: </strong>
-    <%= u.url_title %>&nbsp;&nbsp;<br>
+            <dt class="col-6 col-lg-4"><%= 'Location'.pluralize(@story.locations.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_location || '-' %></dd>
 
-    <strong>Description: </strong>
-    <%= u.url_desc %>&nbsp;&nbsp;<br>
+            <dt class="col-6 col-lg-4">Place <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_place_categories || '-' %></dd>
 
-    <strong>Keywords: </strong>
-    <%= u.url_keywords %>&nbsp;&nbsp;<br>
+            <dt class="col-6 col-lg-4">Story <%= 'Category'.pluralize(@story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= @story.display_story_categories || '-' %></dd>
+          </dl>
 
-    <strong>URL Tracking Title/Desc/Keywords: </strong>
-    <%= u.url_title_track %>&nbsp;&nbsp;
-    <%= u.url_desc_track %>&nbsp;&nbsp;
-    <%= u.url_keywords_track %>&nbsp;&nbsp;<br>
+          <hr>
 
-  <% end %>
+          <div class="row">
+            <div class="col-4 m-auto">
+              <p>
+                <%= link_to @story.latest_url&.url_full, class: "btn btn-sm btn-info" do %>
+                  <i class="fas fa-book-open mr-1"></i> Read at Publisher
+                <% end %>
+              </p>
+            </div>
+            <div class="col-4 m-auto text-center links-div" id=<%= @story.id %>>
+              <% if current_user && @story.users.include?(current_user) %>
+                <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
+                    <i class="fas fa-times mr-1"></i> Forget Story
+                  <% end %>
+                </p>
+              <% elsif current_user %>
+                <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% else %>
+                <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<h3>Image</h3>
-<div style="margin-left: 50px; text-align: left">
-
-  <% @images.each do |i| %>
-    <strong>Id: </strong>
-    <%= i.id %>&nbsp;&nbsp;
-    <strong>Manual?: </strong>
-    <%= i.manual_enter %>&nbsp;&nbsp;
-    <strong>Image: </strong>
-    <%= truncate(i.src_url, :length => 100) %>&nbsp;&nbsp;<br>
-    <strong>Image Text: </strong>
-    <%= truncate(i.alt_text, :length => 100) %>&nbsp;&nbsp;<br>
-    <strong>Image Width: </strong>
-    <%= i.image_width %>&nbsp;&nbsp;<br>
-    <strong>Image Height: </strong>
-    <%= i.image_height %>&nbsp;&nbsp;<br><br>
-    <%= image_tag(i.src_url, :width =>250, style:"margin-left: 0") %>
-  <% end %>
-</div>
-
-
-<%= link_to 'Add New Story', stories_scrape_path %> |
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Stories List', stories_path %>

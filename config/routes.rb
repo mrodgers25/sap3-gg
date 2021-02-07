@@ -57,15 +57,30 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
   get 'about_us', to: 'home#about_us', as: :about_us
   get 'contact_us', to: 'home#contact_us', as: :contact_us
-  # STORY SHOW
-  get 'story_pages/*permalink', to: 'story_pages#show', as: :story_pages
   # STORY ACTIONS
-  resources :stories, only: [:save_story, :forget_story] do
+  resources :stories, only: [:show, :my_stories, :save_story, :forget_story] do
     member do
       post :save_story
       post :forget_story
     end
   end
   # MY STORIES
-  resources :my_stories, only: :index
+  get 'my_stories', to: 'stories#my_stories'
+  # ADMIN ROUTES
+  namespace :admin do
+    resources :stories do
+      get :scrape
+      post :scrape
+      get :incomplete
+      post :incomplete
+      get :sequence
+      post :sequence
+      get :edit_seq
+      post :edit_seq
+      get :pub_now
+      post :pub_now
+      get :story_proof
+      post :story_proof
+    end
+  end
 end
