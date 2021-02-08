@@ -68,7 +68,7 @@ Rails.application.routes.draw do
   get 'my_stories', to: 'stories#my_stories'
   # ADMIN ROUTES
   namespace :admin do
-    resources :stories, only: [:index, :new] do
+    resources :stories do
       collection do
         get :initialize_scraper
         post :scrape

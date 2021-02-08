@@ -41,8 +41,14 @@
               <th style="width: 200px;"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></th>
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
               <td style="width: 200px;">
-                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-primary", target: '_blank' do %>
+                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
                   <i class="fas fa-search mr-1"></i> View Story
+                <% end %>
+                <%= link_to edit_admin_story_path(story), class: "btn btn-sm btn-outline-warning m-1 w-100", target: '_blank' do %>
+                  <i class="fas fa-edit mr-1"></i> Edit Story
+                <% end %>
+                <%= button_to edit_admin_story_path(story), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                  <i class="fas fa-times mr-1"></i> Delete Story
                 <% end %>
               </td>
             </tr>

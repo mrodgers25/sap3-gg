@@ -85,9 +85,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     @next = Story.where("id > ?", params[:id]).order(:id).first
     @meta_tagline = @story.editor_tagline  # story fields
     @tagline_complete = (@meta_tagline.present? ? 'complete' : 'incomplete')
-    # @meta_location = @story.location_code
-    # @meta_place = @story.place_category
-    # @meta_story_category = @story.story_category
     @meta_type = @story.scraped_type
     @meta_author = @story.author
     @outside_usa = @story.outside_usa
@@ -122,26 +119,28 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def update
-    respond_to do |format|
-      # TODO: if you have params[:manual_url], you may need to get out and verify the image exists
-      #       if it does not exist return an error
-      #       if it does exist, get the src_url and alt_text and nest them into story_params properly
-      if @story.update(story_params)
-        if params[:source_action] != 'edit_seq'
-          update_locations_and_categories(@story, story_params)
-          format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-          format.json { render :show, status: :ok, location: @story }
-        else
-          set_release_seq
-          format.html { redirect_to sequence_admin_stories_path, notice: 'Sequence was successfully updated.' }
-        end
-      else
-        get_locations_and_categories
-        format.html { render :edit }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @story.update(story_params)
+      redirect_to admin_stories_path, notice: 'Story was successfully updated.'
+    else
+      redirect_to edit_story_path(@story), notice: 'Story failed to be updated.'
     end
   end
+    # respond_to do |format|
+    #   if @story.update(story_params)
+    #     if params[:source_action] != 'edit_seq'
+    #       update_locations_and_categories(@story, story_params)
+    #       format.html { redirect_to admin_stories_path, notice: 'Story was successfully updated.' }
+    #     else
+    #       set_release_seq
+    #       format.html { redirect_to sequence_admin_stories_path, notice: 'Sequence was successfully updated.' }
+    #     end
+    #   else
+    #     get_locations_and_categories
+    #     format.html { render :edit }
+    #     format.json { render json: @story.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  # end
 
   def destroy
     if @story.destroy
@@ -157,7 +156,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-    def incomplete
+  def incomplete
     @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
   end
 

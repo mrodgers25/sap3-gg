@@ -32,7 +32,7 @@
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
               <td style="width: 200px;"><%= story.save_date.getlocal.strftime("%-m/%d/%Y - %I:%M%P") || '-' %></td>
               <td style="width: 200px;">
-                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-primary", target: '_blank' do %>
+                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
                   <i class="fas fa-search mr-1"></i> View Story
                 <% end %>
               </td>

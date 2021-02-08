@@ -1,9 +1,10 @@
 class StoriesController < ApplicationController
-  layout "application_v2"
   before_action :set_story, only: [:save_story, :forget_story]
 
   def show
     @story = Story.find_by(permalink: params[:id])
+
+    render layout: "application_v2_no_nav"
   end
 
   def save_story
@@ -38,6 +39,8 @@ class StoriesController < ApplicationController
     @stories = @stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
     @stories = @stories.order('stories_users.created_at ASC')
+
+    render layout: "application_v2"
   end
 
   private

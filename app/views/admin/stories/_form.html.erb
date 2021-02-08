@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex justify-content-center align-items-center">
-  <%= form_for(@story, url: admin_stories_path) do |f| %>
+  <%= form_for(@story, url: route) do |f| %>
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
         <h3>Enter Story Information</h3>
@@ -17,8 +17,6 @@
           </ul>
         </div>
       <% end %>
-
-
 
       <div class="body">
         <p class="lead text-center">Story Information</p>
