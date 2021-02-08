@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4>Urls</h4>
+    </div>
+
+    <hr class="my-4">
+
+    <%= render partial: 'filters', locals: { filter_path: admin_urls_path } %>
+
+    <hr class="my-4">
+
+    <div class="table-div">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Story Id</th>
+            <th scope="col">Url</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @urls.each do |url| %>
+            <tr>
+              <td><%= url.id %></td>
+              <td><%= url.story_id %></td>
+              <td><%= url.url_full %></td>
+              <td><%= pretty_date_format(url.created_at) %></td>
+               <td style="width: 200px;">
+                <%= link_to edit_admin_url_path(url), class: "btn btn-sm btn-outline-warning m-1 w-100" do %>
+                  <i class="fas fa-edit mr-1"></i> Edit Url
+                <% end %>
+                <%= button_to admin_url_path(url), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-times mr-1"></i> Delete Url
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,11 @@ module ApplicationHelper
     controller.class.name.split("::").first=="Admin"
   end
 
+  def pretty_date_format(date)
+    date = date.to_date
+    date.strftime("%b #{date.day.ordinalize} %Y")
+  end
+
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
     if sz.nil?

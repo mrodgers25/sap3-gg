@@ -84,5 +84,7 @@ Rails.application.routes.draw do
         post :story_proof
       end
     end
+
+    resources :urls, except: [:show]
   end
 end

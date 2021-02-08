@@ -1,0 +1,21 @@
+.admin-index-page {
+  border: 1px solid black;
+
+  .header {
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .table-div {
+    overflow: auto;
+  }
+
+  .pagination {
+    overflow: auto;
+
+    nav {
+      margin: auto;
+    }
+  }
+}
