@@ -1,0 +1,212 @@
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <%= form_for(@story, url: admin_stories_path) do |f| %>
+    <div class="jumbotron bg-white story-form">
+      <div class="header text-center">
+        <h3>Enter Story Information</h3>
+      </div>
+
+      <hr class="my-4">
+
+      <% if @story.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
+          <ul>
+            <% @story.errors.each_with_index do |message, i| %>
+              <li><%= message[1] %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+
+      <div class="body">
+        <p class="lead text-center">Story Information</p>
+        <hr class="my-4">
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :editor_tagline, "Editor Tagline:" %>
+          <%= f.text_field :editor_tagline, value: @meta_tagline, placeholder: "Maximum 60 chars", maxlength: 60, size: 60, class: "form-control" %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :story_type, "Story Type:" %>
+          <%= f.select :story_type, [
+            "Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
+            "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
+            "Guide", "Hotel Guide", "Book", "Industry Awards"
+          ], class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :scraped_type, "Scraped Type:" %>
+          <%= f.text_field :scraped_type, value: @meta_type, size: 20, readonly: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :author, "Story Author:" %>
+          <%= f.text_field :author, value: @meta_author, size: 50, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :outside_usa, "Outside USA?" %>
+          <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :story_year, "Story Year:" %>
+          <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :story_month, "Story Month:" %>
+          <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :story_date, "Story Date:" %>
+          <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :sap_publish_date, "SAP Publish Date–Time:" %>
+          <%= f.datetime_select :sap_publish_date, use_month_numbers: true, start_year: 2014, include_blank: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :location_ids, "Locations:" %>
+          <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :place_category_ids, "Place Categories:" %>
+          <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :story_category_ids, "Story Categories:" %>
+          <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @selected_story_category_ids), {}, { multiple: true, id: 'story_story_category_ids' } %>
+        </div>
+
+        <hr class="my-4">
+
+        <p class="lead text-center">URL Data</p>
+        <hr class="my-4">
+
+        <%= f.fields_for :urls do |u| %>
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_full, "Page Url:" %>
+            <%= u.text_field :url_full, value: @source_url_pre, class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_domain, "Domain:" %>
+            <%= u.text_field :url_domain, value: @base_domain, readonly: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :name_display, "Display Name:" %>
+            <%= u.text_field :name_display, value: @name_display, readonly: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_type, "Url Type:" %>
+            <%= u.select :url_type, ['Media'], class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_title, "Url Title:" %>
+            <%= u.text_area :url_title, rows: 2, value: @title, maxlength: 250, class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_desc, "Url Description:" %>
+            <%= u.text_area :url_desc, rows: 3, value: @meta_desc, maxlength: 1000, class: "form-control" %>
+          </div>
+
+          <div class="form-group my-4 max-vw-80 mx-auto">
+            <%= u.label :url_keywords, "Url Keywords:" %>
+            <%= u.text_area :url_keywords, rows: 1, value: @meta_keywords, maxlength: 1000, class: "form-control" %>
+          </div>
+
+          <%= u.hidden_field :raw_url_title_scrape, value: @title %>
+          <%= u.hidden_field :raw_url_desc_scrape, value: @meta_desc %>
+          <%= u.hidden_field :raw_url_keywords_scrape, value: @meta_keywords %>
+
+          <hr class="my-4">
+
+          <%= u.fields_for :images do |i| %>
+            <% unless @image1 %>
+              <p class="lead text-center">Choose an Image</p>
+              <hr class="my-4">
+            <% end %>
+
+            <% if params[:action] != "edit" %>
+              <% unless @page_imgs.blank? %>
+                <% @page_imgs.each_with_index do |hash, idx| %>
+                  <div class="row my-2">
+                    <% unless @image1 %>
+                      <div class="col-md-2 text-center">
+                        <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
+                        <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                        <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                      </div>
+                    <% end %>
+                    <div class="col-md-5">
+                      <%= i.label :src_url, hash["alt_text"] %>
+                      <%= i.label :src_url, (hash["image_width"].to_s + " x " + hash["image_height"].to_s) %>
+                    </div>
+                    <div class="col-md-5">
+                      <%= image_tag(hash["src_url"], width: "250") %><br>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+
+              <hr class="my-4">
+            <% end %>
+
+            <p class="lead text-center">Enter Image Manually</p>
+            <hr class="my-4">
+
+            <div class="form-group my-4 max-vw-80 mx-auto">
+              <%= i.label :src_url, "SRC Url:" %>
+              <%= i.text_area :src_url, cols: 80, class: "form-control" %>
+            </div>
+
+            <div class="form-group my-4 max-vw-80 mx-auto">
+              <%= i.label :image_width, "Width:" %>
+              <%= i.text_field :image_width, class: "form-control" %>
+            </div>
+
+            <div class="form-group my-4 max-vw-80 mx-auto">
+              <%= i.label :image_height, "Height:" %>
+              <%= i.text_field :image_height, class: "form-control" %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <hr class="my-4">
+
+        <% if params[:action] != 'new' %>
+          <p class="lead text-center "<%= "#{@story_complete == true ? 'complete' : 'incomplete'}" %>"">
+            <%= @story_complete ? "Story Complete" : "Incomplete Story – Missing Fields In Yellow" %>
+          </p>
+        <% end %>
+
+        <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+
+        <%= f.hidden_field :raw_author_scrape, value: @meta_author %>
+        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time %>
+        <%= f.hidden_field :raw_story_year_scrape, value: @year %>
+        <%= f.hidden_field :raw_story_month_scrape, value: @month %>
+        <%= f.hidden_field :raw_story_date_scrape, value: @day %>
+        <%= f.hidden_field :data_entry_user, value: current_user.id %>
+
+        <hr class="my-4">
+
+        <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
+      </div>
+    </div>
+  <% end %>
+</div>

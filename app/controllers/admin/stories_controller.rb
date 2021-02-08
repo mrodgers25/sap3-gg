@@ -7,12 +7,8 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-
   before_action :set_story, only: [:save_story, :forget_story, :show, :edit, :update, :destroy]
   before_action :check_for_admin, only: :destroy
-
-  def scrape
-  end
 
   def index
      # database dropdown data
@@ -29,66 +25,31 @@ class Admin::StoriesController < Admin::BaseAdminController
     @pagy, @stories = pagy(@stories)
   end
 
-  def incomplete
-    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
-  end
-
-  def sequence
-    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
-
-    # resequence on form start
-    seq = 1
-    @stories.each do |s|
-      s.update_attributes(release_seq: seq)
-      seq += 1
-    end
-  end
-
-  def edit_seq
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @url_title = @urls.last.url_title
-    @sequence = @story.release_seq
-  end
-
-  def pub_now
-    Story.find(params[:id]).update_attributes(sap_publish_date: Time.now)
-    redirect_to root_path, notice: 'Story was successfully published.'
-  end
-
-  def show
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @images = @urls.first.images
-  end
-
-  def story_proof
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @images = @urls.first.images
+  def initialize_scraper
   end
 
   def new
     # parse the domain
     @data_entry_begin_time = params[:data_entry_begin_time]  #grab user input
-    @source_url_pre = params[:source_url_pre]  #grab user input
+    @source_url_pre        = params[:source_url_pre]  #grab user input
+
     if @source_url_pre.present?
       get_locations_and_categories
       get_domain_info(@source_url_pre)
       @screen_scraper = ScreenScraper.new
+
       if @screen_scraper.scrape!(@full_web_url)
         @story = Story.new
         url = @story.urls.build
         url.images.build
         set_scrape_fields
-        #binding.pry
       else
         flash.now.alert = "We can't find that URL – give it another shot"
-        render :scrape
+        render :initialize_scraper
       end
     else
       flash.now.alert = "You have to enter a URL for this to work"
-      render :scrape
+      render :initialize_scraper
     end
   end
 
@@ -112,10 +73,10 @@ class Admin::StoriesController < Admin::BaseAdminController
       end
     end
     #This script is used to update the permalink field in all stories
-      url_title = @story.urls.first.url_title.parameterize
-      rand_hex = SecureRandom.hex(2)
-      permalink = "#{rand_hex}/#{url_title}"
-      @story.update_attribute(:permalink, "#{permalink}")
+    url_title = @story.urls.first.url_title.parameterize
+    rand_hex = SecureRandom.hex(2)
+    permalink = "#{rand_hex}/#{url_title}"
+    @story.update_attribute(:permalink, "#{permalink}")
   end
 
   def edit
@@ -172,7 +133,7 @@ class Admin::StoriesController < Admin::BaseAdminController
           format.json { render :show, status: :ok, location: @story }
         else
           set_release_seq
-          format.html { redirect_to sequence_stories_path, notice: 'Sequence was successfully updated.' }
+          format.html { redirect_to sequence_admin_stories_path, notice: 'Sequence was successfully updated.' }
         end
       else
         get_locations_and_categories
@@ -183,12 +144,58 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def destroy
-    authorize Story
-    @story.destroy
-    respond_to do |format|
-      format.html { redirect_to stories_url, notice: 'Story was successfully destroyed.' }
-      format.json { head :no_content }
+    if @story.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_stories_path, notice: 'Story was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to admin_stories_path, alert: 'Story could not be destroyed.' }
+        format.json { head :no_content }
+      end
     end
+  end
+
+    def incomplete
+    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
+  end
+
+  def sequence
+    @stories = Story.includes(:urls).
+      where(story_complete: true, sap_publish_date: nil).
+      order("stories.release_seq, stories.updated_at")
+
+    # resequence on form start
+    seq = 1
+    @stories.each do |s|
+      s.update_attributes(release_seq: seq)
+      seq += 1
+    end
+  end
+
+  def edit_seq
+    @story = Story.find(params[:id])
+    @urls = @story.urls
+    @url_title = @urls.last.url_title
+    @sequence = @story.release_seq
+  end
+
+  def pub_now
+    Story.find(params[:id]).update_attributes(sap_publish_date: Time.now)
+    redirect_to root_path, notice: 'Story was successfully published.'
+  end
+
+  def show
+    @story = Story.find(params[:id])
+    @urls = @story.urls
+    @images = @urls.first.images
+  end
+
+  def story_proof
+    @story = Story.find(params[:id])
+    @urls = @story.urls
+    @images = @urls.first.images
   end
 
   private
@@ -207,39 +214,13 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-  # def set_release_seq   ! this reversed seq the unsequenced stories when moving story in one direction
-  #   new_seq = Story.find(params[:id]).release_seq
-  #   if new_seq >= params[:old_seq].to_i
-  #     @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
-  #   else
-  #     @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at DESC").where(story_complete: true, sap_publish_date: nil).includes(:urls)
-  #   end
-  #   seq = 1
-  #   @stories.each do |s|
-  #     s.update_attributes(release_seq: seq)
-  #     seq += 1
-  #   end
-  # end
-  #
-
   def get_domain_info(source_url_pre)
-
     full_url = Domainatrix.parse(source_url_pre).url
     sub = Domainatrix.parse(source_url_pre).subdomain
     domain = Domainatrix.parse(source_url_pre).domain
     suffix = Domainatrix.parse(source_url_pre).public_suffix
     prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
     @base_domain = prefix + domain + '.' + suffix
-    # binding.pry
-
-    # d_url = Domainatrix.parse(source_url_pre)
-    # @full_domain = d_url.host
-    # split_full_domain = @full_domain.split(".")
-    # if split_full_domain.length == 2
-    #   @base_domain = split_full_domain[0].to_s + "." + split_full_domain[1].to_s
-    # else
-    #   @base_domain = split_full_domain[1].to_s + "." + split_full_domain[2].to_s
-    # end
 
     if Mediaowner.where(url_domain: @base_domain).first.present?
       @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
@@ -256,7 +237,11 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def set_story
-    @story = Story.find(params[:id])
+    begin
+      @story = Story.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_stories_path, alert: "Story not found"
+    end
   end
 
   def set_scrape_fields
@@ -271,7 +256,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     @page_imgs = @screen_scraper.page_imgs
 
     @itemprop_pub_date_match
-
   end
 
   def set_fields_on_fail(hash)
