@@ -4,7 +4,9 @@ class Admin::CodesController < Admin::BaseAdminController
 
   def index
     @codes = Code.order(created_at: :desc)
-    @codes = @codes.where("LOWER(src_url) ~ ?", params[:search].downcase) if params[:search].present?
+    @codes = @codes.where("LOWER(code_type) ~ ?", params[:code_type].downcase) if params[:code_type].present?
+    @codes = @codes.where("LOWER(code_key) ~ ?", params[:code_key].downcase) if params[:code_key].present?
+    @codes = @codes.where("LOWER(code_value) ~ ?", params[:code_value].downcase) if params[:code_value].present?
 
     @pagy, @codes = pagy(@codes)
   end
