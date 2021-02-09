@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:save_story, :forget_story, :show, :edit, :update, :destroy]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -154,56 +154,54 @@ class Admin::StoriesController < Admin::BaseAdminController
     @pagy, @stories = pagy(@stories)
   end
 
-  def sequence
+  def sequencer
     @stories = Story.includes(:urls).
       where(story_complete: true, sap_publish_date: nil).
       order("stories.release_seq, stories.updated_at")
 
     # resequence on form start
-    seq = 1
-    @stories.each do |s|
-      s.update_attributes(release_seq: seq)
-      seq += 1
+    @stories.each_with_index do |story, index|
+      sequence = index + 1
+      story.update(release_seq: sequence)
+    end
+
+    @pagy, @stories = pagy(@stories)
+  end
+
+  def edit_sequence
+  end
+
+  def update_sequence
+    if @story.update(update_sequence_params) && set_release_seq
+      redirect_to sequencer_admin_stories_path, notice: 'Sequence was successfully updated.'
+    else
+      redirect_to sequencer_admin_stories_path, alert: 'Sequence failed to be updated.'
     end
   end
 
-  def edit_seq
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @url_title = @urls.last.url_title
-    @sequence = @story.release_seq
-  end
-
-  def pub_now
-    Story.find(params[:id]).update_attributes(sap_publish_date: Time.now)
-    redirect_to root_path, notice: 'Story was successfully published.'
-  end
-
-  def show
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @images = @urls.first.images
-  end
-
-  def story_proof
-    @story = Story.find(params[:id])
-    @urls = @story.urls
-    @images = @urls.first.images
+  def publish
+    if @story.publish!
+      redirect_to sequencer_admin_stories_path, notice: 'Story was successfully published.'
+    else
+      redirect_to sequencer_admin_stories_path, alert: 'Story did not publish.'
+    end
   end
 
   private
 
   def set_release_seq
-    new_seq = Story.find(params[:id]).release_seq
+    story   = Story.find(params[:id])
+    new_seq = story.release_seq
     old_seq = params[:old_seq].to_i
+
     if new_seq <= old_seq
-      Story.find(params[:id]).update_attributes(release_seq: (new_seq - 1))
+      story.update(release_seq: (new_seq - 1))
     end
-    @stories = Story.joins(:urls).order("stories.release_seq, stories.updated_at").where(story_complete: true, sap_publish_date: nil).includes(:urls)
-    seq = 1
-    @stories.each do |s|
-      s.update_attributes(release_seq: seq)
-      seq += 1
+
+    sorted_stories = Story.where(story_complete: true, sap_publish_date: nil).order("stories.release_seq, stories.updated_at")
+    sorted_stories.each_with_index do |story, index|
+      sequence = index + 1
+      story.update(release_seq: sequence)
     end
   end
 
@@ -317,6 +315,10 @@ class Admin::StoriesController < Admin::BaseAdminController
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+  end
+
+  def update_sequence_params
+    params.require(:story).permit(:release_seq, :title)
   end
 
 end
