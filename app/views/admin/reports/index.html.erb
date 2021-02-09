@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-file-csv mr-1"></i> Reports</h4>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export All Stories In Default Format <<<---", export_allstories_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export Stories In Original Format <<<---", export_stories_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export All Images Information <<<---", export_images_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export All Media Owners Information <<<---", export_mediaowners_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export All User Saved Stories Information <<<---", export_usersaved_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export User Listings Information <<<---", export_userlisting_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export Action Listings Information <<<---", export_actionlisting_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+    <div class='col-12 text-center mt-2'>
+      <%= link_to "--->>> Export Outbound Clicks Information <<<---", export_outboundclick_admin_reports_path(format: "csv"), class: 'btn btn-outline-secondary w-100' %>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,7 @@
-class ReportsController < ApplicationController
-  before_action :authenticate_user!
-  #after_action :verify_authorized
-
+class Admin::ReportsController < Admin::BaseAdminController
   include SendGrid
 
-
   def index
-    #authorize Report
-    @users = User.all
   end
 
   def export_allstories

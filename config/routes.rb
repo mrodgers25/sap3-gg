@@ -92,5 +92,18 @@ Rails.application.routes.draw do
     resources :story_categories, except: [:show]
     resources :mediaowners, except: [:show]
     resources :users, except: [:show]
+    resources :reports, only: [:index] do
+      collection do
+        get :export_allstories
+        get :export_stories
+        get :export_images
+        get :export_mediaowners
+        get :export_usersaved
+        get :export_userlisting
+        get :export_actionlisting
+        get :export_outboundclick
+        get :export_all
+      end
+    end
   end
 end
