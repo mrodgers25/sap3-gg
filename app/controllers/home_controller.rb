@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout "application_v2"
+  layout "application"
 
   def index
     # database dropdown data

@@ -1,0 +1,52 @@
+<div class="container">
+  <%= form_for(@url, url: admin_url_path(@url)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-link mr-1"></i> Edit Url</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_full %><br>
+          <%= f.text_field :url_full, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_type %><br>
+          <%= f.text_field :url_type, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_title %><br>
+          <%= f.text_field :url_title, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_desc %><br>
+          <%= f.text_field :url_desc, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_keywords %><br>
+          <%= f.text_field :url_keywords, class: "form-control" %>
+        </div>
+          <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_title_track %><br>
+          <%= f.check_box :url_title_track %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_desc_track %><br>
+          <%= f.check_box :url_desc_track %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_keywords_track %><br>
+          <%= f.check_box :url_keywords_track %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

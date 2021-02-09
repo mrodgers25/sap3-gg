@@ -1,0 +1,24 @@
+<div class="container">
+  <%= form_for(@story, url: update_sequence_admin_story_path(@story)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-sort-numeric-down mr-1"></i> Edit Sequence</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :release_seq %><br>
+          <%= f.number_field :release_seq, class: "form-control" %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

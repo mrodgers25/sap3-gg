@@ -6,7 +6,6 @@ class Story < ApplicationRecord
 
   has_and_belongs_to_many :users
 
-
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
   has_many :usersavedstories
@@ -115,5 +114,9 @@ class Story < ApplicationRecord
 
   def display_story_categories
     story_categories.pluck(:name).join(', ')
+  end
+
+  def publish!
+    update(sap_publish_date: DateTime.now)
   end
 end

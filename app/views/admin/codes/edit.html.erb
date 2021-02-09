@@ -1,0 +1,32 @@
+<div class="container">
+  <%= form_for(@code, url: admin_code_path(@code)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-cogs mr-1"></i> Edit Code</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :code_type %><br>
+          <%= f.text_field :code_type, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :code_key %><br>
+          <%= f.text_field :code_key, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :code_value %><br>
+          <%= f.text_field :code_value, class: "form-control" %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

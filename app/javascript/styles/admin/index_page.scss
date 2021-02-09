@@ -1,0 +1,30 @@
+.admin-index-page {
+  border: 1px solid black;
+
+  .header {
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .table-div {
+    overflow: auto;
+  }
+
+  .table-img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  .width-200 {
+    width: 200px;
+  }
+
+  .pagination {
+    overflow: auto;
+
+    nav {
+      margin: auto;
+    }
+  }
+}

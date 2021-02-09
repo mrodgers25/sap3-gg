@@ -1,16 +1,24 @@
 <div class="container-fluid" id="main-content">
-  <%= render partial: 'filters' %>
+  <%= render partial: 'filters', locals: { filter_path: root_path } %>
 
   <div class="grid story-grid">
     <div class="grid-sizer"></div>
     <div class="gutter-sizer"></div>
     <% @stories.each do |story| %>
       <div class="grid-item grid-card card">
-        <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_pages_path(story.permalink), target: '_blank' %>
+        <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' %>
         <div class="card-body">
-          <% if story.editor_tagline %>
-            <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
-          <% end %>
+          <div class="tagline-div-<%= story.id %>">
+            <% if current_user && story.users.include?(current_user) %>
+              <p class="story-saved-text saved-text-<%= story.id %> text-center">
+                <i class="fas fa-check-square mr-1"></i> Story Saved
+              </p>
+              <hr class="saved-text-hr-<%= story.id %>">
+            <% end %>
+            <% if story.editor_tagline %>
+              <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+            <% end %>
+          </div>
 
           <hr>
 
@@ -21,7 +29,7 @@
           </p>
 
           <p class="url-desc">
-            <%= truncate(story.latest_url.url_desc, length: 200, omission: '...  ' ) { link_to "Read more", story_pages_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
+            <%= truncate(story.latest_url.url_desc, length: 200, omission: '...  ' ) { link_to "Read more", story_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
           </p>
 
           <hr>

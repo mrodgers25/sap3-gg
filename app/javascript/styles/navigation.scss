@@ -109,10 +109,17 @@
   }
 }
 
+// DESKTOP STYLES BELOW 1000px
+@media (max-width: 445px) {
+  #admin-text {
+    font-size: 0.5rem;
+  }
+}
+
 // Mobile Styles
 @media (max-width: 375px) {
   #sap-logo {
-    max-width: 175px;
+    max-width: 158px;
   }
 
   #sidebar-wrapper {
