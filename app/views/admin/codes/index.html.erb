@@ -34,7 +34,7 @@
                 <%= link_to edit_admin_code_path(code), class: "btn btn-sm btn-outline-warning m-1 w-100" do %>
                   <i class="fas fa-edit mr-1"></i> Edit Code
                 <% end %>
-                <%= button_to admin_code_path(code), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                <%= button_to admin_code_path(code), method: :delete, class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times mr-1"></i> Delete Code
                 <% end %>
               </td>

@@ -1,0 +1,31 @@
+<%= form_tag(filter_path, method: :get) do %>
+  <div class="row filters">
+    <div class="col-12 col-sm-4 mt-0">
+      <%= text_field_tag :first_name, params[:first_name], placeholder: 'Search First Name...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :last_name, params[:last_name], placeholder: 'Search Last Name...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :email, params[:email], placeholder: 'Search Email...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-2">
+      <%= text_field_tag :city_preference, params[:city_preference], placeholder: 'Search City Preference...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-2">
+      <%=
+        select_tag :role,
+        options_from_collection_for_select(User.roles, :second , :first, params[:role]),
+        prompt: 'Choose a Role',
+        class: 'form-control form-control-sm',
+        id: 'role-select'
+      %>
+    </div>
+    <div class="col-12 col-sm-6 mt-2 mt-sm-2">
+      <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+    </div>
+    <div class="col-12 col-sm-6 mt-2 mt-sm-2">
+      <%= submit_tag "Reset", id: 'reset-filters-btn', type: 'reset', class: 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+<% end %>

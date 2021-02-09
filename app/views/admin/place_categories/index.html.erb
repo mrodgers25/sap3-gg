@@ -32,7 +32,7 @@
                 <%= link_to edit_admin_place_category_path(category), class: "btn btn-sm btn-outline-warning m-1 w-100" do %>
                   <i class="fas fa-edit mr-1"></i> Edit Category
                 <% end %>
-                <%= button_to admin_place_category_path(category), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                <%= button_to admin_place_category_path(category), method: :delete, class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times mr-1"></i> Delete Category
                 <% end %>
               </td>

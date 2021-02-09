@@ -34,7 +34,7 @@
                 <%= link_to edit_admin_image_path(image), class: "btn btn-sm btn-outline-warning m-1 w-100" do %>
                   <i class="fas fa-edit mr-1"></i> Edit image
                 <% end %>
-                <%= button_to admin_image_path(image), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                <%= button_to admin_image_path(image), method: :delete, class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times mr-1"></i> Delete image
                 <% end %>
               </td>
