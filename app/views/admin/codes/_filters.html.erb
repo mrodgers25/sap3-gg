@@ -1,0 +1,19 @@
+<%= form_tag(filter_path, method: :get) do %>
+  <div class="row filters">
+    <div class="col-12 col-sm-4 mt-0">
+      <%= text_field_tag :code_type, params[:code_type], placeholder: 'Search Code Type...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :code_key, params[:code_key], placeholder: 'Search Code Key...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :code_value, params[:code_value], placeholder: 'Search Code Value...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-6 mt-2 mt-sm-2">
+      <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+    </div>
+    <div class="col-12 col-sm-6 mt-2 mt-sm-2">
+      <%= submit_tag "Reset", id: 'reset-filters-btn', type: 'reset', class: 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+<% end %>
