@@ -231,10 +231,6 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   private
 
-  def check_for_admin
-    redirect_to :admin_stories_path unless current_user.is_role?(:admin)
-  end
-
   def set_story
     begin
       @story = Story.find(params[:id])

@@ -86,5 +86,6 @@ Rails.application.routes.draw do
     end
 
     resources :urls, except: [:show]
+    resources :images, except: [:show]
   end
 end

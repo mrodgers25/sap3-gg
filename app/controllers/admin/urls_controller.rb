@@ -1,5 +1,6 @@
 class Admin::UrlsController < Admin::BaseAdminController
   before_action :set_url, except: :index
+  before_action :check_for_admin, only: :destroy
 
   def index
     @urls = Url.order(created_at: :desc)

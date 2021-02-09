@@ -9,9 +9,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div id="wrapper" class="sb-closed">
+    <div id="wrapper" class="<%= admin_controller? ? '' : 'sb-closed' %>">
       <%= render 'layouts/navbar' %>
-      <%= render (admin_controller? ? 'layouts/sidebar_admin' : 'layouts/sidebar') %>
+      <%= render admin_controller? ? 'layouts/sidebar_admin' : 'layouts/sidebar' %>
 
       <div id="page-content-wrapper">
         <div class="container-fluid">

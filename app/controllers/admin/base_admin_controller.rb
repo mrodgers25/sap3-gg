@@ -10,4 +10,8 @@ class Admin::BaseAdminController < ApplicationController
   def check_for_role
     redirect_to root_path unless current_user.is_role?(:admin) || current_user.is_role?(:associate)
   end
+
+  def check_for_admin
+    redirect_to :admin_stories_path unless current_user.is_role?(:admin)
+  end
 end
