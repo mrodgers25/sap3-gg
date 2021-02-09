@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find_by(permalink: params[:id])
 
-    render layout: "application_v2_no_nav"
+    render layout: "application_no_nav"
   end
 
   def save_story
@@ -40,7 +40,7 @@ class StoriesController < ApplicationController
     @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
     @stories = @stories.order('stories_users.created_at ASC')
 
-    render layout: "application_v2"
+    render layout: "application"
   end
 
   private

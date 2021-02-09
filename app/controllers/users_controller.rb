@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :remove_empty_password_fields, only: :update
   before_action :check_for_valid_password, only: :update
 
-  layout "application_v2"
+  layout "application"
 
   def edit
   end

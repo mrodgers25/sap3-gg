@@ -1,6 +1,6 @@
 class Admin::BaseAdminController < ApplicationController
   include Pagy::Backend
-  layout "application_v2"
+  layout "application"
 
   before_action :authenticate_user!
   before_action :check_for_role

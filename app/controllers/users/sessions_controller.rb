@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  layout 'application_v2_no_nav'
+  layout 'application_no_nav'
   before_action :configure_sign_in_params, only: [:create]
 
   def create
