@@ -80,42 +80,50 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def edit
-    @story = Story.find(params[:id])
-    @previous = Story.where("id < ?", params[:id]).order(:id).last
-    @next = Story.where("id > ?", params[:id]).order(:id).first
-    @meta_tagline = @story.editor_tagline  # story fields
-    @tagline_complete = (@meta_tagline.present? ? 'complete' : 'incomplete')
-    @meta_type = @story.scraped_type
-    @meta_author = @story.author
-    @outside_usa = @story.outside_usa
-    @year = @story.story_year
-    @month = @story.story_month
-    @day = @story.story_date
-    @date_complete = ( (@year.present? || @month.present? || @day.present?) ? 'complete' : 'incomplete')
-    @story_complete = @story.story_complete
+    # story fields
+    @meta_tagline = @story.editor_tagline
+    @meta_type    = @story.scraped_type
+    @meta_author  = @story.author
+    @outside_usa  = @story.outside_usa
+    @year         = @story.story_year
+    @month        = @story.story_month
+    @day          = @story.story_date
 
-    @url1 = @story.urls.first  # url fields
+    # url fields
+    @url1           = @story.urls.first
     @source_url_pre = @url1.url_full
-    @base_domain = @url1.url_domain
-    if Mediaowner.where(url_domain: @base_domain).first.present?
-      @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
-    else
-      @name_display = 'NO DOMAIN NAME FOUND'
-    end
-    @title = @url1.url_title
-    @title_complete = (@title.present? ? 'complete' : 'incomplete')
-    @meta_desc = @url1.url_desc
-    @desc_complete = (@meta_desc.present? ? 'complete' : 'incomplete')
-    @meta_keywords = @url1.url_keywords
-    @full_web_url = @url1.url_full
+    @base_domain    = @url1.url_domain
+    @title          = @url1.url_title
+    @meta_desc      = @url1.url_desc
+    @meta_keywords  = @url1.url_keywords
+    @full_web_url   = @url1.url_full
 
-    @image1 = @url1.images.first  # image fields
-    @page_imgs = [{'src_url' => @image1.src_url, 'alt_text' => @image1.alt_text, 'image_width' => @image1.image_width, 'image_height' => @image1.image_height}]
+     # image fields
+    @image1    = @url1.images.first
+    @page_imgs = [{
+      'src_url' => @image1.src_url,
+      'alt_text' => @image1.alt_text,
+      'image_width' => @image1.image_width,
+      'image_height' => @image1.image_height
+    }]
+
+    # locations and categories
     get_locations_and_categories
-    @selected_location_ids = @story.locations.map(&:id)
-    @selected_place_category_ids = @story.place_categories.map(&:id)
-    @pc_complete = (@selected_place_category_ids.present? ? 'complete' : 'incomplete')
-    @selected_story_category_ids = @story.story_categories.map(&:id)
+    @selected_location_ids       = @story.locations.pluck(:id)
+    @selected_place_category_ids = @story.place_categories.pluck(:id)
+    @selected_story_category_ids = @story.story_categories.pluck(:id)
+
+    # mediaowner stuff
+    mediaowner    = Mediaowner.where(url_domain: @base_domain).first
+    @name_display = mediaowner&.title || 'NO DOMAIN NAME FOUND'
+
+    # complete checks
+    @title_complete   = @title.present?
+    @tagline_complete = @meta_tagline.present?
+    @desc_complete    = @meta_desc.present?
+    @date_complete    = @year.present? || @month.present? || @day.present?
+    @story_complete   = @story.story_complete
+    @pc_complete      = @selected_place_category_ids.present?
   end
 
   def update
@@ -125,22 +133,6 @@ class Admin::StoriesController < Admin::BaseAdminController
       redirect_to edit_story_path(@story), notice: 'Story failed to be updated.'
     end
   end
-    # respond_to do |format|
-    #   if @story.update(story_params)
-    #     if params[:source_action] != 'edit_seq'
-    #       update_locations_and_categories(@story, story_params)
-    #       format.html { redirect_to admin_stories_path, notice: 'Story was successfully updated.' }
-    #     else
-    #       set_release_seq
-    #       format.html { redirect_to sequence_admin_stories_path, notice: 'Sequence was successfully updated.' }
-    #     end
-    #   else
-    #     get_locations_and_categories
-    #     format.html { render :edit }
-    #     format.json { render json: @story.errors, status: :unprocessable_entity }
-    #   end
-    # end
-  # end
 
   def destroy
     if @story.destroy
@@ -157,7 +149,9 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def incomplete
-    @stories = Story.joins(:urls).order("stories.id DESC").where(story_complete: false).includes(:urls)
+    @stories = Story.includes(:urls).where(story_complete: false).order("stories.id DESC")
+
+    @pagy, @stories = pagy(@stories)
   end
 
   def sequence

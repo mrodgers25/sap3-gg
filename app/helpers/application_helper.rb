@@ -12,6 +12,10 @@ module ApplicationHelper
     date.strftime("%b #{date.day.ordinalize} %Y")
   end
 
+  def form_item_status_class(bool)
+    bool ? 'complete-form-item' : 'incomplete-form-item'
+  end
+
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
     if sz.nil?
