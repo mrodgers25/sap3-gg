@@ -11,7 +11,6 @@
     "node": "^14.5.0",
     "popper.js": "^1.16.1",
     "rails-ujs": "^5.2.4-4",
-    "select2": "^4.1.0-rc.0",
     "social-share-button": "^2.2.0",
     "turbolinks": "^5.2.0"
   },
