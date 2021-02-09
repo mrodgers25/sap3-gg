@@ -1,0 +1,22 @@
+<%= form_tag(filter_path, method: :get) do %>
+  <div class="row filters">
+    <div class="col-12 col-sm-4 mt-0">
+      <%= text_field_tag :title, params[:title], placeholder: 'Search Title...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :url_domain, params[:url_domain], placeholder: 'Search Url Domain...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-0">
+      <%= text_field_tag :owner_name, params[:owner_name], placeholder: 'Search Owner Name...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-2">
+      <%= text_field_tag :distribution_type, params[:distribution_type], placeholder: 'Search Distribution Type...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-2">
+      <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+    </div>
+    <div class="col-12 col-sm-4 mt-2 mt-sm-2">
+      <%= submit_tag "Reset", id: 'reset-filters-btn', type: 'reset', class: 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+<% end %>

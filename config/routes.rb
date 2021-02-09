@@ -90,6 +90,7 @@ Rails.application.routes.draw do
     resources :locations, except: [:show]
     resources :place_categories, except: [:show]
     resources :story_categories, except: [:show]
+    resources :mediaowners, except: [:show]
     resources :users, except: [:show]
   end
 end
