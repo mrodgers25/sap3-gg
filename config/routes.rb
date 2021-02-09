@@ -88,5 +88,6 @@ Rails.application.routes.draw do
     resources :images, except: [:show]
     resources :codes, except: [:show]
     resources :locations, except: [:show]
+    resources :place_categories, except: [:show]
   end
 end
