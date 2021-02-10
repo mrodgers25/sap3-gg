@@ -1,19 +1,48 @@
-<h2>Change your password</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), method: :put) do |f| %>
+  <div class="jumbotron bg-white change-password mt-5">
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+    <div class="header">
+      <%= link_to root_path, data: { turbolinks: false } do %>
+      	<%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+			<% end %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
-  </div>
+    <hr class="my-4">
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
+    <div class="body">
+      <p class="lead m-auto">Change your password</p>
+
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="form-group my-4 max-vw-80 mx-auto">
+        <%= f.label :password, 'Password:' %>
+        <%= f.password_field :password, required: true, autofocus: true, class: "form-control"%>
+        <small class="form-text text-muted">Make it strong!</small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'Password Confirmation:' %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <div class="sign-in-row">
+        <%= f.submit "Reset Password", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <span class="m-auto">
+      <%= render "devise/shared/links" %>
+    </span>
+
+    <hr class="my-4">
+
+    <div class="footer m-auto">
+      <span class="m-auto">
+        Nevermind! <strong><%= link_to "Go back", root_path, data: { turbolinks: false } %></strong>
+      </span>
+    </div>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
