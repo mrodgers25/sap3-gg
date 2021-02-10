@@ -59,4 +59,8 @@ group :development do
   gem 'rails_db'
   # new with RAILS 5
   gem 'listen'
+
+  # NEW GEMS
+  # Email Catcher for Dev
+  gem "letter_opener"
 end
