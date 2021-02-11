@@ -28,12 +28,12 @@
               <td><%= url.story_id %></td>
               <td><%= url.url_full %></td>
               <td><%= pretty_date_format(url.created_at) %></td>
-               <td style="width: 200px;">
-                <%= link_to edit_admin_url_path(url), class: "btn btn-sm btn-outline-warning m-1 w-100" do %>
-                  <i class="fas fa-edit mr-1"></i> Edit Url
+              <td class="action-links">
+                <%= link_to edit_admin_url_path(url), class: "btn btn-sm btn-outline-warning" do %>
+                  <i class="fas fa-edit"></i>
                 <% end %>
-                <%= button_to admin_url_path(url), method: :delete, class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
-                  <i class="fas fa-times mr-1"></i> Delete Url
+                <%= link_to admin_url_path(url), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                  <i class="fas fa-times"></i>
                 <% end %>
               </td>
             </tr>
