@@ -23,7 +23,7 @@ document.addEventListener("turbolinks:load", function () {
           savedText.remove();
           savedTextHr.remove();
           // append text and forget btn
-          linksDiv.append("<p class='save-story-link save-story-link-" + id + "' id=" + id +"><a href='javascript: void(0)' id=" + id + " class='btn btn-sm btn-primary grid-item-save-story-" + id + "'><i class='fas fa-bookmark mr-1'></i> Save Story</a></p>");
+          linksDiv.append("<p class='m-auto save-story-link save-story-link-" + id + "' id=" + id +"><a href='javascript: void(0)' id=" + id + " class=' btn btn-sm btn-primary grid-item-save-story-" + id + "'><i class='fas fa-bookmark mr-1'></i> Save Story</a></p>");
           // success text
           // linksDiv.append("<p class='status-text-" + id + " success-"+ data['success'] +"'>" + data['message'] + "</p>");
         } else {

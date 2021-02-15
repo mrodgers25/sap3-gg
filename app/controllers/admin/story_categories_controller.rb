@@ -1,5 +1,5 @@
 class Admin::StoryCategoriesController < Admin::BaseAdminController
-  before_action :set_category, except: :index
+  before_action :set_category, except: [:index, :new, :create]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -8,6 +8,20 @@ class Admin::StoryCategoriesController < Admin::BaseAdminController
     @categories = @categories.where("LOWER(name) ~ ?", params[:name].downcase) if params[:name].present?
 
     @pagy, @categories = pagy(@categories)
+  end
+
+  def new
+    @category = StoryCategory.new
+  end
+
+  def create
+    @category = StoryCategory.new(category_params)
+
+    if @category.save
+      redirect_to admin_story_categories_path, notice: "Successfully created Story Category."
+    else
+      redirect_to admin_story_categories_path, alert: "Could not create Story Category."
+    end
   end
 
   def edit

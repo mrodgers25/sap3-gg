@@ -16,6 +16,10 @@ module ApplicationHelper
     bool ? 'complete-form-item' : 'incomplete-form-item'
   end
 
+  def show_old_code
+    false
+  end
+
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
     if sz.nil?

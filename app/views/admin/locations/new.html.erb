@@ -1,0 +1,28 @@
+<div class="container">
+  <%= form_for(@location, url: admin_locations_path(@location)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-map-marker-alt mr-1"></i> Add Location</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :code %><br>
+          <%= f.text_field :code, class: "form-control" %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

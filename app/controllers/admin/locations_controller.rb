@@ -1,5 +1,5 @@
 class Admin::LocationsController < Admin::BaseAdminController
-  before_action :set_location, except: :index
+  before_action :set_location, except: [:index, :new, :create]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -8,6 +8,20 @@ class Admin::LocationsController < Admin::BaseAdminController
     @locations = @locations.where("LOWER(name) ~ ?", params[:name].downcase) if params[:name].present?
 
     @pagy, @locations = pagy(@locations)
+  end
+
+  def new
+    @location = Location.new
+  end
+
+  def create
+    @location = Location.new(location_params)
+
+    if @location.save
+      redirect_to admin_locations_path, notice: "Successfully created Location."
+    else
+      redirect_to admin_locations_path, alert: "Could not create Location."
+    end
   end
 
   def edit

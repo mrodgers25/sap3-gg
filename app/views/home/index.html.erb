@@ -11,10 +11,12 @@
           <div class="card-body">
             <div class="tagline-div-<%= story.id %>">
               <% if current_user && story.users.include?(current_user) %>
-                <p class="story-saved-text saved-text-<%= story.id %> text-center">
-                  <i class="fas fa-check-square mr-1"></i> Story Saved
-                </p>
-                <hr class="saved-text-hr-<%= story.id %>">
+                <% if show_old_code %>
+                  <p class="story-saved-text saved-text-<%= story.id %> text-center">
+                    <i class="fas fa-check-square mr-1"></i> Story Saved
+                  </p>
+                  <hr class="saved-text-hr-<%= story.id %>">
+                <% end %>
               <% end %>
               <% if story.editor_tagline %>
                 <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
