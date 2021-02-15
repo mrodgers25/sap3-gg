@@ -3,9 +3,6 @@
     <%= link_to root_path, class: "list-group-item list-group-item-action bg-white" do %>
       <i class="fas fa-home mr-1"></i> Top Stories
     <% end %>
-    <%= link_to root_path, class: "list-group-item list-group-item-action bg-white disabled" do %>
-      <i class="fas fa-filter mr-1"></i></i> Filter Stories
-    <% end %>
     <%= link_to my_stories_path, class: "list-group-item list-group-item-action bg-white #{disabled_class(current_user)}" do %>
       <i class="fas fa-list mr-1"></i> My Stories
     <% end %>
