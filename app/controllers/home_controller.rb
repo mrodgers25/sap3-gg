@@ -44,8 +44,6 @@ class HomeController < ApplicationController
     if params[:story_category_id].present?
       @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}")
     end
-
-    flash.now.alert = "No Stories found" if @stories.empty?
   end
 
   def about_us

@@ -1,6 +1,6 @@
 <%= form_tag(filter_path, method: :get) do %>
   <div class="row filters">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-1 mb-md-2">
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
         select_tag :location_id,
         options_from_collection_for_select(@locations, 'id', 'name', params[:location_id]),
@@ -9,7 +9,7 @@
         id: 'location-select'
       %>
     </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-1 mb-md-2">
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
         select_tag :place_category_id,
         options_from_collection_for_select(@place_categories, 'id', 'name', params[:place_category_id]),
@@ -18,7 +18,7 @@
         id: 'place-select'
       %>
     </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-1 mb-md-2">
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
         select_tag :story_category_id,
         options_from_collection_for_select(@story_categories, 'id', 'name', params[:story_category_id]),
@@ -27,11 +27,8 @@
         id: 'category-select'
       %>
     </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-2 mb-1 mb-md-0">
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
-    </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-1 mb-1 mb-md-0">
-      <%= submit_tag "Reset", id: 'reset-filters-btn', type: 'reset', class: 'btn btn-sm btn-outline-secondary' %>
     </div>
   </div>
 <% end %>
