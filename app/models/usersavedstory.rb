@@ -1,4 +1,4 @@
-class Usersavedstory < ActiveRecord::Base
+class Usersavedstory < ApplicationRecord
   belongs_to :story
   validates_uniqueness_of :user_id, :scope => :story_id
 

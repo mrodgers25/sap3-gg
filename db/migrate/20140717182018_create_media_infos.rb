@@ -1,4 +1,4 @@
-class CreateMediaInfos < ActiveRecord::Migration
+class CreateMediaInfos < ActiveRecord::Migration[6.0]
   def change
     create_table :media_infos do |t|
       t.string :media_type

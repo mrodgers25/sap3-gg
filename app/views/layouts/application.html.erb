@@ -1,52 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= favicon_link_tag 'favicon.ico' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <% url_env = request.url %>
-    <% if Rails.env.development? %>
-      <% env_title = "SAP - dev" %>
-		<% else %>
-		  <% if url_env.include? "staging" %>
-        <%= env_title = "SAP - staging" %>
-      <% else %>
-		    <%= env_title = "Stories About Places" %>
-      <% end %>
-    <% end %>
-    <title><%= content_for?(:title) ? yield(:title) : env_title %></title>
-
-
-    <meta name="Stories About Places" content="<%= content_for?(:description) ? yield(:description) : "Stories About Places" %>">
-    <meta property="og:title" content="Stories About Places"/>
-    <meta property="og:type" content="Aggregator"/>
-    <meta property="og:description" content="Stories About Places"/>
-    <meta property="article:publisher" content="Stories About Places" />
-    <meta property="article:author" content="Ron Hodson" />
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Roboto:300' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=651223738326387&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
+    <div id="wrapper" class="<%= admin_controller? ? '' : 'sb-closed' %>">
+      <%= render 'layouts/navbar' %>
+      <%= render admin_controller? ? 'layouts/sidebar_admin' : 'layouts/sidebar' %>
 
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main" style="margin-top: 40px; padding-top: 10px; padding-left: 1%">
-    <!--padding needed to compensate for the header-->
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-      <%= render 'layouts/footer' %>
-    </main>
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <%= render 'layouts/messages' %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
   </body>
 </html>

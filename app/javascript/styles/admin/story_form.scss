@@ -1,0 +1,21 @@
+.story-form {
+  border: 1px solid black;
+
+  .header {
+    h4 {
+      font-weight: normal;
+    }
+
+    #logo {
+      max-width: 300px;
+    }
+  }
+
+  .incomplete-form-item {
+    background-color: yellow;
+  }
+
+  .complete-form-item {
+    background-color: lightgreen;
+  }
+}

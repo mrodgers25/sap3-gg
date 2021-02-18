@@ -18,9 +18,9 @@ development:
   encoding: unicode
   database: sap3-gg_development
   pool:     5
-  username: martharodgers  #sap3-gg
-  password:
-  template: template0
+  # username: martharodgers  #sap3-gg
+  # password:
+  # template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -46,9 +46,9 @@ test:
   encoding: unicode
   database: sap3-gg_test
   pool:     5
-  username: martharodgers  #sap3-gg
-  password:
-  template: template0
+  # username: martharodgers  #sap3-gg
+  # password:
+  # template: template0
 
 production:
   adapter:  postgresql
@@ -56,6 +56,6 @@ production:
   encoding: unicode
   database: sap3-gg_production
   pool:     5
-  username: sap3-gg
-  password:
-  template: template0
+  # username: sap3-gg
+  # password:
+  # template: template0

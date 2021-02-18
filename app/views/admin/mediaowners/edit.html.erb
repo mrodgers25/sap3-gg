@@ -1,0 +1,68 @@
+<div class="container">
+  <%= form_for(@owner, url: admin_mediaowner_path(@owner)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-address-card mr-1"></i> Edit Media Owner</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_full %>
+          <%= f.text_field :url_full, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :url_domain %>
+          <%= f.text_field :url_domain, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :owner_name %>
+          <%= f.text_field :owner_name, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :media_type %>
+          <%= f.text_field :media_type, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :distribution_type %>
+          <%= f.text_field :distribution_type, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :publication_name %>
+          <%= f.text_field :publication_name, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :content_frequency_time %>
+          <%= f.text_field :content_frequency_time, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :content_frequency_other %>
+          <%= f.text_field :content_frequency_other, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :content_frequency_guide %>
+          <%= f.text_field :content_frequency_guide, class: "form-control" %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :paywall_yn, 'Paywall?' %>
+          <%= f.check_box :paywall_yn %>
+        </div>
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :nextissue_yn, 'Next Issue?' %>
+          <%= f.check_box :nextissue_yn %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

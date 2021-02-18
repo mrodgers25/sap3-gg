@@ -1,0 +1,29 @@
+.story-show {
+  margin: 1rem 0;
+
+  .container {
+    padding-bottom: 1rem;
+  }
+
+  .back-button {
+    margin-top: 1rem;
+  }
+
+  .header {
+    margin-top: -1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid grey;
+
+    #logo {
+      max-width: 300px;
+    }
+  }
+
+  .img-div {
+    margin-top: 1.5rem;
+  }
+
+  .story-saved-text {
+    color: #28a745;
+  }
+}

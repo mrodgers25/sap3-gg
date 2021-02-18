@@ -1,4 +1,4 @@
-class PlaceCategory < ActiveRecord::Base
+class PlaceCategory < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 

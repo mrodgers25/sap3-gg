@@ -1,4 +1,4 @@
-class RemoveUrlFromStories < ActiveRecord::Migration
+class RemoveUrlFromStories < ActiveRecord::Migration[6.0]
   def change
     remove_column :stories, :url_id, :string
   end

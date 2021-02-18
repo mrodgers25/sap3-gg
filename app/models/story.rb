@@ -1,8 +1,10 @@
-class Story < ActiveRecord::Base
+class Story < ApplicationRecord
   include ApplicationHelper
   # validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
   attr_accessor :location_ids, :place_category_ids, :story_category_ids
+
+  has_and_belongs_to_many :users
 
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
@@ -70,4 +72,51 @@ class Story < ActiveRecord::Base
 
   end
 
+  def latest_image
+    latest_url.images.order(:created_at).last
+  end
+
+  def latest_url
+    urls.order(:created_at).last
+  end
+
+  def story_display_date
+    if story_month && story_date && story_year
+      "#{story_month}/#{story_date}/#{story_year}"
+    elsif story_month && story_year
+      "#{story_month}/#{story_year}"
+    else
+      nil
+    end
+  end
+
+  def media_owner_and_date_line
+    if latest_url.mediaowner&.title
+      "#{latest_url.mediaowner.title} - #{story_display_date}"
+    else
+      story_display_date
+    end
+  end
+
+  def display_location
+    locations.pluck(:name).join(', ')
+  end
+
+  def display_publisher
+    return nil unless latest_url.mediaowner.present?
+
+    latest_url.mediaowner&.title
+  end
+
+  def display_place_categories
+    place_categories.pluck(:name).join(', ')
+  end
+
+  def display_story_categories
+    story_categories.pluck(:name).join(', ')
+  end
+
+  def publish!
+    update(sap_publish_date: DateTime.now)
+  end
 end

@@ -1,0 +1,43 @@
+.admin-index-page {
+  padding: 2rem;
+  border: 1px solid black;
+
+  .header {
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .table-div {
+    overflow: auto;
+  }
+
+  .table-img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  td {
+    font-size: .75rem;
+  }
+
+  .action-links {
+    width: 100px;
+  }
+
+  .delete-link {
+    padding: .25rem .70rem;
+  }
+
+  .width-200 {
+    width: 200px;
+  }
+
+  .pagination {
+    overflow: auto;
+
+    nav {
+      margin: auto;
+    }
+  }
+}

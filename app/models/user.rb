@@ -1,12 +1,16 @@
-class User < ActiveRecord::Base
-  enum role: [:user, :associate, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+class User < ApplicationRecord
   has_many :visits
-  has_many :events, class_name: 'Ahoy::Event'
-  accepts_nested_attributes_for :events
+  has_and_belongs_to_many :stories
+
+  enum role: [:user, :associate, :admin]
+  after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def is_role?(role_to_check)
+    role == role_to_check.to_s
   end
 
   # Include default devise modules. Others available are:

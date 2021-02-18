@@ -1,0 +1,38 @@
+<nav class="navbar navbar-static-top navbar-light bg-white border-bottom">
+  <button class="btn navbar-toggler mr-1" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="logo-wrapper">
+    <%= link_to image_pack_tag("sap-logo.png", id: "sap-logo"), root_path %>
+  </div>
+
+  <% if current_user %>
+    <div class="btn-group dropdown ml-auto">
+      <button type="button" class="btn navbar-toggler" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+        <% if admin_controller? %>
+          <span id="admin-text">(ADMIN)</span> <i class="fas fa-user"></i>
+        <% else %>
+          <i class="fas fa-user"></i>
+        <% end %>
+      </button>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to "User Profile", edit_user_path(current_user), class: "dropdown-item" %>
+        <%= link_to "Admin Panel", admin_stories_path, class: "dropdown-item" if current_user.is_role?(:admin) %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="btn-group dropdown ml-auto">
+      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#login-modal">
+        <i class="fas fa-user mr-1 d-none d-md-inline"></i> Sign in
+      </button>
+    </div>
+  <% end %>
+</nav>
+
+<%= render 'layouts/login_modal' %>
+

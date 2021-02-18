@@ -1,0 +1,43 @@
+<div class="bg-white" id="sidebar-wrapper">
+  <div class="sidebar list-group list-group-flush border-right">
+    <%= link_to admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-book mr-1"></i> Stories
+    <% end %>
+    <%= link_to initialize_scraper_admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-plus mr-1"></i> Add New Story
+    <% end %>
+    <%= link_to incomplete_admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-edit mr-1"></i> Incomplete Stories
+    <% end %>
+    <%= link_to sequencer_admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-sort-numeric-down mr-1"></i> Sequencer
+    <% end %>
+    <%= link_to admin_urls_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-link mr-1"></i> Urls
+    <% end %>
+    <%= link_to admin_images_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-images mr-1"></i> Images
+    <% end %>
+    <%= link_to admin_codes_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-cogs mr-1"></i> Codes
+    <% end %>
+    <%= link_to admin_locations_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-map-marker-alt mr-1"></i> Locations
+    <% end %>
+    <%= link_to admin_place_categories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-map-marked-alt mr-1"></i> Place Categories
+    <% end %>
+    <%= link_to admin_story_categories_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-photo-video mr-1"></i> Story Categories
+    <% end %>
+    <%= link_to admin_mediaowners_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-address-card mr-1"></i> Media Owners
+    <% end %>
+    <%= link_to admin_users_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-users mr-1"></i> Users
+    <% end %>
+    <%= link_to admin_reports_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-file-csv mr-1"></i> Reports
+    <% end %>
+  </div>
+</div>

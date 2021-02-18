@@ -5,7 +5,7 @@
 			<div class="authform">
 				<h3>Edit <%= resource_name.to_s.humanize %></h3>
 				<%= form_for(resource, :as=> resource_name, :url=> registration_path(resource_name), :html=> {:method=> :put, :role => 'form'}) do |f| %>
-				  <%= devise_error_messages! %>
+
 				  <div class="form-group">
 					  <%= f.label :first_name%>
 					  <%= f.text_field :first_name, :autofocus => true,class: 'form-control'%>
@@ -49,7 +49,7 @@
 			<div class="authform">
 				<h3>Cancel Account</h3>
 				<p>Unhappy? We'll be sad to see you go.</p>
-				<%= button_to "Cancel my account",registration_path(resource_name),:data=> {:confirm => "Are you sure?" }, :method=> :delete, :class => 'buttonright' %>
+				<%= button_to "Cancel my account", registration_path(resource_name),:data=> {:confirm => "Are you sure?" }, :method=> :delete, :class => 'buttonright' %>
 			</div>
 		</div>
 	</div>

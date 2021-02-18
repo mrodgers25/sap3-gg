@@ -1,4 +1,4 @@
-class Url < ActiveRecord::Base
+class Url < ApplicationRecord
   belongs_to :story, inverse_of: :urls
   # validates :url_type, presence: true
   # validates :url_title, :presence => { :message => "TITLE is required" }
@@ -20,7 +20,7 @@ class Url < ActiveRecord::Base
     self.url_desc_track = (self.raw_url_desc_scrape == self.url_desc ? true : false)
     self.url_keywords_track = (self.raw_url_keywords_scrape == self.url_keywords ? true : false)
   end
-  
+
   def encoded_url
     URI.encode(url_full)
   end

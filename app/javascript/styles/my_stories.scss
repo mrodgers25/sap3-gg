@@ -1,0 +1,51 @@
+.my-stories {
+  border: 1px solid black;
+
+  .header {
+    h4 {
+      font-weight: normal;
+    }
+
+    #logo {
+      max-width: 300px;
+    }
+  }
+
+  .table-div {
+    overflow: auto;
+  }
+
+  .table-row {
+    width: 200px;
+    font-size: .75rem;
+  }
+
+  .story-image {
+    width: 20vw;
+  }
+
+  // DESKTOP STYLES ABOVE 1000px
+  @media (min-width: 1000px) {
+    table {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 999px) and (min-width: 768px) {
+    table {
+      width: 175%;
+    }
+  }
+
+  @media (max-width: 767px) and (min-width: 400px) {
+    table {
+      width: 300%;
+    }
+  }
+
+  @media (max-width: 399px) {
+    table {
+      width: 500%;
+    }
+  }
+}
