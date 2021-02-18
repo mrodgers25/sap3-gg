@@ -20,7 +20,7 @@ class Story < ApplicationRecord
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
 
-  has_one :mediaowner, through: :urls
+  has_one :media_owner, through: :urls
 
   attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
@@ -91,8 +91,8 @@ class Story < ApplicationRecord
   end
 
   def media_owner_and_date_line
-    if latest_url.mediaowner&.title
-      "#{latest_url.mediaowner.title} - #{story_display_date}"
+    if latest_url.media_owner&.title
+      "#{latest_url.media_owner.title} - #{story_display_date}"
     else
       story_display_date
     end
@@ -103,9 +103,9 @@ class Story < ApplicationRecord
   end
 
   def display_publisher
-    return nil unless latest_url.mediaowner.present?
+    return nil unless latest_url.media_owner.present?
 
-    latest_url.mediaowner&.title
+    latest_url.media_owner&.title
   end
 
   def display_place_categories

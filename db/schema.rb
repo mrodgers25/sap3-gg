@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_035804) do
+ActiveRecord::Schema.define(version: 2021_02_18_015842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,22 +86,12 @@ ActiveRecord::Schema.define(version: 2021_02_01_035804) do
     t.index ["code"], name: "index_locations_on_code", unique: true
   end
 
-  create_table "mediaowners", id: :serial, force: :cascade do |t|
+  create_table "media_owners", id: :serial, force: :cascade do |t|
     t.string "title", limit: 255
-    t.string "url_full", limit: 255
     t.string "url_domain", limit: 255
-    t.string "owner_name", limit: 255
-    t.string "media_type", limit: 255
-    t.string "distribution_type", limit: 255
-    t.string "publication_name", limit: 255
-    t.boolean "paywall_yn"
-    t.string "content_frequency_time", limit: 255
-    t.string "content_frequency_other", limit: 255
-    t.string "content_frequency_guide", limit: 255
-    t.boolean "nextissue_yn"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["url_domain"], name: "index_mediaowners_on_url_domain", unique: true
+    t.index ["url_domain"], name: "index_media_owners_on_url_domain", unique: true
   end
 
   create_table "outbound_clicks", id: :serial, force: :cascade do |t|

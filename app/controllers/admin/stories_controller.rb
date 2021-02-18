@@ -113,9 +113,9 @@ class Admin::StoriesController < Admin::BaseAdminController
     @selected_place_category_ids = @story.place_categories.pluck(:id)
     @selected_story_category_ids = @story.story_categories.pluck(:id)
 
-    # mediaowner stuff
-    mediaowner    = Mediaowner.where(url_domain: @base_domain).first
-    @name_display = mediaowner&.title || 'NO DOMAIN NAME FOUND'
+    # media_owner stuff
+    media_owner   = MediaOwner.where(url_domain: @base_domain).first
+    @name_display = media_owner&.title || 'NO DOMAIN NAME FOUND'
 
     # complete checks
     @title_complete   = @title.present?
@@ -213,8 +213,8 @@ class Admin::StoriesController < Admin::BaseAdminController
     prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
     @base_domain = prefix + domain + '.' + suffix
 
-    if Mediaowner.where(url_domain: @base_domain).first.present?
-      @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
+    if MediaOwner.where(url_domain: @base_domain).first.present?
+      @name_display =  MediaOwner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end

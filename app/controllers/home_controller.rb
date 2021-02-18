@@ -28,9 +28,9 @@ class HomeController < ApplicationController
       story_limit_filtered = 36
     end
 
-    @stories = Story.order("sap_publish_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
-    # @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
-    @stories_filtered = Story.where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:mediaowner]).limit(story_limit)
+    @stories = Story.order("sap_publish_date DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:media_owner]).limit(story_limit)
+    # @stories = Story.order("id DESC").where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:media_owner]).limit(story_limit)
+    @stories_filtered = Story.where("sap_publish_date is not null").includes(:urls => [:images]).includes(:urls => [:media_owner]).limit(story_limit)
 
     if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
       @stories = @stories_filtered.order("story_year DESC","story_month DESC","story_date DESC").limit(story_limit_filtered)
