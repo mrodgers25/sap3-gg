@@ -1,32 +1,56 @@
 class Story < ApplicationRecord
+  include AASM
   include ApplicationHelper
-  # validates :editor_tagline, :presence => { :message => "EDITOR TAGLINE is required" }
 
-  attr_accessor :location_ids, :place_category_ids, :story_category_ids
+  attr_accessor :location_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   has_and_belongs_to_many :users
-
   has_many :urls, inverse_of: :story
   accepts_nested_attributes_for :urls
-  has_many :usersavedstories
-  accepts_nested_attributes_for :usersavedstories
-
   has_many :story_locations, dependent: :destroy
   has_many :locations, through: :story_locations
-
   has_many :story_story_categories, dependent: :destroy
   has_many :story_categories, through: :story_story_categories
-
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
-
+  has_many :story_activities, dependent: :destroy
   has_one :media_owner, through: :urls
 
-  attr_accessor :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
-
   before_validation :set_story_track_fields, on: :create
-
   after_validation :set_story_complete
+
+  aasm column: :state do
+    state :draft, initial: true
+    state :approved
+    state :published
+    state :archived
+
+    after_all_transitions :log_status_change
+
+    event :approve do
+      transitions from: :draft, to: :approved
+    end
+
+    event :disapprove do
+      transitions from: :approved, to: :draft
+    end
+
+    event :publish do
+      transitions from: :approved, to: :published
+    end
+
+    event :recycle do
+      transitions from: :published, to: :approved
+    end
+
+    event :archive do
+      transitions from: :published, to: :archived
+    end
+  end
+
+  def log_status_change
+    StoryActivity.create(story_id: id, from: aasm.from_state, to: aasm.to_state, event: aasm.current_event)
+  end
 
   def self.to_csv
     CSV.generate do |csv|
@@ -36,7 +60,6 @@ class Story < ApplicationRecord
       end
     end
   end
-
 
   def set_story_track_fields
     self.author_track = (self.raw_author_scrape == self.author) ? true : false

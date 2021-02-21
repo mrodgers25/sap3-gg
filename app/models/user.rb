@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :visits
+  has_many :story_activities
   has_and_belongs_to_many :stories
 
   enum role: [:user, :associate, :admin]

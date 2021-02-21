@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_015842) do
+ActiveRecord::Schema.define(version: 2021_02_20_235037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_015842) do
     t.integer "release_seq"
     t.boolean "outside_usa"
     t.string "permalink"
+    t.string "state"
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
+    t.index ["state"], name: "index_stories_on_state"
   end
 
   create_table "stories_users", force: :cascade do |t|
@@ -141,6 +143,16 @@ ActiveRecord::Schema.define(version: 2021_02_18_015842) do
     t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
     t.index ["story_id"], name: "index_stories_users_on_story_id"
     t.index ["user_id"], name: "index_stories_users_on_user_id"
+  end
+
+  create_table "story_activities", force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "user_id"
+    t.string "from"
+    t.string "to"
+    t.string "event"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "story_categories", id: :serial, force: :cascade do |t|
