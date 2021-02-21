@@ -38,7 +38,9 @@ Rails.application.routes.draw do
         patch :update_sequence
         post :publish
         get :review
+        patch :review_update
         post :approve
+        patch :update_state
       end
     end
     resources :urls, except: [:show]

@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish, :review, :approve]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish, :review, :review_update, :approve, :update_state]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -55,6 +55,12 @@ class Admin::StoriesController < Admin::BaseAdminController
 
     if @story.save
       update_locations_and_categories(@story, story_params)
+      #This script is used to update the permalink field in all stories
+      url_title = @story.urls.first.url_title.parameterize
+      rand_hex = SecureRandom.hex(2)
+      permalink = "#{rand_hex}/#{url_title}"
+      @story.update_attribute(:permalink, "#{permalink}")
+
       redirect_to review_admin_story_path(@story), notice: 'Story was moved to draft mode.'
     else
       @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
@@ -63,15 +69,21 @@ class Admin::StoriesController < Admin::BaseAdminController
       get_locations_and_categories
       render :scrape
     end
-
-    #This script is used to update the permalink field in all stories
-    # url_title = @story.urls.first.url_title.parameterize
-    # rand_hex = SecureRandom.hex(2)
-    # permalink = "#{rand_hex}/#{url_title}"
-    # @story.update_attribute(:permalink, "#{permalink}")
   end
 
   def review
+  end
+
+  def review_update
+    if @story.update(review_update_params)
+      redirect_to review_admin_story_path(@story), notice: 'Story was successfully updated.'
+    else
+      redirect_to review_admin_story_path(@story), notice: 'Story failed to be updated.'
+    end
+  end
+
+  def show
+    render layout: "application_no_nav"
   end
 
   def approve
@@ -187,6 +199,31 @@ class Admin::StoriesController < Admin::BaseAdminController
       redirect_to sequencer_admin_stories_path, notice: 'Story was successfully published.'
     else
       redirect_to sequencer_admin_stories_path, alert: 'Story did not publish.'
+    end
+  end
+
+  def update_state
+    begin
+      case params[:state]
+      when 'draft'
+        @story.disapprove!
+      when 'approved'
+        @story.approve!
+      when 'published'
+        @story.publish!
+      end
+
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state]}"
+    rescue
+      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
+    end
+  end
+
+  def approve
+    if @story.approve!
+      redirect_to sequencer_admin_stories_path, notice: 'Story was successfully approved.'
+    else
+      redirect_to sequencer_admin_stories_path, alert: 'Story did not approve.'
     end
   end
 
@@ -309,7 +346,7 @@ class Admin::StoriesController < Admin::BaseAdminController
       :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :sap_publish_date,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
-      :release_seq,
+      :release_seq, :state, :desc_length,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],
@@ -318,6 +355,10 @@ class Admin::StoriesController < Admin::BaseAdminController
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+  end
+
+  def review_update_params
+    params.require(:story).permit(:desc_length)
   end
 
   def update_sequence_params

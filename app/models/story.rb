@@ -28,15 +28,16 @@ class Story < ApplicationRecord
     after_all_transitions :log_status_change
 
     event :approve do
-      transitions from: :draft, to: :approved
+      # small hack for review screen, published added for ease of use
+      transitions from: [:draft, :published], to: :approved
     end
 
     event :disapprove do
-      transitions from: :approved, to: :draft
+      transitions from: [:approved, :published], to: :draft
     end
 
     event :publish do
-      transitions from: :approved, to: :published
+      transitions from: :approved, to: :published, after: Proc.new {|*args| update_published_at }
     end
 
     event :recycle do
@@ -46,10 +47,18 @@ class Story < ApplicationRecord
     event :archive do
       transitions from: :published, to: :archived
     end
+
+    event :revive do
+      transitions from: :archived, to: :approved
+    end
   end
 
   def log_status_change
     StoryActivity.create(story_id: id, from: aasm.from_state, to: aasm.to_state, event: aasm.current_event)
+  end
+
+  def self.all_states
+    self.aasm.states.map{|x| x.name.to_s }
   end
 
   def self.to_csv
@@ -139,7 +148,7 @@ class Story < ApplicationRecord
     story_categories.pluck(:name).join(', ')
   end
 
-  def publish!
+  def update_published_at
     update(sap_publish_date: DateTime.now)
   end
 end
