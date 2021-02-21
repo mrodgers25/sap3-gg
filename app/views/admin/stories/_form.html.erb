@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex justify-content-center align-items-center">
-  <%= form_for(@story, url: route) do |f| %>
+  <%= form_with(model: @story, url: route, method: method) do |f| %>
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
         <h4><i class="fas fa-book mr-1"></i> Enter Story Details</h4>
@@ -11,8 +11,8 @@
         <div id="error_explanation">
           <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
           <ul>
-            <% @story.errors.each_with_index do |message, i| %>
-              <li><%= message[1] %></li>
+            <% @story.errors.each do |error| %>
+              <li><%= error.full_message %></li>
             <% end %>
           </ul>
         </div>
@@ -117,7 +117,7 @@
 
         <div class="form-group my-4 max-vw-80 mx-auto <%= form_item_status_class(@tagline_complete) %>">
           <%= f.label :editor_tagline, "Editor Tagline:" %>
-          <%= f.text_field :editor_tagline, value: @meta_tagline, placeholder: "Maximum 60 chars", maxlength: 60, size: 60, class: "form-control" %>
+          <%= f.text_field :editor_tagline, value: @meta_tagline, placeholder: "Maximum 75 chars", maxlength: 75, size: 75, class: "form-control" %>
         </div>
 
         <div class="form-group my-4 max-vw-80 mx-auto">
@@ -177,7 +177,11 @@
           </p>
         <% end %>
 
-        <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        <% if params[:action] != 'new' %>
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        <% else %>
+          <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
+        <% end %>
 
         <%= f.hidden_field :raw_author_scrape, value: @meta_author %>
         <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time %>

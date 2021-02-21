@@ -29,7 +29,6 @@ Rails.application.routes.draw do
       collection do
         get :initialize_scraper
         post :scrape
-        post :new
         get :incomplete
         get :sequencer
       end
@@ -38,6 +37,8 @@ Rails.application.routes.draw do
         get :edit_sequence
         patch :update_sequence
         post :publish
+        get :review
+        post :approve
       end
     end
     resources :urls, except: [:show]

@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish, :review, :approve]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -28,27 +28,22 @@ class Admin::StoriesController < Admin::BaseAdminController
   def initialize_scraper
   end
 
-  def new
-    # parse the domain
-    @data_entry_begin_time = params[:data_entry_begin_time]  #grab user input
-    @source_url_pre        = params[:source_url_pre]  #grab user input
+  def scrape
+    @story = Story.new
+    @screen_scraper = ScreenScraper.new
 
-    if @source_url_pre.present?
-      get_locations_and_categories
-      get_domain_info(@source_url_pre)
-      @screen_scraper = ScreenScraper.new
+    @data_entry_begin_time = params[:data_entry_begin_time]
+    @source_url_pre        = params[:source_url_pre]
 
-      if @screen_scraper.scrape!(@full_web_url)
-        @story = Story.new
-        url = @story.urls.build
-        url.images.build
-        set_scrape_fields
-      else
-        flash.now.alert = "We can't find that URL – give it another shot"
-        render :initialize_scraper
-      end
+    get_locations_and_categories
+    get_domain_info(@source_url_pre)
+
+    if @screen_scraper.scrape!(@full_web_url)
+      url = @story.urls.build
+      url.images.build
+      set_scrape_fields
     else
-      flash.now.alert = "You have to enter a URL for this to work"
+      flash.now.alert = "We can't find that URL – give it another shot"
       render :initialize_scraper
     end
   end
@@ -58,25 +53,33 @@ class Admin::StoriesController < Admin::BaseAdminController
     my_params = set_image_params(story_params)
     @story = Story.new(my_params)
 
-    respond_to do |format|
-      if @story.save
-        update_locations_and_categories(@story, story_params)
-        format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
-      else
-        @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
-        get_domain_info(@source_url_pre)
-        set_fields_on_fail(story_params)
-        get_locations_and_categories
-        format.html { render :new }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @story.save
+      update_locations_and_categories(@story, story_params)
+      redirect_to review_admin_story_path(@story), notice: 'Story was moved to draft mode.'
+    else
+      @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
+      get_domain_info(@source_url_pre)
+      set_fields_on_fail(story_params)
+      get_locations_and_categories
+      render :scrape
     end
+
     #This script is used to update the permalink field in all stories
-    url_title = @story.urls.first.url_title.parameterize
-    rand_hex = SecureRandom.hex(2)
-    permalink = "#{rand_hex}/#{url_title}"
-    @story.update_attribute(:permalink, "#{permalink}")
+    # url_title = @story.urls.first.url_title.parameterize
+    # rand_hex = SecureRandom.hex(2)
+    # permalink = "#{rand_hex}/#{url_title}"
+    # @story.update_attribute(:permalink, "#{permalink}")
+  end
+
+  def review
+  end
+
+  def approve
+    if @story.approve!
+      redirect_to admin_stories_path, notice: "Story has been approved!"
+    else
+      redirect_to admin_stories_path, alert: "Story has NOT been approved."
+    end
   end
 
   def edit
