@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_012601) do
+ActiveRecord::Schema.define(version: 2021_02_22_031537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,20 @@ ActiveRecord::Schema.define(version: 2021_02_21_012601) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["code"], name: "index_place_categories_on_code", unique: true
+  end
+
+  create_table "published_items", force: :cascade do |t|
+    t.integer "publishable_id"
+    t.string "publishable_type"
+    t.datetime "publish_at"
+    t.datetime "unpublish_at"
+    t.boolean "pinned", default: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pinned"], name: "index_published_items_on_pinned"
+    t.index ["position"], name: "index_published_items_on_position"
+    t.index ["publishable_type", "publishable_id"], name: "index_published_items_on_publishable_type_and_publishable_id"
   end
 
   create_table "stories", id: :serial, force: :cascade do |t|

@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish, :review, :review_update, :approve, :update_state]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :publish, :review, :review_update, :approve, :update_state]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -151,15 +151,9 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def destroy
     if @story.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_stories_path, notice: 'Story was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
     else
-      respond_to do |format|
-        format.html { redirect_to admin_stories_path, alert: 'Story could not be destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
     end
   end
 
@@ -167,31 +161,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     @stories = Story.includes(:urls).where(story_complete: false).order("stories.id DESC")
 
     @pagy, @stories = pagy(@stories)
-  end
-
-  def sequencer
-    @stories = Story.includes(:urls).
-      where(story_complete: true, sap_publish_date: nil).
-      order("stories.release_seq, stories.updated_at")
-
-    # resequence on form start
-    @stories.each_with_index do |story, index|
-      sequence = index + 1
-      story.update(release_seq: sequence)
-    end
-
-    @pagy, @stories = pagy(@stories)
-  end
-
-  def edit_sequence
-  end
-
-  def update_sequence
-    if @story.update(update_sequence_params) && set_release_seq
-      redirect_to sequencer_admin_stories_path, notice: 'Sequence was successfully updated.'
-    else
-      redirect_to sequencer_admin_stories_path, alert: 'Sequence failed to be updated.'
-    end
   end
 
   def publish
@@ -228,22 +197,6 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   private
-
-  def set_release_seq
-    story   = Story.find(params[:id])
-    new_seq = story.release_seq
-    old_seq = params[:old_seq].to_i
-
-    if new_seq <= old_seq
-      story.update(release_seq: (new_seq - 1))
-    end
-
-    sorted_stories = Story.where(story_complete: true, sap_publish_date: nil).order("stories.release_seq, stories.updated_at")
-    sorted_stories.each_with_index do |story, index|
-      sequence = index + 1
-      story.update(release_seq: sequence)
-    end
-  end
 
   def get_domain_info(source_url_pre)
     full_url = Domainatrix.parse(source_url_pre).url
@@ -360,9 +313,4 @@ class Admin::StoriesController < Admin::BaseAdminController
   def review_update_params
     params.require(:story).permit(:desc_length)
   end
-
-  def update_sequence_params
-    params.require(:story).permit(:release_seq, :title)
-  end
-
 end

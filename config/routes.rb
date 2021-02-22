@@ -30,12 +30,9 @@ Rails.application.routes.draw do
         get :initialize_scraper
         post :scrape
         get :incomplete
-        get :sequencer
       end
 
       member do
-        get :edit_sequence
-        patch :update_sequence
         post :publish
         get :review
         patch :review_update
@@ -62,6 +59,12 @@ Rails.application.routes.draw do
         get :export_actionlisting
         get :export_outboundclick
         get :export_all
+      end
+    end
+    resources :published_items, except: [:show] do
+      member do
+        post :publish
+        post :unpublish
       end
     end
   end

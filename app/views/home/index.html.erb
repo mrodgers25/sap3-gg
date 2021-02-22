@@ -32,7 +32,7 @@
             </p>
 
             <p class="url-desc">
-              <%= truncate(story.latest_url.url_desc, length: @story.desc_length, omission: '...  ' ) { link_to "Read more", story_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
+              <%= truncate(story.latest_url.url_desc, length: story.desc_length, omission: '...  ' ) { link_to "Read more", story_path(story.permalink), target: '_blank', class: 'read-more-link' } %>
             </p>
 
             <hr>

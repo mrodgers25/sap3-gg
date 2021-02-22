@@ -14,6 +14,7 @@ class Story < ApplicationRecord
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
   has_many :story_activities, dependent: :destroy
+  has_many :published_items, as: :publishable
   has_one :media_owner, through: :urls
 
   before_validation :set_story_track_fields, on: :create
@@ -29,23 +30,23 @@ class Story < ApplicationRecord
 
     event :approve do
       # small hack for review screen, published added for ease of use
-      transitions from: [:draft, :published], to: :approved
+      transitions from: [:draft, :published], to: :approved, after: Proc.new {|*args| destroy_published_item }
     end
 
     event :disapprove do
-      transitions from: [:approved, :published], to: :draft
+      transitions from: [:approved, :published], to: :draft, after: Proc.new {|*args| destroy_published_item }
     end
 
     event :publish do
-      transitions from: :approved, to: :published, after: Proc.new {|*args| update_published_at }
+      transitions from: :approved, to: :published, after: Proc.new {|*args| create_published_item }
     end
 
-    event :recycle do
-      transitions from: :published, to: :approved
+    event :unpublish do
+      transitions from: :published, to: :approved, after: Proc.new {|*args| destroy_published_item }
     end
 
     event :archive do
-      transitions from: :published, to: :archived
+      transitions from: [:approved, :published], to: :archived, after: Proc.new {|*args| destroy_published_item }
     end
 
     event :revive do
@@ -54,7 +55,7 @@ class Story < ApplicationRecord
   end
 
   def log_status_change
-    StoryActivity.create(story_id: id, from: aasm.from_state, to: aasm.to_state, event: aasm.current_event)
+    StoryActivity.create!(story_id: self.id, from: aasm.from_state.to_s, to: aasm.to_state.to_s, event: aasm.current_event.to_s)
   end
 
   def self.all_states
@@ -134,6 +135,10 @@ class Story < ApplicationRecord
     locations.pluck(:name).join(', ')
   end
 
+  def display_location_codes
+    locations.pluck(:code).join(', ')
+  end
+
   def display_publisher
     return nil unless latest_url.media_owner.present?
 
@@ -148,7 +153,16 @@ class Story < ApplicationRecord
     story_categories.pluck(:name).join(', ')
   end
 
-  def update_published_at
-    update(sap_publish_date: DateTime.now)
+  def create_published_item
+    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
+  end
+
+  def destroy_published_item
+    published_items.destroy_all if published_items.present?
+  end
+
+  def published_count
+    # select here to avoid an extra call to db
+    story_activities.select{|act| act['event'] == 'publish!' }.size
   end
 end
