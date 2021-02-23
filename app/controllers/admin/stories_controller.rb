@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :publish, :review, :review_update, :approve, :update_state]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -16,11 +16,21 @@ class Admin::StoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
-    @stories = Story.includes(:urls)
+    @stories = Story.joins(:urls)
+    @stories = @stories.where("LOWER(urls.url_title) ~ '#{params[:url_title].downcase}'") if params[:url_title].present?
+    @stories = @stories.where("LOWER(urls.url_desc) ~ '#{params[:url_desc].downcase}'") if params[:url_desc].present?
+    @stories = @stories.where(state: params[:state]) if params[:state].present?
     @stories = @stories.joins(:locations).where("locations.id = #{params[:location_id]}") if params[:location_id].present?
     @stories = @stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
-    @stories = @stories.order('created_at DESC')
+
+    if params[:order_by].present?
+      col = params[:order_by].split(' ').first
+      dir = params[:order_by].split(' ').last
+      @stories = @stories.order(col => dir)
+    else
+      @stories = @stories.order('created_at DESC')
+    end
 
     @pagy, @stories = pagy(@stories)
   end
@@ -157,20 +167,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-  def incomplete
-    @stories = Story.includes(:urls).where(story_complete: false).order("stories.id DESC")
-
-    @pagy, @stories = pagy(@stories)
-  end
-
-  def publish
-    if @story.publish!
-      redirect_to sequencer_admin_stories_path, notice: 'Story was successfully published.'
-    else
-      redirect_to sequencer_admin_stories_path, alert: 'Story did not publish.'
-    end
-  end
-
   def update_state
     begin
       case params[:state]
@@ -185,14 +181,6 @@ class Admin::StoriesController < Admin::BaseAdminController
       redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state]}"
     rescue
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
-    end
-  end
-
-  def approve
-    if @story.approve!
-      redirect_to sequencer_admin_stories_path, notice: 'Story was successfully approved.'
-    else
-      redirect_to sequencer_admin_stories_path, alert: 'Story did not approve.'
     end
   end
 

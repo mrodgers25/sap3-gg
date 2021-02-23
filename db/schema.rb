@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_031537) do
     t.integer "release_seq"
     t.boolean "outside_usa"
     t.string "permalink"
-    t.string "state"
+    t.string "state", default: "draft"
     t.integer "desc_length", default: 200
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"

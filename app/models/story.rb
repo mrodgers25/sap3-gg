@@ -38,7 +38,8 @@ class Story < ApplicationRecord
     end
 
     event :publish do
-      transitions from: :approved, to: :published, after: Proc.new {|*args| create_published_item }
+      # small hack for review screen, draft added for ease of use
+      transitions from: [:draft, :approved], to: :published, after: Proc.new {|*args| create_published_item }
     end
 
     event :unpublish do

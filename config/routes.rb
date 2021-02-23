@@ -29,14 +29,11 @@ Rails.application.routes.draw do
       collection do
         get :initialize_scraper
         post :scrape
-        get :incomplete
       end
 
       member do
-        post :publish
         get :review
         patch :review_update
-        post :approve
         patch :update_state
       end
     end
