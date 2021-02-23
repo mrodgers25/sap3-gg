@@ -1,4 +1,4 @@
-<div class="container-sm">
+<div class="container-fluid">
   <div class="jumbotron bg-white my-stories">
     <div class="header text-center">
       <h4><i class="fas fa-list mr-1"></i> My Stories</h4>
@@ -11,6 +11,7 @@
     <hr class="my-4">
 
     <div class="table-div">
+      <% if @published_items.present? %>
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -22,23 +23,36 @@
           </tr>
         </thead>
         <tbody>
-          <% @stories.each do |story| %>
+          <% @published_items.each do |published_item| %>
+            <% story = published_item.publishable %>
             <tr>
               <td class="story-image">
                 <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' %>
               </td>
               <td style="width: 600px;"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
-              <td style="width: 100px;"><%= story.save_date.strftime("%-m/%d/%Y") || '-' %></td>
-              <td style="width: 100px;">
+              <td style="width: 100px;"><%= published_item.save_date.strftime("%-m/%d/%Y") || '-' %></td>
+              <td style="width: 150px;">
                 <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
                   <i class="fas fa-search mr-1"></i> View
+                <% end %>
+                <%= button_to forget_story_path(story.id), class: "btn btn-sm btn-outline-dark m-1 w-100", target: '_blank' do %>
+                  <i class="fas fa-times mr-1"></i> Forget
                 <% end %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <% else %>
+        <p class="no-stories-text">No Stories Found</p>
+      <% end %>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
     </div>
   </div>
 </div>

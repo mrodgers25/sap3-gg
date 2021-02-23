@@ -10,8 +10,9 @@ document.addEventListener("turbolinks:load", function () {
     let isStoryShowPage = $(".story-show").length !== 0;
 
     $.ajax({
-      url: '/stories/' + id + '/save_story',
+      url: '/stories/' + id + '/save',
       method: 'post',
+      contentType: 'application/json',
     })
       .done(function (data) {
         if (data['success']) {

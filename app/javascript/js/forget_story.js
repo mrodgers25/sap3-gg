@@ -10,8 +10,9 @@ document.addEventListener("turbolinks:load", function () {
     let statusText = $(".status-text-" + id);
 
     $.ajax({
-      url: '/stories/' + id + '/forget_story',
+      url: '/stories/' + id + '/forget',
       method: 'post',
+      contentType: 'application/json',
     })
       .done(function (data) {
         if (data['success']) {

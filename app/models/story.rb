@@ -67,6 +67,13 @@ class Story < ApplicationRecord
     ['displaying', 'waiting_to_display', 'will_unpublish']
   end
 
+  def should_not_be_displayed?
+    return true unless published_items.present?
+    return true unless published_items.first.publish_at
+
+    published_items.first.publish_at > DateTime.now
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

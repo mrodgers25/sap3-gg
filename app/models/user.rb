@@ -14,6 +14,10 @@ class User < ApplicationRecord
     role == role_to_check.to_s
   end
 
+  def has_basic_access?
+    is_role?(:admin) || is_role?(:associate)
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

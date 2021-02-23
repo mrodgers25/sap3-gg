@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   # STORY ACTIONS
   resources :stories, only: [:show, :my_stories, :save_story, :forget_story] do
     member do
-      post :save_story
-      post :forget_story
+      post :save
+      post :forget
     end
   end
   # MY STORIES

@@ -95,4 +95,17 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
       published_item.update(position: position)
     end
   end
+
+  # def set_release_position_v2
+  #   # look at currently modified item
+  #   current_item = PublishedItem.find(params[:id])
+  #   # if it shares a position, sort by newest update first
+  #   items_with_same_position = PublishedItem.where(position: current_item.position).order(updated_at: :desc)
+  #   # only run this code if there are duplicate positions
+  #   until items_with_same_position.size == 1
+  #     older_item = items_with_same_position.last
+  #     older_item.update(position: current_item.position + 1)
+  #     items_with_same_position = PublishedItem.where(position: older_item.position).order(updated_at: :desc)
+  #   end
+  # end
 end
