@@ -63,6 +63,10 @@ class Story < ApplicationRecord
     self.aasm.states.map{|x| x.name.to_s }
   end
 
+  def self.published_states
+    ['displaying', 'waiting_to_display', 'will_unpublish']
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

@@ -2,18 +2,35 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
   before_action :set_published_item, except: :index
 
   def index
-    @published_items = PublishedItem.includes(publishable: [:locations, :story_activities])
+    # database dropdown data
+    @locations        = Location.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
 
-    case params[:display_type]
-    when 'published'
+    @published_items = PublishedItem.joins("INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)")
+
+    case params[:published_state]
+    when 'displaying'
       @published_items = @published_items.where('publish_at <= ?', DateTime.now)
-    when 'waiting'
+    when 'waiting_to_display'
       @published_items = @published_items.where('publish_at > ?', DateTime.now)
-    when 'retiring'
-      @published_items = @published_items.where.not(retire_at: nil)
+    when 'will_unpublish'
+      @published_items = @published_items.where.not(unpublish_at: nil)
     end
 
-    @published_items = @published_items.order(position: :asc, created_at: :desc)
+    if params[:order_by].present?
+      col = params[:order_by].split(' ').first
+      dir = params[:order_by].split(' ').last
+      # sort by stories.created_at vs published_items
+      if col == 'created_at'
+        @published_items = @published_items.order("stories.#{col} #{dir}")
+      else
+        @published_items = @published_items.order(col => dir)
+      end
+    else
+      @published_items = @published_items.order(position: :asc, created_at: :desc)
+    end
+
 
     @pagy, @published_items = pagy(@published_items)
   end
@@ -60,7 +77,7 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
   end
 
   def published_item_params
-    params.require(:published_item).permit(:position, :publish_at, :retire_at, :pinned)
+    params.require(:published_item).permit(:position, :publish_at, :unpublish_at, :pinned)
   end
 
   def set_release_position
