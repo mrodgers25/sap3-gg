@@ -37,6 +37,6 @@ class HomeController < ApplicationController
 
   def set_limit
     # story_limit = Code.find_by(code_key: "LANDING_PAGE_STORY_COUNT").code_value
-    @story_limit = current_user.has_basic_access? ? 75 : 36
+    @story_limit = current_user&.has_basic_access? ? 75 : 36
   end
 end

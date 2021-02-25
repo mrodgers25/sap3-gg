@@ -66,7 +66,7 @@ class StoriesController < ApplicationController
     begin
       @story = Story.find(params[:id])
 
-      unless current_user.has_basic_access?
+      unless current_user&.has_basic_access?
         raise ActiveRecord::RecordNotFound if @story.should_not_be_displayed?
       end
     rescue ActiveRecord::RecordNotFound
@@ -78,7 +78,7 @@ class StoriesController < ApplicationController
     begin
       @story = Story.find_by(permalink: params[:id])
 
-      unless current_user.has_basic_access?
+      unless current_user&.has_basic_access?
         raise ActiveRecord::RecordNotFound if @story.should_not_be_displayed?
       end
     rescue ActiveRecord::RecordNotFound
