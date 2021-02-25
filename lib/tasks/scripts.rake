@@ -9,4 +9,12 @@ namespace :scripts do
       end
     end
   end
+
+  desc "Checker for stories that need to be unpublished"
+  task unpublish_past_stories: :environment do
+    published_items = PublishedItem.where('unpublish_at <= ?', DateTime.now)
+    published_items.each do |published_item|
+      published_item.publishable.unpublish!
+    end
+  end
 end
