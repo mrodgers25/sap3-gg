@@ -24,6 +24,14 @@
     width: 20vw;
   }
 
+  .pagination {
+    overflow: auto;
+
+    nav {
+      margin: auto;
+    }
+  }
+
   // DESKTOP STYLES ABOVE 1000px
   @media (min-width: 1000px) {
     table {

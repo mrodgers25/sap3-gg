@@ -1,4 +1,4 @@
-class MediaownerPolicy
+class MediaOwnerPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)

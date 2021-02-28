@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :edit_sequence, :update_sequence, :publish]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -16,11 +16,21 @@ class Admin::StoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
-    @stories = Story.includes(:urls)
+    @stories = Story.joins(:urls)
+    @stories = @stories.where("LOWER(urls.url_title) ~ '#{params[:url_title].downcase}'") if params[:url_title].present?
+    @stories = @stories.where("LOWER(urls.url_desc) ~ '#{params[:url_desc].downcase}'") if params[:url_desc].present?
+    @stories = @stories.where(state: params[:state]) if params[:state].present?
     @stories = @stories.joins(:locations).where("locations.id = #{params[:location_id]}") if params[:location_id].present?
     @stories = @stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
-    @stories = @stories.order('created_at DESC')
+
+    if params[:order_by].present?
+      col = params[:order_by].split(' ').first
+      dir = params[:order_by].split(' ').last
+      @stories = @stories.order(col => dir)
+    else
+      @stories = @stories.order('created_at DESC')
+    end
 
     @pagy, @stories = pagy(@stories)
   end
@@ -28,27 +38,22 @@ class Admin::StoriesController < Admin::BaseAdminController
   def initialize_scraper
   end
 
-  def new
-    # parse the domain
-    @data_entry_begin_time = params[:data_entry_begin_time]  #grab user input
-    @source_url_pre        = params[:source_url_pre]  #grab user input
+  def scrape
+    @story = Story.new
+    @screen_scraper = ScreenScraper.new
 
-    if @source_url_pre.present?
-      get_locations_and_categories
-      get_domain_info(@source_url_pre)
-      @screen_scraper = ScreenScraper.new
+    @data_entry_begin_time = params[:data_entry_begin_time]
+    @source_url_pre        = params[:source_url_pre]
 
-      if @screen_scraper.scrape!(@full_web_url)
-        @story = Story.new
-        url = @story.urls.build
-        url.images.build
-        set_scrape_fields
-      else
-        flash.now.alert = "We can't find that URL – give it another shot"
-        render :initialize_scraper
-      end
+    get_locations_and_categories
+    get_domain_info(@source_url_pre)
+
+    if @screen_scraper.scrape!(@full_web_url)
+      url = @story.urls.build
+      url.images.build
+      set_scrape_fields
     else
-      flash.now.alert = "You have to enter a URL for this to work"
+      flash.now.alert = "We can't find that URL – give it another shot"
       render :initialize_scraper
     end
   end
@@ -58,25 +63,45 @@ class Admin::StoriesController < Admin::BaseAdminController
     my_params = set_image_params(story_params)
     @story = Story.new(my_params)
 
-    respond_to do |format|
-      if @story.save
-        update_locations_and_categories(@story, story_params)
-        format.html { redirect_to story_proof_url(@story), notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
-      else
-        @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
-        get_domain_info(@source_url_pre)
-        set_fields_on_fail(story_params)
-        get_locations_and_categories
-        format.html { render :new }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @story.save
+      update_locations_and_categories(@story, story_params)
+      #This script is used to update the permalink field in all stories
+      url_title = @story.urls.first.url_title.parameterize
+      rand_hex = SecureRandom.hex(2)
+      permalink = "#{rand_hex}/#{url_title}"
+      @story.update_attribute(:permalink, "#{permalink}")
+
+      redirect_to review_admin_story_path(@story), notice: 'Story was moved to draft mode.'
+    else
+      @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
+      get_domain_info(@source_url_pre)
+      set_fields_on_fail(story_params)
+      get_locations_and_categories
+      render :scrape
     end
-    #This script is used to update the permalink field in all stories
-    url_title = @story.urls.first.url_title.parameterize
-    rand_hex = SecureRandom.hex(2)
-    permalink = "#{rand_hex}/#{url_title}"
-    @story.update_attribute(:permalink, "#{permalink}")
+  end
+
+  def review
+  end
+
+  def review_update
+    if @story.update(review_update_params)
+      redirect_to review_admin_story_path(@story), notice: 'Story was successfully updated.'
+    else
+      redirect_to review_admin_story_path(@story), notice: 'Story failed to be updated.'
+    end
+  end
+
+  def show
+    render layout: "application_no_nav"
+  end
+
+  def approve
+    if @story.approve!
+      redirect_to admin_stories_path, notice: "Story has been approved!"
+    else
+      redirect_to admin_stories_path, alert: "Story has NOT been approved."
+    end
   end
 
   def edit
@@ -113,9 +138,9 @@ class Admin::StoriesController < Admin::BaseAdminController
     @selected_place_category_ids = @story.place_categories.pluck(:id)
     @selected_story_category_ids = @story.story_categories.pluck(:id)
 
-    # mediaowner stuff
-    mediaowner    = Mediaowner.where(url_domain: @base_domain).first
-    @name_display = mediaowner&.title || 'NO DOMAIN NAME FOUND'
+    # media_owner stuff
+    media_owner   = MediaOwner.where(url_domain: @base_domain).first
+    @name_display = media_owner&.title || 'NO DOMAIN NAME FOUND'
 
     # complete checks
     @title_complete   = @title.present?
@@ -136,74 +161,30 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def destroy
     if @story.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_stories_path, notice: 'Story was successfully destroyed.' }
-        format.json { head :no_content }
+      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
+    else
+      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
+    end
+  end
+
+  def update_state
+    begin
+      case params[:state]
+      when 'draft'
+        @story.disapprove!
+      when 'approved'
+        @story.approve!
+      when 'published'
+        @story.publish!
       end
-    else
-      respond_to do |format|
-        format.html { redirect_to admin_stories_path, alert: 'Story could not be destroyed.' }
-        format.json { head :no_content }
-      end
-    end
-  end
 
-  def incomplete
-    @stories = Story.includes(:urls).where(story_complete: false).order("stories.id DESC")
-
-    @pagy, @stories = pagy(@stories)
-  end
-
-  def sequencer
-    @stories = Story.includes(:urls).
-      where(story_complete: true, sap_publish_date: nil).
-      order("stories.release_seq, stories.updated_at")
-
-    # resequence on form start
-    @stories.each_with_index do |story, index|
-      sequence = index + 1
-      story.update(release_seq: sequence)
-    end
-
-    @pagy, @stories = pagy(@stories)
-  end
-
-  def edit_sequence
-  end
-
-  def update_sequence
-    if @story.update(update_sequence_params) && set_release_seq
-      redirect_to sequencer_admin_stories_path, notice: 'Sequence was successfully updated.'
-    else
-      redirect_to sequencer_admin_stories_path, alert: 'Sequence failed to be updated.'
-    end
-  end
-
-  def publish
-    if @story.publish!
-      redirect_to sequencer_admin_stories_path, notice: 'Story was successfully published.'
-    else
-      redirect_to sequencer_admin_stories_path, alert: 'Story did not publish.'
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state]}"
+    rescue
+      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end
   end
 
   private
-
-  def set_release_seq
-    story   = Story.find(params[:id])
-    new_seq = story.release_seq
-    old_seq = params[:old_seq].to_i
-
-    if new_seq <= old_seq
-      story.update(release_seq: (new_seq - 1))
-    end
-
-    sorted_stories = Story.where(story_complete: true, sap_publish_date: nil).order("stories.release_seq, stories.updated_at")
-    sorted_stories.each_with_index do |story, index|
-      sequence = index + 1
-      story.update(release_seq: sequence)
-    end
-  end
 
   def get_domain_info(source_url_pre)
     full_url = Domainatrix.parse(source_url_pre).url
@@ -213,8 +194,8 @@ class Admin::StoriesController < Admin::BaseAdminController
     prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
     @base_domain = prefix + domain + '.' + suffix
 
-    if Mediaowner.where(url_domain: @base_domain).first.present?
-      @name_display =  Mediaowner.where(url_domain: @base_domain).first.title
+    if MediaOwner.where(url_domain: @base_domain).first.present?
+      @name_display =  MediaOwner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
@@ -306,7 +287,7 @@ class Admin::StoriesController < Admin::BaseAdminController
       :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :sap_publish_date,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
-      :release_seq,
+      :release_seq, :state, :desc_length,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],
@@ -317,8 +298,7 @@ class Admin::StoriesController < Admin::BaseAdminController
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
   end
 
-  def update_sequence_params
-    params.require(:story).permit(:release_seq, :title)
+  def review_update_params
+    params.require(:story).permit(:desc_length)
   end
-
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_035804) do
+ActiveRecord::Schema.define(version: 2021_02_22_031537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,22 +86,12 @@ ActiveRecord::Schema.define(version: 2021_02_01_035804) do
     t.index ["code"], name: "index_locations_on_code", unique: true
   end
 
-  create_table "mediaowners", id: :serial, force: :cascade do |t|
+  create_table "media_owners", id: :serial, force: :cascade do |t|
     t.string "title", limit: 255
-    t.string "url_full", limit: 255
     t.string "url_domain", limit: 255
-    t.string "owner_name", limit: 255
-    t.string "media_type", limit: 255
-    t.string "distribution_type", limit: 255
-    t.string "publication_name", limit: 255
-    t.boolean "paywall_yn"
-    t.string "content_frequency_time", limit: 255
-    t.string "content_frequency_other", limit: 255
-    t.string "content_frequency_guide", limit: 255
-    t.boolean "nextissue_yn"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["url_domain"], name: "index_mediaowners_on_url_domain", unique: true
+    t.index ["url_domain"], name: "index_media_owners_on_url_domain", unique: true
   end
 
   create_table "outbound_clicks", id: :serial, force: :cascade do |t|
@@ -117,6 +107,20 @@ ActiveRecord::Schema.define(version: 2021_02_01_035804) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["code"], name: "index_place_categories_on_code", unique: true
+  end
+
+  create_table "published_items", force: :cascade do |t|
+    t.integer "publishable_id"
+    t.string "publishable_type"
+    t.datetime "publish_at"
+    t.datetime "unpublish_at"
+    t.boolean "pinned", default: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pinned"], name: "index_published_items_on_pinned"
+    t.index ["position"], name: "index_published_items_on_position"
+    t.index ["publishable_type", "publishable_id"], name: "index_published_items_on_publishable_type_and_publishable_id"
   end
 
   create_table "stories", id: :serial, force: :cascade do |t|
@@ -141,7 +145,10 @@ ActiveRecord::Schema.define(version: 2021_02_01_035804) do
     t.integer "release_seq"
     t.boolean "outside_usa"
     t.string "permalink"
+    t.string "state", default: "draft"
+    t.integer "desc_length", default: 200
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
+    t.index ["state"], name: "index_stories_on_state"
   end
 
   create_table "stories_users", force: :cascade do |t|
@@ -151,6 +158,16 @@ ActiveRecord::Schema.define(version: 2021_02_01_035804) do
     t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
     t.index ["story_id"], name: "index_stories_users_on_story_id"
     t.index ["user_id"], name: "index_stories_users_on_user_id"
+  end
+
+  create_table "story_activities", force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "user_id"
+    t.string "from"
+    t.string "to"
+    t.string "event"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "story_categories", id: :serial, force: :cascade do |t|

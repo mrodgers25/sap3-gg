@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :visits
+  has_many :story_activities
   has_and_belongs_to_many :stories
 
   enum role: [:user, :associate, :admin]
@@ -11,6 +12,10 @@ class User < ApplicationRecord
 
   def is_role?(role_to_check)
     role == role_to_check.to_s
+  end
+
+  def has_basic_access?
+    is_role?(:admin) || is_role?(:associate)
   end
 
   # Include default devise modules. Others available are:

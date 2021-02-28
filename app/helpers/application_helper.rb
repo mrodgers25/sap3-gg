@@ -20,6 +20,10 @@ module ApplicationHelper
     false
   end
 
+  def human_bool(bool)
+    bool ? 'Yes' : 'No'
+  end
+
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
     if sz.nil?

@@ -39,7 +39,7 @@ class Admin::ReportsController < Admin::BaseAdminController
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
-                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
+                  s.data_entry_time, @url_full, @url_domain, s.media_owner_id, @manual_enter, s.data_entry_user, s.story_complete]
         end
       end
 
@@ -59,11 +59,11 @@ class Admin::ReportsController < Admin::BaseAdminController
   end
 
   def export_mediaowners
-    @mediaowners = Mediaowner.all
+    @media_owners = MediaOwner.all
 
     respond_to do |format|
       format.html
-      format.csv { send_data @mediaowners.to_csv, filename: 'export_mediaowners.csv' }
+      format.csv { send_data @media_owners.to_csv, filename: 'export_mediaowners.csv' }
     end
   end
 
@@ -174,7 +174,7 @@ class Admin::ReportsController < Admin::BaseAdminController
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
-                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
+                  s.data_entry_time, @url_full, @url_domain, s.media_owner_id, @manual_enter, s.data_entry_user, s.story_complete]
       end
     end
 

@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   # STORY ACTIONS
   resources :stories, only: [:show, :my_stories, :save_story, :forget_story] do
     member do
-      post :save_story
-      post :forget_story
+      post :save
+      post :forget
     end
   end
   # MY STORIES
@@ -29,15 +29,12 @@ Rails.application.routes.draw do
       collection do
         get :initialize_scraper
         post :scrape
-        post :new
-        get :incomplete
-        get :sequencer
       end
 
       member do
-        get :edit_sequence
-        patch :update_sequence
-        post :publish
+        get :review
+        patch :review_update
+        patch :update_state
       end
     end
     resources :urls, except: [:show]
@@ -46,7 +43,7 @@ Rails.application.routes.draw do
     resources :locations, except: [:show]
     resources :place_categories, except: [:show]
     resources :story_categories, except: [:show]
-    resources :mediaowners, except: [:show]
+    resources :media_owners, except: [:show]
     resources :users, except: [:show]
     resources :reports, only: [:index] do
       collection do
@@ -59,6 +56,12 @@ Rails.application.routes.draw do
         get :export_actionlisting
         get :export_outboundclick
         get :export_all
+      end
+    end
+    resources :published_items, except: [:show] do
+      member do
+        post :publish
+        post :unpublish
       end
     end
   end

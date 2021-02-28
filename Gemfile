@@ -7,7 +7,8 @@ gem 'webpacker'
 # NEW GEMS
 # Pagination
 gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
-
+# State Management
+gem 'aasm'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
