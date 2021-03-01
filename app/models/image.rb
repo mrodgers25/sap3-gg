@@ -1,5 +1,6 @@
 class Image < ApplicationRecord
   belongs_to :url, inverse_of: :images
+  has_one_attached :figure
   validates :src_url, :presence => { :message => "IMAGE is required" }
   attr_accessor :image_data, :manual_url
   # attr_accessor :page_imgs, :image_data

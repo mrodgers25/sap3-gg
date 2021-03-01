@@ -7,6 +7,7 @@ gem 'webpacker'
 # NEW GEMS
 # Pagination
 gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
+gem "aws-sdk-s3", require: false
 # State Management
 gem 'aasm'
 
