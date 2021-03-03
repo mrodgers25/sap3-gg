@@ -240,6 +240,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
+    rollbar (3.1.2)
     ruby-graphviz (1.2.5)
       rexml
     ruby_http_client (3.5.1)
@@ -348,6 +349,7 @@ DEPENDENCIES
   rails_layout
   responders
   rest-client
+  rollbar
   sanitize
   sass-rails
   sdoc
