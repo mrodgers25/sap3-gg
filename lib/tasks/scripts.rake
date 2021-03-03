@@ -17,4 +17,13 @@ namespace :scripts do
       published_item.publishable.unpublish!
     end
   end
+
+  desc "Upload images to S3"
+  task upload_images_to_s3: :environment do
+    Image.find_each.each do |image|
+      if !image.figure.attached?
+        image.attach_figure_with_src_url
+      end
+    end
+  end
 end
