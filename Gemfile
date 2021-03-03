@@ -10,6 +10,8 @@ gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
 gem "aws-sdk-s3", require: false
 # State Management
 gem 'aasm'
+# Bug Tracking
+gem 'rollbar'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
