@@ -9,6 +9,8 @@ gem 'webpacker'
 gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
 # State Management
 gem 'aasm'
+# Bug Tracking
+gem 'rollbar'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
