@@ -20,9 +20,9 @@ class HomeController < ApplicationController
       LEFT JOIN story_categories ON story_categories.id = story_story_categories.story_category_id
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
     @published_items = @published_items.where('publish_at <= ?', DateTime.now) # only those that are supposed to show
-    @published_items = @published_items.where("locations.id = #{params[:location_id]}") if params[:location_id].present?
-    @published_items = @published_items.where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
-    @published_items = @published_items.where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
+    @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
+    @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+    @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
     @published_items = @published_items.order(position: :asc, created_at: :desc).distinct
     @published_items = @published_items.limit(@story_limit)
   end

@@ -23,7 +23,7 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
       dir = params[:order_by].split(' ').last
       # sort by stories.created_at vs published_items
       if col == 'created_at'
-        @published_items = @published_items.order("stories.#{col} #{dir}")
+        @published_items = @published_items.order("stories.#{col}" => dir)
       else
         @published_items = @published_items.order(col => dir)
       end

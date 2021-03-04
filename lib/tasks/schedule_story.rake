@@ -1,12 +1,15 @@
 namespace :schedule_story do
   desc "see if it's time to publish the next story"
   task check_pub_time: :environment do
+    stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")[0].to_i
+    return unless stories_per_day > 0
 
     include Rails.application.routes.url_helpers
     9.times do
       start_loop = Time.now
-      stories_per_day = Code.where("code_key = 'STORIES_PER_DAY'").pluck("code_value")[0].to_i
+
       # puts "stories_per_day ---> #{stories_per_day}"
+
 
       stories_every_x_secs = 60 * 60 * 24 / stories_per_day
       # puts "stories_every_x_secs ---> #{stories_every_x_secs}"
