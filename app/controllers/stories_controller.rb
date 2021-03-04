@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
 
   before_action :set_story_by_permalink, only: [:show]
   before_action :set_story, only: [:save, :forget]
+  before_action :check_for_current_user, only: :my_stories
 
   def show
     render layout: "application_no_nav"
@@ -84,5 +85,9 @@ class StoriesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path, alert: 'Story not found'
     end
+  end
+
+  def check_for_current_user
+    redirect_to root_path, alert: 'User not found' unless current_user
   end
 end
