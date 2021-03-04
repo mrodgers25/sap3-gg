@@ -15,7 +15,7 @@ class Image < ApplicationRecord
   def attach_figure_with_src_url
     type = FastImage.type(self.src_url)
     if self.src_url.present? && type.present? && ['jpg', 'jpeg', 'gif', 'png'].include?(type.to_s)
-      self.figure.attach(io: RemoteImageUploader.download_remote_file(self.src_url), filename: "face.#{type.to_s}", content_type: "image/#{type.to_s}")
+      self.figure.attach(io: RemoteImageUploader.download_remote_file(self.src_url), filename: "image#{self.id}.#{type.to_s}", content_type: "image/#{type.to_s}")
     end
   end
 
