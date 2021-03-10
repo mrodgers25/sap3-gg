@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
 
   def filter_out_file_types_from_url
     # Try to remove the amount of bad requests by filtering out file types
-    redirect_to root_path if request.url.match? /.txt|.png|.xml/
+    redirect_to root_path if request.url.match? /.txt|.png|.xml|.php|.woff2/
   end
 end
