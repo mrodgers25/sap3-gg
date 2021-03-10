@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def form_item_status_class(bool)
-    bool ? 'complete-form-item' : 'incomplete-form-item'
+    bool ? '' : 'incomplete-form-item'
   end
 
   def show_old_code
