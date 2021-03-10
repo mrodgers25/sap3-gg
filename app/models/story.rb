@@ -19,6 +19,7 @@ class Story < ApplicationRecord
 
   before_validation :set_story_track_fields, on: :create
   after_validation :set_story_complete
+  after_update :check_state_and_update_published_item
 
   aasm column: :state do
     state :draft, initial: true
@@ -30,29 +31,41 @@ class Story < ApplicationRecord
 
     event :approve do
       # small hack for review screen, published added for ease of use
-      transitions from: [:draft, :published], to: :approved, after: Proc.new {|*args| destroy_published_item }
+      transitions from: [:draft, :published], to: :approved
     end
 
     event :disapprove do
-      transitions from: [:approved, :published], to: :draft, after: Proc.new {|*args| destroy_published_item }
+      transitions from: [:approved, :published], to: :draft
     end
 
     event :publish do
       # small hack for review screen, draft added for ease of use
-      transitions from: [:draft, :approved], to: :published, after: Proc.new {|*args| create_published_item }
+      transitions from: [:draft, :approved], to: :published
     end
 
     event :unpublish do
-      transitions from: :published, to: :approved, after: Proc.new {|*args| destroy_published_item }
+      transitions from: :published, to: :approved
     end
 
     event :archive do
-      transitions from: [:approved, :published], to: :archived, after: Proc.new {|*args| destroy_published_item }
+      transitions from: [:approved, :published], to: :archived
     end
 
     event :revive do
       transitions from: :archived, to: :approved
     end
+  end
+
+  def check_state_and_update_published_item
+    'published' == state ? create_published_item : destroy_published_item
+  end
+
+  def create_published_item
+    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
+  end
+
+  def destroy_published_item
+    published_items.destroy_all if published_items.present?
   end
 
   def log_status_change
@@ -163,14 +176,6 @@ class Story < ApplicationRecord
 
   def display_story_categories
     story_categories.pluck(:name).join(', ')
-  end
-
-  def create_published_item
-    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
-  end
-
-  def destroy_published_item
-    published_items.destroy_all if published_items.present?
   end
 
   def published_count
