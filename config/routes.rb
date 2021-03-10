@@ -53,8 +53,6 @@ Rails.application.routes.draw do
         get :export_mediaowners
         get :export_usersaved
         get :export_userlisting
-        get :export_actionlisting
-        get :export_outboundclick
         get :export_all
       end
     end
