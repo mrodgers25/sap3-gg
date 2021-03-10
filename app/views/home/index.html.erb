@@ -1,5 +1,5 @@
 <div class="container-fluid" id="main-content">
-  <%= render partial: 'filters', locals: { filter_path: root_path } %>
+  <%= render partial: 'filters', locals: { filter_path: home_index_path } %>
 
   <div class="grid story-grid">
     <div class="grid-sizer"></div>
@@ -9,7 +9,7 @@
         <% story = published_item.publishable %>
 
         <div class="grid-item grid-card card">
-          <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' %>
+          <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' if story.latest_image %>
           <div class="card-body">
             <div class="tagline-div-<%= story.id %>">
               <% if current_user && story.users.include?(current_user) %>

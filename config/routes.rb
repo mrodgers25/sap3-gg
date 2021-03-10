@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # UPDATE USER
   resources :users, only: [:edit, :update]
   # HOME CONTROLLER
-  resources :home, only: [:index]
+  resources :home, only: [:index] do
+    collection do
+      post :index
+    end
+  end
   get 'about_us', to: 'home#about_us', as: :about_us
   get 'contact_us', to: 'home#contact_us', as: :contact_us
   # STORY ACTIONS
