@@ -72,11 +72,6 @@
           <hr class="my-4">
 
           <%= u.fields_for :images do |i| %>
-            <% unless @image1 %>
-              <p class="lead text-center">Choose an Image</p>
-              <hr class="my-4">
-            <% end %>
-
             <% if params[:action] != "edit" %>
               <% unless @page_imgs.blank? %>
                 <% @page_imgs.each_with_index do |hash, idx| %>
@@ -102,12 +97,9 @@
               <hr class="my-4">
             <% end %>
 
-            <p class="lead text-center">Enter Image Manually</p>
-            <hr class="my-4">
-
             <div class="form-group row">
               <div class="col-2">
-                <%= i.label :src_url, "SRC Url:" %>
+                <%= i.label :src_url, "Manual Image URL:" %>
               </div>
               <div class="col-10">
                 <%= i.text_area :src_url, cols: 80, class: "form-control form-control-sm" %>
@@ -116,27 +108,24 @@
 
             <div class="form-group row">
               <div class="col-2">
-                <%= i.label :image_width, "Width:" %>
+                <%= i.label :image_width, "Image Size:" %>
               </div>
-              <div class="col-10">
+              <div class="col-1">
+                <%= i.label :image_width, "W:" %>
+              </div>
+              <div class="col-2">
                 <%= i.text_field :image_width, class: "form-control form-control-sm" %>
               </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :image_height, "Height:" %>
+              <div class="col-1">
+                <%= i.label :image_height, "H:" %>
               </div>
-              <div class="col-10">
-                <%= i.text_field :image_height, class: "form-control" %>
+              <div class="col-2">
+                <%= i.text_field :image_height, class: "form-control form-control-sm" %>
               </div>
             </div>
           <% end %>
         <% end %>
 
-        <hr class="my-4">
-
-        <p class="lead text-center">Story Information</p>
         <hr class="my-4">
 
         <div class="form-group row">
@@ -150,32 +139,16 @@
 
         <div class="form-group row">
           <div class="col-2">
-            <%= f.label :author, "Story Author:" %>
-          </div>
-          <div class="col-10">
-            <%= f.text_field :author, value: @meta_author, size: 50, class: 'form-control form-control-sm' %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :story_type, "Story Type:" %>
-          </div>
-          <div class="col-10">
-            <%= f.select :story_type, [
-                "Magazine", "Newspaper", "Blog", "Internet", "Television", "Wheres URL Original",
-                "Promotional", "Collection", "Affiliate", "CVB Publication", "Film", "Radio",
-                "Guide", "Hotel Guide", "Book", "Industry Awards"
-              ], class: 'form-control form-control-sm' %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
             <%= f.label :location_ids, "Locations:" %>
           </div>
-          <div class="col-10">
+          <div class="col-5">
             <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+          </div>
+          <div class="col-2">
+            <%= f.label :outside_usa, "Outside USA?" %>
+          </div>
+          <div class="col-1">
+            <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
           </div>
         </div>
 
@@ -198,6 +171,21 @@
         </div>
 
         <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :author, "Story Author:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :author, value: @meta_author, size: 50, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
+            <%= f.label :story_year, "Story Year:" %>
+          </div>
+          <div class="col-2">
+            <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+          </div>
           <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
             <%= f.label :story_month, "Story Month:" %>
           </div>
@@ -210,35 +198,24 @@
           <div class="col-2">
             <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
           </div>
-          <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
-            <%= f.label :story_year, "Story Year:" %>
-          </div>
-          <div class="col-2">
-            <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
-          </div>
-        </div>
-
-         <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :outside_usa, "Outside USA?" %>
-          </div>
-          <div class="col-10">
-            <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
-          </div>
         </div>
 
         <hr class="my-4">
 
-        <% if params[:action] != 'new' %>
+        <% if false %>
           <p class="lead text-center <%= form_item_status_class(@story_complete) %>">
             <%= @story_complete ? "Story Complete" : "Incomplete Story – Missing Fields In Yellow" %>
           </p>
         <% end %>
 
         <% if params[:action] != 'new' %>
-          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+          <div class="text-center">
+            <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-25' %>
+          </div>
         <% else %>
-          <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
+          <div class="text-center">
+            <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-25' %>
+          </div>
         <% end %>
 
         <%= f.hidden_field :raw_author_scrape, value: @meta_author %>
