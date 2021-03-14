@@ -37,6 +37,17 @@ Rails.application.routes.draw do
         patch :update_state
       end
     end
+    resources :video_stories do
+      collection do
+        get :initialize_scraper
+        post :scrape
+      end
+      member do
+        get :review
+        patch :review_update
+        patch :update_state
+      end
+    end
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]

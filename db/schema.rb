@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_031537) do
+ActiveRecord::Schema.define(version: 2021_03_14_073814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,45 @@ ActiveRecord::Schema.define(version: 2021_02_22_031537) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id", "story_id"], name: "index_usersavedstories_on_user_id_and_story_id", unique: true
+  end
+
+  create_table "video_stories", force: :cascade do |t|
+    t.string "story_type", limit: 255
+    t.string "author", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "story_month"
+    t.integer "story_date"
+    t.integer "story_year"
+    t.string "title"
+    t.text "description"
+    t.string "video_url"
+    t.boolean "outside_usa"
+    t.string "state", default: "draft"
+  end
+
+  create_table "video_story_locations", force: :cascade do |t|
+    t.integer "video_story_id", null: false
+    t.integer "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["video_story_id", "location_id"], name: "index_video_story_locations_on_video_story_id_and_location_id", unique: true
+  end
+
+  create_table "video_story_place_categories", force: :cascade do |t|
+    t.integer "video_story_id", null: false
+    t.integer "place_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["video_story_id", "place_category_id"], name: "idx_video_story_place_categories", unique: true
+  end
+
+  create_table "video_story_story_categories", force: :cascade do |t|
+    t.integer "video_story_id", null: false
+    t.integer "story_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["video_story_id", "story_category_id"], name: "idx_video_story_story_categories", unique: true
   end
 
   create_table "visits", id: :uuid, default: nil, force: :cascade do |t|
