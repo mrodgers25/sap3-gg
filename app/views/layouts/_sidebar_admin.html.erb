@@ -6,6 +6,9 @@
     <%= link_to initialize_scraper_admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
       <i class="fas fa-plus mr-1"></i> Add New Story
     <% end %>
+    <%= link_to queue_admin_published_items_path, class: "list-group-item list-group-item-action bg-white" do %>
+      <i class="fas fa-sort-numeric-down mr-1"></i> Publishing Queue
+    <% end %>
     <%= link_to admin_published_items_path, class: "list-group-item list-group-item-action bg-white" do %>
       <i class="fas fa-upload mr-1"></i> Published Items
     <% end %>

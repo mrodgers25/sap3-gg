@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_031537) do
+ActiveRecord::Schema.define(version: 2021_03_14_233537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,15 +112,19 @@ ActiveRecord::Schema.define(version: 2021_02_22_031537) do
   create_table "published_items", force: :cascade do |t|
     t.integer "publishable_id"
     t.string "publishable_type"
-    t.datetime "publish_at"
+    t.datetime "displayed_at"
     t.datetime "unpublish_at"
     t.boolean "pinned", default: false
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "state", default: "queued"
+    t.integer "queue_position"
     t.index ["pinned"], name: "index_published_items_on_pinned"
     t.index ["position"], name: "index_published_items_on_position"
     t.index ["publishable_type", "publishable_id"], name: "index_published_items_on_publishable_type_and_publishable_id"
+    t.index ["queue_position"], name: "index_published_items_on_queue_position"
+    t.index ["state"], name: "index_published_items_on_state"
   end
 
   create_table "stories", id: :serial, force: :cascade do |t|

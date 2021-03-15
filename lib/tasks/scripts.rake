@@ -16,4 +16,14 @@ namespace :scripts do
       published_item.publishable.unpublish!
     end
   end
+
+  desc "Moves published items in queued to displaying"
+  task move_published_items_to_displaying: :environment do
+    published_items = PublishedItem.where(state: 'queued').order(queue_position: :asc, created_at: :asc)
+    published_items = published_items.limit(PublishedItem.publish_rate)
+
+    published_items.each do |published_item|
+      published_item.post!
+    end
+  end
 end

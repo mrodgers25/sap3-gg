@@ -62,8 +62,14 @@ Rails.application.routes.draw do
     end
     resources :published_items, except: [:show] do
       member do
-        post :publish
+        post :display
         post :unpublish
+        get :queue_edit
+        patch :queue_update
+      end
+
+      collection do
+        get :queue
       end
     end
   end

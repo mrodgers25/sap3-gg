@@ -61,7 +61,7 @@ class Story < ApplicationRecord
   end
 
   def create_published_item
-    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
+    PublishedItem.create(publishable: self)
   end
 
   def destroy_published_item
@@ -74,10 +74,6 @@ class Story < ApplicationRecord
 
   def self.all_states
     self.aasm.states.map{|x| x.name.to_s }
-  end
-
-  def self.published_states
-    ['displaying', 'waiting_to_display', 'will_unpublish']
   end
 
   def should_not_be_displayed?

@@ -16,6 +16,10 @@ module ApplicationHelper
     bool ? '' : 'incomplete-form-item'
   end
 
+  def bg_yellow_class(bool)
+    bool ? 'bg-warning' : ''
+  end
+
   def show_old_code
     false
   end
