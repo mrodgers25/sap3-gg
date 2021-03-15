@@ -1,9 +1,16 @@
 class Admin::VideoStoriesController < Admin::BaseAdminController
-  before_action :set_locations_and_categories, only: [:index, :new, :scrape]
+  before_action :set_locations_and_categories, only: [:index, :new, :scrape, :edit]
   before_action :set_video_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
 
   def index
     @video_stories = VideoStory.all
+
+    @video_stories = @video_stories.where("LOWER(author) ~ '#{params[:author].downcase}'") if params[:author].present?
+    @video_stories = @video_stories.where("LOWER(title) ~ '#{params[:title].downcase}'") if params[:title].present?
+    @video_stories = @video_stories.where(state: params[:state]) if params[:state].present?
+    @video_stories = @video_stories.joins(:locations).where("locations.id = #{params[:location_id]}") if params[:location_id].present?
+    @video_stories = @video_stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
+    @video_stories = @video_stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
 
     @pagy, @video_stories = pagy(@video_stories)
   end
@@ -12,20 +19,19 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new
   end
 
-  def initialize_scraper
-  end
-
   def scrape
+
     @data_entry_begin_time = params[:data_entry_begin_time]
     @source_url_pre        = params[:source_url_pre]
 
     @video_story = VideoStory.new
     get_domain_info(@source_url_pre)
-    if @full_web_url.include?('youtube.com')
+    @video_story.video_url = @full_web_url
+    if @video_story.video_url.include?('youtube.com')
       return render :new
     else
       flash.now.alert = "We can't find that youtube URL – give it another shot"
-      render :initialize_scraper
+      redirect admin_initialize_scraper_index_path
     end
 
   end
@@ -47,9 +53,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def review_update
     if @video_story.update(review_update_params)
-      redirect_to review_admin_story_path(@video_story), notice: 'Story was successfully updated.'
+      redirect_to review_admin_video_story_path(@video_story), notice: 'Story was successfully updated.'
     else
-      redirect_to review_admin_story_path(@video_story), notice: 'Story failed to be updated.'
+      redirect_to review_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
     end
   end
 
@@ -59,9 +65,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def approve
     if @video_story.approve!
-      redirect_to admin_video_stories_path, notice: "Story has been approved!"
+      redirect_to admin_video_stories_path, notice: "Video Story has been approved!"
     else
-      redirect_to admin_video_stories_path, alert: "Story has NOT been approved."
+      redirect_to admin_video_stories_path, alert: "Video Story has NOT been approved."
     end
   end
 
@@ -96,9 +102,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
         @video_story.publish!
       end
 
-      redirect_to review_admin_story_path(@video_story), notice: "Story saved as #{params[:state]}"
+      redirect_to review_admin_video_story_path(@video_story), notice: "Video Story saved as #{params[:state]}"
     rescue
-      redirect_to review_admin_story_path(@video_story), alert: 'Story failed to update'
+      redirect_to review_admin_video_story_path(@video_story), alert: 'Video Story failed to update'
     end
   end
 
@@ -108,7 +114,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     begin
       @video_story = VideoStory.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Story not found"
+      redirect_to admin_stories_path, alert: "Video Story not found"
     end
   end
 
@@ -154,6 +160,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def video_story_params
     params.require(:video_story).permit(
       :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :state,
+      :title, :author, :description, :video_url,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => []

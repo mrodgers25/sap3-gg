@@ -9,7 +9,7 @@
         <div class="card-body">
           <div class="tagline-div-<%= @video_story.id %>">
             <% if @video_story.title %>
-              <h6 class="card-title text-center font-italic font-bold"><%= @video_story.editor_tagline %></h6>
+              <h6 class="card-title text-center font-italic font-bold"><%= @video_story.title %></h6>
             <% end %>
           </div>
 
@@ -25,19 +25,12 @@
 
           <div class="row">
             <div class="col-12 text-center links-div" id=<%= @video_story.id %>>
-              <% if current_user %>
-                <p class="save-story-link save-story-link-<%= @video_story.id %>" id=<%= @video_story.id %>>
-                  <%= link_to "javascript:void(0)", id: @video_story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@video_story.id}" do %>
-                    <i class="fas fa-bookmark mr-1"></i> Save Story
-                  <% end %>
-                </p>
-              <% else %>
-                <p class="login-to-save-story-link login-to-save-story-link-<%= @video_story.id %>" id=<%= @video_story.id %>>
-                  <%= link_to "javascript:void(0)", id: @video_story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@video_story.id}" do %>
-                    <i class="fas fa-bookmark mr-1"></i> Save Story
-                  <% end %>
-                </p>
-              <% end %>
+              <p class="login-to-save-story-link login-to-save-story-link-<%= @video_story.id %>" id=<%= @video_story.id %>>
+                <%= get_video_iframe(@video_story.video_url, "100%", '200px') %>
+                <%= link_to "javascript:void(0)", id: @video_story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@video_story.id}" do %>
+                  <i class="fas fa-bookmark mr-1"></i> Save Story
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -51,7 +44,7 @@
             <hr class="my-4">
 
             <div class="body">
-              <%= form_with(model: @video_story, url: review_update_admin_story_path(@video_story)) do |f| %>
+              <%= form_with(model: @video_story, url: review_update_admin_video_story_path(@video_story)) do |f| %>
                 <div class="form-group my-4 max-vw-80 mx-auto">
                   <%= f.label :desc_length, "Description Length:" %>
                   <%= f.number_field :desc_length, class: 'form-control' %>
@@ -64,7 +57,7 @@
 
               <hr class="my-4">
 
-              <%= link_to edit_admin_story_path(@video_story), class: "w-100 btn btn-sm btn-warning" do %>
+              <%= link_to edit_admin_video_story_path(@video_story), class: "w-100 btn btn-sm btn-warning" do %>
                 <i class="fas fa-edit mr-1"></i> More Fields to Edit
               <% end %>
             </div>
@@ -82,17 +75,17 @@
 
           <div class="body text-center">
             <div class="form-group my-4 mx-auto">
-              <%= button_to update_state_admin_story_path(@video_story, state: 'draft'), method: :patch, class: "w-100 btn btn-sm btn-secondary" do %>
+              <%= button_to update_state_admin_video_story_path(@video_story, state: 'draft'), method: :patch, class: "w-100 btn btn-sm btn-secondary" do %>
                 <i class="fas fa-pencil-ruler mr-1"></i> Draft
               <% end %>
             </div>
             <div class="form-group my-4 mx-auto">
-              <%= button_to update_state_admin_story_path(@video_story, state: 'approved'), method: :patch, class: "w-100 btn btn-sm btn-success" do %>
+              <%= button_to update_state_admin_video_story_path(@video_story, state: 'approved'), method: :patch, class: "w-100 btn btn-sm btn-success" do %>
                 <i class="fas fa-check mr-1"></i> Approved
               <% end %>
             </div>
             <div class="form-group my-4 mx-auto">
-              <%= button_to update_state_admin_story_path(@video_story, state: 'published'), method: :patch, data: { confirm: 'Are you sure?' }, class: "w-100 btn btn-sm btn-primary" do %>
+              <%= button_to update_state_admin_video_story_path(@video_story, state: 'published'), method: :patch, data: { confirm: 'Are you sure?' }, class: "w-100 btn btn-sm btn-primary" do %>
                 <i class="fas fa-upload mr-1"></i> Published
               <% end %>
             </div>

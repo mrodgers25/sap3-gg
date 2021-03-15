@@ -34,10 +34,7 @@ class Admin::StoriesController < Admin::BaseAdminController
 
     @pagy, @stories = pagy(@stories)
   end
-
-  def initialize_scraper
-  end
-
+  
   def scrape
     @story = Story.new
     @screen_scraper = ScreenScraper.new
@@ -54,7 +51,7 @@ class Admin::StoriesController < Admin::BaseAdminController
       set_scrape_fields
     else
       flash.now.alert = "We can't find that URL – give it another shot"
-      render :initialize_scraper
+      redirect admin_initialize_scraper_index_path
     end
   end
 

@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div class="jumbotron bg-white admin-stories admin-index-page">
     <div class="header text-center">
-      <h4><i class="fas fa-book mr-1"></i> All Stories</h4>
+      <h4><i class="fas fa-video mr-1"></i> All Video Stories</h4>
     </div>
 
     <hr class="my-4">
 
-    <%= render partial: 'filters', locals: { filter_path: admin_stories_path } %>
+    <%= render partial: 'filters', locals: { filter_path: admin_video_stories_path } %>
 
     <hr class="my-4">
 
@@ -14,37 +14,31 @@
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th scope="col">Image</th>
             <th scope="col">Title</th>
-            <th scope="col">Publisher/Date</th>
+            <th scope="col">Author</th>
             <th scope="col">State</th>
-            <th scope="col">Completed?</th>
             <th scope="col">Created At</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <% @stories.each do |story| %>
+          <% @video_stories.each do |story| %>
             <tr>
-              <td class="story-image">
-                <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' %>
-              </td>
-              <td style="width: 500px"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
-              <td style="width: 200px"><%= story.media_owner_and_date_line || '-' %></td>
-              <td><%= story&.state.titleize || '-' %></td>
-              <td><%= human_bool(story.story_complete?) %></td>
+              <td><%= story&.title&.titleize || '-' %></td>
+              <td><%= story&.author&.titleize || '-' %></td>
+              <td><%= story&.state&.titleize || '-' %></td>
               <td><%= story.created_at.strftime("%m/%d/%Y") %></td>
               <td style="width: 200px;">
-                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary", target: '_blank' do %>
+                <%= link_to '', class: "btn btn-sm btn-outline-primary", target: '_blank' do %>
                   <i class="fas fa-search"></i>
                 <% end %>
-                <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-outline-success" do %>
+                <%= link_to review_admin_video_story_path(story), class: "btn btn-sm btn-outline-success" do %>
                   <i class="fas fa-eye"></i>
                 <% end %>
-                <%= link_to edit_admin_story_path(story), class: "btn btn-sm btn-outline-warning" do %>
+                <%= link_to edit_admin_video_story_path(story), class: "btn btn-sm btn-outline-warning" do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to admin_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                <%= link_to admin_video_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
                   <i class="fas fa-times"></i>
                 <% end %>
               </td>

@@ -2,7 +2,7 @@
   <%= form_with(model: @video_story, url: route, method: method) do |f| %>
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
-        <h4><i class="fas fa-book mr-1"></i> Enter Story Details</h4>
+        <h4><i class="fas fa-video mr-1"></i> Enter Video Story Details</h4>
       </div>
 
       <hr class="my-4">
@@ -30,20 +30,25 @@
             "Guide", "Hotel Guide", "Book", "Industry Awards"
           ], class: 'form-control' %>
         </div>
-        
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :video_url, "Video Url:" %>
+          <%= f.text_field :video_url, size: 50, class: 'form-control' %>
+        </div>
+
         <div class="form-group my-4 max-vw-80 mx-auto">
           <%= f.label :author, "Story Author:" %>
-          <%= f.text_field :author, value: @meta_author, size: 50, class: 'form-control' %>
+          <%= f.text_field :author, size: 50, class: 'form-control' %>
         </div>
 
         <div class="form-group my-4 max-vw-80 mx-auto">
           <%= f.label :title, "Story Title:" %>
-          <%= f.text_field :title, value: @meta_title, size: 50, class: 'form-control' %>
+          <%= f.text_field :title, size: 50, class: 'form-control' %>
         </div>
 
         <div class="form-group my-4 max-vw-80 mx-auto">
           <%= f.label :description, "Story description:" %>
-          <%= f.text_field :description, value: @meta_description, size: 50, class: 'form-control' %>
+          <%= f.text_field :description, size: 50, class: 'form-control' %>
         </div>
 
         <div class="form-group my-4 max-vw-80 mx-auto">
@@ -100,7 +105,7 @@
           <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
         <% end %>
 
-        <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
+        <%= get_video_iframe(@video_story.video_url, "100%", '500px') %>
       </div>
     </div>
   <% end %>

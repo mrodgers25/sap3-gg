@@ -10,6 +10,17 @@ class VideoStory < ApplicationRecord
   has_many :story_categories, through: :video_story_story_categories
   has_many :video_story_place_categories, dependent: :destroy
   has_many :place_categories, through: :video_story_place_categories
+  has_many :published_items, as: :publishable
+
+  validates :video_url, :uniqueness => { :message => "Duplicate URL" }
+  validates :video_url, presence: true
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :description, presence: true
+
+
+
+
 
   aasm column: :state do
     state :draft, initial: true
@@ -42,6 +53,14 @@ class VideoStory < ApplicationRecord
     event :revive do
       transitions from: :archived, to: :approved
     end
+  end
+
+  def destroy_published_item
+    published_items.destroy_all if published_items.present?
+  end
+
+  def create_published_item
+    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
   end
 
 end
