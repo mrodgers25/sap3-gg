@@ -255,18 +255,23 @@ ActiveRecord::Schema.define(version: 2021_03_14_073814) do
   end
 
   create_table "video_stories", force: :cascade do |t|
-    t.string "story_type", limit: 255
-    t.string "author", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "video_url"
+    t.string "title"
+    t.text "description"
+    t.text "url_keywords"
+    t.text "editor_tagline"
+    t.text "hashtags"
+    t.string "video_creator"
     t.integer "story_month"
     t.integer "story_date"
     t.integer "story_year"
-    t.string "title"
-    t.text "description"
-    t.string "video_url"
+    t.string "channel_id"
+    t.integer "video_duration"
+    t.text "video_hashtags"
     t.boolean "outside_usa"
     t.string "state", default: "draft"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "video_story_locations", force: :cascade do |t|

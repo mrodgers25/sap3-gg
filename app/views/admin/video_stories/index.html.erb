@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th scope="col">Title</th>
-            <th scope="col">Author</th>
+            <th scope="col">Description</th>
             <th scope="col">State</th>
             <th scope="col">Created At</th>
             <th scope="col">Actions</th>
@@ -25,7 +25,7 @@
           <% @video_stories.each do |story| %>
             <tr>
               <td><%= story&.title&.titleize || '-' %></td>
-              <td><%= story&.author&.titleize || '-' %></td>
+              <td><%= story&.description&.titleize || '-' %></td>
               <td><%= story&.state&.titleize || '-' %></td>
               <td><%= story.created_at.strftime("%m/%d/%Y") %></td>
               <td style="width: 200px;">
@@ -38,7 +38,7 @@
                 <%= link_to edit_admin_video_story_path(story), class: "btn btn-sm btn-outline-warning" do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to admin_video_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                <%= link_to admin_video_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times"></i>
                 <% end %>
               </td>

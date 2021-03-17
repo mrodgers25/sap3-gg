@@ -1,3 +1,5 @@
+require 'video_scraper'
+
 class Admin::VideoStoriesController < Admin::BaseAdminController
   before_action :set_locations_and_categories, only: [:index, :new, :scrape, :edit]
   before_action :set_video_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
@@ -5,7 +7,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def index
     @video_stories = VideoStory.all
 
-    @video_stories = @video_stories.where("LOWER(author) ~ '#{params[:author].downcase}'") if params[:author].present?
+    @video_stories = @video_stories.where("LOWER(description) ~ '#{params[:description].downcase}'") if params[:description].present?
     @video_stories = @video_stories.where("LOWER(title) ~ '#{params[:title].downcase}'") if params[:title].present?
     @video_stories = @video_stories.where(state: params[:state]) if params[:state].present?
     @video_stories = @video_stories.joins(:locations).where("locations.id = #{params[:location_id]}") if params[:location_id].present?
@@ -15,25 +17,21 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @pagy, @video_stories = pagy(@video_stories)
   end
 
-  def new
-    @video_story = VideoStory.new
-  end
-
   def scrape
-
     @data_entry_begin_time = params[:data_entry_begin_time]
     @source_url_pre        = params[:source_url_pre]
+    get_domain_info(@source_url_pre)
 
     @video_story = VideoStory.new
-    get_domain_info(@source_url_pre)
     @video_story.video_url = @full_web_url
-    if @video_story.video_url.include?('youtube.com')
-      return render :new
+
+    @screen_scraper = VideoScraper.new
+    if @screen_scraper.scrape!(@full_web_url)
+      set_scrape_fields
     else
-      flash.now.alert = "We can't find that youtube URL – give it another shot"
+      flash.now.alert = "Something went wrong with the scraper."
       redirect admin_initialize_scraper_index_path
     end
-
   end
 
   def create
@@ -110,6 +108,20 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   private
 
+  def set_scrape_fields
+    @title = @screen_scraper.title
+    @meta_desc = @screen_scraper.meta_desc
+    @meta_keywords = @screen_scraper.meta_keywords
+    @meta_type = @screen_scraper.meta_type
+    @meta_author = @screen_scraper.meta_author
+    @year = @screen_scraper.year
+    @month = @screen_scraper.month
+    @day = @screen_scraper.day
+    @page_imgs = @screen_scraper.page_imgs
+
+    @itemprop_pub_date_match
+  end
+
   def set_video_story
     begin
       @video_story = VideoStory.find(params[:id])
@@ -148,19 +160,15 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     suffix = Domainatrix.parse(source_url_pre).public_suffix
     prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
     @base_domain = prefix + domain + '.' + suffix
-
-    if MediaOwner.where(url_domain: @base_domain).first.present?
-      @name_display =  MediaOwner.where(url_domain: @base_domain).first.title
-    else
-      @name_display = 'NO DOMAIN NAME FOUND'
-    end
     @full_web_url = full_url
   end
 
   def video_story_params
     params.require(:video_story).permit(
-      :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :state,
-      :title, :author, :description, :video_url,
+      :video_url, :title, :description, :url_keywords,
+      :editor_tagline, :hashtags, :video_creator, :channel_id,
+      :video_duration, :video_hashtags, :outside_usa, :state,
+      :story_year, :story_month, :story_date,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => []

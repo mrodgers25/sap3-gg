@@ -15,12 +15,8 @@ class VideoStory < ApplicationRecord
   validates :video_url, :uniqueness => { :message => "Duplicate URL" }
   validates :video_url, presence: true
   validates :title, presence: true
-  validates :author, presence: true
   validates :description, presence: true
-
-
-
-
+  validates :editor_tagline, presence: true
 
   aasm column: :state do
     state :draft, initial: true

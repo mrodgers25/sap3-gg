@@ -1,4 +1,9 @@
-<div class="container-fluid d-flex justify-content-center align-items-center">
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to '#', class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-plus mr-1"></i> Custom Story
+    <% end %>
+  </div>
   <%= form_with(url: scrape_admin_initialize_scraper_index_path, method: :get) do %>
     <div class="jumbotron bg-white new-story">
       <div class="header text-center">
