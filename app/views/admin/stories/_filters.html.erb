@@ -9,7 +9,7 @@
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
         select_tag :state,
-        options_from_collection_for_select(Story.all_states, 'to_s', 'to_s', params[:state]),
+        options_from_collection_for_select(Story.all_states, 'to_s', 'titleize', params[:state]),
         prompt: 'All States',
         class: 'form-control form-control-sm',
         id: 'state-select'

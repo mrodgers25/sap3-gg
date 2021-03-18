@@ -170,15 +170,19 @@ class Admin::StoriesController < Admin::BaseAdminController
   def update_state
     begin
       case params[:state]
-      when 'draft'
-        @story.disapprove!
-      when 'approved'
-        @story.approve!
-      when 'published'
-        @story.publish!
+      when 'needs_review'
+        @story.request_review!
+      when 'do_not_publish'
+        @story.hide!
+      when 'completed'
+        @story.complete!
+      when 'removed_from_public'
+        @story.remove!
+      when 'no_status'
+        @story.reset!
       end
 
-      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state]}"
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state].titleize}"
     rescue
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end

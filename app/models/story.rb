@@ -22,42 +22,37 @@ class Story < ApplicationRecord
   after_update :check_state_and_update_published_item
 
   aasm column: :state do
-    state :draft, initial: true
-    state :approved
-    state :published
-    state :archived
+    state :no_status, initial: true
+    state :needs_review
+    state :do_not_publish
+    state :completed
+    state :removed_from_public
 
     after_all_transitions :log_status_change
 
-    event :approve do
-      # small hack for review screen, published added for ease of use
-      transitions from: [:draft, :published], to: :approved
+    event :request_review do
+      transitions from: [:no_status, :do_not_publish, :completed, :removed_from_public], to: :needs_review
     end
 
-    event :disapprove do
-      transitions from: [:approved, :published], to: :draft
+    event :hide do
+      transitions from: [:no_status, :needs_review, :completed, :removed_from_public], to: :do_not_publish
     end
 
-    event :publish do
-      # small hack for review screen, draft added for ease of use
-      transitions from: [:draft, :approved], to: :published
+    event :complete do
+      transitions from: [:no_status, :needs_review, :do_not_publish, :removed_from_public], to: :completed
     end
 
-    event :unpublish do
-      transitions from: :published, to: :approved
+    event :remove do
+      transitions from: [:no_status, :needs_review, :do_not_publish, :completed], to: :removed_from_public
     end
 
-    event :archive do
-      transitions from: [:approved, :published], to: :archived
-    end
-
-    event :revive do
-      transitions from: :archived, to: :approved
+    event :reset do
+      transitions from: [:needs_review, :do_not_publish, :completed, :removed_from_public], to: :no_status
     end
   end
 
   def check_state_and_update_published_item
-    'published' == state ? create_published_item : destroy_published_item
+    'completed' == state ? create_published_item : destroy_published_item
   end
 
   def create_published_item
@@ -77,10 +72,7 @@ class Story < ApplicationRecord
   end
 
   def should_not_be_displayed?
-    return true unless published_items.present?
-    return true unless published_items.first.publish_at
-
-    published_items.first.publish_at > DateTime.now
+    published_items.blank?
   end
 
   def self.to_csv
