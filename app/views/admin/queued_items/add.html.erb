@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="jumbotron bg-white admin-stories admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-plus mr-1"></i> Add To Queue</h4>
+    </div>
+
+    <hr class="my-2">
+
+    <%= render partial: 'filters', locals: { filter_path: add_admin_queued_items_path } %>
+
+    <hr class="my-2">
+
+    <div class="table-div">
+      <%= form_with(url: bulk_add_admin_queued_items_path) do %>
+        <div class='text-right'>
+          <%= submit_tag "Add Selection", class: 'btn btn-sm btn-primary mb-2' %>
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Type</th>
+              <th scope="col">Published Count</th>
+              <th scope="col">Selection</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @queued_items.each_with_index do |queued_item, index| %>
+              <tr>
+                <td style="width: 600px;">
+                  <%= link_to queued_item.publishable.latest_url&.url_title, queued_item.publishable.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %>
+                </td>
+                <td><%= queued_item.publishable_type %></td>
+                <td><%= queued_item.publishable.published_count %></td>
+                <td style="width: 100px;">
+                  <%= check_box_tag('ids[]', queued_item.id, false) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+    <hr class="my-2">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>

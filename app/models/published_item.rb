@@ -10,6 +10,10 @@ class PublishedItem < ApplicationRecord
     state :queued
     state :newsfeed
 
+    event :queue do
+      transitions from: :displaying, to: :queued
+    end
+
     event :post do
       transitions from: :queued, to: :newsfeed, after: Proc.new {|*args| track_newsfeed_start }
     end

@@ -64,12 +64,16 @@ Rails.application.routes.draw do
       member do
         post :display
         post :unpublish
-        get :queue_edit
-        patch :queue_update
+      end
+    end
+    resources :queued_items, only: [:index, :edit, :update] do
+      member do
+        post :remove
       end
 
       collection do
-        get :queue
+        get :add
+        post :bulk_add
       end
     end
   end

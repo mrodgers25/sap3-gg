@@ -6,7 +6,7 @@
 
     <hr class="my-4">
 
-    <%= render partial: 'queue_filters', locals: { filter_path: queue_admin_published_items_path } %>
+    <%= render partial: 'filters', locals: { filter_path: admin_queued_items_path } %>
 
     <hr class="my-4">
 
@@ -26,24 +26,21 @@
         </thead>
         <tbody>
           <% publish_day_count = 1 %>
-          <% @published_items.each_with_index do |published_item, index| %>
+          <% @queued_items.each_with_index do |queued_item, index| %>
             <tr>
-              <td style="width: 600px;"><%= published_item.publishable.latest_url&.url_title %></td>
-              <td><%= published_item.queue_position || '-' %></td>
-              <td><%= published_item.position || '-' %></td>
-              <td><%= human_bool(published_item.pinned) %></td>
-              <td><%= published_item.unpublish_at&.strftime("%m/%d/%Y -  %I:%M %p")  || '-' %></td>
-              <td><%= published_item.publishable.published_count %></td>
+              <td style="width: 600px;"><%= queued_item.publishable.latest_url&.url_title %></td>
+              <td><%= queued_item.queue_position || '-' %></td>
+              <td><%= queued_item.position || '-' %></td>
+              <td><%= human_bool(queued_item.pinned) %></td>
+              <td><%= queued_item.unpublish_at&.strftime("%m/%d/%Y -  %I:%M %p")  || '-' %></td>
+              <td><%= queued_item.publishable.published_count %></td>
               <td><%= (Time.zone.now + publish_day_count.day).beginning_of_day.strftime("%m/%d/%Y") %></td>
               <td style="width: 100px;">
-                <%= link_to queue_edit_admin_published_item_path(published_item), class: "btn btn-sm btn-outline-secondary m-1 w-100" do %>
+                <%= link_to edit_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1 w-100" do %>
                   <i class="fas fa-edit mr-1"></i> Edit
                 <% end %>
-                <%= button_to display_admin_published_item_path(published_item), class: "btn btn-sm btn-outline-success m-1 w-100", data: { confirm: 'Are you sure?' } do %>
-                  <i class="fas fa-upload mr-1"></i> Display Now
-                <% end %>
-                <%= button_to unpublish_admin_published_item_path(published_item), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
-                  <i class="fas fa-times mr-1"></i> Unpublish
+                <%= button_to remove_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-times mr-1"></i> Remove
                 <% end %>
               </td>
             </tr>
