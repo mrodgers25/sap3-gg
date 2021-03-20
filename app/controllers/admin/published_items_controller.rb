@@ -9,13 +9,10 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
 
     @published_items = PublishedItem.joins("INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)")
 
-    case params[:published_state]
-    when 'displaying'
-      @published_items = @published_items.where(state: 'displaying')
-    when 'queued'
-      @published_items = @published_items.where(state: 'queued')
-    when 'will_unpublish'
+    if params[:published_state] && params[:published_state] == 'will_unpublish'
       @published_items = @published_items.where.not(unpublish_at: nil)
+    elsif params[:published_state]
+      @published_items = @published_items.where(state: params[:published_state])
     end
 
     if params[:order_by].present?
@@ -59,7 +56,7 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
   end
 
   def unpublish
-    if @published_item.publishable.unpublish!
+    if @published_item.publishable.remove!
       redirect_to admin_published_items_path, notice: 'Published Item was successfully unpublished.'
     else
       redirect_to admin_published_items_path, alert: 'Published Item failed to be unpublished.'

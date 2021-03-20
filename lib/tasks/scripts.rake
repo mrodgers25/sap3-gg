@@ -13,7 +13,7 @@ namespace :scripts do
   task unpublish_past_stories: :environment do
     published_items = PublishedItem.where('unpublish_at <= ?', DateTime.now)
     published_items.each do |published_item|
-      published_item.publishable.unpublish!
+      published_item.publishable.remove!
     end
   end
 
