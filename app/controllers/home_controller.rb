@@ -29,7 +29,7 @@ class HomeController < ApplicationController
       @published_items = @published_items.where(state: 'newsfeed')
     end
 
-    @published_items = @published_items.order(position: :asc, created_at: :desc)
+    @published_items = @published_items.order(pinned: :desc, posted_at: :desc)
     @published_items = @published_items.distinct
     @published_items = @published_items.limit(@story_limit)
   end

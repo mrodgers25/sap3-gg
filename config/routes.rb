@@ -68,17 +68,16 @@ Rails.application.routes.draw do
 
       collection do
         post :bulk_update
-        get :queue
       end
     end
-    resources :queued_items, only: [:index, :edit, :update] do
+    resources :newsfeed, only: [:edit, :update] do
       member do
         post :remove
+        post :publish
       end
 
       collection do
-        get :add
-
+        get :queue
       end
     end
   end

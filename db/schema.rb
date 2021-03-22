@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_010208) do
+ActiveRecord::Schema.define(version: 2021_03_22_034026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_010208) do
     t.integer "queue_position"
     t.datetime "queued_at"
     t.datetime "posted_at"
+    t.string "pinned_action", default: "release"
     t.index ["pinned"], name: "index_published_items_on_pinned"
     t.index ["posted_at"], name: "index_published_items_on_posted_at"
     t.index ["publishable_type", "publishable_id"], name: "index_published_items_on_publishable_type_and_publishable_id"

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="jumbotron bg-white admin-stories admin-index-page">
     <div class="header text-center">
-      <h4><i class="fas fa-upload mr-1"></i> Published Items</h4>
+      <h4><i class="fas fa-tasks mr-1"></i> Published Items</h4>
     </div>
 
     <hr class="my-4">
@@ -37,6 +37,9 @@
             <% @published_items.each_with_index do |published_item, index| %>
               <tr>
                 <td style="width: 400px;">
+                  <% if published_item.pinned? %>
+                    <i class='fa fa-star text-info'></i>
+                  <% end %>
                   <%= link_to published_item.publishable.latest_url&.url_title, polymorphic_path([:admin, published_item.publishable]), target: '_blank', class: 'text-dark' %>
                 </td>
                 <td><%= published_item.publishable.display_location_codes || '-' %></td>
