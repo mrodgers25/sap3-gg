@@ -16,10 +16,7 @@
           <tr>
             <th scope="col">Title</th>
             <th scope="col">Queue Position</th>
-            <th scope="col">Display Position</th>
             <th scope="col">Pinned?</th>
-            <th scope="col">Unpublish At</th>
-            <th scope="col">Published Count</th>
             <th scope="col">Displaying Date</th>
             <th scope="col">Actions</th>
           </tr>
@@ -30,16 +27,13 @@
             <tr>
               <td style="width: 600px;"><%= queued_item.publishable.latest_url&.url_title %></td>
               <td><%= queued_item.queue_position || '-' %></td>
-              <td><%= queued_item.position || '-' %></td>
               <td><%= human_bool(queued_item.pinned) %></td>
-              <td><%= queued_item.unpublish_at&.strftime("%m/%d/%Y -  %I:%M %p")  || '-' %></td>
-              <td><%= queued_item.publishable.published_count %></td>
               <td><%= (Time.zone.now + publish_day_count.day).beginning_of_day.strftime("%m/%d/%Y") %></td>
               <td style="width: 100px;">
-                <%= link_to edit_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1 w-100" do %>
+                <%= link_to edit_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1" do %>
                   <i class="fas fa-edit mr-1"></i> Edit
                 <% end %>
-                <%= button_to remove_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-danger m-1 w-100", data: { confirm: 'Are you sure?' } do %>
+                <%= button_to remove_admin_queued_item_path(queued_item), class: "btn btn-sm btn-outline-danger m-1", data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times mr-1"></i> Remove
                 <% end %>
               </td>

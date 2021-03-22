@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for(@published_item, url: queue_update_admin_published_item_path(@published_item)) do |f| %>
+  <%= form_for(@queued_item, url: admin_queued_item_path(@queued_item), method: :patch) do |f| %>
     <div class="jumbotron bg-white admin-form">
       <div class="header text-center">
         <h4><i class="fas fa-sort-numeric-down mr-1"></i> Edit Queued Item</h4>
@@ -11,13 +11,7 @@
         <div class="form-group my-4 max-vw-80 mx-auto">
           <%= f.label :queue_position %><br>
           <%= f.number_field :queue_position, class: "form-control" %>
-          <%= f.hidden_field :old_queue_position, value: @published_item.queue_position %>
-        </div>
-
-        <div class="form-group my-4 max-vw-80 mx-auto">
-          <%= f.label :position, 'Display position' %><br>
-          <%= f.number_field :position, class: "form-control" %>
-          <%= f.hidden_field :old_position, value: @published_item.position %>
+          <%= f.hidden_field :old_queue_position, value: @queued_item.queue_position %>
         </div>
 
         <div class="form-group my-4 max-vw-80 mx-auto">

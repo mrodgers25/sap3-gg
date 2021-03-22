@@ -20,6 +20,19 @@ module ApplicationHelper
     bool ? 'bg-warning' : ''
   end
 
+  def published_item_state_color(state)
+    case state
+    when 'displaying'
+      'text-success'
+    when 'queued'
+      'text-warning'
+    when 'newsfeed'
+      'text-primary'
+    else
+
+    end
+  end
+
   def show_old_code
     false
   end

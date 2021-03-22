@@ -65,6 +65,11 @@ Rails.application.routes.draw do
         post :display
         post :unpublish
       end
+
+      collection do
+        post :bulk_update
+        get :queue
+      end
     end
     resources :queued_items, only: [:index, :edit, :update] do
       member do
@@ -73,7 +78,7 @@ Rails.application.routes.draw do
 
       collection do
         get :add
-        post :bulk_add
+
       end
     end
   end

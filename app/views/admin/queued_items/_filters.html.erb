@@ -18,7 +18,7 @@
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
         select_tag :order_by,
-        options_from_collection_for_select(['position ASC', 'position DESC', 'created_at ASC', 'created_at DESC', 'publish_at ASC', 'publish_at DESC', 'unpublish_at ASC', 'unpublish_at DESC'], 'to_s', 'to_s', params[:order_by]),
+        options_from_collection_for_select(['completed_at ASC', 'completed_at DESC'], 'to_s', 'to_s', params[:order_by]),
         prompt: 'Select Sort',
         class: 'form-control form-control-sm',
         id: 'order-by-select'

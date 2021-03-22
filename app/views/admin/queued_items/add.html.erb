@@ -6,7 +6,67 @@
 
     <hr class="my-4">
 
-    <%= render partial: 'filters', locals: { filter_path: add_admin_queued_items_path } %>
+    <%= form_tag(add_admin_queued_items_path, method: :get) do %>
+      <div class="row filters">
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%= text_field_tag :url_title, params[:url_title], placeholder: 'Search Title...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%= text_field_tag :url_desc, params[:url_desc], placeholder: 'Search Description...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%=
+            select_tag :publishable_type,
+            options_from_collection_for_select(['Story', 'VideoStory', 'CustomStory'], 'to_s', 'to_s', params[:publishable_type]),
+            prompt: 'Select Story Type',
+            class: 'form-control form-control-sm',
+            id: 'story-type-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <input placeholder="Date" value="<%= params[:completed_at] %>" name='completed_at' type="date" class="form-control form-control-sm">
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+          <%=
+            select_tag :location_id,
+            options_from_collection_for_select(@locations, 'id', 'name', params[:location_id]),
+            prompt: 'All Locations',
+            class: 'form-control form-control-sm',
+            id: 'location-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+          <%=
+            select_tag :place_category_id,
+            options_from_collection_for_select(@place_categories, 'id', 'name', params[:place_category_id]),
+            prompt: 'All Place Types',
+            class: 'form-control form-control-sm',
+            id: 'place-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+          <%=
+            select_tag :story_category_id,
+            options_from_collection_for_select(@story_categories, 'id', 'name', params[:story_category_id]),
+            prompt: 'All Story Categories',
+            class: 'form-control form-control-sm',
+            id: 'category-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+          <%=
+            select_tag :order_by,
+            options_from_collection_for_select(['completed_at ASC', 'completed_at DESC'], 'to_s', 'to_s', params[:order_by]),
+            prompt: 'Select Sort',
+            class: 'form-control form-control-sm',
+            id: 'order-by-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+          <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+        </div>
+      </div>
+    <% end %>
 
     <hr class="my-4">
 
@@ -18,22 +78,30 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th scope="col">Title</th>
               <th scope="col">Type</th>
+              <th scope="col">Title</th>
+              <th scope="col">Location Codes</th>
+              <th scope="col">Place Categories</th>
+              <th scope="col">Story Categories</th>
               <th scope="col">Published Count</th>
+              <th scope="col">Completed At</th>
               <th scope="col">Selection</th>
             </tr>
           </thead>
           <tbody>
-            <% @queued_items.each_with_index do |queued_item, index| %>
+            <% @published_item.each_with_index do |published_item, index| %>
               <tr>
+                <td><%= published_item.publishable_type %></td>
                 <td style="width: 600px;">
-                  <%= link_to queued_item.publishable.latest_url&.url_title, queued_item.publishable.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %>
+                  <%= link_to published_item.publishable.latest_url&.url_title, published_item.publishable.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %>
                 </td>
-                <td><%= queued_item.publishable_type %></td>
-                <td><%= queued_item.publishable.published_count %></td>
+                <td><%= published_item.publishable.display_location_codes || '-' %></td>
+                <td><%= published_item.publishable.display_place_categories || '-' %></td>
+                <td><%= published_item.publishable.display_story_categories || '-' %></td>
+                <td><%= published_item.publishable.published_count %></td>
+                <td><%= published_item.completed_at.strftime("%m/%d/%Y") %></td>
                 <td style="width: 100px;">
-                  <%= check_box_tag('ids[]', queued_item.id, false) %>
+                  <%= check_box_tag('ids[]', published_item.id, false) %>
                 </td>
               </tr>
             <% end %>
