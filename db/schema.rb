@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_023819) do
+ActiveRecord::Schema.define(version: 2021_03_23_033303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,8 @@ ActiveRecord::Schema.define(version: 2021_03_23_023819) do
   end
 
   create_table "admin_settings", force: :cascade do |t|
-    t.integer "newsfeed_size", default: 75
+    t.integer "newsfeed_display_limit", default: 75
+    t.integer "filtered_display_limit", default: 36
     t.integer "newsfeed_daily_post_count", default: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -120,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_023819) do
     t.integer "publishable_id"
     t.string "publishable_type"
     t.datetime "displayed_at"
-    t.datetime "unpublish_at"
+    t.datetime "clear_at"
     t.boolean "pinned", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -165,9 +165,4 @@ class Story < ApplicationRecord
   def display_story_categories
     story_categories.pluck(:name).join(', ')
   end
-
-  def published_count
-    # select here to avoid an extra call to db
-    story_activities.select{|act| act['event'] == 'publish!' }.size
-  end
 end

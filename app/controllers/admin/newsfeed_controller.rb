@@ -63,7 +63,7 @@ class Admin::NewsfeedController < Admin::BaseAdminController
   end
 
   def update_params
-    params.require(:published_item).permit(:queue_position, :unpublish_at, :pinned, :pinned_action)
+    params.require(:published_item).permit(:queue_position, :clear_at, :pinned, :pinned_action)
   end
 
   def set_queue_position

@@ -37,19 +37,16 @@
             <th scope="col">Queue Position</th>
             <th scope="col">Pinned?</th>
             <th scope="col">Queued At</th>
-            <th scope="col">Displaying Date</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <% publish_day_count = 1 %>
           <% @queued_items.each_with_index do |queued_item, index| %>
             <tr>
               <td style="width: 600px;"><%= queued_item.publishable.latest_url&.url_title %></td>
               <td><%= queued_item.queue_position || '-' %></td>
               <td><%= human_bool(queued_item.pinned) %></td>
               <td><%= queued_item.queued_at&.strftime("%m/%d/%Y") %></td>
-              <td><%= (Time.zone.now + publish_day_count.day).beginning_of_day.strftime("%m/%d/%Y") %></td>
               <td style="width: 100px;">
                 <%= link_to edit_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1" do %>
                   <i class="fas fa-edit mr-1"></i> Edit
@@ -62,8 +59,6 @@
                 <% end %>
               </td>
             </tr>
-
-            <% publish_day_count += 1 if (index % PublishedItem.publish_rate) == (PublishedItem.publish_rate - 1) %>
           <% end %>
         </tbody>
       </table>

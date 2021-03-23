@@ -25,13 +25,14 @@ class HomeController < ApplicationController
       @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
       @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
       @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
+      @published_items = @published_items.limit(AdminSetting.filtered_display_limit)
+      @published_items = @published_items.order(created_at: :desc)
     else
-      @published_items = @published_items.where(state: 'newsfeed')
+      @published_items = @published_items.where(state: 'newsfeed').limit(AdminSetting.newsfeed_display_limit)
+      @published_items = @published_items.order(pinned: :desc, posted_at: :desc)
     end
 
-    @published_items = @published_items.order(pinned: :desc, posted_at: :desc)
     @published_items = @published_items.distinct
-    @published_items = @published_items.limit(@story_limit)
   end
 
   def about_us

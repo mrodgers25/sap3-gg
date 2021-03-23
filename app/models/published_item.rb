@@ -82,17 +82,14 @@ class PublishedItem < ApplicationRecord
 
   def track_newsfeed_start
     #Activity: publishable type, publishable id, activity_type, newsfeed
+    # create posted activity for publishable type (track the amount of posts for each publishable item)
     true
   end
 
   def track_newsfeed_end
     #Activity: publishable type, publishable id, activity_type, newsfeed
+    # track how long the item was posted for and the settings it was posted with
     true
-  end
-
-  def self.publish_rate
-    # publish n amount stories per day
-    1
   end
 
   def self.published_states
