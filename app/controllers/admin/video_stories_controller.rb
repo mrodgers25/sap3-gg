@@ -111,6 +111,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def set_scrape_fields
     @title = @screen_scraper.title
     @meta_desc = @screen_scraper.meta_desc
+    @link_creator = @screen_scraper.link_creator
+    @link_channel_id = @screen_scraper.link_channel_id
+    @link_image = @screen_scraper.link_image
     @meta_keywords = @screen_scraper.meta_keywords
     @meta_type = @screen_scraper.meta_type
     @meta_author = @screen_scraper.meta_author

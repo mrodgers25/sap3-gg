@@ -6,7 +6,7 @@ require 'fastimage'
 class VideoScraper
 
   BROWSER = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
-  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year, :page_imgs
+  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year, :page_imgs, :link_creator, :link_channel_id, :link_image
 
   def scrape!(scrape_url)
 
@@ -41,8 +41,12 @@ class VideoScraper
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
     @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995) if defined?(meta_keywords_scrape_pre['content'])
-    # binding.pry
-
+    #creator
+    @link_channel_id = doc.css("link[itemprop='url']")&.map {|element| element['href']}&.select{ |x| x.include? 'channel' }&.first&.split('/')&.last
+    #Link
+    @link_creator = doc.css("link[itemprop='name']")&.first['content']
+    #thumbnail_url
+    @link_image = doc.css("link[rel='image_src']")&.first['href']
     # meta author
     meta_author_scrape_pre = doc.css("meta[name='author']").first
     @meta_author = meta_author_scrape_pre['content'].strip if defined?(meta_author_scrape_pre['content'])
