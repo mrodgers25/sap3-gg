@@ -14,7 +14,7 @@
       <%= form_with(url: bulk_update_admin_published_items_path) do %>
         <div class='col-12 col-md-3 ml-auto px-0'>
           <div class="input-group input-group-sm">
-            <%= select_tag :update_type, options_from_collection_for_select(['add_to_queue', 'remove_from_public'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select' %>
+            <%= select_tag :update_type, options_from_collection_for_select(['add_to_queue', 'remove_from_queue', 'clear_from_newsfeed', 'remove_from_public'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select' %>
             <div class="input-group-append">
               <%= submit_tag "Submit", class: 'btn btn-sm btn-info mb-2' %>
             </div>
@@ -51,7 +51,8 @@
                 </td>
                 <td><%= published_item.completed_at.strftime("%m/%d/%Y") %></td>
                 <td style="width: 50px;">
-                  <%= check_box_tag('ids[]', published_item.id, false) %>
+                  <%= check_box_tag('ids[]', published_item.id, false) %><br>
+                  <%= link_to 'Edit', edit_admin_published_item_path(published_item) if published_item.newsfeed? %>
                 </td>
               </tr>
             <% end %>

@@ -1,5 +1,5 @@
 class Admin::PublishedItemsController < Admin::BaseAdminController
-  before_action :set_published_item, only: [:display, :unpublish]
+  before_action :set_published_item, only: [:display, :unpublish, :edit, :update]
 
   def index
     @locations        = Location.order("ascii(name)")
@@ -66,6 +66,12 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
         when 'remove_from_public'
           @published_items.each{|item| item.publishable.remove! }
           action_text = 'removed from the public'
+        when 'remove_from_queue'
+          @published_items.each{|item| item.remove! }
+          action_text = 'removed from the queue'
+        when 'clear_from_newsfeed'
+          @published_items.each{|item| item.clear! }
+          action_text = 'removed from the newsfeed'
         end
 
         redirect_to admin_published_items_path, notice: "#{@published_items.size} items #{action_text}."
@@ -93,6 +99,17 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @published_item.update(update_params)
+      redirect_to admin_published_items_path, notice: 'Published Item was successfully updated.'
+    else
+      redirect_to admin_published_items_path, alert: 'Published Item failed to be updated.'
+    end
+  end
+
   private
 
   def set_published_item
@@ -105,5 +122,9 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
 
   def bulk_update_params
     params.permit(:update_type, ids: [])
+  end
+
+  def update_params
+    params.require(:published_item).permit(:clear_at, :pinned, :pinned_action)
   end
 end
