@@ -46,17 +46,13 @@ class PublishedItem < ApplicationRecord
     position_was_set = self.queue_position.present?
     track_newsfeed_start
     run_pinned_action_sequence if self.pinned?
-    self.update(queue_position: nil, posted_at: Time.zone.now, pinned_action: nil)
+    self.update(queue_position: nil, queued_at: nil, pinned_action: nil, posted_at: Time.zone.now)
     PublishedItem.resequence_all_queue_positions if position_was_set
   end
 
   def update_after_clear
     track_newsfeed_end
-    self.update(posted_at: nil, pinned: false, pinned_action: nil)
-  end
-
-  def set_display_values
-    self.update(queue_position: nil, displayed_at: Time.zone.now)
+    self.update(posted_at: nil, pinned: false)
   end
 
   def self.resequence_all_queue_positions
@@ -90,9 +86,5 @@ class PublishedItem < ApplicationRecord
     #Activity: publishable type, publishable id, activity_type, newsfeed
     # track how long the item was posted for and the settings it was posted with
     true
-  end
-
-  def self.published_states
-    ['displaying', 'queued', 'newsfeed', 'will_unpublish']
   end
 end
