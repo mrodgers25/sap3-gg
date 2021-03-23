@@ -1,0 +1,31 @@
+<div class="container">
+  <%= form_for(@admin_setting, url: admin_admin_setting_path(@admin_setting), method: :patch) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-users-cog mr-1"></i> Admin Settings</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :newsfeed_size %><br>
+          <%= f.number_field :newsfeed_size, class: "form-control" %>
+          <small class="form-text text-muted">The amount of stories displayed on the Newsfeed</small>
+        </div>
+
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :newsfeed_daily_post_count %><br>
+          <%= f.number_field :newsfeed_daily_post_count, class: "form-control" %>
+          <small class="form-text text-muted">The amount of stories that are posted each day from the Newsfeed Queue. ie: n = 10; (24 hrs / n) => 1 every 2.4 hours</small>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

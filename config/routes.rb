@@ -80,6 +80,7 @@ Rails.application.routes.draw do
         get :queue
       end
     end
+    resources :admin_settings, only: [:index, :update]
   end
 
   # redirect to home if route doesn't exist
