@@ -94,12 +94,14 @@ class PublishedItem < ApplicationRecord
   end
 
   def track_post
+    action = pinned ? pinned_action : nil
+
     NewsfeedActivity.create(
       trackable_id: publishable_id,
       trackable_type: publishable_type,
       activity_type: 'post',
       pinned: pinned,
-      pinned_action: pinned_action,
+      pinned_action: action,
       posted_at: Time.zone.now,
       time_queued: Time.zone.now.to_time - queued_at.to_time,
       details: 'Posted into newsfeed from queue.'
