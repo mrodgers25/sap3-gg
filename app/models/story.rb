@@ -15,6 +15,7 @@ class Story < ApplicationRecord
   has_many :place_categories, through: :story_place_categories
   has_many :story_activities, dependent: :destroy
   has_many :published_items, as: :publishable
+  has_many :newsfeed_activities, as: :trackable
   has_one :media_owner, through: :urls
 
   before_validation :set_story_track_fields, on: :create

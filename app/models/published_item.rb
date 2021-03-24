@@ -44,7 +44,7 @@ class PublishedItem < ApplicationRecord
 
   def update_after_post
     position_was_set = self.queue_position.present?
-    track_newsfeed_start
+    track_queue_end
     run_pinned_action_sequence if self.pinned?
     self.update(queue_position: nil, queued_at: nil, pinned_action: nil, posted_at: Time.zone.now)
     PublishedItem.resequence_all_queue_positions if position_was_set
@@ -66,6 +66,16 @@ class PublishedItem < ApplicationRecord
   def run_pinned_action_sequence
     old_pinned_item = PublishedItem.where(pinned: true).where.not(id: id).order(:posted_at).last
     return unless old_pinned_item
+    # track pinned length
+    NewsfeedActivity.create(
+      trackable_id: old_pinned_item.publishable_id,
+      trackable_type: old_pinned_item.publishable_type,
+      activity_type: 'unpin',
+      pinned: pinned,
+      pinned_action: pinned_action,
+      time_pinned: Time.zone.now.to_time - posted_at.to_time,
+      details: "Unpinned item. Action: #{pinned_action}"
+    )
 
     if pinned_action.blank? || pinned_action == 'release'
       # trick the system to move it through natrually (by posted_at)
@@ -76,15 +86,28 @@ class PublishedItem < ApplicationRecord
     end
   end
 
-  def track_newsfeed_start
-    #Activity: publishable type, publishable id, activity_type, newsfeed
-    # create posted activity for publishable type (track the amount of posts for each publishable item)
-    true
+  def track_queue_end
+    NewsfeedActivity.create(
+      trackable_id: publishable_id,
+      trackable_type: publishable_type,
+      activity_type: 'post',
+      posted_at: Time.zone.now,
+      pinned: pinned,
+      pinned_action: pinned_action,
+      time_queued: Time.zone.now.to_time - queued_at.to_time,
+      details: 'Posted into newsfeed from queue.'
+    )
   end
 
   def track_newsfeed_end
-    #Activity: publishable type, publishable id, activity_type, newsfeed
-    # track how long the item was posted for and the settings it was posted with
-    true
+    NewsfeedActivity.create(
+      trackable_id: publishable_id,
+      trackable_type: publishable_type,
+      activity_type: 'clear',
+      posted_at: posted_at,
+      cleared_at: Time.zone.now,
+      time_posted: Time.zone.now.to_time - posted_at.to_time,
+      details: 'Removed from the newsfeed.'
+    )
   end
 end

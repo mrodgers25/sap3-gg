@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_033303) do
+ActiveRecord::Schema.define(version: 2021_03_24_020029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,24 @@ ActiveRecord::Schema.define(version: 2021_03_23_033303) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["url_domain"], name: "index_media_owners_on_url_domain", unique: true
+  end
+
+  create_table "newsfeed_activities", force: :cascade do |t|
+    t.integer "trackable_id"
+    t.string "trackable_type"
+    t.string "activity_type"
+    t.datetime "posted_at"
+    t.datetime "cleared_at"
+    t.boolean "pinned"
+    t.string "pinned_action"
+    t.float "time_posted"
+    t.float "time_pinned"
+    t.float "time_queued"
+    t.string "details"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_type"], name: "index_newsfeed_activities_on_activity_type"
+    t.index ["trackable_type", "trackable_id"], name: "index_newsfeed_activities_on_trackable_type_and_trackable_id"
   end
 
   create_table "outbound_clicks", id: :serial, force: :cascade do |t|
