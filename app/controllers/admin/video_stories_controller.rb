@@ -35,6 +35,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def create
+    duration = get_duration(params[:video_story])
     @video_story = VideoStory.new(video_story_params)
     if @video_story.save
       update_locations_and_categories(@video_story, video_story_params)
@@ -171,11 +172,22 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       :video_url, :title, :description, :url_keywords,
       :editor_tagline, :hashtags, :video_creator, :channel_id,
       :video_duration, :video_hashtags, :outside_usa, :state,
-      :story_year, :story_month, :story_date,
+      :story_year, :story_month, :story_date, :thumbnail_url,
       :location_ids => [],
       :place_category_ids => [],
       :story_category_ids => []
     )
+  end
+
+  def get_duration(param)
+    hours = param[:hours]
+    minutes = param[:minutes]
+    seconds = param[:seconds]
+    if hours.present? && minutes.present? && seconds.present?
+      hours.to_i.hour.to_i + minutes.to_i.hour.to_i + seconds.to_i
+    else
+      0
+    end
   end
 
 end
