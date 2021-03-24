@@ -5,10 +5,16 @@ namespace :newsfeed do
     hourly_post_rate = 24.0 / AdminSetting.newsfeed_daily_post_count
     # Get most recent posted_at timestamp
     last_posted_at = PublishedItem.where(state: 'newsfeed').maximum(:posted_at)
-    # convert the difference to hours
-    hours_since_last_post = (Time.zone.now.utc.to_time - last_posted_at.utc.to_time) / 3600
-    # if it's been longer than the limit then post
-    should_post_next_item = hours_since_last_post >= hourly_post_rate
+
+    if last_posted_at.blank?
+      # if no items are posted post something.
+      should_post_next_item = true
+    else
+      # convert the difference to hours
+      hours_since_last_post = (Time.zone.now.utc.to_time - last_posted_at.utc.to_time) / 3600
+      # if it's been longer than the limit then post
+      should_post_next_item = hours_since_last_post >= hourly_post_rate
+    end
 
     if should_post_next_item
       # Get the story next in the queue
