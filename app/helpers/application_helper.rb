@@ -13,7 +13,24 @@ module ApplicationHelper
   end
 
   def form_item_status_class(bool)
-    bool ? 'complete-form-item' : 'incomplete-form-item'
+    bool ? '' : 'incomplete-form-item'
+  end
+
+  def bg_yellow_class(bool)
+    bool ? 'bg-warning' : ''
+  end
+
+  def published_item_state_color(state)
+    case state
+    when 'displaying'
+      'text-success'
+    when 'queued'
+      'text-warning'
+    when 'newsfeed'
+      'text-primary'
+    else
+
+    end
   end
 
   def show_old_code

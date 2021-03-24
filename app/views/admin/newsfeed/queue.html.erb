@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="jumbotron bg-white admin-stories admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-sort-numeric-down mr-1"></i> Newsfeed Queue</h4>
+    </div>
+
+    <hr class="my-4">
+
+    <%= form_tag(queue_admin_newsfeed_index_path, method: :get) do %>
+      <div class="row filters">
+        <div class="col-12 col-sm-6 col-md-4 mt-1 mt-md-0">
+          <%= text_field_tag :url_title, params[:url_title], placeholder: 'Search Title...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 mt-1 mt-md-0">
+          <%=
+            select_tag :order_by,
+            options_from_collection_for_select(['queue_position ASC', 'queue_position DESC', 'queued_at ASC', 'queued_at DESC'], 'to_s', 'to_s', params[:order_by]),
+            prompt: 'Select Sort',
+            class: 'form-control form-control-sm',
+            id: 'order-by-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 mt-1 mt-md-0">
+          <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+        </div>
+      </div>
+    <% end %>
+
+
+    <hr class="my-4">
+
+    <div class="table-div">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Queue Position</th>
+            <th scope="col">Pinned?</th>
+            <th scope="col">Queued At</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @queued_items.each_with_index do |queued_item, index| %>
+            <tr>
+              <td style="width: 600px;"><%= queued_item.publishable.latest_url&.url_title %></td>
+              <td><%= queued_item.queue_position || '-' %></td>
+              <td><%= human_bool(queued_item.pinned) %></td>
+              <td><%= queued_item.queued_at&.strftime("%m/%d/%Y") %></td>
+              <td style="width: 100px;">
+                <%= link_to edit_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1" do %>
+                  <i class="fas fa-edit mr-1"></i> Edit
+                <% end %>
+                <%= button_to publish_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-success m-1" do %>
+                  <i class="fas fa-check mr-1"></i> Post Now
+                <% end %>
+                <%= button_to remove_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-danger m-1", data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-times mr-1"></i> Remove
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>

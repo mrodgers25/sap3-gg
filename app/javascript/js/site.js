@@ -14,6 +14,8 @@ document.addEventListener("turbolinks:load", function () {
       msnry.layout();
     });
   }
+
+  $(".alert").delay(6000).slideUp(750);
 });
 
 // function refreshTimer() {

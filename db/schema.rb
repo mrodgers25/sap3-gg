@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_073814) do
+ActiveRecord::Schema.define(version: 2021_03_24_020029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2021_03_14_073814) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "admin_settings", force: :cascade do |t|
+    t.integer "newsfeed_display_limit", default: 75
+    t.integer "filtered_display_limit", default: 36
+    t.integer "newsfeed_daily_post_count", default: 10
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "codes", id: :serial, force: :cascade do |t|
@@ -94,6 +102,24 @@ ActiveRecord::Schema.define(version: 2021_03_14_073814) do
     t.index ["url_domain"], name: "index_media_owners_on_url_domain", unique: true
   end
 
+  create_table "newsfeed_activities", force: :cascade do |t|
+    t.integer "trackable_id"
+    t.string "trackable_type"
+    t.string "activity_type"
+    t.datetime "posted_at"
+    t.datetime "cleared_at"
+    t.boolean "pinned"
+    t.string "pinned_action"
+    t.float "time_posted"
+    t.float "time_pinned"
+    t.float "time_queued"
+    t.string "details"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_type"], name: "index_newsfeed_activities_on_activity_type"
+    t.index ["trackable_type", "trackable_id"], name: "index_newsfeed_activities_on_trackable_type_and_trackable_id"
+  end
+
   create_table "outbound_clicks", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "url", limit: 255, null: false
@@ -112,15 +138,22 @@ ActiveRecord::Schema.define(version: 2021_03_14_073814) do
   create_table "published_items", force: :cascade do |t|
     t.integer "publishable_id"
     t.string "publishable_type"
-    t.datetime "publish_at"
-    t.datetime "unpublish_at"
+    t.datetime "displayed_at"
+    t.datetime "clear_at"
     t.boolean "pinned", default: false
-    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "state"
+    t.integer "queue_position"
+    t.datetime "queued_at"
+    t.datetime "posted_at"
+    t.string "pinned_action", default: "release"
     t.index ["pinned"], name: "index_published_items_on_pinned"
-    t.index ["position"], name: "index_published_items_on_position"
+    t.index ["posted_at"], name: "index_published_items_on_posted_at"
     t.index ["publishable_type", "publishable_id"], name: "index_published_items_on_publishable_type_and_publishable_id"
+    t.index ["queue_position"], name: "index_published_items_on_queue_position"
+    t.index ["queued_at"], name: "index_published_items_on_queued_at"
+    t.index ["state"], name: "index_published_items_on_state"
   end
 
   create_table "stories", id: :serial, force: :cascade do |t|

@@ -76,9 +76,7 @@ class Admin::ReportsController < Admin::BaseAdminController
     end
   end
 
-  ##One of the origin reports ##
   def export_userlisting
-  # user export
     users = User.order(:id)
 
     output = CSV.generate do |writer|
@@ -99,47 +97,7 @@ class Admin::ReportsController < Admin::BaseAdminController
     end
   end
 
-  def export_actionlisting
-  #action export
-    # actions = User.all
-
-    # output = CSV.generate do |writer|
-    #   writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Location","Place Category","Story Category","Button"]
-    #   actions.each do |a|
-    #     a.events.each do |e|
-    #       if e.properties.values[5].present?  # filter actions
-    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[6], e.properties.values[7], \
-    #               e.properties.values[2], e.properties.values[3], e.properties.values[4], e.properties.values[5]]
-    #       end
-    #       unless e.properties.values[5].present?  # non-filter actions
-    #         writer << [a.id, a.first_name, a.last_name, a.email, e.time, e.properties.values[0], e.properties.values[1]]
-    #       end
-    #     end
-    #   end
-    # end
-    respond_to do |format|
-      format.html
-      format.csv { send_data output, filename: 'export_actionlisting.csv' }
-    end
-  end
-
-  def export_outboundclick
-    outbound_clicks = OutboundClick.all
-
-    output = CSV.generate do |writer|
-      writer << ["Id","UserId","Url","Created"]
-      outbound_clicks.each do |c|
-        writer << [c.id, c.user_id, c.url, c.created_at]
-      end
-    end
-    respond_to do |format|
-      format.html
-      format.csv { send_data output, filename: 'export_outboundclick.csv' }
-    end
-  end
-
-
-## Below here was the origin code -- this is for emailing -- does not work currently##
+  ## Below here was the origin code -- this is for emailing -- does not work currently##
   def export_all
     authorize Report
 

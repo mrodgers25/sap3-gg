@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
 
   before_action :set_story_by_permalink, only: [:show]
   before_action :set_story, only: [:save, :forget]
+  before_action :check_for_current_user, only: :my_stories
 
   def show
     render layout: "application_no_nav"
@@ -49,7 +50,6 @@ class StoriesController < ApplicationController
       LEFT JOIN story_categories ON story_categories.id = story_story_categories.story_category_id
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
     @published_items = @published_items.where(stories_users: { user_id: current_user.id })
-    @published_items = @published_items.where('publish_at <= ?', DateTime.now) # only those that are supposed to show
     @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
     @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
     @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
@@ -84,5 +84,9 @@ class StoriesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path, alert: 'Story not found'
     end
+  end
+
+  def check_for_current_user
+    redirect_to root_path, alert: 'User not found' unless current_user
   end
 end

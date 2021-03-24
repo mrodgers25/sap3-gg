@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   layout "application"
 
   before_action :set_limit, only: :index
+  before_action :filter_out_file_types_from_url, only: :index
 
   def index
     # database dropdown data
@@ -19,12 +20,19 @@ class HomeController < ApplicationController
       LEFT JOIN story_story_categories ON story_story_categories.story_id = stories.id
       LEFT JOIN story_categories ON story_categories.id = story_story_categories.story_category_id
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
-    @published_items = @published_items.where('publish_at <= ?', DateTime.now) # only those that are supposed to show
-    @published_items = @published_items.where("locations.id = #{params[:location_id]}") if params[:location_id].present?
-    @published_items = @published_items.where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
-    @published_items = @published_items.where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
-    @published_items = @published_items.order(position: :asc, created_at: :desc).distinct
-    @published_items = @published_items.limit(@story_limit)
+
+    if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
+      @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
+      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
+      @published_items = @published_items.limit(AdminSetting.filtered_display_limit)
+      @published_items = @published_items.order(created_at: :desc)
+    else
+      @published_items = @published_items.where(state: 'newsfeed').limit(AdminSetting.newsfeed_display_limit)
+      @published_items = @published_items.order(pinned: :desc, posted_at: :desc)
+    end
+
+    @published_items = @published_items.distinct
   end
 
   def about_us

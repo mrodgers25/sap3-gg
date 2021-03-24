@@ -25,9 +25,9 @@ class Admin::MediaOwnersController < Admin::BaseAdminController
       csv = CSV.parse(csv_text, headers: true)
       # create records from csv
       csv.each do |row|
-        MediaOwner.find_or_create_by!(
-          title: row.fetch('title'),
-          url_domain: row.fetch('url_domain')
+        MediaOwner.find_or_create_by(
+          title: row[0],
+          url_domain: row[1]
         )
       end
 

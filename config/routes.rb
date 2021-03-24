@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # UPDATE USER
   resources :users, only: [:edit, :update]
   # HOME CONTROLLER
-  resources :home, only: [:index]
+  resources :home, only: [:index] do
+    collection do
+      post :index
+    end
+  end
   get 'about_us', to: 'home#about_us', as: :about_us
   get 'contact_us', to: 'home#contact_us', as: :contact_us
   # STORY ACTIONS
@@ -67,19 +71,33 @@ Rails.application.routes.draw do
         get :export_mediaowners
         get :export_usersaved
         get :export_userlisting
-        get :export_actionlisting
-        get :export_outboundclick
         get :export_all
       end
     end
     resources :published_items, except: [:show] do
       member do
-        post :publish
+        post :display
         post :unpublish
       end
+
+      collection do
+        post :bulk_update
+      end
     end
+    resources :newsfeed, only: [:edit, :update] do
+      member do
+        post :remove
+        post :publish
+      end
+
+      collection do
+        get :queue
+        get :activities
+      end
+    end
+    resources :admin_settings, only: [:index, :update]
   end
 
   # redirect to home if route doesn't exist
-  match "*path" => "home#index", via: [:get, :post] unless Rails.env.development?
+  match "*path" => "home#index", via: [:get, :post]
 end
