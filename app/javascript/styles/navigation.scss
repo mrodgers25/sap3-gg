@@ -68,6 +68,10 @@
     width: 15rem;
     height: 100vh;
   }
+
+  .list-group-item {
+    padding: .5rem 1.25rem;
+  }
 }
 
 .list-group-flush > .list-group-item:last-child {

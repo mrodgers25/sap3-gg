@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="jumbotron bg-white admin-stories admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-stream mr-1"></i> Newsfeed Activities</h4>
+    </div>
+
+    <hr class="my-4">
+
+    <%= form_tag(activities_admin_newsfeed_index_path, method: :get) do %>
+      <div class="row filters">
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%= text_field_tag :url_title, params[:url_title], placeholder: 'Search Title...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%=
+            select_tag :activity_type,
+            options_from_collection_for_select(NewsfeedActivity.activity_types, 'to_s', 'titleize', params[:activity_type]),
+            prompt: 'Select Activity Type',
+            class: 'form-control form-control-sm',
+            id: 'activity-type-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%=
+            select_tag :order_by,
+            options_from_collection_for_select(['created_at ASC', 'created_at DESC', 'posted_at ASC', 'posted_at DESC', 'cleared_at ASC', 'cleared_at DESC'], 'to_s', 'to_s', params[:order_by]),
+            prompt: 'Select Sort',
+            class: 'form-control form-control-sm',
+            id: 'order-by-select'
+          %>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+          <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+        </div>
+      </div>
+    <% end %>
+
+
+    <hr class="my-4">
+
+    <div class="table-div">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Activity Type</th>
+            <th scope="col">Details</th>
+            <th scope="col">Pinned</th>
+            <th scope="col">Pinned Action</th>
+            <th scope="col">Posted At</th>
+            <th scope="col">Cleared At</th>
+            <th scope="col">Activity Created At</th>
+            <th scope="col">Time Pinned</th>
+            <th scope="col">Time Queued</th>
+            <th scope="col">Time Posted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @activities.each_with_index do |activity| %>
+            <tr>
+              <td style="width: 400px;">
+                <%= link_to activity.trackable.latest_url&.url_title, polymorphic_path([:admin, activity.trackable]), target: '_blank', class: 'text-dark' %>
+              </td>
+              <td><%= activity.activity_type.titleize || '-' %></td>
+              <td><%= activity.details || '-' %></td>
+              <td><%= human_bool(activity.pinned) || '-' %></td>
+              <td><%= activity.pinned_action&.titleize || '-' %></td>
+              <td><%= activity.posted_at&.strftime("%m/%d/%Y") || '-' %></td>
+              <td><%= activity.cleared_at&.strftime("%m/%d/%Y") || '-' %></td>
+              <td><%= activity.created_at&.strftime("%m/%d/%Y") || '-' %></td>
+              <td><%= activity.time_to_hours(activity.time_pinned) %></td>
+              <td><%= activity.time_to_hours(activity.time_queued) %></td>
+              <td><%= activity.time_to_hours(activity.time_posted) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class Admin::NewsfeedController < Admin::BaseAdminController
-  before_action :set_queued_item, except: [:index, :queue]
+  before_action :set_queued_item, except: [:index, :queue, :activities]
 
   def queue
     @queued_items = PublishedItem.joins("
@@ -50,6 +50,26 @@ class Admin::NewsfeedController < Admin::BaseAdminController
     else
       redirect_to queue_admin_newsfeed_index_path, alert: 'Queued Item failed to be posted.'
     end
+  end
+
+  def activities
+    @activities = NewsfeedActivity.joins("
+      INNER JOIN stories ON (trackable_type = 'Story' AND stories.id = trackable_id)
+      INNER JOIN urls ON urls.story_id = stories.id
+    ")
+    @activities = @activities.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    @activities = @activities.where(activity_type: params[:activity_type]) if params[:activity_type].present?
+
+    if params[:order_by].present?
+      col = params[:order_by].split(' ').first
+      dir = params[:order_by].split(' ').last
+
+      @activities = @activities.order(col => dir)
+    else
+      @activities = @activities.order(id: :desc)
+    end
+
+    @pagy, @activities = pagy(@activities)
   end
 
   private

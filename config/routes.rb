@@ -78,6 +78,7 @@ Rails.application.routes.draw do
 
       collection do
         get :queue
+        get :activities
       end
     end
     resources :admin_settings, only: [:index, :update]
