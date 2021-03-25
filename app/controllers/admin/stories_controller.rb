@@ -71,7 +71,7 @@ class Admin::StoriesController < Admin::BaseAdminController
       permalink = "#{rand_hex}/#{url_title}"
       @story.update_attribute(:permalink, "#{permalink}")
 
-      redirect_to review_admin_story_path(@story), notice: 'Story was moved to draft mode.'
+      redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
     else
       @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
       get_domain_info(@source_url_pre)
@@ -168,22 +168,9 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def update_state
-    begin
-      case params[:state]
-      when 'needs_review'
-        @story.request_review!
-      when 'do_not_publish'
-        @story.hide!
-      when 'completed'
-        @story.complete!
-      when 'removed_from_public'
-        @story.remove!
-      when 'no_status'
-        @story.reset!
-      end
-
-      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state].titleize}"
-    rescue
+    if @story.update(update_state_params)
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
+    else
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end
   end
@@ -304,5 +291,9 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def review_update_params
     params.require(:story).permit(:desc_length)
+  end
+
+  def update_state_params
+    params.require(:story).permit(:state)
   end
 end

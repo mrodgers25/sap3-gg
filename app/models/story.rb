@@ -72,6 +72,12 @@ class Story < ApplicationRecord
     self.aasm.states.map{|x| x.name.to_s }
   end
 
+  def self.all_states_collection_select
+    self.aasm.states.map do |state|
+      [ state.name.to_s.titleize, state.name.to_s ]
+    end
+  end
+
   def should_not_be_displayed?
     published_items.blank?
   end
