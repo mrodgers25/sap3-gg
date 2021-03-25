@@ -471,7 +471,8 @@ document.addEventListener("turbolinks:load", function () {
     });
   }
 
-  $(".alert").delay(6000).slideUp(750);
+  $(".alert-success").delay(6000).slideUp(750);
+  $('[data-toggle="tooltip"]').tooltip();
 }); // function refreshTimer() {
 //   $.ajax({
 //     url: '/visitors/refresh_timer',
@@ -23697,4 +23698,4 @@ module.exports = function (module) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=application-e91c01b4a30917f99b6b.js.map
+//# sourceMappingURL=application-d32be231f815aeb2f2a8.js.map

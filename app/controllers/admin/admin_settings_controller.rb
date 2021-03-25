@@ -24,6 +24,6 @@ class Admin::AdminSettingsController < Admin::BaseAdminController
   end
 
   def admin_settings_params
-    params.require(:admin_setting).permit(:newsfeed_size, :newsfeed_daily_post_count)
+    params.require(:admin_setting).permit(:newsfeed_display_limit, :filtered_display_limit, :newsfeed_daily_post_count)
   end
 end

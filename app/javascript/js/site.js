@@ -15,7 +15,8 @@ document.addEventListener("turbolinks:load", function () {
     });
   }
 
-  $(".alert").delay(6000).slideUp(750);
+  $(".alert-success").delay(6000).slideUp(750);
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 // function refreshTimer() {
