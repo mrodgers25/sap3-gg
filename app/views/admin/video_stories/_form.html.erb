@@ -106,19 +106,19 @@
         <div class="row">
           <div class="col-4">
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :video_creator, "Video Creator:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
+              <div class="col-9">
                 <%= f.text_field :video_creator, value: @link_creator, size: 50, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label "Story Date", style: 'font-size: 11px' %>
               </div>
-              <div class="form-group col-10 row">
+              <div class="form9roup col-10 row">
                 <div class="col">
                   <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
                 </div>
@@ -132,109 +132,110 @@
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :channel_id, "Channel ID:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
+              <div class="col-9">
                 <%= f.text_field :channel_id, value: @link_channel_id, size: 50, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :hashtags, "Hashtags:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.text_field :hashtags, size: 50, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.text_field :hashtags, value: @hashtags, size: 50, class: 'form-control' %>
               </div>
             </div>
           </div>
           <div class="col-4">
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :video_hashtags, "Video Hashtags:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.text_field :video_hashtags, size: 50, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.text_field :video_hashtags, value: @video_hashtags, size: 50, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :views, "Video Views:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.number_field :views, value: 0, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.number_field :views, value: @meta_views, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label "Duration (H:M:S)", style: 'font-size: 11px' %>
+              </div>
+              <div class="form9roup col-10 row">
+                <div class="col">
+                  <%= f.number_field :hours, value: @hours, placeholder: 'Hours', in: 0...10000, class: 'form-control' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :minutes, value: @minutes, placeholder: 'Minutes', in: 0...10000, class: 'form-control ' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :seconds, value: @seconds, placeholder: 'Seconds', in: 0...10000, class: 'form-control' %>
+                </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
-                  <%= f.label "Duration (H:M:S)", style: 'font-size: 11px' %>
-              </div>
-              <div class="form-group col-10 row">
-                <div class="col">
-                  <%= f.number_field :hours, value: 0, placeholder: 'Seconds', in: 0...10000, class: 'form-control' %>
-                </div>
-                <div class="col">
-                  <%= f.number_field :minutes, value: 0, placeholder: 'Seconds', in: 0...10000, class: 'form-control ' %>
-                </div>
-                <div class="col">
-                  <%= f.number_field :seconds, value: 0, placeholder: 'Seconds', in: 0...10000, class: 'form-control' %>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :subscribers, "Subscribers:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.number_field :subscribers, value: 0, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.number_field :subscribers, value: @meta_subscribers, placeholder: 'Subscribers', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
           </div>
+
           <div class="col-4">
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :likes, "Likes:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.number_field :likes, value: 0, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.number_field :likes, value: @meta_likes, placeholder: 'Likes', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :dislikes, "Dislikes:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.number_field :dislikes, value: 0, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              <div class="col-9">
+                <%= f.number_field :dislikes, value: @meta_dislikes, placeholder: 'Dislikes', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :unlisted, "Unlisted?", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
-                <%= f.check_box :unlisted, value: @outside_usa, class: '' %>
+              <div class="col-9">
+                <%= f.check_box :unlisted, value: @unlisted, class: '' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col-3">
                 <%= f.label :outside_usa, "Outside USA?", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
+              <div class="col-9">
                 <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-2">
+              <div class="col32">
                <%= f.label :state, "Story Type:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-10">
+              <div class="col90">
                 <%= f.select :state, Story.all_states, class: 'form-control' %>
               </div>
             </div>

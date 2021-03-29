@@ -37,11 +37,13 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def create
     duration = get_duration(params[:video_story])
     @video_story = VideoStory.new(video_story_params)
+    @video_story.video_duration = duration
     if @video_story.save
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_video_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
       get_domain_info(@source_url_pre)
+      set_fields_on_fail(video_story_params)
       set_locations_and_categories
       render :scrape
     end
@@ -171,6 +173,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     params.require(:video_story).permit(
       :video_url, :title, :description, :url_keywords,
       :editor_tagline, :hashtags, :video_creator, :channel_id,
+      :views, :subscribers, :likes, :dislikes, :unlisted,
       :video_duration, :video_hashtags, :outside_usa, :state,
       :story_year, :story_month, :story_date, :thumbnail_url,
       :location_ids => [],
@@ -180,14 +183,39 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def get_duration(param)
-    hours = param[:hours]
-    minutes = param[:minutes]
-    seconds = param[:seconds]
-    if hours.present? && minutes.present? && seconds.present?
-      hours.to_i.hour.to_i + minutes.to_i.hour.to_i + seconds.to_i
+    @hours = param[:hours]
+    @minutes = param[:minutes]
+    @seconds = param[:seconds]
+    if @hours.present? && @minutes.present? && @seconds.present?
+      @hours.to_i.hour.to_i + @minutes.to_i.hour.to_i + @seconds.to_i
     else
       0
     end
+  end
+
+  def set_fields_on_fail(hash)
+    @title = hash['title']
+    @meta_desc = hash['description']
+    @link_creator = hash['video_creator']
+    @link_channel_id = hash['channel_id']
+    @link_image = hash['thumbnail_url']
+    @meta_keywords = hash['url_keywords']
+    @meta_tagline = hash["editor_tagline"]
+    @meta_type = hash["story_type"]
+    @meta_author = hash["author"]
+    @meta_views = hash["views"]
+    @meta_likes = hash["likes"]
+    @meta_dislikes = hash["dislikes"]
+    @meta_subscribers = hash["subscribers"]
+    @year = hash["story_year"]
+    @month = hash["story_month"]
+    @day = hash["story_date"]
+    @unlisted = hash["unlisted"]
+    @hashtags = hash["hashtags"]
+    @video_hashtags = hash["video_hashtags"]
+    @selected_location_ids = process_chosen_params(hash['location_ids'])
+    @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
+    @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
   end
 
 end
