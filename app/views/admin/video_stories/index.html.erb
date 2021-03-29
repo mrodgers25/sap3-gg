@@ -29,7 +29,7 @@
               <td><%= story&.state&.titleize || '-' %></td>
               <td><%= story.created_at.strftime("%m/%d/%Y") %></td>
               <td style="width: 200px;">
-                <%= link_to '', class: "btn btn-sm btn-outline-primary", target: '_blank' do %>
+                <%= link_to admin_video_story_path(story), class: "btn btn-sm btn-outline-primary", target: '_blank' do %>
                   <i class="fas fa-search"></i>
                 <% end %>
                 <%= link_to review_admin_video_story_path(story), class: "btn btn-sm btn-outline-success" do %>

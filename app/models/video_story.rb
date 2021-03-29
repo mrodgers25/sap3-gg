@@ -56,4 +56,26 @@ class VideoStory < ApplicationRecord
     PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
   end
 
+  def story_display_date
+    if story_month && story_date && story_year
+      "#{story_month}/#{story_date}/#{story_year}"
+    elsif story_month && story_year
+      "#{story_month}/#{story_year}"
+    else
+      nil
+    end
+  end
+
+  def display_location
+    locations.pluck(:name).join(', ')
+  end
+
+  def display_place_categories
+    place_categories.pluck(:name).join(', ')
+  end
+
+  def display_story_categories
+    story_categories.pluck(:name).join(', ')
+  end
+
 end

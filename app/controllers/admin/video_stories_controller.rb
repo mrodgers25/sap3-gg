@@ -74,14 +74,39 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def edit
+    # story fields
+    @meta_tagline = @video_story.editor_tagline
+    @link_creator  = @video_story.video_creator
+    @outside_usa  = @video_story.outside_usa
+    @year         = @video_story.story_year
+    @month        = @video_story.story_month
+    @day          = @video_story.story_date
+    @link_channel_id = @video_story.channel_id
+    @meta_views = @video_story.views
+    @meta_likes = @video_story.likes
+    @meta_dislikes = @video_story.dislikes
+    @meta_subscribers = @video_story.subscribers
+    @unlisted = @video_story.unlisted
+    @hashtags = @video_story.hashtags
+    @video_hashtags = @video_story.video_hashtags
+    @base_domain    = @video_story.video_url
+    @title          = @video_story.title
+    @meta_desc      = @video_story.description
+    @meta_keywords  = @video_story.url_keywords
+    @link_image    = @video_story.thumbnail_url
 
+    # locations and categories
+    set_locations_and_categories
+    @selected_location_ids       = @video_story.locations.pluck(:id)
+    @selected_place_category_ids = @video_story.place_categories.pluck(:id)
+    @selected_story_category_ids = @video_story.story_categories.pluck(:id)
   end
 
   def update
     if @video_story.update(video_story_params)
       redirect_to admin_video_stories_path, notice: 'Story was successfully updated.'
     else
-      redirect_to edit_story_path(@video_story), notice: 'Story failed to be updated.'
+      redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
     end
   end
 
@@ -207,7 +232,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @meta_keywords = hash['url_keywords']
     @meta_tagline = hash["editor_tagline"]
     @meta_type = hash["story_type"]
-    @meta_author = hash["author"]
     @meta_views = hash["views"]
     @meta_likes = hash["likes"]
     @meta_dislikes = hash["dislikes"]
@@ -221,6 +245,10 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @selected_location_ids = process_chosen_params(hash['location_ids'])
     @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
     @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
+  end
+
+  def review_update_params
+    params.require(:video_story).permit(:desc_length)
   end
 
 end
