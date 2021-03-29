@@ -1,7 +1,7 @@
 require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
-  before_action :set_locations_and_categories, only: [:index, :new, :scrape, :edit]
+  before_action :get_locations_and_categories, only: [:index, :new, :scrape, :edit]
   before_action :set_video_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
 
   def index
@@ -35,17 +35,16 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def create
-    duration = get_duration(params[:video_story])
+    duration = set_duration(params[:video_story])
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = duration
-    # debugger
     if @video_story.save
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_video_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
       get_domain_info(@source_url_pre)
       set_fields_on_fail(video_story_params)
-      set_locations_and_categories
+      get_locations_and_categories
       render :scrape
     end
   end
@@ -96,13 +95,16 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @link_image    = @video_story.thumbnail_url
 
     # locations and categories
-    set_locations_and_categories
+    get_locations_and_categories
     @selected_location_ids       = @video_story.locations.pluck(:id)
     @selected_place_category_ids = @video_story.place_categories.pluck(:id)
     @selected_story_category_ids = @video_story.story_categories.pluck(:id)
+    get_time(@video_story.video_duration)
   end
 
   def update
+    @video_story.video_duration = set_duration(params[:video_story])
+
     if @video_story.update(video_story_params)
       redirect_to admin_video_stories_path, notice: 'Story was successfully updated.'
     else
@@ -183,7 +185,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     end
   end
 
-  def set_locations_and_categories
+  def get_locations_and_categories
     @locations        = Location.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
@@ -212,14 +214,26 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     )
   end
 
-  def get_duration(param)
+  def set_duration(param)
     @hours = param[:hours]
     @minutes = param[:minutes]
     @seconds = param[:seconds]
     if @hours.present? && @minutes.present? && @seconds.present?
-      @hours.to_i.hour.to_i + @minutes.to_i.hour.to_i + @seconds.to_i
+      @hours.to_i.hour.to_i + @minutes.to_i.minute.to_i + @seconds.to_i
     else
       0
+    end
+  end
+
+  def get_time(duration)
+    if duration.present?
+      @seconds = duration % 60
+      @minutes = (duration / 60) % 60
+      @hours = duration / (60 * 60)
+    else
+      @hours = 0
+      @minutes = 0
+      @seconds = 0
     end
   end
 
