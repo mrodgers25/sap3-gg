@@ -19,35 +19,32 @@ class VideoStory < ApplicationRecord
   validates :editor_tagline, presence: true
 
   aasm column: :state do
-    state :draft, initial: true
-    state :approved
-    state :published
-    state :archived
+    state :no_status, initial: true
+    state :needs_review
+    state :do_not_publish
+    state :completed
+    state :removed_from_public
 
-    event :approve do
-      # small hack for review screen, published added for ease of use
-      transitions from: [:draft, :published], to: :approved, after: Proc.new {|*args| destroy_published_item }
+    # after_all_transitions :log_status_change
+
+    event :request_review do
+      transitions from: [:no_status, :do_not_publish, :completed, :removed_from_public], to: :needs_review
     end
 
-    event :disapprove do
-      transitions from: [:approved, :published], to: :draft, after: Proc.new {|*args| destroy_published_item }
+    event :hide do
+      transitions from: [:no_status, :needs_review, :completed, :removed_from_public], to: :do_not_publish
     end
 
-    event :publish do
-      # small hack for review screen, draft added for ease of use
-      transitions from: [:draft, :approved], to: :published, after: Proc.new {|*args| create_published_item }
+    event :complete do
+      transitions from: [:no_status, :needs_review, :do_not_publish, :removed_from_public], to: :completed
     end
 
-    event :unpublish do
-      transitions from: :published, to: :approved, after: Proc.new {|*args| destroy_published_item }
+    event :remove do
+      transitions from: [:no_status, :needs_review, :do_not_publish, :completed], to: :removed_from_public
     end
 
-    event :archive do
-      transitions from: [:approved, :published], to: :archived, after: Proc.new {|*args| destroy_published_item }
-    end
-
-    event :revive do
-      transitions from: :archived, to: :approved
+    event :reset do
+      transitions from: [:needs_review, :do_not_publish, :completed, :removed_from_public], to: :no_status
     end
   end
 

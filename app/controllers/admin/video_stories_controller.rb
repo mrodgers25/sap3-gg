@@ -38,6 +38,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     duration = get_duration(params[:video_story])
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = duration
+    # debugger
     if @video_story.save
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_video_story_path(@video_story), notice: 'Story was moved to draft mode.'
@@ -95,15 +96,19 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def update_state
     begin
       case params[:state]
-      when 'draft'
-        @video_story.disapprove!
-      when 'approved'
-        @video_story.approve!
-      when 'published'
-        @video_story.publish!
+      when 'needs_review'
+        @video_story.request_review!
+      when 'do_not_publish'
+        @video_story.hide!
+      when 'completed'
+        @video_story.complete!
+      when 'removed_from_public'
+        @video_story.remove!
+      when 'no_status'
+        @video_story.reset!
       end
 
-      redirect_to review_admin_video_story_path(@video_story), notice: "Video Story saved as #{params[:state]}"
+      redirect_to review_admin_video_story_path(@video_story), notice: "Video Story saved as #{params[:state].titleize}"
     rescue
       redirect_to review_admin_video_story_path(@video_story), alert: 'Video Story failed to update'
     end
