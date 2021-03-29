@@ -36,6 +36,7 @@
             <th scope="col">Title</th>
             <th scope="col">Queue Position</th>
             <th scope="col">Pinned?</th>
+            <th scope="col">Pinned Action</th>
             <th scope="col">Queued At</th>
             <th scope="col">Actions</th>
           </tr>
@@ -43,19 +44,20 @@
         <tbody>
           <% @queued_items.each_with_index do |queued_item, index| %>
             <tr>
-              <td style="width: 600px;"><%= queued_item.publishable.latest_url&.url_title %></td>
+              <td style="width: 300px;"><%= queued_item.publishable.latest_url&.url_title %></td>
               <td><%= queued_item.queue_position || '-' %></td>
               <td><%= human_bool(queued_item.pinned) %></td>
+              <td><%= queued_item.pinned ? (queued_item.pinned_action&.titleize || '-') : '-' %></td>
               <td><%= queued_item.queued_at&.strftime("%m/%d/%Y") %></td>
-              <td style="width: 100px;">
-                <%= link_to edit_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-secondary m-1" do %>
-                  <i class="fas fa-edit mr-1"></i> Edit
+              <td style="width: 200px;">
+                <%= link_to edit_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit Item' } do %>
+                  <i class="fas fa-edit"></i>
                 <% end %>
-                <%= button_to publish_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-success m-1" do %>
-                  <i class="fas fa-check mr-1"></i> Post Now
+                <%= link_to publish_admin_newsfeed_path(queued_item), method: :post, class: "btn btn-sm btn-outline-primary", data: { toggle: 'tooltip', placement: 'top', title: 'Upload now',  confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-upload"></i>
                 <% end %>
-                <%= button_to remove_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-danger m-1", data: { confirm: 'Are you sure?' } do %>
-                  <i class="fas fa-times mr-1"></i> Remove
+                <%= link_to remove_admin_newsfeed_path(queued_item), method: :post, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Remove' } do %>
+                  <i class="fas fa-times"></i>
                 <% end %>
               </td>
             </tr>

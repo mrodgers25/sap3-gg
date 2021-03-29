@@ -20,7 +20,7 @@ namespace :newsfeed do
       # Get the story next in the queue
       queued_item = PublishedItem.where(state: 'queued').order(:queue_position, :queued_at).first
       # Post the story
-      queued_item.post!
+      queued_item.post! if queued_item
 
       # Get items that are set to be cleared by admin
       items_to_clear = PublishedItem.where(state: 'newsfeed').where('clear_at < ?', Time.zone.now)
