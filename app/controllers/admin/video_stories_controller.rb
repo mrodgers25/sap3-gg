@@ -7,12 +7,12 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def index
     @video_stories = VideoStory.all
 
-    @video_stories = @video_stories.where("LOWER(description) ~ '#{params[:description].downcase}'") if params[:description].present?
-    @video_stories = @video_stories.where("LOWER(title) ~ '#{params[:title].downcase}'") if params[:title].present?
-    @video_stories = @video_stories.where(state: params[:state]) if params[:state].present?
-    @video_stories = @video_stories.joins(:locations).where("locations.id = #{params[:location_id]}") if params[:location_id].present?
-    @video_stories = @video_stories.joins(:place_categories).where("place_categories.id = #{params[:place_category_id]}") if params[:place_category_id].present?
-    @video_stories = @video_stories.joins(:story_categories).where("story_categories.id = #{params[:story_category_id]}") if params[:story_category_id].present?
+    @video_stories = @video_stories.where("LOWER(description) ~ ?", params[:description].downcase) if params[:description].present?
+    @video_stories = @video_stories.where("LOWER(title) ~ ?", params[:title].downcase) if params[:title].present?
+    @video_stories = @video_stories.where('state = ?', params[:state]) if params[:state].present?
+    @video_stories = @video_stories.joins(:locations).where("locations.id = ?", params[:location_id]) if params[:location_id].present?
+    @video_stories = @video_stories.joins(:place_categories).where("place_categories.id = ?", params[:place_category_id]) if params[:place_category_id].present?
+    @video_stories = @video_stories.joins(:story_categories).where("story_categories.id = ?", params[:story_category_id]) if params[:story_category_id].present?
 
     @pagy, @video_stories = pagy(@video_stories)
   end
@@ -35,9 +35,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def create
-    duration = set_duration(params[:video_story])
     @video_story = VideoStory.new(video_story_params)
-    @video_story.video_duration = duration
+    @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_video_story_path(@video_story), notice: 'Story was moved to draft mode.'
@@ -74,25 +73,25 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def edit
     # story fields
-    @meta_tagline = @video_story.editor_tagline
-    @link_creator  = @video_story.video_creator
-    @outside_usa  = @video_story.outside_usa
-    @year         = @video_story.story_year
-    @month        = @video_story.story_month
-    @day          = @video_story.story_date
-    @link_channel_id = @video_story.channel_id
-    @meta_views = @video_story.views
-    @meta_likes = @video_story.likes
-    @meta_dislikes = @video_story.dislikes
+    @meta_tagline     = @video_story.editor_tagline
+    @link_creator     = @video_story.video_creator
+    @outside_usa      = @video_story.outside_usa
+    @year             = @video_story.story_year
+    @month            = @video_story.story_month
+    @day              = @video_story.story_date
+    @link_channel_id  = @video_story.channel_id
+    @meta_views       = @video_story.views
+    @meta_likes       = @video_story.likes
+    @meta_dislikes    = @video_story.dislikes
     @meta_subscribers = @video_story.subscribers
-    @unlisted = @video_story.unlisted
-    @hashtags = @video_story.hashtags
-    @video_hashtags = @video_story.video_hashtags
-    @base_domain    = @video_story.video_url
-    @title          = @video_story.title
-    @meta_desc      = @video_story.description
-    @meta_keywords  = @video_story.url_keywords
-    @link_image    = @video_story.thumbnail_url
+    @unlisted         = @video_story.unlisted
+    @hashtags         = @video_story.hashtags
+    @video_hashtags   = @video_story.video_hashtags
+    @base_domain      = @video_story.video_url
+    @title            = @video_story.title
+    @meta_desc        = @video_story.description
+    @meta_keywords    = @video_story.url_keywords
+    @link_image       = @video_story.thumbnail_url
 
     # locations and categories
     get_locations_and_categories
@@ -144,18 +143,18 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   private
 
   def set_scrape_fields
-    @title = @screen_scraper.title
-    @meta_desc = @screen_scraper.meta_desc
-    @link_creator = @screen_scraper.link_creator
-    @link_channel_id = @screen_scraper.link_channel_id
-    @link_image = @screen_scraper.link_image
-    @meta_keywords = @screen_scraper.meta_keywords
-    @meta_type = @screen_scraper.meta_type
-    @meta_author = @screen_scraper.meta_author
-    @year = @screen_scraper.year
-    @month = @screen_scraper.month
-    @day = @screen_scraper.day
-    @page_imgs = @screen_scraper.page_imgs
+    @title            = @screen_scraper.title
+    @meta_desc        = @screen_scraper.meta_desc
+    @link_creator     = @screen_scraper.link_creator
+    @link_channel_id  = @screen_scraper.link_channel_id
+    @link_image       = @screen_scraper.link_image
+    @meta_keywords    = @screen_scraper.meta_keywords
+    @meta_type        = @screen_scraper.meta_type
+    @meta_author      = @screen_scraper.meta_author
+    @year             = @screen_scraper.year
+    @month            = @screen_scraper.month
+    @day              = @screen_scraper.day
+    @page_imgs        = @screen_scraper.page_imgs
 
     @itemprop_pub_date_match
   end
@@ -192,12 +191,12 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def get_domain_info(source_url_pre)
-    full_url = Domainatrix.parse(source_url_pre).url
-    sub = Domainatrix.parse(source_url_pre).subdomain
-    domain = Domainatrix.parse(source_url_pre).domain
-    suffix = Domainatrix.parse(source_url_pre).public_suffix
-    prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
-    @base_domain = prefix + domain + '.' + suffix
+    full_url      = Domainatrix.parse(source_url_pre).url
+    sub           = Domainatrix.parse(source_url_pre).subdomain
+    domain        = Domainatrix.parse(source_url_pre).domain
+    suffix        = Domainatrix.parse(source_url_pre).public_suffix
+    prefix        = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+    @base_domain  = prefix + domain + '.' + suffix
     @full_web_url = full_url
   end
 
@@ -238,27 +237,27 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def set_fields_on_fail(hash)
-    @title = hash['title']
-    @meta_desc = hash['description']
-    @link_creator = hash['video_creator']
-    @link_channel_id = hash['channel_id']
-    @link_image = hash['thumbnail_url']
-    @meta_keywords = hash['url_keywords']
-    @meta_tagline = hash["editor_tagline"]
-    @meta_type = hash["story_type"]
-    @meta_views = hash["views"]
-    @meta_likes = hash["likes"]
-    @meta_dislikes = hash["dislikes"]
-    @meta_subscribers = hash["subscribers"]
-    @year = hash["story_year"]
-    @month = hash["story_month"]
-    @day = hash["story_date"]
-    @unlisted = hash["unlisted"]
-    @hashtags = hash["hashtags"]
-    @video_hashtags = hash["video_hashtags"]
-    @selected_location_ids = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
+    @title                        = hash['title']
+    @meta_desc                    = hash['description']
+    @link_creator                 = hash['video_creator']
+    @link_channel_id              = hash['channel_id']
+    @link_image                   = hash['thumbnail_url']
+    @meta_keywords                = hash['url_keywords']
+    @meta_tagline                 = hash["editor_tagline"]
+    @meta_type                    = hash["story_type"]
+    @meta_views                   = hash["views"]
+    @meta_likes                   = hash["likes"]
+    @meta_dislikes                = hash["dislikes"]
+    @meta_subscribers             = hash["subscribers"]
+    @unlisted                     = hash["unlisted"]
+    @hashtags                     = hash["hashtags"]
+    @video_hashtags               = hash["video_hashtags"]
+    @year                         = hash["story_year"]
+    @month                        = hash["story_month"]
+    @day                          = hash["story_date"]
+    @selected_location_ids        = process_chosen_params(hash['location_ids'])
+    @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
+    @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
 
   def review_update_params

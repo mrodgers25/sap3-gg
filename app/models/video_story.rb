@@ -13,10 +13,7 @@ class VideoStory < ApplicationRecord
   has_many :published_items, as: :publishable
 
   validates :video_url, :uniqueness => { :message => "Duplicate URL" }
-  validates :video_url, presence: true
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :editor_tagline, presence: true
+  validates_presence_of :video_url, :title, :description, :editor_tagline
 
   aasm column: :state do
     state :no_status, initial: true
@@ -53,7 +50,7 @@ class VideoStory < ApplicationRecord
   end
 
   def create_published_item
-    PublishedItem.create(publishable: self, publish_at: (Date.today + 1).beginning_of_day)
+    PublishedItem.create(publishable: self)
   end
 
   def story_display_date
