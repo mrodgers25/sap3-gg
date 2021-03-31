@@ -11,6 +11,8 @@ gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
 gem 'aasm'
 # Bug Tracking
 gem 'rollbar'
+# Avoid all the crazy logins
+gem 'recaptcha'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'

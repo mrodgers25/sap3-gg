@@ -50,6 +50,10 @@
 				<%= f.password_field :password_confirmation, class: "form-control" %>
 			</div>
 
+      <div class="form-group">
+        <%= recaptcha_tags %>
+      </div>
+
       <div class="sign-in-row mt-4 mx-auto text-center">
         <%= f.submit "Register", class: "btn btn-primary w-50" %>
       </div>

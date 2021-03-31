@@ -231,6 +231,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (6.2.1)
+    recaptcha (5.7.0)
+      json
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -347,6 +349,7 @@ DEPENDENCIES
   rails_12factor
   rails_db
   rails_layout
+  recaptcha
   responders
   rest-client
   rollbar
