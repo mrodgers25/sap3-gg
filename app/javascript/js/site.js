@@ -19,7 +19,6 @@ document.addEventListener("turbolinks:load", function () {
   $('[data-toggle="tooltip"]').tooltip();
 
   $('table').on('click', '.bulk-update-select-all', function(event) {
-    console.log('here')
     event.preventDefault();
 
     $('.bulk-update-cb').prop('checked', true);
