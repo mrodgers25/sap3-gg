@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseAdminController
-  before_action :set_user, except: :index
-  before_action :check_for_admin, only: [:update, :destroy]
+  before_action :set_user, except: [:index, :bulk_update]
+  before_action :check_for_admin, only: [:update, :destroy, :bulk_update]
 
   def index
     @users = User.order(created_at: :desc)
@@ -9,6 +9,7 @@ class Admin::UsersController < Admin::BaseAdminController
     @users = @users.where("LOWER(email) ~ ?", params[:email].downcase) if params[:email].present?
     @users = @users.where("LOWER(city_preference) ~ ?", params[:city_preference].downcase) if params[:city_preference].present?
     @users = @users.where(role: params[:role]) if params[:role].present?
+    @users = @users.where(confirmed_at: nil) if params[:status].present? && params[:status] == 'unconfirmed'
 
     @pagy, @users = pagy(@users)
   end
@@ -32,6 +33,30 @@ class Admin::UsersController < Admin::BaseAdminController
     end
   end
 
+  def bulk_update
+    @users = User.where(id: bulk_update_params[:ids])
+    count  = @users.size
+
+    if @users.present?
+      begin
+        case bulk_update_params[:update_type]
+        when 'confirm_all'
+          @users.each{|user| user.update(confirmed_at: Time.zone.now) }
+          action_text = 'confirmed'
+        when 'delete_all'
+          @users.destroy_all
+          action_text = 'deleted'
+        end
+
+        redirect_to admin_users_path, notice: "#{count} users #{action_text}."
+      rescue => e
+        redirect_to admin_users_path, alert: e
+      end
+    else
+      redirect_to admin_users_path, alert: "No selection was made."
+    end
+  end
+
   private
 
   def set_user
@@ -44,5 +69,9 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :role, :city_preference)
+  end
+
+  def bulk_update_params
+    params.permit(:update_type, ids: [])
   end
 end
