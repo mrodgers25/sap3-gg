@@ -25,7 +25,10 @@
               <th scope="col">Type</th>
               <th scope="col">Status</th>
               <th scope="col">Completed</th>
-              <th scope="col">Action</th>
+              <th scope="col">
+                Action<br>
+                <%= link_to 'Select All', '#', class: 'bulk-update-select-all' %>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -46,7 +49,7 @@
                 </td>
                 <td><%= published_item.completed_at.strftime("%m/%d/%Y") %></td>
                 <td style="width: 50px;">
-                  <%= check_box_tag('ids[]', published_item.id, false) %><br>
+                  <%= check_box_tag('ids[]', published_item.id, false, id: published_item.id, class: 'bulk-update-cb') %><br>
                   <%= link_to 'Edit', edit_admin_published_item_path(published_item) if published_item.newsfeed? %>
                 </td>
               </tr>

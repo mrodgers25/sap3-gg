@@ -17,6 +17,13 @@ document.addEventListener("turbolinks:load", function () {
 
   $(".alert-success").delay(6000).slideUp(750);
   $('[data-toggle="tooltip"]').tooltip();
+
+  $('table').on('click', '.bulk-update-select-all', function(event) {
+    console.log('here')
+    event.preventDefault();
+
+    $('.bulk-update-cb').prop('checked', true);
+  })
 });
 
 // function refreshTimer() {

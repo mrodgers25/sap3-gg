@@ -48,7 +48,11 @@ Rails.application.routes.draw do
     resources :place_categories, except: [:show]
     resources :story_categories, except: [:show]
     resources :media_owners, except: [:show]
-    resources :users, except: [:show]
+    resources :users, except: [:show] do
+      collection do
+        post :bulk_update
+      end
+    end
     resources :reports, only: [:index] do
       collection do
         get :export_allstories
