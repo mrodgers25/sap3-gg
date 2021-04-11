@@ -40,10 +40,10 @@ class Admin::UsersController < Admin::BaseAdminController
     if @users.present?
       begin
         case bulk_update_params[:update_type]
-        when 'confirm_all'
+        when 'confirm_selected'
           @users.each{|user| user.update(confirmed_at: Time.zone.now) }
           action_text = 'confirmed'
-        when 'delete_all'
+        when 'delete_selected'
           @users.destroy_all
           action_text = 'deleted'
         end
