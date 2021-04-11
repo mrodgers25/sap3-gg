@@ -62,6 +62,7 @@ Rails.application.routes.draw do
         get :export_usersaved
         get :export_userlisting
         get :export_all
+        get :export_newsfeed_activities
       end
     end
     resources :published_items, except: [:show] do

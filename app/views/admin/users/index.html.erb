@@ -13,7 +13,7 @@
     <div class="table-div">
       <%= form_with(url: bulk_update_admin_users_path, data: { confirm: 'Are you sure you want to run this bulk action?'}) do %>
         <div class='col-12 col-md-3 ml-auto px-0 mb-2'>
-          <%= select_tag :update_type, options_from_collection_for_select(['confirm_all', 'delete_all'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select', onchange: 'confirm("Run this bulk action?") && this.form.submit();' %>
+          <%= select_tag :update_type, options_from_collection_for_select(['confirm_selected', 'delete_selected'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select', onchange: 'confirm("Run this bulk action?") && this.form.submit();' %>
         </div>
         <table class="table table-bordered table-hover">
           <thead>

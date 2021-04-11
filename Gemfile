@@ -25,7 +25,6 @@ gem 'sdoc', group: :doc
 gem 'devise'
 gem 'pg'
 gem 'puma'
-gem 'pry'
 gem 'simple_form'
 gem 'pundit', '>= 0.2.1'
 gem 'high_voltage'
@@ -68,4 +67,8 @@ group :development do
   # NEW GEMS
   # Email Catcher for Dev
   gem "letter_opener"
+
+  # Debugging/Console
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
