@@ -12,6 +12,7 @@
 
     <div class="body">
       <p class="lead m-auto">Forgot your password?</p>
+      <%= devise_error_messages! %>
 
       <div class="form-group my-4 max-vw-80 mx-auto">
         <%= f.text_field :email,
