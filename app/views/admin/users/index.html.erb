@@ -11,41 +11,47 @@
     <hr class="my-4">
 
     <div class="table-div">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">City Preference</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
+      <%= form_with(url: bulk_update_admin_users_path, data: { confirm: 'Are you sure you want to run this bulk action?'}) do %>
+        <div class='col-12 col-md-3 ml-auto px-0 mb-2'>
+          <%= select_tag :update_type, options_from_collection_for_select(['confirm_selected', 'delete_selected'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select', onchange: 'confirm("Run this bulk action?") && this.form.submit();' %>
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
             <tr>
-              <td><%= user.id %></td>
-              <td><%= user.first_name.titleize %></td>
-              <td><%= user.last_name.titleize %></td>
-              <td><%= user.email %></td>
-              <td><%= user.role.titleize %></td>
-              <td><%= user.city_preference %></td>
-              <td><%= pretty_date_format(user.created_at) %></td>
-              <td class="action-links">
-                <%= link_to edit_admin_user_path(user), class: "btn btn-sm btn-outline-warning" do %>
-                  <i class="fas fa-edit"></i>
-                <% end %>
-                <%= link_to admin_user_path(user), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
-                  <i class="fas fa-times"></i>
-                <% end %>
-              </td>
+              <th scope="col">Id</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">City Preference</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Confirmed</th>
+              <th scope="col">
+                Action<br>
+                <%= link_to 'Select All', '#', class: 'bulk-update-select-all' %>
+              </th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.first_name.titleize %></td>
+                <td><%= user.last_name.titleize %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role.titleize %></td>
+                <td><%= user.city_preference %></td>
+                <td><%= pretty_date_format(user.created_at) %></td>
+                <td><%= human_bool(user.confirmed_at.present?) %></td>
+                <td style="width: 50px;">
+                  <%= check_box_tag('ids[]', user.id, false, id: user.id, class: 'bulk-update-cb') %><br>
+                  <%= link_to 'Edit', edit_admin_user_path(user) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
 
     <hr class="my-4">

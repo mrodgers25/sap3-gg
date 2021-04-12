@@ -3,6 +3,9 @@
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
         <h4><i class="fas fa-book mr-1"></i> Enter Story Details</h4>
+        <% if @story.persisted? %>
+          <h6>Story ID: <%= @story.id %></h6>
+        <% end %>
       </div>
 
       <hr class="my-4">

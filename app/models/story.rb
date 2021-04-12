@@ -133,6 +133,18 @@ class Story < ApplicationRecord
     urls.order(:created_at).last
   end
 
+  def image_width
+    latest_url.images.first.image_width
+  end
+
+  def image_height
+    latest_url.images.first.image_height
+  end
+
+  def title
+    latest_url.url_title
+  end
+
   def story_display_date
     if story_month && story_date && story_year
       "#{story_month}/#{story_date}/#{story_year}"

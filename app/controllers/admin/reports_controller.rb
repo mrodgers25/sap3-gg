@@ -39,7 +39,7 @@ class Admin::ReportsController < Admin::BaseAdminController
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
-                  s.data_entry_time, @url_full, @url_domain, s.media_owner_id, @manual_enter, s.data_entry_user, s.story_complete]
+                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
         end
       end
 
@@ -132,7 +132,7 @@ class Admin::ReportsController < Admin::BaseAdminController
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                   @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \
-                  s.data_entry_time, @url_full, @url_domain, s.media_owner_id, @manual_enter, s.data_entry_user, s.story_complete]
+                  s.data_entry_time, @url_full, @url_domain, s.mediaowner_id, @manual_enter, s.data_entry_user, s.story_complete]
       end
     end
 
@@ -209,6 +209,42 @@ class Admin::ReportsController < Admin::BaseAdminController
 
     redirect_to :back, notice: "Exports created and sent. They should arrive in about 10 minutes at #{logged_in_user_email}"
 
+  end
+
+  def export_newsfeed_activities
+    @activities = NewsfeedActivity.joins("
+      INNER JOIN stories ON (trackable_type = 'Story' AND stories.id = trackable_id)
+      INNER JOIN urls ON urls.story_id = stories.id
+    ")
+
+    csv = CSV.generate do |csv_data|
+      csv_data << %w[ id story_id story_type story_title activity_type details pinned pinned_action posted_at cleared_at created_at time_pinned time_queued time_posted ]
+
+      @activities.each do |activity|
+        csv_data << [
+          activity.id,
+          activity.trackable_id,
+          activity.trackable_type,
+          activity.trackable.title,
+          activity.activity_type,
+          activity.details,
+          activity.pinned,
+          activity.pinned_action,
+          activity.posted_at,
+          activity.cleared_at,
+          activity.created_at,
+          activity.time_to_hours(activity.time_pinned),
+          activity.time_to_hours(activity.time_queued),
+          activity.time_to_hours(activity.time_posted)
+        ]
+      end
+    end
+
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data csv, filename: 'export_newsfeed_activities.csv' }
+    end
   end
 
 end

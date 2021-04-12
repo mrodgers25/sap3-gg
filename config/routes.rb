@@ -62,7 +62,11 @@ Rails.application.routes.draw do
     resources :place_categories, except: [:show]
     resources :story_categories, except: [:show]
     resources :media_owners, except: [:show]
-    resources :users, except: [:show]
+    resources :users, except: [:show] do
+      collection do
+        post :bulk_update
+      end
+    end
     resources :reports, only: [:index] do
       collection do
         get :export_allstories
@@ -72,6 +76,7 @@ Rails.application.routes.draw do
         get :export_usersaved
         get :export_userlisting
         get :export_all
+        get :export_newsfeed_activities
       end
     end
     resources :published_items, except: [:show] do

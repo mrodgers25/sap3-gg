@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.7.2'
-gem 'rails', '6.1.0'
+gem 'rails', '6.1.3.1 '
 gem 'webpacker'
 
 # NEW GEMS
@@ -11,6 +11,8 @@ gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
 gem 'aasm'
 # Bug Tracking
 gem 'rollbar'
+# Avoid all the crazy logins
+gem 'recaptcha'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
@@ -23,7 +25,6 @@ gem 'sdoc', group: :doc
 gem 'devise'
 gem 'pg'
 gem 'puma'
-gem 'pry'
 gem 'simple_form'
 gem 'pundit', '>= 0.2.1'
 gem 'high_voltage'
@@ -66,4 +67,8 @@ group :development do
   # NEW GEMS
   # Email Catcher for Dev
   gem "letter_opener"
+
+  # Debugging/Console
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
