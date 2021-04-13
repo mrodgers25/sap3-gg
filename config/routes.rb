@@ -45,7 +45,7 @@ Rails.application.routes.draw do
         patch :update_state
       end
     end
-    resources :video_stories do
+    resources :video_stories, only: [] do
       collection do
         get :scrape
       end
