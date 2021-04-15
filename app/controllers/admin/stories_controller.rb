@@ -178,11 +178,12 @@ class Admin::StoriesController < Admin::BaseAdminController
   private
 
   def get_domain_info(source_url_pre)
-    full_url = Domainatrix.parse(source_url_pre).url
-    sub = Domainatrix.parse(source_url_pre).subdomain
-    domain = Domainatrix.parse(source_url_pre).domain
-    suffix = Domainatrix.parse(source_url_pre).public_suffix
-    prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+    parsed_url = Domainatrix.parse(source_url_pre)
+    full_url   = parsed_url.url
+    subdomain  = parsed_url.subdomain
+    domain     = parsed_url.domain
+    suffix     = parsed_url.public_suffix
+    prefix     = (subdomain == 'www' || subdomain == '') ? '' : (subdomain + '.')
     @base_domain = prefix + domain + '.' + suffix
 
     if MediaOwner.where(url_domain: @base_domain).first.present?
