@@ -186,10 +186,11 @@ class Admin::StoriesController < Admin::BaseAdminController
     @base_domain = prefix + domain + '.' + suffix
 
     if MediaOwner.where(url_domain: @base_domain).first.present?
-      @name_display =  MediaOwner.where(url_domain: @base_domain).first.title
+      @name_display = MediaOwner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
+
     @full_web_url = full_url
   end
 
