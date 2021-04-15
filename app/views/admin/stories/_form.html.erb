@@ -68,6 +68,7 @@
             </div>
           </div>
 
+          <%= u.hidden_field :url_domain, value: @base_domain %>
           <%= u.hidden_field :raw_url_title_scrape, value: @title %>
           <%= u.hidden_field :raw_url_desc_scrape, value: @meta_desc %>
           <%= u.hidden_field :raw_url_keywords_scrape, value: @meta_keywords %>

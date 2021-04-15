@@ -9,7 +9,6 @@ class StoryPolicy
   def scrape?
     allowed = ["associate","admin"]
     allowed.include?(@current_user.role)
-    # binding.pry
   end
 
   def destroy?
