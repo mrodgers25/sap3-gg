@@ -1,0 +1,107 @@
+<div class="story-show card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="back-button text-left">
+          <%= link_to :back, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+            <i class="fas fa-arrow-left mr-1"></i> Go Back
+          <% end %>
+        </div>
+        <div class="header mt-2 mt-md-0 text-center">
+          <%= link_to root_path, data: { turbolinks: false } do %>
+            <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 img-div m-auto">
+        <%= get_video_iframe(story.urls.first.url_full, "100%", '200px') %>
+
+        <div class="action-links">
+          <%# <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <div class="col-6">
+            <a class="twitter-share-button"
+              href="https://twitter.com/intent/tweet"
+              data-text="Here’s a great story I found on Stories About Places (@Stories_Places) "
+              data-size="large"
+              data-url="" >
+              Tweet
+            </a>
+          </div>
+          <div class="col-6">
+            <span class="fb-share-button" data-href="#{@full_storypage_url}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=#{@full_storypage_url}" class="fb-xfbml-parse-ignore">Share</a></span>
+          </div> %>
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="card-body">
+          <h5 class="text-center story-title"><%= link_to story.title, story.urls.first.url_full, target: '_blank', class: 'text-dark' %></h5>
+          <div class="tagline-div-<%= story.id %>">
+            <% if story.editor_tagline %>
+              <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+            <% end %>
+          </div>
+
+          <hr>
+          
+          <div class="row">
+            <div class="col-4 m-auto text-center links-div" id=<%= story.id %>>
+              <% if current_user && story.users.include?(current_user) %>
+                <p class="m-auto forget-story-link forget-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{story.id}" do %>
+                    <i class="fas fa-times mr-1"></i> Forget Story
+                  <% end %>
+                </p>
+              <% elsif current_user %>
+                <p class="m-auto save-story-link save-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% else %>
+                <p class="m-auto login-to-save-story-link login-to-save-story-link-<%= story.id %>" id=<%= story.id %>>
+                  <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+            <div class="col-4 m-auto">
+              <p class="m-auto">
+                <%= link_to story.latest_url&.url_full, class: "btn btn-sm btn-info" do %>
+                  <i class="fas fa-book-open mr-1"></i> Read at Publisher
+                <% end %>
+              </p>
+            </div>
+          </div>
+
+          <hr>
+
+          <p class="url-desc">
+            <%= story.latest_url.url_desc %>
+          </p>
+
+          <hr>
+
+          <dl class="row">
+            <dt class="col-6 col-lg-4">Author:</dt>
+            <dd class="col-6 col-lg-8"><%= story.video_creator || '-' %></dd>
+
+            <dt class="col-6 col-lg-4">Story Date:</dt>
+            <dd class="col-6 col-lg-8"><%= story.story_display_date || '-' %></dd>
+
+            <dt class="col-6 col-lg-4"><%= 'Location'.pluralize(story.locations.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= story.display_location || '-' %></dd>
+
+            <dt class="col-6 col-lg-4">Place <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= story.display_place_categories || '-' %></dd>
+
+            <dt class="col-6 col-lg-4">Story <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-8"><%= story.display_story_categories || '-' %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

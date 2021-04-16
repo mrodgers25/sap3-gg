@@ -18,6 +18,7 @@
             <th scope="col">Title</th>
             <th scope="col">Publisher/Date</th>
             <th scope="col">State</th>
+            <th scope="col">Type</th>
             <th scope="col">Completed?</th>
             <th scope="col">Created At</th>
             <th scope="col">Actions</th>
@@ -32,16 +33,17 @@
               <td style="width: 500px"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
               <td style="width: 200px"><%= story.media_owner_and_date_line || '-' %></td>
               <td><%= story&.state.titleize || '-' %></td>
+              <td><%= story&.type || '-' %></td>
               <td><%= human_bool(story.story_complete?) %></td>
               <td><%= story.created_at.strftime("%m/%d/%Y") %></td>
               <td style="width: 200px;">
                 <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary", target: '_blank', data: { toggle: 'tooltip', placement: 'top', title: 'View story page' } do %>
                   <i class="fas fa-search"></i>
                 <% end %>
-                <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Review story' } do %>
+                <%= link_to review_admin_story_path_helper(story), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Review story' } do %>
                   <i class="fas fa-eye"></i>
                 <% end %>
-                <%= link_to edit_admin_story_path(story), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit story' } do %>
+                <%= link_to edit_admin_story_path_helper(story), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit story' } do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
                 <%= link_to admin_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Delete story', confirm: 'Are you sure?' }, target: '_blank' do %>

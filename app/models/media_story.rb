@@ -1,0 +1,4 @@
+class MediaStory < Story
+
+
+end

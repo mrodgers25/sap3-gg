@@ -6,7 +6,7 @@
     <div class="grid-sizer"></div>
     <div class="gutter-sizer"></div>
       <div class="grid-item grid-card card">
-        <%= get_video_iframe(@video_story.video_url, "100%", '200px') %>
+        <%= get_video_iframe(@video_story.urls.first.url_full, "100%", '200px') %>
         <div class="card-body">
           <div class="tagline-div-<%= @video_story.id %>">
             <% if @video_story.editor_tagline %>
@@ -16,10 +16,10 @@
 
           <hr>
 
-          <h5 class="text-center story-title"><%= link_to @video_story.title, @video_story.video_url, target: '_blank', class: 'text-dark' %></h5>
+          <h5 class="text-center story-title"><%= link_to @video_story.title, @video_story.urls.last.url_full, target: '_blank', class: 'text-dark' %></h5>
 
           <p class="url-desc">
-            <%= truncate(@video_story.description, length: @video_story.desc_length, omission: '...  ' ) { link_to "Read more", admin_video_story_path(@video_story.id), target: '_blank', class: 'read-more-link' } %>
+            <%= truncate(@video_story.latest_url.url_desc, length: @video_story.desc_length, omission: '...  ' ) { link_to "Read more", admin_video_story_path(@video_story.id), target: '_blank', class: 'read-more-link' } %>
           </p>
 
           <hr>

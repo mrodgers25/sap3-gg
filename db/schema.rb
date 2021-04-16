@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_040554) do
+ActiveRecord::Schema.define(version: 2021_04_16_060140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,17 @@ ActiveRecord::Schema.define(version: 2021_03_25_040554) do
     t.string "permalink"
     t.string "state", default: "no_status"
     t.integer "desc_length", default: 200
+    t.string "type"
+    t.text "hashtags"
+    t.string "video_creator"
+    t.string "video_channel_id"
+    t.integer "video_duration", default: 0
+    t.text "video_hashtags"
+    t.integer "video_views"
+    t.integer "video_subscribers"
+    t.boolean "video_unlisted", default: false
+    t.integer "video_likes", default: 0
+    t.integer "video_dislikes", default: 0
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"
   end

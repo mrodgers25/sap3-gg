@@ -68,6 +68,10 @@ class Story < ApplicationRecord
     StoryActivity.create!(story_id: self.id, from: aasm.from_state.to_s, to: aasm.to_state.to_s, event: aasm.current_event.to_s)
   end
 
+  def self.all_types
+    ['MediaStory', 'VideoStory', 'CustomStory']
+  end
+
   def self.all_states
     self.aasm.states.map{|x| x.name.to_s }
   end

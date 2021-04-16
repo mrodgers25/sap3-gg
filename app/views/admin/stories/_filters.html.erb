@@ -17,6 +17,15 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
       <%=
+        select_tag :type,
+        options_from_collection_for_select(Story.all_types, 'to_s', 'to_s', params[:type]),
+        prompt: 'All Types',
+        class: 'form-control form-control-sm',
+        id: 'type-select'
+      %>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
+      <%=
         select_tag :order_by,
         options_from_collection_for_select(['created_at ASC', 'created_at DESC'], 'to_s', 'to_s', params[:order_by]),
         prompt: 'Select Sort',

@@ -1,6 +1,6 @@
 class AddVideoColsToStories < ActiveRecord::Migration[6.1]
   def change
-    add_column :stories, :kind, :string
+    add_column :stories, :type, :string
     add_column :stories, :hashtags, :text
     add_column :stories, :video_creator, :string
     add_column :stories, :video_channel_id, :string
