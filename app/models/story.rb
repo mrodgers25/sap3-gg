@@ -5,7 +5,7 @@ class Story < ApplicationRecord
   attr_accessor :location_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   has_and_belongs_to_many :users
-  has_many :urls, inverse_of: :story
+  has_many :urls, inverse_of: :story, dependent: :destroy
   accepts_nested_attributes_for :urls
   has_many :story_locations, dependent: :destroy
   has_many :locations, through: :story_locations
@@ -111,7 +111,6 @@ class Story < ApplicationRecord
         (self.story_year != nil or self.story_month != nil or self.story_date != nil) and
         (self.urls.first.url_type != '' and self.urls.first.url_title != '' and self.urls.first.url_desc != '' and self.urls.first.url_domain != ''))
     write_attribute(:story_complete, story_check ? true : false)
-    # binding.pry
   end
 
   def story_url_complete?  # currently not used

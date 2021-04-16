@@ -141,27 +141,29 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
   def update_state
     if @story.update(update_state_params)
-      redirect_to review_admin_media_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
     else
-      redirect_to review_admin_media_story_path(@story), alert: 'Story failed to update'
+      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end
   end
 
   private
 
   def get_domain_info(source_url_pre)
-    full_url = Domainatrix.parse(source_url_pre).url
-    sub = Domainatrix.parse(source_url_pre).subdomain
-    domain = Domainatrix.parse(source_url_pre).domain
-    suffix = Domainatrix.parse(source_url_pre).public_suffix
-    prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+    parsed_url = Domainatrix.parse(source_url_pre)
+    full_url   = parsed_url.url
+    subdomain  = parsed_url.subdomain
+    domain     = parsed_url.domain
+    suffix     = parsed_url.public_suffix
+    prefix     = (subdomain == 'www' || subdomain == '') ? '' : (subdomain + '.')
     @base_domain = prefix + domain + '.' + suffix
 
     if MediaOwner.where(url_domain: @base_domain).first.present?
-      @name_display =  MediaOwner.where(url_domain: @base_domain).first.title
+      @name_display = MediaOwner.where(url_domain: @base_domain).first.title
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
+
     @full_web_url = full_url
   end
 

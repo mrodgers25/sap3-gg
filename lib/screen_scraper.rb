@@ -42,7 +42,6 @@ class ScreenScraper
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
     @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995) if defined?(meta_keywords_scrape_pre['content'])
-    # binding.pry
 
     # meta author
     meta_author_scrape_pre = doc.css("meta[name='author']").first

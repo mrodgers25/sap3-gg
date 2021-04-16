@@ -9,7 +9,6 @@ class ReportPolicy
   def export_all?
     allowed = ["admin"]
     allowed.include?(@current_user.role)
-    # binding.pry
   end
 
   # def export_stories?
