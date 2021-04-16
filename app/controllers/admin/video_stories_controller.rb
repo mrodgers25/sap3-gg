@@ -202,14 +202,20 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def video_story_params
     params.require(:video_story).permit(
-      :video_url, :title, :description, :url_keywords,
+      :video_url,
       :editor_tagline, :hashtags, :video_creator, :channel_id,
       :views, :subscribers, :likes, :dislikes, :unlisted,
       :video_duration, :video_hashtags, :outside_usa, :state,
       :story_year, :story_month, :story_date, :thumbnail_url,
+      :data_entry_begin_time, :data_entry_user, :desc_length,
       :location_ids => [],
       :place_category_ids => [],
-      :story_category_ids => []
+      :story_category_ids => [],
+      urls_attributes: [
+        :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
+        :url_title_track, :url_desc_track, :url_keywords_track,
+        :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
+            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]]
     )
   end
 
