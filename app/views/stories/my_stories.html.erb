@@ -11,7 +11,7 @@
     <hr class="my-4">
 
     <div class="table-div">
-      <% if @published_items.present? %>
+      <% if @stories.present? %>
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -23,15 +23,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @published_items.each do |published_item| %>
-            <% story = published_item.publishable %>
+          <% @stories.each do |story| %>
             <tr>
               <td class="story-image">
                 <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' if story.latest_image %>
               </td>
               <td style="width: 600px;"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
-              <td style="width: 100px;"><%= published_item.save_date.strftime("%-m/%d/%Y") || '-' %></td>
+              <td style="width: 100px;"><%= story.save_date.strftime("%-m/%d/%Y") || '-' %></td>
               <td style="width: 150px;">
                 <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
                   <i class="fas fa-search mr-1"></i> View
