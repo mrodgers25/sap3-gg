@@ -26,7 +26,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       set_scrape_fields
     else
       flash.now.alert = "We can't find that URL – give it another shot"
-      redirect admin_initialize_scraper_index_path
+      redirect_to admin_initialize_scraper_index_path
     end
   end
 
@@ -127,7 +127,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     if @story.update(story_params)
       redirect_to admin_stories_path, notice: 'Story was successfully updated.'
     else
-      redirect_to edit_story_path(@story), notice: 'Story failed to be updated.'
+      redirect_to edit_media_story_path(@story), notice: 'Story failed to be updated.'
     end
   end
 
@@ -141,7 +141,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
   def update_state
     if @story.update(update_state_params)
-      redirect_to review_admin_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
+      redirect_to review_admin_media_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
     else
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end

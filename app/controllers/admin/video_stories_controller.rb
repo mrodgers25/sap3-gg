@@ -21,7 +21,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       set_scrape_fields
     else
       flash.now.alert = "Something went wrong with the scraper."
-      redirect admin_initialize_scraper_index_path
+      redirect_to admin_initialize_scraper_index_path
     end
   end
 
@@ -64,9 +64,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def approve
     if @video_story.approve!
-      redirect_to admin_video_stories_path, notice: "Video Story has been approved!"
+      redirect_to admin_stories_path, notice: "Video Story has been approved!"
     else
-      redirect_to admin_video_stories_path, alert: "Video Story has NOT been approved."
+      redirect_to admin_stories_path, alert: "Video Story has NOT been approved."
     end
   end
 
@@ -125,9 +125,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def destroy
     if @video_story.destroy
-      redirect_to admin_video_stories_path, notice: 'Story was successfully destroyed.'
+      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
     else
-      redirect_to admin_video_stories_path, alert: 'Story could not be destroyed.'
+      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
     end
   end
 
