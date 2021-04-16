@@ -26,12 +26,12 @@ module StoriesHelper
     end
   end
 
-  def show_visual_media(story)
+  def show_visual_media(story, id)
     case story.type
     when 'MediaStory'
       if story.latest_image
-        link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{published_item.id}').offsetWidth; const ratio = (divWidth / #{story.image_width.to_f}); const newHeight = (ratio * #{story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), story_path(story.permalink), target: '_blank', id: "default-image-#{published_item.id}"
-        link_to image_tag(story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{published_item.id}').style.display='none';", class: "grid-image", style: 'display: none;'), story_path(story.permalink), target: '_blank'
+        link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{id}').offsetWidth; const ratio = (divWidth / #{story.image_width.to_f}); const newHeight = (ratio * #{story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), story_path(story.permalink), target: '_blank', id: "default-image-#{id}"
+        link_to image_tag(story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{id}').style.display='none';", class: "grid-image", style: 'display: none;'), story_path(story.permalink), target: '_blank'
       else
       link_to image_pack_tag('default-image.jpeg', class: "grid-image"), story_path(story.permalink), target: '_blank'
       end

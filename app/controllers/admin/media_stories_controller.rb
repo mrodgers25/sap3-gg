@@ -45,7 +45,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
       redirect_to review_admin_media_story_path(@story), notice: 'Story was saved.'
     else
-      @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
+      @source_url_pre = params["media_story"]["urls_attributes"]["0"]["url_full"]
       get_domain_info(@source_url_pre)
       set_fields_on_fail(story_params)
       get_locations_and_categories
@@ -248,7 +248,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def story_params
-    params.require(:story).permit(
+    params.require(:media_story).permit(
       :media_id, :scraped_type, :story_type, :author, :outside_usa, :story_year, :story_month, :story_date, :sap_publish_date,
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
@@ -264,10 +264,10 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def review_update_params
-    params.require(:story).permit(:desc_length)
+    params.require(:media_story).permit(:desc_length)
   end
 
   def update_state_params
-    params.require(:story).permit(:state)
+    params.require(:media_story).permit(:state)
   end
 end
