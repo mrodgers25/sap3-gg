@@ -1,5 +1,2 @@
 class VideoStory < Story
-
-
-  
 end

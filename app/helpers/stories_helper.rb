@@ -37,7 +37,7 @@ module StoriesHelper
       end
     when 'VideoStory'
       content_tag :div, class: "p-3" do
-        get_video_iframe(story.latest_url.url_full, width = "100%", height = "100%")
+        get_video_iframe(story.latest_url&.url_full, width = "100%", height = "100%")
       end
     end
   end

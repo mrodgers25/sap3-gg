@@ -129,7 +129,7 @@ class Story < ApplicationRecord
   end
 
   def latest_image
-    latest_url.images.order(:created_at).last
+    latest_url&.images&.order(:created_at)&.last
   end
 
   def latest_url
@@ -159,7 +159,7 @@ class Story < ApplicationRecord
   end
 
   def media_owner_and_date_line
-    if latest_url.media_owner&.title
+    if latest_url&.media_owner&.title
       "#{latest_url.media_owner.title} - #{story_display_date}"
     else
       story_display_date
