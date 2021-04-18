@@ -34,22 +34,28 @@
         <thead>
           <tr>
             <th scope="col">Title</th>
+            <th scope="col">Locations</th>
+            <th scope="col">Place Categories</th>
+            <th scope="col">Story Categories</th>
             <th scope="col">Queue Position</th>
             <th scope="col">Pinned?</th>
             <th scope="col">Pinned Action</th>
-            <th scope="col">Queued At</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% @queued_items.each_with_index do |queued_item, index| %>
             <tr>
-              <td style="width: 300px;"><%= queued_item.publishable.latest_url&.url_title %></td>
-              <td><%= queued_item.queue_position || '-' %></td>
+              <td style="width: 400px;">
+                <%= link_to queued_item.publishable.latest_url&.url_title, polymorphic_path([:admin, queued_item.publishable]), target: '_blank', class: 'text-dark' %>
+              </td>
+              <td><%= queued_item.publishable.display_location_codes || '-' %></td>
+              <td><%= queued_item.publishable.display_place_categories || '-' %></td>
+              <td><%= queued_item.publishable.display_story_categories || '-' %></td>
+              <td style="width: 50px;"><%= queued_item.queue_position || '-' %></td>
               <td><%= human_bool(queued_item.pinned) %></td>
-              <td><%= queued_item.pinned ? (queued_item.pinned_action&.titleize || '-') : '-' %></td>
-              <td><%= queued_item.queued_at&.strftime("%m/%d/%Y") %></td>
-              <td style="width: 200px;">
+              <td style="width: 50px;"><%= queued_item.pinned ? (queued_item.pinned_action&.titleize || '-') : '-' %></td>
+              <td style="width: 150px;">
                 <%= link_to edit_admin_newsfeed_path(queued_item), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit Item' } do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
