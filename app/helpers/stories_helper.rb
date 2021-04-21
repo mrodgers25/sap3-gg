@@ -33,7 +33,7 @@ module StoriesHelper
         link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{id}').offsetWidth; const ratio = (divWidth / #{story.image_width.to_f}); const newHeight = (ratio * #{story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), story_path(story.permalink), target: '_blank', id: "default-image-#{id}"
         link_to image_tag(story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{id}').style.display='none';", class: "grid-image", style: 'display: none;'), story_path(story.permalink), target: '_blank'
       else
-      link_to image_pack_tag('default-image.jpeg', class: "grid-image"), story_path(story.permalink), target: '_blank'
+        link_to image_pack_tag('default-image.jpeg', class: "grid-image"), story_path(story.permalink), target: '_blank'
       end
     when 'VideoStory'
       content_tag :div, class: "p-3" do
