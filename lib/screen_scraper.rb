@@ -11,8 +11,9 @@ class ScreenScraper
   def scrape!(scrape_url)
 
     doc = nil
+
     begin
-      doc = Nokogiri::HTML(open(scrape_url, 'User-Agent' => BROWSER))
+      doc = Nokogiri::HTML(open(scrape_url, 'User-Agent' => BROWSER), nil, Encoding::UTF_8.to_s)
       # TODO: handle possible redirection from http --> https
     rescue # TODO: capture a specific NOKOGIRI exception
       return false
