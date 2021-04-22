@@ -1,0 +1,273 @@
+<div class="container-fluid">
+  <%= form_with(model: @video_story, url: route, method: method) do |f| %>
+    <div class="jumbotron bg-white story-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-video mr-1"></i> Enter Video Story Details</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <% if @video_story.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@video_story.errors.count, "error") %> prohibited this story from being saved:</h5>
+          <ul>
+            <% @video_story.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="body">
+        <p class="lead text-center">Video Data</p>
+        <hr class="my-4">
+
+        <%= f.fields_for :urls do |u| %>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_full, "Video Url:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_field :url_full, value: @full_web_url, class: "form-control form-control-sm", readonly: true %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_title, "Url Title:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_title, rows: 1, value: @title, maxlength: 250, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_desc, "Url Description:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_desc, rows: 3, value: @meta_desc, maxlength: 1000, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_keywords, "Url Keywords:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_keywords, rows: 1, value: @meta_keywords, maxlength: 1000, class: "form-control" %>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <%= u.fields_for :images do |i| %>
+            <div class="form-group row">
+              <div class="col-2">
+                <%= i.label :src_url, "Thumbnail Image URL:" %>
+              </div>
+              <div class="col-10">
+                <%= i.text_field :src_url, value: @link_image, class: "form-control form-control-sm" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :editor_tagline, "Editor Tagline:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :editor_tagline, size: 50, class: 'form-control' %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :location_ids, "Locations:" %>
+          </div>
+          <div class="col-10">
+            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :place_category_ids, "Place Categories:" %>
+          </div>
+          <div class="col-10 w-100">
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_category_ids, "Story Categories:" %>
+          </div>
+          <div class="col-10">
+            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @selected_story_category_ids), {}, { multiple: true, id: 'story_story_category_ids' } %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_creator, "Video Creator:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.text_field :video_creator, value: @link_creator, size: 50, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label "Story Date", style: 'font-size: 11px' %>
+              </div>
+              <div class="form-group row col-9">
+                <div class="col">
+                  <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_channel_id, "Channel ID:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.text_field :video_channel_id, value: @link_channel_id, size: 50, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :hashtags, "Hashtags:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.text_field :hashtags, value: @hashtags, size: 50, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_hashtags, "Video Hashtags:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.text_field :video_hashtags, value: @video_hashtags, size: 50, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_views, "Video Views:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.number_field :video_views, value: @meta_views, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label "Duration (H:M:S)", style: 'font-size: 11px' %>
+              </div>
+              <div class="form-group col-9 row">
+                <div class="col">
+                  <%= f.number_field :hours, value: @hours, placeholder: 'Hours', in: 0...10000, class: 'form-control' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :minutes, value: @minutes, placeholder: 'Minutes', in: 0...10000, class: 'form-control ' %>
+                </div>
+                <div class="col">
+                  <%= f.number_field :seconds, value: @seconds, placeholder: 'Seconds', in: 0...10000, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_subscribers, "Subscribers:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.number_field :video_subscribers, value: @meta_subscribers, placeholder: 'Subscribers', in: 0...9999999999, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_likes, "Likes:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.number_field :video_likes, value: @meta_likes, placeholder: 'Likes', in: 0...9999999999, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_dislikes, "Dislikes:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.number_field :video_dislikes, value: @meta_dislikes, placeholder: 'Dislikes', in: 0...9999999999, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :video_unlisted, "Unlisted?", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.check_box :video_unlisted, value: @unlisted, class: '' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+                <%= f.label :outside_usa, "Outside USA?", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-3">
+               <%= f.label :state, "Story Type:", style: 'font-size: 11px' %>
+              </div>
+              <div class="col-9">
+                <%= f.select :state, Story.all_states, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="my-4">
+        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time %>
+        <%= f.hidden_field :data_entry_user, value: current_user.id %>
+
+        <% if params[:action] != 'new' %>
+          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+        <% else %>
+          <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
+        <% end %>
+
+        <hr class="my-4">
+
+        <%= get_video_iframe(@full_web_url, "100%", '500px') %>
+      </div>
+    </div>
+  <% end %>
+</div>

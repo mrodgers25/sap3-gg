@@ -4,5 +4,4 @@ class PlaceCategory < ApplicationRecord
 
   has_many :story_place_categories, dependent: :destroy
   has_many :stories, through: :story_place_categories
-
 end

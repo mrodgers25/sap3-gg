@@ -26,11 +26,12 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
         WHEN published_items.state = 'queued' THEN 3
         WHEN published_items.state = 'displaying' THEN 4
         END AS state_order
-      "
+      ",
+      'stories.type'
     )
     @published_items = @published_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @published_items = @published_items.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
-    @published_items = @published_items.where(publishable_type: params[:publishable_type]) if params[:publishable_type].present?
+    @published_items = @published_items.where("stories.type ~ ?", params[:publishable_type]) if params[:publishable_type].present?
     @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
     @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
     @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?

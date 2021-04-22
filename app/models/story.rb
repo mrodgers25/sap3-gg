@@ -68,6 +68,10 @@ class Story < ApplicationRecord
     StoryActivity.create!(story_id: self.id, from: aasm.from_state.to_s, to: aasm.to_state.to_s, event: aasm.current_event.to_s)
   end
 
+  def self.all_types
+    ['MediaStory', 'VideoStory', 'CustomStory']
+  end
+
   def self.all_states
     self.aasm.states.map{|x| x.name.to_s }
   end
@@ -125,7 +129,7 @@ class Story < ApplicationRecord
   end
 
   def latest_image
-    latest_url.images.order(:created_at).last
+    latest_url&.images&.order(:created_at)&.last
   end
 
   def latest_url
@@ -155,7 +159,7 @@ class Story < ApplicationRecord
   end
 
   def media_owner_and_date_line
-    if latest_url.media_owner&.title
+    if latest_url&.media_owner&.title
       "#{latest_url.media_owner.title} - #{story_display_date}"
     else
       story_display_date

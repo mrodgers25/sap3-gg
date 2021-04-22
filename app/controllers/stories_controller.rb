@@ -40,7 +40,7 @@ class StoriesController < ApplicationController
     @story_categories = StoryCategory.order(:name)
 
     @published_items = PublishedItem.joins("
-      INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
+      INNER JOIN stories ON (stories.id = publishable_id)
       LEFT JOIN stories_users ON stories_users.story_id = stories.id
       LEFT JOIN story_locations ON story_locations.story_id = stories.id
       LEFT JOIN locations ON locations.id = story_locations.location_id

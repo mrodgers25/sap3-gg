@@ -29,12 +29,26 @@ Rails.application.routes.draw do
   get 'my_stories', to: 'stories#my_stories'
   # ADMIN ROUTES
   namespace :admin do
-    resources :stories do
+    resources :initialize_scraper, only: [:index] do
       collection do
-        get :initialize_scraper
-        post :scrape
+        get :scrape
       end
-
+    end
+    resources :stories, only: [:index]
+    resources :media_stories, except: [:index] do
+      collection do
+        get :scrape
+      end
+      member do
+        get :review
+        patch :review_update
+        patch :update_state
+      end
+    end
+    resources :video_stories, except: [:index] do
+      collection do
+        get :scrape
+      end
       member do
         get :review
         patch :review_update
