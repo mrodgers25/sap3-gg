@@ -1,62 +1,53 @@
 <div class="container-fluid">
   <div class="jumbotron bg-white admin-stories admin-index-page">
     <div class="header text-center">
-      <h4><i class="fas fa-tasks mr-1"></i> Published Items</h4>
+      <h4><i class="fas fa-tasks mr-1"></i> Publishable</h4>
     </div>
 
-    <hr class="my-4">
+    <hr class="my-2">
 
     <%= render partial: 'filters', locals: { filter_path: admin_published_items_path } %>
 
-    <hr class="my-4">
+    <hr class="my-2">
 
     <div class="table-div">
-      <%= form_with(url: bulk_update_admin_published_items_path, data: { confirm: 'Are you sure you want to run this bulk action?'}) do %>
-        <div class='col-12 col-md-3 ml-auto px-0 mb-2'>
-            <%= select_tag :update_type, options_from_collection_for_select(['add_to_queue', 'remove_from_queue', 'clear_from_newsfeed',  'remove_from_public'], :to_s, :titleize), prompt: "Bulk action type...", class: 'custom-select', onchange: 'confirm("Run this bulk action?") && this.form.submit();' %>
-        </div>
-        <table class="table table-bordered table-hover">
-          <thead>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Locations</th>
+            <th scope="col">Place Categories</th>
+            <th scope="col">Story Categories</th>
+            <th scope="col">Story Type</th>
+            <th scope="col">Story Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @published_items.each_with_index do |published_item, index| %>
             <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Locations</th>
-              <th scope="col">Place Categories</th>
-              <th scope="col">Story Categories</th>
-              <th scope="col">Type</th>
-              <th scope="col">Status</th>
-              <th scope="col">Completed</th>
-              <th scope="col">
-                Action<br>
-                <%= link_to 'Select All', '#', class: 'bulk-update-select-all' %>
-              </th>
+              <td style="width: 400px;">
+                <% if published_item.pinned? %>
+                  <i class='fa fa-star text-info'></i>
+                <% end %>
+                <%= link_to published_item.publishable.latest_url&.url_title, polymorphic_path([:admin, published_item.publishable]), target: '_blank', class: 'text-dark' %>
+              </td>
+              <td><%= published_item.publishable.display_location_codes || '-' %></td>
+              <td><%= published_item.publishable.display_place_categories || '-' %></td>
+              <td><%= published_item.publishable.display_story_categories || '-' %></td>
+              <td style="width: 100px;">
+                <i class='<%= colored_icon_for_story_type(published_item.story_type) %>'></i> <%= published_item.story_type.titleize.tr('Story', '').strip! %>
+              </td>
+              <td style="width: 100px;"><%= published_item.story_date_combined %></td>
+              <td style="width: 50px;">
+                <%= link_to add_to_queue_admin_published_item_path(published_item), method: :post, class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Add To Queue' } do %>
+                  <i class="fas fa-plus"></i>
+                <% end %>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @published_items.each_with_index do |published_item, index| %>
-              <tr>
-                <td style="width: 400px;">
-                  <% if published_item.pinned? %>
-                    <i class='fa fa-star text-info'></i>
-                  <% end %>
-                  <%= link_to published_item.publishable.latest_url&.url_title, polymorphic_path([:admin, published_item.publishable]), target: '_blank', class: 'text-dark' %>
-                </td>
-                <td><%= published_item.publishable.display_location_codes || '-' %></td>
-                <td><%= published_item.publishable.display_place_categories || '-' %></td>
-                <td><%= published_item.publishable.display_story_categories || '-' %></td>
-                <td><%= published_item.type %></td>
-                <td style="width: 100px;">
-                  <i class='fa fa-circle <%= published_item_state_color(published_item.state) %>'></i> <%= published_item.state.titleize %>
-                </td>
-                <td><%= published_item.completed_at.strftime("%m/%d/%Y") %></td>
-                <td style="width: 50px;">
-                  <%= check_box_tag('ids[]', published_item.id, false, id: published_item.id, class: 'bulk-update-cb') %><br>
-                  <%= link_to 'Edit', edit_admin_published_item_path(published_item) if published_item.newsfeed? %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 
     <hr class="my-2">

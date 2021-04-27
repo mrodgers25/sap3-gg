@@ -29,7 +29,18 @@ module ApplicationHelper
     when 'newsfeed'
       'text-primary'
     else
+      ''
+    end
+  end
 
+  def colored_icon_for_story_type(story_type)
+    case story_type
+    when 'MediaStory'
+      'far fa-newspaper text-success'
+    when 'VideoStory'
+      'fab fa-youtube text-danger'
+    when 'CustomStory'
+      'fas fa-asterisk text-primary'
     end
   end
 
