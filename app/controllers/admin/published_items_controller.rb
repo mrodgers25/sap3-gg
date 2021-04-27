@@ -1,5 +1,5 @@
 class Admin::PublishedItemsController < Admin::BaseAdminController
-  before_action :set_published_item, only: [:display, :unpublish, :edit, :update]
+  before_action :set_published_item, only: [:display, :unpublish, :edit, :update, :add_to_queue]
 
   def index
     @locations        = Location.order("ascii(name)")
@@ -18,69 +18,35 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
       LEFT JOIN story_categories ON story_categories.id = story_story_categories.story_category_id
     ").select(
       'published_items.*',
-      'published_items.created_at AS completed_at',
+      'stories.type AS story_type',
       "
         CASE
-        WHEN published_items.state = 'newsfeed' AND published_items.pinned = true THEN 1
-        WHEN published_items.state = 'newsfeed' AND published_items.pinned IS NOT TRUE THEN 2
-        WHEN published_items.state = 'queued' THEN 3
-        WHEN published_items.state = 'displaying' THEN 4
-        END AS state_order
-      ",
-      'stories.type'
+          WHEN stories.story_year > 0 AND stories.story_month > 0 AND stories.story_date > 0
+          THEN TO_DATE(CONCAT(stories.story_year::TEXT, '-', stories.story_month::TEXT, '-', stories.story_date::TEXT), 'YYYY-MM-DD')
+          WHEN stories.story_year > 0 AND stories.story_month > 0
+          THEN TO_DATE(CONCAT(stories.story_year::TEXT, '-', stories.story_month::TEXT), 'YYYY-MM')
+          ELSE null
+        END AS story_date_combined
+      "
     )
+    @published_items = @published_items.where(state: 'displaying')
     @published_items = @published_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @published_items = @published_items.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
-    @published_items = @published_items.where("stories.type ~ ?", params[:publishable_type]) if params[:publishable_type].present?
-    @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
-    @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
-    @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
-    @published_items = @published_items.where('published_items.created_at BETWEEN ? AND ?', params[:completed_at].to_date.beginning_of_day, params[:completed_at].to_date.end_of_day) if params[:completed_at].present?
-    @published_items = @published_items.where(state: params[:state]) if params[:state].present?
+    @published_items = @published_items.where("stories.type ~ ?", params[:story_type]) if params[:story_type].present?
+    @published_items = @published_items.where(locations: {id: params[:location_id]}) if params[:location_id].present?
+    @published_items = @published_items.where(place_categories: {id: params[:place_category_id]}) if params[:place_category_id].present?
+    @published_items = @published_items.where(story_categories: {id: params[:story_category_id]}) if params[:story_category_id].present?
     @published_items = @published_items.distinct
-
-    if params[:order_by].present?
-      col = params[:order_by].split(' ').first
-      dir = params[:order_by].split(' ').last
-
-      if col == 'completed_at'
-        @published_items = @published_items.order('completed_at' => dir)
-      else
-        @published_items = @published_items.order(col => dir)
-      end
-    else
-      @published_items = @published_items.order('state_order ASC', posted_at: :desc, completed_at: :desc)
-    end
+    @published_items = @published_items.order(story_date_combined: :asc)
 
     @pagy, @published_items = pagy(@published_items)
   end
 
-  def bulk_update
-    @published_items = PublishedItem.where(id: bulk_update_params[:ids])
-
-    if @published_items.present?
-      begin
-        case bulk_update_params[:update_type]
-        when 'add_to_queue'
-          @published_items.each{|item| item.queue! }
-          action_text = 'added to the queue'
-        when 'remove_from_public'
-          @published_items.each{|item| item.publishable.remove! }
-          action_text = 'removed from the public'
-        when 'remove_from_queue'
-          @published_items.each{|item| item.remove! }
-          action_text = 'removed from the queue'
-        when 'clear_from_newsfeed'
-          @published_items.each{|item| item.clear! }
-          action_text = 'removed from the newsfeed'
-        end
-
-        redirect_to admin_published_items_path, notice: "#{@published_items.size} items #{action_text}."
-      rescue => e
-        redirect_to admin_published_items_path, alert: e
-      end
+  def add_to_queue
+    if @published_item.queue!
+      redirect_to admin_published_items_path, notice: 'Published Item was successfully added to the queue.'
     else
-      redirect_to admin_published_items_path, alert: "No selection was made."
+      redirect_to admin_published_items_path, alert: 'Published Item failed to be queued.'
     end
   end
 

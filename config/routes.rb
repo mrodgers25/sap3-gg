@@ -83,10 +83,7 @@ Rails.application.routes.draw do
       member do
         post :display
         post :unpublish
-      end
-
-      collection do
-        post :bulk_update
+        post :add_to_queue
       end
     end
     resources :newsfeed, only: [:edit, :update] do
