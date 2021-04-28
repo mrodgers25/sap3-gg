@@ -14,14 +14,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] }) if params[:location_id].present?
     @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
-
-    if params[:order_by].present?
-      col = params[:order_by].split(' ').first
-      dir = params[:order_by].split(' ').last
-      @stories = @stories.order(col => dir)
-    else
-      @stories = @stories.order('created_at DESC')
-    end
+    @stories = @stories.order('created_at DESC')
 
     @pagy, @stories = pagy(@stories)
   end
