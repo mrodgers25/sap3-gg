@@ -4,112 +4,111 @@
     <h6>Story ID: <%= @story.id %></h6>
   </div>
   <div class="grid story-grid">
-    <div class="grid-sizer"></div>
-    <div class="gutter-sizer"></div>
-      <div class="grid-item grid-card card">
-        <% if @story.media_story? %>
-          <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), admin_media_story_path(@story.id), target: '_blank' if @story.latest_image %>
-        <% elsif @story.video_story? %>
-          <%= get_video_iframe(@story.urls.first.url_full, "100%", '200px') %>
-        <% end %>
-        <div class="card-body">
-          <div class="tagline-div-<%= @story.id %>">
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+    <div class="grid-item grid-card card">
+      <% if @story.media_story? %>
+        <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), admin_media_story_path(@story.id), target: '_blank' if @story.latest_image %>
+      <% elsif @story.video_story? %>
+        <%= get_video_iframe(@story.urls.first.url_full, "100%", '200px') %>
+      <% end %>
+      <div class="card-body">
+        <div class="tagline-div-<%= @story.id %>">
+          <% if current_user && @story.users.include?(current_user) %>
+            <% if show_old_code %>
+              <p class="story-saved-text saved-text-<%= @story.id %> text-center">
+                <i class="fas fa-check-square mr-1"></i> Story Saved
+              </p>
+              <hr class="saved-text-hr-<%= @story.id %>">
+            <% end %>
+          <% end %>
+          <% if @story.editor_tagline %>
+            <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
+          <% end %>
+        </div>
+
+        <hr>
+
+        <h5 class="text-center story-title"><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+
+        <p class="text-center text-muted media-owner-date-line">
+          <%= @story.media_owner_and_date_line %>
+        </p>
+
+        <p class="url-desc">
+          <%= truncate(@story.latest_url.url_desc, length: @story.desc_length, omission: '...  ' ) { link_to "Read more", admin_media_story_path(@story.id), target: '_blank', class: 'read-more-link' } %>
+        </p>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-12 text-center links-div" id=<%= @story.id %>>
             <% if current_user && @story.users.include?(current_user) %>
-              <% if show_old_code %>
-                <p class="story-saved-text saved-text-<%= @story.id %> text-center">
-                  <i class="fas fa-check-square mr-1"></i> Story Saved
-                </p>
-                <hr class="saved-text-hr-<%= @story.id %>">
-              <% end %>
+              <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
+                  <i class="fas fa-times mr-1"></i> Forget Story
+                <% end %>
+              </p>
+            <% elsif current_user %>
+              <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
+                  <i class="fas fa-bookmark mr-1"></i> Save Story
+                <% end %>
+              </p>
+            <% else %>
+              <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
+                  <i class="fas fa-bookmark mr-1"></i> Save Story
+                <% end %>
+              </p>
             <% end %>
-            <% if @story.editor_tagline %>
-              <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
-            <% end %>
-          </div>
-
-          <hr>
-
-          <h5 class="text-center story-title"><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
-
-          <p class="text-center text-muted media-owner-date-line">
-            <%= @story.media_owner_and_date_line %>
-          </p>
-
-          <p class="url-desc">
-            <%= truncate(@story.latest_url.url_desc, length: @story.desc_length, omission: '...  ' ) { link_to "Read more", admin_media_story_path(@story.id), target: '_blank', class: 'read-more-link' } %>
-          </p>
-
-          <hr>
-
-          <div class="row">
-            <div class="col-12 text-center links-div" id=<%= @story.id %>>
-              <% if current_user && @story.users.include?(current_user) %>
-                <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
-                    <i class="fas fa-times mr-1"></i> Forget Story
-                  <% end %>
-                </p>
-              <% elsif current_user %>
-                <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
-                    <i class="fas fa-bookmark mr-1"></i> Save Story
-                  <% end %>
-                </p>
-              <% else %>
-                <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
-                    <i class="fas fa-bookmark mr-1"></i> Save Story
-                  <% end %>
-                </p>
-              <% end %>
-            </div>
           </div>
         </div>
       </div>
-      <div class="grid-item grid-card card">
-        <div class="card-body">
-            <div class="header text-center">
-              <h4>Modify Story</h4>
-            </div>
-
-            <hr class="my-4">
-
-            <div class="body">
-              <%= form_with(model: @story, url: review_update_admin_story_path(@story)) do |f| %>
-                <div class="form-group my-4 max-vw-80 mx-auto">
-                  <%= f.label :desc_length, "Description Length:" %>
-                  <%= f.number_field :desc_length, class: 'form-control' %>
-                </div>
-
-                <div class="sign-in-row mt-4 mx-auto text-center">
-                  <%= submit_tag "Submit", class: "w-100 btn btn-sm btn-primary" %>
-                </div>
-              <% end %>
-
-              <hr class="my-4">
-
-              <%= link_to edit_admin_media_story_path(@story), class: "w-100 btn btn-sm btn-warning" do %>
-                <i class="fas fa-edit mr-1"></i> More Fields to Edit
-              <% end %>
-            </div>
-        </div>
-      </div>
-      <div class="grid-item grid-card card">
-        <div class="card-body">
+    </div>
+    <div class="grid-item grid-card card">
+      <div class="card-body">
           <div class="header text-center">
-            <h4>Choose Story State</h4>
+            <h4>Modify Story</h4>
           </div>
 
           <hr class="my-4">
-          <p class="lead text-center">Current Story State: <br><strong><%= @story.state.titleize %></strong></p>
 
+          <div class="body">
+            <%= form_with(model: @story, url: review_update_admin_story_path(@story)) do |f| %>
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :desc_length, "Description Length:" %>
+                <%= f.number_field :desc_length, class: 'form-control' %>
+              </div>
 
-          <div class="body text-center">
-            <%= form_with(model: @story, url: update_state_admin_story_path(@story), method: :patch) do |f| %>
-              <%= f.select(:state, Story.all_states_collection_select, {}, { multiple: false, size: 5, class: 'form-control' }) %>
-              <%= submit_tag "Submit", class: "w-100 btn btn-sm btn-primary mt-4" %>
+              <div class="sign-in-row mt-4 mx-auto text-center">
+                <%= submit_tag "Submit", class: "w-100 btn btn-sm btn-primary" %>
+              </div>
+            <% end %>
+
+            <hr class="my-4">
+
+            <%= link_to edit_admin_story_path_helper(@story), class: "w-100 btn btn-sm btn-warning" do %>
+              <i class="fas fa-edit mr-1"></i> More Fields to Edit
             <% end %>
           </div>
+      </div>
+    </div>
+    <div class="grid-item grid-card card">
+      <div class="card-body">
+        <div class="header text-center">
+          <h4>Choose Story State</h4>
+        </div>
+
+        <hr class="my-4">
+        <p class="lead text-center">Current Story State: <br><strong><%= @story.state.titleize %></strong></p>
+
+
+        <div class="body text-center">
+          <%= form_with(model: @story, url: update_state_admin_story_path(@story), method: :patch) do |f| %>
+            <%= f.select(:state, Story.all_states_collection_select, {}, { multiple: false, size: 5, class: 'form-control' }) %>
+            <%= submit_tag "Submit", class: "w-100 btn btn-sm btn-primary mt-4" %>
+          <% end %>
         </div>
       </div>
     </div>

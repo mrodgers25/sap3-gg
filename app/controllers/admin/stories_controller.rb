@@ -56,9 +56,8 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def update_state
-    debugger
     begin
-      case params[:state]
+      case update_state_params[:state]
       when 'needs_review'
         @story.request_review!
       when 'do_not_publish'
@@ -71,7 +70,7 @@ class Admin::StoriesController < Admin::BaseAdminController
         @story.reset!
       end
 
-      redirect_to review_admin_story_path(@story), notice: "Story saved as #{params[:state].titleize}"
+      redirect_to review_admin_story_path(@story), notice: "Story saved as #{update_state_params[:state].titleize}"
     rescue
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end
