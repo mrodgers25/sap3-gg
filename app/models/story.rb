@@ -52,6 +52,14 @@ class Story < ApplicationRecord
     end
   end
 
+  def media_story?
+    type == 'MediaStory'
+  end
+
+  def video_story?
+    type == 'VideoStory'
+  end
+
   def check_state_and_update_published_item
     'completed' == state ? create_published_item : destroy_published_item
   end

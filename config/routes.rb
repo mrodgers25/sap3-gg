@@ -34,25 +34,21 @@ Rails.application.routes.draw do
         get :scrape
       end
     end
-    resources :stories, only: [:index]
-    resources :media_stories, except: [:index] do
-      collection do
-        get :scrape
-      end
+    resources :stories, only: [:index, :show, :destroy] do
       member do
         get :review
         patch :review_update
         patch :update_state
       end
     end
-    resources :video_stories, except: [:index] do
+    resources :media_stories, except: [:index] do
       collection do
         get :scrape
       end
-      member do
-        get :review
-        patch :review_update
-        patch :update_state
+    end
+    resources :video_stories, except: [:index] do
+      collection do
+        get :scrape
       end
     end
     resources :urls, except: [:show]

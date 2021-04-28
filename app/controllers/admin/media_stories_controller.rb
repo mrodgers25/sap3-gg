@@ -7,8 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::MediaStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
-  before_action :check_for_admin, only: :destroy
+  before_action :set_media_story, only: [:edit, :update]
 
   def scrape
     @story = MediaStory.new
@@ -43,36 +42,13 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       permalink = "#{rand_hex}/#{url_title}"
       @story.update_attribute(:permalink, "#{permalink}")
 
-      redirect_to review_admin_media_story_path(@story), notice: 'Story was saved.'
+      redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
     else
       @source_url_pre = params["media_story"]["urls_attributes"]["0"]["url_full"]
       get_domain_info(@source_url_pre)
       set_fields_on_fail(story_params)
       get_locations_and_categories
       render :scrape
-    end
-  end
-
-  def review
-  end
-
-  def review_update
-    if @story.update(review_update_params)
-      redirect_to review_admin_media_story_path(@story), notice: 'Story was successfully updated.'
-    else
-      redirect_to review_admin_media_story_path(@story), notice: 'Story failed to be updated.'
-    end
-  end
-
-  def show
-    render layout: "application_no_nav"
-  end
-
-  def approve
-    if @story.approve!
-      redirect_to admin_stories_path, notice: "Story has been approved!"
-    else
-      redirect_to admin_stories_path, alert: "Story has NOT been approved."
     end
   end
 
@@ -131,22 +107,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     end
   end
 
-  def destroy
-    if @story.destroy
-      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
-    else
-      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
-    end
-  end
-
-  def update_state
-    if @story.update(update_state_params)
-      redirect_to review_admin_media_story_path(@story), notice: "Story saved as #{@story.state.titleize}"
-    else
-      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
-    end
-  end
-
   private
 
   def get_domain_info(source_url_pre)
@@ -167,9 +127,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @full_web_url = full_url
   end
 
-  private
-
-  def set_story
+  def set_media_story
     begin
       @story = MediaStory.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -261,13 +219,5 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
-  end
-
-  def review_update_params
-    params.require(:media_story).permit(:desc_length)
-  end
-
-  def update_state_params
-    params.require(:media_story).permit(:state)
   end
 end
