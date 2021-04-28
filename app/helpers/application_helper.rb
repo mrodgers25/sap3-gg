@@ -53,7 +53,7 @@ module ApplicationHelper
   def colored_icon_for_story_type(story_type)
     case story_type
     when 'MediaStory'
-      'far fa-newspaper text-success'
+      'far fa-newspaper text-dark'
     when 'VideoStory'
       'fab fa-youtube text-danger'
     when 'CustomStory'

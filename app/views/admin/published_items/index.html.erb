@@ -36,7 +36,7 @@
               <td><%= published_item.publishable.display_place_categories || '-' %></td>
               <td><%= published_item.publishable.display_story_categories || '-' %></td>
               <td style="width: 100px;">
-                <i class='<%= colored_icon_for_story_type(published_item.story_type) %>'></i> <%= published_item.story_type.titleize.tr('Story', '').strip! %>
+                <i class='<%= colored_icon_for_story_type(published_item.story_type) %>'></i> <%= published_item.story_type.underscore.split("_").first.capitalize %>
               </td>
               <td style="width: 100px;"><%= published_item.story_date_combined %></td>
               <td style="width: 50px;">

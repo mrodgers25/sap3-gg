@@ -34,7 +34,7 @@
                 <i class='fa fa-circle fa-xs <%= story_state_color(story.state) %>'></i> <%= story&.state.titleize || '-' %>
               </td>
               <td style="width: 100px">
-                <i class='<%= colored_icon_for_story_type(story&.type) %>'></i> <%= story&.type&.titleize&.tr('Story', '')&.strip! || '-' %>
+                <i class='<%= colored_icon_for_story_type(story&.type) %>'></i> <%= story.type.underscore.split("_").first.capitalize! || '-' %>
               </td>
               <td style="width: 200px;">
                 <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary", target: '_blank', data: { toggle: 'tooltip', placement: 'top', title: 'View story page' } do %>
