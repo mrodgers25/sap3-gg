@@ -158,6 +158,10 @@ class Story < ApplicationRecord
     end
   end
 
+  def media_owner
+    latest_url&.media_owner&.title
+  end
+
   def media_owner_and_date_line
     if latest_url&.media_owner&.title
       "#{latest_url.media_owner.title} - #{story_display_date}"

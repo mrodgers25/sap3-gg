@@ -33,6 +33,23 @@ module ApplicationHelper
     end
   end
 
+  def story_state_color(state)
+    case state
+    when 'no_status'
+      'text-primary'
+    when 'needs_review'
+      'text-warning'
+    when 'do_not_publish'
+      'text-danger'
+    when 'completed'
+      'text-success'
+    when 'removed_from_public'
+      'text-secondary'
+    else
+      ''
+    end
+  end
+
   def colored_icon_for_story_type(story_type)
     case story_type
     when 'MediaStory'
@@ -41,6 +58,8 @@ module ApplicationHelper
       'fab fa-youtube text-danger'
     when 'CustomStory'
       'fas fa-asterisk text-primary'
+    else
+      ''
     end
   end
 

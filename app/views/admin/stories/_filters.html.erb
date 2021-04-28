@@ -10,7 +10,7 @@
       <%=
         select_tag :state,
         options_from_collection_for_select(Story.all_states, 'to_s', 'titleize', params[:state]),
-        prompt: 'All States',
+        prompt: 'All Story Status',
         class: 'form-control form-control-sm',
         id: 'state-select'
       %>
@@ -22,15 +22,6 @@
         prompt: 'All Types',
         class: 'form-control form-control-sm',
         id: 'type-select'
-      %>
-    </div>
-    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
-      <%=
-        select_tag :order_by,
-        options_from_collection_for_select(['created_at ASC', 'created_at DESC'], 'to_s', 'to_s', params[:order_by]),
-        prompt: 'Select Sort',
-        class: 'form-control form-control-sm',
-        id: 'order-by-select'
       %>
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
