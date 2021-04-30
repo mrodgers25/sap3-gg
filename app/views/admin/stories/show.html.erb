@@ -1,0 +1,5 @@
+<% if @story.video_story? %>
+  <%= render partial: 'shared/video_stories/show', locals: { story: @story } %>
+<% elsif @story.media_story? %>
+  <%= render partial: 'shared/media_stories/show', locals: { story: @story } %>
+<% end %>
