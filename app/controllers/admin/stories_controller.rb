@@ -76,6 +76,14 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
+  def destroy
+    if @story.destroy
+      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
+    else
+      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
+    end
+  end
+
   private
 
   def set_story
