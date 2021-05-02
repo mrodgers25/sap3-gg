@@ -19,9 +19,6 @@
       <% end %>
 
       <div class="body">
-        <p class="lead text-center">Video Data</p>
-        <hr class="my-4">
-
         <%= f.fields_for :urls do |u| %>
           <div class="form-group row">
             <div class="col-2">
@@ -73,24 +70,39 @@
           <% end %>
         <% end %>
 
+        <hr class="my-4">
 
         <div class="form-group row">
           <div class="col-2">
-            <%= f.label :editor_tagline, "Editor Tagline:" %>
+            <%= f.label "Story Date: Y/M/D" %>
           </div>
-          <div class="col-10">
-            <%= f.text_field :editor_tagline, size: 50, class: 'form-control' %>
+          <div class="form-group row col-5">
+            <div class="col">
+              <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
+            </div>
+            <div class="col">
+              <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
+            </div>
+            <div class="col">
+              <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control' %>
+            </div>
           </div>
         </div>
-
-        <hr class="my-4">
 
         <div class="form-group row">
           <div class="col-2">
             <%= f.label :location_ids, "Locations:" %>
           </div>
-          <div class="col-10">
-            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+          <div class="row col-10">
+            <div class="col-8">
+              <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+            </div>
+            <div class="col-1">
+              <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
+            </div>
+            <div class="col-3">
+              <%= f.label :outside_usa, "Outside USA?" %>
+            </div>
           </div>
         </div>
 
@@ -114,6 +126,15 @@
 
         <hr class="my-4">
 
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :hashtags, "Hashtags:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :hashtags, value: @hashtags, size: 50, placeholder: '#food #dancing #shopping', class: 'form-control' %>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-4">
             <div class="form-group row">
@@ -127,49 +148,14 @@
 
             <div class="form-group row">
               <div class="col-3">
-                <%= f.label "Story Date", style: 'font-size: 11px' %>
-              </div>
-              <div class="form-group row col-9">
-                <div class="col">
-                  <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
-                </div>
-                <div class="col">
-                  <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control' %>
-                </div>
-                <div class="col">
-                  <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-3">
                 <%= f.label :video_channel_id, "Channel ID:", style: 'font-size: 11px' %>
               </div>
               <div class="col-9">
                 <%= f.text_field :video_channel_id, value: @link_channel_id, size: 50, class: 'form-control' %>
               </div>
             </div>
-
-            <div class="form-group row">
-              <div class="col-3">
-                <%= f.label :hashtags, "Hashtags:", style: 'font-size: 11px' %>
-              </div>
-              <div class="col-9">
-                <%= f.text_field :hashtags, value: @hashtags, size: 50, class: 'form-control' %>
-              </div>
-            </div>
           </div>
           <div class="col-4">
-            <div class="form-group row">
-              <div class="col-3">
-                <%= f.label :video_hashtags, "Video Hashtags:", style: 'font-size: 11px' %>
-              </div>
-              <div class="col-9">
-                <%= f.text_field :video_hashtags, value: @video_hashtags, size: 50, class: 'form-control' %>
-              </div>
-            </div>
-
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label :video_views, "Video Views:", style: 'font-size: 11px' %>
@@ -178,19 +164,20 @@
                 <%= f.number_field :video_views, value: @meta_views, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
+
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label "Duration (H:M:S)", style: 'font-size: 11px' %>
               </div>
               <div class="form-group col-9 row">
-                <div class="col">
-                  <%= f.number_field :hours, value: @hours, placeholder: 'Hours', in: 0...10000, class: 'form-control' %>
+                <div class="col-4">
+                  <%= f.number_field :hours, value: @hours, placeholder: 'H', in: 0...10000, class: '' %>
                 </div>
-                <div class="col">
-                  <%= f.number_field :minutes, value: @minutes, placeholder: 'Minutes', in: 0...10000, class: 'form-control ' %>
+                <div class="col-4">
+                  <%= f.number_field :minutes, value: @minutes, placeholder: 'M', in: 0...10000, class: ' ' %>
                 </div>
-                <div class="col">
-                  <%= f.number_field :seconds, value: @seconds, placeholder: 'Seconds', in: 0...10000, class: 'form-control' %>
+                <div class="col-4">
+                  <%= f.number_field :seconds, value: @seconds, placeholder: 'S', in: 0...10000, class: '' %>
                 </div>
               </div>
             </div>
@@ -232,26 +219,16 @@
                 <%= f.check_box :video_unlisted, value: @unlisted, class: '' %>
               </div>
             </div>
-
-            <div class="form-group row">
-              <div class="col-3">
-                <%= f.label :outside_usa, "Outside USA?", style: 'font-size: 11px' %>
-              </div>
-              <div class="col-9">
-                <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-3">
-               <%= f.label :state, "Story Type:", style: 'font-size: 11px' %>
-              </div>
-              <div class="col-9">
-                <%= f.select :state, Story.all_states, class: 'form-control' %>
-              </div>
-            </div>
           </div>
+        </div>
 
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :video_hashtags, "Video Hashtags:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :video_hashtags, value: @video_hashtags, size: 50, class: 'form-control' %>
+          </div>
         </div>
 
         <hr class="my-4">
