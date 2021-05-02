@@ -5,11 +5,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   before_action :set_video_story, only: [:edit, :update]
 
   def scrape
-
     @video_story = VideoStory.new
-
     @screen_scraper = VideoScraper.new
-
     @data_entry_begin_time = params[:data_entry_begin_time]
     @source_url_pre        = params[:source_url_pre]
 
@@ -39,7 +36,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
-      @source_url_pre = params["video_story"]["urls_attributes"]["0"]["url_full"]
+      @source_url_pre = @video_story.urls.first.url_full
       get_domain_info(@source_url_pre)
       set_fields_on_fail(video_story_params)
       get_locations_and_categories
