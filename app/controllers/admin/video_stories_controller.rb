@@ -39,7 +39,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
-      @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
+      @source_url_pre = params["video_story"]["urls_attributes"]["0"]["url_full"]
       get_domain_info(@source_url_pre)
       set_fields_on_fail(video_story_params)
       get_locations_and_categories
@@ -222,5 +222,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @selected_location_ids        = process_chosen_params(hash['location_ids'])
     @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
     @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
+    @link_image                   = hash["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"]
   end
 end
