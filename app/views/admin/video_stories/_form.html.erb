@@ -25,7 +25,7 @@
               <%= u.label :url_full, "Video Url:" %>
             </div>
             <div class="col-10">
-              <%= u.text_field :url_full, value: @full_web_url, class: "form-control form-control-sm", readonly: true %>
+              <%= u.text_field :url_full, class: "form-control form-control-sm", readonly: true %>
             </div>
           </div>
 
@@ -34,7 +34,7 @@
               <%= u.label :url_title, "Url Title:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_title, rows: 1, value: @title, maxlength: 250, class: "form-control form-control-sm" %>
+              <%= u.text_area :url_title, rows: 1, maxlength: 250, class: "form-control form-control-sm" %>
             </div>
           </div>
 
@@ -43,7 +43,7 @@
               <%= u.label :url_desc, "Url Description:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_desc, rows: 3, value: @meta_desc, maxlength: 1000, class: "form-control form-control-sm" %>
+              <%= u.text_area :url_desc, rows: 3, maxlength: 1000, class: "form-control form-control-sm" %>
             </div>
           </div>
 
@@ -52,7 +52,7 @@
               <%= u.label :url_keywords, "Url Keywords:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_keywords, rows: 1, value: @meta_keywords, maxlength: 1000, class: "form-control" %>
+              <%= u.text_area :url_keywords, rows: 1, maxlength: 1000, class: "form-control" %>
             </div>
           </div>
 
@@ -64,7 +64,7 @@
                 <%= i.label :src_url, "Thumbnail Image URL:" %>
               </div>
               <div class="col-10">
-                <%= i.text_field :src_url, value: @link_image, class: "form-control form-control-sm" %>
+                <%= i.text_field :src_url, class: "form-control form-control-sm" %>
               </div>
             </div>
           <% end %>
@@ -98,7 +98,7 @@
               <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
             </div>
             <div class="col-1">
-              <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
+              <%= f.check_box :outside_usa, class: '' %>
             </div>
             <div class="col-3">
               <%= f.label :outside_usa, "Outside USA?" %>
@@ -131,7 +131,7 @@
             <%= f.label :hashtags, "Hashtags:" %>
           </div>
           <div class="col-10">
-            <%= f.text_field :hashtags, value: @hashtags, size: 50, placeholder: '#food #dancing #shopping', class: 'form-control' %>
+            <%= f.text_field :hashtags, size: 50, placeholder: '#food #dancing #shopping', class: 'form-control' %>
           </div>
         </div>
 
@@ -142,7 +142,7 @@
                 <%= f.label :video_creator, "Video Creator:", style: 'font-size: 11px' %>
               </div>
               <div class="col-9">
-                <%= f.text_field :video_creator, value: @link_creator, size: 50, class: 'form-control' %>
+                <%= f.text_field :video_creator, size: 50, class: 'form-control' %>
               </div>
             </div>
 
@@ -151,7 +151,7 @@
                 <%= f.label :video_channel_id, "Channel ID:", style: 'font-size: 11px' %>
               </div>
               <div class="col-9">
-                <%= f.text_field :video_channel_id, value: @link_channel_id, size: 50, class: 'form-control' %>
+                <%= f.text_field :video_channel_id, size: 50, class: 'form-control' %>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@
                 <%= f.label :video_views, "Video Views:", style: 'font-size: 11px' %>
               </div>
               <div class="col-9">
-                <%= f.number_field :video_views, value: @meta_views, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
+                <%= f.number_field :video_views, placeholder: 'Views', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
 

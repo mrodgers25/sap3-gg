@@ -14,6 +14,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
     if @screen_scraper.scrape!(@full_web_url)
       url = @video_story.urls.build
+      @video_story.urls.first.url_full = @full_web_url
       url.images.build
       set_scrape_fields
     else
@@ -100,20 +101,15 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   private
 
   def set_scrape_fields
-    @title            = @screen_scraper.title
-    @meta_desc        = @screen_scraper.meta_desc
-    @link_creator     = @screen_scraper.link_creator
-    @link_channel_id  = @screen_scraper.link_channel_id
-    @link_image       = @screen_scraper.link_image
-    @meta_keywords    = @screen_scraper.meta_keywords
-    @meta_type        = @screen_scraper.meta_type
-    @meta_author      = @screen_scraper.meta_author
+    @video_story.urls.first.url_title             = @screen_scraper.title
+    @video_story.urls.first.url_desc              = @screen_scraper.meta_desc
+    @video_story.video_creator                    = @screen_scraper.link_creator
+    @video_story.video_channel_id                 = @screen_scraper.link_channel_id
+    @video_story.urls.first.images.first.src_url  = @screen_scraper.link_image
+    @video_story.urls.first.url_keywords          = @screen_scraper.meta_keywords
     @year             = @screen_scraper.year
     @month            = @screen_scraper.month
     @day              = @screen_scraper.day
-    @page_imgs        = @screen_scraper.page_imgs
-
-    @itemprop_pub_date_match
   end
 
   def set_video_story
@@ -199,26 +195,11 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def set_fields_on_fail(hash)
-    @title = hash['urls_attributes']['0']['url_title']
-    @meta_desc = hash['urls_attributes']['0']['url_desc']
-    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
-    @meta_tagline = hash["editor_tagline"]
-    @link_creator                 = hash['video_creator']
-    @link_channel_id              = hash['video_channel_id']
-    @meta_type                    = hash["story_type"]
-    @meta_views                   = hash["video_views"]
-    @meta_likes                   = hash["video_likes"]
-    @meta_dislikes                = hash["video_dislikes"]
-    @meta_subscribers             = hash["video_subscribers"]
-    @unlisted                     = hash["video_unlisted"]
-    @hashtags                     = hash["hashtags"]
-    @video_hashtags               = hash["video_hashtags"]
     @year                         = hash["story_year"]
     @month                        = hash["story_month"]
     @day                          = hash["story_date"]
     @selected_location_ids        = process_chosen_params(hash['location_ids'])
     @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
     @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
-    @link_image                   = hash["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"]
   end
 end
