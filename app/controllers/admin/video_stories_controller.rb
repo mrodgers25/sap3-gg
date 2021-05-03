@@ -29,7 +29,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
     else
-      set_fields_on_fail(video_story_params)
       get_locations_and_categories
       render :scrape
     end
