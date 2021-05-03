@@ -2,7 +2,7 @@ require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
   before_action :get_locations_and_categories, only: [:index, :new, :scrape, :edit]
-  before_action :set_video_story, only: [:show, :edit, :update, :destroy, :review, :review_update, :update_state]
+  before_action :set_video_story, only: [:edit, :update]
 
   def scrape
 
@@ -37,36 +37,13 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       @video_story.update_attribute(:permalink, "#{permalink}")
 
       update_locations_and_categories(@video_story, video_story_params)
-      redirect_to review_admin_video_story_path(@video_story), notice: 'Story was moved to draft mode.'
+      redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
       @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
       get_domain_info(@source_url_pre)
       set_fields_on_fail(video_story_params)
       get_locations_and_categories
       render :scrape
-    end
-  end
-
-  def review
-  end
-
-  def review_update
-    if @video_story.update(review_update_params)
-      redirect_to review_admin_video_story_path(@video_story), notice: 'Story was successfully updated.'
-    else
-      redirect_to review_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
-    end
-  end
-
-  def show
-    render layout: "application_no_nav"
-  end
-
-  def approve
-    if @video_story.approve!
-      redirect_to admin_stories_path, notice: "Video Story has been approved!"
-    else
-      redirect_to admin_stories_path, alert: "Video Story has NOT been approved."
     end
   end
 
@@ -120,35 +97,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       redirect_to admin_stories_path, notice: 'Video Story was successfully updated.'
     else
       redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
-    end
-  end
-
-  def destroy
-    if @video_story.destroy
-      redirect_to admin_stories_path, notice: 'Story was successfully destroyed.'
-    else
-      redirect_to admin_stories_path, alert: 'Story could not be destroyed.'
-    end
-  end
-
-  def update_state
-    begin
-      case params[:state]
-      when 'needs_review'
-        @video_story.request_review!
-      when 'do_not_publish'
-        @video_story.hide!
-      when 'completed'
-        @video_story.complete!
-      when 'removed_from_public'
-        @video_story.remove!
-      when 'no_status'
-        @video_story.reset!
-      end
-
-      redirect_to review_admin_video_story_path(@video_story), notice: "Video Story saved as #{params[:state].titleize}"
-    rescue
-      redirect_to review_admin_video_story_path(@video_story), alert: 'Video Story failed to update'
     end
   end
 
@@ -275,9 +223,4 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
     @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
-
-  def review_update_params
-    params.require(:video_story).permit(:desc_length)
-  end
-
 end
