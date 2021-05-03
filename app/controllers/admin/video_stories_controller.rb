@@ -29,6 +29,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
     else
+      get_time(@video_story.video_duration)
       get_locations_and_categories
       render :scrape
     end
@@ -67,7 +68,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story.video_channel_id = @screen_scraper.link_channel_id
     @video_story.story_year       = @screen_scraper.year
     @video_story.story_month      = @screen_scraper.month
-    @video_story.story_day        = @screen_scraper.day
+    @video_story.story_date        = @screen_scraper.day
 
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title

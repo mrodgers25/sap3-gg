@@ -65,7 +65,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @title_complete   = @title.present?
     @tagline_complete = @meta_tagline.present?
     @desc_complete    = @meta_desc.present?
-    @date_complete    = @story.story_year.present? || @story.story_month.present? || @story.story_day.present?
+    @date_complete    = @story.story_year.present? || @story.story_month.present? || @story.story_date.present?
     @story_complete   = @story.story_complete
     @pc_complete      = @selected_place_category_ids.present?
   end
