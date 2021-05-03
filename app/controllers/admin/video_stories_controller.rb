@@ -37,9 +37,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def edit
     # story fields
-    @year             = @video_story.story_year
-    @month            = @video_story.story_month
-    @day              = @video_story.story_date
+    @year = @video_story.story_year
+    @month = @video_story.story_month
+    @day = @video_story.story_date
     # locations and categories
     get_locations_and_categories
     @selected_location_ids       = @video_story.locations.pluck(:id)
@@ -62,18 +62,18 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   private
 
   def set_scrape_fields
-    @video_story.video_creator      = @screen_scraper.link_creator
-    @video_story.video_channel_id   = @screen_scraper.link_channel_id
+    @video_story.video_creator    = @screen_scraper.link_creator
+    @video_story.video_channel_id = @screen_scraper.link_channel_id
 
     url = @video_story.urls.last
-    url.url_title                   = @screen_scraper.title
-    url.url_desc                    = @screen_scraper.meta_desc
-    url.images.first.src_url        = @screen_scraper.link_image
-    url.url_keywords                = @screen_scraper.meta_keywords
+    url.url_title                 = @screen_scraper.title
+    url.url_desc                  = @screen_scraper.meta_desc
+    url.images.first.src_url      = @screen_scraper.link_image
+    url.url_keywords              = @screen_scraper.meta_keywords
 
-    @year                           = @screen_scraper.year
-    @month                          = @screen_scraper.month
-    @day                            = @screen_scraper.day
+    @year                         = @screen_scraper.year
+    @month                        = @screen_scraper.month
+    @day                          = @screen_scraper.day
   end
 
   def set_video_story
