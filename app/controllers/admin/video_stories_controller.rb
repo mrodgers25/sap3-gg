@@ -24,12 +24,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
-      #This script is used to update the permalink field in all stories
-      url_title = @video_story.latest_url.url_title.parameterize
-      rand_hex = SecureRandom.hex(2)
-      permalink = "#{rand_hex}/#{url_title}"
-      @video_story.update_attribute(:permalink, "#{permalink}")
-
+      #Update the permalink field
+      @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
     else
@@ -74,7 +70,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     url.url_desc                    = @screen_scraper.meta_desc
     url.images.first.src_url        = @screen_scraper.link_image
     url.url_keywords                = @screen_scraper.meta_keywords
-    
+
     @year                           = @screen_scraper.year
     @month                          = @screen_scraper.month
     @day                            = @screen_scraper.day

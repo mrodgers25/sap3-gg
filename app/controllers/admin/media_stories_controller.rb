@@ -36,12 +36,8 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
     if @story.save
       update_locations_and_categories(@story, story_params)
-      #This script is used to update the permalink field in all stories
-      url_title = @story.urls.first.url_title.parameterize
-      rand_hex = SecureRandom.hex(2)
-      permalink = "#{rand_hex}/#{url_title}"
-      @story.update_attribute(:permalink, "#{permalink}")
-
+      #Update the permalink field.
+      @story.create_permalink
       redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
     else
       @source_url_pre = params["media_story"]["urls_attributes"]["0"]["url_full"]

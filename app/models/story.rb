@@ -199,4 +199,11 @@ class Story < ApplicationRecord
   def display_story_categories
     story_categories.pluck(:name).join(', ')
   end
+
+  def create_permalink
+    url_title = latest_url.url_title.parameterize
+    rand_hex = SecureRandom.hex(2)
+    permalink = "#{rand_hex}/#{url_title}"
+    self.update_attribute(:permalink, "#{permalink}")
+  end
 end
