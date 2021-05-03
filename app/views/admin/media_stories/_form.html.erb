@@ -185,19 +185,19 @@
             <%= f.label :story_year, "Story Year:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
           </div>
           <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
             <%= f.label :story_month, "Story Month:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
           </div>
           <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
             <%= f.label :story_date, "Story Date:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
           </div>
         </div>
 

@@ -73,22 +73,18 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def set_scrape_fields
     @video_story.video_creator    = @screen_scraper.link_creator
     @video_story.video_channel_id = @screen_scraper.link_channel_id
+    @video_story.story_year             = @screen_scraper.year
+    @video_story.story_month            = @screen_scraper.month
+    @video_story.story_day              = @screen_scraper.day
 
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title
     url.url_desc                  = @screen_scraper.meta_desc
     url.images.first.src_url      = @screen_scraper.link_image
     url.url_keywords              = @screen_scraper.meta_keywords
-
-    @year                         = @screen_scraper.year
-    @month                        = @screen_scraper.month
-    @day                          = @screen_scraper.day
   end
 
   def set_fields_on_fail(hash)
-    @year                         = hash["story_year"]
-    @month                        = hash["story_month"]
-    @day                          = hash["story_date"]
     @selected_location_ids        = process_chosen_params(hash['location_ids'])
     @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
     @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])

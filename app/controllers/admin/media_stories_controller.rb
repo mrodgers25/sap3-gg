@@ -117,23 +117,19 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def set_scrape_fields
     @story.story_type = @screen_scraper.meta_type
     @story.author = @screen_scraper.meta_author
+    @story.story_year = @screen_scraper.year
+    @story.story_month = @screen_scraper.month
+    @story.story_date = @screen_scraper.day
 
     url = @story.urls.last
     url.url_title  = @screen_scraper.title
     url.url_desc  = @screen_scraper.meta_desc
     url.url_keywords = @screen_scraper.meta_keywords
 
-    @year = @screen_scraper.year
-    @month = @screen_scraper.month
-    @day = @screen_scraper.day
-
     @page_imgs = @screen_scraper.page_imgs
   end
 
   def set_fields_on_fail(hash)
-    @year = hash["story_year"]
-    @month = hash["story_month"]
-    @day = hash["story_date"]
     @page_imgs = []
     params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
       @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }

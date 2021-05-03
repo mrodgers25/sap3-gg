@@ -78,13 +78,13 @@
           </div>
           <div class="form-group row col-5">
             <div class="col">
-              <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
+              <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control' %>
             </div>
             <div class="col">
-              <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
+              <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control' %>
             </div>
             <div class="col">
-              <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control' %>
+              <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control' %>
             </div>
           </div>
         </div>
