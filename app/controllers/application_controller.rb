@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   protected
@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
 
   def filter_out_file_types_from_url
     # Try to remove the amount of bad requests by filtering out file types
-    redirect_to root_path if request.url.match? /.txt|.png|.xml|.php|.woff2|.json|click?/
+    redirect_to root_path if request.url.strip.lowercase.match? /.txt|.png|.xml|.php|.woff2|.json|click?|.jpg|.css/
   end
 end
