@@ -7,6 +7,7 @@ class Url < ApplicationRecord
 
   before_validation :set_track_fields, on: :create
   validates :url_full, :uniqueness => { :message => "Duplicate URL" }
+  validates :url_title, :url_desc, presence: true
 
   accepts_nested_attributes_for :images
 

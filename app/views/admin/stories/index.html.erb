@@ -46,7 +46,7 @@
                 <%= link_to edit_admin_story_path_helper(story), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit story' } do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to admin_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Delete story', confirm: 'Are you sure?' }, target: '_blank' do %>
+                <%= link_to admin_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Delete story', confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times"></i>
                 <% end %>
               </td>
