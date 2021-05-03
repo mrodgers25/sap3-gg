@@ -66,9 +66,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def set_scrape_fields
     @video_story.video_creator    = @screen_scraper.link_creator
     @video_story.video_channel_id = @screen_scraper.link_channel_id
-    @video_story.story_year             = @screen_scraper.year
-    @video_story.story_month            = @screen_scraper.month
-    @video_story.story_day              = @screen_scraper.day
+    @video_story.story_year       = @screen_scraper.year
+    @video_story.story_month      = @screen_scraper.month
+    @video_story.story_day        = @screen_scraper.day
 
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title
