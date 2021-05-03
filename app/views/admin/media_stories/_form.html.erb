@@ -28,7 +28,7 @@
               <%= u.label :url_full, "Page Url:" %>
             </div>
             <div class="col-10">
-              <%= u.text_field :url_full, value: @source_url_pre, class: "form-control form-control-sm" %>
+              <%= u.text_field :url_full, class: "form-control form-control-sm" %>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
               <%= u.label :url_title, "Url Title:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_title, rows: 1, value: @title, maxlength: 250, class: "form-control form-control-sm" %>
+              <%= u.text_area :url_title, rows: 1, maxlength: 250, class: "form-control form-control-sm" %>
             </div>
           </div>
 
@@ -55,7 +55,7 @@
               <%= u.label :url_desc, "Url Description:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_desc, rows: 3, value: @meta_desc, maxlength: 1000, class: "form-control form-control-sm" %>
+              <%= u.text_area :url_desc, rows: 3, maxlength: 1000, class: "form-control form-control-sm" %>
             </div>
           </div>
 
@@ -64,14 +64,11 @@
               <%= u.label :url_keywords, "Url Keywords:" %>
             </div>
             <div class="col-10">
-              <%= u.text_area :url_keywords, rows: 1, value: @meta_keywords, maxlength: 1000, class: "form-control" %>
+              <%= u.text_area :url_keywords, rows: 1, maxlength: 1000, class: "form-control" %>
             </div>
           </div>
 
           <%= u.hidden_field :url_domain, value: @base_domain %>
-          <%= u.hidden_field :raw_url_title_scrape, value: @title %>
-          <%= u.hidden_field :raw_url_desc_scrape, value: @meta_desc %>
-          <%= u.hidden_field :raw_url_keywords_scrape, value: @meta_keywords %>
 
           <hr class="my-4">
 
@@ -137,7 +134,7 @@
             <%= f.label :editor_tagline, "Editor Tagline:" %>
           </div>
           <div class="col-10">
-            <%= f.text_field :editor_tagline, value: @meta_tagline, placeholder: "Maximum 75 chars", maxlength: 75, size: 75, class: "form-control form-control-sm" %>
+            <%= f.text_field :editor_tagline, placeholder: "Maximum 75 chars", maxlength: 75, size: 75, class: "form-control form-control-sm" %>
           </div>
         </div>
 
@@ -146,13 +143,13 @@
             <%= f.label :location_ids, "Locations:" %>
           </div>
           <div class="col-5">
-            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @story.locations.ids), {}, { multiple: true, id: 'story_location_ids' } %>
           </div>
           <div class="col-2">
             <%= f.label :outside_usa, "Outside USA?" %>
           </div>
           <div class="col-1">
-            <%= f.check_box :outside_usa, value: @outside_usa, class: '' %>
+            <%= f.check_box :outside_usa, class: '' %>
           </div>
         </div>
 
@@ -161,7 +158,7 @@
             <%= f.label :place_category_ids, "Place Categories:" %>
           </div>
           <div class="col-10">
-            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
           </div>
         </div>
 
@@ -170,7 +167,7 @@
             <%= f.label :story_category_ids, "Story Categories:" %>
           </div>
           <div class="col-10">
-            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @selected_story_category_ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
+            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @story.story_categories.ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
           </div>
         </div>
 
@@ -179,7 +176,7 @@
             <%= f.label :author, "Story Author:" %>
           </div>
           <div class="col-10">
-            <%= f.text_field :author, value: @meta_author, size: 50, class: 'form-control form-control-sm' %>
+            <%= f.text_field :author, size: 50, class: 'form-control form-control-sm' %>
           </div>
         </div>
 
@@ -188,29 +185,23 @@
             <%= f.label :story_year, "Story Year:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_year, value: @year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
           </div>
           <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
             <%= f.label :story_month, "Story Month:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_month, value: @month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
           </div>
           <div class="col-2 <%= form_item_status_class(@date_complete) %>"">
             <%= f.label :story_date, "Story Date:" %>
           </div>
           <div class="col-2">
-            <%= f.number_field :story_date, value: @day, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
+            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
           </div>
         </div>
 
         <hr class="my-4">
-
-        <% if false %>
-          <p class="lead text-center <%= form_item_status_class(@story_complete) %>">
-            <%= @story_complete ? "Story Complete" : "Incomplete Story – Missing Fields In Yellow" %>
-          </p>
-        <% end %>
 
         <% if params[:action] != 'new' %>
           <div class="text-center">
@@ -222,16 +213,12 @@
           </div>
         <% end %>
 
-        <%= f.hidden_field :raw_author_scrape, value: @meta_author %>
-        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time %>
-        <%= f.hidden_field :raw_story_year_scrape, value: @year %>
-        <%= f.hidden_field :raw_story_month_scrape, value: @month %>
-        <%= f.hidden_field :raw_story_date_scrape, value: @day %>
+        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time  if @data_entry_begin_time.present? %>
         <%= f.hidden_field :data_entry_user, value: current_user.id %>
 
         <hr class="my-4">
 
-        <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @full_web_url %>" frameborder="3" width="100%" height="900px">error!</iframe>
+        <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= @story.urls.first.url_full %>" frameborder="3" width="100%" height="900px">error!</iframe>
       </div>
     </div>
   <% end %>

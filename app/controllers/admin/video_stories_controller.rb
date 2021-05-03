@@ -1,22 +1,17 @@
 require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
-  before_action :get_locations_and_categories, only: [:index, :new, :scrape, :edit]
   before_action :set_video_story, only: [:edit, :update]
 
   def scrape
-
     @video_story = VideoStory.new
-
     @screen_scraper = VideoScraper.new
-
     @data_entry_begin_time = params[:data_entry_begin_time]
-    @source_url_pre        = params[:source_url_pre]
+    get_locations_and_categories
 
-    get_domain_info(@source_url_pre)
-
-    if @screen_scraper.scrape!(@full_web_url)
+    if @screen_scraper.scrape!(params[:source_url_pre])
       url = @video_story.urls.build
+      url.url_full = params[:source_url_pre]
       url.images.build
       set_scrape_fields
     else
@@ -29,71 +24,28 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
-      @video_story.story_type = 'Youtube'
-      #This script is used to update the permalink field in all stories
-      url_title = @video_story.urls.first.url_title.parameterize
-      rand_hex = SecureRandom.hex(2)
-      permalink = "#{rand_hex}/#{url_title}"
-      @video_story.update_attribute(:permalink, "#{permalink}")
-
+      #Update the permalink field
+      @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
-      redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
+      redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
     else
-      @source_url_pre = params["story"]["urls_attributes"]["0"]["url_full"]
-      get_domain_info(@source_url_pre)
-      set_fields_on_fail(video_story_params)
+      get_time(@video_story.video_duration)
       get_locations_and_categories
       render :scrape
     end
   end
 
   def edit
-    # story fields
-    @meta_tagline     = @video_story.editor_tagline
-    @outside_usa      = @video_story.outside_usa
-    @year             = @video_story.story_year
-    @month            = @video_story.story_month
-    @day              = @video_story.story_date
-    @link_creator     = @video_story.video_creator
-    @link_channel_id  = @video_story.video_channel_id
-    @meta_views       = @video_story.video_views
-    @meta_likes       = @video_story.video_likes
-    @meta_dislikes    = @video_story.video_dislikes
-    @meta_subscribers = @video_story.video_subscribers
-    @unlisted         = @video_story.video_unlisted
-    @hashtags         = @video_story.hashtags
-    @video_hashtags   = @video_story.video_hashtags
-
-    # url fields
-    @url1           = @video_story.urls.first
-    @full_web_url   = @url1.url_full
-    @base_domain    = @url1.url_domain
-    @title          = @url1.url_title
-    @meta_desc      = @url1.url_desc
-    @meta_keywords  = @url1.url_keywords
-
-    # image fields
-   @image1    = @url1.images.first
-   @page_imgs = [{
-     'src_url' => @image1.src_url,
-     'alt_text' => @image1.alt_text,
-     'image_width' => @image1.image_width,
-     'image_height' => @image1.image_height
-   }]
-    @link_image       = @image1.src_url
-
     # locations and categories
     get_locations_and_categories
-    @selected_location_ids       = @video_story.locations.pluck(:id)
-    @selected_place_category_ids = @video_story.place_categories.pluck(:id)
-    @selected_story_category_ids = @video_story.story_categories.pluck(:id)
     get_time(@video_story.video_duration)
   end
 
   def update
     @video_story.video_duration = set_duration(params[:video_story])
-
     if @video_story.update(video_story_params)
+      update_locations_and_categories(@video_story, video_story_params)
+
       redirect_to admin_stories_path, notice: 'Video Story was successfully updated.'
     else
       redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
@@ -102,29 +54,27 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   private
 
-  def set_scrape_fields
-    @title            = @screen_scraper.title
-    @meta_desc        = @screen_scraper.meta_desc
-    @link_creator     = @screen_scraper.link_creator
-    @link_channel_id  = @screen_scraper.link_channel_id
-    @link_image       = @screen_scraper.link_image
-    @meta_keywords    = @screen_scraper.meta_keywords
-    @meta_type        = @screen_scraper.meta_type
-    @meta_author      = @screen_scraper.meta_author
-    @year             = @screen_scraper.year
-    @month            = @screen_scraper.month
-    @day              = @screen_scraper.day
-    @page_imgs        = @screen_scraper.page_imgs
-
-    @itemprop_pub_date_match
-  end
-
   def set_video_story
     begin
       @video_story = VideoStory.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to admin_stories_path, alert: "Video Story not found"
     end
+  end
+
+
+  def set_scrape_fields
+    @video_story.video_creator    = @screen_scraper.link_creator
+    @video_story.video_channel_id = @screen_scraper.link_channel_id
+    @video_story.story_year       = @screen_scraper.year
+    @video_story.story_month      = @screen_scraper.month
+    @video_story.story_date        = @screen_scraper.day
+
+    url = @video_story.urls.last
+    url.url_title                 = @screen_scraper.title
+    url.url_desc                  = @screen_scraper.meta_desc
+    url.images.first.src_url      = @screen_scraper.link_image
+    url.url_keywords              = @screen_scraper.meta_keywords
   end
 
   def update_locations_and_categories(story, my_params)
@@ -148,16 +98,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @locations        = Location.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
-  end
-
-  def get_domain_info(source_url_pre)
-    full_url      = Domainatrix.parse(source_url_pre).url
-    sub           = Domainatrix.parse(source_url_pre).subdomain
-    domain        = Domainatrix.parse(source_url_pre).domain
-    suffix        = Domainatrix.parse(source_url_pre).public_suffix
-    prefix        = (sub == 'www' || sub == '' ? '' : (sub + '.'))
-    @base_domain  = prefix + domain + '.' + suffix
-    @full_web_url = full_url
   end
 
   def video_story_params
@@ -199,28 +139,5 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       @minutes = 0
       @seconds = 0
     end
-  end
-
-  def set_fields_on_fail(hash)
-    @title = hash['urls_attributes']['0']['url_title']
-    @meta_desc = hash['urls_attributes']['0']['url_desc']
-    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
-    @meta_tagline = hash["editor_tagline"]
-    @link_creator                 = hash['video_creator']
-    @link_channel_id              = hash['video_channel_id']
-    @meta_type                    = hash["story_type"]
-    @meta_views                   = hash["video_views"]
-    @meta_likes                   = hash["video_likes"]
-    @meta_dislikes                = hash["video_dislikes"]
-    @meta_subscribers             = hash["video_subscribers"]
-    @unlisted                     = hash["video_unlisted"]
-    @hashtags                     = hash["hashtags"]
-    @video_hashtags               = hash["video_hashtags"]
-    @year                         = hash["story_year"]
-    @month                        = hash["story_month"]
-    @day                          = hash["story_date"]
-    @selected_location_ids        = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
 end

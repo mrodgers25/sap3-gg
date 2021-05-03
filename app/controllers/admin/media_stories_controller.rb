@@ -12,15 +12,13 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def scrape
     @story = MediaStory.new
     @screen_scraper = ScreenScraper.new
-
     @data_entry_begin_time = params[:data_entry_begin_time]
-    @source_url_pre        = params[:source_url_pre]
-
     get_locations_and_categories
-    get_domain_info(@source_url_pre)
+    get_domain_info(params[:source_url_pre])
 
-    if @screen_scraper.scrape!(@full_web_url)
+    if @screen_scraper.scrape!(params[:source_url_pre])
       url = @story.urls.build
+      url.url_full = params[:source_url_pre]
       url.images.build
       set_scrape_fields
     else
@@ -33,19 +31,13 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     # TODO:  check_manual_url(params)
     my_params = set_image_params(story_params)
     @story = MediaStory.new(my_params)
-
     if @story.save
+      #Update the permalink field.
+      @story.create_permalink
       update_locations_and_categories(@story, story_params)
-      #This script is used to update the permalink field in all stories
-      url_title = @story.urls.first.url_title.parameterize
-      rand_hex = SecureRandom.hex(2)
-      permalink = "#{rand_hex}/#{url_title}"
-      @story.update_attribute(:permalink, "#{permalink}")
-
       redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
     else
-      @source_url_pre = params["media_story"]["urls_attributes"]["0"]["url_full"]
-      get_domain_info(@source_url_pre)
+      get_domain_info(@story.urls.last.url_full)
       set_fields_on_fail(story_params)
       get_locations_and_categories
       render :scrape
@@ -53,25 +45,8 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def edit
-    # story fields
-    @meta_tagline = @story.editor_tagline
-    @meta_type    = @story.scraped_type
-    @meta_author  = @story.author
-    @outside_usa  = @story.outside_usa
-    @year         = @story.story_year
-    @month        = @story.story_month
-    @day          = @story.story_date
-
-    # url fields
-    @url1           = @story.urls.first
-    @source_url_pre = @url1.url_full
-    @base_domain    = @url1.url_domain
-    @title          = @url1.url_title
-    @meta_desc      = @url1.url_desc
-    @meta_keywords  = @url1.url_keywords
-    @full_web_url   = @url1.url_full
-
-     # image fields
+    # image fields
+    @url1 = @story.urls.first
     @image1    = @url1.images.first
     @page_imgs = [{
       'src_url' => @image1.src_url,
@@ -82,10 +57,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
     # locations and categories
     get_locations_and_categories
-    @selected_location_ids       = @story.locations.pluck(:id)
-    @selected_place_category_ids = @story.place_categories.pluck(:id)
-    @selected_story_category_ids = @story.story_categories.pluck(:id)
-
     # media_owner stuff
     media_owner   = MediaOwner.where(url_domain: @base_domain).first
     @name_display = media_owner&.title || 'NO DOMAIN NAME FOUND'
@@ -94,13 +65,14 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @title_complete   = @title.present?
     @tagline_complete = @meta_tagline.present?
     @desc_complete    = @meta_desc.present?
-    @date_complete    = @year.present? || @month.present? || @day.present?
+    @date_complete    = @story.story_year.present? || @story.story_month.present? || @story.story_date.present?
     @story_complete   = @story.story_complete
     @pc_complete      = @selected_place_category_ids.present?
   end
 
   def update
     if @story.update(story_params)
+      update_locations_and_categories(@story, story_params)
       redirect_to admin_stories_path, notice: 'Story was successfully updated.'
     else
       redirect_to edit_media_story_path(@story), notice: 'Story failed to be updated.'
@@ -123,8 +95,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     else
       @name_display = 'NO DOMAIN NAME FOUND'
     end
-
-    @full_web_url = full_url
   end
 
   def set_media_story
@@ -136,36 +106,25 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def set_scrape_fields
-    @title = @screen_scraper.title
-    @meta_desc = @screen_scraper.meta_desc
-    @meta_keywords = @screen_scraper.meta_keywords
-    @meta_type = @screen_scraper.meta_type
-    @meta_author = @screen_scraper.meta_author
-    @year = @screen_scraper.year
-    @month = @screen_scraper.month
-    @day = @screen_scraper.day
-    @page_imgs = @screen_scraper.page_imgs
+    @story.story_type = @screen_scraper.meta_type
+    @story.author = @screen_scraper.meta_author
+    @story.story_year = @screen_scraper.year
+    @story.story_month = @screen_scraper.month
+    @story.story_date = @screen_scraper.day
 
-    @itemprop_pub_date_match
+    url = @story.urls.last
+    url.url_title  = @screen_scraper.title
+    url.url_desc  = @screen_scraper.meta_desc
+    url.url_keywords = @screen_scraper.meta_keywords
+
+    @page_imgs = @screen_scraper.page_imgs
   end
 
   def set_fields_on_fail(hash)
-    @title = hash['urls_attributes']['0']['url_title']
-    @meta_desc = hash['urls_attributes']['0']['url_desc']
-    @meta_keywords = hash['urls_attributes']['0']['url_keywords']
-    @meta_tagline = hash["editor_tagline"]
-    @meta_type = hash["story_type"]
-    @meta_author = hash["author"]
-    @year = hash["story_year"]
-    @month = hash["story_month"]
-    @day = hash["story_date"]
     @page_imgs = []
     params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
       @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
     end
-    @selected_location_ids = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
   end
 
   def set_image_params(story_params)
