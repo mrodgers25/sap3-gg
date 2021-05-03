@@ -38,9 +38,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def edit
     # locations and categories
     get_locations_and_categories
-    @selected_location_ids       = @video_story.locations.pluck(:id)
-    @selected_place_category_ids = @video_story.place_categories.pluck(:id)
-    @selected_story_category_ids = @video_story.story_categories.pluck(:id)
     get_time(@video_story.video_duration)
   end
 
@@ -78,12 +75,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     url.url_desc                  = @screen_scraper.meta_desc
     url.images.first.src_url      = @screen_scraper.link_image
     url.url_keywords              = @screen_scraper.meta_keywords
-  end
-
-  def set_fields_on_fail(hash)
-    @selected_location_ids        = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
 
   def update_locations_and_categories(story, my_params)

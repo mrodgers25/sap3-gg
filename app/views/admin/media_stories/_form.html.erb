@@ -143,7 +143,7 @@
             <%= f.label :location_ids, "Locations:" %>
           </div>
           <div class="col-5">
-            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @selected_location_ids), {}, { multiple: true, id: 'story_location_ids' } %>
+            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @story.locations.ids), {}, { multiple: true, id: 'story_location_ids' } %>
           </div>
           <div class="col-2">
             <%= f.label :outside_usa, "Outside USA?" %>
@@ -158,7 +158,7 @@
             <%= f.label :place_category_ids, "Place Categories:" %>
           </div>
           <div class="col-10">
-            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @selected_place_category_ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
           </div>
         </div>
 
@@ -167,7 +167,7 @@
             <%= f.label :story_category_ids, "Story Categories:" %>
           </div>
           <div class="col-10">
-            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @selected_story_category_ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
+            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @story.story_categories.ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
           </div>
         </div>
 

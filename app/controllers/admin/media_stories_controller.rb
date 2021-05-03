@@ -57,10 +57,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
     # locations and categories
     get_locations_and_categories
-    @selected_location_ids       = @story.locations.pluck(:id)
-    @selected_place_category_ids = @story.place_categories.pluck(:id)
-    @selected_story_category_ids = @story.story_categories.pluck(:id)
-
     # media_owner stuff
     media_owner   = MediaOwner.where(url_domain: @base_domain).first
     @name_display = media_owner&.title || 'NO DOMAIN NAME FOUND'
@@ -129,9 +125,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
       @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
     end
-    @selected_location_ids = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids = process_chosen_params(hash['story_category_ids'])
   end
 
   def set_image_params(story_params)
