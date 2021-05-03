@@ -36,10 +36,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def edit
-    # story fields
-    @year = @video_story.story_year
-    @month = @video_story.story_month
-    @day = @video_story.story_date
     # locations and categories
     get_locations_and_categories
     @selected_location_ids       = @video_story.locations.pluck(:id)
