@@ -1,13 +1,13 @@
 require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
-  before_action :get_locations_and_categories, only: [:index, :new, :scrape, :edit]
   before_action :set_video_story, only: [:edit, :update]
 
   def scrape
     @video_story = VideoStory.new
     @screen_scraper = VideoScraper.new
     @data_entry_begin_time = params[:data_entry_begin_time]
+    get_locations_and_categories
 
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @video_story.urls.build
@@ -27,7 +27,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       #Update the permalink field
       @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
-      redirect_to review_admin_story_path(@video_story), notice: 'Story was moved to draft mode.'
+      redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
     else
       set_fields_on_fail(video_story_params)
       get_locations_and_categories
@@ -61,6 +61,15 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   private
 
+  def set_video_story
+    begin
+      @video_story = VideoStory.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_stories_path, alert: "Video Story not found"
+    end
+  end
+
+
   def set_scrape_fields
     @video_story.video_creator    = @screen_scraper.link_creator
     @video_story.video_channel_id = @screen_scraper.link_channel_id
@@ -76,12 +85,13 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @day                          = @screen_scraper.day
   end
 
-  def set_video_story
-    begin
-      @video_story = VideoStory.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Video Story not found"
-    end
+  def set_fields_on_fail(hash)
+    @year                         = hash["story_year"]
+    @month                        = hash["story_month"]
+    @day                          = hash["story_date"]
+    @selected_location_ids        = process_chosen_params(hash['location_ids'])
+    @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
+    @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
 
   def update_locations_and_categories(story, my_params)
@@ -146,14 +156,5 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       @minutes = 0
       @seconds = 0
     end
-  end
-
-  def set_fields_on_fail(hash)
-    @year                         = hash["story_year"]
-    @month                        = hash["story_month"]
-    @day                          = hash["story_date"]
-    @selected_location_ids        = process_chosen_params(hash['location_ids'])
-    @selected_place_category_ids  = process_chosen_params(hash['place_category_ids'])
-    @selected_story_category_ids  = process_chosen_params(hash['story_category_ids'])
   end
 end
