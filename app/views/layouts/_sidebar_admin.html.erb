@@ -1,49 +1,19 @@
 <div class="bg-white" id="sidebar-wrapper">
   <div class="sidebar list-group list-group-flush border-right">
-    <%= link_to admin_stories_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-book mr-1"></i> All Stories
-    <% end %>
-    <%= link_to admin_initialize_scraper_index_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-plus mr-1"></i> Add New Story
-    <% end %>
-    <%= link_to admin_published_items_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-tasks mr-1"></i> Publishable
-    <% end %>
-    <%= link_to queue_admin_newsfeed_index_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-sort-numeric-down mr-1"></i> Newsfeed Queue
-    <% end %>
-    <%= link_to admin_urls_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-link mr-1"></i> Urls
-    <% end %>
-    <%= link_to admin_images_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-images mr-1"></i> Images
-    <% end %>
-    <%= link_to admin_codes_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-cogs mr-1"></i> Codes
-    <% end %>
-    <%= link_to admin_locations_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-map-marker-alt mr-1"></i> Locations
-    <% end %>
-    <%= link_to admin_place_categories_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-map-marked-alt mr-1"></i> Place Categories
-    <% end %>
-    <%= link_to admin_story_categories_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-photo-video mr-1"></i> Story Categories
-    <% end %>
-    <%= link_to admin_media_owners_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-address-card mr-1"></i> Media Owners
-    <% end %>
-    <%= link_to admin_users_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-users mr-1"></i> Users
-    <% end %>
-    <%= link_to admin_reports_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-file-csv mr-1"></i> Reports
-    <% end %>
-    <%= link_to activities_admin_newsfeed_index_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-stream mr-1"></i> Newsfeed Activities
-    <% end %>
-    <%= link_to admin_admin_settings_path, class: "list-group-item list-group-item-action bg-white" do %>
-      <i class="fas fa-users-cog mr-1"></i> Admin Settings
-    <% end %>
+    <%= nav_item_link(admin_stories_path, 'All Stories', 'fa-book') %>
+    <%= nav_item_link(admin_initialize_scraper_index_path, "Add New Story", "fa-plus") %>
+    <%= nav_item_link(admin_published_items_path, "Publishable", "fa-tasks") %>
+    <%= nav_item_link(queue_admin_newsfeed_index_path, "Newsfeed Queue", "fa-sort-numeric-down") %>
+    <%= nav_item_link(admin_urls_path, "Urls", "fa-link") %>
+    <%= nav_item_link(admin_images_path, "Images", "fa-images") %>
+    <%= nav_item_link(admin_codes_path, "Codes", "fa-cogs") %>
+    <%= nav_item_link(admin_locations_path, "Locations", "fa-map-marker-alt") %>
+    <%= nav_item_link(admin_place_categories_path, "Place Categories", "fa-map-marked-alt") %>
+    <%= nav_item_link(admin_story_categories_path, "Story Categories", "fa-photo-video") %>
+    <%= nav_item_link(admin_media_owners_path, "Media Owners", "fa-address-card") %>
+    <%= nav_item_link(admin_users_path, "Users", "fa-users") %>
+    <%= nav_item_link(admin_reports_path, "Reports", "fa-file-csv") %>
+    <%= nav_item_link(activities_admin_newsfeed_index_path, "Newsfeed Activities", "fa-stream") %>
+    <%= nav_item_link(admin_admin_settings_path, "Admin Settings", "fa-users-cog") %>
   </div>
 </div>
