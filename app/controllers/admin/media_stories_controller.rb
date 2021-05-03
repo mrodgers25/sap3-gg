@@ -13,13 +13,12 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @story = MediaStory.new
     @screen_scraper = ScreenScraper.new
     @data_entry_begin_time = params[:data_entry_begin_time]
-    # @source_url_pre        = params[:source_url_pre]
-
     get_locations_and_categories
     get_domain_info(params[:source_url_pre])
 
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @story.urls.build
+      url.url_full = params[:source_url_pre]
       url.images.build
       set_scrape_fields
     else
@@ -38,7 +37,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       update_locations_and_categories(@story, story_params)
       redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
     else
-      get_domain_info(@video_story.urls.last.url_full)
+      get_domain_info(@story.urls.last.url_full)
       set_fields_on_fail(story_params)
       get_locations_and_categories
       render :scrape
@@ -116,10 +115,10 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def set_scrape_fields
-    @video_story.story_type = @screen_scraper.meta_type
-    @video_story.author = @screen_scraper.meta_author
+    @story.story_type = @screen_scraper.meta_type
+    @story.author = @screen_scraper.meta_author
 
-    url = @video_story.urls.last
+    url = @story.urls.last
     url.url_title  = @screen_scraper.title
     url.url_desc  = @screen_scraper.meta_desc
     url.url_keywords = @screen_scraper.meta_keywords
