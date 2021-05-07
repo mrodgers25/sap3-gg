@@ -3,6 +3,9 @@
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
         <h4><i class="fas fa-video mr-1"></i> Enter Video Story Details</h4>
+        <% if @video_story.persisted? %>
+          <h6>Video Story ID: <%= @video_story.id %></h6>
+        <% end %>
       </div>
 
       <hr class="my-4">

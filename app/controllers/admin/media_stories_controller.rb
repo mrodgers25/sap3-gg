@@ -58,16 +58,14 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     # locations and categories
     get_locations_and_categories
     # media_owner stuff
-    media_owner   = MediaOwner.where(url_domain: @base_domain).first
-    @name_display = media_owner&.title || 'NO DOMAIN NAME FOUND'
+    get_domain_info(@story.urls.last.url_full)
 
     # complete checks
-    @title_complete   = @title.present?
-    @tagline_complete = @meta_tagline.present?
-    @desc_complete    = @meta_desc.present?
+    @tagline_complete = @story.editor_tagline.present?
     @date_complete    = @story.story_year.present? || @story.story_month.present? || @story.story_date.present?
     @story_complete   = @story.story_complete
-    @pc_complete      = @selected_place_category_ids.present?
+    @title_complete   = @url1.url_title.present?
+    @desc_complete    = @url1.url_desc.present?
   end
 
   def update
