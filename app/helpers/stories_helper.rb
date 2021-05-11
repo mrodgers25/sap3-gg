@@ -8,7 +8,7 @@ module StoriesHelper
     end
   end
 
-  def show_visual_media(story, id)
+  def show_visual_media(story, id=nil)
     case story.type
     when 'MediaStory'
       if story.latest_image
