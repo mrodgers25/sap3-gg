@@ -102,9 +102,8 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-
   def review_update_params
-    params.require(get_camalized_story_type).permit(:desc_length)
+    params.require(get_camalized_story_type).permit(:desc_length, :editor_tagline)
   end
 
   def update_state_params

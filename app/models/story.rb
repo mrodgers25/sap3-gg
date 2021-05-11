@@ -24,9 +24,9 @@ class Story < ApplicationRecord
 
   aasm column: :state do
     state :no_status, initial: true
+    state :completed
     state :needs_review
     state :do_not_publish
-    state :completed
     state :removed_from_public
 
     after_all_transitions :log_status_change
@@ -84,7 +84,7 @@ class Story < ApplicationRecord
     self.aasm.states.map{|x| x.name.to_s }
   end
 
-  def self.all_states_collection_select
+  def self.all_states_mapping
     self.aasm.states.map do |state|
       [ state.name.to_s.titleize, state.name.to_s ]
     end
