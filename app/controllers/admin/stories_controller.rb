@@ -97,7 +97,7 @@ class Admin::StoriesController < Admin::BaseAdminController
         END AS story_date_combined
       "
     )
-    @stories = @stories.joins(:urls).where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    @stories = @stories.joins(:urls).where("LOWER(urls.url_full) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @stories = @stories.joins(urls: :images).where("LOWER(images.src_url) ~ ?", params[:image_url].downcase) if params[:image_url].present?
     @stories = @stories.where("LOWER(stories.author) ~ ?", params[:author].downcase) if params[:author].present?
     # For use in the future
