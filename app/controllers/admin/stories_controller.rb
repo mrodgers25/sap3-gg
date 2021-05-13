@@ -3,7 +3,7 @@ class Admin::StoriesController < Admin::BaseAdminController
   before_action :check_for_admin, only: :destroy
 
   def index
-     # database dropdown data
+    # database dropdown data
     @locations        = Location.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
@@ -84,6 +84,59 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
+  def bulk_index
+    @stories = Story.select(
+      "stories.*",
+      "
+        CASE
+          WHEN story_year > 0 AND story_month > 0 AND story_date > 0
+          THEN TO_DATE(CONCAT(story_year::TEXT, '-', story_month::TEXT, '-', story_date::TEXT), 'YYYY-MM-DD')
+          WHEN story_year > 0 AND story_month > 0
+          THEN TO_DATE(CONCAT(story_year::TEXT, '-', story_month::TEXT), 'YYYY-MM')
+          ELSE null
+        END AS story_date_combined
+      "
+    )
+    @stories = @stories.joins(:urls).where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    @stories = @stories.joins(urls: :images).where("LOWER(images.src_url) ~ ?", params[:image_url].downcase) if params[:image_url].present?
+    @stories = @stories.where("LOWER(stories.author) ~ ?", params[:author].downcase) if params[:author].present?
+    # For use in the future
+    # @stories = @stories.joins(:authors).where("LOWER(authors.name) ~ ?", params[:author].downcase)) if params[:author].present?
+    @stories = @stories.order(story_date_combined: :desc)
+
+    @pagy, @stories = pagy(@stories)
+  end
+
+  def bulk_update
+    @stories = Story.where(id: bulk_update_params[:ids])
+    count    = @stories.size
+
+    if @stories.present?
+      begin
+        case bulk_update_params[:update_type]
+        when "completed"
+          action_text = 'moved to completed'
+          @stories.each{|story| story.complete! }
+        when "needs_review"
+          action_text = 'moved to needs review'
+          @stories.each{|story| story.request_review! }
+        when "do_not_publish"
+          action_text = 'moved to do not publish'
+          @stories.each{|story| story.hide! }
+        when "removed_from_public"
+          action_text = 'removed from public'
+          @stories.each{|story| story.remove! }
+        end
+
+        redirect_to bulk_index_admin_stories_path, notice: "#{count} #{"story".pluralize(count)} #{action_text}."
+      rescue => e
+        redirect_to bulk_index_admin_stories_path, alert: e
+      end
+    else
+      redirect_to bulk_index_admin_stories_path, alert: "No selection was made."
+    end
+  end
+
   private
 
   def set_story
@@ -108,5 +161,9 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def update_state_params
     params.require(get_camalized_story_type).permit(:state)
+  end
+
+  def bulk_update_params
+    params.permit(:update_type, ids: [])
   end
 end

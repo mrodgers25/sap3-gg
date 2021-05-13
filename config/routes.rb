@@ -40,6 +40,11 @@ Rails.application.routes.draw do
         patch :review_update
         patch :update_state
       end
+
+      collection do
+        get :bulk_index
+        post :bulk_update
+      end
     end
     resources :media_stories, except: [:index] do
       collection do
