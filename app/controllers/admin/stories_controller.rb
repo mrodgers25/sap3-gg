@@ -41,7 +41,7 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def review_update
     if @story.update(review_update_params)
-      redirect_to review_admin_story_path(@story), notice: 'Story was successfully updated.'
+      redirect_to review_admin_story_path(@story)
     else
       redirect_to review_admin_story_path(@story), notice: 'Story failed to be updated.'
     end
