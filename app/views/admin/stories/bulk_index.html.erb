@@ -24,6 +24,7 @@
               <th scope="col">Story Url</th>
               <th scope="col">Image Url</th>
               <th scope="col">Author</th>
+              <th scope="col">State</th>
               <th scope="col">
                 Action<br>
                 <%= link_to 'Select All', '#', class: 'bulk-update-select-all' %>
@@ -38,6 +39,9 @@
                 <td style="width: 300px; overflow: hidden; max-width: 300px; word-wrap: break-word;"><%= link_to story.latest_url&.url_full, story.latest_url&.url_full, target: '_blank', class: 'text-dark' %></td>
                 <td style="width: 300px; overflow: hidden; max-width: 300px; word-wrap: break-word;"><%= story.latest_url&.latest_image_url %></td>
                 <td style="width: 75px"><%= story.author&.titleize || '-' %></td>
+                <td style="width: 150px">
+                  <i class='fa fa-circle fa-xs <%= story_state_color(story.state) %>'></i> <%= story&.state.titleize || '-' %>
+                </td>
                 <td style="width: 50px;">
                   <%= check_box_tag('ids[]', story.id, false, id: story.id, class: 'bulk-update-cb') %><br>
                 </td>
