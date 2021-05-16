@@ -9,7 +9,7 @@
     <%= favicon_pack_tag 'favicon.ico' %>
   </head>
   <body>
-    <div id="wrapper" class="<%= admin_controller? ? '' : 'sb-closed' %>">
+    <div id="wrapper" class="<%= session[:sb_closed] || session[:sb_closed].nil? ? 'sb-closed' : '' %>">
       <%= render 'layouts/navbar' %>
       <%= render admin_controller? ? 'layouts/sidebar_admin' : 'layouts/sidebar' %>
 

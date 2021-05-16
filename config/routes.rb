@@ -25,6 +25,11 @@ Rails.application.routes.draw do
       post :forget
     end
   end
+  resources :sessions, only: :toggle_sidebar_state do
+    collection do
+      post :toggle_sidebar_state
+    end
+  end
   # MY STORIES
   get 'my_stories', to: 'stories#my_stories'
   # ADMIN ROUTES
