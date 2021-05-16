@@ -1,29 +1,18 @@
 <div class="container-fluid">
   <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: 'fas fa-book', title: 'Review Story' }%>
 
-  <hr class="my-4">
+  <hr class="mt-4 mb-2">
 
-  <%= form_with(model: @story, url: review_update_admin_story_path(@story)) do |f| %>
-    <div class="row">
-      <div class="col-1">
-        <%= f.label :editor_tagline, 'Tagline:' %>
-      </div>
-      <div class="col-11 input-group mb-3">
-        <%= f.text_field :editor_tagline, placeholder: 'Editor tagline', class: 'form-control' %>
-        <div class="input-group-append">
-          <%= submit_tag "Revise", class: "btn btn-sm btn-primary" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
   <div class="grid story-grid">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
-    <div class="grid-item grid-card card">
-      <% if @story.media_story? %>
-        <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), admin_media_story_path(@story.id), target: '_blank' if @story.latest_image %>
-      <% elsif @story.video_story? %>
-        <%= get_video_iframe(@story.urls.first.url_full, "100%", '200px') %>
+    <% url_path = @story.media_story? ? story_path(@story.permalink) : @story.latest_url&.url_full %>
+    <div class="grid-item grid-card card" id="grid-card-<%= @story.id %>">
+      <% if @story.latest_image %>
+        <%= link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{@story.id}').offsetWidth; const ratio = (divWidth / #{@story.image_width.to_f}); const newHeight = (ratio * #{@story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), url_path, target: '_blank', id: "default-image-#{@story.id}" %>
+        <%= link_to image_tag(@story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{@story.id}').style.display='none';", class: "grid-image", style: 'display: none;'), url_path, target: '_blank' %>
+      <% else %>
+        <%= link_to image_pack_tag('default-image.jpeg', class: "grid-image"), url_path, target: '_blank' %>
       <% end %>
       <div class="card-body">
         <div class="tagline-div-<%= @story.id %>">
@@ -49,7 +38,7 @@
         </p>
 
         <p class="url-desc">
-          <%= truncate(@story.latest_url.url_desc, length: @story.desc_length, omission: '...  ' ) { link_to "Read more", admin_media_story_path(@story.id), target: '_blank', class: 'read-more-link' } %>
+          <%= truncate(@story.latest_url.url_desc, length: @story.desc_length, omission: '...  ' ) { link_to "Read more", admin_story_path(@story.id), target: '_blank', class: 'read-more-link' } %>
         </p>
 
         <hr>
@@ -82,32 +71,46 @@
     <div class="grid-item grid-card card">
       <div class="card-body">
           <div class="header text-center">
-            <h4>Description Length</h4>
+            <h5>Revise Fields</h5>
           </div>
 
-          <hr class="my-4">
+          <hr class="my-2">
 
           <div class="body">
             <%= form_with(model: @story, url: review_update_admin_story_path(@story)) do |f| %>
               <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :desc_length, 'Editor Tagline:' %>
+                <%= f.text_area :editor_tagline, rows: 2, cols: 25, placeholder: 'Editor tagline', class: 'form-control' %>
+              </div>
+
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :desc_length, 'Description Length (# of characters):' %>
                 <%= f.number_field :desc_length, class: 'form-control' %>
               </div>
 
-              <div class="sign-in-row mt-4 mx-auto text-left">
+              <div class="sign-in-row mt-4 mx-auto text-center">
                 <%= submit_tag "Revise", class: "btn btn-sm btn-primary" %>
               </div>
             <% end %>
+          </div>
+
+          <hr class="mt-4 mb-4">
+
+          <div class="counter-div text-center">
+            <h6>Adjust the text below to count the characters</h6>
+            <p>Count: <span id='count-value' class="text-primary font-weight-bold"><%= @story.latest_url.url_desc.length %></span></p>
+            <%= text_area_tag 'character_count', @story.latest_url.url_desc, rows: 7, cols: 25, class: 'form-control', id: 'count-text-area' %>
           </div>
       </div>
     </div>
     <div class="grid-item grid-card card">
       <div class="card-body">
         <div class="header text-center">
-          <h4>Story Status</h4>
+          <h5>Story Status</h5>
         </div>
 
-        <hr class="my-4">
-        <p class="lead text-center">Current Story State: <br><strong><%= @story.state.titleize %></strong></p>
+        <hr class="my-2">
+        <p class="lead text-center">Current State: <br><strong><%= @story.state.titleize %></strong></p>
 
 
         <div class="body text-left">
@@ -121,7 +124,11 @@
                 </li>
               </ul>
             <% end %>
-            <%= submit_tag "Save", class: "btn btn-sm btn-success mt-4" %>
+            <div class="d-flex justify-content-between">
+              <%= submit_tag "Save & New", class: "btn btn-sm btn-success mt-4" %>
+              <br>
+              <%= submit_tag "Save & Exit", class: "btn btn-sm btn-success mt-4" %>
+            </div>
           <% end %>
         </div>
       </div>
