@@ -51,16 +51,17 @@ Rails.application.routes.draw do
         post :bulk_update
       end
     end
-    resources :media_stories, except: [:index] do
+    resources :media_stories, except: [:index, :destroy] do
       collection do
         get :scrape
       end
     end
-    resources :video_stories, except: [:index] do
+    resources :video_stories, except: [:index, :destroy] do
       collection do
         get :scrape
       end
     end
+    resources :custom_stories, except: [:index, :destroy]
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]

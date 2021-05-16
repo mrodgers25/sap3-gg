@@ -1,0 +1,2 @@
+class CustomStory < Story
+end

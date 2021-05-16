@@ -1,0 +1,290 @@
+<div class="container-fluid ">
+  <%= form_with(model: @story, url: route, method: method) do |f| %>
+    <div class="jumbotron bg-white story-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-star mr-1"></i> Enter Custom Story Details</h4>
+        <% if @story.persisted? %>
+          <h6>Story ID: <%= @story.id %></h6>
+        <% end %>
+      </div>
+
+      <hr class="my-4">
+
+      <% if @story.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
+          <ul>
+            <% @story.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="body">
+        <%= f.fields_for :urls do |u| %>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_full, "Page Url:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_field :url_full, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :name_display, "Display Name:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_field :name_display, value: @name_display, readonly: true, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2 <%= form_item_status_class(@title_complete) %>">
+              <%= u.label :url_title, "Url Title:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_title, rows: 1, maxlength: 250, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2 <%= form_item_status_class(@desc_complete) %>">
+              <%= u.label :url_desc, "Url Description:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_desc, rows: 3, maxlength: 1000, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= u.label :url_keywords, "Url Keywords:" %>
+            </div>
+            <div class="col-10">
+              <%= u.text_area :url_keywords, rows: 1, maxlength: 1000, class: "form-control" %>
+            </div>
+          </div>
+
+          <%= u.hidden_field :url_domain, value: @base_domain %>
+
+          <hr class="my-4">
+
+          <%= u.fields_for :images do |i| %>
+            <% if params[:action] != "edit" %>
+              <% unless @page_imgs.blank? %>
+                <% @page_imgs.each_with_index do |hash, idx| %>
+                  <div class="row my-2">
+                    <% unless @image1 %>
+                      <div class="col-md-2 text-center">
+                        <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
+                        <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                        <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                      </div>
+                    <% end %>
+                    <div class="col-md-5">
+                      <%= i.label :src_url, hash["alt_text"] %>
+                      <%= i.label :src_url, (hash["image_width"].to_s + " x " + hash["image_height"].to_s) %>
+                    </div>
+                    <div class="col-md-5">
+                      <%= image_tag(hash["src_url"], width: "250") %><br>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+
+              <hr class="my-4">
+            <% end %>
+
+            <div class="form-group row">
+              <div class="col-2">
+                <%= i.label :src_url, "Manual Image URL:" %>
+              </div>
+              <div class="col-10">
+                <%= i.text_area :src_url, cols: 80, class: "form-control form-control-sm" %>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-2">
+                <%= i.label :image_width, "Image Size:" %>
+              </div>
+              <div class="col-1">
+                <%= i.label :image_width, "W:" %>
+              </div>
+              <div class="col-2">
+                <%= i.text_field :image_width, class: "form-control form-control-sm" %>
+              </div>
+              <div class="col-1">
+                <%= i.label :image_height, "H:" %>
+              </div>
+              <div class="col-2">
+                <%= i.text_field :image_height, class: "form-control form-control-sm" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <hr class="my-4">
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :editor_tagline, "Editor Tagline:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :editor_tagline, placeholder: "Maximum 75 chars", maxlength: 75, size: 75, class: "form-control form-control-sm" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :location_ids, "Locations:" %>
+          </div>
+          <div class="col-5">
+            <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @story.locations.ids), {}, { multiple: true, id: 'story_location_ids' } %>
+          </div>
+          <div class="col-2">
+            <%= f.label :outside_usa, "Outside USA?" %>
+          </div>
+          <div class="col-1">
+            <%= f.check_box :outside_usa, class: '' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :place_category_ids, "Place Categories:" %>
+          </div>
+          <div class="col-10">
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_category_ids, "Story Categories:" %>
+          </div>
+          <div class="col-10">
+            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @story.story_categories.ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :author, "Story Author:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :author, size: 50, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_year, "Story Year:" %>
+          </div>
+          <div class="col-2">
+            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+          </div>
+          <div class="col-2">
+            <%= f.label :story_month, "Story Month:" %>
+          </div>
+          <div class="col-2">
+            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
+          </div>
+          <div class="col-2">
+            <%= f.label :story_date, "Story Date:" %>
+          </div>
+          <div class="col-2">
+            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :hashtags, "Hashtags:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :hashtags, size: 50, placeholder: 'eg: #food #dancing #shopping', class: 'form-control' %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <%= f.fields_for :images do |i| %>
+          <h5>External Image</h5>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= i.label :src_url, "Image URL:" %>
+            </div>
+            <div class="col-10">
+              <%= i.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= i.label :image_width, "Image Size:" %>
+            </div>
+            <div class="col-1">
+              <%= i.label :image_width, "W:" %>
+            </div>
+            <div class="col-2">
+              <%= i.text_field :image_width, class: "form-control form-control-sm" %>
+            </div>
+            <div class="col-1">
+              <%= i.label :image_height, "H:" %>
+            </div>
+            <div class="col-2">
+              <%= i.text_field :image_height, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+
+          <h5>Internal Image</h5>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= i.label :src_url, "Find File:" %>
+            </div>
+            <div class="col-10">
+              <%= i.file_field :src_url, class: "" %>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-2">
+              <%= i.label :image_width, "Image Size:" %>
+            </div>
+            <div class="col-1">
+              <%= i.label :image_width, "W:" %>
+            </div>
+            <div class="col-2">
+              <%= i.text_field :image_width, class: "form-control form-control-sm" %>
+            </div>
+            <div class="col-1">
+              <%= i.label :image_height, "H:" %>
+            </div>
+            <div class="col-2">
+              <%= i.text_field :image_height, class: "form-control form-control-sm" %>
+            </div>
+          </div>
+        <% end %>
+
+        <hr class="my-4">
+
+        <% if params[:action] != 'new' %>
+          <div class="text-center">
+            <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-25' %>
+          </div>
+        <% else %>
+          <div class="text-center">
+            <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-25' %>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time  if @data_entry_begin_time.present? %>
+        <%= f.hidden_field :data_entry_user, value: current_user.id %>
+      </div>
+    </div>
+  <% end %>
+</div>
