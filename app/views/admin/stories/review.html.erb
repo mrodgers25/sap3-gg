@@ -6,11 +6,13 @@
   <div class="grid story-grid">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
-    <div class="grid-item grid-card card">
-      <% if @story.media_story? %>
-        <%= link_to image_tag(@story.latest_image.src_url, class: "grid-image"), admin_story_path(@story.id), target: '_blank' if @story.latest_image %>
-      <% elsif @story.video_story? %>
-        <%= get_video_iframe(@story.urls.first.url_full, "100%", '200px') %>
+    <% url_path = @story.media_story? ? story_path(@story.permalink) : @story.latest_url&.url_full %>
+    <div class="grid-item grid-card card" id="grid-card-<%= @story.id %>">
+      <% if @story.latest_image %>
+        <%= link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{@story.id}').offsetWidth; const ratio = (divWidth / #{@story.image_width.to_f}); const newHeight = (ratio * #{@story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), url_path, target: '_blank', id: "default-image-#{@story.id}" %>
+        <%= link_to image_tag(@story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{@story.id}').style.display='none';", class: "grid-image", style: 'display: none;'), url_path, target: '_blank' %>
+      <% else %>
+        <%= link_to image_pack_tag('default-image.jpeg', class: "grid-image"), url_path, target: '_blank' %>
       <% end %>
       <div class="card-body">
         <div class="tagline-div-<%= @story.id %>">
@@ -122,7 +124,11 @@
                 </li>
               </ul>
             <% end %>
-            <%= submit_tag "Save", class: "btn btn-sm btn-success mt-4" %>
+            <div class="d-flex justify-content-between">
+              <%= submit_tag "Save & New", class: "btn btn-sm btn-success mt-4" %>
+              <br>
+              <%= submit_tag "Save & Exit", class: "btn btn-sm btn-success mt-4" %>
+            </div>
           <% end %>
         </div>
       </div>

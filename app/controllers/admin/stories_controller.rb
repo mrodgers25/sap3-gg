@@ -70,7 +70,9 @@ class Admin::StoriesController < Admin::BaseAdminController
         @story.reset!
       end
 
-      redirect_to review_admin_story_path(@story), notice: "Story saved as #{update_state_params[:state].titleize}"
+      redirect_route = params[:commit] == 'Save & New' ? admin_initialize_scraper_index_path : admin_stories_path
+
+      redirect_to redirect_route, notice: "Story saved as #{update_state_params[:state].titleize}"
     rescue
       redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
     end
