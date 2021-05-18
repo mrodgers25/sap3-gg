@@ -8,7 +8,7 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
 
     @published_items = PublishedItem.joins("
       INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
-      INNER JOIN urls ON urls.story_id = stories.id
+      LEFT JOIN urls ON urls.story_id = stories.id
       LEFT JOIN stories_users ON stories_users.story_id = stories.id
       LEFT JOIN story_locations ON story_locations.story_id = stories.id
       LEFT JOIN locations ON locations.id = story_locations.location_id

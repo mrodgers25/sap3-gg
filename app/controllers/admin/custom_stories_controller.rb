@@ -12,7 +12,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     if @story.save
       redirect_to admin_stories_path, notice: 'Story was successfully created.'
     else
-      redirect_to edit_admin_custom_story_path(@story), notice: 'Story was not created.'
+      render :new, Alert: 'Story was not created.'
     end
   end
 
@@ -23,7 +23,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     if @story.update(story_params)
       redirect_to admin_stories_path, notice: 'Story was successfully updated.'
     else
-      redirect_to edit_admin_custom_story_path(@story), notice: 'Story failed to be updated.'
+      redirect_to edit_admin_custom_story_path(@story), alert: 'Story failed to be updated.'
     end
   end
 
@@ -41,5 +41,21 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     @locations        = Location.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
+  end
+
+  def story_params
+    params.require(:custom_story).permit(
+      :outside_usa,
+      :state,
+      :story_year,
+      :story_month,
+      :story_date,
+      :data_entry_begin_time,
+      :data_entry_user,
+      :desc_length,
+      location_ids: [],
+      place_category_ids: [],
+      internal_images: []
+    )
   end
 end

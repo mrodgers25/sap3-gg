@@ -27,7 +27,7 @@
           <% @stories.each do |story| %>
             <tr>
               <td><%= story.id %></td>
-              <td style="width: 500px"><%= link_to story.latest_url&.url_title, story_path(story.permalink), target: '_blank', class: 'text-dark' %></td>
+              <td style="width: 500px"><%= link_to story.latest_url&.url_title, admin_story_path(story.id), target: '_blank', class: 'text-dark' %></td>
               <td style="width: 150px"><%= story.media_owner || '-' %></td>
               <td><%= story.story_display_date || '-' %></td>
               <td style="width: 150px">
@@ -37,7 +37,7 @@
                 <i class='<%= colored_icon_for_story_type(story&.type) %>'></i> <%= story.type.underscore.split("_").first.capitalize! || '-' %>
               </td>
               <td style="width: 200px;">
-                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary", target: '_blank', data: { toggle: 'tooltip', placement: 'top', title: 'View story page' } do %>
+                <%= link_to admin_story_path(story), class: "btn btn-sm btn-outline-primary", target: '_blank', data: { toggle: 'tooltip', placement: 'top', title: 'View story page' } do %>
                   <i class="fas fa-search"></i>
                 <% end %>
                 <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Review story' } do %>

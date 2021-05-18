@@ -8,7 +8,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
-    @stories = Story.joins(:urls).select(
+    @stories = Story.left_outer_joins(:urls).select(
       "stories.*",
       "
         CASE
@@ -20,7 +20,7 @@ class Admin::StoriesController < Admin::BaseAdminController
         END AS story_date_combined
       "
     )
-    @stories = @stories.where("LOWER(type) ~ ?", params[:type].downcase) if params[:type].present?
+    @stories = @stories.where("type ~ ?", params[:type]) if params[:type].present?
     @stories = @stories.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @stories = @stories.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
     @stories = @stories.where(state: params[:state]) if params[:state].present?
