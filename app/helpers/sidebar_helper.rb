@@ -14,7 +14,7 @@ module SidebarHelper
     classes_string += current_page?(path) ? 'active-item' : 'bg-white'
 
     link_to(path, { class: classes_string }) do
-      content_tag(:i, "", class: "fas #{icon} mr-2") + text
+      content_tag(:i, "", class: "#{icon} mr-2") + text
     end
   end
 end

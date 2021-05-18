@@ -1,7 +1,20 @@
 document.addEventListener("turbolinks:load", function () {
   $("#menu-toggle").on('click', function (e) {
     e.preventDefault();
-    $("#wrapper").toggleClass("sb-closed");
+    // POST to the sessions controller to toggle session for session[:sb_closed]
+    $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/sessions/toggle_sidebar_state",
+      success: function (result) {
+        console.log(result);
+        if (result.sb_closed) {
+          $("#wrapper").addClass("sb-closed");
+        } else {
+          $("#wrapper").removeClass("sb-closed");
+        }
+      }
+    });
   });
 
   $('body').on('click', function (e) {

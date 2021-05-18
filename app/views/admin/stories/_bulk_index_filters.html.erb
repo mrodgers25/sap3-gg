@@ -1,0 +1,16 @@
+<%= form_tag(filter_path, method: :get) do %>
+  <div class="row filters">
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+      <%= text_field_tag :story_url, params[:story_url], placeholder: 'Search Story Url...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+      <%= text_field_tag :image_url, params[:image_url], placeholder: 'Search Image Url...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+      <%= text_field_tag :author, params[:author], placeholder: 'Search Author...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-0">
+      <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+    </div>
+  </div>
+<% end %>

@@ -20,4 +20,8 @@ class Url < ApplicationRecord
   def encoded_url
     URI.encode(url_full)
   end
+
+  def latest_image_url
+    images.order(:id).last.src_url
+  end
 end

@@ -2,8 +2,8 @@
 
 class Users::SessionsController < Devise::SessionsController
   layout 'application_no_nav'
-  prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
-  before_action :configure_sign_in_params, only: [:create]
+  prepend_before_action :check_captcha, only: :create # Change this to be any actions you want to protect.
+  before_action :configure_sign_in_params, only: :create
 
   def create
     super
@@ -15,6 +15,8 @@ class Users::SessionsController < Devise::SessionsController
     super
     # Remove devise flash notifications
     flash.delete(:notice)
+    # clear sidebar state
+    session[:sb_closed] = nil
   end
 
   protected
