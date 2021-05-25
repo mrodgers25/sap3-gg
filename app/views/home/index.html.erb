@@ -7,13 +7,14 @@
     <% if @published_items.present? %>
       <% @published_items.each do |published_item| %>
         <% story = published_item.publishable %>
-        <% url_path = story.media_story? ? story_path(story.permalink) : story.latest_url&.url_full %>
         <div class="grid-item grid-card card" id="grid-card-<%= published_item.id %>">
           <% if story.latest_image %>
-            <%= link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{published_item.id}').offsetWidth; const ratio = (divWidth / #{story.image_width.to_f}); const newHeight = (ratio * #{story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), url_path, target: '_blank', id: "default-image-#{published_item.id}" %>
-            <%= link_to image_tag(story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{published_item.id}').style.display='none';", class: "grid-image", style: 'display: none;'), url_path, target: '_blank' %>
+            <%= link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{published_item.id}').offsetWidth; const ratio = (divWidth / #{story.image_width.to_f}); const newHeight = (ratio * #{story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), story_path(story.permalink), target: '_blank', id: "default-image-#{published_item.id}" %>
+            <%= link_to image_tag(story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{published_item.id}').style.display='none';", class: "grid-image", style: 'display: none;'), story_path(story.permalink), target: '_blank' %>
+             <!-- render play icon overlay -->
+            <%= show_play_button(story) %>
           <% else %>
-            <%= link_to image_pack_tag('default-image.jpeg', class: "grid-image"), url_path, target: '_blank' %>
+            <%= link_to image_pack_tag('default-image.jpeg', class: "grid-image"), story_path(story.permalink), target: '_blank' %>
           <% end %>
           <div class="card-body">
             <div class="tagline-div-<%= story.id %>">
