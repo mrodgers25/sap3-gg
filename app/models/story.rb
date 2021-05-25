@@ -16,8 +16,6 @@ class Story < ApplicationRecord
   has_many :story_activities, dependent: :destroy
   has_many :published_items, as: :publishable
   has_many :newsfeed_activities, as: :trackable
-  has_many_attached :internal_images
-  # accepts_nested_attributes_for :internal_images
   has_one :media_owner, through: :urls
 
   before_validation :set_story_track_fields, on: :create
@@ -60,6 +58,10 @@ class Story < ApplicationRecord
 
   def video_story?
     type == 'VideoStory'
+  end
+
+  def custom_story?
+    type == 'CustomStory'
   end
 
   def check_state_and_update_published_item
@@ -117,10 +119,15 @@ class Story < ApplicationRecord
   end
 
   def set_story_complete
-    story_check = (self.editor_tagline != '' and
-        (self.story_year != nil or self.story_month != nil or self.story_date != nil) and
-        (self.urls.first.url_type != '' and self.urls.first.url_title != '' and self.urls.first.url_desc != '' and self.urls.first.url_domain != ''))
-    write_attribute(:story_complete, story_check ? true : false)
+    if self.type == 'CustomStory'
+      complete = true
+    else
+      complete = (self.editor_tagline != '' &&
+        (self.story_year != nil or self.story_month != nil or self.story_date != nil) &&
+        (self.urls.first.url_type != '' && self.urls.first.url_title != '' && self.urls.first.url_desc != '' && self.urls.first.url_domain != ''))
+    end
+
+    write_attribute(:story_complete, complete)
   end
 
   def story_url_complete?  # currently not used

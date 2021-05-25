@@ -10,6 +10,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     @story = CustomStory.new(story_params)
 
     if @story.save
+      # @story.internal_image.attach(story_params[:internal_image])
       redirect_to admin_stories_path, notice: 'Story was successfully created.'
     else
       render :new, Alert: 'Story was not created.'
@@ -45,6 +46,9 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
 
   def story_params
     params.require(:custom_story).permit(
+      :editor_tagline,
+      :author,
+      :hashtags,
       :outside_usa,
       :state,
       :story_year,
@@ -53,9 +57,11 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       :data_entry_begin_time,
       :data_entry_user,
       :desc_length,
+      :internal_image,
+      :images,
       location_ids: [],
+      story_category_ids: [],
       place_category_ids: [],
-      internal_images: []
     )
   end
 end

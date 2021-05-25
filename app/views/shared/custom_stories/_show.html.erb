@@ -1,0 +1,23 @@
+<div class="story-show card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="back-button text-left">
+          <%= link_to root_path, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+            <i class="fas fa-home mr-1"></i> Go Back
+          <% end %>
+        </div>
+        <div class="header mt-2 mt-md-0 text-center">
+          <%= link_to root_path, data: { turbolinks: false } do %>
+            <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 img-div m-auto" style="height: 300px">
+        <% image_tag story.internal_image.variant(resize_to_limit: [100, 100]) %>
+      </div>
+    </div>
+  </div>
+</div>
