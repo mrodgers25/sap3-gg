@@ -1,9 +1,8 @@
 module StoriesHelper
   def edit_admin_story_path_helper(story)
-    case story.type
-    when 'MediaStory'
+    if story.media_story?
       edit_admin_media_story_path(story)
-    when 'VideoStory'
+    elsif story.video_story?
       edit_admin_video_story_path(story)
     end
   end

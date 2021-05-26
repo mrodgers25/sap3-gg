@@ -1,0 +1,11 @@
+<div class="links mb-2 text-right">
+  <%= link_to edit_admin_story_path_helper(story), class: "btn btn-sm btn-success" do %>
+    <i class="fas fa-plus mr-1"></i> Story Details
+  <% end %>
+  <%= link_to places_admin_story_path(story), class: "btn btn-sm btn-success" do %>
+    <i class="fas fa-plus mr-1"></i> Add Places
+  <% end %>
+  <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-success" do %>
+    <i class="fas fa-plus mr-1"></i> Review
+  <% end %>
+</div>

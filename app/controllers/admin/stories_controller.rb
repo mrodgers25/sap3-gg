@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -34,6 +34,10 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def show
     render layout: "application_no_nav"
+  end
+
+  def places
+    get_locations_and_categories
   end
 
   def review
@@ -167,5 +171,11 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def bulk_update_params
     params.permit(:update_type, ids: [])
+  end
+
+  def get_locations_and_categories
+    @locations        = Location.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
   end
 end

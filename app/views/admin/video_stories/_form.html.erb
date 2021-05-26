@@ -1,4 +1,6 @@
 <div class="container-fluid">
+  <%= render partial: 'shared/admin/form_tabs', locals: { story: @video_story }%>
+
   <%= form_with(model: @video_story, url: route, method: method) do |f| %>
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
@@ -106,15 +108,6 @@
             <div class="col-3">
               <%= f.label :outside_usa, "Outside USA?" %>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :place_category_ids, "Place Categories:" %>
-          </div>
-          <div class="col-10 w-100">
-            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @video_story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
           </div>
         </div>
 
@@ -238,11 +231,13 @@
         <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time if @data_entry_begin_time.present? %>
         <%= f.hidden_field :data_entry_user, value: current_user.id %>
 
-        <% if params[:action] != 'new' %>
-          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
-        <% else %>
-          <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
-        <% end %>
+
+        <div class="d-flex justify-content-between">
+          <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mt-4" %>
+          <%= f.submit "Save & New", class: "btn btn-sm btn-success mt-4" %>
+          <%= f.submit "Next", class: "btn btn-sm btn-secondary mt-4" %>
+          <br>
+        </div>
 
         <hr class="my-4">
 
