@@ -5,6 +5,8 @@ module StoriesHelper
       edit_admin_media_story_path(story)
     when 'VideoStory'
       edit_admin_video_story_path(story)
+    when 'CustomStory'
+      edit_admin_custom_story_path(story)
     end
   end
 
