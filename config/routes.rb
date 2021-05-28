@@ -108,5 +108,5 @@ Rails.application.routes.draw do
   end
 
   # redirect to home if route doesn't exist
-  match "*path" => "home#index", via: [:get, :post]
+  match "*path" => "home#index", via: [:get, :post] if Rails.env.production?
 end
