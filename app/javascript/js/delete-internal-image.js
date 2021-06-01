@@ -3,13 +3,15 @@ document.addEventListener("turbolinks:load", function () {
     event.preventDefault();
     let id = this.id;
 
-    $.ajax({
-      url: '/admin/custom_stories/' + id + '/destroy_internal_image',
-      method: 'POST',
-      contentType: 'application/json',
-    })
-      .done(function() {
-        location.reload();
+    if (confirm('Delete this image?')) {
+      $.ajax({
+        url: '/admin/custom_stories/' + id + '/destroy_internal_image',
+        method: 'POST',
+        contentType: 'application/json',
       })
+        .done(function() {
+          location.reload();
+        })
+    }
   });
 });

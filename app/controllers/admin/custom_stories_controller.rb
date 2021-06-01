@@ -4,16 +4,15 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
 
   def new
     @story = CustomStory.new
+    @story.build_external_image
   end
 
   def create
-    @story = CustomStory.new(story_params)
-
-    if @story.save
-      # @story.internal_image.attach(story_params[:internal_image])
+    begin
+      CustomStory.create!(story_params)
       redirect_to admin_stories_path, notice: 'Story was successfully created.'
-    else
-      render :new, Alert: 'Story was not created.'
+    rescue => e
+      redirect_to new_admin_custom_story_path, alert: e
     end
   end
 
@@ -21,25 +20,22 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   end
 
   def update
-    if @story.update(story_params)
+    begin
+      @story.update!(story_params)
       redirect_to admin_stories_path, notice: 'Story was successfully updated.'
-    else
-      redirect_to edit_admin_custom_story_path(@story), alert: 'Story failed to be updated.'
+    rescue => e
+      redirect_to edit_admin_custom_story_path(@story), alert: e
     end
   end
 
   def destroy_internal_image
-    respond_to do |format|
-      if @story.internal_image.attached?
-        @story.internal_image.purge
-        @story.update(internal_image_height: 0, internal_image_width: 0)
+    if @story.internal_image.attached?
+      @story.internal_image.purge
+      @story.update(internal_image_height: 0, internal_image_width: 0)
 
-        format.json { render json: { success: true, message: 'Image was successfully removed.' }}
-        format.html { redirect_to edit_admin_custom_story_path(@story), notice: 'Image was successfully removed.' }
-      else
-        format.json { render json: { success: false, message: 'Error occured' }}
-        format.html { redirect_to edit_admin_custom_story_path(@story), notice: 'Error occured' }
-      end
+      render json: { success: true, message: 'Image was successfully removed.' }
+    else
+      render json: { success: false, message: 'Error occured' }
     end
   end
 
@@ -72,7 +68,6 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       :data_entry_begin_time,
       :data_entry_user,
       :desc_length,
-      :images,
       :custom_body,
       :internal_image,
       :internal_image_width,
@@ -80,6 +75,9 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       location_ids: [],
       story_category_ids: [],
       place_category_ids: [],
+      external_image_attributes: [
+        :src_url, :width, :height
+      ]
     )
   end
 end

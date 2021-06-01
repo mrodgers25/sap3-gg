@@ -2,7 +2,7 @@
   <%= form_with(model: @story, url: route, method: method) do |f| %>
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
-        <h4><i class="fas fa-star mr-1"></i> Enter Custom Story Details</h4>
+        <h4><i class="fas fa-asterisk mr-1"></i> Enter Custom Story Details</h4>
         <% if @story.persisted? %>
           <h6>Story ID: <%= @story.id %></h6>
         <% end %>
@@ -105,32 +105,32 @@
 
         <hr class="my-4">
 
-        <%= f.fields_for :images do |i| %>
+        <%= f.fields_for @story.external_image do |e| %>
           <h5>External Image</h5>
           <div class="form-group row">
             <div class="col-2">
-              <%= i.label :src_url, "Image URL:" %>
+              <%= e.label :src_url, "Image URL:" %>
             </div>
             <div class="col-10">
-              <%= i.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
+              <%= e.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-2">
-              <%= i.label :image_width, "Image Size:" %>
+              <%= e.label :width, "Image Size:" %>
             </div>
             <div class="col-1">
-              <%= i.label :image_width, "W:" %>
+              <%= e.label :width, "W:" %>
             </div>
             <div class="col-2">
-              <%= i.text_field :image_width, class: "form-control form-control-sm" %>
+              <%= e.text_field :width, class: "form-control form-control-sm" %>
             </div>
             <div class="col-1">
-              <%= i.label :image_height, "H:" %>
+              <%= e.label :height, "H:" %>
             </div>
             <div class="col-2">
-              <%= i.text_field :image_height, class: "form-control form-control-sm" %>
+              <%= e.text_field :height, class: "form-control form-control-sm" %>
             </div>
           </div>
         <% end %>
@@ -146,7 +146,7 @@
           <% if @story.internal_image.attached? %>
             <div class="col-4 col-md-3 internal-image-text-div">
               <p>Current Image (resized):</p>
-              <%= button_to 'Remove Image', destroy_internal_image_admin_custom_story_path(@story), method: :delete, class: 'btn btn-sm btn-outline-danger delete-internal-image-btn', id: @story.id %>
+              <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger delete-internal-image-btn', id: @story.id %>
             </div>
             <div class="col-6 col-md-3 text-center internal-image-image-div">
               <%= image_tag @story.internal_image.variant(resize_to_limit: [150,150]) %>
