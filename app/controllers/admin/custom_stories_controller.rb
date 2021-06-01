@@ -1,5 +1,5 @@
 class Admin::CustomStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:edit, :update]
+  before_action :set_story, only: [:edit, :update, :destroy_internal_image]
   before_action :get_locations_and_categories, only: [:new, :edit]
 
   def new
@@ -25,6 +25,21 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       redirect_to admin_stories_path, notice: 'Story was successfully updated.'
     else
       redirect_to edit_admin_custom_story_path(@story), alert: 'Story failed to be updated.'
+    end
+  end
+
+  def destroy_internal_image
+    respond_to do |format|
+      if @story.internal_image.attached?
+        @story.internal_image.purge
+        @story.update(internal_image_height: 0, internal_image_width: 0)
+
+        format.json { render json: { success: true, message: 'Image was successfully removed.' }}
+        format.html { redirect_to edit_admin_custom_story_path(@story), notice: 'Image was successfully removed.' }
+      else
+        format.json { render json: { success: false, message: 'Error occured' }}
+        format.html { redirect_to edit_admin_custom_story_path(@story), notice: 'Error occured' }
+      end
     end
   end
 
@@ -60,6 +75,8 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       :images,
       :custom_body,
       :internal_image,
+      :internal_image_width,
+      :internal_image_height,
       location_ids: [],
       story_category_ids: [],
       place_category_ids: [],

@@ -22,113 +22,6 @@
       <% end %>
 
       <div class="body">
-        <%= f.fields_for :urls do |u| %>
-          <div class="form-group row">
-            <div class="col-2">
-              <%= u.label :url_full, "Page Url:" %>
-            </div>
-            <div class="col-10">
-              <%= u.text_field :url_full, class: "form-control form-control-sm" %>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-2">
-              <%= u.label :name_display, "Display Name:" %>
-            </div>
-            <div class="col-10">
-              <%= u.text_field :name_display, value: @name_display, readonly: true, class: "form-control form-control-sm" %>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-2 <%= form_item_status_class(@title_complete) %>">
-              <%= u.label :url_title, "Url Title:" %>
-            </div>
-            <div class="col-10">
-              <%= u.text_area :url_title, rows: 1, maxlength: 250, class: "form-control form-control-sm" %>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-2 <%= form_item_status_class(@desc_complete) %>">
-              <%= u.label :url_desc, "Url Description:" %>
-            </div>
-            <div class="col-10">
-              <%= u.text_area :url_desc, rows: 3, maxlength: 1000, class: "form-control form-control-sm" %>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-2">
-              <%= u.label :url_keywords, "Url Keywords:" %>
-            </div>
-            <div class="col-10">
-              <%= u.text_area :url_keywords, rows: 1, maxlength: 1000, class: "form-control" %>
-            </div>
-          </div>
-
-          <%= u.hidden_field :url_domain, value: @base_domain %>
-
-          <hr class="my-4">
-
-          <%= u.fields_for :images do |i| %>
-            <% if params[:action] != "edit" %>
-              <% unless @page_imgs.blank? %>
-                <% @page_imgs.each_with_index do |hash, idx| %>
-                  <div class="row my-2">
-                    <% unless @image1 %>
-                      <div class="col-md-2 text-center">
-                        <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
-                        <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
-                        <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
-                      </div>
-                    <% end %>
-                    <div class="col-md-5">
-                      <%= i.label :src_url, hash["alt_text"] %>
-                      <%= i.label :src_url, (hash["image_width"].to_s + " x " + hash["image_height"].to_s) %>
-                    </div>
-                    <div class="col-md-5">
-                      <%= image_tag(hash["src_url"], width: "250") %><br>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-
-              <hr class="my-4">
-            <% end %>
-
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :src_url, "Manual Image URL:" %>
-              </div>
-              <div class="col-10">
-                <%= i.text_area :src_url, cols: 80, class: "form-control form-control-sm" %>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :image_width, "Image Size:" %>
-              </div>
-              <div class="col-1">
-                <%= i.label :image_width, "W:" %>
-              </div>
-              <div class="col-2">
-                <%= i.text_field :image_width, class: "form-control form-control-sm" %>
-              </div>
-              <div class="col-1">
-                <%= i.label :image_height, "H:" %>
-              </div>
-              <div class="col-2">
-                <%= i.text_field :image_height, class: "form-control form-control-sm" %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-
-        <hr class="my-4">
-
         <div class="form-group row">
           <div class="col-2">
             <%= f.label :editor_tagline, "Editor Tagline:" %>
@@ -244,24 +137,51 @@
 
         <h5>Internal Image</h5>
         <div class="form-group row">
-          <div class="col-2">
+          <div class="col-4 col-md-2">
             <%= f.label :internal_image, "Find File:" %>
           </div>
-          <div class="col-10">
-            <%= f.file_field :internal_image %>
+          <div class="col-6 col-md-4">
+            <%= f.file_field :internal_image, class: 'form-control-file' %>
           </div>
+          <% if @story.internal_image.attached? %>
+            <div class="col-4 col-md-3 internal-image-text-div">
+              <p>Current Image (resized):</p>
+              <%= button_to 'Remove Image', destroy_internal_image_admin_custom_story_path(@story), method: :delete, class: 'btn btn-sm btn-outline-danger delete-internal-image-btn', id: @story.id %>
+            </div>
+            <div class="col-6 col-md-3 text-center internal-image-image-div">
+              <%= image_tag @story.internal_image.variant(resize_to_limit: [150,150]) %>
+            </div>
+          <% end %>
         </div>
-
-        <hr class="my-4">
 
         <div class="form-group row">
           <div class="col-2">
-            <%= f.label :custom_body, "Custom Body:" %>
+            <%= f.label :internal_image_width, "Image Size:" %>
           </div>
-          <div class="col-10">
-            <%= f.rich_text_area :custom_body %>
+          <div class="col-1">
+            <%= f.label :internal_image_width, "W:" %>
+          </div>
+          <div class="col-2">
+            <%= f.text_field :internal_image_width, class: "form-control form-control-sm" %>
+          </div>
+          <div class="col-1">
+            <%= f.label :internal_image_height, "H:" %>
+          </div>
+          <div class="col-2">
+            <%= f.text_field :internal_image_height, class: "form-control form-control-sm" %>
           </div>
         </div>
+
+      <hr class="my-4">
+
+      <div class="form-group row">
+        <div class="col-2">
+          <%= f.label :custom_body, "Custom Body:" %>
+        </div>
+        <div class="col-10">
+          <%= f.rich_text_area :custom_body %>
+        </div>
+      </div>
 
         <hr class="my-4">
 

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="back-button text-left">
-          <%= link_to root_path, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+          <%= link_to :back, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
             <i class="fas fa-home mr-1"></i> Go Back
           <% end %>
         </div>
@@ -15,13 +15,52 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-12 col-md-5 img-div m-auto" style="height: 300px">
-        <%= story.custom_body %>
+      <div class="col-12 col-md-5 img-div text-center">
+        <h6>Internal Image:</h6>
+        <%= image_tag(story.internal_image.variant(resize_to_limit: [400, 400])) if story.internal_image.attached? %>
       </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-12 col-md-5 img-div m-auto" style="height: 300px">
-        <%= image_tag story.internal_image %>
+      <div class="col-12 col-md-7">
+        <div class="card-body">
+          <div class="tagline-div-<%= story.id %>">
+            <% if story.editor_tagline %>
+              <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+            <% end %>
+            <% if current_user && story.users.include?(current_user) %>
+              <% if show_old_code %>
+                <hr class="saved-text-hr-<%= story.id %>">
+                <p class="story-saved-text saved-text-<%= story.id %> text-center">
+                  <i class="fas fa-check-square mr-1"></i> Story Saved
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+
+          <hr>
+
+          <dl class="row">
+            <dt class="col-6 col-lg-5">Author:</dt>
+            <dd class="col-6 col-lg-7"><%= story.author.presence || '-' %></dd>
+
+            <dt class="col-6 col-lg-5">Story Date:</dt>
+            <dd class="col-6 col-lg-7"><%= story.story_display_date.presence || '-' %></dd>
+
+            <dt class="col-6 col-lg-5"><%= 'Location'.pluralize(story.locations.size) %>:</dt>
+            <dd class="col-6 col-lg-7"><%= story.display_location.presence || '-' %></dd>
+
+            <dt class="col-6 col-lg-5">Place <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-7"><%= story.display_place_categories.presence || '-' %></dd>
+
+            <dt class="col-6 col-lg-5">Story <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
+            <dd class="col-6 col-lg-7"><%= story.display_story_categories.presence || '-' %></dd>
+          </dl>
+
+          <hr>
+
+          <div class="col-12">
+            <h6>Custom Body:</h6>
+            <%= story.custom_body %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

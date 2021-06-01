@@ -61,7 +61,11 @@ Rails.application.routes.draw do
         get :scrape
       end
     end
-    resources :custom_stories, except: [:index, :destroy]
+    resources :custom_stories, except: [:index, :destroy] do
+      member do
+        post :destroy_internal_image
+      end
+    end
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]

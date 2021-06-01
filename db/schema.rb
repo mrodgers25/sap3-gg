@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_233755) do
+ActiveRecord::Schema.define(version: 2021_05_31_020707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,8 @@ ActiveRecord::Schema.define(version: 2021_05_25_233755) do
     t.boolean "video_unlisted", default: false
     t.integer "video_likes", default: 0
     t.integer "video_dislikes", default: 0
+    t.integer "internal_image_width"
+    t.integer "internal_image_height"
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"
   end
