@@ -1,11 +1,13 @@
-<div class="links mb-2 text-right">
-  <%= link_to edit_admin_story_path_helper(story), class: "btn btn-sm btn-success" do %>
-    <i class="fas fa-plus mr-1"></i> Story Details
-  <% end %>
-  <%= link_to places_admin_story_path(story), class: "btn btn-sm btn-success" do %>
-    <i class="fas fa-plus mr-1"></i> Add Places
-  <% end %>
-  <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-success" do %>
-    <i class="fas fa-plus mr-1"></i> Review
-  <% end %>
+<div class="mb-2 d-flex justify-content-end">
+  <div class="btn-group ">
+    <% if story.persisted? %>
+      <%= link_to 'Story Details', edit_admin_story_path_helper(story), class: "btn btn-sm btn-light border border-dark" %>
+      <%= link_to 'Add Places', places_admin_story_path(story), class: "btn btn-sm btn-light border border-dark" %>
+      <%= link_to 'Review', review_admin_story_path(story), class: "btn btn-sm btn-light border border-dark" %>
+    <% else %>
+      <%= link_to 'Story Details', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
+      <%= link_to 'Add Places', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
+      <%= link_to 'Review', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
+    <% end %>
+  </div>
 </div>

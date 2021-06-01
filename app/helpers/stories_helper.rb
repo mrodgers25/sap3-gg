@@ -12,4 +12,12 @@ module StoriesHelper
       content_tag :i, '', class: "fas fa-play video_play_icon"
     end
   end
+
+  def story_icon(story)
+    if story.media_story?
+      'fas fa-book'
+    elsif story.video_story?
+      'fas fa-video'
+    end
+  end
 end

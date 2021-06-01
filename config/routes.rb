@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     resources :stories, only: [:index, :show, :destroy] do
       member do
         get :places
-        post :places
+        post :places_update
         get :review
         patch :review_update
         patch :update_state

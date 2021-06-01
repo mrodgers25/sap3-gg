@@ -27,7 +27,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       #Update the permalink field
       @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
-      redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
+      redirect_to redirect_save_path, notice: 'Story was saved.'
     else
       get_time(@video_story.video_duration)
       get_locations_and_categories
@@ -46,7 +46,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @video_story.update(video_story_params)
       update_locations_and_categories(@video_story, video_story_params)
 
-      redirect_to admin_stories_path, notice: 'Video Story was successfully updated.'
+      redirect_to redirect_save_path, notice: 'Video Story was successfully updated.'
     else
       redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
     end
@@ -80,9 +80,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def update_locations_and_categories(story, my_params)
     new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
     story.locations = new_locations
-
-    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.place_categories = new_place_categories
 
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
@@ -138,6 +135,16 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       @hours = 0
       @minutes = 0
       @seconds = 0
+    end
+  end
+
+  def redirect_save_path
+    if params[:commit] == 'Save & New'
+      admin_initialize_scraper_index_path
+    elsif params[:commit] == 'Save & Exit'
+      admin_stories_path
+    else
+      places_admin_story_path(@video_story)
     end
   end
 end

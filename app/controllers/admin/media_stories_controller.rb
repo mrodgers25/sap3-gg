@@ -35,7 +35,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       #Update the permalink field.
       @story.create_permalink
       update_locations_and_categories(@story, story_params)
-      redirect_to review_admin_story_path(@story), notice: 'Story was saved.'
+      redirect_to redirect_save_path, notice: 'Story was saved.'
     else
       get_domain_info(@story.urls.last.url_full)
       set_fields_on_fail(story_params)
@@ -71,7 +71,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def update
     if @story.update(story_params)
       update_locations_and_categories(@story, story_params)
-      redirect_to admin_stories_path, notice: 'Story was successfully updated.'
+      redirect_to redirect_save_path, notice: 'Story was successfully updated.'
     else
       redirect_to edit_media_story_path(@story), notice: 'Story failed to be updated.'
     end
@@ -149,9 +149,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
     story.locations = new_locations
 
-    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.place_categories = new_place_categories
-
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
   end
@@ -176,5 +173,15 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+  end
+
+  def redirect_save_path
+    if params[:commit] == 'Save & New'
+      admin_initialize_scraper_index_path
+    elsif params[:commit] == 'Save & Exit'
+      admin_stories_path
+    else
+      places_admin_story_path(@story)
+    end
   end
 end

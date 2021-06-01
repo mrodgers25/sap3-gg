@@ -1,13 +1,7 @@
 <div class="container-fluid">
   <%= render partial: 'shared/admin/form_tabs', locals: { story: @story }%>
   <%= form_with(model: @story, url: route, method: method) do |f| %>
-    <div class="jumbotron bg-white story-form">
-      <div class="header text-center">
-        <h4><i class="fas fa-video mr-1"></i> Places</h4>
-        <% if @story.persisted? %>
-          <h6>Video Story ID: <%= @story.id %></h6>
-        <% end %>
-      </div>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: story_icon(@story), title: 'Add Places' }%>
 
       <hr class="my-4">
 
@@ -35,12 +29,12 @@
 
         <hr class="my-4">
 
-        <% if params[:action] != 'new' %>
-          <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
-        <% else %>
-          <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-100' %>
-        <% end %>
-
+        <div class="d-flex justify-start">
+          <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mr-4" %>
+          <%= f.submit "Save & New", class: "btn btn-sm btn-success mr-4" %>
+          <%= f.submit "Next", class: "btn btn-sm btn-primary mr-4" %>
+          <br>
+        </div>
 
       </div>
     </div>

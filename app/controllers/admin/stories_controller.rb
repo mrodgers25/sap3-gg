@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places, :places_update]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -38,6 +38,17 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def places
     get_locations_and_categories
+  end
+
+  def places_update
+    get_locations_and_categories
+    if @story.update(story_places_params)
+      new_place_categories = PlaceCategory.find(story_places_params[:place_category_ids].reject{|p| p.empty?}.map{|p| p.to_i})
+      @story.place_categories = new_place_categories
+      redirect_to redirect_save_path
+    else
+      render :places
+    end
   end
 
   def review
@@ -161,6 +172,10 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
+  def story_places_params
+    params.require(get_camalized_story_type).permit(:place_category_ids => [])
+  end
+
   def review_update_params
     params.require(get_camalized_story_type).permit(:desc_length, :editor_tagline)
   end
@@ -178,4 +193,15 @@ class Admin::StoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
   end
+
+  def redirect_save_path
+    if params[:commit] == 'Save & New'
+      admin_initialize_scraper_index_path
+    elsif params[:commit] == 'Save & Exit'
+      admin_stories_path
+    else
+      review_admin_story_path(@story)
+    end
+  end
+
 end
