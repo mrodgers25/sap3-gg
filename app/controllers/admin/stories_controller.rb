@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places, :places_update]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places, :places_update, :images, :images_update]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -34,6 +34,26 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def show
     render layout: "application_no_nav"
+  end
+
+  def images
+    @screen_scraper = VideoScraper.new
+    if @screen_scraper.scrape!(@story.urls.first.url_full)
+      url = @story.urls.first
+      url.url_full = params[:source_url_pre]
+      url.images.build
+    else
+      flash.now.alert = "Something went wrong with the scraper."
+    end
+    get_locations_and_categories
+  end
+
+  def images_update
+    if @story.update(story_places_params)
+      redirect_to redirect_save_path
+    else
+      render :images
+    end
   end
 
   def places

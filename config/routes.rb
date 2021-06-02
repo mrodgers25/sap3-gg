@@ -43,6 +43,8 @@ Rails.application.routes.draw do
       member do
         get :places
         post :places_update
+        get :images
+        post :images_update
         get :review
         patch :review_update
         patch :update_state

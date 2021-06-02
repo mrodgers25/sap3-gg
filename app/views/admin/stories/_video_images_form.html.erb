@@ -17,15 +17,18 @@
       <% end %>
 
       <div class="body">
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :place_category_ids, "Place Categories:" %>
-          </div>
-          <div class="col-10 w-100">
-            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
-          </div>
-        </div>
+        <%= f.fields_for :urls do |u| %>
+          <%= u.fields_for :images do |i| %>
+            <div class="form-group row">
+              <div class="col-2">
+                <%= i.label :src_url, "Thumbnail Image URL:" %>
+              </div>
+              <div class="col-10">
+                <%= i.text_field :src_url, class: "form-control form-control-sm" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
 
         <hr class="my-4">
 
