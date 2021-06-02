@@ -1,6 +1,11 @@
-.video_play_icon {
+.image-container {
+  position: relative;
+}
+
+.video-play-icon {
   position: absolute;
-  margin-top: 5px;
-  left: 10px;
-  color: white
+  bottom: .5rem;
+  left: .5rem;
+  color: white;
+  font-size: 1rem;
 }
