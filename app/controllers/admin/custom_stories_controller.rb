@@ -1,5 +1,5 @@
 class Admin::CustomStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:edit, :update, :destroy_internal_image]
+  before_action :set_story, only: [:edit, :update, :destroy_image]
   before_action :get_locations_and_categories, only: [:new, :edit]
 
   def new
@@ -17,6 +17,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   end
 
   def edit
+    @story.build_external_image if @story.external_image.blank?
   end
 
   def update
@@ -28,11 +29,13 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     end
   end
 
-  def destroy_internal_image
-    if @story.internal_image.attached?
+  def destroy_image
+    if params[:image_type] == 'internal' && @story.internal_image.attached?
       @story.internal_image.purge
       @story.update(internal_image_height: 0, internal_image_width: 0)
-
+      render json: { success: true, message: 'Image was successfully removed.' }
+    elsif params[:image_type] == 'external' && @story.external_image.present?
+      @story.external_image.destroy!
       render json: { success: true, message: 'Image was successfully removed.' }
     else
       render json: { success: false, message: 'Error occured' }

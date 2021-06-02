@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     end
     resources :custom_stories, except: [:index, :destroy] do
       member do
-        post :destroy_internal_image
+        post :destroy_image
       end
     end
     resources :urls, except: [:show]

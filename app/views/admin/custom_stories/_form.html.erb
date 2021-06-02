@@ -105,15 +105,24 @@
 
         <hr class="my-4">
 
-        <%= f.fields_for @story.external_image do |e| %>
+        <%= f.fields_for :external_image do |e| %>
           <h5>External Image</h5>
           <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4 col-md-2">
               <%= e.label :src_url, "Image URL:" %>
             </div>
-            <div class="col-10">
+            <div class="col-6 col-md-4">
               <%= e.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
             </div>
+            <% if @story.external_image.src_url.present? %>
+              <div class="col-4 col-md-3 internal-image-text-div">
+                <p>Current Image (resized):</p>
+                <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'external' } %>
+              </div>
+              <div class="col-6 col-md-3 text-center internal-image-image-div">
+                <%= image_tag @story.external_image.src_url, style: 'width: 100%;' %>
+              </div>
+            <% end %>
           </div>
 
           <div class="form-group row">
@@ -146,7 +155,7 @@
           <% if @story.internal_image.attached? %>
             <div class="col-4 col-md-3 internal-image-text-div">
               <p>Current Image (resized):</p>
-              <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger delete-internal-image-btn', id: @story.id %>
+              <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'internal' } %>
             </div>
             <div class="col-6 col-md-3 text-center internal-image-image-div">
               <%= image_tag @story.internal_image.variant(resize_to_limit: [150,150]) %>

@@ -17,7 +17,7 @@ class Story < ApplicationRecord
   has_many :published_items, as: :publishable
   has_many :newsfeed_activities, as: :trackable
   has_one :media_owner, through: :urls
-  has_one :external_image
+  has_one :external_image, dependent: :destroy
   accepts_nested_attributes_for :external_image
 
   before_validation :set_story_track_fields, on: :create
