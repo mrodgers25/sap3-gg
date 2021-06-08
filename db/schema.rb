@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_040136) do
+ActiveRecord::Schema.define(version: 2021_06_07_032736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,24 @@ ActiveRecord::Schema.define(version: 2021_06_01_040136) do
     t.integer "image_height"
     t.boolean "manual_enter"
     t.index ["url_id"], name: "index_images_on_url_id"
+  end
+
+  create_table "list_items", force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "story_id"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_list_items_on_list_id"
+    t.index ["position"], name: "index_list_items_on_position"
+    t.index ["story_id"], name: "index_list_items_on_story_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "story_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_lists_on_story_id"
   end
 
   create_table "locations", id: :serial, force: :cascade do |t|

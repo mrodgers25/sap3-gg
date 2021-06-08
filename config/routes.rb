@@ -64,6 +64,9 @@ Rails.application.routes.draw do
     resources :custom_stories, except: [:index, :destroy] do
       member do
         post :destroy_image
+        get :list_editor
+        post :update_list
+        get :review
       end
     end
     resources :urls, except: [:show]

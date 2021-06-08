@@ -3,7 +3,7 @@
     <div class="jumbotron bg-white story-form">
       <div class="header text-center">
         <h4><i class="fas fa-asterisk mr-1"></i> Enter Custom Story Details</h4>
-        <% if @story.persisted? %>
+        <% if @story&.persisted? %>
           <h6>Story ID: <%= @story.id %></h6>
         <% end %>
       </div>
@@ -183,22 +183,23 @@
           </div>
         </div>
 
-      <hr class="my-4">
+        <hr class="my-4">
 
-      <div class="form-group row">
-        <div class="col-2">
-          <%= f.label :custom_body, "Custom Body:" %>
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :custom_body, "Custom Body:" %>
+          </div>
+          <div class="col-10">
+            <%= f.rich_text_area :custom_body %>
+          </div>
         </div>
-        <div class="col-10">
-          <%= f.rich_text_area :custom_body %>
-        </div>
-      </div>
 
         <hr class="my-4">
 
-        <% if params[:action] != 'new' %>
+        <% if @story.persisted? %>
           <div class="text-center">
-            <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-25' %>
+            <%= f.submit "Save and exit", class: 'btn btn-md btn-primary text-center w-25' %>
+            <%= f.submit "Go to List Editor", class: 'btn btn-md btn-success text-center w-25' %>
           </div>
         <% else %>
           <div class="text-center">

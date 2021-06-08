@@ -19,6 +19,8 @@ class Story < ApplicationRecord
   has_one :media_owner, through: :urls
   has_one :external_image, dependent: :destroy
   accepts_nested_attributes_for :external_image
+  has_one :list, dependent: :destroy
+  has_many :list_items, through: :list
 
   before_validation :set_story_track_fields, on: :create
   after_validation :set_story_complete
