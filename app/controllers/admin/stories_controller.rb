@@ -37,20 +37,33 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def images
-    @screen_scraper = VideoScraper.new
-    if @screen_scraper.scrape!(@story.urls.first.url_full)
-      url = @story.urls.first
-      url.url_full = params[:source_url_pre]
-      url.images.build
-    else
-      flash.now.alert = "Something went wrong with the scraper."
+    if @story.media_story?
+      @screen_scraper = ScreenScraper.new
+      if @screen_scraper.scrape!(@story.urls.first.url_full)
+        url = @story.urls.first
+        @image1    = url.images.first
+        url.images.build
+
+        @page_imgs = @screen_scraper.page_imgs
+      else
+        flash.now.alert = "Something went wrong with the scraper."
+      end
+    elsif @story.video_story?
+      @screen_scraper = VideoScraper.new
+      if @screen_scraper.scrape!(@story.urls.first.url_full)
+        url = @story.urls.build
+        url.images.build
+      else
+        flash.now.alert = "Something went wrong with the scraper."
+      end
     end
-    get_locations_and_categories
   end
 
   def images_update
-    if @story.update(story_places_params)
-      redirect_to redirect_save_path
+    my_params = set_image_params(story_params)
+
+    if @story.update(my_params)
+      redirect_to redirect_to_next_path(places_admin_story_path(@story))
     else
       render :images
     end
@@ -65,7 +78,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     if @story.update(story_places_params)
       new_place_categories = PlaceCategory.find(story_places_params[:place_category_ids].reject{|p| p.empty?}.map{|p| p.to_i})
       @story.place_categories = new_place_categories
-      redirect_to redirect_save_path
+      redirect_to redirect_to_next_path(review_admin_story_path(@story))
     else
       render :places
     end
@@ -214,14 +227,32 @@ class Admin::StoriesController < Admin::BaseAdminController
     @story_categories = StoryCategory.order(:name)
   end
 
-  def redirect_save_path
+  def story_params
+    params.require(get_camalized_story_type).permit(
+      urls_attributes: [images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+  end
+
+  def set_image_params(story_params)
+    image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
+
+    unless image_data.nil?
+      image_data_hash = JSON.parse(image_data)
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["image_width"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_height"]= image_data_hash["image_height"]
+    end
+
+    story_params
+  end
+
+  def redirect_to_next_path(path)
     if params[:commit] == 'Save & New'
       admin_initialize_scraper_index_path
     elsif params[:commit] == 'Save & Exit'
       admin_stories_path
     else
-      review_admin_story_path(@story)
+      path
     end
   end
-
 end

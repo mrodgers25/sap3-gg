@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <%= render partial: 'shared/admin/form_tabs', locals: { story: @story }%>
   <%= form_with(model: @story, url: route, method: method) do |f| %>
-  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: story_icon(@story), title: 'Add Places' }%>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: story_icon(@story), title: 'Add Image' }%>
 
       <hr class="my-4">
 
@@ -21,7 +21,7 @@
           <%= u.fields_for :images do |i| %>
             <div class="form-group row">
               <div class="col-2">
-                <%= i.label :src_url, "Thumbnail Image URL:" %>
+                <%= i.label :src_url, "Manual Image URL:" %>
               </div>
               <div class="col-10">
                 <%= i.text_field :src_url, class: "form-control form-control-sm" %>
@@ -29,8 +29,31 @@
             </div>
           <% end %>
         <% end %>
+        <hr>
 
-        <hr class="my-4">
+        <%= f.fields_for :urls do |u| %>
+          <%= u.fields_for :images do |i| %>
+                <% @page_imgs.each_with_index do |hash, idx| %>
+                  <div class="row my-2">
+                    <% unless @image1 %>
+                      <div class="col-md-2 text-center">
+                        <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
+                        <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
+                        <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
+                      </div>
+                    <% end %>
+                    <div class="col-md-5">
+                      <%= i.label :src_url, hash["alt_text"] %>
+                      <%= i.label :src_url, (hash["image_width"].to_s + " x " + hash["image_height"].to_s) %>
+                    </div>
+                    <div class="col-md-5">
+                      <%= image_tag(hash["src_url"], width: "250") %><br>
+                    </div>
+                  </div>
+                <% end %>
+              <hr class="my-4">
+          <% end %>
+        <% end %>
 
         <div class="d-flex justify-start">
           <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mr-4" %>

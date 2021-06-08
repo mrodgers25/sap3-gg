@@ -72,61 +72,6 @@
 
           <%= u.hidden_field :url_domain, value: @base_domain %>
 
-          <hr class="my-4">
-
-          <%= u.fields_for :images do |i| %>
-            <% if params[:action] != "edit" %>
-              <% unless @page_imgs.blank? %>
-                <% @page_imgs.each_with_index do |hash, idx| %>
-                  <div class="row my-2">
-                    <% unless @image1 %>
-                      <div class="col-md-2 text-center">
-                        <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
-                        <%= hidden_field_tag "image_src_cache[#{idx}]", hash['src_url'] %>
-                        <%= hidden_field_tag "image_alt_text_cache[#{idx}]", hash['alt_text'] %>
-                      </div>
-                    <% end %>
-                    <div class="col-md-5">
-                      <%= i.label :src_url, hash["alt_text"] %>
-                      <%= i.label :src_url, (hash["image_width"].to_s + " x " + hash["image_height"].to_s) %>
-                    </div>
-                    <div class="col-md-5">
-                      <%= image_tag(hash["src_url"], width: "250") %><br>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-
-              <hr class="my-4">
-            <% end %>
-
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :src_url, "Manual Image URL:" %>
-              </div>
-              <div class="col-10">
-                <%= i.text_area :src_url, cols: 80, class: "form-control form-control-sm" %>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :image_width, "Image Size:" %>
-              </div>
-              <div class="col-1">
-                <%= i.label :image_width, "W:" %>
-              </div>
-              <div class="col-2">
-                <%= i.text_field :image_width, class: "form-control form-control-sm" %>
-              </div>
-              <div class="col-1">
-                <%= i.label :image_height, "H:" %>
-              </div>
-              <div class="col-2">
-                <%= i.text_field :image_height, class: "form-control form-control-sm" %>
-              </div>
-            </div>
-          <% end %>
         <% end %>
 
         <hr class="my-4">
