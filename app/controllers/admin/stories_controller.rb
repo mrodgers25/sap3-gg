@@ -200,7 +200,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-  def get_camalized_story_type
+  def get_sym_story_type
     if @story.media_story?
       type = 'media_story'.to_sym
     elsif @story.video_story?
@@ -209,15 +209,15 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def story_places_params
-    params.require(get_camalized_story_type).permit(:place_category_ids => [])
+    params.require(get_sym_story_type).permit(:place_category_ids => [])
   end
 
   def review_update_params
-    params.require(get_camalized_story_type).permit(:desc_length, :editor_tagline)
+    params.require(get_sym_story_type).permit(:desc_length, :editor_tagline)
   end
 
   def update_state_params
-    params.require(get_camalized_story_type).permit(:state)
+    params.require(get_sym_story_type).permit(:state)
   end
 
   def bulk_update_params
@@ -231,7 +231,7 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def story_params
-    params.require(get_camalized_story_type).permit(
+    params.require(get_sym_story_type).permit(
       urls_attributes:  [:id, images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
   end
 
