@@ -6,7 +6,7 @@ require 'fastimage'
 class VideoScraper
 
   BROWSER = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
-  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year, :page_imgs, :link_creator, :link_channel_id, :link_image
+  attr_reader :title, :meta_desc, :meta_type, :meta_keywords, :meta_author, :clean_text, :month, :day, :year, :page_imgs, :link_creator, :link_channel_id, :link_image, :page_imgs
 
   def scrape!(scrape_url)
 
@@ -47,6 +47,16 @@ class VideoScraper
     @link_creator = doc.css("link[itemprop='name']")&.first['content']
     #thumbnail_url
     @link_image = doc.css("link[rel='image_src']")&.first['href']
+    @page_imgs = []
+    begin
+      image_size_array = FastImage.size(@link_image, :raise_on_failure=>true)
+      if image_size_array[0].to_i > 199
+        @page_imgs << { "src_url" => @link_image, "alt_text" => 'Thumbnail Image', "image_width" => image_size_array[0], "image_height" => image_size_array[1] }
+      end
+    rescue
+      @page_imgs << { "src_url" => @link_image, "alt_text" => 'Thumbnail Image', "image_width" => 1080, "image_height" => 720 }
+    end
+    doc.css("link[rel='image_src']")&.first['href']
     # meta author
     meta_author_scrape_pre = doc.css("meta[name='author']").first
     @meta_author = meta_author_scrape_pre['content'].strip if defined?(meta_author_scrape_pre['content'])

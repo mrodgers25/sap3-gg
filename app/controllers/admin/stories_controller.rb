@@ -37,29 +37,15 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def images
-    #build temp image if none are found
+    # Build temp image record if none are found. This is a hack to get the image forms to work.
     images = @story.urls.first.images
     images.build(src_url: '-').save if images.blank?
 
-    if @story.media_story?
-      @screen_scraper = ScreenScraper.new
-      if @screen_scraper.scrape!(@story.urls.first.url_full)
-        @page_imgs = @screen_scraper.page_imgs
-      else
-        flash.now.alert = "Something went wrong with the scraper."
-      end
-    elsif @story.video_story?
-      @screen_scraper = VideoScraper.new
-      if @screen_scraper.scrape!(@story.urls.first.url_full)
-        @page_imgs = [{
-              'src_url' => @screen_scraper.link_image,
-              'alt_text' => 'Thumbnail',
-              'image_width' => '1280',
-              'image_height' => '720'
-            }]
-      else
-        flash.now.alert = "Something went wrong with the scraper."
-      end
+    @screen_scraper = get_scraper(@story)
+    if @screen_scraper.present? && @screen_scraper.scrape!(@story.urls.first.url_full)
+      @page_imgs = @screen_scraper.page_imgs
+    else
+      flash.now.alert = "Something went wrong with the scraper."
     end
   end
 
@@ -247,6 +233,14 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
 
     story_params
+  end
+
+  def get_scraper(story)
+    if story.media_story?
+      ScreenScraper.new
+    elsif story.video_story?
+      VideoScraper.new
+    end
   end
 
   def redirect_to_next_path(path)

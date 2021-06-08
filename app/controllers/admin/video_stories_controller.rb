@@ -91,7 +91,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def get_locations_and_categories
     @locations        = Location.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
   end
 
