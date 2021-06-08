@@ -1,15 +1,8 @@
 <div class="mb-2 d-flex justify-content-end">
   <div class="btn-group ">
-    <% if story.persisted? %>
-      <%= link_to 'Story Details', edit_admin_story_path_helper(story), class: "btn btn-sm btn-light border border-dark" %>
-      <%= link_to 'Add Images', images_admin_story_path(story), class: "btn btn-sm btn-light border border-dark" %>
-      <%= link_to 'Add Places', places_admin_story_path(story), class: "btn btn-sm btn-light border border-dark" %>
-      <%= link_to 'Review', review_admin_story_path(story), class: "btn btn-sm btn-light border border-dark" %>
-    <% else %>
-      <%= link_to 'Story Details', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
-      <%= link_to 'Add Images', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
-      <%= link_to 'Add Places', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
-      <%= link_to 'Review', '#', class: "btn btn-sm btn-light border border-dark disabled" %>
-    <% end %>
+      <%= link_to 'Story Details', story.persisted? ? edit_admin_story_path_helper(story) : '#', class: "btn btn-sm btn-light border border-dark" %>
+      <%= link_to 'Add Images', story.persisted? ? images_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
+      <%= link_to 'Add Places', story.persisted? ? places_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
+      <%= link_to 'Review', story.persisted? ? review_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
   </div>
 </div>

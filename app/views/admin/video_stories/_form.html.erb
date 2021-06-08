@@ -138,7 +138,7 @@
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label :video_views, "Video Views:", style: 'font-size: 11px' %>
@@ -175,30 +175,30 @@
             </div>
           </div>
 
-          <div class="col-3">
+          <div class="col-2">
             <div class="form-group row">
-              <div class="col-3">
+              <div class="col-4">
                 <%= f.label :video_likes, "Likes:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-9">
+              <div class="col-8">
                 <%= f.number_field :video_likes, placeholder: 'Likes', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-3">
+              <div class="col-4">
                 <%= f.label :video_dislikes, "Dislikes:", style: 'font-size: 11px' %>
               </div>
-              <div class="col-9">
+              <div class="col-8">
                 <%= f.number_field :video_dislikes, placeholder: 'Dislikes', in: 0...9999999999, class: 'form-control' %>
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-3">
+              <div class="col-4">
                 <%= f.label :video_unlisted, "Unlisted?", style: 'font-size: 11px' %>
               </div>
-              <div class="col-9">
+              <div class="col-4">
                 <%= f.check_box :video_unlisted, class: '' %>
               </div>
             </div>
@@ -219,12 +219,7 @@
         <%= f.hidden_field :data_entry_user, value: current_user.id %>
 
 
-        <div class="d-flex justify-start">
-          <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Save & New", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Next", class: "btn btn-sm btn-primary mr-4" %>
-          <br>
-        </div>
+        <%= render partial: 'shared/admin/save_buttons', locals: { f: f }%>
 
         <hr class="my-4">
 

@@ -37,11 +37,13 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def images
+    #build temp image if none are found
+    images = @story.urls.first.images
+    images.build(src_url: '-').save if images.blank?
+
     if @story.media_story?
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@story.urls.first.url_full)
-        images = @story.urls.first.images
-        images.build(src_url: 'TEMP').save if images.blank?
         @page_imgs = @screen_scraper.page_imgs
       else
         flash.now.alert = "Something went wrong with the scraper."
@@ -49,8 +51,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     elsif @story.video_story?
       @screen_scraper = VideoScraper.new
       if @screen_scraper.scrape!(@story.urls.first.url_full)
-        images = @story.urls.first.images
-        images.build(src_url: 'TEMP').save if images.blank?
         @page_imgs = [{
               'src_url' => @screen_scraper.link_image,
               'alt_text' => 'Thumbnail',

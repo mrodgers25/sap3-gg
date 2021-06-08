@@ -29,7 +29,7 @@
                   <%= i.text_field :src_url, class: "form-control form-control-sm" %>
                 </div>
               </div>
-              <% @page_imgs.each_with_index do |hash, idx| %>
+              <% @page_imgs&.each_with_index do |hash, idx| %>
                 <div class="row my-2">
                   <div class="col-md-2 text-center">
                     <%= i.radio_button :image_data, hash.to_json, class: "form-check-input" %>
@@ -49,12 +49,7 @@
           <% end %>
         <% end %>
 
-        <div class="d-flex justify-start">
-          <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Save & New", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Next", class: "btn btn-sm btn-primary mr-4" %>
-          <br>
-        </div>
+        <%= render partial: 'shared/admin/save_buttons', locals: { f: f }%>
 
         <hr class="my-4">
         <%= render partial: 'shared/admin/preview', locals: { story: @story }%>

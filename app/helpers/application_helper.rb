@@ -154,4 +154,8 @@ module ApplicationHelper
 
     'disabled'
   end
+
+  def show_path_if_persisted(path, object)
+    object&.persited? ? path(object) : '#'
+  end
 end

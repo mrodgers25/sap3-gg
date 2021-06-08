@@ -141,12 +141,7 @@
 
         <hr class="my-4">
 
-        <div class="d-flex justify-start">
-          <%= f.submit "Save & Exit", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Save & New", class: "btn btn-sm btn-success mr-4" %>
-          <%= f.submit "Next", class: "btn btn-sm btn-primary mr-4" %>
-          <br>
-        </div>
+        <%= render partial: 'shared/admin/save_buttons', locals: { f: f }%>
 
         <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time  if @data_entry_begin_time.present? %>
         <%= f.hidden_field :data_entry_user, value: current_user.id %>
