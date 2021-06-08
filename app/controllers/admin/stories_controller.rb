@@ -40,10 +40,8 @@ class Admin::StoriesController < Admin::BaseAdminController
     if @story.media_story?
       @screen_scraper = ScreenScraper.new
       if @screen_scraper.scrape!(@story.urls.first.url_full)
-        url = @story.urls.first
-        @image1    = url.images.first
-        url.images.build
-
+        images = @story.urls.first.images
+        images.build(src_url: 'TEMP').save if images.blank?
         @page_imgs = @screen_scraper.page_imgs
       else
         flash.now.alert = "Something went wrong with the scraper."
@@ -51,8 +49,14 @@ class Admin::StoriesController < Admin::BaseAdminController
     elsif @story.video_story?
       @screen_scraper = VideoScraper.new
       if @screen_scraper.scrape!(@story.urls.first.url_full)
-        url = @story.urls.build
-        url.images.build
+        images = @story.urls.first.images
+        images.build(src_url: 'TEMP').save if images.blank?
+        @page_imgs = [{
+              'src_url' => @screen_scraper.link_image,
+              'alt_text' => 'Thumbnail',
+              'image_width' => '1280',
+              'image_height' => '720'
+            }]
       else
         flash.now.alert = "Something went wrong with the scraper."
       end
@@ -61,7 +65,6 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def images_update
     my_params = set_image_params(story_params)
-
     if @story.update(my_params)
       redirect_to redirect_to_next_path(places_admin_story_path(@story))
     else
@@ -229,7 +232,7 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def story_params
     params.require(get_camalized_story_type).permit(
-      urls_attributes: [images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+      urls_attributes:  [:id, images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
   end
 
   def set_image_params(story_params)

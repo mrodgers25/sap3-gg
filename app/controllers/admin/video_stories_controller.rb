@@ -12,7 +12,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @video_story.urls.build
       url.url_full = params[:source_url_pre]
-      url.images.build
       set_scrape_fields
     else
       flash.now.alert = "Something went wrong with the scraper."
@@ -73,7 +72,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title
     url.url_desc                  = @screen_scraper.meta_desc
-    url.images.first.src_url      = @screen_scraper.link_image
     url.url_keywords              = @screen_scraper.meta_keywords
   end
 
@@ -111,7 +109,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]]
+      ]
     )
   end
 

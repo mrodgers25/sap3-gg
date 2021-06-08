@@ -19,7 +19,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @story.urls.build
       url.url_full = params[:source_url_pre]
-      url.images.build
       set_scrape_fields
     else
       flash.now.alert = "We can't find that URL – give it another shot"
@@ -28,8 +27,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def create
-    # TODO:  check_manual_url(params)
-    # my_params = set_image_params(story_params)
     @story = MediaStory.new(story_params)
     if @story.save
       #Update the permalink field.
@@ -38,7 +35,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was saved.'
     else
       get_domain_info(@story.urls.last.url_full)
-      set_fields_on_fail(story_params)
       get_locations_and_categories
       render :scrape
     end
@@ -47,14 +43,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def edit
     # image fields
     @url1 = @story.urls.first
-    @image1    = @url1.images.first
-    @page_imgs = [{
-      'src_url' => @image1.src_url,
-      'alt_text' => @image1.alt_text,
-      'image_width' => @image1.image_width,
-      'image_height' => @image1.image_height
-    }]
-
     # locations and categories
     get_locations_and_categories
     # media_owner stuff
@@ -114,29 +102,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     url.url_title  = @screen_scraper.title
     url.url_desc  = @screen_scraper.meta_desc
     url.url_keywords = @screen_scraper.meta_keywords
-
-    @page_imgs = @screen_scraper.page_imgs
-  end
-
-  def set_fields_on_fail(hash)
-    @page_imgs = []
-    params['image_src_cache'].try(:each) do |key, src_url|  # in case hidden field hash is nil, added try
-      @page_imgs << { 'src_url' => src_url, 'alt_text' => params['image_alt_text_cache'][key] }
-    end
-  end
-
-  def set_image_params(story_params)
-    image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
-
-    unless image_data.nil?
-      image_data_hash = JSON.parse(image_data)
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["image_width"]
-      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_height"]= image_data_hash["image_height"]
-    end
-
-    story_params
   end
 
   def get_locations_and_categories

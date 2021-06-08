@@ -60,19 +60,6 @@
               <%= u.text_area :url_keywords, rows: 1, maxlength: 1000, class: "form-control" %>
             </div>
           </div>
-
-          <hr class="my-4">
-
-          <%= u.fields_for :images do |i| %>
-            <div class="form-group row">
-              <div class="col-2">
-                <%= i.label :src_url, "Thumbnail Image URL:" %>
-              </div>
-              <div class="col-10">
-                <%= i.text_field :src_url, class: "form-control form-control-sm" %>
-              </div>
-            </div>
-          <% end %>
         <% end %>
 
         <hr class="my-4">
@@ -132,7 +119,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4">
+          <div class="col-6">
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label :video_creator, "Video Creator:", style: 'font-size: 11px' %>
@@ -151,7 +138,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label :video_views, "Video Views:", style: 'font-size: 11px' %>
@@ -188,7 +175,7 @@
             </div>
           </div>
 
-          <div class="col-4">
+          <div class="col-3">
             <div class="form-group row">
               <div class="col-3">
                 <%= f.label :video_likes, "Likes:", style: 'font-size: 11px' %>
