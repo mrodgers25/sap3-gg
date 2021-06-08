@@ -9,7 +9,7 @@ module StoriesHelper
 
   def show_play_button(story)
     if story.video_story?
-      content_tag :i, '', class: "fas fa-play video_play_icon"
+      image_pack_tag("youtube_social_icon_red.png", class: "video-play-icon")
     end
   end
 

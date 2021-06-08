@@ -1,6 +1,13 @@
-.video_play_icon {
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-play-icon {
   position: absolute;
-  margin-top: 5px;
-  left: 10px;
-  color: white
+  color: white;
+  max-width: 22% !important;
+  text-shadow: 0 0 3px #000;
 }
