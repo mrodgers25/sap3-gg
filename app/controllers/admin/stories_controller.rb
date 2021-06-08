@@ -66,7 +66,7 @@ class Admin::StoriesController < Admin::BaseAdminController
   def images_update
     my_params = set_image_params(story_params)
     if @story.update(my_params)
-      redirect_to redirect_to_next_path(places_admin_story_path(@story))
+      redirect_to redirect_to_next_path(places_admin_story_path(@story)), notice: 'Image was successfully updated.'
     else
       render :images
     end
@@ -81,7 +81,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     if @story.update(story_places_params)
       new_place_categories = PlaceCategory.find(story_places_params[:place_category_ids].reject{|p| p.empty?}.map{|p| p.to_i})
       @story.place_categories = new_place_categories
-      redirect_to redirect_to_next_path(review_admin_story_path(@story))
+      redirect_to redirect_to_next_path(review_admin_story_path(@story)), notice: 'Places were successfully updated.'
     else
       render :places
     end
