@@ -179,10 +179,6 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-  def story_places_params
-    params.require(get_sym_story_type).permit(:place_category_ids => [])
-  end
-
   def review_update_params
     params.require(get_sym_story_type).permit(:desc_length, :editor_tagline)
   end

@@ -118,7 +118,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     story.story_categories = new_story_categories
 
     new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.story_categories = new_place_categories
+    story.place_categories = new_place_categories
   end
 
   def process_chosen_params(my_params)
