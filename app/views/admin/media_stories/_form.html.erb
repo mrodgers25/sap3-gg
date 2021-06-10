@@ -111,6 +111,15 @@
 
         <div class="form-group row">
           <div class="col-2">
+            <%= f.label :place_category_ids, "Place Categories:" %>
+          </div>
+          <div class="col-10 w-100">
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
             <%= f.label :author, "Story Author:" %>
           </div>
           <div class="col-10">

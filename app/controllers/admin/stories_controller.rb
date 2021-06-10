@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :places, :places_update, :images, :images_update]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -55,21 +55,6 @@ class Admin::StoriesController < Admin::BaseAdminController
       redirect_to redirect_to_next_path(places_admin_story_path(@story)), notice: 'Image was successfully updated.'
     else
       render :images
-    end
-  end
-
-  def places
-    get_locations_and_categories
-  end
-
-  def places_update
-    get_locations_and_categories
-    if @story.update(story_places_params)
-      new_place_categories = PlaceCategory.find(story_places_params[:place_category_ids].reject{|p| p.empty?}.map{|p| p.to_i})
-      @story.place_categories = new_place_categories
-      redirect_to redirect_to_next_path(review_admin_story_path(@story)), notice: 'Places were successfully updated.'
-    else
-      render :places
     end
   end
 

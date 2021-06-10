@@ -81,6 +81,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
+
+    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
+    story.story_categories = new_place_categories
   end
 
   def process_chosen_params(my_params)
@@ -92,6 +95,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def get_locations_and_categories
     @locations        = Location.order("ascii(name)")
     @story_categories = StoryCategory.order(:name)
+    @place_categories = PlaceCategory.order(:name)
   end
 
   def video_story_params

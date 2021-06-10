@@ -41,8 +41,6 @@ Rails.application.routes.draw do
     end
     resources :stories, only: [:index, :show, :destroy] do
       member do
-        get :places
-        post :places_update
         get :images
         post :images_update
         get :review

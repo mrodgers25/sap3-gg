@@ -2,7 +2,6 @@
   <div class="btn-group ">
       <%= link_to 'Story Details', story.persisted? ? edit_admin_story_path_helper(story) : '#', class: "btn btn-sm btn-light border border-dark" %>
       <%= link_to 'Add Images', story.persisted? ? images_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
-      <%= link_to 'Add Places', story.persisted? ? places_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
       <%= link_to 'Review', story.persisted? ? review_admin_story_path(story) : '#', class: "btn btn-sm btn-light border border-dark #{'disabled' unless story.persisted?}" %>
   </div>
 </div>

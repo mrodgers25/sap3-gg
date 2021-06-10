@@ -107,6 +107,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def get_locations_and_categories
     @locations = Location.order(:name)
     @story_categories = StoryCategory.order(:name)
+    @place_categories = PlaceCategory.order(:name)
   end
 
   def update_locations_and_categories(story, my_params)
@@ -115,6 +116,9 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
+
+    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
+    story.story_categories = new_place_categories
   end
 
   def process_chosen_params(my_params)
