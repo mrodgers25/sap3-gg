@@ -52,7 +52,7 @@ class Admin::StoriesController < Admin::BaseAdminController
   def images_update
     my_params = set_image_params(story_params)
     if @story.update(my_params)
-      redirect_to redirect_to_next_path(places_admin_story_path(@story)), notice: 'Image was successfully updated.'
+      redirect_to redirect_to_next_path(review_admin_story_path(@story)), notice: 'Image was successfully updated.'
     else
       render :images
     end
