@@ -1,0 +1,5 @@
+<% if story.video_story? %>
+  <%= get_video_iframe(story.urls.first.url_full, "100%", '500px') %>
+<% elsif story.media_story? %>
+  <iframe class="embed-responsive-item" sandbox="allow-same-origin allow-forms allow-scripts" src="<%= story.urls.first.url_full %>" frameborder="3" width="100%" height="900px">error!</iframe>
+<% end %>

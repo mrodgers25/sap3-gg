@@ -12,7 +12,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @video_story.urls.build
       url.url_full = params[:source_url_pre]
-      url.images.build
       set_scrape_fields
     else
       flash.now.alert = "Something went wrong with the scraper."
@@ -27,7 +26,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       #Update the permalink field
       @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
-      redirect_to review_admin_story_path(@video_story), notice: 'Story was saved.'
+      redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Story was saved.'
     else
       get_time(@video_story.video_duration)
       get_locations_and_categories
@@ -46,7 +45,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @video_story.update(video_story_params)
       update_locations_and_categories(@video_story, video_story_params)
 
-      redirect_to admin_stories_path, notice: 'Video Story was successfully updated.'
+      redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Video Story was successfully updated.'
     else
       redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
     end
@@ -73,7 +72,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title
     url.url_desc                  = @screen_scraper.meta_desc
-    url.images.first.src_url      = @screen_scraper.link_image
     url.url_keywords              = @screen_scraper.meta_keywords
   end
 
@@ -81,11 +79,11 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
     story.locations = new_locations
 
-    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.place_categories = new_place_categories
-
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
+
+    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
+    story.place_categories = new_place_categories
   end
 
   def process_chosen_params(my_params)
@@ -96,8 +94,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
 
   def get_locations_and_categories
     @locations        = Location.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
+    @place_categories = PlaceCategory.order(:name)
   end
 
   def video_story_params
@@ -114,7 +112,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]]
+      ]
     )
   end
 
@@ -138,6 +136,16 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       @hours = 0
       @minutes = 0
       @seconds = 0
+    end
+  end
+
+  def redirect_to_next_path(path)
+    if params[:commit] == 'Save & New'
+      admin_initialize_scraper_index_path
+    elsif params[:commit] == 'Save & Exit'
+      admin_stories_path
+    else
+      path
     end
   end
 end
