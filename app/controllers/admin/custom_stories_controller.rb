@@ -1,5 +1,5 @@
 class Admin::CustomStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:edit, :update, :destroy_image, :list_editor, :update_list]
+  before_action :set_story, only: [:edit, :update, :destroy_image, :list_editor, :update_list, :review]
   before_action :get_locations_and_categories, only: [:new, :edit]
 
   def new
@@ -14,6 +14,37 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       redirect_to list_editor_admin_custom_story_path(@story), notice: 'Story was successfully created.'
     rescue => e
       redirect_to new_admin_custom_story_path, alert: e
+    end
+  end
+
+    def edit
+    @story.build_external_image if @story.external_image.blank?
+  end
+
+  def update
+    begin
+      @story.update!(story_params)
+
+      if params[:commit] == 'Go to List Editor'
+        redirect_to list_editor_admin_custom_story_path(@story)
+      else
+        redirect_to admin_stories_path, notice: 'Story was successfully updated.'
+      end
+    rescue => e
+      redirect_to edit_admin_custom_story_path(@story), alert: e
+    end
+  end
+
+  def destroy_image
+    if params[:image_type] == 'internal' && @story.internal_image.attached?
+      @story.internal_image.purge
+      @story.update(internal_image_height: 0, internal_image_width: 0)
+      render json: { success: true, message: 'Image was successfully removed.' }
+    elsif params[:image_type] == 'external' && @story.external_image.present?
+      @story.external_image.destroy!
+      render json: { success: true, message: 'Image was successfully removed.' }
+    else
+      render json: { success: false, message: 'Error occured' }
     end
   end
 
@@ -84,35 +115,12 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     end
   end
 
-  def edit
-    @story.build_external_image if @story.external_image.blank?
+  def review
+    @list_items = @story.list_items
   end
 
-  def update
-    begin
-      @story.update!(story_params)
+  def review_update
 
-      if params[:commit] == 'Go to List Editor'
-        redirect_to list_editor_admin_custom_story_path(@story)
-      else
-        redirect_to admin_stories_path, notice: 'Story was successfully updated.'
-      end
-    rescue => e
-      redirect_to edit_admin_custom_story_path(@story), alert: e
-    end
-  end
-
-  def destroy_image
-    if params[:image_type] == 'internal' && @story.internal_image.attached?
-      @story.internal_image.purge
-      @story.update(internal_image_height: 0, internal_image_width: 0)
-      render json: { success: true, message: 'Image was successfully removed.' }
-    elsif params[:image_type] == 'external' && @story.external_image.present?
-      @story.external_image.destroy!
-      render json: { success: true, message: 'Image was successfully removed.' }
-    else
-      render json: { success: false, message: 'Error occured' }
-    end
   end
 
   private

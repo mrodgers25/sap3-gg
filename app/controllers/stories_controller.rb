@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   include Pagy::Backend
 
   before_action :set_story_by_permalink, only: [:show]
-  before_action :set_story, only: [:save, :forget]
+  before_action :set_story, only: [:show, :save, :forget]
   before_action :check_for_current_user, only: :my_stories
 
   def show
