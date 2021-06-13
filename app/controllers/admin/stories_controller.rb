@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -34,6 +34,28 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def show
     render layout: "application_no_nav"
+  end
+
+  def images
+    # Build temp image record if none are found. This is a hack to get the image forms to work.
+    images = @story.urls.first.images
+    images.build(src_url: '-').save if images.blank?
+
+    @screen_scraper = get_scraper(@story)
+    if @screen_scraper.present? && @screen_scraper.scrape!(@story.urls.first.url_full)
+      @page_imgs = @screen_scraper.page_imgs
+    else
+      flash.now.alert = "Something went wrong with the scraper."
+    end
+  end
+
+  def images_update
+    my_params = set_image_params(story_params)
+    if @story.update(my_params)
+      redirect_to redirect_to_next_path(review_admin_story_path(@story)), notice: 'Image was successfully updated.'
+    else
+      render :images
+    end
   end
 
   def review
@@ -149,7 +171,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
   end
 
-  def get_camalized_story_type
+  def get_sym_story_type
     if @story.media_story?
       type = 'media_story'.to_sym
     elsif @story.video_story?
@@ -158,14 +180,57 @@ class Admin::StoriesController < Admin::BaseAdminController
   end
 
   def review_update_params
-    params.require(get_camalized_story_type).permit(:desc_length, :editor_tagline)
+    params.require(get_sym_story_type).permit(:desc_length, :editor_tagline)
   end
 
   def update_state_params
-    params.require(get_camalized_story_type).permit(:state)
+    params.require(get_sym_story_type).permit(:state)
   end
 
   def bulk_update_params
     params.permit(:update_type, ids: [])
+  end
+
+  def get_locations_and_categories
+    @locations        = Location.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
+  end
+
+  def story_params
+    params.require(get_sym_story_type).permit(
+      urls_attributes:  [:id, images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+  end
+
+  def set_image_params(story_params)
+    image_data = story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_data"]
+
+    unless image_data.nil?
+      image_data_hash = JSON.parse(image_data)
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["src_url"] = image_data_hash["src_url"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["alt_text"]= image_data_hash["alt_text"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_width"] = image_data_hash["image_width"]
+      story_params["urls_attributes"]["0"]["images_attributes"]["0"]["image_height"]= image_data_hash["image_height"]
+    end
+
+    story_params
+  end
+
+  def get_scraper(story)
+    if story.media_story?
+      ScreenScraper.new
+    elsif story.video_story?
+      VideoScraper.new
+    end
+  end
+
+  def redirect_to_next_path(path)
+    if params[:commit] == 'Save & New'
+      admin_initialize_scraper_index_path
+    elsif params[:commit] == 'Save & Exit'
+      admin_stories_path
+    else
+      path
+    end
   end
 end

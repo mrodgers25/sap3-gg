@@ -1,5 +1,6 @@
 class Usersavedstory < ApplicationRecord
   belongs_to :story
+  belongs_to :user
   validates_uniqueness_of :user_id, :scope => :story_id
 
   def self.to_csv
@@ -10,6 +11,4 @@ class Usersavedstory < ApplicationRecord
       end
     end
   end
-
-
 end

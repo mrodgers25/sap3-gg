@@ -68,11 +68,25 @@ class Admin::ReportsController < Admin::BaseAdminController
   end
 
   def export_usersaved
-    @usersaved = Usersavedstory.all
+    @user_saved_stories = StoriesUser.includes(:user, story: :urls).order(id: :desc)
+
+    csv = CSV.generate do |csv|
+      csv << ['Story ID', 'User ID', 'Saved At', 'Story Title', 'User Email', 'User City Preference']
+      @user_saved_stories.each do |uss|
+        csv << [
+          uss.story_id,
+          uss.user_id,
+          uss.created_at,
+          uss.story.latest_url.url_title,
+          uss.user.email,
+          uss.user.city_preference,
+        ]
+      end
+    end
 
     respond_to do |format|
       format.html
-      format.csv { send_data @usersaved.to_csv, filename: 'export_usersavedstory.csv' }
+      format.csv { send_data csv, filename: 'all_user_saved_stories.csv' }
     end
   end
 
