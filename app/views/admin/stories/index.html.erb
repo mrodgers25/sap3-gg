@@ -40,7 +40,7 @@
                 <%= link_to admin_story_path(story), class: "btn btn-sm btn-outline-primary", target: '_blank', data: { toggle: 'tooltip', placement: 'top', title: 'View story page' } do %>
                   <i class="fas fa-search"></i>
                 <% end %>
-                <%= link_to review_admin_story_path(story), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Review story' } do %>
+                <%= link_to story.type == 'CustomStory' ? review_admin_custom_story_path(story) : review_admin_story_path(story), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Review story' } do %>
                   <i class="fas fa-eye"></i>
                 <% end %>
                 <%# Had to add turbolinks: false here because it was causing some weird authenticity token bugs %>

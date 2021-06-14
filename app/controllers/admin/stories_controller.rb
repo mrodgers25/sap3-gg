@@ -96,7 +96,8 @@ class Admin::StoriesController < Admin::BaseAdminController
 
       redirect_to redirect_route, notice: "Story saved as #{update_state_params[:state].titleize}"
     rescue
-      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
+      path = @story.type == 'CustomStory' ? review_admin_custom_story_path(@story) : review_admin_story_path(@story)
+      redirect_to path, alert: 'Story failed to update'
     end
   end
 
@@ -176,6 +177,8 @@ class Admin::StoriesController < Admin::BaseAdminController
       type = 'media_story'.to_sym
     elsif @story.video_story?
       type = 'video_story'.to_sym
+    else
+      type = 'custom_story'.to_sym
     end
   end
 
