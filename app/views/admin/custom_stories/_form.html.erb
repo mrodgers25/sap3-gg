@@ -33,12 +33,47 @@
 
         <div class="form-group row">
           <div class="col-2">
+            <%= f.label :author, "Story Author:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :author, size: 50, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :hashtags, "Hashtags:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :hashtags, size: 50, placeholder: 'eg: #food #dancing #shopping', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_date, "Story Date (y/m/d):" %>
+          </div>
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+          </div>
+          /
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
+          </div>
+          /
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
             <%= f.label :location_ids, "Locations:" %>
           </div>
-          <div class="col-10 col-md-7 col-lg-4">
+          <div class="col-10 col-md-7 col-lg-5">
             <%= f.select :location_ids, options_from_collection_for_select(@locations, 'id', 'name', @story.locations.ids), {}, { multiple: true, id: 'story_location_ids' } %>
           </div>
-          <div class="col-12 col-md-3 col-lg-4">
+          <div class="col-12 col-md-3 col-lg-5">
             <%= f.label :outside_usa do %>
               <%= f.check_box :outside_usa, class: 'mr-2' %>
               Outside USA?
@@ -50,10 +85,10 @@
           <div class="col-2">
             <%= f.label :place_category_ids, "Place Categories:" %>
           </div>
-          <div class="col-10 col-md-7 col-lg-4">
+          <div class="col-10 col-md-7 col-lg-5">
             <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
           </div>
-          <div class="col-12 col-md-3 col-lg-4">
+          <div class="col-12 col-md-3 col-lg-5">
             <%= f.label :savable do %>
               <%= f.check_box :savable, class: 'mr-2' %>
               Can be saved?
@@ -70,82 +105,43 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :author, "Story Author:" %>
-          </div>
-          <div class="col-10">
-            <%= f.text_field :author, size: 50, class: 'form-control form-control-sm' %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :story_year, "Story Year:" %>
-          </div>
-          <div class="col-2">
-            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
-          </div>
-          <div class="col-2">
-            <%= f.label :story_month, "Story Month:" %>
-          </div>
-          <div class="col-2">
-            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
-          </div>
-          <div class="col-2">
-            <%= f.label :story_date, "Story Date:" %>
-          </div>
-          <div class="col-2">
-            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :hashtags, "Hashtags:" %>
-          </div>
-          <div class="col-10">
-            <%= f.text_field :hashtags, size: 50, placeholder: 'eg: #food #dancing #shopping', class: 'form-control' %>
-          </div>
-        </div>
-
         <hr class="my-4">
 
         <%= f.fields_for :external_image do |e| %>
           <h5>External Image</h5>
           <div class="form-group row">
-            <div class="col-4 col-md-2">
-              <%= e.label :src_url, "Image URL:" %>
-            </div>
-            <div class="col-6 col-md-4">
-              <%= e.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
-            </div>
-            <% if @story.external_image.src_url.present? %>
-              <div class="col-4 col-md-3 internal-image-text-div">
-                <p>Current Image (resized):</p>
-                <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'external' } %>
+            <div class="col-8">
+              <div class="row my-2">
+                <div class="col-3">
+                  <%= e.label :src_url, "Image URL:" %>
+                </div>
+                <div class="col-9">
+                  <%= e.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
+                </div>
               </div>
-              <div class="col-6 col-md-3 text-center internal-image-image-div">
-                <%= image_tag @story.external_image.src_url, style: 'width: 100%;' %>
+              <div class="row my-2">
+                <div class="col-3">
+                  <%= e.label :width, "Image Size (W/H):" %>
+                </div>
+                <div class="col-2 col-md-1">
+                  <%= e.text_field :width, class: "form-control form-control-sm" %>
+                </div>
+                /
+                <div class="col-2 col-md-1">
+                  <%= e.text_field :height, class: "form-control form-control-sm" %>
+                </div>
               </div>
-            <% end %>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-2">
-              <%= e.label :width, "Image Size:" %>
-            </div>
-            <div class="col-1">
-              <%= e.label :width, "W:" %>
-            </div>
-            <div class="col-2">
-              <%= e.text_field :width, class: "form-control form-control-sm" %>
-            </div>
-            <div class="col-1">
-              <%= e.label :height, "H:" %>
-            </div>
-            <div class="col-2">
-              <%= e.text_field :height, class: "form-control form-control-sm" %>
+              <% if @story.external_image.src_url.present? %>
+                <div class="row my-2">
+                  <div class="col-4 col-md-3 internal-image-text-div">
+                    <%= e.label :current_image, "Image (resized):" %>
+                    <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'external' } %>
+                  </div>
+                  <div class="col-6 col-md-3 text-center internal-image-image-div">
+                    <%= image_tag @story.external_image.src_url, style: 'width: 100%;' %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -154,38 +150,38 @@
 
         <h5>Internal Image</h5>
         <div class="form-group row">
-          <div class="col-4 col-md-2">
-            <%= f.label :internal_image, "Find File:" %>
-          </div>
-          <div class="col-6 col-md-4">
-            <%= f.file_field :internal_image, class: 'form-control-file' %>
-          </div>
-          <% if @story.internal_image.attached? %>
-            <div class="col-4 col-md-3 internal-image-text-div">
-              <p>Current Image (resized):</p>
-              <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'internal' } %>
+          <div class="col-8">
+            <div class="row my-2">
+              <div class="col-3">
+                <%= f.label :internal_image, "Find File:" %>
+              </div>
+              <div class="col-9">
+                <%= f.file_field :internal_image, class: 'form-control-file' %>
+              </div>
             </div>
-            <div class="col-6 col-md-3 text-center internal-image-image-div">
-              <%= image_tag @story.internal_image.variant(resize_to_limit: [150,150]) %>
+            <div class="row my-2">
+              <div class="col-3">
+                <%= f.label :internal_image_width, "Image Size (W/H):" %>
+              </div>
+              <div class="col-2 col-md-1">
+                <%= f.text_field :internal_image_width, class: "form-control form-control-sm" %>
+              </div>
+              /
+              <div class="col-2 col-md-1">
+                <%= f.text_field :internal_image_height, class: "form-control form-control-sm" %>
+              </div>
             </div>
-          <% end %>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2">
-            <%= f.label :internal_image_width, "Image Size:" %>
-          </div>
-          <div class="col-1">
-            <%= f.label :internal_image_width, "W:" %>
-          </div>
-          <div class="col-2">
-            <%= f.text_field :internal_image_width, class: "form-control form-control-sm" %>
-          </div>
-          <div class="col-1">
-            <%= f.label :internal_image_height, "H:" %>
-          </div>
-          <div class="col-2">
-            <%= f.text_field :internal_image_height, class: "form-control form-control-sm" %>
+            <% if @story.internal_image.attached? %>
+              <div class="row my-2">
+                <div class="col-4 col-md-3 internal-image-text-div">
+                  <%= f.label :current_image, "Image (resized):" %>
+                  <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'internal' } %>
+                </div>
+                <div class="col-6 col-md-3 text-center internal-image-image-div">
+                  <%= image_tag @story.internal_image.variant(resize_to_limit: [150,150]) %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
 
