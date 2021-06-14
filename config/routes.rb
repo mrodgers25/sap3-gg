@@ -69,7 +69,7 @@ Rails.application.routes.draw do
         get :list_editor
         post :update_list
         get :review
-        post :review_update
+        patch :review_update
       end
     end
     resources :urls, except: [:show]

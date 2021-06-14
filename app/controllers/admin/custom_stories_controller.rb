@@ -1,5 +1,5 @@
 class Admin::CustomStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:edit, :update, :destroy_image, :list_editor, :update_list, :review]
+  before_action :set_story, only: [:edit, :update, :destroy_image, :list_editor, :update_list, :review, :review_update]
   before_action :get_locations_and_categories, only: [:new, :edit]
 
   def new
@@ -120,7 +120,11 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   end
 
   def review_update
-
+    if @story.update(review_update_params)
+      redirect_to review_admin_custom_story_path(@story)
+    else
+      redirect_to review_admin_custom_story_path(@story), notice: 'Story failed to be updated.'
+    end
   end
 
   private
@@ -156,6 +160,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       :internal_image,
       :internal_image_width,
       :internal_image_height,
+      :savable,
       location_ids: [],
       story_category_ids: [],
       place_category_ids: [],
@@ -163,5 +168,9 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
         :src_url, :width, :height
       ]
     )
+  end
+
+  def review_update_params
+    params.require(:custom_story).permit(:editor_tagline, :savable)
   end
 end

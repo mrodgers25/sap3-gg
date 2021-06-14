@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
   def save
     @story.users << current_user
 
-    if @story.save
+    if @story.savable? && @story.save
       render json: { success: true, message: 'Story saved' }
     else
       render json: { success: false, message: 'Error occured' }

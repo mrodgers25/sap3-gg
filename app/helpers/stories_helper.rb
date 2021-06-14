@@ -4,7 +4,7 @@ module StoriesHelper
       edit_admin_media_story_path(story)
     elsif story.video_story?
       edit_admin_video_story_path(story)
-    when 'CustomStory'
+    else
       edit_admin_custom_story_path(story)
     end
   end
@@ -20,6 +20,8 @@ module StoriesHelper
       'fas fa-book'
     elsif story.video_story?
       'fas fa-video'
+    else
+      'fas fa-asterisk'
     end
   end
 end

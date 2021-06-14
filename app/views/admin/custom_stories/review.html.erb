@@ -42,56 +42,59 @@
       <% end %>
 
       <div class="card-body">
-        <div class="tagline-div-<%= @story.id %>">
-          <% if @story.editor_tagline %>
+        <% if @story.editor_tagline %>
+          <div class="tagline-div-<%= @story.id %>">
             <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
 
-        <hr>
+        <% if @story.custom_body.present? %>
+          <hr>
+          <div>
+            <%= @story.custom_body %>
+          </div>
+        <% end %>
 
-        <div>
-          <%= @story.custom_body %>
-        </div>
-
-        <hr>
-
-        <div class='text-left'>
-          <h6 class='text-center'>Related Stories</h6>
-          <% @list_items.each do |list_item| %>
-            <p>
-              <%= link_to story_path(list_item.story_id), data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info' do %>
-                <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.latest_url&.url_title %>
-              <% end %>
-            </p>
-          <% end %>
-        </div>
-
-        <hr>
-
-        <div class="row">
-          <div class="col-12 text-center links-div" id=<%= @story.id %>>
-            <% if current_user && @story.users.include?(current_user) %>
-              <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
-                  <i class="fas fa-times mr-1"></i> Forget Story
-                <% end %>
-              </p>
-            <% elsif current_user %>
-              <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
-                  <i class="fas fa-bookmark mr-1"></i> Save Story
-                <% end %>
-              </p>
-            <% else %>
-              <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
-                  <i class="fas fa-bookmark mr-1"></i> Save Story
+       <% if @list_items.present? %>
+          <hr>
+          <div class='text-left'>
+            <h6 class='text-center'>Related Stories</h6>
+            <% @list_items.each do |list_item| %>
+              <p>
+                <%= link_to story_path(list_item.story_id), data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
+                  <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.latest_url&.url_title %>
                 <% end %>
               </p>
             <% end %>
           </div>
-        </div>
+        <% end %>
+
+        <% if @story.savable? %>
+          <hr>
+          <div class="row">
+            <div class="col-12 text-center links-div" id=<%= @story.id %>>
+              <% if current_user && @story.users.include?(current_user) %>
+                <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
+                    <i class="fas fa-times mr-1"></i> Forget Story
+                  <% end %>
+                </p>
+              <% elsif current_user %>
+                <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% else %>
+                <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
+                  <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
+                    <i class="fas fa-bookmark mr-1"></i> Save Story
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="grid-item grid-card card">
@@ -103,7 +106,23 @@
           <hr class="my-2">
 
           <div class="body">
+            <%= form_with(model: @story, url: review_update_admin_custom_story_path(@story)) do |f| %>
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :editor_tagline, 'Editor Tagline:' %>
+                <%= f.text_area :editor_tagline, rows: 2, cols: 25, placeholder: 'Editor tagline', class: 'form-control' %>
+              </div>
 
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :savable do %>
+                  <%= f.check_box :savable, class: 'mr-2' %>
+                  Can be saved?
+                <% end %>
+              </div>
+
+              <div class="sign-in-row mt-4 mx-auto text-center">
+                <%= submit_tag "Revise", class: "btn btn-sm btn-primary" %>
+              </div>
+            <% end %>
           </div>
       </div>
     </div>
@@ -123,8 +142,10 @@
               <% next if value == 'no_status' %>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <%= f.radio_button :state, value, checked: @story.state == value %>
-                  <%= label :state, title, value: value %>
+                  <%= f.label :state do %>
+                    <%= f.radio_button :state, value, checked: @story.state == value %>
+                      <%= title %>
+                  <% end %>
                 </li>
               </ul>
             <% end %>
