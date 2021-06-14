@@ -1,5 +1,7 @@
 .story-form {
   border: 1px solid black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 
   .header {
     h4 {
@@ -17,5 +19,14 @@
 
   .complete-form-item {
     background-color: lightgreen;
+  }
+}
+
+.story-form-nav-btns {
+  .active-item {
+    background: lightgrey !important
+    ;
+    font-weight: 500 !important;
+    color: black impo !important;
   }
 }

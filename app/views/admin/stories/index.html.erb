@@ -27,7 +27,7 @@
           <% @stories.each do |story| %>
             <tr>
               <td><%= story.id %></td>
-              <td style="width: 500px"><%= link_to story.latest_url&.url_title, admin_story_path(story.id), target: '_blank', class: 'text-dark' %></td>
+              <td style="width: 500px"><%= link_to (story.latest_url&.url_title || "#{story.type.titleize} #{story.id}"), admin_story_path(story.id), target: '_blank', class: 'text-dark' %></td>
               <td style="width: 150px"><%= story.media_owner || '-' %></td>
               <td><%= story.story_display_date || '-' %></td>
               <td style="width: 150px">

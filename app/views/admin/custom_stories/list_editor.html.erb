@@ -1,20 +1,16 @@
 <div class="container-fluid">
-  <div class="mb-2 d-flex justify-content-between">
-    <%= link_to edit_admin_custom_story_path, class: "btn btn-sm btn-primary", data: { turbolinks: false } do %>
-      <i class="fas fa-arrow-left mr-1"></i> Back to edit
-    <% end %>
-    <h5>Custom Story List Editor</h5>
-    <%= link_to review_admin_custom_story_path, class: "btn btn-sm btn-success" do %>
-      Go to review <i class="fas fa-arrow-right ml-1"></i>
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+
+  <div class="header text-center">
+    <% if @story&.persisted? %>
+      <h6>Story ID: <%= @story.id %></h6>
     <% end %>
   </div>
+
   <div class="jumbotron bg-white admin-index-page">
     <div class="row">
       <div class="col-12 col-md-6">
         <dl class="row">
-          <dt class="col-3">Story ID:</dt>
-          <dd class="col-9"><%= @story.id %></dd>
-
           <dt class="col-3">Editor Tagline:</dt>
           <dd class="col-9"><%= @story.editor_tagline.presence || '-' %></dd>
 

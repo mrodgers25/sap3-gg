@@ -1,15 +1,14 @@
 <div class="container-fluid ">
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+
+  <div class="header text-center">
+    <% if @story&.persisted? %>
+      <h6>Story ID: <%= @story.id %></h6>
+    <% end %>
+  </div>
+
   <%= form_with(model: @story, url: route, method: method) do |f| %>
     <div class="jumbotron bg-white story-form">
-      <div class="header text-center">
-        <h4><i class="fas fa-asterisk mr-1"></i> Enter Custom Story Details</h4>
-        <% if @story&.persisted? %>
-          <h6>Story ID: <%= @story.id %></h6>
-        <% end %>
-      </div>
-
-      <hr class="my-4">
-
       <% if @story.errors.any? %>
         <div id="error_explanation">
           <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
@@ -36,7 +35,7 @@
             <%= f.label :author, "Story Author:" %>
           </div>
           <div class="col-10">
-            <%= f.text_field :author, size: 50, class: 'form-control form-control-sm' %>
+            <%= f.text_field :author, size: 50, placeholder: "Maximum 50 chars", class: 'form-control form-control-sm' %>
           </div>
         </div>
 
@@ -198,16 +197,18 @@
 
         <hr class="my-4">
 
-        <% if @story.persisted? %>
-          <div class="text-center">
-            <%= f.submit "Save and exit", class: 'btn btn-md btn-primary text-center w-25' %>
-            <%= f.submit "Go to List Editor", class: 'btn btn-md btn-success text-center w-25' %>
-          </div>
-        <% else %>
-          <div class="text-center">
-            <%= f.submit "Next", class: 'btn btn-md btn-primary text-center w-25' %>
-          </div>
-        <% end %>
+        <div class="col-10 offset-2">
+          <% if @story.persisted? %>
+            <div class="text-left">
+              <%= f.submit "Save and exit", class: 'btn btn-md btn-primary' %>
+              <%= f.submit "Go to List Editor", class: 'btn btn-md btn-success' %>
+            </div>
+          <% else %>
+            <div class="text-left">
+              <%= f.submit "Next", class: 'btn btn-md btn-primary' %>
+            </div>
+          <% end %>
+        </div>
 
         <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time  if @data_entry_begin_time.present? %>
         <%= f.hidden_field :data_entry_user, value: current_user.id %>

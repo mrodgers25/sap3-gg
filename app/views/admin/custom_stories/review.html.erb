@@ -1,14 +1,13 @@
 <div class="container-fluid">
-  <div class="mb-2">
-    <div class="text-center" style="padding-right: 9rem;">
-      <%= link_to list_editor_admin_custom_story_path, class: "btn btn-sm btn-primary float-left", data: { turbolinks: false } do %>
-        <i class="fas fa-arrow-left mr-1"></i> Back to List Edit
-      <% end %>
-      <h5 class="d-inline">Custom Story Review</h5>
-    </div>
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+
+  <div class="header text-center">
+    <% if @story&.persisted? %>
+      <h6>Story ID: <%= @story.id %></h6>
+    <% end %>
   </div>
 
-  <div class="grid story-grid">
+  <div class="grid story-grid mt-n4">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>
     <div class="grid-item grid-card card" id="grid-card-<%= @story.id %>">
@@ -35,7 +34,7 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      <% elsif @story.internal_image %>
+      <% elsif @story.internal_image.present? %>
         <%= link_to image_tag(@story.internal_image, class: "grid-image"), admin_story_path(@story), target: '_blank' %>
       <% else %>
         <%= link_to image_tag(@story.external_image.src_url, class: "grid-image"), admin_story_path(@story), target: '_blank' %>
