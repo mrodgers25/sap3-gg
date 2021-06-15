@@ -9,7 +9,7 @@
 
   <div class="jumbotron bg-white admin-index-page">
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-lg-6">
         <dl class="row">
           <dt class="col-3">Editor Tagline:</dt>
           <dd class="col-9"><%= @story.editor_tagline.presence || '-' %></dd>
@@ -28,6 +28,7 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
+                  <th scope="col">Position</th>
                   <th scope="col">Title</th>
                   <th scope="col">Publisher</th>
                   <th scope="col">Date</th>
@@ -38,6 +39,7 @@
               <tbody>
                 <% @list_items.each do |list_item| %>
                   <tr>
+                    <td><%= list_item.position %></td>
                     <td style="width: 300px">
                       <%= link_to list_item.story.display_title, admin_story_path(list_item.story), target: '_blank', class: 'text-dark' %>
                       </td>
@@ -48,9 +50,12 @@
                     <td style="width: 100px">
                       <i class='<%= colored_icon_for_story_type(list_item.story&.type) %>'></i> <%= list_item.story.type.underscore.split("_").first.capitalize! || '-' %>
                     </td>
-                    <td style="width: 50px;">
-                      <%= button_to update_list_admin_custom_story_path(@story, list_item_id: list_item.id, action_type: 'remove'), class: "btn btn-sm btn-outline-danger", data: { toggle: 'tooltip', placement: 'top', title: 'Remove from list' } do %>
+                    <td style="width: 115px;">
+                      <%= link_to update_list_admin_custom_story_path(@story, list_item_id: list_item.id, action_type: 'remove'), method: :patch, class: "btn btn-sm btn-outline-danger", data: { toggle: 'tooltip', placement: 'top', title: 'Remove from list' } do %>
                         <i class="fas fa-minus"></i>
+                      <% end %>
+                      <%= link_to list_edit_admin_custom_story_path(@story, list_item_id: list_item.id, action_type: 'position'), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit position' } do %>
+                        <i class="fas fa-cog"></i>
                       <% end %>
                     </td>
                   </tr>
@@ -63,7 +68,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6 border border-grey">
+      <div class="col-12 col-lg-6 border border-grey">
         <div class="header text-center mt-3">
           <h5><i class="fas fa-plus mr-1"></i> Add Stories</h5>
         </div>

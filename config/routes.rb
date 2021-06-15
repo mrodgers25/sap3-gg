@@ -67,7 +67,8 @@ Rails.application.routes.draw do
       member do
         post :destroy_image
         get :list_editor
-        post :update_list
+        get :list_edit
+        patch :update_list
         get :review
         patch :review_update
       end

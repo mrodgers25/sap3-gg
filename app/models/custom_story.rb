@@ -9,4 +9,8 @@ class CustomStory < Story
   def display_url
     '-'
   end
+
+  def sorted_list_items
+    list_items.includes(:story).order(:position, :created_at)
+  end
 end

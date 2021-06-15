@@ -1,5 +1,5 @@
 class Admin::CustomStoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:edit, :update, :destroy_image, :list_editor, :update_list, :review, :review_update]
+  before_action :set_story, only: [:edit, :update, :destroy_image, :list_edit, :list_editor, :update_list, :review, :review_update]
   before_action :get_locations_and_categories, only: [:new, :edit]
 
   def new
@@ -17,7 +17,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     end
   end
 
-    def edit
+  def edit
     @story.build_external_image if @story.external_image.blank?
   end
 
@@ -56,7 +56,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     session[:story_type] = params[:story_type]
 
     # stories that are currently on the list
-    @list_items = @story.list_items.includes(:story).order(:position, :created_at)
+    @list_items = @story.sorted_list_items
 
     # stories to search
     @published_items = []
@@ -93,6 +93,10 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
     end
   end
 
+  def list_edit
+    @list_item = @story.list_items.find(params[:list_item_id])
+  end
+
   def update_list
     begin
       case params[:action_type]
@@ -107,6 +111,11 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
         end
 
         ListItem.create!(list_id: @story.list.id, story_id: params[:story_id])
+      when 'update'
+        @list_item = @story.list_items.find(params[:list_item_id])
+        @list_item.update(list_item_params)
+        # resequence other list items for story
+        set_position_and_resequence
       end
 
       redirect_to list_editor_admin_custom_story_path(@story), notice: 'List was updated.'
@@ -172,5 +181,24 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
 
   def review_update_params
     params.require(:custom_story).permit(:editor_tagline, :savable)
+  end
+
+  def list_item_params
+    params.require(:list_item).permit(:position)
+  end
+
+  def set_position_and_resequence
+    new_position = @list_item.position
+    old_position = params[:old_position].to_i
+
+    if new_position && old_position && (new_position <= old_position)
+      @list_item.update(position: (new_position - 1))
+    end
+    # resort all other positions
+    sorted_by_position = @story.list_items.where.not(position: nil).order(position: :asc, created_at: :desc)
+    sorted_by_position.each_with_index do |item, index|
+      new_position = index + 1
+      item.update(position: new_position)
+    end
   end
 end
