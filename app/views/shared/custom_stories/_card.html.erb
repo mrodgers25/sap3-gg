@@ -1,32 +1,5 @@
 <div class="grid-item grid-card card" id="grid-card-<%= card_id %>">
-  <% if story.internal_image.present? && story.external_image.present? %>
-    <div id="gridImageCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#gridImageCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#gridImageCarousel" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <%= link_to image_tag(story.internal_image, class: "grid-image"), admin_story_path(story), target: '_blank' %>
-        </div>
-        <div class="carousel-item">
-          <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), admin_story_path(story), target: '_blank' %>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#gridImageCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#gridImageCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  <% elsif story.internal_image.present? %>
-    <%= link_to image_tag(story.internal_image, class: "grid-image"), admin_story_path(story), target: '_blank' %>
-  <% else %>
-    <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), admin_story_path(story), target: '_blank' %>
-  <% end %>
+  <%= render partial: 'shared/custom_stories/image', locals: { story: story } %>
 
   <div class="card-body">
     <% if story.editor_tagline %>

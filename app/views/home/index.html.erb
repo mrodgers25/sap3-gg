@@ -9,7 +9,7 @@
         <% if published_item.publishable.type.in?(['MediaStory', 'VideoStory']) %>
           <%= render partial: 'shared/video_and_media_story_card', locals: { story: published_item.publishable, card_id: published_item.id } %>
         <% else %>
-          <%= render partial: 'shared/custom_story_card', locals: { story: published_item.publishable, card_id: published_item.id } %>
+          <%= render partial: 'shared/custom_stories/card', locals: { story: published_item.publishable, card_id: published_item.id } %>
         <% end %>
       <% end %>
     <% else %>

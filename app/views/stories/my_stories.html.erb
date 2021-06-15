@@ -27,7 +27,13 @@
             <% story = published_item.publishable %>
             <tr>
               <td class="story-image">
-                <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' if story.latest_image %>
+                <% if story.type.in?(['MediaStory', 'VideoStory']) %>
+                  <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' if story.latest_image %>
+                <% else %>
+                  <%= link_to story_path(story.permalink), target: '_blank' do %>
+                    <%= render partial: 'shared/custom_stories/image', locals: { story: story } %>
+                  <% end %>
+                <% end %>
               </td>
               <td style="width: 600px;"><%= link_to story.display_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
