@@ -97,7 +97,7 @@
               <% story.list_items.each do |list_item| %>
                 <p>
                   <%= link_to story_path(list_item.story_id), data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
-                    <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.latest_url&.url_title %>
+                    <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.display_title %>
                   <% end %>
                 </p>
               <% end %>

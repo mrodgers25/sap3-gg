@@ -35,7 +35,7 @@
 
             <hr>
 
-            <h5 class="text-center story-title"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+            <h5 class="text-center story-title"><%= link_to story.display_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
 
             <p class="text-center text-muted media-owner-date-line">
               <%= story.media_owner_and_date_line %>

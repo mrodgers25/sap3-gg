@@ -39,7 +39,7 @@
                 <% @list_items.each do |list_item| %>
                   <tr>
                     <td style="width: 300px">
-                      <%= link_to list_item.story.latest_url&.url_title, admin_story_path(list_item.story), target: '_blank', class: 'text-dark' %>
+                      <%= link_to list_item.story.display_title, admin_story_path(list_item.story), target: '_blank', class: 'text-dark' %>
                       </td>
                     <td style="width: 150px">
                       <%= list_item.story.media_owner || '-' %>
@@ -108,7 +108,7 @@
                 <% @published_items.each do |published_item| %>
                   <tr>
                     <td style="width: 300px">
-                      <%= link_to published_item.publishable.latest_url&.url_title, admin_story_path(published_item.publishable), target: '_blank', class: 'text-dark' %>
+                      <%= link_to published_item.publishable.display_title, admin_story_path(published_item.publishable), target: '_blank', class: 'text-dark' %>
                       </td>
                     <td style="width: 150px">
                       <%= published_item.publishable.media_owner || '-' %>

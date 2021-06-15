@@ -36,7 +36,7 @@
       </div>
       <div class="col-12 col-md-7">
         <div class="card-body">
-          <h5 class="text-center story-title"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
+          <h5 class="text-center story-title"><%= link_to story.display_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
           <div class="tagline-div-<%= story.id %>">
             <% if story.editor_tagline %>
               <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-4 m-auto">
               <p class="m-auto">
-                <%= link_to story.latest_url&.url_full, class: "btn btn-sm btn-info" do %>
+                <%= link_to story.display_url, class: "btn btn-sm btn-info" do %>
                   <i class="fas fa-book-open mr-1"></i> Read at Publisher
                 <% end %>
               </p>

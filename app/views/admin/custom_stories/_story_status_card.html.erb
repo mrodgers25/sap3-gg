@@ -1,0 +1,32 @@
+<div class="grid-item grid-card card">
+  <div class="card-body">
+    <div class="header text-center">
+      <h5>Story Status</h5>
+    </div>
+
+    <hr class="my-2">
+
+    <p class="lead text-center">Current State: <br><strong><%= story.state.titleize %></strong></p>
+
+    <div class="body text-left">
+      <%= form_with(model: story, url: path, method: :patch) do |f| %>
+        <% Story.all_states_mapping.each do |title, value| %>
+          <% next if value == 'no_status' %>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= f.label :state do %>
+                <%= f.radio_button :state, value, checked: story.state == value %>
+                  <%= title %>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+        <div class="d-flex justify-content-between">
+          <%= submit_tag "Save & New", class: "btn btn-sm btn-success mt-4" %>
+          <br>
+          <%= submit_tag "Save & Exit", class: "btn btn-sm btn-success mt-4" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -35,8 +35,8 @@
             <% @stories.each do |story| %>
               <tr>
                 <td><%= story.id %></td>
-                <td style="width: 300px"><%= link_to story.latest_url&.url_title, admin_story_path(story.id), target: '_blank', class: 'text-dark' %></td>
-                <td style="width: 300px; overflow: hidden; max-width: 300px; word-wrap: break-word;"><%= link_to story.latest_url&.url_full, story.latest_url&.url_full, target: '_blank', class: 'text-dark' %></td>
+                <td style="width: 300px"><%= link_to story.display_title, admin_story_path(story.id), target: '_blank', class: 'text-dark' %></td>
+                <td style="width: 300px; overflow: hidden; max-width: 300px; word-wrap: break-word;"><%= link_to story.display_url, story.display_url, target: '_blank', class: 'text-dark' %></td>
                 <td style="width: 300px; overflow: hidden; max-width: 300px; word-wrap: break-word;"><%= story.latest_url&.latest_image_url %></td>
                 <td style="width: 75px"><%= story.author&.titleize || '-' %></td>
                 <td style="width: 150px">

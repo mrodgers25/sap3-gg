@@ -219,4 +219,12 @@ class Story < ApplicationRecord
     permalink = "#{rand_hex}/#{url_title}"
     self.update_attribute(:permalink, "#{permalink}")
   end
+
+  def display_title
+    latest_url&.url_title || '-'
+  end
+
+  def display_url
+    latest_url&.url_full || '-'
+  end
 end
