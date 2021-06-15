@@ -11,7 +11,7 @@
     <div class="grid-sizer"></div>
     <div class="gutter-sizer"></div>
 
-    <%= render partial: 'custom_story_card', locals: { story: @story } %>
+    <%= render partial: 'shared/custom_story_card', locals: { story: @story, card_id: nil } %>
 
     <div class="grid-item grid-card card">
       <div class="card-body">
@@ -43,6 +43,6 @@
       </div>
     </div>
 
-    <%= render partial: 'story_status_card', locals: { story: @story, path: update_state_admin_story_path(@story) } %>
+    <%= render partial: 'shared/story_status_card', locals: { story: @story, path: update_state_admin_story_path(@story) } %>
   </div>
 </div>
