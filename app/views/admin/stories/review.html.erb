@@ -5,70 +5,11 @@
   <hr class="mt-4 mb-2">
 
   <div class="grid story-grid">
-  <div class="grid-sizer"></div>
-  <div class="gutter-sizer"></div>
-    <% url_path = @story.media_story? ? story_path(@story.permalink) : @story.display_url %>
-    <div class="grid-item grid-card card" id="grid-card-<%= @story.id %>">
-      <% if @story.latest_image %>
-        <%= link_to image_pack_tag('default-image.jpeg', onload: "const mainContentWidth = document.getElementById('main-content').offsetWidth; const divWidth = document.getElementById('grid-card-#{@story.id}').offsetWidth; const ratio = (divWidth / #{@story.image_width.to_f}); const newHeight = (ratio * #{@story.image_height.to_f}); this.style.height=newHeight+'px';", class: "grid-image"), url_path, target: '_blank', id: "default-image-#{@story.id}" %>
-        <%= link_to image_tag(@story.latest_image.src_url, onload: "this.style.display='inline'; document.getElementById('default-image-#{@story.id}').style.display='none';", class: "grid-image", style: 'display: none;'), url_path, target: '_blank' %>
-      <% else %>
-        <%= link_to image_pack_tag('default-image.jpeg', class: "grid-image"), url_path, target: '_blank' %>
-      <% end %>
-      <div class="card-body">
-        <div class="tagline-div-<%= @story.id %>">
-          <% if current_user && @story.users.include?(current_user) %>
-            <% if show_old_code %>
-              <p class="story-saved-text saved-text-<%= @story.id %> text-center">
-                <i class="fas fa-check-square mr-1"></i> Story Saved
-              </p>
-              <hr class="saved-text-hr-<%= @story.id %>">
-            <% end %>
-          <% end %>
-          <% if @story.editor_tagline %>
-            <h6 class="card-title text-center font-italic font-bold"><%= @story.editor_tagline %></h6>
-          <% end %>
-        </div>
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
 
-        <hr>
+    <%= render partial: 'shared/video_and_media_story_card', locals: { story: @story, card_id: nil } %>
 
-        <h5 class="text-center story-title"><%= link_to @story.display_title, @story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></h5>
-
-        <p class="text-center text-muted media-owner-date-line">
-          <%= @story.media_owner_and_date_line %>
-        </p>
-
-        <p class="url-desc">
-          <%= truncate(@story.latest_url.url_desc, length: @story.desc_length + 5, omission: '...  ' ) { link_to "Read more", admin_story_path(@story.id), target: '_blank', class: 'read-more-link' } %>
-        </p>
-
-        <hr>
-
-        <div class="row">
-          <div class="col-12 text-center links-div" id=<%= @story.id %>>
-            <% if current_user && @story.users.include?(current_user) %>
-              <p class="forget-story-link forget-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{@story.id}" do %>
-                  <i class="fas fa-times mr-1"></i> Forget Story
-                <% end %>
-              </p>
-            <% elsif current_user %>
-              <p class="save-story-link save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{@story.id}" do %>
-                  <i class="fas fa-bookmark mr-1"></i> Save Story
-                <% end %>
-              </p>
-            <% else %>
-              <p class="login-to-save-story-link login-to-save-story-link-<%= @story.id %>" id=<%= @story.id %>>
-                <%= link_to "javascript:void(0)", id: @story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{@story.id}" do %>
-                  <i class="fas fa-bookmark mr-1"></i> Save Story
-                <% end %>
-              </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="grid-item grid-card card">
       <div class="card-body">
           <div class="header text-center">
@@ -104,34 +45,7 @@
           </div>
       </div>
     </div>
-    <div class="grid-item grid-card card">
-      <div class="card-body">
-        <div class="header text-center">
-          <h5>Story Status</h5>
-        </div>
 
-        <hr class="my-2">
-        <p class="lead text-center">Current State: <br><strong><%= @story.state.titleize %></strong></p>
-
-        <div class="body text-left">
-          <%= form_with(model: @story, url: update_state_admin_story_path(@story), method: :patch) do |f| %>
-            <% Story.all_states_mapping.each do |title, value| %>
-              <% next if value == 'no_status' %>
-              <ul class="list-group">
-                <%= f.label :state do %>
-                  <%= f.radio_button :state, value, checked: @story.state == value %>
-                    <%= title %>
-                <% end %>
-              </ul>
-            <% end %>
-            <div class="d-flex justify-content-between">
-              <%= submit_tag "Save & New", class: "btn btn-sm btn-success mt-4" %>
-              <br>
-              <%= submit_tag "Save & Exit", class: "btn btn-sm btn-success mt-4" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'shared/story_status_card', locals: { story: @story, path: update_state_admin_story_path(@story) } %>
   </div>
 </div>

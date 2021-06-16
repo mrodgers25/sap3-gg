@@ -9,16 +9,14 @@
     <p class="lead text-center">Current State: <br><strong><%= story.state.titleize %></strong></p>
 
     <div class="body text-left">
-      <%= form_with(model: story, url: path, method: :patch) do |f| %>
+      <%= form_with(model: @story, url: update_state_admin_story_path(@story), method: :patch) do |f| %>
         <% Story.all_states_mapping.each do |title, value| %>
           <% next if value == 'no_status' %>
           <ul class="list-group">
-            <li class="list-group-item">
-              <%= f.label :state do %>
-                <%= f.radio_button :state, value, checked: story.state == value %>
-                  <%= title %>
-              <% end %>
-            </li>
+            <%= f.label :state do %>
+              <%= f.radio_button :state, value, checked: @story.state == value %>
+                <%= title %>
+            <% end %>
           </ul>
         <% end %>
         <div class="d-flex justify-content-between">

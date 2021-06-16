@@ -1,13 +1,8 @@
 <div class="container-fluid">
   <%= render partial: 'nav_btns', locals: { story: @story }%>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: nil, title: '' } %>
 
-  <div class="header text-center">
-    <% if @story&.persisted? %>
-      <h6>Story ID: <%= @story.id %></h6>
-    <% end %>
-  </div>
-
-  <div class="jumbotron bg-white admin-index-page">
+  <div class="jumbotron bg-white admin-index-page mt-3">
     <div class="row">
       <div class="col-12 col-lg-6">
         <dl class="row">

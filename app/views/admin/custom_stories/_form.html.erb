@@ -1,14 +1,9 @@
 <div class="container-fluid ">
   <%= render partial: 'nav_btns', locals: { story: @story }%>
-
-  <div class="header text-center">
-    <% if @story&.persisted? %>
-      <h6>Story ID: <%= @story.id %></h6>
-    <% end %>
-  </div>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: nil, title: '' } %>
 
   <%= form_with(model: @story, url: route, method: method) do |f| %>
-    <div class="jumbotron bg-white story-form">
+    <div class="jumbotron bg-white story-form mt-3">
       <% if @story.errors.any? %>
         <div id="error_explanation">
           <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
