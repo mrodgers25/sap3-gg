@@ -121,6 +121,11 @@ Rails.application.routes.draw do
     resources :admin_settings, only: [:index, :update]
   end
 
-  # redirect to home if route doesn't exist (THIS DOESNT WORK WITH ACTIVE STORAGE!)
-  # match "*path" => "home#index", via: [:get, :post] if Rails.env.production?
+  # redirect to home if route doesn't exist
+  if Rails.env.production?
+    match '*path', via: :all, to: 'home#index', constraints: lambda { |req|
+      # NEED THIS HERE FOR ACTIVE STORAGE IMAGES TO SHOW UP
+      req.path.exclude? 'rails/active_storage'
+    }
+  end
 end
