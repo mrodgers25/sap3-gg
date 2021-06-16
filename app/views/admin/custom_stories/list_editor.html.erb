@@ -118,7 +118,7 @@
                       <i class='<%= colored_icon_for_story_type(published_item.publishable&.type) %>'></i> <%= published_item.publishable.type.underscore.split("_").first.capitalize! || '-' %>
                     </td>
                     <td style="width: 50px;">
-                      <%= button_to update_list_admin_custom_story_path(@story, story_id: published_item.publishable.id, action_type: 'add'), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Add to list' } do %>
+                      <%= button_to update_list_admin_custom_story_path(@story, story_id: published_item.publishable.id, action_type: 'add'), method: 'patch', class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Add to list' } do %>
                         <i class="fas fa-plus"></i>
                       <% end %>
                     </td>

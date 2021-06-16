@@ -118,6 +118,6 @@ Rails.application.routes.draw do
     resources :admin_settings, only: [:index, :update]
   end
 
-  # redirect to home if route doesn't exist
-  match "*path" => "home#index", via: [:get, :post] if Rails.env.production?
+  # redirect to home if route doesn't exist (THIS DOESNT WORK WITH ACTIVE STORAGE!)
+  # match "*path" => "home#index", via: [:get, :post] if Rails.env.production?
 end
