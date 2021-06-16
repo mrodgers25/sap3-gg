@@ -3,7 +3,7 @@ class CustomStory < Story
   has_rich_text :custom_body
 
   def display_title
-    "#{type.titleize} #{id}"
+    editor_tagline
   end
 
   def display_url
