@@ -14,13 +14,18 @@ class Story < ApplicationRecord
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
   has_many :story_activities, dependent: :destroy
-  has_many :published_items, as: :publishable
+  has_many :published_items, as: :publishable, dependent: :destroy
   has_many :newsfeed_activities, as: :trackable
   has_one :media_owner, through: :urls
+  has_one :external_image, dependent: :destroy
+  accepts_nested_attributes_for :external_image
+  has_one :list, dependent: :destroy
+  has_many :list_items, through: :list
 
   before_validation :set_story_track_fields, on: :create
   after_validation :set_story_complete
   after_update :check_state_and_update_published_item
+  after_create :create_permalink
 
   aasm column: :state do
     state :no_status, initial: true
@@ -58,6 +63,10 @@ class Story < ApplicationRecord
 
   def video_story?
     type == 'VideoStory'
+  end
+
+  def custom_story?
+    type == 'CustomStory'
   end
 
   def check_state_and_update_published_item
@@ -115,10 +124,15 @@ class Story < ApplicationRecord
   end
 
   def set_story_complete
-    story_check = (self.editor_tagline != '' and
-        (self.story_year != nil or self.story_month != nil or self.story_date != nil) and
-        (self.urls.first.url_type != '' and self.urls.first.url_title != '' and self.urls.first.url_desc != '' and self.urls.first.url_domain != ''))
-    write_attribute(:story_complete, story_check ? true : false)
+    if self.type == 'CustomStory'
+      complete = true
+    else
+      complete = (self.editor_tagline != '' &&
+        (self.story_year != nil or self.story_month != nil or self.story_date != nil) &&
+        (self.urls.first.url_type != '' && self.urls.first.url_title != '' && self.urls.first.url_desc != '' && self.urls.first.url_domain != ''))
+    end
+
+    write_attribute(:story_complete, complete)
   end
 
   def story_url_complete?  # currently not used
@@ -153,7 +167,7 @@ class Story < ApplicationRecord
   end
 
   def title
-    latest_url.url_title
+    display_title
   end
 
   def story_display_date
@@ -201,9 +215,17 @@ class Story < ApplicationRecord
   end
 
   def create_permalink
-    url_title = latest_url.url_title.parameterize
+    url_title = display_title.parameterize
     rand_hex = SecureRandom.hex(2)
     permalink = "#{rand_hex}/#{url_title}"
     self.update_attribute(:permalink, "#{permalink}")
+  end
+
+  def display_title
+    latest_url&.url_title || '-'
+  end
+
+  def display_url
+    latest_url&.url_full || '-'
   end
 end

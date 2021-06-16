@@ -44,7 +44,7 @@
           </div>
 
           <hr>
-          
+
           <div class="row">
             <div class="col-4 m-auto text-center links-div" id=<%= story.id %>>
               <% if current_user && story.users.include?(current_user) %>
@@ -69,7 +69,7 @@
             </div>
             <div class="col-4 m-auto">
               <p class="m-auto">
-                <%= link_to story.latest_url&.url_full, class: "btn btn-sm btn-info" do %>
+                <%= link_to story.display_url, class: "btn btn-sm btn-info" do %>
                   <i class="fas fa-book-open mr-1"></i> Read at Publisher
                 <% end %>
               </p>

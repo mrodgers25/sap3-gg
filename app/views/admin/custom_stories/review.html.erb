@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: nil, title: '' }%>
+
+  <div class="grid story-grid mt-n3">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+
+    <%= render partial: 'shared/custom_stories/card', locals: { story: @story, card_id: nil } %>
+
+    <div class="grid-item grid-card card">
+      <div class="card-body">
+          <div class="header text-center">
+            <h5>Revise Fields</h5>
+          </div>
+
+          <hr class="my-2">
+
+          <div class="body">
+            <%= form_with(model: @story, url: review_update_admin_custom_story_path(@story)) do |f| %>
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :editor_tagline, 'Editor Tagline:' %>
+                <%= f.text_area :editor_tagline, rows: 2, cols: 25, placeholder: 'Editor tagline', class: 'form-control' %>
+              </div>
+
+              <div class="form-group my-4 max-vw-80 mx-auto">
+                <%= f.label :savable do %>
+                  <%= f.check_box :savable, class: 'mr-2' %>
+                  Can be saved?
+                <% end %>
+              </div>
+
+              <div class="sign-in-row mt-4 mx-auto text-center">
+                <%= submit_tag "Revise", class: "btn btn-sm btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    </div>
+
+    <%= render partial: 'shared/story_status_card', locals: { story: @story, path: update_state_admin_story_path(@story) } %>
+  </div>
+</div>

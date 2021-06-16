@@ -4,7 +4,7 @@ class Admin::NewsfeedController < Admin::BaseAdminController
   def queue
     @queued_items = PublishedItem.joins("
       INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
-      INNER JOIN urls ON urls.story_id = stories.id
+      LEFT JOIN urls ON urls.story_id = stories.id
     ")
     @queued_items = @queued_items.where(state: 'queued')
     @queued_items = @queued_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?

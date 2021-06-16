@@ -1,0 +1,59 @@
+<div class="grid-item grid-card card" id="grid-card-<%= card_id %>">
+  <%= render partial: 'shared/custom_stories/image', locals: { story: story } %>
+
+  <div class="card-body">
+    <% if story.editor_tagline %>
+      <div class="tagline-div-<%= story.id %>">
+        <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+      </div>
+    <% end %>
+
+    <% if story.custom_body.present? %>
+      <hr>
+      <div>
+        <%= story.custom_body %>
+      </div>
+    <% end %>
+
+    <% if story.list_items.present? %>
+      <hr>
+      <div class='text-left'>
+        <h6 class='text-center'>Related Stories</h6>
+        <% story.sorted_list_items.each do |list_item| %>
+          <p>
+            <%= link_to story_path(list_item.story_id), data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
+              <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.display_title %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if story.savable? %>
+      <hr>
+      <div class="row">
+        <div class="col-12 text-center links-div" id=<%= story.id %>>
+          <% if current_user && story.users.include?(current_user) %>
+            <p class="forget-story-link forget-story-link-<%= story.id %>" id=<%= story.id %>>
+              <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-outline-dark grid-item-forget-story-#{story.id}" do %>
+                <i class="fas fa-times mr-1"></i> Forget Story
+              <% end %>
+            </p>
+          <% elsif current_user %>
+            <p class="save-story-link save-story-link-<%= story.id %>" id=<%= story.id %>>
+              <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-save-story-#{story.id}" do %>
+                <i class="fas fa-bookmark mr-1"></i> Save Story
+              <% end %>
+            </p>
+          <% else %>
+            <p class="login-to-save-story-link login-to-save-story-link-<%= story.id %>" id=<%= story.id %>>
+              <%= link_to "javascript:void(0)", id: story.id, class: "btn btn-sm btn-primary grid-item-login-to-save-story-#{story.id}" do %>
+                <i class="fas fa-bookmark mr-1"></i> Save Story
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

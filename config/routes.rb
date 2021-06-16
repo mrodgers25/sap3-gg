@@ -53,14 +53,24 @@ Rails.application.routes.draw do
         post :bulk_update
       end
     end
-    resources :media_stories, except: [:index] do
+    resources :media_stories, except: [:index, :destroy] do
       collection do
         get :scrape
       end
     end
-    resources :video_stories, except: [:index] do
+    resources :video_stories, except: [:index, :destroy] do
       collection do
         get :scrape
+      end
+    end
+    resources :custom_stories, except: [:index, :destroy] do
+      member do
+        post :destroy_image
+        get :list_editor
+        get :list_edit
+        patch :update_list
+        get :review
+        patch :review_update
       end
     end
     resources :urls, except: [:show]
@@ -109,5 +119,5 @@ Rails.application.routes.draw do
   end
 
   # redirect to home if route doesn't exist
-  match "*path" => "home#index", via: [:get, :post]
+  match "*path" => "home#index", via: [:get, :post] if Rails.env.production?
 end

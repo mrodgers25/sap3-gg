@@ -13,6 +13,10 @@ gem 'aasm'
 gem 'rollbar'
 # Avoid all the crazy logins
 gem 'recaptcha'
+# S3 buckets
+gem "aws-sdk-s3", require: false
+# Image resizing
+gem 'image_processing'
 
 gem 'rails_12factor', group: :production
 gem 'sass-rails'

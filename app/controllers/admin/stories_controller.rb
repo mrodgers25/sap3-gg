@@ -8,7 +8,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
-    @stories = Story.joins(:urls).select(
+    @stories = Story.left_outer_joins(:urls).select(
       "stories.*",
       "
         CASE
@@ -20,14 +20,14 @@ class Admin::StoriesController < Admin::BaseAdminController
         END AS story_date_combined
       "
     )
-    @stories = @stories.where("LOWER(type) ~ ?", params[:type].downcase) if params[:type].present?
+    @stories = @stories.where("type ~ ?", params[:type]) if params[:type].present?
     @stories = @stories.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @stories = @stories.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
     @stories = @stories.where(state: params[:state]) if params[:state].present?
     @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] }) if params[:location_id].present?
     @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
-    @stories = @stories.order(story_date_combined: :desc)
+    @stories = @stories.order(story_date_combined: :desc, id: :desc)
 
     @pagy, @stories = pagy(@stories)
   end
@@ -96,7 +96,8 @@ class Admin::StoriesController < Admin::BaseAdminController
 
       redirect_to redirect_route, notice: "Story saved as #{update_state_params[:state].titleize}"
     rescue
-      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
+      path = @story.type == 'CustomStory' ? review_admin_custom_story_path(@story) : review_admin_story_path(@story)
+      redirect_to path, alert: 'Story failed to update'
     end
   end
 
@@ -176,6 +177,8 @@ class Admin::StoriesController < Admin::BaseAdminController
       type = 'media_story'.to_sym
     elsif @story.video_story?
       type = 'video_story'.to_sym
+    else
+      type = 'custom_story'.to_sym
     end
   end
 

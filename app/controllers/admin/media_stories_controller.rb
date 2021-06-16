@@ -29,8 +29,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def create
     @story = MediaStory.new(story_params)
     if @story.save
-      #Update the permalink field.
-      @story.create_permalink
       update_locations_and_categories(@story, story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was saved.'
     else

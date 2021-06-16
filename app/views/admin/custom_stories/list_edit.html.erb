@@ -1,0 +1,25 @@
+<div class="container">
+  <%= form_for(@list_item, url: update_list_admin_custom_story_path(@story, list_item_id: @list_item.id, action_type: 'update'), method: :patch) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-list mr-1"></i> Edit List Item</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <div class="form-group my-4 max-vw-80 mx-auto">
+          <%= f.label :position %><br>
+          <%= f.number_field :position, class: "form-control" %>
+          <%= f.hidden_field :old_position, value: @list_item.position %>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="actions">
+          <%= f.submit "Update", class: 'btn btn-md btn-primary text-center w-100' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

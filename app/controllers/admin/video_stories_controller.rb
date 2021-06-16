@@ -23,8 +23,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
-      #Update the permalink field
-      @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Story was saved.'
     else

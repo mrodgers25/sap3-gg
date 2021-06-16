@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_041617) do
+ActiveRecord::Schema.define(version: 2021_06_14_023713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2021_05_28_041617) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "external_images", force: :cascade do |t|
+    t.integer "story_id"
+    t.string "src_url"
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", id: :serial, force: :cascade do |t|
     t.text "src_url"
     t.text "alt_text"
@@ -94,6 +103,24 @@ ActiveRecord::Schema.define(version: 2021_05_28_041617) do
     t.integer "image_height"
     t.boolean "manual_enter"
     t.index ["url_id"], name: "index_images_on_url_id"
+  end
+
+  create_table "list_items", force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "story_id"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_list_items_on_list_id"
+    t.index ["position"], name: "index_list_items_on_position"
+    t.index ["story_id"], name: "index_list_items_on_story_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "story_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_lists_on_story_id"
   end
 
   create_table "locations", id: :serial, force: :cascade do |t|
@@ -201,6 +228,9 @@ ActiveRecord::Schema.define(version: 2021_05_28_041617) do
     t.boolean "video_unlisted", default: false
     t.integer "video_likes", default: 0
     t.integer "video_dislikes", default: 0
+    t.integer "internal_image_width"
+    t.integer "internal_image_height"
+    t.boolean "savable", default: true
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"
   end
