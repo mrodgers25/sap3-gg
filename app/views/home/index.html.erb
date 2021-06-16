@@ -7,9 +7,9 @@
     <% if @published_items.present? %>
       <% @published_items.each do |published_item| %>
         <% if published_item.publishable.type.in?(['MediaStory', 'VideoStory']) %>
-          <%= render partial: 'shared/video_and_media_story_card', locals: { story: published_item.publishable, card_id: published_item.id } %>
+          <%= render partial: 'shared/video_and_media_story_card', locals: { story: published_item.publishable, card_id: published_item.id, scope: nil } %>
         <% else %>
-          <%= render partial: 'shared/custom_stories/card', locals: { story: published_item.publishable, card_id: published_item.id } %>
+          <%= render partial: 'shared/custom_stories/card', locals: { story: published_item.publishable, card_id: published_item.id, scope: nil } %>
         <% end %>
       <% end %>
     <% else %>

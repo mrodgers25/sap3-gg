@@ -3,5 +3,5 @@
 <% elsif @story.media_story? %>
   <%= render partial: 'shared/media_stories/show', locals: { story: @story } %>
 <% elsif @story.custom_story? %>
-  <%= render partial: 'shared/custom_stories/show', locals: { story: @story } %>
+  <%= render partial: 'shared/custom_stories/show', locals: { story: @story, scope: 'admin' } %>
 <% end %>

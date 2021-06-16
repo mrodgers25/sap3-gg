@@ -1,11 +1,11 @@
 class StoriesController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_story_by_permalink, only: [:show]
-  before_action :set_story, only: [:show, :save, :forget]
+  before_action :set_story_by_permalink, only: :view
+  before_action :set_story, only: [:save, :forget]
   before_action :check_for_current_user, only: :my_stories
 
-  def show
+  def view
     render layout: "application_no_nav"
   end
 
@@ -76,7 +76,7 @@ class StoriesController < ApplicationController
 
   def set_story_by_permalink
     begin
-      @story = Story.find_by(permalink: params[:id])
+      @story = Story.find_by(permalink: params[:permalink])
 
       unless current_user&.has_basic_access?
         raise ActiveRecord::RecordNotFound if @story.should_not_be_displayed?

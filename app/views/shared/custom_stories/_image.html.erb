@@ -6,10 +6,10 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= link_to image_tag(story.internal_image, class: "grid-image"), admin_story_path(story), target: '_blank' %>
+        <%= link_to image_tag(story.internal_image, class: "grid-image"), path, target: '_blank' %>
       </div>
       <div class="carousel-item">
-        <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), admin_story_path(story), target: '_blank' %>
+        <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), path, target: '_blank' %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#gridImageCarousel" role="button" data-slide="prev">
@@ -22,7 +22,7 @@
     </a>
   </div>
 <% elsif story.internal_image.present? %>
-  <%= link_to image_tag(story.internal_image, class: "grid-image"), admin_story_path(story), target: '_blank' %>
+  <%= link_to image_tag(story.internal_image, class: "grid-image"), path, target: '_blank' %>
 <% else %>
-  <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), admin_story_path(story), target: '_blank' %>
+  <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), path, target: '_blank' %>
 <% end %>

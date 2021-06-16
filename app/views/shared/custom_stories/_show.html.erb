@@ -95,8 +95,9 @@
             <div class='text-left'>
               <h6 class='text-center'>Related Stories</h6>
               <% story.list_items.each do |list_item| %>
+                <% path = scope == 'admin' ? admin_story_path(list_item.story) : view_stories_path(permalink: list_item.story.permalink) %>
                 <p>
-                  <%= link_to story_path(list_item.story_id), data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
+                  <%= link_to path, data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
                     <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.display_title %>
                   <% end %>
                 </p>

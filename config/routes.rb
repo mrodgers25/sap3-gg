@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   get 'about_us', to: 'home#about_us', as: :about_us
   get 'contact_us', to: 'home#contact_us', as: :contact_us
   # STORY ACTIONS
-  resources :stories, only: [:show, :my_stories, :save_story, :forget_story] do
+  resources :stories, only: [] do
+    collection do
+      get :view
+    end
     member do
       post :save
       post :forget
