@@ -11,6 +11,8 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   def create
     begin
       @story = CustomStory.create!(story_params)
+      create_associations_from_params!
+
       redirect_to list_editor_admin_custom_story_path(@story), notice: 'Story was successfully created.'
     rescue => e
       redirect_to new_admin_custom_story_path, alert: e
@@ -24,6 +26,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   def update
     begin
       @story.update!(story_params)
+      create_associations_from_params!
 
       if params[:commit] == 'Go to List Editor'
         redirect_to list_editor_admin_custom_story_path(@story)
@@ -200,5 +203,17 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       new_position = index + 1
       item.update(position: new_position)
     end
+  end
+
+  def create_associations_from_params!
+    new_locations        = Location.where(id: story_params[:location_ids])
+    new_story_categories = StoryCategory.where(id: story_params[:story_category_ids])
+    new_place_categories = PlaceCategory.where(id: story_params[:place_category_ids])
+
+    @story.locations        = new_locations
+    @story.story_categories = new_story_categories
+    @story.place_categories = new_place_categories
+
+    @story.save!
   end
 end
