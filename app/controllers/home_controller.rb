@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout "application"
 
   before_action :set_limit, only: :index
-  # before_action :filter_out_file_types_from_url, only: :index
+  before_action :filter_out_file_types_from_url, only: :index
 
   def index
     # database dropdown data
