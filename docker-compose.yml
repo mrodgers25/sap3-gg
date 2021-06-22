@@ -1,0 +1,43 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres:13.1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=DatabaseFTW
+      - POSTGRES_DB=stories_about_places
+    ports:
+      - "5432:5432"
+    volumes:
+      - 'db_data:/var/lib/postgresql/data'
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "${REGISTRY_HOST}${REGISTRY_URI}:${TAG:-master}"
+    env_file:
+      - .env
+    volumes:
+      - .:/app:cached
+      - node_modules:/app/node_modules
+      - tmp_cache:/app/tmp/cache
+    # Keep the stdin open, so we can attach to our app container's process
+    # and do things such as byebug, etc:
+    stdin_open: true
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+    tty: true
+
+  web:
+    extends:
+      service: app
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+
+volumes:
+  db_data:
+  tmp_cache:
+  node_modules:
