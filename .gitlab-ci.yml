@@ -55,7 +55,7 @@ rspec:
     SITE_URI_BASE: TODO
   script:
     - pwd
-    - cd /home/app/webapp && bundle exec rake db:create db:migrate rspec
+    - cd /app && bundle exec rake db:create db:migrate rspec
   tags:
     - docker
   variables:
