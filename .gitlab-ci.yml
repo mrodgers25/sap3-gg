@@ -40,7 +40,7 @@ rspec:
   stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   services:
-        - name: postgres:13.1
+        - name: postgres:11.1
   variables:
     POSTGRES_DB: stories_about_places
     POSTGRES_USER: postgres
