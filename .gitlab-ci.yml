@@ -54,6 +54,7 @@ rspec:
     TEST_DB: stories_about_places
     SITE_URI_BASE: TODO
   script:
+    - pwd
     - cd /home/app/webapp && bundle exec rake db:create db:migrate rspec
   tags:
     - docker
