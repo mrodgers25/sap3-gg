@@ -39,8 +39,8 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   end
 
   def destroy_image
-    if params[:image_type] == 'internal' && @story.internal_image.attached?
-      @story.internal_image.purge
+    if params[:image_type] == 'internal' && @story.internal_images.attached?
+      @story.internal_images.purge
       @story.update(internal_image_height: 0, internal_image_width: 0)
       render json: { success: true, message: 'Image was successfully removed.' }
     elsif params[:image_type] == 'external' && @story.external_image.present?
@@ -169,10 +169,10 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       :data_entry_user,
       :desc_length,
       :custom_body,
-      :internal_image,
       :internal_image_width,
       :internal_image_height,
       :savable,
+      internal_images: [],
       location_ids: [],
       story_category_ids: [],
       place_category_ids: [],

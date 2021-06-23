@@ -1,13 +1,18 @@
-<% if story.internal_image.present? && story.external_image.present? %>
+<% if story.show_carousel? %>
   <div id="gridImageCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#gridImageCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#gridImageCarousel" data-slide-to="1"></li>
+      <% count = 0 %>
+      <% story.image_count.times do %>
+        <li data-target="#gridImageCarousel" data-slide-to="<%= count %>" class="<%= 'active' if count.zero? %>"></li>
+        <% count += 1 %>
+      <% end %>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <%= link_to image_tag(story.internal_image, class: "grid-image"), path, target: '_blank' %>
-      </div>
+      <% story.internal_images.each_with_index do |image, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
+          <%= link_to image_tag(image, class: "grid-image"), path, target: '_blank' %>
+        </div>
+      <% end %>
       <div class="carousel-item">
         <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), path, target: '_blank' %>
       </div>
@@ -21,8 +26,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-<% elsif story.internal_image.present? %>
-  <%= link_to image_tag(story.internal_image, class: "grid-image"), path, target: '_blank' %>
+<% elsif story.internal_images.present? %>
+  <%= link_to image_tag(story.internal_images.first, class: "grid-image"), path, target: '_blank' %>
 <% else %>
   <%= link_to image_tag(story.external_image.src_url, class: "grid-image"), path, target: '_blank' %>
 <% end %>
