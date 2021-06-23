@@ -7,14 +7,14 @@
 # end
 
 def every_x_secs
-  thread = Thread.new do
+  Thread.new do
     while true
       # yield
-      puts "thread loop every 2 secs"
+      puts 'thread loop every 2 secs'
       sleep 2
     end
   end
-  return thread
+
   # thread.join
 end
 

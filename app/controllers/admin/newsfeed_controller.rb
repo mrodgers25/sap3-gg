@@ -1,5 +1,5 @@
 class Admin::NewsfeedController < Admin::BaseAdminController
-  before_action :set_queued_item, except: [:index, :queue, :activities]
+  before_action :set_queued_item, except: %i[index queue activities]
 
   def queue
     @queued_items = PublishedItem.joins("
@@ -7,7 +7,10 @@ class Admin::NewsfeedController < Admin::BaseAdminController
       INNER JOIN urls ON urls.story_id = stories.id
     ")
     @queued_items = @queued_items.where(state: 'queued')
-    @queued_items = @queued_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    if params[:url_title].present?
+      @queued_items = @queued_items.where('LOWER(urls.url_title) ~ ?',
+                                          params[:url_title].downcase)
+    end
 
     if params[:order_by].present?
       col = params[:order_by].split(' ').first
@@ -21,14 +24,11 @@ class Admin::NewsfeedController < Admin::BaseAdminController
     @pagy, @queued_items = pagy(@queued_items)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @queued_item.update(update_params)
-      if @queued_item.queue_position != params[:old_queue_position].to_i
-        set_queue_position
-      end
+      set_queue_position if @queued_item.queue_position != params[:old_queue_position].to_i
 
       redirect_to queue_admin_newsfeed_index_path, notice: 'Queued Item was successfully updated.'
     else
@@ -45,7 +45,7 @@ class Admin::NewsfeedController < Admin::BaseAdminController
   end
 
   def publish
-     if @queued_item.post!
+    if @queued_item.post!
       redirect_to queue_admin_newsfeed_index_path, notice: 'Queued Item was successfully posted.'
     else
       redirect_to queue_admin_newsfeed_index_path, alert: 'Queued Item failed to be posted.'
@@ -57,7 +57,10 @@ class Admin::NewsfeedController < Admin::BaseAdminController
       INNER JOIN stories ON (trackable_type = 'Story' AND stories.id = trackable_id)
       INNER JOIN urls ON urls.story_id = stories.id
     ")
-    @activities = @activities.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    if params[:url_title].present?
+      @activities = @activities.where('LOWER(urls.url_title) ~ ?',
+                                      params[:url_title].downcase)
+    end
     @activities = @activities.where(activity_type: params[:activity_type]) if params[:activity_type].present?
 
     if params[:order_by].present?
@@ -75,11 +78,9 @@ class Admin::NewsfeedController < Admin::BaseAdminController
   private
 
   def set_queued_item
-    begin
-      @queued_item = PublishedItem.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to queue_admin_newsfeed_index_path, alert: 'Queued Item not found.'
-    end
+    @queued_item = PublishedItem.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to queue_admin_newsfeed_index_path, alert: 'Queued Item not found.'
   end
 
   def update_params

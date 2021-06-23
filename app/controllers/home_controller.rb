@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
-  layout "application"
+  layout 'application'
 
   before_action :set_limit, only: :index
   before_action :filter_out_file_types_from_url, only: :index
 
   def index
     # database dropdown data
-    @locations        = Location.order("ascii(name)")
+    @locations        = Location.order('ascii(name)')
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
@@ -22,9 +22,15 @@ class HomeController < ApplicationController
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
 
     if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
-      @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
-      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
-      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
+      if params[:location_id].present?
+        @published_items = @published_items.where(locations: { id: params[:location_id] })
+      end
+      if params[:place_category_id].present?
+        @published_items = @published_items.where(place_categories: { id: params[:place_category_id] })
+      end
+      if params[:story_category_id].present?
+        @published_items = @published_items.where(story_categories: { id: params[:story_category_id] })
+      end
       @published_items = @published_items.limit(AdminSetting.filtered_display_limit)
       @published_items = @published_items.order(created_at: :desc)
     else
@@ -35,11 +41,9 @@ class HomeController < ApplicationController
     @published_items = @published_items.distinct
   end
 
-  def about_us
-  end
+  def about_us; end
 
-  def contact_us
-  end
+  def contact_us; end
 
   private
 

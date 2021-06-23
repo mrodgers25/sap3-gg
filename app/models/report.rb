@@ -9,5 +9,4 @@ class Report
       end
     end
   end
-
 end

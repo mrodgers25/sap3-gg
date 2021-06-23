@@ -7,7 +7,7 @@ require 'net/http'
 require 'net/protocol'
 
 class Admin::MediaStoriesController < Admin::BaseAdminController
-  before_action :set_media_story, only: [:edit, :update]
+  before_action :set_media_story, only: %i[edit update]
 
   def scrape
     @story = MediaStory.new
@@ -29,7 +29,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def create
     @story = MediaStory.new(story_params)
     if @story.save
-      #Update the permalink field.
+      # Update the permalink field.
       @story.create_permalink
       update_locations_and_categories(@story, story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was saved.'
@@ -73,22 +73,20 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     subdomain  = parsed_url.subdomain
     domain     = parsed_url.domain
     suffix     = parsed_url.public_suffix
-    prefix     = (subdomain == 'www' || subdomain == '') ? '' : (subdomain + '.')
+    prefix     = ['www', ''].include?(subdomain) ? '' : (subdomain + '.')
     @base_domain = prefix + domain + '.' + suffix
 
-    if MediaOwner.where(url_domain: @base_domain).first.present?
-      @name_display = MediaOwner.where(url_domain: @base_domain).first.title
-    else
-      @name_display = 'NO DOMAIN NAME FOUND'
-    end
+    @name_display = if MediaOwner.where(url_domain: @base_domain).first.present?
+                      MediaOwner.where(url_domain: @base_domain).first.title
+                    else
+                      'NO DOMAIN NAME FOUND'
+                    end
   end
 
   def set_media_story
-    begin
-      @story = MediaStory.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Story not found"
-    end
+    @story = MediaStory.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_stories_path, alert: 'Story not found'
   end
 
   def set_scrape_fields
@@ -99,8 +97,8 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @story.story_date = @screen_scraper.day
 
     url = @story.urls.last
-    url.url_title  = @screen_scraper.title
-    url.url_desc  = @screen_scraper.meta_desc
+    url.url_title = @screen_scraper.title
+    url.url_desc = @screen_scraper.meta_desc
     url.url_keywords = @screen_scraper.meta_keywords
   end
 
@@ -122,9 +120,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def process_chosen_params(my_params)
-    if my_params.present?
-      my_params.reject{|p| p.empty?}.map{|p| p.to_i}
-    end
+    my_params.reject { |p| p.empty? }.map { |p| p.to_i } if my_params.present?
   end
 
   def story_params
@@ -133,14 +129,16 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :release_seq, :state, :desc_length,
-      :location_ids => [],
-      :place_category_ids => [],
-      :story_category_ids => [],
+      location_ids: [],
+      place_category_ids: [],
+      story_category_ids: [],
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
         :url_title_track, :url_desc_track, :url_keywords_track,
         :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
-            images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
+        { images_attributes: %i[id src_url alt_text image_data manual_url image_width image_height manual_enter] }
+      ]
+    )
   end
 
   def redirect_to_next_path(path)

@@ -7,38 +7,37 @@ class MediaOwnerPolicy
   end
 
   def index?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def show?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def create?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def new?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def update?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def edit?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def destroy?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
-
 end

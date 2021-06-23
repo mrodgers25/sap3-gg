@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :city_preference, :email, :password, :password_confirmation]
+    registration_params = %i[first_name last_name city_preference email password password_confirmation]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.permit(:account_update, keys: registration_params << :current_password)
@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   private
 
   def allow_iframe
-    response.headers.delete "X-Frame-Options"
+    response.headers.delete 'X-Frame-Options'
   end
 
   def filter_out_file_types_from_url
     # Try to remove the amount of bad requests by filtering out file types
-    redirect_to root_path if request.url.strip.downcase.match? /.txt|.png|.xml|.php|.woff2|.json|click?|.jpg|.css/
+    redirect_to root_path if request.url.strip.downcase.match?(/.txt|.png|.xml|.php|.woff2|.json|click?|.jpg|.css/)
   end
 end

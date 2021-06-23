@@ -8,9 +8,7 @@ module StoriesHelper
   end
 
   def show_play_button(story)
-    if story.video_story?
-      image_pack_tag("youtube_social_icon_red.png", class: "video-play-icon")
-    end
+    image_pack_tag('youtube_social_icon_red.png', class: 'video-play-icon') if story.video_story?
   end
 
   def story_icon(story)

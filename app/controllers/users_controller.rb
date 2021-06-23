@@ -4,18 +4,17 @@ class UsersController < ApplicationController
   before_action :remove_empty_password_fields, only: :update
   before_action :check_for_valid_password, only: :update
 
-  layout "application"
+  layout 'application'
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
       # sign in the user again (devise automatically signs the user out after a pw update)
       bypass_sign_in(@user, scope: :user) if user_params[:password].present?
-      redirect_to edit_user_path(@user), notice: "User updated."
+      redirect_to edit_user_path(@user), notice: 'User updated.'
     else
-      redirect_to edit_user_path(@user), alert: "Unable to update User."
+      redirect_to edit_user_path(@user), alert: 'Unable to update User.'
     end
   end
 
@@ -26,7 +25,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, city_preference: [])
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,
+                                 city_preference: [])
   end
 
   def remove_empty_password_fields
