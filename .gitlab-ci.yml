@@ -36,7 +36,7 @@ build:
 #   tags:
 #     - docker
 
-test:
+rspec:
   stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   services:
@@ -54,7 +54,7 @@ test:
     TEST_DB: stories_about_places
     SITE_URI_BASE: TODO
   script:
-    - cd /home/app/webapp && bundle exec rake db:create db:schema:load spec
+    - cd /home/app/webapp && bundle exec rake db:create db:migrate rspec
   tags:
     - docker
   variables:
