@@ -49,6 +49,8 @@ GEM
     activerecord (6.1.3.1)
       activemodel (= 6.1.3.1)
       activesupport (= 6.1.3.1)
+    activerecord-nulldb-adapter (0.7.0)
+      activerecord (>= 5.2.0, < 6.3)
     activestorage (6.1.3.1)
       actionpack (= 6.1.3.1)
       activejob (= 6.1.3.1)
@@ -322,6 +324,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  activerecord-nulldb-adapter
   awesome_print
   better_errors
   binding_of_caller
@@ -371,7 +374,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.7.2p137
+   ruby 2.7.3p183
 
 BUNDLED WITH
    1.17.3
