@@ -1,8 +1,8 @@
 class Admin::PublishedItemsController < Admin::BaseAdminController
-  before_action :set_published_item, only: [:display, :unpublish, :edit, :update, :add_to_queue]
+  before_action :set_published_item, only: %i[display unpublish edit update add_to_queue]
 
   def index
-    @locations        = Location.order("ascii(name)")
+    @locations        = Location.order('ascii(name)')
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
@@ -30,12 +30,22 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
       "
     )
     @published_items = @published_items.where(state: 'displaying')
-    @published_items = @published_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
-    @published_items = @published_items.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
-    @published_items = @published_items.where("stories.type ~ ?", params[:story_type]) if params[:story_type].present?
-    @published_items = @published_items.where(locations: {id: params[:location_id]}) if params[:location_id].present?
-    @published_items = @published_items.where(place_categories: {id: params[:place_category_id]}) if params[:place_category_id].present?
-    @published_items = @published_items.where(story_categories: {id: params[:story_category_id]}) if params[:story_category_id].present?
+    if params[:url_title].present?
+      @published_items = @published_items.where('LOWER(urls.url_title) ~ ?',
+                                                params[:url_title].downcase)
+    end
+    if params[:url_desc].present?
+      @published_items = @published_items.where('LOWER(urls.url_desc) ~ ?',
+                                                params[:url_desc].downcase)
+    end
+    @published_items = @published_items.where('stories.type ~ ?', params[:story_type]) if params[:story_type].present?
+    @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
+    if params[:place_category_id].present?
+      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] })
+    end
+    if params[:story_category_id].present?
+      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] })
+    end
     @published_items = @published_items.distinct
     @published_items = @published_items.order(story_date_combined: :desc)
 
@@ -66,8 +76,7 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @published_item.update(update_params)
@@ -80,11 +89,9 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
   private
 
   def set_published_item
-    begin
-      @published_item = PublishedItem.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_published_items_path, alert: 'Published Item not found.'
-    end
+    @published_item = PublishedItem.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_published_items_path, alert: 'Published Item not found.'
   end
 
   def bulk_update_params

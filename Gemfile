@@ -14,33 +14,33 @@ gem 'rollbar'
 # Avoid all the crazy logins
 gem 'recaptcha'
 
-gem 'rails_12factor', group: :production
-gem 'sass-rails'
-gem 'responders'
-gem 'uglifier', '>= 1.3.0'
+gem 'awesome_print', require: 'ap'
 gem 'coffee-rails'
-gem 'turbolinks'
-gem 'jbuilder', '<= 2.9.1'
-gem 'sdoc', group: :doc
 gem 'devise'
+gem 'domainatrix'
+gem 'fastimage'
+gem 'figaro', '1.2.0'
+gem 'google-webfonts'
+gem 'high_voltage'
+gem 'jbuilder', '<= 2.9.1'
+gem 'json'
+gem 'mail', '2.7.1'
+gem 'nokogiri'
 gem 'pg'
 gem 'puma'
-gem 'simple_form'
 gem 'pundit', '>= 0.2.1'
-gem 'high_voltage'
-gem 'nokogiri'
-gem 'domainatrix'
-gem 'sanitize'
-gem 'fastimage'
-gem 'mail', '2.7.1'
-gem 'figaro', '1.2.0'
-gem 'sendgrid-ruby'
-gem 'social-share-button'
-gem 'awesome_print', :require => 'ap'
-gem 'google-webfonts'
-gem 'unirest'
-gem 'json'
+gem 'rails_12factor', group: :production
+gem 'responders'
 gem 'rest-client'
+gem 'sanitize'
+gem 'sass-rails'
+gem 'sdoc', group: :doc
+gem 'sendgrid-ruby'
+gem 'simple_form'
+gem 'social-share-button'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
+gem 'unirest'
 
 # new with RAILS 5
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -51,13 +51,13 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
-  gem 'hub', :require=>nil
-  gem 'rails_layout'
+  gem 'binding_of_caller', platforms: [:mri_21]
+  gem 'hub', require: nil
   gem 'railroady'
-  #This will create an ERD diagram from your database
+  gem 'rails_layout'
+  gem 'spring'
+  # This will create an ERD diagram from your database
   gem 'rails-erd'
   # test new viewing database option
   gem 'rails_db'
@@ -66,9 +66,18 @@ group :development do
 
   # NEW GEMS
   # Email Catcher for Dev
-  gem "letter_opener"
+  gem 'letter_opener'
 
   # Debugging/Console
-  gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'pry-rails'
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end

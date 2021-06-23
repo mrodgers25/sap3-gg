@@ -1,11 +1,11 @@
 class Admin::LocationsController < Admin::BaseAdminController
-  before_action :set_location, except: [:index, :new, :create]
+  before_action :set_location, except: %i[index new create]
   before_action :check_for_admin, only: :destroy
 
   def index
     @locations = Location.order(created_at: :desc)
-    @locations = @locations.where("LOWER(code) ~ ?", params[:code].downcase) if params[:code].present?
-    @locations = @locations.where("LOWER(name) ~ ?", params[:name].downcase) if params[:name].present?
+    @locations = @locations.where('LOWER(code) ~ ?', params[:code].downcase) if params[:code].present?
+    @locations = @locations.where('LOWER(name) ~ ?', params[:name].downcase) if params[:name].present?
 
     @pagy, @locations = pagy(@locations)
   end
@@ -18,39 +18,36 @@ class Admin::LocationsController < Admin::BaseAdminController
     @location = Location.new(location_params)
 
     if @location.save
-      redirect_to admin_locations_path, notice: "Successfully created Location."
+      redirect_to admin_locations_path, notice: 'Successfully created Location.'
     else
-      redirect_to admin_locations_path, alert: "Could not create Location."
+      redirect_to admin_locations_path, alert: 'Could not create Location.'
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @location.update(location_params)
-      redirect_to edit_admin_location_path(@location), notice: "Successfully updated Location."
+      redirect_to edit_admin_location_path(@location), notice: 'Successfully updated Location.'
     else
-      redirect_to edit_admin_location_path(@location), alert: "Could not update Location."
+      redirect_to edit_admin_location_path(@location), alert: 'Could not update Location.'
     end
   end
 
   def destroy
     if @location.destroy
-      redirect_to admin_locations_path, notice: "Successfully destroyed Location."
+      redirect_to admin_locations_path, notice: 'Successfully destroyed Location.'
     else
-      redirect_to admin_locations_path, alert: "Could not destroy Location."
+      redirect_to admin_locations_path, alert: 'Could not destroy Location.'
     end
   end
 
   private
 
   def set_location
-    begin
-      @location = Location.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_locations_path
-    end
+    @location = Location.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_locations_path
   end
 
   def location_params

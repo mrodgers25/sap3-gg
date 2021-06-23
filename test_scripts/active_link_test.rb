@@ -1,15 +1,15 @@
 # require "net/http"
-require "fastimage"
+require 'fastimage'
 
 def valid_url?(img_url)
   sz = FastImage.size(img_url)
   # FastImage.size(img_url, :raise_on_failure=>true)
   if sz.nil?
     puts 'nil'
-    return false
+    false
   else
     puts sz
-    return true
+    true
   end
 end
 
