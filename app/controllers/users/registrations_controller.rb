@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout "application_no_nav"
+  layout 'application_no_nav'
   prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
 
   # before_action :configure_sign_up_params, only: [:create]
@@ -54,7 +54,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     # super(resource)
     root_path
   end

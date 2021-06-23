@@ -1,7 +1,6 @@
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 def story_url_complete?(id)
-
   story_is_complete = Story.where("id = #{id}
       and (story_year is not null
           or story_month is not null
@@ -17,17 +16,16 @@ def story_url_complete?(id)
       and url_desc != ''
       and url_domain != '' ").present?
 
-  if (story_is_complete && url_is_complete)
-    story_url_is_complete = true
-  else
-    story_url_is_complete = false
-  end
+  story_url_is_complete = if story_is_complete && url_is_complete
+                            true
+                          else
+                            false
+                          end
 
   puts "id is #{id}"
   puts "story_is_complete is #{story_is_complete}"
   puts "url_is_complete is #{url_is_complete}"
   puts "story_url_is_complete is #{story_url_is_complete}"
-
 end
 
 story_url_complete?(32)

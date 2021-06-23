@@ -1,7 +1,7 @@
 require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
-  before_action :set_video_story, only: [:edit, :update]
+  before_action :set_video_story, only: %i[edit update]
 
   def scrape
     @video_story = VideoStory.new
@@ -14,7 +14,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       url.url_full = params[:source_url_pre]
       set_scrape_fields
     else
-      flash.now.alert = "Something went wrong with the scraper."
+      flash.now.alert = 'Something went wrong with the scraper.'
       redirect_to admin_initialize_scraper_index_path
     end
   end
@@ -23,7 +23,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
-      #Update the permalink field
+      # Update the permalink field
       @video_story.create_permalink
       update_locations_and_categories(@video_story, video_story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Story was saved.'
@@ -45,7 +45,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @video_story.update(video_story_params)
       update_locations_and_categories(@video_story, video_story_params)
 
-      redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Video Story was successfully updated.'
+      redirect_to redirect_to_next_path(images_admin_story_path(@video_story)),
+                  notice: 'Video Story was successfully updated.'
     else
       redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
     end
@@ -54,20 +55,17 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   private
 
   def set_video_story
-    begin
-      @video_story = VideoStory.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Video Story not found"
-    end
+    @video_story = VideoStory.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_stories_path, alert: 'Video Story not found'
   end
-
 
   def set_scrape_fields
     @video_story.video_creator    = @screen_scraper.link_creator
     @video_story.video_channel_id = @screen_scraper.link_channel_id
     @video_story.story_year       = @screen_scraper.year
     @video_story.story_month      = @screen_scraper.month
-    @video_story.story_date        = @screen_scraper.day
+    @video_story.story_date = @screen_scraper.day
 
     url = @video_story.urls.last
     url.url_title                 = @screen_scraper.title
@@ -87,13 +85,11 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   end
 
   def process_chosen_params(my_params)
-    if my_params.present?
-      my_params.reject{|p| p.empty?}.map{|p| p.to_i}
-    end
+    my_params.reject { |p| p.empty? }.map { |p| p.to_i } if my_params.present?
   end
 
   def get_locations_and_categories
-    @locations        = Location.order("ascii(name)")
+    @locations        = Location.order('ascii(name)')
     @story_categories = StoryCategory.order(:name)
     @place_categories = PlaceCategory.order(:name)
   end
@@ -105,13 +101,13 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       :video_duration, :video_hashtags, :outside_usa, :state,
       :story_year, :story_month, :story_date,
       :data_entry_begin_time, :data_entry_user, :desc_length,
-      :location_ids => [],
-      :place_category_ids => [],
-      :story_category_ids => [],
-      urls_attributes: [
-        :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,
-        :url_title_track, :url_desc_track, :url_keywords_track,
-        :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape,
+      location_ids: [],
+      place_category_ids: [],
+      story_category_ids: [],
+      urls_attributes: %i[
+        id url_type url_full url_title url_desc url_keywords url_domain primary story_id
+        url_title_track url_desc_track url_keywords_track
+        raw_url_title_scrape raw_url_desc_scrape raw_url_keywords_scrape
       ]
     )
   end

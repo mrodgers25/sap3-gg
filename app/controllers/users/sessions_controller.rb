@@ -21,12 +21,12 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     root_path
   end
 
   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[email password remember_me])
   end
 
   def check_captcha

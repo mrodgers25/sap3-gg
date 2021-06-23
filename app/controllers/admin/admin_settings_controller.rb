@@ -16,11 +16,9 @@ class Admin::AdminSettingsController < Admin::BaseAdminController
   private
 
   def set_admin_setting
-    begin
-      @admin_setting = AdminSetting.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_admin_settings_path, alert: 'Admin Setting not found.'
-    end
+    @admin_setting = AdminSetting.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_admin_settings_path, alert: 'Admin Setting not found.'
   end
 
   def admin_settings_params

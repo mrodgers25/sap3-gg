@@ -4,38 +4,35 @@ class Admin::ImagesController < Admin::BaseAdminController
 
   def index
     @images = Image.order(created_at: :desc)
-    @images = @images.where("LOWER(src_url) ~ ?", params[:search].downcase) if params[:search].present?
+    @images = @images.where('LOWER(src_url) ~ ?', params[:search].downcase) if params[:search].present?
 
     @pagy, @images = pagy(@images)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @image.update(image_params)
-      redirect_to edit_admin_image_path(@image), notice: "Successfully updated Image."
+      redirect_to edit_admin_image_path(@image), notice: 'Successfully updated Image.'
     else
-      redirect_to edit_admin_image_path(@image), alert: "Could not update Image."
+      redirect_to edit_admin_image_path(@image), alert: 'Could not update Image.'
     end
   end
 
   def destroy
     if @image.destroy
-      redirect_to admin_images_path, notice: "Successfully destroyed Image."
+      redirect_to admin_images_path, notice: 'Successfully destroyed Image.'
     else
-      redirect_to admin_images_path, alert: "Could not destroy Image."
+      redirect_to admin_images_path, alert: 'Could not destroy Image.'
     end
   end
 
   private
 
   def set_image
-    begin
-      @image = Image.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to admin_images_path
-    end
+    @image = Image.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_images_path
   end
 
   def image_params

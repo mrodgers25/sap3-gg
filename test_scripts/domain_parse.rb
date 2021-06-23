@@ -11,13 +11,13 @@ url.each do |u|
   sub = Domainatrix.parse(u.url_full).subdomain
   domain = Domainatrix.parse(u.url_full).domain
   suffix = Domainatrix.parse(u.url_full).public_suffix
-  prefix = (sub == 'www' || sub == '' ? '' : (sub + '.'))
+  prefix = (['www', ''].include?(sub) ? '' : (sub + '.'))
   d_url = prefix + domain + '.' + suffix
   puts "parsed url is #{d_url}"
   u.update_attributes(url_domain: d_url)
 end
 
-url.pluck("id","url_domain")
+url.pluck('id', 'url_domain')
 #
 #
 # d_url = Domainatrix.parse(source_url_pre)
