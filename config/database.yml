@@ -11,19 +11,15 @@ default: &default
 
 development:
   <<: *default
-  database: stories_about_places_development
 
 test:
   <<: *default
-  database: stories_about_places_test
 
 staging:
   <<: *default
-  database: stories_about_places_staging
 
 production:
   <<: *default
-  database: stories_about_places_production
 
 
 # PostgreSQL. Versions 8.2 and up are supported.
