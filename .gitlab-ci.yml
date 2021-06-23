@@ -1,0 +1,81 @@
+stages:
+- build
+- lint
+- test
+- deploy
+
+before_script:
+- export TAG=${CI_COMMIT_SHORT_SHA}
+- export BRANCH=${CI_COMMIT_REF_NAME}
+- export REGISTRY_HOST=${CI_REGISTRY}
+- export REGISTRY_URI="/${CI_PROJECT_PATH}"
+
+build:
+  stage: build
+  script:
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+    - sc build
+    - sc push
+    - docker tag $CI_REGISTRY_IMAGE:$TAG $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  tags:
+    - local
+
+# Enable when pronto is set up
+# lint:
+#   stage: go
+#   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+#   variables:
+#     PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
+#   before_script:
+#     - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
+#   script:
+#     - cd /home/app/webapp && bundle exec pronto run -f gitlab
+#   tags:
+#     - docker
+
+test:
+  stage: test
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  services:
+        - name: postgres:13.1
+  variables:
+    POSTGRES_DB: stories_about_places
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: password
+    POSTGRES_HOST: postgres
+    DATABASE_ADAPTER: postgresql
+    DATABASE_HOST: postgres
+    DATABASE_NAME: stories_about_places
+    DATABASE_PASSWORD: password
+    DATABASE_USER: postgres
+    TEST_DB: stories_about_places
+    SITE_URI_BASE: TODO
+  script:
+    - cd /home/app/webapp && bundle exec rake db:create db:schema:load spec
+  tags:
+    - docker
+  variables:
+    GIT_STRATEGY: none
+
+staging:
+  stage: deploy 
+  type: deploy
+  script:
+  - ./chart/bin/deploy staging $CI_COMMIT_REF_SLUG
+  only:
+    - master
+  tags:
+    - local
+
+# Skip prod deploy for now
+# production:
+#   stage: production
+#   type: deploy
+#   script:
+#   - ./chart/bin/deploy production $CI_COMMIT_REF_SLUG
+#   when: manual
+#   only:
+#     - master
+#   tags:
+#     - local
