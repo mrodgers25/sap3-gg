@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PlaceStatusOption, type: :model do
-
-  it "is not valid without a name" do
-    status = PlaceStatusOption.new(name: nil)
-    expect(status).to_not be_valid
+  it 'is not valid without a name' do
+    status = described_class.new(name: nil)
+    expect(status).not_to be_valid
   end
-  
 end
