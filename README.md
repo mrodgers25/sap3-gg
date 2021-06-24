@@ -97,18 +97,19 @@ Make sure these are run in a separate tab/window than the running server
 
   - Access the rails console for debugging
     ```
-    rails c
+    bundle exec rails c
     ```
 
   - Run rubocop (learn about the `-a` flag [here](https://docs.rubocop.org/rubocop/usage/basic_usage.html#auto-correcting-offenses))
     ```
-    rubocop -a
+    bundle exec rubocop -a
     ```
 
   - Run [rspec](https://github.com/rspec/rspec-rails/tree/4-1-maintenance#running-specs)
     ```
-    rspec
+    bundle exec rspec
     ```
+    - When running a single file: `bundle exec rspec <path-to-your-file>`
 
 ### Stop the server
 - Press `Ctrl + C` in the window where `sc up` is running
