@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: "0.0.1"
+description: A Helm chart for stories_about_places
+name: stories-about-places
+version: 0.0.1
+dependencies:
+- name: postgresql
+  version: 10.3.18
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
