@@ -116,6 +116,7 @@ GEM
     ffi (1.14.0)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
+    geocoder (1.6.7)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-webfonts (0.3.2)
@@ -387,6 +388,7 @@ DEPENDENCIES
   faker
   fastimage
   figaro (= 1.2.0)
+  geocoder
   google-webfonts
   high_voltage
   hub
