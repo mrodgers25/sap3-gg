@@ -40,25 +40,24 @@ rspec:
   stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   services:
-        - postgres:13.1
+        - name: postgres:13.1
   variables:
     DATABASE_ADAPTER: postgresql
     DATABASE_HOST: postgres
     DATABASE_NAME: stories_about_places
     DATABASE_PASSWORD: password
     DATABASE_USER: postgres
+    GIT_STRATEGY: none
     POSTGRES_DB: stories_about_places
     POSTGRES_HOST: postgres
     POSTGRES_PASSWORD: password
     POSTGRES_USER: postgres
-    SITE_URI_BASE: TODO
     TEST_DB: stories_about_places
   script:
-    - cd /app && bundle exec rake db:create db:migrate rspec
+    - cd /app && bundle exec rake db:create db:schema:load
+    - cd /app && bundle exec rspec
   tags:
     - docker
-  variables:
-    GIT_STRATEGY: none
 
 staging:
   stage: deploy 
