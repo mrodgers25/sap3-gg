@@ -18,6 +18,7 @@ provided by the [RailsApps Project](http://railsapps.github.io/).
     * [Run migrations](#run-migrations)
     * [Seed the databases](#seed-the-databases)
     * [Bash into the container](#bash-into-the-container)
+  * [Access the admin user](#access-the-admin-user)
   * [Stop the server](#stop-the-server)
 * [Deployment](#deployment)
   * [Staging](#staging)
@@ -110,6 +111,10 @@ Make sure these are run in a separate tab/window than the running server
     bundle exec rspec
     ```
     - When running a single file: `bundle exec rspec <path-to-your-file>`
+
+### Access the admin user
+Email: admin@notch8.com
+Password: password
 
 ### Stop the server
 - Press `Ctrl + C` in the window where `sc up` is running
