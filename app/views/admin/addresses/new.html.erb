@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_for(@address, url: admin_addresses_path(@address)) do |f| %>
+    <div class="jumbotron bg-white admin-form">
+      <div class="header text-center">
+        <h4><i class="fas fa-map-marker-alt mr-1"></i> Add Address</h4>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="body">
+        <%= render 'fields', f: f %> 
+      </div>
+
+    </div>
+  <% end %>
+  </div>

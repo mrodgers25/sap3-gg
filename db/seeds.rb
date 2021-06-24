@@ -2,6 +2,15 @@
 User.create!(email: 'admin@notch8.com', password: 'password', password_confirmation: 'password', role: 'admin',
              confirmed_at: DateTime.now)
 
+PlaceStatusOption.create!([
+  {name: "Imported", description: "Do not display"},
+  {name: "Display", description: "Display"},
+  {name: "Review-Display", description: "Display, but flagged for review"},
+  {name: "Review-No Display", description: "Do not display, and flagged for review"},
+  {name: "Delete", description: "Record should be deleted"},
+  {name: "Closed", description: "Do not display"}
+])
+
 # ORIGINAL PROJECT SEED FILE
 # DOES NOT RUN
 
