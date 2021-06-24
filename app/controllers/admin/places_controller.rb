@@ -17,9 +17,13 @@ class Admin::PlacesController < Admin::BaseAdminController
 
   def create
     @place = Place.new(place_params)
-
     if @place.save
-      redirect_to admin_place_path(@place), notice: 'Successfully created Place.'
+      if params[:place][:story_id]
+        StoryPlace.create(story_id: params[:place][:story_id], place_id: @place.id)
+        redirect_to edit_admin_media_story_path(params[:place][:story_id]), notice: "Successfully created #{@place.name}"
+      else 
+        redirect_to admin_place_path(@place), notice: "Successfully created #{@place.name}"
+      end   
     else
       redirect_to new_admin_place_path, alert: 'Could not create Place.'
     end
