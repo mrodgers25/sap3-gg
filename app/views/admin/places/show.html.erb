@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to edit_admin_place_path(@place), class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-edit mr-1"></i> Edit Place
+    <% end %>
+  </div>
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> <%= @place.name %></h4>
+    </div>
+
+    <hr class="my-4">
+
+     Status:  <%= @place.place_status_option.name %><br>
+    <br>
+    <% if @place.address %>
+      <%= @place.address.full_address %>
+    <% end %>
+
+  </div>
+
+</div>

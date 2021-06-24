@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       end
     end
     resources :addresses
+    resources :places
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]

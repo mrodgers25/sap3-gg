@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to new_admin_place_path, class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-plus mr-1"></i> Add Place
+    <% end %>
+  </div>
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> Places</h4>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="table-div">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @places.each do |place| %>
+            <tr>
+              <td><%= place.id %></td>
+              <td><%= place.name %></td>
+              <td><%= pretty_date_format(place.created_at) %></td>
+              <td class="action-links">
+                  <%= link_to admin_place_path(place), class: "btn btn-sm btn-outline-success" do %>
+                  <i class="fas fa-eye"></i>
+                <% end %>
+                <%= link_to edit_admin_place_path(place), class: "btn btn-sm btn-outline-warning" do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to admin_place_path(place), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                  <i class="fas fa-times"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="my-4">
+
+    <div class='pagination'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+
+  </div>
+</div>
