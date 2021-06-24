@@ -64,7 +64,6 @@ If this is your first time working in this repo or the Dockerfile has been updat
 ```
 
 ### Start the server
-The server must be running to complete the remaining `sc` commands
 ```bash
   sc up
 ```
