@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_031026) do
+ActiveRecord::Schema.define(version: 2021_06_24_153559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,17 @@ ActiveRecord::Schema.define(version: 2021_06_24_031026) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "address_id", null: false
+    t.bigint "place_status_option_id", null: false
+    t.integer "imported_place_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["address_id"], name: "index_places_on_address_id"
+    t.index ["place_status_option_id"], name: "index_places_on_place_status_option_id"
   end
 
   create_table "published_items", force: :cascade do |t|
@@ -346,4 +357,6 @@ ActiveRecord::Schema.define(version: 2021_06_24_031026) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "places", "addresses"
+  add_foreign_key "places", "place_status_options"
 end
