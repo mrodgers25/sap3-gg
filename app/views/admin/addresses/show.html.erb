@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to edit_admin_address_path(@address), class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-edit mr-1"></i> Edit Address
+    <% end %>
+  </div>
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> <%= @address.full_address %></h4>
+    </div>
+
+    <hr class="my-4">
+  </div>
+
+</div>
+

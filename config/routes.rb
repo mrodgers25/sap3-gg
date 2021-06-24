@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         get :scrape
       end
     end
+    resources :addresses
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]
