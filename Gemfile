@@ -82,4 +82,9 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
+
+group :test do
+  gem 'shoulda-matchers', '~> 4.0'
+end
+
 gem 'activerecord-nulldb-adapter'
