@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th scope="col">Title</th>
-            <th scope="col">Locations</th>
+            <th scope="col">Regions</th>
             <th scope="col">Place Cat.</th>
             <th scope="col">Story Cat.</th>
             <th scope="col">Story Type</th>
@@ -32,7 +32,7 @@
                 <% end %>
                 <%= link_to published_item.publishable.display_title, polymorphic_path([:admin, published_item.publishable]), target: '_blank', class: 'text-dark' %>
               </td>
-              <td style="width: 200px;"><%= published_item.publishable.display_location_codes || '-' %></td>
+              <td style="width: 200px;"><%= published_item.publishable.display_story_region_codes || '-' %></td>
               <td><%= published_item.publishable.display_place_categories || '-' %></td>
               <td><%= published_item.publishable.display_story_categories || '-' %></td>
               <td style="width: 100px;">

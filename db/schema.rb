@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_041524) do
+ActiveRecord::Schema.define(version: 2021_06_25_032856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,14 +123,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_041524) do
     t.index ["story_id"], name: "index_lists_on_story_id"
   end
 
-  create_table "locations", id: :serial, force: :cascade do |t|
-    t.string "code", limit: 255, null: false
-    t.string "name", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["code"], name: "index_locations_on_code", unique: true
-  end
-
   create_table "media_owners", id: :serial, force: :cascade do |t|
     t.string "title", limit: 255
     t.string "url_domain", limit: 255
@@ -235,6 +227,14 @@ ActiveRecord::Schema.define(version: 2021_06_16_041524) do
     t.index ["state"], name: "index_stories_on_state"
   end
 
+  create_table "stories_story_regions", id: :serial, force: :cascade do |t|
+    t.integer "story_id", null: false
+    t.integer "story_region_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["story_id", "story_region_id"], name: "index_stories_story_regions_on_story_id_and_story_region_id", unique: true
+  end
+
   create_table "stories_users", force: :cascade do |t|
     t.bigint "story_id"
     t.bigint "user_id"
@@ -262,20 +262,20 @@ ActiveRecord::Schema.define(version: 2021_06_16_041524) do
     t.index ["code"], name: "index_story_categories_on_code", unique: true
   end
 
-  create_table "story_locations", id: :serial, force: :cascade do |t|
-    t.integer "story_id", null: false
-    t.integer "location_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["story_id", "location_id"], name: "index_story_locations_on_story_id_and_location_id", unique: true
-  end
-
   create_table "story_place_categories", id: :serial, force: :cascade do |t|
     t.integer "story_id", null: false
     t.integer "place_category_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["story_id", "place_category_id"], name: "index_story_place_categories_on_story_id_and_place_category_id", unique: true
+  end
+
+  create_table "story_regions", id: :serial, force: :cascade do |t|
+    t.string "code", limit: 255, null: false
+    t.string "name", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["code"], name: "index_story_regions_on_code", unique: true
   end
 
   create_table "story_story_categories", id: :serial, force: :cascade do |t|

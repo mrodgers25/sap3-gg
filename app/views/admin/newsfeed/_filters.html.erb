@@ -26,11 +26,11 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
       <%=
-        select_tag :location_id,
-        options_from_collection_for_select(@locations, 'id', 'name', params[:location_id]),
-        prompt: 'All Locations',
+        select_tag :story_region_id,
+        options_from_collection_for_select(@story_regions, 'id', 'name', params[:story_region_id]),
+        prompt: 'All Story Regions',
         class: 'form-control form-control-sm',
-        id: 'location-select'
+        id: 'story-region-select'
       %>
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">

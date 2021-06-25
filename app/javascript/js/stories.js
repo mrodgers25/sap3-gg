@@ -1,6 +1,6 @@
 
 document.addEventListener("turbolinks:load", function () {
-  $('#story_location_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Locations'});
+  $('#story_story_region_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Regions'});
   $('#story_place_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Categories'});
   $('#story_story_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Categories'});
 
@@ -80,7 +80,7 @@ document.addEventListener("turbolinks:load", function () {
   //       $('.save_story_link').on('click', saveStory);
   //       $('.cannot_save_story_link').on('click', cannotSaveStory);
   //       $('.forget_story_link').on('click', forgetStory);
-  //       $('#story_location_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Locations'});
+  //       $('#story_region_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Regions'});
   //       $('#story_place_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Categories'});
   //       $('#story_story_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Categories'});
   //     }

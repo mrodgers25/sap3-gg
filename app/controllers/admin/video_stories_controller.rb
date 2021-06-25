@@ -7,7 +7,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new
     @screen_scraper = VideoScraper.new
     @data_entry_begin_time = params[:data_entry_begin_time]
-    get_locations_and_categories
+    get_regions_and_categories
 
     if @screen_scraper.scrape!(params[:source_url_pre])
       url = @video_story.urls.build
@@ -23,25 +23,25 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     @video_story = VideoStory.new(video_story_params)
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.save
-      update_locations_and_categories(@video_story, video_story_params)
+      update_regions_and_categories(@video_story, video_story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Story was saved.'
     else
       get_time(@video_story.video_duration)
-      get_locations_and_categories
+      get_regions_and_categories
       render :scrape
     end
   end
 
   def edit
-    # locations and categories
-    get_locations_and_categories
+    # story_regions and categories
+    get_regions_and_categories
     get_time(@video_story.video_duration)
   end
 
   def update
     @video_story.video_duration = set_duration(params[:video_story])
     if @video_story.update(video_story_params)
-      update_locations_and_categories(@video_story, video_story_params)
+      update_regions_and_categories(@video_story, video_story_params)
 
       redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Video Story was successfully updated.'
     else
@@ -73,9 +73,9 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     url.url_keywords              = @screen_scraper.meta_keywords
   end
 
-  def update_locations_and_categories(story, my_params)
-    new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
-    story.locations = new_locations
+  def update_regions_and_categories(story, my_params)
+    new_story_region = StoryRegion.find(process_chosen_params(my_params[:story_region_ids]))
+    story.story_regions = new_story_region
 
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
@@ -90,8 +90,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     end
   end
 
-  def get_locations_and_categories
-    @locations        = Location.order("ascii(name)")
+  def get_regions_and_categories
+    @story_regions    = StoryRegion.order("ascii(name)")
     @story_categories = StoryCategory.order(:name)
     @place_categories = PlaceCategory.order(:name)
   end
@@ -103,7 +103,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       :video_duration, :video_hashtags, :outside_usa, :state,
       :story_year, :story_month, :story_date,
       :data_entry_begin_time, :data_entry_user, :desc_length,
-      :location_ids => [],
+      :story_region_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],
       urls_attributes: [
