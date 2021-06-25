@@ -108,7 +108,6 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @place_categories = PlaceCategory.order(:name)
   end
 
-
   def update_locations_places_and_categories(story, my_params)
     new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
     story.locations = new_locations

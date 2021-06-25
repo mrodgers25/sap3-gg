@@ -1,14 +1,14 @@
 class Admin::PlacesController < Admin::BaseAdminController
   before_action :set_place, except: %i[index new create]
   before_action :check_for_admin, only: :destroy
-  
+
   def index
     @places = Place.order(created_at: :desc)
     @pagy, @places = pagy(@places)
   end
 
   def show
-    @comments = Comment.where(reference: "place", reference_id: @place.id)
+    @comments = Comment.where(reference: 'place', reference_id: @place.id)
   end
 
   def new
@@ -21,17 +21,17 @@ class Admin::PlacesController < Admin::BaseAdminController
     if @place.save
       if params[:place][:story_id]
         StoryPlace.create(story_id: params[:place][:story_id], place_id: @place.id)
-        redirect_to edit_admin_media_story_path(params[:place][:story_id]), notice: "Successfully created #{@place.name}"
-      else 
+        redirect_to edit_admin_media_story_path(params[:place][:story_id]),
+                    notice: "Successfully created #{@place.name}"
+      else
         redirect_to admin_place_path(@place), notice: "Successfully created #{@place.name}"
-      end   
+      end
     else
       redirect_to new_admin_place_path, alert: 'Could not create Place.'
     end
   end
 
-  def edit 
-  end
+  def edit; end
 
   def update
     if @place.update(place_params)
@@ -60,5 +60,4 @@ class Admin::PlacesController < Admin::BaseAdminController
   def place_params
     params.require(:place).permit!
   end
-
 end

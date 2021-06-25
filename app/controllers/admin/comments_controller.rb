@@ -1,9 +1,8 @@
 class Admin::CommentsController < Admin::BaseAdminController
-  
   def create
     @comment = Comment.create(comment_params)
-    if @comment.save 
-      flash[:notice] = "Comment Saved"
+    if @comment.save
+      flash[:notice] = 'Comment Saved'
     else
       flash[:info] = @comment.errors.full_messages
     end
@@ -20,10 +19,9 @@ class Admin::CommentsController < Admin::BaseAdminController
     @comment.destroy
   end
 
-  private 
+  private
 
-    def comment_params
-      params.require(:comment).permit!
-    end
-
+  def comment_params
+    params.require(:comment).permit!
+  end
 end
