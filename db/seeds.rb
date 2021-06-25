@@ -190,7 +190,7 @@ Image.create!([
   {src_url: "http://images-resrc.staticlp.com/C=AR16x9/S=W360,U/O=85/http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2014/02/Backpack-budget-750.jpg", alt_text: "Lonely planet's top 10 best value stays for 2014", url_id: 102, image_width: 360, image_height: 203, manual_enter: nil},
   {src_url: "http://i.huffpost.com/gen/1618523/thumbs/o-NEW-YORK-PUBLIC-LIBRARY-READING-ROOM-570.jpg?1", alt_text: "New york public library reading room", url_id: 103, image_width: 570, image_height: 380, manual_enter: nil}
 ])
-Location.create!([
+StoryRegion.create!([
   {code: "NYC", name: "NY-New York City"},
   {code: "PHIL", name: "PA-Philadelphia"},
   {code: "PORT", name: "OR-Portland"},

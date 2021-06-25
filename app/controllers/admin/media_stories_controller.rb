@@ -13,7 +13,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     @story = MediaStory.new
     @screen_scraper = ScreenScraper.new
     @data_entry_begin_time = params[:data_entry_begin_time]
-    get_locations_and_categories
+    get_regions_and_categories
     get_domain_info(params[:source_url_pre])
 
     if @screen_scraper.scrape!(params[:source_url_pre])
@@ -29,11 +29,11 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def create
     @story = MediaStory.new(story_params)
     if @story.save
-      update_locations_and_categories(@story, story_params)
+      update_regions_and_categories(@story, story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was saved.'
     else
       get_domain_info(@story.urls.last.url_full)
-      get_locations_and_categories
+      get_regions_and_categories
       render :scrape
     end
   end
@@ -41,8 +41,8 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   def edit
     # image fields
     @url1 = @story.urls.first
-    # locations and categories
-    get_locations_and_categories
+    # story_regions and categories
+    get_regions_and_categories
     # media_owner stuff
     get_domain_info(@story.urls.last.url_full)
 
@@ -56,7 +56,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
 
   def update
     if @story.update(story_params)
-      update_locations_and_categories(@story, story_params)
+      update_regions_and_categories(@story, story_params)
       redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was successfully updated.'
     else
       redirect_to edit_media_story_path(@story), notice: 'Story failed to be updated.'
@@ -102,15 +102,15 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     url.url_keywords = @screen_scraper.meta_keywords
   end
 
-  def get_locations_and_categories
-    @locations = Location.order(:name)
+  def get_regions_and_categories
+    @story_regions    = StoryRegion.order(:name)
     @story_categories = StoryCategory.order(:name)
     @place_categories = PlaceCategory.order(:name)
   end
 
-  def update_locations_and_categories(story, my_params)
-    new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
-    story.locations = new_locations
+  def update_regions_and_categories(story, my_params)
+    new_story_region = StoryRegion.find(process_chosen_params(my_params[:story_region_ids]))
+    story.story_regions = new_story_region
 
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
@@ -131,7 +131,7 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
       :editor_tagline, :raw_author_scrape, :raw_story_year_scrape,
       :raw_story_month_scrape, :raw_story_date_scrape, :data_entry_begin_time, :data_entry_user, :story_complete,
       :release_seq, :state, :desc_length,
-      :location_ids => [],
+      :story_region_ids => [],
       :place_category_ids => [],
       :story_category_ids => [],
       urls_attributes: [

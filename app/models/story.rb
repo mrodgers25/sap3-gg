@@ -2,13 +2,13 @@ class Story < ApplicationRecord
   include AASM
   include ApplicationHelper
 
-  attr_accessor :location_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
+  attr_accessor :story_region_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   has_and_belongs_to_many :users
   has_many :urls, inverse_of: :story, dependent: :destroy
   accepts_nested_attributes_for :urls
-  has_many :story_locations, dependent: :destroy
-  has_many :locations, through: :story_locations
+  has_many :stories_story_regions, dependent: :destroy
+  has_many :story_regions, through: :stories_story_regions
   has_many :story_story_categories, dependent: :destroy
   has_many :story_categories, through: :story_story_categories
   has_many :story_place_categories, dependent: :destroy
@@ -142,7 +142,7 @@ class Story < ApplicationRecord
     where_str += " AND (urls.url_type != '' AND urls.url_title != '' AND urls.url_desc != '' AND urls.url_domain != '')"
     where_str += " AND stories.id = #{self.id}"
 
-    Story.joins("LEFT OUTER JOIN story_locations sl ON (stories.id = sl.story_id)")
+    Story.joins("LEFT OUTER JOIN stories_story_regions sl ON (stories.id = sl.story_id)")
     .joins("LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)")
     .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
     .joins(:urls)
@@ -192,12 +192,12 @@ class Story < ApplicationRecord
     end
   end
 
-  def display_location
-    locations.pluck(:name).join(', ')
+  def display_story_region
+    story_regions.pluck(:name).join(', ')
   end
 
-  def display_location_codes
-    locations.pluck(:code).join(', ')
+  def display_story_region_codes
+    story_regions.pluck(:code).join(', ')
   end
 
   def display_publisher

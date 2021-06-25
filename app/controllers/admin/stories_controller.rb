@@ -4,7 +4,7 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def index
     # database dropdown data
-    @locations        = Location.order("ascii(name)")
+    @story_regions    = StoryRegion.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
@@ -24,7 +24,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     @stories = @stories.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
     @stories = @stories.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
     @stories = @stories.where(state: params[:state]) if params[:state].present?
-    @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] }) if params[:location_id].present?
+    @stories = @stories.joins(:story_regions).where(story_regions: { id: params[:story_region_id] }) if params[:story_region_id].present?
     @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
     @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
     @stories = @stories.order(story_date_combined: :desc, id: :desc)
@@ -194,8 +194,8 @@ class Admin::StoriesController < Admin::BaseAdminController
     params.permit(:update_type, ids: [])
   end
 
-  def get_locations_and_categories
-    @locations        = Location.order("ascii(name)")
+  def get_regions_and_categories
+    @story_regions    = StoryRegion.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
   end
