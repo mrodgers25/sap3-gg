@@ -1,9 +1,22 @@
 <div class="container-fluid">
   <div class="links mb-2 text-right">
+    <%= link_to "#add-comment", class: "btn btn-sm btn-primary", data: {toggle: "collapse"} do %>
+      <i class="fas fa-sticky-note mr-1"></i> Add Comment
+    <% end %>
     <%= link_to edit_admin_place_path(@place), class: "btn btn-sm btn-success" do %>
       <i class="fas fa-edit mr-1"></i> Edit Place
     <% end %>
   </div>
+
+<div class="collapse" id="add-comment">
+  <div class="row">
+    <div class="col-6"></div>
+    <div class="col-6">
+        <%= render 'admin/comments/form', reference: "place", reference_id: @place.id %>
+    </div>
+  </div>
+</div>
+
   <div class="jumbotron bg-white admin-index-page">
     <div class="header text-center">
       <h4><i class="fas fa-map-marker-alt mr-1"></i> <%= @place.name %></h4>
@@ -16,6 +29,19 @@
     <% if @place.address %>
       <%= @place.address.full_address %>
     <% end %>
+
+    <% if @comments.any? %>
+    <table class="mt-4">
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= time_ago_in_words(comment.created_at) %> ago</td>
+          <td><%= comment.user.email %></td>
+          <td><%= comment.note %></td>
+        </tr>
+      <% end %>
+    </table>   
+    <% end %> 
+
 
     <div class="header text-center">
       <h4><i class="fas fa-book mr-1"></i>Stories</h4>
