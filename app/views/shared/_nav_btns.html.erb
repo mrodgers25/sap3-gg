@@ -1,7 +1,7 @@
 <div class="mb-2 d-flex justify-content-center">
   <div class="btn-group story-form-nav-btns">
     <%=
-      link_to 'Custom Story Details',
+      link_to 'Story Details',
       @story.persisted? ? edit_admin_custom_story_path(@story) : '#',
       class: "btn btn-md #{(current_page?((@story.persisted? ? edit_admin_custom_story_path(@story) : new_admin_custom_story_path)) ? 'btn-info' : 'btn-light')} border border-dark",
       data: { turbolinks: false }
