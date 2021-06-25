@@ -2,6 +2,7 @@
 User.create!(email: 'admin@notch8.com', password: 'password', password_confirmation: 'password', role: 'admin',
              confirmed_at: DateTime.now)
 
+# Populate the Place Status Options
 PlaceStatusOption.create!([
   {name: "Imported", description: "Do not display"},
   {name: "Display", description: "Display"},
@@ -10,6 +11,54 @@ PlaceStatusOption.create!([
   {name: "Delete", description: "Record should be deleted"},
   {name: "Closed", description: "Do not display"}
 ])
+
+# no idea what these codes are but they appear to be important
+Code.create!([
+  {code_type: "STORY_CATEGORY", code_key: "REVIEW", code_value: "Review of a Place"},
+  {code_type: "LOCATION_CODE", code_key: "NYC", code_value: "NY-New York City"},
+  {code_type: "LOCATION_CODE", code_key: "PHIL", code_value: "PA-Philadelphia"},
+  {code_type: "LOCATION_CODE", code_key: "PORT", code_value: "OR-Portland"},
+  {code_type: "GENERAL", code_key: "LANDING_PAGE_STORY_COUNT", code_value: "24"},
+  {code_type: "STORY_CATEGORY", code_key: "MT", code_value: "Places in Movies & TV"},
+  {code_type: "PLACE_CATEGORY", code_key: "A", code_value: "Attraction"},
+  {code_type: "PLACE_CATEGORY", code_key: "FD", code_value: "Food & Drink"},
+  {code_type: "PLACE_CATEGORY", code_key: "L", code_value: "Lodging"},
+  {code_type: "PLACE_CATEGORY", code_key: "SH", code_value: "Shopping"},
+  {code_type: "PLACE_CATEGORY", code_key: "SR", code_value: "Service Related"},
+  {code_type: "STORY_CATEGORY", code_key: "EP", code_value: "Editor Picks"},
+  {code_type: "STORY_CATEGORY", code_key: "UN", code_value: "More Unique Than Usual"},
+  {code_type: "STORY_CATEGORY", code_key: "TL", code_value: "Top/Best/Coolest Lists"},
+  {code_type: "STORY_CATEGORY", code_key: "SI", code_value: "Suggested Itinerary"},
+  {code_type: "STORY_CATEGORY", code_key: "IA", code_value: "Industry Award"},
+  {code_type: "STORY_CATEGORY", code_key: "RO", code_value: "Romance"},
+  {code_type: "STORY_CATEGORY", code_key: "FF", code_value: "Family Friendly"},
+  {code_type: "STORY_CATEGORY", code_key: "PF", code_value: "Pet Friendly"},
+  {code_type: "PLACE_CATEGORY", code_key: "SP", code_value: "Sport or Activity"},
+  {code_type: "LOCATION_CODE", code_key: "SEA", code_value: "WA-Seattle"},
+  {code_type: "PLACE_CATEGORY", code_key: "", code_value: "All Place Types"},
+  {code_type: "STORY_CATEGORY", code_key: "", code_value: "All Story Categories"},
+  {code_type: "LOCATION_CODE", code_key: "HAW", code_value: "HI-Hawaii (All Islands)"},
+  {code_type: "STORY_CATEGORY", code_key: "NEW", code_value: "New Places"},
+  {code_type: "GENERAL", code_key: "LANDING_PAGE_FILTERED_COUNT", code_value: "36"},
+  {code_type: "LOCATION_CODE", code_key: "MIDW", code_value: "~ Midwest Region U.S."},
+  {code_type: "LOCATION_CODE", code_key: "NORT", code_value: "~ Northwest Region U.S."},
+  {code_type: "LOCATION_CODE", code_key: "SOUT", code_value: "~ South Region U.S."},
+  {code_type: "LOCATION_CODE", code_key: "PHX", code_value: "AZ-Phoenix"},
+  {code_type: "LOCATION_CODE", code_key: "WEST", code_value: "~ West Region U.S."},
+  {code_type: "LOCATION_CODE", code_key: "", code_value: " All Locations"},
+  {code_type: "LOCATION_CODE", code_key: "SD", code_value: "CA-San Diego"},
+  {code_type: "LOCATION_CODE", code_key: "SF", code_value: "CA-San Francisco"},
+  {code_type: "LOCATION_CODE", code_key: "AUST", code_value: "TX-Austin"},
+  {code_type: "LOCATION_CODE", code_key: "BOS", code_value: "MA-Boston"},
+  {code_type: "LOCATION_CODE", code_key: "LA", code_value: "CA-Los Angeles"},
+  {code_type: "LOCATION_CODE", code_key: "CHI", code_value: "IL-Chicago"},
+  {code_type: "LOCATION_CODE", code_key: "DC", code_value: "DC-Washington, D.C."},
+  {code_type: "LOCATION_CODE", code_key: "LV", code_value: "NV-Las Vegas"},
+  {code_type: "LOCATION_CODE", code_key: "NOLA", code_value: "LA-New Orleans"},
+  {code_type: "SAP_PUBLISH_SCHEDULER", code_key: "STORIES_PER_DAY", code_value: "4"},
+  {code_type: "SAP_PUBLISH_SCHEDULER", code_key: "NEXT_STORY_PUB_DATETIME", code_value: "2017-09-18T15:45:19-0700"}
+])
+
 
 # ORIGINAL PROJECT SEED FILE
 # DOES NOT RUN
@@ -59,51 +108,7 @@ PlaceStatusOption.create!([
 #   {email: "thull2044@gmail.com", encrypted_password: "$2a$10$tqzUTcOfQOaYerdPCMEwD.zGleVoSVhQf3uXcQEZY/hlX1YcEj5Wu", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2016-03-02 19:01:54", sign_in_count: 6, current_sign_in_at: "2016-03-16 04:33:10", last_sign_in_at: "2016-03-12 03:12:59", current_sign_in_ip: "99.169.164.41", last_sign_in_ip: "99.169.164.41", name: nil, role: 0, confirmation_token: nil, confirmed_at: "2016-03-02 19:01:29", confirmation_sent_at: "2016-03-02 19:00:06", unconfirmed_email: nil, first_name: "Trevor", last_name: "Hull", city_preference: "Austin"},
 #   {email: "mrodgers25@gmail.com", encrypted_password: "$2a$10$3uBVZNJU9ZDfWuXdswciSONwpsQwdWBqnKmLxeBFMv95EpJmIWcJu", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 26, current_sign_in_at: "2019-01-30 21:45:03", last_sign_in_at: "2018-05-15 02:54:53", current_sign_in_ip: "::1", last_sign_in_ip: "::1", name: nil, role: 2, confirmation_token: nil, confirmed_at: "2016-12-14 01:30:19", confirmation_sent_at: "2016-12-14 01:28:27", unconfirmed_email: nil, first_name: "Martha", last_name: "Rodgers", city_preference: "San Diego, Boston, Denver"}
 # ])
-# Code.create!([
-#   {code_type: "STORY_CATEGORY", code_key: "REVIEW", code_value: "Review of a Place"},
-#   {code_type: "LOCATION_CODE", code_key: "NYC", code_value: "NY-New York City"},
-#   {code_type: "LOCATION_CODE", code_key: "PHIL", code_value: "PA-Philadelphia"},
-#   {code_type: "LOCATION_CODE", code_key: "PORT", code_value: "OR-Portland"},
-#   {code_type: "GENERAL", code_key: "LANDING_PAGE_STORY_COUNT", code_value: "24"},
-#   {code_type: "STORY_CATEGORY", code_key: "MT", code_value: "Places in Movies & TV"},
-#   {code_type: "PLACE_CATEGORY", code_key: "A", code_value: "Attraction"},
-#   {code_type: "PLACE_CATEGORY", code_key: "FD", code_value: "Food & Drink"},
-#   {code_type: "PLACE_CATEGORY", code_key: "L", code_value: "Lodging"},
-#   {code_type: "PLACE_CATEGORY", code_key: "SH", code_value: "Shopping"},
-#   {code_type: "PLACE_CATEGORY", code_key: "SR", code_value: "Service Related"},
-#   {code_type: "STORY_CATEGORY", code_key: "EP", code_value: "Editor Picks"},
-#   {code_type: "STORY_CATEGORY", code_key: "UN", code_value: "More Unique Than Usual"},
-#   {code_type: "STORY_CATEGORY", code_key: "TL", code_value: "Top/Best/Coolest Lists"},
-#   {code_type: "STORY_CATEGORY", code_key: "SI", code_value: "Suggested Itinerary"},
-#   {code_type: "STORY_CATEGORY", code_key: "IA", code_value: "Industry Award"},
-#   {code_type: "STORY_CATEGORY", code_key: "RO", code_value: "Romance"},
-#   {code_type: "STORY_CATEGORY", code_key: "FF", code_value: "Family Friendly"},
-#   {code_type: "STORY_CATEGORY", code_key: "PF", code_value: "Pet Friendly"},
-#   {code_type: "PLACE_CATEGORY", code_key: "SP", code_value: "Sport or Activity"},
-#   {code_type: "LOCATION_CODE", code_key: "SEA", code_value: "WA-Seattle"},
-#   {code_type: "PLACE_CATEGORY", code_key: "", code_value: "All Place Types"},
-#   {code_type: "STORY_CATEGORY", code_key: "", code_value: "All Story Categories"},
-#   {code_type: "LOCATION_CODE", code_key: "HAW", code_value: "HI-Hawaii (All Islands)"},
-#   {code_type: "STORY_CATEGORY", code_key: "NEW", code_value: "New Places"},
-#   {code_type: "GENERAL", code_key: "LANDING_PAGE_FILTERED_COUNT", code_value: "36"},
-#   {code_type: "LOCATION_CODE", code_key: "MIDW", code_value: "~ Midwest Region U.S."},
-#   {code_type: "LOCATION_CODE", code_key: "NORT", code_value: "~ Northwest Region U.S."},
-#   {code_type: "LOCATION_CODE", code_key: "SOUT", code_value: "~ South Region U.S."},
-#   {code_type: "LOCATION_CODE", code_key: "PHX", code_value: "AZ-Phoenix"},
-#   {code_type: "LOCATION_CODE", code_key: "WEST", code_value: "~ West Region U.S."},
-#   {code_type: "LOCATION_CODE", code_key: "", code_value: " All Locations"},
-#   {code_type: "LOCATION_CODE", code_key: "SD", code_value: "CA-San Diego"},
-#   {code_type: "LOCATION_CODE", code_key: "SF", code_value: "CA-San Francisco"},
-#   {code_type: "LOCATION_CODE", code_key: "AUST", code_value: "TX-Austin"},
-#   {code_type: "LOCATION_CODE", code_key: "BOS", code_value: "MA-Boston"},
-#   {code_type: "LOCATION_CODE", code_key: "LA", code_value: "CA-Los Angeles"},
-#   {code_type: "LOCATION_CODE", code_key: "CHI", code_value: "IL-Chicago"},
-#   {code_type: "LOCATION_CODE", code_key: "DC", code_value: "DC-Washington, D.C."},
-#   {code_type: "LOCATION_CODE", code_key: "LV", code_value: "NV-Las Vegas"},
-#   {code_type: "LOCATION_CODE", code_key: "NOLA", code_value: "LA-New Orleans"},
-#   {code_type: "SAP_PUBLISH_SCHEDULER", code_key: "STORIES_PER_DAY", code_value: "4"},
-#   {code_type: "SAP_PUBLISH_SCHEDULER", code_key: "NEXT_STORY_PUB_DATETIME", code_value: "2017-09-18T15:45:19-0700"}
-# ])
+
 # Image.create!([
 #   {src_url: "http://www.gannett-cdn.com/-mm-/bc4ef92b9e6a6e185183aa843bfbc64a3ab12320/c=327-0-2959-1979&r=x513&c=680x510/local/-/media/USATODAY/USATODAY/2014/04/17//1397762298000-Blackberry3---Beall-and-Thomas-Photographyrs.jpg", alt_text: "Guests can learn the basics of farm cooking or wine pairing at Blackberry Farm, a luxury retreat near Great Smoky Mountains National Park in Walland, Tenn.", url_id: 2, image_width: nil, image_height: nil, manual_enter: nil},
 #   {src_url: "http://www.gannett-cdn.com/-mm-/49b2e23fa4f99ced53b49cba99f4b2bc39ab5e5b/c=119-0-1929-1360&r=x513&c=680x510/local/-/media/USATODAY/USATODAY/2014/04/04//1396640631000-1-Adriano-Zumbo.jpg", alt_text: "For someone who melts over all things sweet and sugary, a trip to any of these pastry shops is a treat. Adriano Zumbo, Australia: Taste 40 shades of \"zumbarons,\" - including, yes, a \"Vegemite on Toast\" zumbaron - at Adriano Zumbo, where the décor is modeled after Adriano's philosophy on food: that it should be fun, textural, and appealing to the eye and should taste incredible. His decorative pastries like passion fruit tarts, salted caramel \"zonuts,\" coconut cream lamingtons and apple maple cheesecake can't be beat.", url_id: 3, image_width: nil, image_height: nil, manual_enter: nil},
@@ -206,27 +211,7 @@ PlaceStatusOption.create!([
 #   {src_url: "http://images-resrc.staticlp.com/C=AR16x9/S=W360,U/O=85/http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2014/02/Backpack-budget-750.jpg", alt_text: "Lonely planet's top 10 best value stays for 2014", url_id: 102, image_width: 360, image_height: 203, manual_enter: nil},
 #   {src_url: "http://i.huffpost.com/gen/1618523/thumbs/o-NEW-YORK-PUBLIC-LIBRARY-READING-ROOM-570.jpg?1", alt_text: "New york public library reading room", url_id: 103, image_width: 570, image_height: 380, manual_enter: nil}
 # ])
-# Location.create!([
-#   {code: "NYC", name: "NY-New York City"},
-#   {code: "PHIL", name: "PA-Philadelphia"},
-#   {code: "PORT", name: "OR-Portland"},
-#   {code: "SEA", name: "WA-Seattle"},
-#   {code: "HAW", name: "HI-Hawaii (All Islands)"},
-#   {code: "MIDW", name: "~ Midwest Region U.S."},
-#   {code: "SOUT", name: "~ South Region U.S."},
-#   {code: "PHX", name: "AZ-Phoenix"},
-#   {code: "WEST", name: "~ West Region U.S."},
-#   {code: "SD", name: "CA-San Diego"},
-#   {code: "SF", name: "CA-San Francisco"},
-#   {code: "AUST", name: "TX-Austin"},
-#   {code: "BOS", name: "MA-Boston"},
-#   {code: "LA", name: "CA-Los Angeles"},
-#   {code: "CHI", name: "IL-Chicago"},
-#   {code: "DC", name: "DC-Washington, D.C."},
-#   {code: "LV", name: "NV-Las Vegas"},
-#   {code: "NOLA", name: "LA-New Orleans"},
-#   {code: "NORT", name: "~ Northeast Region U.S."}
-# ])
+
 # Mediaowner.create!([
 #   {title: "The Huffington Post", url_full: "http://www.huffingtonpost.com/", url_domain: "huffingtonpost.com", owner_name: nil, media_type: nil, distribution_type: "News", publication_name: nil, paywall_yn: nil, content_frequency_time: "Daily", content_frequency_other: nil, content_frequency_guide: nil, nextissue_yn: nil},
 #   {title: "Los Angeles Times", url_full: "http://www.latimes.com/", url_domain: "latimes.com", owner_name: nil, media_type: nil, distribution_type: "News", publication_name: nil, paywall_yn: nil, content_frequency_time: "Daily", content_frequency_other: nil, content_frequency_guide: nil, nextissue_yn: nil},
@@ -431,14 +416,7 @@ PlaceStatusOption.create!([
 #   {user_id: nil, url: "https://www.zagat.com/b/washington-dc/first-look-kapnos-taverna-now-open-in-ballston"},
 #   {user_id: nil, url: "https://www.yahoo.com/travel/hollywood-hack-9-real-rom-c1422638736962.html"}
 # ])
-# PlaceCategory.create!([
-#   {code: "A", name: "Attraction"},
-#   {code: "FD", name: "Food & Drink"},
-#   {code: "L", name: "Lodging"},
-#   {code: "SH", name: "Shopping"},
-#   {code: "SR", name: "Service Related"},
-#   {code: "SP", name: "Sport or Activity"}
-# ])
+
 # Story.create!([
 #   {story_type: "Newspaper", author: "Larry Bleiberg, Kate Weller", story_month: 1, story_date: 9, story_year: 2015, editor_tagline: "You won't even miss the gluten", author_track: false, story_year_track: true, story_month_track: true, story_date_track: true, scraped_type: "article", sap_publish_date: "2015-01-11 03:46:27", data_entry_time: 258, data_entry_user: "1", mediaowner_id: nil, story_complete: true, release_seq: 3, outside_usa: nil, permalink: "95ed/dining-choices-for-gluten-free-foodies"},
 #   {story_type: "Internet", author: "Andrea Adams", story_month: 8, story_date: 4, story_year: 2014, editor_tagline: "Lots to do there - this is a good starting point", author_track: true, story_year_track: false, story_month_track: false, story_date_track: false, scraped_type: "blog", sap_publish_date: "2015-01-12 12:50:33", data_entry_time: 225, data_entry_user: "1", mediaowner_id: nil, story_complete: true, release_seq: 3, outside_usa: nil, permalink: "2e58/top-5-things-to-do-in-san-diego"},
@@ -541,19 +519,7 @@ PlaceStatusOption.create!([
 #   {story_type: "Magazine", author: "Sarah Maiellano", story_month: 6, story_date: 26, story_year: 2015, editor_tagline: "Now that it's nice to go out, go out and exercise", author_track: false, story_year_track: true, story_month_track: true, story_date_track: true, scraped_type: "article", sap_publish_date: "2015-07-10 02:47:24", data_entry_time: 101, data_entry_user: "1", mediaowner_id: nil, story_complete: true, release_seq: nil, outside_usa: false, permalink: "a3dc/philadelphia-s-best-spots-outdoors-for-a-workout"},
 #   {story_type: "Internet", author: "Darlene Horn", story_month: 9, story_date: 9, story_year: 2015, editor_tagline: "A brewer for an owner, and getting known for craft drinks", author_track: false, story_year_track: true, story_month_track: true, story_date_track: true, scraped_type: "", sap_publish_date: "2015-09-26 19:30:38", data_entry_time: 132, data_entry_user: "1", mediaowner_id: nil, story_complete: true, release_seq: 3, outside_usa: false, permalink: "3779/4-reasons-why-high-dive-should-be-your-favorite-bar"}
 # ])
-# StoryCategory.create!([
-#   {code: "MT", name: "Places in Movies & TV"},
-#   {code: "EP", name: "Editor Picks"},
-#   {code: "UN", name: "More Unique Than Usual"},
-#   {code: "TL", name: "Top/Best/Coolest Lists"},
-#   {code: "SI", name: "Suggested Itinerary"},
-#   {code: "IA", name: "Industry Award"},
-#   {code: "RO", name: "Romance"},
-#   {code: "FF", name: "Family Friendly"},
-#   {code: "PF", name: "Pet Friendly"},
-#   {code: "NEW", name: "New Places"},
-#   {code: "REV", name: "Review of a Place"}
-# ])
+
 # StoryLocation.create!([
 #   {story_id: 53, location_id: 18},
 #   {story_id: 113, location_id: 15},

@@ -8,6 +8,10 @@
 
     <div class="body">
 
+      <% if params[:story] %>
+        <%= f.hidden_field :story_id, value: params[:story] %>
+      <% end %>
+
       <div class="form-group my-4 max-vw-80 mx-auto">
         <%= f.label :name %><br>
         <%= f.text_field :name, class: "form-control" %>

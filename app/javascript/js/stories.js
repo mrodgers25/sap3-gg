@@ -1,5 +1,6 @@
 
 document.addEventListener("turbolinks:load", function () {
+  $('#story_place_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Places'});
   $('#story_location_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Locations'});
   $('#story_place_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Categories'});
   $('#story_story_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Categories'});
