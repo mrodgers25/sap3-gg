@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('../config/environment', __dir__)
 
 require 'csv'
@@ -24,9 +26,9 @@ CSV.open(file, 'w') do |writer|
         @manual_enter = i.manual_enter
       end
     end
-    @location_name = s.locations.map { |l| l.code }.join(',')
-    @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
-    @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
+    @location_name = s.locations.map(&:code).join(',')
+    @pc_name = s.place_categories.map(&:code).join(',')
+    @sc_name = s.story_categories.map(&:code).join(',')
 
     writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
                @location_name, @pc_name, @sc_name, s.author_track, s.story_year_track, s.story_month_track, s.story_date_track, \

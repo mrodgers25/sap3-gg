@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Url < ApplicationRecord
   attr_accessor :raw_url_title_scrape, :raw_url_desc_scrape, :raw_url_keywords_scrape
 

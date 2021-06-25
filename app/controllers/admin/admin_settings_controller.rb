@@ -1,27 +1,32 @@
-class Admin::AdminSettingsController < Admin::BaseAdminController
-  before_action :set_admin_setting, except: :index
+# frozen_string_literal: true
 
-  def index
-    @admin_setting = AdminSetting.first
-  end
+module Admin
+  class AdminSettingsController < Admin::BaseAdminController
+    before_action :set_admin_setting, except: :index
 
-  def update
-    if @admin_setting.update(admin_settings_params)
-      redirect_to admin_admin_settings_path, notice: 'Admin Setting was successfully updated.'
-    else
-      redirect_to admin_admin_settings_path, alert: 'Admin Setting failed to be updated.'
+    def index
+      @admin_setting = AdminSetting.first
     end
-  end
 
-  private
+    def update
+      if @admin_setting.update(admin_settings_params)
+        redirect_to admin_admin_settings_path, notice: 'Admin Setting was successfully updated.'
+      else
+        redirect_to admin_admin_settings_path, alert: 'Admin Setting failed to be updated.'
+      end
+    end
 
-  def set_admin_setting
-    @admin_setting = AdminSetting.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to admin_admin_settings_path, alert: 'Admin Setting not found.'
-  end
+    private
 
-  def admin_settings_params
-    params.require(:admin_setting).permit(:newsfeed_display_limit, :filtered_display_limit, :newsfeed_daily_post_count)
+    def set_admin_setting
+      @admin_setting = AdminSetting.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_admin_settings_path, alert: 'Admin Setting not found.'
+    end
+
+    def admin_settings_params
+      params.require(:admin_setting).permit(:newsfeed_display_limit, :filtered_display_limit,
+                                            :newsfeed_daily_post_count)
+    end
   end
 end

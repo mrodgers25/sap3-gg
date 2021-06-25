@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Create a test admin user
 User.create!(email: 'admin@notch8.com', password: 'password', password_confirmation: 'password', role: 'admin',
              confirmed_at: DateTime.now)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :update_permalink do
   desc 'TODO'
   task update: :environment do

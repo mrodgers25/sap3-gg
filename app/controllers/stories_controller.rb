@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoriesController < ApplicationController
   include Pagy::Backend
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminSetting < ApplicationRecord
   def self.newsfeed_display_limit
     # AdminSetting.first.newsfeed_display_limit

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :scripts do
   desc 'Converts the stories to the correct state'
   task convert_stories_to_correct_state: :environment do
