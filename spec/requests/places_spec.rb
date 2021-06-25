@@ -11,7 +11,7 @@ RSpec.describe '/admin/places', type: :request do
   end
 
   context 'with a logged in user' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     before do
       # TODO(alishaevn): figure out why the user isn't being signed in
@@ -25,15 +25,18 @@ RSpec.describe '/admin/places', type: :request do
   end
 
   context 'with a logged in admin user' do
-    let(:admin_user) { FactoryBot.create(:admin_user) }
+    let(:admin_user) { create(:admin_user) }
 
     before do
       # TODO(alishaevn): figure out why the user isn't being signed in
-      login_as admin_user
+      sign_in admin_user
     end
 
     xit 'renders a successful response' do
+      # admin_user = create(:admin_user)
+      # sign_in admin_user
       get admin_places_path
+      # byebug
       expect(response).to be_successful
     end
   end
