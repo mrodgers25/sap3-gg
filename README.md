@@ -91,6 +91,11 @@ Make sure these are run in a separate tab/window than the running server
   sc be rails db:seed
 ```
 
+If the database has already been seeded but you need to re-seed, run the following command:
+``` bash
+sc be rails db:drop db:create db:migrate db:seed
+```
+
 #### Bash into the container
 ```bash
   sc exec bash
