@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoryStoryCategory < ApplicationRecord
   validates :story_id, :story_category_id, presence: true
   validates :story_id, uniqueness: { scope: :story_category_id }

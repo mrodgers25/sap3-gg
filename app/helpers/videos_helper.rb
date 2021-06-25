@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Helpers for better embedding and manipulation of videos
 # Place this code in app/helpers/videos_helper.rb
 # Then from any view you can add:
@@ -14,8 +16,8 @@ module VideosHelper
   require 'net/http'
 
   # Regex to find YouTube's and Vimeo's video ID
-  YOUTUBE_REGEX = %r(^(https*://)?(www.)?(youtube.com|youtu.be)/(watch\?v=){0,1}([a-zA-Z0-9_-]{11}))
-  VIMEO_REGEX = %r{^https?://(?:.*?)\.?(vimeo)\.com/(\d+).*$}
+  YOUTUBE_REGEX = %r(^(https*://)?(www.)?(youtube.com|youtu.be)/(watch\?v=){0,1}([a-zA-Z0-9_-]{11})).freeze
+  VIMEO_REGEX = %r{^https?://(?:.*?)\.?(vimeo)\.com/(\d+).*$}.freeze
 
   # Finds YouTube's video ID from given URL or [nil] if URL is invalid
   # The video ID matches the RegEx \[a-zA-Z0-9_-]{11}\

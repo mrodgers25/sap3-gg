@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewsfeedActivity < ApplicationRecord
   belongs_to :trackable, polymorphic: true
 

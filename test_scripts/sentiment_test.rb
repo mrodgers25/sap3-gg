@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'unirest'
 
 # These code snippets use an open-source library. http://unirest.io/ruby

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Place < ApplicationRecord
   attr_accessor :story_id
 

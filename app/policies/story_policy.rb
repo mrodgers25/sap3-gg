@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoryPolicy
   attr_reader :current_user, :model
 

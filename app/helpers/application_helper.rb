@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Pagy::Frontend
 
@@ -73,11 +75,7 @@ module ApplicationHelper
 
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
-    if sz.nil?
-      false
-    else
-      true
-    end
+    !sz.nil?
   end
 
   def location_options

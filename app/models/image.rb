@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Image < ApplicationRecord
   belongs_to :url, inverse_of: :images
   validates :src_url, presence: { message: 'IMAGE is required' }
@@ -9,7 +11,7 @@ class Image < ApplicationRecord
 
   def check_manual_url
     self.src_url ||= manual_url
-    self.manual_enter = (manual_url.present? ? true : false)
+    self.manual_enter = (manual_url.present?)
   end
 
   def self.to_csv

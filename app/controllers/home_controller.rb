@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   layout 'application'
 
@@ -22,15 +24,9 @@ class HomeController < ApplicationController
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
 
     if params[:location_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
-      if params[:location_id].present?
-        @published_items = @published_items.where(locations: { id: params[:location_id] })
-      end
-      if params[:place_category_id].present?
-        @published_items = @published_items.where(place_categories: { id: params[:place_category_id] })
-      end
-      if params[:story_category_id].present?
-        @published_items = @published_items.where(story_categories: { id: params[:story_category_id] })
-      end
+      @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
+      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
       @published_items = @published_items.limit(AdminSetting.filtered_display_limit)
       @published_items = @published_items.order(created_at: :desc)
     else

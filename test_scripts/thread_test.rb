@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # def every_x_secs
 #     while true
 #       # yield
@@ -8,7 +10,7 @@
 
 def every_x_secs
   Thread.new do
-    while true
+    loop do
       # yield
       puts 'thread loop every 2 secs'
       sleep 2

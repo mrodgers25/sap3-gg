@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MediaOwnerPolicy
   attr_reader :current_user, :model
 

@@ -13,3 +13,10 @@ AllCops:
     - 'Rakefile'
   NewCops: enable
 
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'test_scripts/**/*.rb'
+
+Layout/LineLength:
+  Max: 150

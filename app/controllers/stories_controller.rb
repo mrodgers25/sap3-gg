@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoriesController < ApplicationController
   include Pagy::Backend
 
@@ -51,12 +53,8 @@ class StoriesController < ApplicationController
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
     @published_items = @published_items.where(stories_users: { user_id: current_user.id })
     @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
-    if params[:place_category_id].present?
-      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] })
-    end
-    if params[:story_category_id].present?
-      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] })
-    end
+    @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+    @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
     @published_items = @published_items.order('stories_users.created_at ASC').distinct
 
     @pagy, @published_items = pagy(@published_items)
