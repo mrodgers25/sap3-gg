@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         get :scrape
       end
     end
+    resources :comments, only: [:create, :update, :destroy]
     resources :addresses
     resources :places
     resources :urls, except: [:show]
