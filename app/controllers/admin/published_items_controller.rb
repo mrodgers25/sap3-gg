@@ -42,15 +42,9 @@ module Admin
                                                   params[:url_desc].downcase)
       end
       @published_items = @published_items.where('stories.type ~ ?', params[:story_type]) if params[:story_type].present?
-      if params[:location_id].present?
-        @published_items = @published_items.where(locations: { id: params[:location_id] })
-      end
-      if params[:place_category_id].present?
-        @published_items = @published_items.where(place_categories: { id: params[:place_category_id] })
-      end
-      if params[:story_category_id].present?
-        @published_items = @published_items.where(story_categories: { id: params[:story_category_id] })
-      end
+      @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
+      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
       @published_items = @published_items.distinct
       @published_items = @published_items.order(story_date_combined: :desc)
 

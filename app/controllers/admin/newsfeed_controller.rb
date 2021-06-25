@@ -95,9 +95,7 @@ module Admin
       new_position   = published_item.queue_position
       old_position   = params[:old_queue_position].to_i
 
-      if new_position && old_position && (new_position <= old_position)
-        PublishedItem.update(queue_position: (new_position - 1))
-      end
+      PublishedItem.update(queue_position: (new_position - 1)) if new_position && old_position && (new_position <= old_position)
       # resort all other positions
       PublishedItem.resequence_all_queue_positions
     end

@@ -44,9 +44,7 @@ class VideoScraper
 
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
-    if defined?(meta_keywords_scrape_pre['content'])
-      @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995)
-    end
+    @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995) if defined?(meta_keywords_scrape_pre['content'])
     # creator
     @link_channel_id = doc.css("link[itemprop='url']")&.map do |element|
                          element['href']
@@ -112,9 +110,7 @@ class VideoScraper
     if itemprop_pub_date_match.blank?
       unless num_date_match_pos.zero? && alpha_date_match_pos.zero?
         set_num_date(num_date_match) if num_date_match_pos != 0 && num_date_match_pos < alpha_date_match_pos
-        if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
-          set_alpha_date(alpha_month_num, alpha_date_match)
-        end
+        set_alpha_date(alpha_month_num, alpha_date_match) if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
         set_num_date(num_date_match) if num_date_match_pos != 0 && alpha_date_match_pos.zero?
         set_alpha_date(alpha_month_num, alpha_date_match) if num_date_match_pos.zero? && alpha_date_match_pos != 0
       end

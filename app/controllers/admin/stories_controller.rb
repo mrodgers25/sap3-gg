@@ -27,15 +27,9 @@ module Admin
       @stories = @stories.where('LOWER(urls.url_title) ~ ?', params[:url_title].downcase) if params[:url_title].present?
       @stories = @stories.where('LOWER(urls.url_desc) ~ ?', params[:url_desc].downcase) if params[:url_desc].present?
       @stories = @stories.where(state: params[:state]) if params[:state].present?
-      if params[:location_id].present?
-        @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] })
-      end
-      if params[:place_category_id].present?
-        @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] })
-      end
-      if params[:story_category_id].present?
-        @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] })
-      end
+      @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] }) if params[:location_id].present?
+      @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+      @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
       @stories = @stories.order(story_date_combined: :desc)
 
       @pagy, @stories = pagy(@stories)
