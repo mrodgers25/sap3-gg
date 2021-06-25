@@ -1,0 +1,18 @@
+<%= form_for([:admin, Comment.new]) do |f| %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :reference, value: reference %>
+  <%= f.hidden_field :reference_id, value: reference_id %>
+
+  <div class="form-group">
+    <%= f.label "Add a comment" %><br>
+    <%= f.text_area :note, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+  </div>
+
+<% end %>
+
+<br>

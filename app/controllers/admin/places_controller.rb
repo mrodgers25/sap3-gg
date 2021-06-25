@@ -8,6 +8,7 @@ class Admin::PlacesController < Admin::BaseAdminController
   end
 
   def show
+    @comments = Comment.where(reference: "place", reference_id: @place.id)
   end
 
   def new
