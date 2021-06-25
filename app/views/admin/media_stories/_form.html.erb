@@ -85,6 +85,20 @@
           </div>
         </div>
 
+         <% if @story.persisted? %>
+          <div class="form-group row">
+            <div class="col-2">
+              <%= f.label :place_ids, "Places:" %>
+            </div>
+            <div class="col-5">
+              <%= f.select :place_ids, options_from_collection_for_select(@places, 'id', 'name', @story.places.ids), {}, { multiple: true, id: 'story_place_ids' } %>
+            </div>
+             <div class="col-2">
+            <%= link_to "+ New Place", new_admin_place_path(story: @story.id), class: "btn btn-sm btn-success mr-4" %>
+          </div>
+        </div>
+        <% end %>
+
         <div class="form-group row">
           <div class="col-2">
             <%= f.label :location_ids, "Locations:" %>

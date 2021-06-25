@@ -10,6 +10,8 @@ class Story < ApplicationRecord
   accepts_nested_attributes_for :urls
   has_many :story_locations, dependent: :destroy
   has_many :locations, through: :story_locations
+  has_many :story_places, dependent: :destroy
+  has_many :places, through: :story_places
   has_many :story_story_categories, dependent: :destroy
   has_many :story_categories, through: :story_story_categories
   has_many :story_place_categories, dependent: :destroy
