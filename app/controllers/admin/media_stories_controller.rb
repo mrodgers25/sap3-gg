@@ -16,7 +16,7 @@ module Admin
       @story = MediaStory.new
       @screen_scraper = ScreenScraper.new
       @data_entry_begin_time = params[:data_entry_begin_time]
-      get_locations_and_categories
+      get_locations_places_and_categories
       get_domain_info(params[:source_url_pre])
 
       if @screen_scraper.scrape!(params[:source_url_pre])
@@ -38,7 +38,7 @@ module Admin
         redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was saved.'
       else
         get_domain_info(@story.urls.last.url_full)
-        get_locations_and_categories
+        get_locations_places_and_categories
         render :scrape
       end
     end
@@ -115,8 +115,10 @@ module Admin
       new_locations = Location.find(process_chosen_params(my_params[:location_ids]))
       story.locations = new_locations
 
-      new_places = Place.find(process_chosen_params(my_params[:place_ids]))
-      story.places = new_places
+      if my_params[:place_ids].any?
+        new_places = Place.find(process_chosen_params(my_params[:place_ids]))
+        story.places = new_places
+      end
 
       new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
       story.story_categories = new_story_categories
