@@ -6,7 +6,9 @@ RSpec.describe '/admin/places', type: :request do
   context 'with a logged out user' do
     it 'redirects to the log in screen' do
       get admin_places_path
+
       expect(response.status).to eq(302)
+      expect(response.body).to eq('<html><body>You are being <a href="http://www.example.com/users/sign_in">redirected</a>.</body></html>')
     end
   end
 
@@ -14,13 +16,14 @@ RSpec.describe '/admin/places', type: :request do
     let(:user) { create(:user) }
 
     before do
-      # TODO(alishaevn): figure out why the user isn't being signed in
-      login_as user
+      sign_in user
     end
 
-    xit 'redirects to the log in screen' do
+    it 'redirects to the home screen' do
       get admin_places_path
+
       expect(response.status).to eq(302)
+      expect(response.body).to eq('<html><body>You are being <a href="http://www.example.com/">redirected</a>.</body></html>')
     end
   end
 
@@ -28,16 +31,14 @@ RSpec.describe '/admin/places', type: :request do
     let(:admin_user) { create(:admin_user) }
 
     before do
-      # TODO(alishaevn): figure out why the user isn't being signed in
       sign_in admin_user
     end
 
-    xit 'renders a successful response' do
-      # admin_user = create(:admin_user)
-      # sign_in admin_user
+    it 'renders a successful response' do
       get admin_places_path
-      # byebug
+
       expect(response).to be_successful
+      expect(response.body).to include('<h4><i class="fas fa-map-marker-alt mr-1"></i> Places</h4>')
     end
   end
 end
