@@ -5,7 +5,7 @@ class Address < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   def full_address
-    # [street_address, locality, region, postal_code, country].compact.split('').flatten.join(', ')
+    [street_address, locality, region, postal_code, country].compact.split('').flatten.join(', ')
   end
 
   def address_changed?
