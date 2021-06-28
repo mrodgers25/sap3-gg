@@ -25,25 +25,47 @@
     <hr class="my-4">
 
      Status:  <%= @place.place_status_option.name %><br>
-    <br>
+   
+     <% if @comments.any? %>
+        <table class="mt-4">
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= time_ago_in_words(comment.created_at) %> ago</td>
+              <td><%= comment.user.email %></td>
+              <td><%= comment.note %></td>
+            </tr>
+          <% end %>
+        </table>   
+      <% end %> 
+
     <% if @place.address %>
-      <%= @place.address.full_address %>
+      <%= @place.address.full_address %><br>
+  
+       <div id="map"></div>
+ <script>
+    var lat = <%= @place.address.latitude %>
+    var long = <%= @place.address.longitude %>
+    var mymap = L.map('map').setView([lat,long], 15);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+
+    L.marker([lat, long]).addTo(mymap)
+		.bindPopup("<b><%= @place.name %>").openPopup();
+
+	  var popup = L.popup();
+</script>
+
     <% end %>
 
-    <% if @comments.any? %>
-    <table class="mt-4">
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= time_ago_in_words(comment.created_at) %> ago</td>
-          <td><%= comment.user.email %></td>
-          <td><%= comment.note %></td>
-        </tr>
-      <% end %>
-    </table>   
-    <% end %> 
-
-
-    <div class="header text-center">
+    
+    <div class="mt-4 header text-center">
       <h4><i class="fas fa-book mr-1"></i>Stories</h4>
     </div>
       <hr class="my-4">

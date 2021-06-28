@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 require 'nokogiri'
 require 'sanitize'
@@ -42,9 +44,7 @@ class VideoScraper
 
     # meta keyword
     meta_keywords_scrape_pre = doc.css("meta[name='keywords']").first
-    if defined?(meta_keywords_scrape_pre['content'])
-      @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995)
-    end
+    @meta_keywords = meta_keywords_scrape_pre['content'].strip.truncate(995) if defined?(meta_keywords_scrape_pre['content'])
     # creator
     @link_channel_id = doc.css("link[itemprop='url']")&.map do |element|
                          element['href']
@@ -108,13 +108,11 @@ class VideoScraper
     end
 
     if itemprop_pub_date_match.blank?
-      unless num_date_match_pos == 0 && alpha_date_match_pos == 0
+      unless num_date_match_pos.zero? && alpha_date_match_pos.zero?
         set_num_date(num_date_match) if num_date_match_pos != 0 && num_date_match_pos < alpha_date_match_pos
-        if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
-          set_alpha_date(alpha_month_num, alpha_date_match)
-        end
-        set_num_date(num_date_match) if num_date_match_pos != 0 && alpha_date_match_pos == 0
-        set_alpha_date(alpha_month_num, alpha_date_match) if num_date_match_pos == 0 && alpha_date_match_pos != 0
+        set_alpha_date(alpha_month_num, alpha_date_match) if alpha_date_match_pos != 0 && num_date_match_pos >= alpha_date_match_pos
+        set_num_date(num_date_match) if num_date_match_pos != 0 && alpha_date_match_pos.zero?
+        set_alpha_date(alpha_month_num, alpha_date_match) if num_date_match_pos.zero? && alpha_date_match_pos != 0
       end
     else
       set_itemprop_pub_date(itemprop_pub_date_match)
@@ -160,14 +158,14 @@ class VideoScraper
     @year = itemprop_pub_date_match[:iyear].to_i
     @month = itemprop_pub_date_match[:imonth].to_i
     @day = itemprop_pub_date_match[:iday].to_i
-    @day = @day == 0 ? 1 : @day
+    @day = @day.zero? ? 1 : @day
   end
 
   def set_num_date(num_date_match)
     # puts "set_num_date"
     @month = num_date_match[:dmonth].to_i
     @day = num_date_match[:dday].to_i
-    @day = @day == 0 ? 1 : @day
+    @day = @day.zero? ? 1 : @day
     @year = num_date_match[:dyear].to_i
   end
 
@@ -175,7 +173,7 @@ class VideoScraper
     # puts "set_alpha_date"
     @month = alpha_month_num.to_i
     @day = alpha_date_match[:day].to_i
-    @day = @day == 0 ? 1 : @day
+    @day = @day.zero? ? 1 : @day
     @year = alpha_date_match[:year].to_i
   end
 end

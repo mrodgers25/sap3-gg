@@ -36,10 +36,10 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.id %></td>
-                <td><%= user.first_name.titleize %></td>
-                <td><%= user.last_name.titleize %></td>
+                <td><%= user.first_name&.titleize %></td>
+                <td><%= user.last_name&.titleize %></td>
                 <td><%= user.email %></td>
-                <td><%= user.role.titleize %></td>
+                <td><%= user.role&.titleize %></td>
                 <td><%= user.city_preference %></td>
                 <td><%= pretty_date_format(user.created_at) %></td>
                 <td><%= human_bool(user.confirmed_at.present?) %></td>

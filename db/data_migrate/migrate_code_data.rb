@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class MigrateCodeData
   def self.run!
     Story.all.each do |story|
       # locations
-      next unless story.location_code.present?
+      next if story.location_code.blank?
 
       loc_codes = story.location_code.split(',')
       loc_codes.each do |loc_code|
@@ -13,7 +15,7 @@ class MigrateCodeData
       end
 
       # place categories
-      next unless story.place_category.present?
+      next if story.place_category.blank?
 
       p_cat_codes = story.place_category.split(',')
       p_cat_codes.each do |p_code|
@@ -24,7 +26,7 @@ class MigrateCodeData
       end
 
       # story categories
-      next unless story.story_category.present?
+      next if story.story_category.blank?
 
       s_cat_codes = story.story_category.split(',')
       s_cat_codes.each do |s_code|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
@@ -7,9 +9,10 @@ class ApplicationController < ActionController::Base
   def configure_devise_permitted_parameters
     registration_params = %i[first_name last_name city_preference email password password_confirmation]
 
-    if params[:action] == 'update'
+    case params[:action]
+    when 'update'
       devise_parameter_sanitizer.permit(:account_update, keys: registration_params << :current_password)
-    elsif params[:action] == 'create'
+    when 'create'
       devise_parameter_sanitizer.permit(:sign_up, keys: registration_params)
     end
   end

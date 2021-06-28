@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def toggle_sidebar_state
     session[:sb_closed] = if session[:sb_closed].nil?

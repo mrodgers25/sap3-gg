@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Location < ApplicationRecord
   validates :code, presence: true
   validates :code, uniqueness: true

@@ -85,7 +85,6 @@
           </div>
         </div>
 
-         <% if @story.persisted? %>
           <div class="form-group row">
             <div class="col-2">
               <%= f.label :place_ids, "Places:" %>
@@ -97,8 +96,7 @@
             <%= link_to "+ New Place", new_admin_place_path(story: @story.id), class: "btn btn-sm btn-success mr-4" %>
           </div>
         </div>
-        <% end %>
-
+ 
         <div class="form-group row">
           <div class="col-2">
             <%= f.label :location_ids, "Locations:" %>

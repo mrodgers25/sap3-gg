@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Story < ApplicationRecord
   include AASM
   include ApplicationHelper
@@ -64,7 +66,7 @@ class Story < ApplicationRecord
   end
 
   def check_state_and_update_published_item
-    'completed' == state ? create_published_item : destroy_published_item
+    state == 'completed' ? create_published_item : destroy_published_item
   end
 
   def create_published_item
@@ -109,11 +111,11 @@ class Story < ApplicationRecord
 
   def set_story_track_fields
     self.author_track = raw_author_scrape == author
-    self.data_entry_time = (Time.now - data_entry_begin_time.to_time).round.to_i if data_entry_begin_time.present?
+    self.data_entry_time = (Time.zone.now - data_entry_begin_time.to_time).round.to_i if data_entry_begin_time.present?
     self.story_year_track = raw_story_year_scrape.to_i == story_year.to_i
     self.story_month_track = raw_story_month_scrape.to_i == story_month.to_i
     self.story_date_track  = raw_story_date_scrape.to_i == story_date.to_i
-    true  # this returns a true at the end of the method; otherwise method fails if last statement is false
+    true # this returns a true at the end of the method; otherwise method fails if last statement is false
   end
 
   def set_story_complete
@@ -187,7 +189,7 @@ class Story < ApplicationRecord
   end
 
   def display_publisher
-    return nil unless latest_url.media_owner.present?
+    return nil if latest_url.media_owner.blank?
 
     latest_url.media_owner&.title
   end

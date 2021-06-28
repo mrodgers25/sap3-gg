@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StoriesHelper
   def edit_admin_story_path_helper(story)
     if story.media_story?

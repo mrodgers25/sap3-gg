@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :newsfeed do
   desc 'Posts the next item in the queue to the newsfeed. It also clears out the newsfeed of old stories.'
   task post_item_from_queue: :environment do
@@ -20,18 +22,18 @@ namespace :newsfeed do
       # Get the story next in the queue
       queued_item = PublishedItem.where(state: 'queued').order(:queue_position, :queued_at).first
       # Post the story
-      queued_item.post! if queued_item
+      queued_item&.post!
 
       # Get items that are set to be cleared by admin
       items_to_clear = PublishedItem.where(state: 'newsfeed').where('clear_at < ?', Time.zone.now)
-      items_to_clear.each { |item| item.clear! }
+      items_to_clear.each(&:clear!)
 
       # Retrieve the remaining items and remove those above the limit
       newsfeed_items = PublishedItem.where(state: 'newsfeed').order(pinned: :desc, posted_at: :desc)
       if newsfeed_items.size > AdminSetting.newsfeed_display_limit
         amount_to_remove = newsfeed_items.size - AdminSetting.newsfeed_display_limit
         items_to_clear = newsfeed_items.last(amount_to_remove)
-        items_to_clear.each { |item| item.clear! }
+        items_to_clear.each(&:clear!)
       end
     end
   end

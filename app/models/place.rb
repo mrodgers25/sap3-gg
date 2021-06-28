@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# TODO(alishaevn): add a comment on what this is about
 class Place < ApplicationRecord
   attr_accessor :story_id
 
