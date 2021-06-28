@@ -2,5 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Address, type: :model do
-end
+# This empty block triggers a rubocop error so I'm commenting it out
+# until we write specs
+
+# RSpec.describe Address, type: :model do
+# end

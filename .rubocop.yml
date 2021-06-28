@@ -28,8 +28,13 @@ Style/Documentation:
 Layout/LineLength:
   Max: 150
 
-Style/Documentation: 
+Style/Documentation:
   Enabled: false
 
 Style/StringConcatenation:
   Enabled: false
+
+Metrics/BlockLength:
+  Max: 40
+  Exclude:
+    - 'spec/**/*.rb'

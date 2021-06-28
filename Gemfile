@@ -49,8 +49,6 @@ gem 'unirest'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -71,14 +69,12 @@ group :development do
   # Email Catcher for Dev
   gem 'letter_opener'
 
-  # Debugging/Console
-  gem 'pry-byebug'
-  gem 'pry-rails'
 end
 
 group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
@@ -86,6 +82,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'faker'
+  # Debugging/Console
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'shoulda-matchers', '~> 4.0'
 end
 
