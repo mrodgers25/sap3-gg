@@ -25,10 +25,22 @@
     <hr class="my-4">
 
      Status:  <%= @place.place_status_option.name %><br>
-    <br>
+   
+     <% if @comments.any? %>
+        <table class="mt-4">
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= time_ago_in_words(comment.created_at) %> ago</td>
+              <td><%= comment.user.email %></td>
+              <td><%= comment.note %></td>
+            </tr>
+          <% end %>
+        </table>   
+      <% end %> 
+
     <% if @place.address %>
       <%= @place.address.full_address %><br>
-      <br>
+  
        <div id="map"></div>
  <script>
     var lat = <%= @place.address.latitude %>
@@ -45,27 +57,15 @@
     }).addTo(mymap);
 
     L.marker([lat, long]).addTo(mymap)
-		.bindPopup("<b><%= @place.address.full_address %>").openPopup();
+		.bindPopup("<b><%= @place.name %>").openPopup();
 
 	  var popup = L.popup();
 </script>
 
     <% end %>
 
-    <% if @comments.any? %>
-    <table class="mt-4">
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= time_ago_in_words(comment.created_at) %> ago</td>
-          <td><%= comment.user.email %></td>
-          <td><%= comment.note %></td>
-        </tr>
-      <% end %>
-    </table>   
-    <% end %> 
-
-
-    <div class="header text-center">
+    
+    <div class="mt-4 header text-center">
       <h4><i class="fas fa-book mr-1"></i>Stories</h4>
     </div>
       <hr class="my-4">
