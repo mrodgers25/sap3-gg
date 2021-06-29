@@ -1,18 +1,16 @@
-<%= form_for([:admin, Comment.new]) do |f| %>
+<div class="row">
+  <div class="col-12">
+    <%= form_for([:admin, Comment.new], html: {class: "float-right w-50"}) do |f| %>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :reference, value: reference %>
-  <%= f.hidden_field :reference_id, value: reference_id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :reference, value: reference %>
+      <%= f.hidden_field :reference_id, value: reference_id %>
 
-  <div class="form-group">
-    <%= f.label "Add a comment" %><br>
-    <%= f.text_area :note, class: "form-control" %>
+      <div class="form-group form-inline mb-2">
+        <%= f.text_area :note, class: "form-control flex-fill mr-2" %>
+        <%= f.submit "Save", class: 'btn btn-md btn-primary mx-2' %>
+      </div>
+
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
-  </div>
-
-<% end %>
-
-<br>
+</div>
