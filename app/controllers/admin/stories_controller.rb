@@ -1,5 +1,5 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update, :places, :places_update]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -34,6 +34,18 @@ class Admin::StoriesController < Admin::BaseAdminController
 
     def show
       render layout: 'application_no_nav'
+    end
+
+    def places
+      @places = Place.order(:name)
+      @place= Place.new
+    end
+
+    def places_update
+      place_ids = params[:media_story][:place_ids].reject(&:empty?).map(&:to_i) if params[:media_story][:place_ids].present?
+      new_places = Place.find(place_ids)
+      @story.places = new_places
+      redirect_to admin_stories_path
     end
 
     def images
