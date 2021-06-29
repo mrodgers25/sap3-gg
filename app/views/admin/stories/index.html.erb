@@ -50,6 +50,9 @@
                 <%= link_to admin_story_path(story), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Delete story', confirm: 'Are you sure?' } do %>
                   <i class="fas fa-times"></i>
                 <% end %>
+                <%= link_to places_admin_story_path(story), class: "btn btn-sm btn-outline-info", data: { toggle: 'tooltip', placement: 'top', title: 'Add Places' } do %>
+                  <i class="fas fa-map-marker-alt"></i>
+                <% end %>
               </td>
             </tr>
           <% end %>
