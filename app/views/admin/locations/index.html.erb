@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div class="links mb-2 text-right">
-    <%= link_to new_admin_address_path, class: "btn btn-sm btn-success" do %>
-      <i class="fas fa-plus mr-1"></i> Add Address
+    <%= link_to new_admin_location_path, class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-plus mr-1"></i> Add Location
     <% end %>
   </div>
   <div class="jumbotron bg-white admin-index-page">
     <div class="header text-center">
-      <h4><i class="fas fa-map-marker-alt mr-1"></i> Addresses</h4>
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> Locations</h4>
     </div>
 
     <hr class="my-4">
@@ -22,19 +22,19 @@
           </tr>
         </thead>
         <tbody>
-          <% @addresses.each do |address| %>
+          <% @locations.each do |location| %>
             <tr>
-              <td><%= address.id %></td>
-              <td><%= address.full_address %></td>
-              <td><%= pretty_date_format(address.created_at) %></td>
+              <td><%= location.id %></td>
+              <td><%= location.full_address %></td>
+              <td><%= pretty_date_format(location.created_at) %></td>
               <td class="action-links">
-                  <%= link_to admin_address_path(address), class: "btn btn-sm btn-outline-success" do %>
+                  <%= link_to admin_location_path(location), class: "btn btn-sm btn-outline-success" do %>
                   <i class="fas fa-eye"></i>
                 <% end %>
-                <%= link_to edit_admin_address_path(address), class: "btn btn-sm btn-outline-warning" do %>
+                <%= link_to edit_admin_location_path(location), class: "btn btn-sm btn-outline-warning" do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to admin_address_path(address), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                <%= link_to admin_location_path(location), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
                   <i class="fas fa-times"></i>
                 <% end %>
               </td>
