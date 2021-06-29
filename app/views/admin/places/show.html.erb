@@ -9,12 +9,7 @@
   </div>
 
 <div class="collapse" id="add-comment">
-  <div class="row">
-    <div class="col-6"></div>
-    <div class="col-6">
-        <%= render 'admin/comments/form', reference: "place", reference_id: @place.id %>
-    </div>
-  </div>
+    <%= render 'admin/comments/form', reference: "place", reference_id: @place.id %>
 </div>
 
   <div class="jumbotron bg-white admin-index-page">
@@ -26,18 +21,6 @@
 
      Status:  <%= @place.place_status_option.name %><br>
    
-     <% if @comments.any? %>
-        <table class="mt-4">
-          <% @comments.each do |comment| %>
-            <tr>
-              <td><%= time_ago_in_words(comment.created_at) %> ago</td>
-              <td><%= comment.user.email %></td>
-              <td><%= comment.note %></td>
-            </tr>
-          <% end %>
-        </table>   
-      <% end %> 
-
     <% if @place.address %>
       <%= @place.address.full_address %><br>
   
@@ -71,11 +54,16 @@
       <hr class="my-4">
     <% if @place.stories.any? %>
       <% @place.stories.each do |story| %>
-       <%= render "admin/stories/story", story: story %>
+        <div class="row">
+          <div class="col-2"><%= story.story_display_date %></div>
+          <div class="col-8"><%= link_to story.display_title, admin_story_path(story.id), target: '_blank' %></div>
+        </div>
       <% end %>
     <% else %>
       <p class="no-stories-text">No Stories Found</p>
     <% end %>
+
+    <%= render 'admin/comments/comments', comments: @comments %>
 
   </div>
 

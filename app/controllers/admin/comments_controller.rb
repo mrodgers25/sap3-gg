@@ -4,9 +4,7 @@ module Admin
   class CommentsController < Admin::BaseAdminController
     def create
       @comment = Comment.create(comment_params)
-      if @comment.save
-        flash[:notice] = 'Comment Saved'
-      else
+      unless @comment.save
         flash[:info] = @comment.errors.full_messages
       end
       redirect_location = "admin_#{@comment.reference}s_path(#{@comment.reference_id})"

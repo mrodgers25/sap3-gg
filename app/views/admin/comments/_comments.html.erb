@@ -1,0 +1,23 @@
+  <div class="mt-5 header text-center">
+    <h4><i class="fas fa-book mr-1"></i>Comments</h4>
+  </div>
+
+  <hr class="my-4">
+
+<% if comments.any? %>
+
+  <table class="table table-striped mt-4">
+    <% comments.each do |comment| %>
+      <tr>
+        <td><%= time_ago_in_words(comment.created_at) %> ago</td>
+        <td><%= comment.note %></td>
+        <td><%= comment.user.email %></td>
+      </tr>
+    <% end %>
+  </table>   
+
+<% else %>
+
+  <p class="no-stories-text">No Comments Found</p>
+
+<% end %> 
