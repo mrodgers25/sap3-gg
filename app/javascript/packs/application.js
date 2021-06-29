@@ -5,6 +5,8 @@ require("jquery")
 require("bootstrap")
 require("social-share-button")
 require("chosen-js")
+require("trix")
+require("@rails/actiontext")
 
 // ICONS
 import "@fortawesome/fontawesome-free/css/all"
@@ -15,4 +17,3 @@ import '../js/main.js'
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
-

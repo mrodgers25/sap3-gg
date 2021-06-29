@@ -100,3 +100,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .byebug_history
+
+/storage

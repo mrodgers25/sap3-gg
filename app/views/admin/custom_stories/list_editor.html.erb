@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: nil, title: '' } %>
+
+  <div class="jumbotron bg-white admin-index-page mt-3">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <dl class="row">
+          <dt class="col-3">Editor Tagline:</dt>
+          <dd class="col-9"><%= @story.editor_tagline.presence || '-' %></dd>
+
+          <dt class="col-3">Hashtags:</dt>
+          <dd class="col-9"><%= @story.hashtags.presence || '-' %></dd>
+        </dl>
+
+        <hr>
+
+        <div class="header text-center">
+          <h5><i class="fas fa-list mr-1"></i> Current List</h5>
+        </div>
+        <div class="table-div">
+          <% if @list_items.present? %>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Position</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Publisher</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @list_items.each do |list_item| %>
+                  <tr>
+                    <td><%= list_item.position %></td>
+                    <td style="width: 300px">
+                      <%= link_to list_item.story.display_title, admin_story_path(list_item.story), target: '_blank', class: 'text-dark' %>
+                      </td>
+                    <td style="width: 150px">
+                      <%= list_item.story.media_owner || '-' %>
+                      </td>
+                    <td><%= list_item.story.story_display_date || '-' %></td>
+                    <td style="width: 100px">
+                      <i class='<%= colored_icon_for_story_type(list_item.story&.type) %>'></i> <%= list_item.story.type.underscore.split("_").first.capitalize! || '-' %>
+                    </td>
+                    <td style="width: 115px;">
+                      <%= link_to update_list_admin_custom_story_path(@story, list_item_id: list_item.id, action_type: 'remove'), method: :patch, class: "btn btn-sm btn-outline-danger", data: { toggle: 'tooltip', placement: 'top', title: 'Remove from list' } do %>
+                        <i class="fas fa-minus"></i>
+                      <% end %>
+                      <%= link_to list_edit_admin_custom_story_path(@story, list_item_id: list_item.id, action_type: 'position'), class: "btn btn-sm btn-outline-warning", data: { toggle: 'tooltip', placement: 'top', title: 'Edit position' } do %>
+                        <i class="fas fa-cog"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p class='text-center'> No stories currently added.</p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 border border-grey">
+        <div class="header text-center mt-3">
+          <h5><i class="fas fa-plus mr-1"></i> Add Stories</h5>
+        </div>
+
+        <hr class="mt-3 mb-2">
+
+        <%= form_tag(list_editor_admin_custom_story_path(@story), method: :get) do %>
+          <div class="row filters">
+            <div class="col-6 col-md-4 mt-1 mt-md-0">
+              <%= text_field_tag :url_title, params[:url_title], placeholder: 'Search Title...', maxlength: 100, size: 100, class: "form-control form-control-sm search-field" %>
+            </div>
+            <div class="col-6 col-md-4 mt-1 mt-md-0">
+              <%=
+                select_tag :story_type,
+                options_from_collection_for_select(Story.all_types, 'to_s', 'to_s', params[:story_type]),
+                prompt: 'All Types',
+                class: 'form-control form-control-sm',
+                id: 'type-select'
+              %>
+            </div>
+            <div class="col-12 col-md-4 mt-1 mt-md-0">
+              <%= submit_tag "Filter", class: 'btn btn-sm btn-secondary' %>
+            </div>
+          </div>
+        <% end %>
+
+        <hr class="mt-2 mb-3">
+
+        <div class="table-div">
+          <% if @published_items.present? %>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Publisher</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @published_items.each do |published_item| %>
+                  <tr>
+                    <td style="width: 300px">
+                      <%= link_to published_item.publishable.display_title, admin_story_path(published_item.publishable), target: '_blank', class: 'text-dark' %>
+                      </td>
+                    <td style="width: 150px">
+                      <%= published_item.publishable.media_owner || '-' %>
+                      </td>
+                    <td><%= published_item.publishable.story_display_date || '-' %></td>
+                    <td style="width: 100px">
+                      <i class='<%= colored_icon_for_story_type(published_item.publishable&.type) %>'></i> <%= published_item.publishable.type.underscore.split("_").first.capitalize! || '-' %>
+                    </td>
+                    <td style="width: 50px;">
+                      <%= button_to update_list_admin_custom_story_path(@story, story_id: published_item.publishable.id, action_type: 'add'), method: 'patch', class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Add to list' } do %>
+                        <i class="fas fa-plus"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p class='text-center'> No stories matching that search. </p>
+          <% end %>
+        </div>
+
+        <hr class="my-2">
+
+        <div class='pagination'>
+          <%== pagy_bootstrap_nav(@pagy) if @pagy %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

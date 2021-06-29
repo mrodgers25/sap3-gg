@@ -7,7 +7,6 @@ document.addEventListener("turbolinks:load", function () {
       contentType: "application/json",
       url: "/sessions/toggle_sidebar_state",
       success: function (result) {
-        console.log(result);
         if (result.sb_closed) {
           $("#wrapper").addClass("sb-closed");
         } else {

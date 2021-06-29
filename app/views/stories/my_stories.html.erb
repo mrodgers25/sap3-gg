@@ -27,13 +27,25 @@
             <% story = published_item.publishable %>
             <tr>
               <td class="story-image">
-                <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), story_path(story.permalink), target: '_blank' if story.latest_image %>
+                <% if story.type.in?(['MediaStory', 'VideoStory']) %>
+                  <%= link_to image_tag(story.latest_image.src_url, class: "grid-image"), view_stories_path(permalink: story.permalink), target: '_blank' if story.latest_image %>
+                <% else %>
+                  <%= link_to view_stories_path(permalink: story.permalink), target: '_blank' do %>
+                    <%= render partial: 'shared/custom_stories/image', locals: { story: story, path: view_stories_path(permalink: story.permalink) } %>
+                  <% end %>
+                <% end %>
               </td>
-              <td style="width: 600px;"><%= link_to story.latest_url&.url_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %></td>
+              <td style="width: 600px;">
+                <% if story.type.in?(['MediaStory', 'VideoStory']) %>
+                  <%= link_to story.display_title, story.latest_url&.encoded_url, target: '_blank', class: 'text-dark' %>
+                <% else %>
+                  <%= story.display_title %>
+                <% end %>
+              </td>
               <td style="width: 200px;"><%= story.media_owner_and_date_line || '-' %></td>
               <td style="width: 100px;"><%= published_item.save_date.strftime("%-m/%d/%Y") || '-' %></td>
               <td style="width: 150px;">
-                <%= link_to story_path(story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
+                <%= link_to view_stories_path(permalink: story.permalink), class: "btn btn-sm btn-outline-primary m-1 w-100", target: '_blank' do %>
                   <i class="fas fa-search mr-1"></i> View
                 <% end %>
                 <%= button_to forget_story_path(story.id), class: "btn btn-sm btn-outline-dark m-1 w-100", target: '_blank' do %>

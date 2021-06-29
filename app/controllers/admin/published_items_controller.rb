@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-module Admin
-  class PublishedItemsController < Admin::BaseAdminController
-    before_action :set_published_item, only: %i[display unpublish edit update add_to_queue]
+  def index
+    @story_regions    = StoryRegion.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
 
     def index
       @locations        = Location.order('ascii(name)')
@@ -11,10 +12,10 @@ module Admin
 
       @published_items = PublishedItem.joins("
       INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
-      INNER JOIN urls ON urls.story_id = stories.id
+      LEFT JOIN urls ON urls.story_id = stories.id
       LEFT JOIN stories_users ON stories_users.story_id = stories.id
-      LEFT JOIN story_locations ON story_locations.story_id = stories.id
-      LEFT JOIN locations ON locations.id = story_locations.location_id
+      LEFT JOIN stories_story_regions ON stories_story_regions.story_id = stories.id
+      LEFT JOIN story_regions ON story_regions.id = stories_story_regions.story_region_id
       LEFT JOIN story_place_categories ON story_place_categories.story_id = stories.id
       LEFT JOIN place_categories ON place_categories.id = story_place_categories.place_category_id
       LEFT JOIN story_story_categories ON story_story_categories.story_id = stories.id
@@ -32,21 +33,15 @@ module Admin
         END AS story_date_combined
       "
     )
-      @published_items = @published_items.where(state: 'displaying')
-      if params[:url_title].present?
-        @published_items = @published_items.where('LOWER(urls.url_title) ~ ?',
-                                                  params[:url_title].downcase)
-      end
-      if params[:url_desc].present?
-        @published_items = @published_items.where('LOWER(urls.url_desc) ~ ?',
-                                                  params[:url_desc].downcase)
-      end
-      @published_items = @published_items.where('stories.type ~ ?', params[:story_type]) if params[:story_type].present?
-      @published_items = @published_items.where(locations: { id: params[:location_id] }) if params[:location_id].present?
-      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
-      @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
-      @published_items = @published_items.distinct
-      @published_items = @published_items.order(story_date_combined: :desc)
+    @published_items = @published_items.where(state: 'displaying')
+    @published_items = @published_items.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    @published_items = @published_items.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
+    @published_items = @published_items.where("stories.type ~ ?", params[:story_type]) if params[:story_type].present?
+    @published_items = @published_items.where(story_regions: {id: params[:story_region_id]}) if params[:story_region_id].present?
+    @published_items = @published_items.where(place_categories: {id: params[:place_category_id]}) if params[:place_category_id].present?
+    @published_items = @published_items.where(story_categories: {id: params[:story_category_id]}) if params[:story_category_id].present?
+    @published_items = @published_items.distinct
+    @published_items = @published_items.order(story_date_combined: :desc)
 
       @pagy, @published_items = pagy(@published_items)
     end

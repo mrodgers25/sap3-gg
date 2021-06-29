@@ -4,28 +4,32 @@ class Story < ApplicationRecord
   include AASM
   include ApplicationHelper
 
-  attr_accessor :location_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time,
-                :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
+  attr_accessor :story_region_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   has_and_belongs_to_many :users
   has_many :urls, inverse_of: :story, dependent: :destroy
   accepts_nested_attributes_for :urls
-  has_many :story_locations, dependent: :destroy
-  has_many :locations, through: :story_locations
   has_many :story_places, dependent: :destroy
   has_many :places, through: :story_places
+  has_many :stories_story_regions, dependent: :destroy
+  has_many :story_regions, through: :stories_story_regions
   has_many :story_story_categories, dependent: :destroy
   has_many :story_categories, through: :story_story_categories
   has_many :story_place_categories, dependent: :destroy
   has_many :place_categories, through: :story_place_categories
   has_many :story_activities, dependent: :destroy
-  has_many :published_items, as: :publishable
+  has_many :published_items, as: :publishable, dependent: :destroy
   has_many :newsfeed_activities, as: :trackable
   has_one :media_owner, through: :urls
+  has_one :external_image, dependent: :destroy
+  accepts_nested_attributes_for :external_image
+  has_one :list, dependent: :destroy
+  has_many :list_items, through: :list
 
   before_validation :set_story_track_fields, on: :create
   after_validation :set_story_complete
   after_update :check_state_and_update_published_item
+  after_create :create_permalink
 
   aasm column: :state do
     state :no_status, initial: true
@@ -63,6 +67,10 @@ class Story < ApplicationRecord
 
   def video_story?
     type == 'VideoStory'
+  end
+
+  def custom_story?
+    type == 'CustomStory'
   end
 
   def check_state_and_update_published_item
@@ -119,10 +127,15 @@ class Story < ApplicationRecord
   end
 
   def set_story_complete
-    story_check = (editor_tagline != '' and
-        (!story_year.nil? or !story_month.nil? or !story_date.nil?) and
-        (urls.first.url_type != '' and urls.first.url_title != '' and urls.first.url_desc != '' and urls.first.url_domain != ''))
-    self[:story_complete] = story_check ? true : false
+    if self.type == 'CustomStory'
+      complete = true
+    else
+      complete = (self.editor_tagline != '' &&
+        (self.story_year != nil or self.story_month != nil or self.story_date != nil) &&
+        (self.urls.first.url_type != '' && self.urls.first.url_title != '' && self.urls.first.url_desc != '' && self.urls.first.url_domain != ''))
+    end
+
+    write_attribute(:story_complete, complete)
   end
 
   # currently not used
@@ -131,7 +144,13 @@ class Story < ApplicationRecord
     where_str += ' AND (stories.story_year IS NOT NULL OR stories.story_month IS NOT NULL OR stories.story_date IS NOT NULL)'  # at least one date value
     where_str += " AND stories.editor_tagline != '' "
     where_str += " AND (urls.url_type != '' AND urls.url_title != '' AND urls.url_desc != '' AND urls.url_domain != '')"
-    where_str += " AND stories.id = #{id}"
+    where_str += " AND stories.id = #{self.id}"
+
+    Story.joins("LEFT OUTER JOIN stories_story_regions sl ON (stories.id = sl.story_id)")
+    .joins("LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)")
+    .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
+    .joins(:urls)
+    .where(where_str).present?
 
     Story.joins('LEFT OUTER JOIN story_locations sl ON (stories.id = sl.story_id)')
          .joins('LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)')
@@ -157,7 +176,7 @@ class Story < ApplicationRecord
   end
 
   def title
-    latest_url.url_title
+    display_title
   end
 
   def story_display_date
@@ -180,12 +199,12 @@ class Story < ApplicationRecord
     end
   end
 
-  def display_location
-    locations.pluck(:name).join(', ')
+  def display_story_region
+    story_regions.pluck(:name).join(', ')
   end
 
-  def display_location_codes
-    locations.pluck(:code).join(', ')
+  def display_story_region_codes
+    story_regions.pluck(:code).join(', ')
   end
 
   def display_publisher
@@ -203,9 +222,17 @@ class Story < ApplicationRecord
   end
 
   def create_permalink
-    url_title = latest_url.url_title.parameterize
+    url_title = display_title.parameterize
     rand_hex = SecureRandom.hex(2)
     permalink = "#{rand_hex}/#{url_title}"
     update_attribute(:permalink, permalink.to_s)
+  end
+
+  def display_title
+    latest_url&.url_title || '-'
+  end
+
+  def display_url
+    latest_url&.url_full || '-'
   end
 end

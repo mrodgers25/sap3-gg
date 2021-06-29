@@ -1,5 +1,0 @@
-<% if @story.type == 'MediaStory' %>
-  <%= render partial: 'shared/media_stories/show', locals: { story: @story } %>
-<% elsif @story.type == 'VideoStory' %>
-  <%= render partial: 'shared/video_stories/show', locals: { story: @story } %>
-<% end %>

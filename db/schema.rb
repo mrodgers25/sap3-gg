@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -99,6 +109,15 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "external_images", force: :cascade do |t|
+    t.integer "story_id"
+    t.string "src_url"
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.text "src_url"
     t.text "alt_text"
@@ -111,12 +130,22 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.index ["url_id"], name: "index_images_on_url_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "code", null: false
-    t.string "name"
+  create_table "list_items", force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "story_id"
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["code"], name: "index_locations_on_code", unique: true
+    t.index ["list_id"], name: "index_list_items_on_list_id"
+    t.index ["position"], name: "index_list_items_on_position"
+    t.index ["story_id"], name: "index_list_items_on_story_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "story_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_lists_on_story_id"
   end
 
   create_table "media_owners", force: :cascade do |t|
@@ -234,8 +263,19 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.boolean "video_unlisted", default: false
     t.integer "video_likes", default: 0
     t.integer "video_dislikes", default: 0
+    t.integer "internal_image_width"
+    t.integer "internal_image_height"
+    t.boolean "savable", default: false
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"
+  end
+
+  create_table "stories_story_regions", force: :cascade do |t|
+    t.integer "story_id", null: false
+    t.integer "story_region_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id", "story_region_id"], name: "index_stories_story_regions_on_story_id_and_story_region_id", unique: true
   end
 
   create_table "stories_users", force: :cascade do |t|
@@ -265,14 +305,6 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.index ["code"], name: "index_story_categories_on_code", unique: true
   end
 
-  create_table "story_locations", force: :cascade do |t|
-    t.integer "story_id", null: false
-    t.integer "location_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["story_id", "location_id"], name: "index_story_locations_on_story_id_and_location_id", unique: true
-  end
-
   create_table "story_place_categories", force: :cascade do |t|
     t.integer "story_id", null: false
     t.integer "place_category_id", null: false
@@ -288,6 +320,14 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["place_id"], name: "index_story_places_on_place_id"
     t.index ["story_id"], name: "index_story_places_on_story_id"
+  end
+
+  create_table "story_regions", force: :cascade do |t|
+    t.string "code", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_story_regions_on_code", unique: true
   end
 
   create_table "story_story_categories", force: :cascade do |t|

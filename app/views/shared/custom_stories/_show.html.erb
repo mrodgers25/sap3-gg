@@ -1,0 +1,84 @@
+<div class="story-show card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="back-button text-left">
+          <%= link_to :back, data: { turbolinks: false }, class: "btn btn-sm btn-dark" do %>
+            <i class="fas fa-home mr-1"></i> Go Back
+          <% end %>
+        </div>
+        <div class="header mt-2 mt-md-0 text-center">
+          <%= link_to root_path, data: { turbolinks: false } do %>
+            <%= image_pack_tag "sap-logo.png", id: "logo", class: "m-auto" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 img-div text-center">
+        <%= render partial: 'shared/custom_stories/image', locals: { story: story, path: '#' } %>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="card-body">
+          <% if story.editor_tagline %>
+            <div class="tagline-div-<%= story.id %>">
+                <h6 class="card-title text-center font-italic font-bold"><%= story.editor_tagline %></h6>
+            </div>
+          <% end %>
+
+          <% if story.author.present? || story.story_display_date.present? || story.story_regions.present? || story.place_categories.present? || story.story_categories.present? %>
+            <hr>
+            <dl class="row">
+              <% if story.author.present? %>
+                <dt class="col-6 col-lg-5">Author:</dt>
+                <dd class="col-6 col-lg-7"><%= story.author.presence || '-' %></dd>
+              <% end %>
+
+              <% if story.story_display_date.present? %>
+                <dt class="col-6 col-lg-5">Story Date:</dt>
+                <dd class="col-6 col-lg-7"><%= story.story_display_date.presence || '-' %></dd>
+              <% end %>
+
+              <% if story.story_regions.present? %>
+                <dt class="col-6 col-lg-5">Story <%= 'Region'.pluralize(story.story_regions.size) %>:</dt>
+                <dd class="col-6 col-lg-7"><%= story.display_story_region.presence || '-' %></dd>
+              <% end %>
+
+              <% if story.place_categories.present? %>
+                <dt class="col-6 col-lg-5">Place <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
+                <dd class="col-6 col-lg-7"><%= story.display_place_categories.presence || '-' %></dd>
+              <% end %>
+
+              <% if story.story_categories.present? %>
+                <dt class="col-6 col-lg-5">Story <%= 'Category'.pluralize(story.story_categories.size) %>:</dt>
+                <dd class="col-6 col-lg-7"><%= story.display_story_categories.presence || '-' %></dd>
+              <% end %>
+            </dl>
+          <% end %>
+
+          <% if story.custom_body.present? %>
+            <hr>
+            <div>
+              <%= story.custom_body %>
+            </div>
+          <% end %>
+
+          <% if story.list_items.present? %>
+            <hr>
+            <div class='text-left'>
+              <h6 class='text-center'>Related Stories</h6>
+              <% story.list_items.each do |list_item| %>
+                <% path = scope == 'admin' ? admin_story_path(list_item.story) : view_stories_path(permalink: list_item.story.permalink) %>
+                <p>
+                  <%= link_to path, data: { toggle: 'tooltip', placement: 'top', title: "View #{list_item.story.type.underscore.split('_').first.capitalize} Story" }, class: 'text-info', target: '_blank'  do %>
+                    <i class='<%= colored_icon_for_story_type(list_item.story.type) %>'></i> <%= list_item.story.display_title %>
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

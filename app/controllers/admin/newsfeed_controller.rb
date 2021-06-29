@@ -7,7 +7,7 @@ module Admin
     def queue
       @queued_items = PublishedItem.joins("
       INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
-      INNER JOIN urls ON urls.story_id = stories.id
+      LEFT JOIN urls ON urls.story_id = stories.id
     ")
       @queued_items = @queued_items.where(state: 'queued')
       if params[:url_title].present?

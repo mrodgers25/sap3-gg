@@ -1,19 +1,16 @@
-# frozen_string_literal: true
+class Admin::StoriesController < Admin::BaseAdminController
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update]
+  before_action :check_for_admin, only: :destroy
 
-module Admin
-  class StoriesController < Admin::BaseAdminController
-    before_action :set_story, only: %i[show destroy review review_update update_state images images_update]
-    before_action :check_for_admin, only: :destroy
+  def index
+    # database dropdown data
+    @story_regions    = StoryRegion.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
 
-    def index
-      # database dropdown data
-      @locations        = Location.order('ascii(name)')
-      @place_categories = PlaceCategory.order(:name)
-      @story_categories = StoryCategory.order(:name)
-
-      @stories = Story.joins(:urls).select(
-        'stories.*',
-        "
+    @stories = Story.left_outer_joins(:urls).select(
+      "stories.*",
+      "
         CASE
           WHEN story_year > 0 AND story_month > 0 AND story_date > 0
           THEN TO_DATE(CONCAT(story_year::TEXT, '-', story_month::TEXT, '-', story_date::TEXT), 'YYYY-MM-DD')
@@ -22,18 +19,18 @@ module Admin
           ELSE null
         END AS story_date_combined
       "
-      )
-      @stories = @stories.where('LOWER(type) ~ ?', params[:type].downcase) if params[:type].present?
-      @stories = @stories.where('LOWER(urls.url_title) ~ ?', params[:url_title].downcase) if params[:url_title].present?
-      @stories = @stories.where('LOWER(urls.url_desc) ~ ?', params[:url_desc].downcase) if params[:url_desc].present?
-      @stories = @stories.where(state: params[:state]) if params[:state].present?
-      @stories = @stories.joins(:locations).where(locations: { id: params[:location_id] }) if params[:location_id].present?
-      @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
-      @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
-      @stories = @stories.order(story_date_combined: :desc)
+    )
+    @stories = @stories.where("type ~ ?", params[:type]) if params[:type].present?
+    @stories = @stories.where("LOWER(urls.url_title) ~ ?", params[:url_title].downcase) if params[:url_title].present?
+    @stories = @stories.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
+    @stories = @stories.where(state: params[:state]) if params[:state].present?
+    @stories = @stories.joins(:story_regions).where(story_regions: { id: params[:story_region_id] }) if params[:story_region_id].present?
+    @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+    @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
+    @stories = @stories.order(story_date_combined: :desc, id: :desc)
 
-      @pagy, @stories = pagy(@stories)
-    end
+    @pagy, @stories = pagy(@stories)
+  end
 
     def show
       render layout: 'application_no_nav'
@@ -96,8 +93,9 @@ module Admin
       redirect_route = params[:commit] == 'Save & New' ? admin_initialize_scraper_index_path : admin_stories_path
 
       redirect_to redirect_route, notice: "Story saved as #{update_state_params[:state].titleize}"
-    rescue StandardError
-      redirect_to review_admin_story_path(@story), alert: 'Story failed to update'
+    rescue
+      path = @story.type == 'CustomStory' ? review_admin_custom_story_path(@story) : review_admin_story_path(@story)
+      redirect_to path, alert: 'Story failed to update'
     end
 
     def destroy
@@ -175,13 +173,15 @@ module Admin
       redirect_to admin_stories_path, alert: 'Story not found'
     end
 
-    def get_sym_story_type
-      if @story.media_story?
-        type = :media_story
-      elsif @story.video_story?
-        type = :video_story
-      end
+  def get_sym_story_type
+    if @story.media_story?
+      type = 'media_story'.to_sym
+    elsif @story.video_story?
+      type = 'video_story'.to_sym
+    else
+      type = 'custom_story'.to_sym
     end
+  end
 
     def review_update_params
       params.require(get_sym_story_type).permit(:desc_length, :editor_tagline)
@@ -195,11 +195,19 @@ module Admin
       params.permit(:update_type, ids: [])
     end
 
-    def get_locations_and_categories
-      @locations        = Location.order('ascii(name)')
-      @place_categories = PlaceCategory.order(:name)
-      @story_categories = StoryCategory.order(:name)
+  def get_regions_and_categories
+    @story_regions    = StoryRegion.order("ascii(name)")
+    @place_categories = PlaceCategory.order(:name)
+    @story_categories = StoryCategory.order(:name)
+  end
+
+  def get_scraper(story)
+    if story.media_story?
+      ScreenScraper.new
+    elsif story.video_story?
+      VideoScraper.new
     end
+  end
 
     def story_params
       params.require(get_sym_story_type).permit(
@@ -208,6 +216,7 @@ module Admin
         }]
       )
     end
+
 
     def set_image_params(story_params)
       image_data = story_params['urls_attributes']['0']['images_attributes']['0']['image_data']
@@ -223,13 +232,6 @@ module Admin
       story_params
     end
 
-    def get_scraper(story)
-      if story.media_story?
-        ScreenScraper.new
-      elsif story.video_story?
-        VideoScraper.new
-      end
-    end
 
     def redirect_to_next_path(path)
       case params[:commit]
@@ -241,5 +243,5 @@ module Admin
         path
       end
     end
-  end
+
 end

@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   get 'about_us', to: 'home#about_us', as: :about_us
   get 'contact_us', to: 'home#contact_us', as: :contact_us
   # STORY ACTIONS
-  resources :stories, only: [:show, :my_stories, :save_story, :forget_story] do
+  resources :stories, only: [] do
+    collection do
+      get :view
+    end
     member do
       post :save
       post :forget
@@ -53,12 +56,12 @@ Rails.application.routes.draw do
         post :bulk_update
       end
     end
-    resources :media_stories, except: [:index] do
+    resources :media_stories, except: [:index, :destroy] do
       collection do
         get :scrape
       end
     end
-    resources :video_stories, except: [:index] do
+    resources :video_stories, except: [:index, :destroy] do
       collection do
         get :scrape
       end
@@ -66,10 +69,20 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
     resources :addresses
     resources :places
+    resources :custom_stories, except: [:index, :destroy] do
+      member do
+        post :destroy_image
+        get :list_editor
+        get :list_edit
+        patch :update_list
+        get :review
+        patch :review_update
+      end
+    end
     resources :urls, except: [:show]
     resources :images, except: [:show]
     resources :codes, except: [:show]
-    resources :locations, except: [:show]
+    resources :story_regions, except: [:show]
     resources :place_categories, except: [:show]
     resources :story_categories, except: [:show]
     resources :media_owners, except: [:show]
@@ -112,5 +125,10 @@ Rails.application.routes.draw do
   end
 
   # redirect to home if route doesn't exist
-  match "*path" => "home#index", via: [:get, :post]
+  if Rails.env.production?
+    match '*path', via: :all, to: 'home#index', constraints: lambda { |req|
+      # NEED THIS HERE FOR ACTIVE STORAGE IMAGES TO SHOW UP
+      req.path.exclude? 'rails/active_storage'
+    }
+  end
 end

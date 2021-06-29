@@ -1,0 +1,215 @@
+<div class="container-fluid ">
+  <%= render partial: 'nav_btns', locals: { story: @story }%>
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: nil, title: '' } %>
+
+  <%= form_with(model: @story, url: route, method: method) do |f| %>
+    <div class="jumbotron bg-white story-form mt-3">
+      <% if @story.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h5>
+          <ul>
+            <% @story.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="body">
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :editor_tagline, "Editor Tagline:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :editor_tagline, placeholder: "Maximum 75 chars", maxlength: 75, size: 75, class: "form-control form-control-sm" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :author, "Story Author:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :author, size: 50, placeholder: "Maximum 50 chars", class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :hashtags, "Hashtags:" %>
+          </div>
+          <div class="col-10">
+            <%= f.text_field :hashtags, size: 50, placeholder: 'eg: #food #dancing #shopping', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_date, "Story Date (y/m/d):" %>
+          </div>
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_year, placeholder: 'yyyy', in: 2000...2030, class: 'form-control form-control-sm' %>
+          </div>
+          /
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_month, placeholder: 'mm', in: 1...13, class: 'form-control form-control-sm' %>
+          </div>
+          /
+          <div class="col-2 col-md-1">
+            <%= f.number_field :story_date, placeholder: 'dd', in: 1...32, class: 'form-control form-control-sm' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_region_ids, "Story Regions:" %>
+          </div>
+          <div class="col-10 col-md-7">
+            <%= f.select :story_region_ids, options_from_collection_for_select(@story_regions, 'id', 'name', @story.story_regions.pluck(:id)), {}, { multiple: true, id: 'story_story_region_ids' } %>
+          </div>
+          <div class="col-12 col-md-3">
+            <%= f.label :outside_usa do %>
+              <%= f.check_box :outside_usa, class: 'mr-2' %>
+              Outside USA?
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :place_category_ids, "Place Categories:" %>
+          </div>
+          <div class="col-10 col-md-7">
+            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+          </div>
+          <div class="col-12 col-md-3">
+            <%= f.label :savable do %>
+              <%= f.check_box :savable, class: 'mr-2' %>
+              Can be saved?
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :story_category_ids, "Story Categories:" %>
+          </div>
+          <div class="col-10">
+            <%= f.select :story_category_ids, options_from_collection_for_select(@story_categories, 'id', 'name', @story.story_categories.ids), {}, {  multiple: true, id: 'story_story_category_ids' } %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <%= f.fields_for :external_image do |e| %>
+          <h5>External Image</h5>
+          <div class="form-group row">
+            <div class="col-8">
+              <div class="row my-2">
+                <div class="col-3">
+                  <%= e.label :src_url, "Image URL:" %>
+                </div>
+                <div class="col-9">
+                  <%= e.text_field :src_url, cols: 80, class: "form-control form-control-sm" %>
+                </div>
+              </div>
+              <div class="row my-2">
+                <div class="col-3">
+                  <%= e.label :width, "Image Size (W/H):" %>
+                </div>
+                <div class="col-2 col-md-2">
+                  <%= e.text_field :width, class: "form-control form-control-sm" %>
+                </div>
+                /
+                <div class="col-2 col-md-2">
+                  <%= e.text_field :height, class: "form-control form-control-sm" %>
+                </div>
+              </div>
+              <% if @story.external_image.src_url.present? %>
+                <div class="row my-2">
+                  <div class="col-4 col-md-3 internal-image-text-div">
+                    <%= e.label :current_image, "Image (resized):" %>
+                    <%= button_to 'Remove Image', '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'external' } %>
+                  </div>
+                  <div class="col-6 col-md-3 text-center internal-image-image-div">
+                    <%= image_tag @story.external_image.src_url, style: 'width: 100%;' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <hr>
+
+        <h5>Internal Images</h5>
+        <div class="form-group row">
+          <div class="col-8">
+            <div class="row my-2">
+              <div class="col-3">
+                <%= f.label :internal_images, "Find File:" %>
+              </div>
+              <div class="col-9">
+                <%= f.file_field :internal_images, class: 'form-control-file', multiple: true %>
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col-3">
+                <%= f.label :internal_image_width, "Image Size (W/H):" %>
+              </div>
+              <div class="col-2 col-md-2">
+                <%= f.text_field :internal_image_width, class: "form-control form-control-sm" %>
+              </div>
+              /
+              <div class="col-2 col-md-2">
+                <%= f.text_field :internal_image_height, class: "form-control form-control-sm" %>
+              </div>
+            </div>
+            <% if @story.internal_images.present? %>
+              <div class="row my-2">
+                <div class="col-4 col-md-3 internal-image-text-div">
+                  <%= f.label :current_image, "Image (resized):" %>
+                  <%= button_to "Remove #{'Image'.pluralize(@story.internal_images.size)}", '#', class: 'btn btn-sm btn-outline-danger destroy-image-btn', id: @story.id, data: { image_type: 'internal' } %>
+                </div>
+                <div class="col-md-12 text-center internal-image-image-div">
+                  <% @story.internal_images.each do |image| %>
+                    <%= image_tag image.variant(resize_to_limit: [150,150]) %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="form-group row">
+          <div class="col-2">
+            <%= f.label :custom_body, "Custom Body:" %>
+          </div>
+          <div class="col-10">
+            <%= f.rich_text_area :custom_body %>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="col-10 offset-2">
+          <% if @story.persisted? %>
+            <div class="text-left">
+              <%= f.submit "Save and exit", class: 'btn btn-md btn-primary' %>
+              <%= f.submit "Go to List Editor", class: 'btn btn-md btn-success' %>
+            </div>
+          <% else %>
+            <div class="text-left">
+              <%= f.submit "Next", class: 'btn btn-md btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= f.hidden_field :data_entry_begin_time, value: @data_entry_begin_time  if @data_entry_begin_time.present? %>
+        <%= f.hidden_field :data_entry_user, value: current_user.id %>
+      </div>
+    </div>
+  <% end %>
+</div>
