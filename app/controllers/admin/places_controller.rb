@@ -16,7 +16,7 @@ module Admin
 
     def new
       @place = Place.new
-      @place.build_address
+      @place.build_location
     end
 
     def create

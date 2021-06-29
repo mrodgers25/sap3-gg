@@ -69,7 +69,7 @@ Rails.application.routes.draw do
       end
     end
     resources :comments, only: [:create, :update, :destroy]
-    resources :addresses
+    resources :locations
     resources :places
     resources :custom_stories, except: [:index, :destroy] do
       member do

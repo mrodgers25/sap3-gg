@@ -22,8 +22,8 @@
         <%= f.collection_select(:place_status_option_id, PlaceStatusOption.order(:id), :id, :name, :prompt => true, class: "form-control") %>
       </div>
 
-       <%= f.fields_for :address do |a| %>
-        <%= render 'admin/addresses/fields', f: a %>
+       <%= f.fields_for :location do |a| %>
+        <%= render 'admin/locations/fields', f: a %>
       <% end %>
 
       <div class="actions">

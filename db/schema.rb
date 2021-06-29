@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_142800) do
+ActiveRecord::Schema.define(version: 2021_06_29_185555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,21 +51,6 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "addresses", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.string "street_address"
-    t.string "post_office_box_number"
-    t.string "locality"
-    t.string "region"
-    t.string "postal_code"
-    t.string "country"
-    t.string "custom_1"
-    t.string "custom_2"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "admin_settings", force: :cascade do |t|
@@ -148,6 +133,21 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
     t.index ["story_id"], name: "index_lists_on_story_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.string "street_address"
+    t.string "post_office_box_number"
+    t.string "locality"
+    t.string "region"
+    t.string "postal_code"
+    t.string "country"
+    t.string "custom_1"
+    t.string "custom_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "media_owners", force: :cascade do |t|
     t.string "title"
     t.string "url_domain"
@@ -198,12 +198,12 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
 
   create_table "places", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "address_id", null: false
+    t.bigint "location_id", null: false
     t.bigint "place_status_option_id", null: false
     t.integer "imported_place_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["address_id"], name: "index_places_on_address_id"
+    t.index ["location_id"], name: "index_places_on_location_id"
     t.index ["place_status_option_id"], name: "index_places_on_place_status_option_id"
   end
 
@@ -417,7 +417,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_142800) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
-  add_foreign_key "places", "addresses"
+  add_foreign_key "places", "locations"
   add_foreign_key "places", "place_status_options"
   add_foreign_key "story_places", "places"
   add_foreign_key "story_places", "stories"
