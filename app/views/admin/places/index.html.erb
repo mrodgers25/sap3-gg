@@ -17,6 +17,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
+            <th scope="col">Category</th>
             <th scope="col">Created At</th>
             <th scope="col">Actions</th>
           </tr>
@@ -26,6 +27,16 @@
             <tr>
               <td><%= place.id %></td>
               <td><%= place.name %></td>
+              <td>
+                <% if place.category %>
+                 <% if place.category.ancestors %>
+                  <% place.category.ancestors.each do |c| %>
+                    <%= c.name %> >
+                  <% end %>
+               <% end %>
+                <%= link_to place.category.name, admin_category_path(place.category) %>
+               <% end %>
+              </td>
               <td><%= pretty_date_format(place.created_at) %></td>
               <td class="action-links">
                   <%= link_to admin_place_path(place), class: "btn btn-sm btn-outline-success" do %>

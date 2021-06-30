@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # ROOT
   root 'home#index'
   # DEVISE STUFF
@@ -73,6 +74,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
     resources :locations
     resources :places
+    resources :categories do 
+      collection do 
+        get 'get_subcategories'
+      end
+    end
     resources :custom_stories, except: [:index, :destroy] do
       member do
         post :destroy_image

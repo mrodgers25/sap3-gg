@@ -66,6 +66,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (4.1.0)
+      activerecord (>= 5.2.6)
     ast (2.4.2)
     awesome_print (1.8.0)
     aws-eventstream (1.1.1)
@@ -404,6 +406,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   activerecord-nulldb-adapter
+  ancestry
   awesome_print
   aws-sdk-s3
   better_errors
