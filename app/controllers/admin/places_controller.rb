@@ -2,7 +2,7 @@
 
 module Admin
   class PlacesController < Admin::BaseAdminController
-    before_action :set_place, except: %i[index new create]
+    before_action :set_place, except: %i[index search new create]
     before_action :check_for_admin, only: :destroy
 
     def index
@@ -24,10 +24,9 @@ module Admin
       if @place.save
         if params[:place][:story_id]
           StoryPlace.create(story_id: params[:place][:story_id], place_id: @place.id)
-          redirect_to edit_admin_media_story_path(params[:place][:story_id]),
-                      notice: "Successfully created #{@place.name}"
+          redirect_to places_admin_story_path(params[:place][:story_id])
         else
-          redirect_to admin_place_path(@place), notice: "Successfully created #{@place.name}"
+          redirect_to admin_place_path(@place)
         end
       else
         redirect_to new_admin_place_path, alert: 'Could not create Place.'
