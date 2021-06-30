@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to edit_admin_category_path(@category), class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-edit mr-1"></i> Edit Category
+    <% end %>
+  </div>
+
+
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header">
+      Category Type: <span class="badge badge-primary mb-2"><%= @category.reference %></span>
+      <h4>Category: <%= @category.name %></h4>
+    </div>
+
+    <hr class="my-4">
+
+    <p><%= @category.description %></p>
+
+  <% if @category.parent_id %>
+    Parent:
+    <%= @category.parent.name %>
+  <% end %>
+
+<br>
+    <% if @category.children.any? %>
+    Subcategories: <br>
+    <br>
+      <% @category.children.each do |category| %>
+        <%= link_to category.name, admin_category_path(category) %><br>
+       <% end %>
+    <% end %>
+<br>
+     <%= link_to '+ New subcategory', new_admin_category_path(parent_id: @category.id), class: "btn btn-primary" %>
+  
+  </div>
+
+  <% if @places && @places.any? %>
+  <div class="row">
+    <div class="col-12">
+      <h5><%= pluralize(@places.count, 'place') %> in this category</h5>
+      <% @places.each do |place| %>
+        <%= link_to place.name, admin_place_path(place) %><br>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+</div>

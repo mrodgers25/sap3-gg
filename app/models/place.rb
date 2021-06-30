@@ -4,6 +4,7 @@ class Place < ApplicationRecord
   attr_accessor :story_id
 
   belongs_to :location
+  belongs_to :category, optional: true
   belongs_to :place_status_option, optional: true
 
   accepts_nested_attributes_for :location, reject_if: :all_blank

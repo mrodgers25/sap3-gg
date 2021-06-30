@@ -20,6 +20,7 @@ gem "aws-sdk-s3", require: false
 # Image resizing
 gem 'image_processing'
 
+gem 'ancestry'
 gem 'awesome_print', require: 'ap'
 gem 'coffee-rails'
 gem 'devise'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_185555) do
+ActiveRecord::Schema.define(version: 2021_06_30_154402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2021_06_29_185555) do
     t.integer "newsfeed_daily_post_count", default: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "reference", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "codes", force: :cascade do |t|
@@ -203,6 +213,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_185555) do
     t.integer "imported_place_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_places_on_category_id"
     t.index ["location_id"], name: "index_places_on_location_id"
     t.index ["place_status_option_id"], name: "index_places_on_place_status_option_id"
   end

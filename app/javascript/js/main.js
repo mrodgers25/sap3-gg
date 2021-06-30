@@ -1,4 +1,5 @@
 import './stories.js'
+import './categories.js'
 import './site.js'
 import './new_navigation.js'
 import './masonry_setup.js'
