@@ -34,6 +34,7 @@ gem 'json'
 gem 'mail', '2.7.1'
 gem 'nokogiri'
 gem 'pg'
+gem 'pg_search'
 gem 'puma'
 gem 'pundit', '>= 0.2.1'
 gem 'rails_12factor', group: :production

@@ -1,5 +1,6 @@
 class Admin::StoriesController < Admin::BaseAdminController
-  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update, :places, :places_update]
+  before_action :set_story, only: [:show, :destroy, :review, :review_update, :update_state, :images, :images_update,
+                                   :places, :places_update, :add_place, :delete_place]
   before_action :check_for_admin, only: :destroy
 
   def index
@@ -37,8 +38,12 @@ class Admin::StoriesController < Admin::BaseAdminController
     end
 
     def places
-      @places = Place.order(:name)
-      @place= Place.new
+      @places = Place.order(created_at: :desc)
+      if params[:query].present?
+        @query = params[:query]
+        search_results = @places.search(@query)
+        @search_results = search_results.order(:name)
+      end
     end
 
     def places_update
@@ -47,6 +52,17 @@ class Admin::StoriesController < Admin::BaseAdminController
       @story.places = new_places
       redirect_to admin_stories_path
     end
+
+    def add_place 
+       story_place = StoryPlace.create(story_id: @story.id, place_id: params[:place_id])
+      redirect_to places_admin_story_path(@story)
+    end
+
+    def delete_place 
+      story_place = StoryPlace.where(story_id: @story.id, place_id: params[:place_id]).first
+      story_place.destroy
+     redirect_to places_admin_story_path(@story)
+   end
 
     def images
       # Build temp image record if none are found. This is a hack to get the image forms to work.
