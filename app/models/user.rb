@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :visits
   has_many :story_activities
   has_and_belongs_to_many :stories
+  has_many :assigned_stories, foreign_key: :assigned_to, class_name: 'Story'
 
   enum role: [:user, :associate, :admin]
   after_initialize :set_default_role, if: :new_record?

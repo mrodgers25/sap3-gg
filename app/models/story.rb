@@ -21,6 +21,7 @@ class Story < ApplicationRecord
   accepts_nested_attributes_for :external_image
   has_one :list, dependent: :destroy
   has_many :list_items, through: :list
+  belongs_to :assignee, foreign_key: :assigned_to, class_name: 'User'
 
   before_validation :set_story_track_fields, on: :create
   after_validation :set_story_complete
@@ -57,6 +58,10 @@ class Story < ApplicationRecord
     end
   end
 
+  def workable?
+    assigned_to.blank?
+  end
+
   def media_story?
     type == 'MediaStory'
   end
@@ -79,10 +84,6 @@ class Story < ApplicationRecord
 
   def destroy_published_item
     published_items.destroy_all if published_items.present?
-  end
-
-  def log_status_change
-    StoryActivity.create!(story_id: self.id, from: aasm.from_state.to_s, to: aasm.to_state.to_s, event: aasm.current_event.to_s)
   end
 
   def self.all_types

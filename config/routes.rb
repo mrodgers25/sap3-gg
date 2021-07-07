@@ -56,6 +56,13 @@ Rails.application.routes.draw do
         post :bulk_update
       end
     end
+    resources :workable_stories, only: :index do
+      member do
+        get :activities
+        patch :assign
+        patch :unassign
+      end
+    end
     resources :media_stories, except: [:index, :destroy] do
       collection do
         get :scrape
