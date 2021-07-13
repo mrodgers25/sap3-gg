@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReportPolicy
   attr_reader :current_user, :model
 
@@ -7,7 +9,7 @@ class ReportPolicy
   end
 
   def export_all?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
@@ -15,5 +17,4 @@ class ReportPolicy
   #   allowed = ["associate","admin"]
   #   allowed.include?(@current_user.role)
   # end
-
 end

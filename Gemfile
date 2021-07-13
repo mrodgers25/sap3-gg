@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '2.7.3'
 gem 'rails', '6.1.3.1 '
 gem 'webpacker'
 
@@ -18,50 +20,51 @@ gem "aws-sdk-s3", require: false
 # Image resizing
 gem 'image_processing'
 
-gem 'rails_12factor', group: :production
-gem 'sass-rails'
-gem 'responders'
-gem 'uglifier', '>= 1.3.0'
+gem 'ancestry'
+gem 'awesome_print', require: 'ap'
 gem 'coffee-rails'
-gem 'turbolinks'
-gem 'jbuilder', '<= 2.9.1'
-gem 'sdoc', group: :doc
 gem 'devise'
-gem 'pg'
-gem 'puma'
-gem 'simple_form'
-gem 'pundit', '>= 0.2.1'
-gem 'high_voltage'
-gem 'nokogiri'
 gem 'domainatrix'
-gem 'sanitize'
 gem 'fastimage'
-gem 'mail', '2.7.1'
 gem 'figaro', '1.2.0'
-gem 'sendgrid-ruby'
-gem 'social-share-button'
-gem 'awesome_print', :require => 'ap'
+gem 'geocoder'
 gem 'google-webfonts'
-gem 'unirest'
+gem 'high_voltage'
+gem 'jbuilder', '<= 2.9.1'
 gem 'json'
+gem 'mail', '2.7.1'
+gem 'nokogiri'
+gem 'pg'
+gem 'pg_search'
+gem 'puma'
+gem 'pundit', '>= 0.2.1'
+gem 'rails_12factor', group: :production
+gem 'responders'
 gem 'rest-client'
+gem 'sanitize'
+gem 'sass-rails'
+gem 'sdoc', group: :doc
+gem 'sendgrid-ruby'
+gem 'simple_form'
+gem 'social-share-button'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
+gem 'unirest'
 
 # new with RAILS 5
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
-  gem 'hub', :require=>nil
-  gem 'rails_layout'
+  gem 'binding_of_caller', platforms: [:mri_21]
+  gem 'hub', require: nil
   gem 'railroady'
-  #This will create an ERD diagram from your database
+  gem 'rails_layout'
+  gem 'spring'
+  # This will create an ERD diagram from your database
   gem 'rails-erd'
   # test new viewing database option
   gem 'rails_db'
@@ -70,9 +73,26 @@ group :development do
 
   # NEW GEMS
   # Email Catcher for Dev
-  gem "letter_opener"
+  gem 'letter_opener'
 
-  # Debugging/Console
-  gem 'pry-rails'
-  gem 'pry-byebug'
 end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'faker'
+  # Debugging/Console
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'shoulda-matchers', '~> 4.0'
+end
+
+gem 'activerecord-nulldb-adapter'

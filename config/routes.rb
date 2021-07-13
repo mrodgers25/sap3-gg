@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # ROOT
   root 'home#index'
   # DEVISE STUFF
@@ -44,6 +45,10 @@ Rails.application.routes.draw do
     end
     resources :stories, only: [:index, :show, :destroy] do
       member do
+        get :places
+        patch :places_update
+        get :add_place
+        delete :delete_place
         get :images
         post :images_update
         get :review
@@ -64,6 +69,14 @@ Rails.application.routes.draw do
     resources :video_stories, except: [:index, :destroy] do
       collection do
         get :scrape
+      end
+    end
+    resources :comments, only: [:create, :update, :destroy]
+    resources :locations
+    resources :places
+    resources :categories do 
+      collection do 
+        get 'get_subcategories'
       end
     end
     resources :custom_stories, except: [:index, :destroy] do

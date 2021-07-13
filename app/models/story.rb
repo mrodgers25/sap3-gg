@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Story < ApplicationRecord
   include AASM
   include ApplicationHelper
@@ -7,6 +9,8 @@ class Story < ApplicationRecord
   has_and_belongs_to_many :users
   has_many :urls, inverse_of: :story, dependent: :destroy
   accepts_nested_attributes_for :urls
+  has_many :story_places, dependent: :destroy
+  has_many :places, through: :story_places
   has_many :stories_story_regions, dependent: :destroy
   has_many :story_regions, through: :stories_story_regions
   has_many :story_story_categories, dependent: :destroy
@@ -37,23 +41,23 @@ class Story < ApplicationRecord
     after_all_transitions :log_status_change
 
     event :request_review do
-      transitions from: [:no_status, :do_not_publish, :completed, :removed_from_public], to: :needs_review
+      transitions from: %i[no_status do_not_publish completed removed_from_public], to: :needs_review
     end
 
     event :hide do
-      transitions from: [:no_status, :needs_review, :completed, :removed_from_public], to: :do_not_publish
+      transitions from: %i[no_status needs_review completed removed_from_public], to: :do_not_publish
     end
 
     event :complete do
-      transitions from: [:no_status, :needs_review, :do_not_publish, :removed_from_public], to: :completed
+      transitions from: %i[no_status needs_review do_not_publish removed_from_public], to: :completed
     end
 
     event :remove do
-      transitions from: [:no_status, :needs_review, :do_not_publish, :completed], to: :removed_from_public
+      transitions from: %i[no_status needs_review do_not_publish completed], to: :removed_from_public
     end
 
     event :reset do
-      transitions from: [:needs_review, :do_not_publish, :completed, :removed_from_public], to: :no_status
+      transitions from: %i[needs_review do_not_publish completed removed_from_public], to: :no_status
     end
   end
 
@@ -70,7 +74,7 @@ class Story < ApplicationRecord
   end
 
   def check_state_and_update_published_item
-    'completed' == state ? create_published_item : destroy_published_item
+    state == 'completed' ? create_published_item : destroy_published_item
   end
 
   def create_published_item
@@ -82,20 +86,21 @@ class Story < ApplicationRecord
   end
 
   def log_status_change
-    StoryActivity.create!(story_id: self.id, from: aasm.from_state.to_s, to: aasm.to_state.to_s, event: aasm.current_event.to_s)
+    StoryActivity.create!(story_id: id, from: aasm.from_state.to_s, to: aasm.to_state.to_s,
+                          event: aasm.current_event.to_s)
   end
 
   def self.all_types
-    ['MediaStory', 'VideoStory', 'CustomStory']
+    %w[MediaStory VideoStory CustomStory]
   end
 
   def self.all_states
-    self.aasm.states.map{|x| x.name.to_s }
+    aasm.states.map { |x| x.name.to_s }
   end
 
   def self.all_states_mapping
-    self.aasm.states.map do |state|
-      [ state.name.to_s.titleize, state.name.to_s ]
+    aasm.states.map do |state|
+      [state.name.to_s.titleize, state.name.to_s]
     end
   end
 
@@ -106,21 +111,19 @@ class Story < ApplicationRecord
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names
-      all.each do |result|
+      all.find_each do |result|
         csv << result.attributes.values_at(*column_names)
       end
     end
   end
 
   def set_story_track_fields
-    self.author_track = (self.raw_author_scrape == self.author) ? true : false
-    if self.data_entry_begin_time.present?
-      self.data_entry_time = (Time.now - self.data_entry_begin_time.to_time).round.to_i
-    end
-    self.story_year_track = (self.raw_story_year_scrape.to_i == self.story_year.to_i) ? true : false
-    self.story_month_track = (self.raw_story_month_scrape.to_i == self.story_month.to_i) ? true : false
-    self.story_date_track  = (self.raw_story_date_scrape.to_i == self.story_date.to_i) ? true : false
-    true  # this returns a true at the end of the method; otherwise method fails if last statement is false
+    self.author_track = raw_author_scrape == author
+    self.data_entry_time = (Time.zone.now - data_entry_begin_time.to_time).round.to_i if data_entry_begin_time.present?
+    self.story_year_track = raw_story_year_scrape.to_i == story_year.to_i
+    self.story_month_track = raw_story_month_scrape.to_i == story_month.to_i
+    self.story_date_track  = raw_story_date_scrape.to_i == story_date.to_i
+    true # this returns a true at the end of the method; otherwise method fails if last statement is false
   end
 
   def set_story_complete
@@ -135,9 +138,10 @@ class Story < ApplicationRecord
     write_attribute(:story_complete, complete)
   end
 
-  def story_url_complete?  # currently not used
-    where_str = "(spc.story_id IS NOT NULL)"
-    where_str += " AND (stories.story_year IS NOT NULL OR stories.story_month IS NOT NULL OR stories.story_date IS NOT NULL)"  # at least one date value
+  # currently not used
+  def story_url_complete?
+    where_str = '(spc.story_id IS NOT NULL)'
+    where_str += ' AND (stories.story_year IS NOT NULL OR stories.story_month IS NOT NULL OR stories.story_date IS NOT NULL)'  # at least one date value
     where_str += " AND stories.editor_tagline != '' "
     where_str += " AND (urls.url_type != '' AND urls.url_title != '' AND urls.url_desc != '' AND urls.url_domain != '')"
     where_str += " AND stories.id = #{self.id}"
@@ -148,6 +152,11 @@ class Story < ApplicationRecord
     .joins(:urls)
     .where(where_str).present?
 
+    Story.joins('LEFT OUTER JOIN story_locations sl ON (stories.id = sl.story_id)')
+         .joins('LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)')
+         .joins('LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)')
+         .joins(:urls)
+         .where(where_str).present?
   end
 
   def latest_image
@@ -175,8 +184,6 @@ class Story < ApplicationRecord
       "#{story_month}/#{story_date}/#{story_year}"
     elsif story_month && story_year
       "#{story_month}/#{story_year}"
-    else
-      nil
     end
   end
 
@@ -201,7 +208,7 @@ class Story < ApplicationRecord
   end
 
   def display_publisher
-    return nil unless latest_url.media_owner.present?
+    return nil if latest_url.media_owner.blank?
 
     latest_url.media_owner&.title
   end
@@ -218,7 +225,7 @@ class Story < ApplicationRecord
     url_title = display_title.parameterize
     rand_hex = SecureRandom.hex(2)
     permalink = "#{rand_hex}/#{url_title}"
-    self.update_attribute(:permalink, "#{permalink}")
+    update_attribute(:permalink, permalink.to_s)
   end
 
   def display_title

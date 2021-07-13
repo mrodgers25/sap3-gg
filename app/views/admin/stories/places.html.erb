@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <%= render partial: 'shared/story_id_header', locals: { story: @story, icon: story_icon(@story), title: 'Places' }%>
+
+<div class="row">
+  <div class="col-12 bg-light m-3 p-4 d-flex justify-content-between">
+    <div><%= link_to @story.latest_url&.url_title, @story.latest_url&.encoded_url, target: '_blank' %></div>
+    <div class="mr-5"><span class="badge badge-pill badge-primary"><%= @story.places.count %></span> Places Added</div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center my-3">
+  <%= link_to 'Find a Place', '#place-search', class: "btn btn-success mr-4", data: {toggle: "collapse"} %>
+  <%= link_to "+ Add New Place", new_admin_place_path(story_id: @story.id), class: "btn btn-primary" %>
+</div>
+
+<div class="collapse" id="place-search">
+  <div class="my-4 p-4">
+      <%= form_with(url: places_admin_story_path(@story), method: "get", local: true) do |f| %>
+          <div class="form-group row">
+            <div class="col-6">
+              <%= f.label "Search by place name" %>
+              <%= f.text_field :query, class: "form-control" %>
+              <%= f.submit "Search", class: "btn btn-primary mt-2", data: { disable_with: "Searching..." } %>
+            </div>
+          </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @search_results %>
+  <div class="row">
+  <% if @search_results.any? %>
+    <table class="table table-striped">
+    <% @search_results.each do |result| %>
+      <tr>
+        <td><%= link_to add_place_admin_story_path(@story.id, place_id: result.id), class: "btn btn-sm btn-outline-success", data: { toggle: 'tooltip', placement: 'top', title: 'Select' } do %>
+              <i class="fas fa-plus"></i>
+            <% end %></td>
+        <td><%= result.name %></td>
+        <td><%= result.location.full_address %></td>
+      </tr>
+    <% end %>
+     </table>
+  <% else %>
+    <div class="col-12 m-3">
+      No places found with query "<%= @query %>" <br>
+    </div>
+  <% end %>
+   </div>
+<% end %>
+
+<div class="row">
+ <table class="table table-striped">
+  <thead>
+    <th></th>
+    <th>ID</th>
+    <th>Place Name</th>
+    <th>Category</th>
+    <th>Subcategory</th>
+    <th>Comments</th>
+  </thead>
+  <tbody>
+    <% @story.places.each do |place| %>
+    <tr>
+      <td><%= link_to delete_place_admin_story_path(@story.id, place_id: place.id), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { toggle: 'tooltip', placement: 'top', title: 'Delete place', confirm: 'Are you sure?' } do %>
+                <i class="fas fa-times"></i>
+            <% end %></td>
+      <td><%= place.id %></td>
+      <td><%= link_to(place.name, admin_place_path(place.id)) %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+ </table>
+
+</div>
+
+
+
+
+      
+</div>

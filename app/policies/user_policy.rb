@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserPolicy
   attr_reader :current_user, :model
 
@@ -20,7 +22,7 @@ class UserPolicy
 
   def destroy?
     return false if @current_user == @user
+
     @current_user.admin?
   end
-
 end

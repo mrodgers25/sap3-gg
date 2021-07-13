@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MediaOwnerPolicy
   attr_reader :current_user, :model
 
@@ -7,38 +9,37 @@ class MediaOwnerPolicy
   end
 
   def index?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def show?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def create?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def new?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def update?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def edit?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
   def destroy?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
-
 end

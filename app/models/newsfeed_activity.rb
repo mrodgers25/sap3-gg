@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class NewsfeedActivity < ApplicationRecord
   belongs_to :trackable, polymorphic: true
 
   def self.activity_types
-    ['unpin', 'post', 'clear']
+    %w[unpin post clear]
   end
 
   def time_to_hours(timestamp)

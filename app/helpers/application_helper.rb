@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Pagy::Frontend
 
-  require "fastimage"
+  require 'fastimage'
 
   def admin_controller?
-    controller.class.name.split("::").first == "Admin"
+    controller.class.name.split('::').first == 'Admin'
   end
 
   def pretty_date_format(date)
@@ -73,68 +75,64 @@ module ApplicationHelper
 
   def valid_url?(img_url)
     sz = FastImage.size(img_url)
-    if sz.nil?
-      return false
-    else
-      return true
-    end
+    !sz.nil?
   end
 
   def story_region_options
   hover_list_arr = Code.order("ascii(code_value)").where("code_type = 'LOCATION_CODE' and code_key != ''").pluck("code_key","code_value")
 
-    hover_list = ""
+    hover_list = ''
 
     hover_list_arr.each do |outer|
-      outer.each_with_index do |inner,ndx|
+      outer.each_with_index do |inner, ndx|
         # hover_list << "#{ndx}"
-        hover_list << "(" unless ndx == 1
+        hover_list << '(' unless ndx == 1
         hover_list << inner.to_s
-        hover_list << ") "unless ndx == 1
+        hover_list << ') ' unless ndx == 1
       end
-      hover_list << "<br>"
+      hover_list << '<br>'
     end
-    return raw hover_list
+    raw hover_list
   end
 
   def place_category_options
-    hover_list_arr = Code.order("code_value").where("code_type = 'PLACE_CATEGORY' and code_key != ''").pluck("code_key","code_value")
+    hover_list_arr = Code.order('code_value').where("code_type = 'PLACE_CATEGORY' and code_key != ''").pluck('code_key',
+                                                                                                             'code_value')
 
-    hover_list = ""
+    hover_list = ''
 
     hover_list_arr.each do |outer|
-      outer.each_with_index do |inner,ndx|
+      outer.each_with_index do |inner, ndx|
         # hover_list << "#{ndx}"
-        hover_list << "(" unless ndx == 1
+        hover_list << '(' unless ndx == 1
         hover_list << inner.to_s
-        hover_list << ") "unless ndx == 1
+        hover_list << ') ' unless ndx == 1
       end
-      hover_list << "<br>"
+      hover_list << '<br>'
     end
-    return raw hover_list
+    raw hover_list
   end
 
   def story_category_options
-    hover_list_arr = Code.order("code_value").where("code_type = 'STORY_CATEGORY' and code_key != ''").pluck("code_key","code_value")
+    hover_list_arr = Code.order('code_value').where("code_type = 'STORY_CATEGORY' and code_key != ''").pluck('code_key',
+                                                                                                             'code_value')
 
-    hover_list = ""
+    hover_list = ''
 
     hover_list_arr.each do |outer|
-      outer.each_with_index do |inner,ndx|
+      outer.each_with_index do |inner, ndx|
         # hover_list << "#{ndx}"
-        hover_list << "(" unless ndx == 1
+        hover_list << '(' unless ndx == 1
         hover_list << inner.to_s
-        hover_list << ") "unless ndx == 1
+        hover_list << ') ' unless ndx == 1
       end
-      hover_list << "<br>"
+      hover_list << '<br>'
     end
-    return raw hover_list
+    raw hover_list
   end
 
-  def story_saved?(st_id,us_id)
-    if user_signed_in?
-      Usersavedstory.where("story_id = #{st_id} and user_id = #{us_id}").count == 1 ? true : false
-    end
+  def story_saved?(st_id, us_id)
+    Usersavedstory.where("story_id = #{st_id} and user_id = #{us_id}").count == 1 if user_signed_in?
   end
 
   def resource_name

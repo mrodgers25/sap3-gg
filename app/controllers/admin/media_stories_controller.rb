@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'domainatrix'
 require 'screen_scraper'
 ## TODO: not sure why you are requiring the following libraries ?
@@ -63,44 +65,51 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
     end
   end
 
-  private
-
-  def get_domain_info(source_url_pre)
-    parsed_url = Domainatrix.parse(source_url_pre)
-    full_url   = parsed_url.url
-    subdomain  = parsed_url.subdomain
-    domain     = parsed_url.domain
-    suffix     = parsed_url.public_suffix
-    prefix     = (subdomain == 'www' || subdomain == '') ? '' : (subdomain + '.')
-    @base_domain = prefix + domain + '.' + suffix
-
-    if MediaOwner.where(url_domain: @base_domain).first.present?
-      @name_display = MediaOwner.where(url_domain: @base_domain).first.title
-    else
-      @name_display = 'NO DOMAIN NAME FOUND'
+    def update
+      if @story.update(story_params)
+        update_regions_and_categories(@story, story_params)
+        redirect_to redirect_to_next_path(images_admin_story_path(@story)), notice: 'Story was successfully updated.'
+      else
+        redirect_to edit_media_story_path(@story), notice: 'Story failed to be updated.'
+      end
     end
-  end
 
-  def set_media_story
-    begin
+    private
+
+    def get_domain_info(source_url_pre)
+      parsed_url = Domainatrix.parse(source_url_pre)
+      full_url   = parsed_url.url
+      subdomain  = parsed_url.subdomain
+      domain     = parsed_url.domain
+      suffix     = parsed_url.public_suffix
+      prefix     = ['www', ''].include?(subdomain) ? '' : "#{subdomain}."
+      @base_domain = "#{prefix}#{domain}.#{suffix}"
+
+      @name_display = if MediaOwner.where(url_domain: @base_domain).first.present?
+                        MediaOwner.where(url_domain: @base_domain).first.title
+                      else
+                        'NO DOMAIN NAME FOUND'
+                      end
+    end
+
+    def set_media_story
       @story = MediaStory.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Story not found"
+      redirect_to admin_stories_path, alert: 'Story not found'
     end
-  end
 
-  def set_scrape_fields
-    @story.story_type = @screen_scraper.meta_type
-    @story.author = @screen_scraper.meta_author
-    @story.story_year = @screen_scraper.year
-    @story.story_month = @screen_scraper.month
-    @story.story_date = @screen_scraper.day
+    def set_scrape_fields
+      @story.story_type = @screen_scraper.meta_type
+      @story.author = @screen_scraper.meta_author
+      @story.story_year = @screen_scraper.year
+      @story.story_month = @screen_scraper.month
+      @story.story_date = @screen_scraper.day
 
-    url = @story.urls.last
-    url.url_title  = @screen_scraper.title
-    url.url_desc  = @screen_scraper.meta_desc
-    url.url_keywords = @screen_scraper.meta_keywords
-  end
+      url = @story.urls.last
+      url.url_title = @screen_scraper.title
+      url.url_desc = @screen_scraper.meta_desc
+      url.url_keywords = @screen_scraper.meta_keywords
+    end
 
   def get_regions_and_categories
     @story_regions    = StoryRegion.order(:name)
@@ -120,10 +129,9 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
   end
 
   def process_chosen_params(my_params)
-    if my_params.present?
-      my_params.reject{|p| p.empty?}.map{|p| p.to_i}
-    end
+    my_params.reject(&:empty?).map(&:to_i) if my_params.present?
   end
+
 
   def story_params
     params.require(:media_story).permit(
@@ -141,13 +149,17 @@ class Admin::MediaStoriesController < Admin::BaseAdminController
             images_attributes: [:id, :src_url, :alt_text, :image_data, :manual_url, :image_width, :image_height, :manual_enter]])
   end
 
-  def redirect_to_next_path(path)
-    if params[:commit] == 'Save & New'
-      admin_initialize_scraper_index_path
-    elsif params[:commit] == 'Save & Exit'
-      admin_stories_path
-    else
-      path
+    def redirect_to_next_path(path)
+      case params[:commit]
+      when 'Save & New'
+        admin_initialize_scraper_index_path
+      when 'Save & Exit'
+        admin_stories_path
+      else
+        path
+      end
     end
-  end
+  
+
 end
+

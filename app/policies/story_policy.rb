@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoryPolicy
   attr_reader :current_user, :model
 
@@ -7,12 +9,12 @@ class StoryPolicy
   end
 
   def scrape?
-    allowed = ["associate","admin"]
+    allowed = %w[associate admin]
     allowed.include?(@current_user.role)
   end
 
   def destroy?
-    allowed = ["admin"]
+    allowed = ['admin']
     allowed.include?(@current_user.role)
   end
 
@@ -32,5 +34,4 @@ class StoryPolicy
   #   return false if @current_user == @user
   #   @current_user.admin?
   # end
-
 end

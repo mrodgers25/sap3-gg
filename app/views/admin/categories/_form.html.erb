@@ -1,0 +1,24 @@
+<%= form_for([:admin, @category]) do |f| %>
+    
+    <%= f.hidden_field :parent_id %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+       <%= f.label "Reference" %>
+       <%= f.select :reference, options_for_select(["place", "story"]), class: "form-control" %>
+    </div>
+  
+  <div class="actions">
+        <%= f.submit "Save", class: 'btn btn-md btn-primary text-center w-100' %>
+  </div>
+
+<% end %>

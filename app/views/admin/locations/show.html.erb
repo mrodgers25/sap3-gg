@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to edit_admin_location_path(@location), class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-edit mr-1"></i> Edit Location
+    <% end %>
+  </div>
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> <%= @location.full_address %></h4>
+    </div>
+
+    <div id='map'></div>
+  
+    <hr class="my-4">
+  </div>
+
+</div>
+
+ <div id="map"></div>
+ <script>
+    var lat = <%= @location.latitude %>
+    var long = <%= @location.longitude %>
+    var mymap = L.map('map').setView([lat,long], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+
+    L.marker([lat, long]).addTo(mymap)
+		.bindPopup("<b><%= @location.full_address %>").openPopup();
+
+	  var popup = L.popup();
+</script>
+
+
+
+
+

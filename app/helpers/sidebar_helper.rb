@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SidebarHelper
   def disabled_class(current_user)
     return if current_user
@@ -14,7 +16,7 @@ module SidebarHelper
     classes_string += current_page?(path) ? 'active-item' : 'bg-white'
 
     link_to(path, { class: classes_string }) do
-      content_tag(:i, "", class: "#{icon} mr-2") + text
+      tag.i('', class: "#{icon} mr-2") + text
     end
   end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
-  layout "application"
+  layout 'application'
 
   before_action :set_limit, only: :index
   before_action :filter_out_file_types_from_url, only: :index
@@ -35,11 +37,9 @@ class HomeController < ApplicationController
     @published_items = @published_items.distinct
   end
 
-  def about_us
-  end
+  def about_us; end
 
-  def contact_us
-  end
+  def contact_us; end
 
   private
 

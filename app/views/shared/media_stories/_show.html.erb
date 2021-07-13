@@ -93,6 +93,20 @@
           <hr>
 
           <dl class="row">
+
+            <% if @story.places.any? %>
+               <dt class="col-6 col-lg-4">Places Featured:</dt>
+               <dd class="col-6 col-lg-8">
+                <% @story.places.each.with_index do |place, index| %>
+                  <% if index + 1 == @story.places.count %>
+                   <%= link_to place.name, "" %>
+                  <% else %>
+                  <%= link_to place.name, "" %>,
+                  <% end %>
+                <% end %>
+               </dd>
+            <% end %>
+
             <dt class="col-6 col-lg-4">Publisher:</dt>
             <dd class="col-6 col-lg-8"><%= story.display_publisher || '-' %></dd>
 

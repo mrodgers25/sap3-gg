@@ -1,0 +1,40 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'db/{schema.rb}'
+    - 'db/migrate/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{bundle,rails,rake,setup,spring,update,yarn}'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'test_scripts/**/*'
+    - 'db/seeds.rb'
+    - 'test/**/*'
+    - 'lib/**/*'
+    - 'db/data_migrate/**/*'
+  NewCops: enable
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Layout/LineLength:
+  Max: 150
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 40
+  Exclude:
+    - 'spec/**/*.rb'

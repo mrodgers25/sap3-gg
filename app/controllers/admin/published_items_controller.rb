@@ -1,12 +1,16 @@
-class Admin::PublishedItemsController < Admin::BaseAdminController
-  before_action :set_published_item, only: [:display, :unpublish, :edit, :update, :add_to_queue]
+# frozen_string_literal: true
 
   def index
     @story_regions    = StoryRegion.order("ascii(name)")
     @place_categories = PlaceCategory.order(:name)
     @story_categories = StoryCategory.order(:name)
 
-    @published_items = PublishedItem.joins("
+    def index
+      @locations        = Location.order('ascii(name)')
+      @place_categories = PlaceCategory.order(:name)
+      @story_categories = StoryCategory.order(:name)
+
+      @published_items = PublishedItem.joins("
       INNER JOIN stories ON (publishable_type = 'Story' AND stories.id = publishable_id)
       LEFT JOIN urls ON urls.story_id = stories.id
       LEFT JOIN stories_users ON stories_users.story_id = stories.id
@@ -39,59 +43,57 @@ class Admin::PublishedItemsController < Admin::BaseAdminController
     @published_items = @published_items.distinct
     @published_items = @published_items.order(story_date_combined: :desc)
 
-    @pagy, @published_items = pagy(@published_items)
-  end
-
-  def add_to_queue
-    if @published_item.queue!
-      redirect_to admin_published_items_path, notice: 'Published Item was successfully added to the queue.'
-    else
-      redirect_to admin_published_items_path, alert: 'Published Item failed to be queued.'
+      @pagy, @published_items = pagy(@published_items)
     end
-  end
 
-  def display
-    if @published_item.post!
-      redirect_to admin_published_items_path, notice: 'Published Item was successfully displayed.'
-    else
-      redirect_to admin_published_items_path, alert: 'Published Item failed to be displayed.'
+    def add_to_queue
+      if @published_item.queue!
+        redirect_to admin_published_items_path, notice: 'Published Item was successfully added to the queue.'
+      else
+        redirect_to admin_published_items_path, alert: 'Published Item failed to be queued.'
+      end
     end
-  end
 
-  def unpublish
-    if @published_item.publishable.remove!
-      redirect_to admin_published_items_path, notice: 'Published Item was successfully unpublished.'
-    else
-      redirect_to admin_published_items_path, alert: 'Published Item failed to be unpublished.'
+    def display
+      if @published_item.post!
+        redirect_to admin_published_items_path, notice: 'Published Item was successfully displayed.'
+      else
+        redirect_to admin_published_items_path, alert: 'Published Item failed to be displayed.'
+      end
     end
-  end
 
-  def edit
-  end
-
-  def update
-    if @published_item.update(update_params)
-      redirect_to admin_published_items_path, notice: 'Published Item was successfully updated.'
-    else
-      redirect_to admin_published_items_path, alert: 'Published Item failed to be updated.'
+    def unpublish
+      if @published_item.publishable.remove!
+        redirect_to admin_published_items_path, notice: 'Published Item was successfully unpublished.'
+      else
+        redirect_to admin_published_items_path, alert: 'Published Item failed to be unpublished.'
+      end
     end
-  end
 
-  private
+    def edit; end
 
-  def set_published_item
-    begin
+    def update
+      if @published_item.update(update_params)
+        redirect_to admin_published_items_path, notice: 'Published Item was successfully updated.'
+      else
+        redirect_to admin_published_items_path, alert: 'Published Item failed to be updated.'
+      end
+    end
+
+    private
+
+    def set_published_item
       @published_item = PublishedItem.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to admin_published_items_path, alert: 'Published Item not found.'
     end
-  end
 
-  def bulk_update_params
-    params.permit(:update_type, ids: [])
-  end
+    def bulk_update_params
+      params.permit(:update_type, ids: [])
+    end
 
-  def update_params
-    params.require(:published_item).permit(:clear_at, :pinned, :pinned_action)
+    def update_params
+      params.require(:published_item).permit(:clear_at, :pinned, :pinned_action)
+    end
   end
 end

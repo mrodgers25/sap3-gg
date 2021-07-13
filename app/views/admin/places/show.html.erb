@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="links mb-2 text-right">
+    <%= link_to "#add-comment", class: "btn btn-sm btn-primary", data: {toggle: "collapse"} do %>
+      <i class="fas fa-sticky-note mr-1"></i> Add Comment
+    <% end %>
+    <%= link_to edit_admin_place_path(@place), class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-edit mr-1"></i> Edit Place
+    <% end %>
+  </div>
+
+<div class="collapse" id="add-comment">
+    <%= render 'admin/comments/form', reference: "place", reference_id: @place.id %>
+</div>
+
+  <div class="jumbotron bg-white admin-index-page">
+    <div class="header text-center">
+      <h4><i class="fas fa-map-marker-alt mr-1"></i> <%= @place.name %></h4>
+    </div>
+
+    <hr class="my-4">
+
+     Status:  <%= @place.place_status_option.name %><br>
+     Category:  
+    <% if @place.category %>
+      <% if @place.category.ancestors %>
+        <% @place.category.ancestors.each do |c| %>
+          <%= c.name %> >
+        <% end %>
+      <% end %>
+      <%= link_to @place.category.name, admin_category_path(@place.category) %><br>
+    <% end %>
+   
+   
+    <% if @place.location %>
+    Location: 
+      <%= @place.location.full_address %><br>
+  <br>
+       <div id="map"></div>
+ <script>
+    var lat = <%= @place.location.latitude %>
+    var long = <%= @place.location.longitude %>
+    var mymap = L.map('map').setView([lat,long], 15);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+
+    L.marker([lat, long]).addTo(mymap)
+		.bindPopup("<b><%= @place.name %>").openPopup();
+
+	  var popup = L.popup();
+</script>
+
+    <% end %>
+
+    
+    <div class="mt-4 header text-center">
+      <h4><i class="fas fa-book mr-1"></i>Stories</h4>
+    </div>
+      <hr class="my-4">
+    <% if @place.stories.any? %>
+      <% @place.stories.each do |story| %>
+        <div class="row">
+          <div class="col-2"><%= story.story_display_date %></div>
+          <div class="col-8"><%= link_to story.display_title, admin_story_path(story.id), target: '_blank' %></div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="no-stories-text">No Stories Found</p>
+    <% end %>
+
+    <%= render 'admin/comments/comments', comments: @comments %>
+
+  </div>
+
+</div>

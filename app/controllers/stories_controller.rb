@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoriesController < ApplicationController
   include Pagy::Backend
 
@@ -24,10 +26,10 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.json { render json: { success: true, message: 'Forgot story' }}
+        format.json { render json: { success: true, message: 'Forgot story' } }
         format.html { redirect_to my_stories_path, notice: 'Forgot story' }
       else
-        format.json { render json: { success: false, message: 'Error occured' }}
+        format.json { render json: { success: false, message: 'Error occured' } }
         format.html { redirect_to my_stories_path, notice: 'Error occured' }
       end
     end
@@ -57,36 +59,32 @@ class StoriesController < ApplicationController
 
     @pagy, @published_items = pagy(@published_items)
 
-    render layout: "application"
+    render layout: 'application'
   end
 
   private
 
   def set_story
-    begin
-      @story = Story.find(params[:id])
+    @story = Story.find(params[:id])
 
-      unless current_user&.has_basic_access?
-        raise ActiveRecord::RecordNotFound if @story.should_not_be_displayed?
-      end
-    rescue ActiveRecord::RecordNotFound
-      redirect_to root_path, alert: 'Story not found'
-    end
+    raise ActiveRecord::RecordNotFound if !current_user&.has_basic_access? && @story.should_not_be_displayed?
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'Story not found'
   end
 
   def set_story_by_permalink
     begin
       @story = Story.find_by(permalink: params[:permalink])
 
-      unless current_user&.has_basic_access?
-        raise ActiveRecord::RecordNotFound if @story.should_not_be_displayed?
-      end
-    rescue ActiveRecord::RecordNotFound
-      redirect_to root_path, alert: 'Story not found'
-    end
+    raise ActiveRecord::RecordNotFound if !current_user&.has_basic_access? && @story.should_not_be_displayed?
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'Story not found'
   end
 
   def check_for_current_user
     redirect_to root_path, alert: 'User not found' unless current_user
   end
+
+end
+
 end

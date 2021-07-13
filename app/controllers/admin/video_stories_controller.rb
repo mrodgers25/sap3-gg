@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'video_scraper'
 
 class Admin::VideoStoriesController < Admin::BaseAdminController
@@ -30,7 +32,6 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       get_regions_and_categories
       render :scrape
     end
-  end
 
   def edit
     # story_regions and categories
@@ -43,22 +44,38 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     if @video_story.update(video_story_params)
       update_regions_and_categories(@video_story, video_story_params)
 
-      redirect_to redirect_to_next_path(images_admin_story_path(@video_story)), notice: 'Video Story was successfully updated.'
-    else
-      redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
+    def update
+      @video_story.video_duration = set_duration(params[:video_story])
+      if @video_story.update(video_story_params)
+        update_locations_and_categories(@video_story, video_story_params)
+
+        redirect_to redirect_to_next_path(images_admin_story_path(@video_story)),
+                    notice: 'Video Story was successfully updated.'
+      else
+        redirect_to edit_admin_video_story_path(@video_story), notice: 'Story failed to be updated.'
+      end
     end
-  end
 
-  private
+    private
 
-  def set_video_story
-    begin
+    def set_video_story
       @video_story = VideoStory.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to admin_stories_path, alert: "Video Story not found"
+      redirect_to admin_stories_path, alert: 'Video Story not found'
     end
-  end
 
+    def set_scrape_fields
+      @video_story.video_creator    = @screen_scraper.link_creator
+      @video_story.video_channel_id = @screen_scraper.link_channel_id
+      @video_story.story_year       = @screen_scraper.year
+      @video_story.story_month      = @screen_scraper.month
+      @video_story.story_date = @screen_scraper.day
+
+      url = @video_story.urls.last
+      url.url_title                 = @screen_scraper.title
+      url.url_desc                  = @screen_scraper.meta_desc
+      url.url_keywords              = @screen_scraper.meta_keywords
+    end
 
   def set_scrape_fields
     @video_story.video_creator    = @screen_scraper.link_creator
@@ -77,18 +94,16 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     new_story_region = StoryRegion.find(process_chosen_params(my_params[:story_region_ids]))
     story.story_regions = new_story_region
 
-    new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
-    story.story_categories = new_story_categories
+      new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
+      story.story_categories = new_story_categories
 
-    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.place_categories = new_place_categories
-  end
-
-  def process_chosen_params(my_params)
-    if my_params.present?
-      my_params.reject{|p| p.empty?}.map{|p| p.to_i}
+      new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
+      story.place_categories = new_place_categories
     end
-  end
+
+    def process_chosen_params(my_params)
+      my_params.reject(&:empty?).map(&:to_i) if my_params.present?
+    end
 
   def get_regions_and_categories
     @story_regions    = StoryRegion.order("ascii(name)")
@@ -114,36 +129,38 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     )
   end
 
-  def set_duration(param)
-    @hours = param[:hours]
-    @minutes = param[:minutes]
-    @seconds = param[:seconds]
-    if @hours.present? && @minutes.present? && @seconds.present?
-      @hours.to_i.hour.to_i + @minutes.to_i.minute.to_i + @seconds.to_i
-    else
-      0
+    def set_duration(param)
+      @hours = param[:hours]
+      @minutes = param[:minutes]
+      @seconds = param[:seconds]
+      if @hours.present? && @minutes.present? && @seconds.present?
+        @hours.to_i.hour.to_i + @minutes.to_i.minute.to_i + @seconds.to_i
+      else
+        0
+      end
     end
-  end
 
-  def get_time(duration)
-    if duration.present?
-      @seconds = duration % 60
-      @minutes = (duration / 60) % 60
-      @hours = duration / (60 * 60)
-    else
-      @hours = 0
-      @minutes = 0
-      @seconds = 0
+    def get_time(duration)
+      if duration.present?
+        @seconds = duration % 60
+        @minutes = (duration / 60) % 60
+        @hours = duration / (60 * 60)
+      else
+        @hours = 0
+        @minutes = 0
+        @seconds = 0
+      end
     end
-  end
 
-  def redirect_to_next_path(path)
-    if params[:commit] == 'Save & New'
-      admin_initialize_scraper_index_path
-    elsif params[:commit] == 'Save & Exit'
-      admin_stories_path
-    else
-      path
+    def redirect_to_next_path(path)
+      case params[:commit]
+      when 'Save & New'
+        admin_initialize_scraper_index_path
+      when 'Save & Exit'
+        admin_stories_path
+      else
+        path
+      end
     end
   end
 end

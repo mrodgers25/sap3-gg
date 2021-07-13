@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :visits
   has_many :story_activities
   has_and_belongs_to_many :stories
 
-  enum role: [:user, :associate, :admin]
+  enum role: { user: 0, associate: 1, admin: 2 }
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
