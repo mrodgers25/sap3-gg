@@ -45,8 +45,8 @@
               <% end %>
 
               <% if story.place_groupings.present? %>
-                <dt class="col-6 col-lg-5">Place <%= 'Category'.pluralize(story.place_groupings.size) %>:</dt>
-                <dd class="col-6 col-lg-7"><%= story.display_place_categories.presence || '-' %></dd>
+                <dt class="col-6 col-lg-5">Place <%= 'Grouping'.pluralize(story.place_groupings.size) %>:</dt>
+                <dd class="col-6 col-lg-7"><%= story.display_place_groupings.presence || '-' %></dd>
               <% end %>
 
               <% if story.story_categories.present? %>

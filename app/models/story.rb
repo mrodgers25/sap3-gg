@@ -206,7 +206,7 @@ class Story < ApplicationRecord
     latest_url.media_owner&.title
   end
 
-  def display_place_categories
+  def display_place_groupings
     place_groupings.pluck(:name).join(', ')
   end
 
