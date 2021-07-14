@@ -35,7 +35,7 @@
           <tr>
             <th scope="col">Title</th>
             <th scope="col">Regions</th>
-            <th scope="col">Place Categories</th>
+            <th scope="col">Place Groupings</th>
             <th scope="col">Story Categories</th>
             <th scope="col">Queue Position</th>
             <th scope="col">Pinned?</th>
@@ -50,7 +50,7 @@
                 <%= link_to queued_item.publishable.display_title, polymorphic_path([:admin, queued_item.publishable]), target: '_blank', class: 'text-dark' %>
               </td>
               <td><%= queued_item.publishable.display_story_region_codes || '-' %></td>
-              <td><%= queued_item.publishable.display_place_categories || '-' %></td>
+              <td><%= queued_item.publishable.display_place_groupings || '-' %></td>
               <td><%= queued_item.publishable.display_story_categories || '-' %></td>
               <td style="width: 50px;"><%= queued_item.queue_position || '-' %></td>
               <td><%= human_bool(queued_item.pinned) %></td>

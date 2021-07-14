@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     resources :images, except: [:show]
     resources :codes, except: [:show]
     resources :story_regions, except: [:show]
-    resources :place_categories, except: [:show]
+    resources :place_groupings, except: [:show]
     resources :story_categories, except: [:show]
     resources :media_owners, except: [:show]
     resources :users, except: [:show] do

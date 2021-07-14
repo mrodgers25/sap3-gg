@@ -19,10 +19,10 @@ class Admin::ReportsController < Admin::BaseAdminController
 
   def export_stories
 
-    stories = Story.eager_load(:urls => [:images]).eager_load(:story_regions).eager_load(:place_categories).eager_load(:story_categories).order(:id)
+    stories = Story.eager_load(:urls => [:images]).eager_load(:story_regions).eager_load(:place_groupings).eager_load(:story_categories).order(:id)
 
     output = CSV.generate do |writer|
-      writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Story Region","Place Category","Story Category","Author Trk", \
+      writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Story Region","Place Grouping","Story Category","Author Trk", \
             "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Media Owner Id","Manual Img","Data Entered By","Story Complete"]
       stories.each do |s|
         @url_full,@url_domain,@manual_enter,@story_region_name,@pc_name,@sc_name = ["","","","","",""]
@@ -34,7 +34,7 @@ class Admin::ReportsController < Admin::BaseAdminController
           end
         end
         @story_region_name = s.story_regions.map { |l| l.code }.join(',')
-        @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
+        @pc_name = s.place_groupings.map { |pc| pc.code }.join(',')
         @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
@@ -126,10 +126,10 @@ class Admin::ReportsController < Admin::BaseAdminController
     file_s = Rails.root.join('tmp','story_listing.csv')
     puts "Story file will be #{file_s}"
 
-    stories = Story.eager_load(:urls => [:images]).eager_load(:story_regions).eager_load(:place_categories).eager_load(:story_categories).order(:id)
+    stories = Story.eager_load(:urls => [:images]).eager_load(:story_regions).eager_load(:place_groupings).eager_load(:story_categories).order(:id)
 
     CSV.open( file_s, 'w' ) do |writer|
-      writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Story Region","Place Category","Story Category","Author Trk", \
+      writer << ["Id", "Created","SAP Publish","Story Type","YY","MM","DD","Tagline","Story Region","Place Grouping","Story Category","Author Trk", \
             "Story Yr Trk","Story Mnth Trk","Story Dt Trk","DataEntry Secs","URL","Domain","Media Owner Id","Manual Img","Data Entered By","Story Complete"]
       stories.each do |s|
         @url_full,@url_domain,@manual_enter,@story_region_name,@pc_name,@sc_name = ["","","","","",""]
@@ -141,7 +141,7 @@ class Admin::ReportsController < Admin::BaseAdminController
           end
         end
         @story_region_name = s.story_regions.map { |l| l.code }.join(',')
-        @pc_name = s.place_categories.map { |pc| pc.code }.join(',')
+        @pc_name = s.place_groupings.map { |pc| pc.code }.join(',')
         @sc_name = s.story_categories.map { |sc| sc.code }.join(',')
 
         writer << [s.id, s.created_at, s.sap_publish_date, s.story_type, s.story_year, s.story_month, s.story_date, s.editor_tagline, \
@@ -177,7 +177,7 @@ class Admin::ReportsController < Admin::BaseAdminController
     # actions = User.includes(:events).joins(:events)
 
     # CSV.open( file_a, 'w' ) do |writer|
-    #   writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Story Region","Place Category","Story Category","Button"]
+    #   writer << ["Id","First","Last","Email","Date-Time","Controller","Controller-Action","Story Region","Place Grouping","Story Category","Button"]
     #   actions.each do |a|
     #     a.events.each do |e|
     #       if e.properties.values[5].present?  # filter actions

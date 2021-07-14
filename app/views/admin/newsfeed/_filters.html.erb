@@ -35,8 +35,8 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-md-2">
       <%=
-        select_tag :place_category_id,
-        options_from_collection_for_select(@place_categories, 'id', 'name', params[:place_category_id]),
+        select_tag :place_grouping_id,
+        options_from_collection_for_select(@place_groupings, 'id', 'name', params[:place_grouping_id]),
         prompt: 'All Place Types',
         class: 'form-control form-control-sm',
         id: 'place-select'

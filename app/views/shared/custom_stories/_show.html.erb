@@ -26,7 +26,7 @@
             </div>
           <% end %>
 
-          <% if story.author.present? || story.story_display_date.present? || story.story_regions.present? || story.place_categories.present? || story.story_categories.present? %>
+          <% if story.author.present? || story.story_display_date.present? || story.story_regions.present? || story.place_groupings.present? || story.story_categories.present? %>
             <hr>
             <dl class="row">
               <% if story.author.present? %>
@@ -44,9 +44,9 @@
                 <dd class="col-6 col-lg-7"><%= story.display_story_region.presence || '-' %></dd>
               <% end %>
 
-              <% if story.place_categories.present? %>
-                <dt class="col-6 col-lg-5">Place <%= 'Category'.pluralize(story.place_categories.size) %>:</dt>
-                <dd class="col-6 col-lg-7"><%= story.display_place_categories.presence || '-' %></dd>
+              <% if story.place_groupings.present? %>
+                <dt class="col-6 col-lg-5">Place <%= 'Grouping'.pluralize(story.place_groupings.size) %>:</dt>
+                <dd class="col-6 col-lg-7"><%= story.display_place_groupings.presence || '-' %></dd>
               <% end %>
 
               <% if story.story_categories.present? %>

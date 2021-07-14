@@ -100,10 +100,10 @@
 
         <div class="form-group row">
           <div class="col-2">
-            <%= f.label :place_category_ids, "Place Categories:" %>
+            <%= f.label :place_grouping_ids, "Place Groupings:" %>
           </div>
           <div class="col-10">
-            <%= f.select :place_category_ids, options_from_collection_for_select(@place_categories, 'id', 'name', @video_story.place_categories.ids), {}, { multiple: true, id: 'story_place_category_ids' } %>
+            <%= f.select :place_grouping_ids, options_from_collection_for_select(@place_groupings, 'id', 'name', @video_story.place_groupings.ids), {}, { multiple: true, id: 'place_groupings_story_ids' } %>
           </div>
         </div>
 
