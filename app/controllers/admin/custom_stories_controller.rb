@@ -151,7 +151,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
 
   def get_regions_and_categories
     @story_regions    = StoryRegion.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
+    @place_groupings  = PlaceGrouping.order(:name)
     @story_categories = StoryCategory.order(:name)
   end
 
@@ -175,7 +175,7 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
       internal_images: [],
       story_region_ids: [],
       story_category_ids: [],
-      place_category_ids: [],
+      place_grouping_ids: [],
       external_image_attributes: [
         :src_url, :width, :height
       ]
@@ -208,11 +208,11 @@ class Admin::CustomStoriesController < Admin::BaseAdminController
   def create_associations_from_params!
     new_story_regions    = StoryRegion.where(id: story_params[:story_region_ids])
     new_story_categories = StoryCategory.where(id: story_params[:story_category_ids])
-    new_place_categories = PlaceCategory.where(id: story_params[:place_category_ids])
+    new_place_groupings  = PlaceGrouping.where(id: story_params[:place_grouping_ids])
 
     @story.story_regions    = new_story_regions
     @story.story_categories = new_story_categories
-    @story.place_categories = new_place_categories
+    @story.place_groupings  = new_place_groupings
 
     @story.save!
   end

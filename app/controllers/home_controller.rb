@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     # database dropdown data
     @story_regions    = StoryRegion.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
+    @place_groupings  = PlaceGrouping.order(:name)
     @story_categories = StoryCategory.order(:name)
 
     @published_items = PublishedItem.joins("
@@ -15,15 +15,15 @@ class HomeController < ApplicationController
       LEFT JOIN stories_users ON stories_users.story_id = stories.id
       LEFT JOIN stories_story_regions ON stories_story_regions.story_id = stories.id
       LEFT JOIN story_regions ON story_regions.id = stories_story_regions.story_region_id
-      LEFT JOIN story_place_categories ON story_place_categories.story_id = stories.id
-      LEFT JOIN place_categories ON place_categories.id = story_place_categories.place_category_id
+      LEFT JOIN place_groupings_stories ON place_groupings_stories.story_id = stories.id
+      LEFT JOIN place_groupings ON place_groupings.id = place_groupings_stories.place_grouping_id
       LEFT JOIN story_story_categories ON story_story_categories.story_id = stories.id
       LEFT JOIN story_categories ON story_categories.id = story_story_categories.story_category_id
     ").select('published_items.*, stories.*, stories_users.created_at AS save_date')
 
-    if params[:story_region_id].present? || params[:place_category_id].present? || params[:story_category_id].present?
+    if params[:story_region_id].present? || params[:place_grouping_id].present? || params[:story_category_id].present?
       @published_items = @published_items.where(story_regions: { id: params[:story_region_id] }) if params[:story_region_id].present?
-      @published_items = @published_items.where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+      @published_items = @published_items.where(place_groupings: { id: params[:place_grouping_id] }) if params[:place_grouping_id].present?
       @published_items = @published_items.where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
       @published_items = @published_items.limit(AdminSetting.filtered_display_limit)
       @published_items = @published_items.order(created_at: :desc)

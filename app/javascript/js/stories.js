@@ -1,7 +1,7 @@
 
 document.addEventListener("turbolinks:load", function () {
   $('#story_story_region_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Regions'});
-  $('#story_place_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Categories'});
+  $('#place_groupings_story_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Groupings'});
   $('#story_story_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Categories'});
 
   // $(function(){
@@ -81,7 +81,7 @@ document.addEventListener("turbolinks:load", function () {
   //       $('.cannot_save_story_link').on('click', cannotSaveStory);
   //       $('.forget_story_link').on('click', forgetStory);
   //       $('#story_region_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Regions'});
-  //       $('#story_place_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Categories'});
+  //       $('#place_groupings_story_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Place Groupings'});
   //       $('#story_story_category_ids').chosen({width: '400px', placeholder_text_multiple: 'Choose Story Categories'});
   //     }
   //   }

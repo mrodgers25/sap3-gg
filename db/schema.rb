@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_032856) do
+ActiveRecord::Schema.define(version: 2021_07_14_041948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,12 +156,20 @@ ActiveRecord::Schema.define(version: 2021_06_25_032856) do
     t.datetime "updated_at"
   end
 
-  create_table "place_categories", id: :serial, force: :cascade do |t|
+  create_table "place_groupings", id: :serial, force: :cascade do |t|
     t.string "code", limit: 255, null: false
     t.string "name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["code"], name: "index_place_categories_on_code", unique: true
+    t.index ["code"], name: "index_place_groupings_on_code", unique: true
+  end
+
+  create_table "place_groupings_stories", id: :serial, force: :cascade do |t|
+    t.integer "story_id", null: false
+    t.integer "place_grouping_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["story_id", "place_grouping_id"], name: "index_place_groupings_stories_on_story_id_and_place_grouping_id", unique: true
   end
 
   create_table "published_items", force: :cascade do |t|
@@ -223,6 +231,8 @@ ActiveRecord::Schema.define(version: 2021_06_25_032856) do
     t.integer "internal_image_width"
     t.integer "internal_image_height"
     t.boolean "savable", default: false
+    t.integer "assigned_to"
+    t.index ["assigned_to"], name: "index_stories_on_assigned_to"
     t.index ["sap_publish_date"], name: "index_stories_on_sap_publish_date"
     t.index ["state"], name: "index_stories_on_state"
   end
@@ -260,14 +270,6 @@ ActiveRecord::Schema.define(version: 2021_06_25_032856) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["code"], name: "index_story_categories_on_code", unique: true
-  end
-
-  create_table "story_place_categories", id: :serial, force: :cascade do |t|
-    t.integer "story_id", null: false
-    t.integer "place_category_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["story_id", "place_category_id"], name: "index_story_place_categories_on_story_id_and_place_category_id", unique: true
   end
 
   create_table "story_regions", id: :serial, force: :cascade do |t|

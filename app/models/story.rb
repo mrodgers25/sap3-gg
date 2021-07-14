@@ -2,7 +2,7 @@ class Story < ApplicationRecord
   include AASM
   include ApplicationHelper
 
-  attr_accessor :story_region_ids, :place_category_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
+  attr_accessor :story_region_ids, :place_grouping_ids, :story_category_ids, :source_url_pre, :data_entry_begin_time, :raw_author_scrape, :raw_story_year_scrape, :raw_story_month_scrape, :raw_story_date_scrape
 
   has_and_belongs_to_many :users
   has_many :urls, inverse_of: :story, dependent: :destroy
@@ -11,8 +11,8 @@ class Story < ApplicationRecord
   has_many :story_regions, through: :stories_story_regions
   has_many :story_story_categories, dependent: :destroy
   has_many :story_categories, through: :story_story_categories
-  has_many :story_place_categories, dependent: :destroy
-  has_many :place_categories, through: :story_place_categories
+  has_many :place_groupings_stories, dependent: :destroy
+  has_many :place_groupings, through: :place_groupings_stories
   has_many :story_activities, dependent: :destroy
   has_many :published_items, as: :publishable, dependent: :destroy
   has_many :newsfeed_activities, as: :trackable
@@ -143,7 +143,7 @@ class Story < ApplicationRecord
     where_str += " AND stories.id = #{self.id}"
 
     Story.joins("LEFT OUTER JOIN stories_story_regions sl ON (stories.id = sl.story_id)")
-    .joins("LEFT OUTER JOIN story_place_categories spc ON (stories.id = spc.story_id)")
+    .joins("LEFT OUTER JOIN place_groupings_stories spc ON (stories.id = spc.story_id)")
     .joins("LEFT OUTER JOIN story_story_categories ssc ON (stories.id = ssc.story_id)")
     .joins(:urls)
     .where(where_str).present?
@@ -207,7 +207,7 @@ class Story < ApplicationRecord
   end
 
   def display_place_categories
-    place_categories.pluck(:name).join(', ')
+    place_groupings.pluck(:name).join(', ')
   end
 
   def display_story_categories

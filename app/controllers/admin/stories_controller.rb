@@ -5,7 +5,7 @@ class Admin::StoriesController < Admin::BaseAdminController
   def index
     # database dropdown data
     @story_regions    = StoryRegion.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
+    @place_groupings  = PlaceGrouping.order(:name)
     @story_categories = StoryCategory.order(:name)
 
     @stories = Story.left_outer_joins(:urls).select(
@@ -25,7 +25,7 @@ class Admin::StoriesController < Admin::BaseAdminController
     @stories = @stories.where("LOWER(urls.url_desc) ~ ?", params[:url_desc].downcase) if params[:url_desc].present?
     @stories = @stories.where(state: params[:state]) if params[:state].present?
     @stories = @stories.joins(:story_regions).where(story_regions: { id: params[:story_region_id] }) if params[:story_region_id].present?
-    @stories = @stories.joins(:place_categories).where(place_categories: { id: params[:place_category_id] }) if params[:place_category_id].present?
+    @stories = @stories.joins(:place_groupings).where(place_groupings: { id: params[:place_grouping_id] }) if params[:place_grouping_id].present?
     @stories = @stories.joins(:story_categories).where(story_categories: { id: params[:story_category_id] }) if params[:story_category_id].present?
     @stories = @stories.order(story_date_combined: :desc, id: :desc)
 
@@ -196,7 +196,7 @@ class Admin::StoriesController < Admin::BaseAdminController
 
   def get_regions_and_categories
     @story_regions    = StoryRegion.order("ascii(name)")
-    @place_categories = PlaceCategory.order(:name)
+    @place_groupings  = PlaceGrouping.order(:name)
     @story_categories = StoryCategory.order(:name)
   end
 

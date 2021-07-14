@@ -80,8 +80,8 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
     new_story_categories = StoryCategory.find(process_chosen_params(my_params[:story_category_ids]))
     story.story_categories = new_story_categories
 
-    new_place_categories = PlaceCategory.find(process_chosen_params(my_params[:place_category_ids]))
-    story.place_categories = new_place_categories
+    new_place_groupings = PlaceGrouping.find(process_chosen_params(my_params[:place_grouping_ids]))
+    story.place_groupings = new_place_groupings
   end
 
   def process_chosen_params(my_params)
@@ -93,7 +93,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
   def get_regions_and_categories
     @story_regions    = StoryRegion.order("ascii(name)")
     @story_categories = StoryCategory.order(:name)
-    @place_categories = PlaceCategory.order(:name)
+    @place_groupings = PlaceGrouping.order(:name)
   end
 
   def video_story_params
@@ -104,7 +104,7 @@ class Admin::VideoStoriesController < Admin::BaseAdminController
       :story_year, :story_month, :story_date,
       :data_entry_begin_time, :data_entry_user, :desc_length,
       :story_region_ids => [],
-      :place_category_ids => [],
+      :place_grouping_ids => [],
       :story_category_ids => [],
       urls_attributes: [
         :id, :url_type, :url_full, :url_title, :url_desc, :url_keywords, :url_domain, :primary, :story_id,

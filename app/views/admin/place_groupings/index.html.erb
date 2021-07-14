@@ -1,17 +1,17 @@
 <div class="container-fluid">
   <div class="links mb-2 text-right">
-    <%= link_to new_admin_place_category_path, class: "btn btn-sm btn-success" do %>
-      <i class="fas fa-plus mr-1"></i> Add Place Category
+    <%= link_to new_admin_place_grouping_path, class: "btn btn-sm btn-success" do %>
+      <i class="fas fa-plus mr-1"></i> Add Place Grouping
     <% end %>
   </div>
   <div class="jumbotron bg-white admin-index-page">
     <div class="header text-center">
-      <h4><i class="fas fa-map-marked-alt mr-1"></i> Place Categories</h4>
+      <h4><i class="fas fa-map-marked-alt mr-1"></i> Place Groupings</h4>
     </div>
 
     <hr class="my-4">
 
-    <%= render partial: 'filters', locals: { filter_path: admin_place_categories_path } %>
+    <%= render partial: 'filters', locals: { filter_path: admin_place_groupings_path } %>
 
     <hr class="my-4">
 
@@ -27,17 +27,17 @@
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do |category| %>
+          <% @groupings.each do |category| %>
             <tr>
               <td><%= category.id %></td>
               <td><%= category.name %></td>
               <td><%= category.code %></td>
               <td><%= pretty_date_format(category.created_at) %></td>
               <td class="action-links">
-                <%= link_to edit_admin_place_category_path(category), class: "btn btn-sm btn-outline-warning" do %>
+                <%= link_to edit_admin_place_grouping_path(category), class: "btn btn-sm btn-outline-warning" do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to admin_place_category_path(category), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
+                <%= link_to admin_place_grouping_path(category), method: :delete, class: "btn btn-sm btn-outline-danger delete-link", data: { confirm: 'Are you sure?' }, target: '_blank' do %>
                   <i class="fas fa-times"></i>
                 <% end %>
               </td>
